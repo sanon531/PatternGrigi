@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TouchFollowScript : MonoBehaviour
 {
-
+    
     [SerializeField]
     Vector3 _touchPosition;
     [SerializeField]
@@ -19,6 +19,10 @@ public class TouchFollowScript : MonoBehaviour
         _thisRB = GetComponent<Rigidbody2D>();
     }
 
+    //터치가능 영역만을 설정할수있도록 만든다.
+    //절반아래일때만
+    
+
     // Update is called once per frame
     void Update()
     {
@@ -28,6 +32,7 @@ public class TouchFollowScript : MonoBehaviour
             _touchPosition = Camera.main.ScreenToWorldPoint(_touch.position);
             _touchPosition.z = 0;
             _direction = _touchPosition - transform.position;
+            _direction = _direction.normalized;
             _thisRB.velocity = new Vector2(_direction.x, _direction.y) * moveSpeed;
             if (_touch.phase == TouchPhase.Ended)
                 _thisRB.velocity = Vector2.zero;
