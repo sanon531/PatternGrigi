@@ -58,11 +58,10 @@ public class PatternManager : MonoBehaviour
     //이렇게 만드는거는 이제 다음 목표점이 2개이상일때 무작위로 배치할때 사용할것.
     void RandomNodeSet() 
     {
-        int i = _inactivatedNode.Count;
+        int i = _inactivatedNode.Count ;
         int _deleteTarget = Random.Range(0, i);
         Debug.Log(i+"set" + _deleteTarget);
         SetNodeToNextReach(_inactivatedNode[_deleteTarget]);
-        _inactivatedNode.RemoveAt(_deleteTarget);
     }
 
     void ResetAllNode() 
@@ -77,7 +76,10 @@ public class PatternManager : MonoBehaviour
     {
         Debug.Log("input " + i );
         if (_inactivatedNode.Contains(i))
+        {
             _patternNodes[i].SetIsReachable(true);
+            _inactivatedNode.Remove(i);
+        }
         else
             Debug.LogError("Wrong node Error: Already Exist");  
     }

@@ -13,6 +13,8 @@ public class PatternNodeScript : MonoBehaviour
     bool _isReachable = false;
     [SerializeField]
     SpriteRenderer _reachableImage;
+    [SerializeField]
+    AudioSource _swipeAudio;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,13 +35,12 @@ public class PatternNodeScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         ShowDebugtextScript._instance.SetDebug(name+"Player in _11"+ collision.transform.tag);
-
         if (collision.transform.tag == "Player")
         {
             if (_isReachable)
             {
+                _swipeAudio.Play();
                 ShowDebugtextScript._instance.SetDebug("Player in" + name );
                 PatternManager._instance.ReachTriggeredNode_Random(_nodeId);
             }

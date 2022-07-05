@@ -19,13 +19,14 @@ public class TouchFollowScript : MonoBehaviour
         _thisRB = GetComponent<Rigidbody2D>();
     }
 
-    //터치가능 영역만을 설정할수있도록 만든다.
-    //절반아래일때만
+
     
 
     // Update is called once per frame
     void Update()
     {
+        //터치가능 영역만을 설정할수있도록 만든다.
+        //절반아래일때만
         if (Input.touchCount > 0) 
         {
             Touch _touch = Input.GetTouch(0);
