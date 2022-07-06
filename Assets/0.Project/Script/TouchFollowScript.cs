@@ -12,7 +12,8 @@ public class TouchFollowScript : MonoBehaviour
     Vector3 _direction;
     [SerializeField]
     float moveSpeed = 10f;
-
+    [SerializeField]
+    Transform _lineStart, _lineEnd;
     // Start is called before the first frame update
     void Awake()
     {
@@ -20,7 +21,20 @@ public class TouchFollowScript : MonoBehaviour
     }
 
 
+    void SetDrawLineStart(Vector2 _startPosition) 
+    {
     
+    }
+    void SetDrawLineEnd(Vector2 _endPosition)
+    {
+
+    }
+
+    void ReSetDrawLine()
+    {
+
+    }
+
 
     // Update is called once per frame
     void Update()
