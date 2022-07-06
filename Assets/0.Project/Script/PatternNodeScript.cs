@@ -41,6 +41,7 @@ public class PatternNodeScript : MonoBehaviour
             if (_isReachable)
             {
                 _swipeAudio.Play();
+                LineTracer.instance.SetDrawLineEnd(transform.position);
                 ShowDebugtextScript._instance.SetDebug("Player in" + name );
                 PatternManager._instance.ReachTriggeredNode_Random(_nodeId);
             }
