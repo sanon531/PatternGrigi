@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
-
+using MoreMountains.NiceVibrations;
 
 public class PatternManager : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class PatternManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckVibration();
     }
 
 
@@ -74,14 +76,71 @@ public class PatternManager : MonoBehaviour
 
     void SetNodeToNextReach(int i)
     {
-        Debug.Log("input " + i );
+        //Debug.Log("input " + i );
         if (_inactivatedNode.Contains(i))
         {
+            CallVib();
             _patternNodes[i].SetIsReachable(true);
             _inactivatedNode.Remove(i);
         }
         else
             Debug.LogError("Wrong node Error: Already Exist");  
     }
+
+
+
+
+    float _leftTime = 0f;
+    [SerializeField]
+    float _limitTime = 0.25f;
+    bool _vibAlive = false;
+    [SerializeField]
+    float _currentIntensity, _currentSharpness = 1;
+
+    void CallVib()
+    {
+        MMVibrationManager.StopContinuousHaptic(true);
+        _vibAlive = true;
+        _leftTime = _limitTime;
+        MMVibrationManager.ContinuousHaptic(_currentIntensity, _currentIntensity, _leftTime, HapticTypes.LightImpact, this, true, -1, true);
+
+    }
+    void CallVib(float _time)
+    {
+        _vibAlive = true;
+        _leftTime = _time;
+    }
+    void CheckVibration()
+    {
+        if (!_vibAlive)
+            return;
+
+        if (_leftTime > 0f)
+        {
+            _leftTime -= Time.deltaTime;
+            ShowDebugtextScript._instance.SetDebug("time left" + _leftTime);
+        }
+        else
+        {
+            _vibAlive = false;
+        }
+
+
+    }
+
+    public void SetIntensity(Slider _s) 
+    {
+        _currentIntensity = _s.value;
+    }
+    public void SetSharpness(Slider _s)
+    {
+        _currentSharpness = _s.value;
+    }
+    public void SetTime_Slider(Slider _s)
+    {
+        _limitTime = _s.value;
+    }
+
+
 
 }

@@ -42,7 +42,7 @@ public class PatternNodeScript : MonoBehaviour
             {
                 _swipeAudio.Play();
                 LineTracer.instance.SetDrawLineEnd(transform.position);
-                ShowDebugtextScript._instance.SetDebug("Player in" + name );
+                //ShowDebugtextScript._instance.SetDebug("Player in" + name );
                 PatternManager._instance.ReachTriggeredNode_Random(_nodeId);
             }
         }

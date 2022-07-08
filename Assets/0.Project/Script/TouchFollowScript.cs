@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class TouchFollowScript : MonoBehaviour
 {
     
@@ -12,6 +11,8 @@ public class TouchFollowScript : MonoBehaviour
     Vector3 _direction;
     [SerializeField]
     float moveSpeed = 10f;
+    [SerializeField]
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -37,9 +38,19 @@ public class TouchFollowScript : MonoBehaviour
             _thisRB.velocity = new Vector2(_direction.x, _direction.y) * moveSpeed;
             if (_touch.phase == TouchPhase.Ended)
                 _thisRB.velocity = Vector2.zero;
+
+            
+
         }
         else {
         
         }
+
+
+
     }
+
+
+  
+
 }
