@@ -55,7 +55,6 @@ public class PatternManager : MonoBehaviour
         //추후 여러개의 도달점을 가져야할때를 위해서 무작위로 한다.
         RandomNodeSet();
     }
-    public
 
     //이렇게 만드는거는 이제 다음 목표점이 2개이상일때 무작위로 배치할때 사용할것.
     void RandomNodeSet() 

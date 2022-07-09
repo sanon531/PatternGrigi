@@ -17,6 +17,8 @@ public class PatternNodeScript : MonoBehaviour
     AudioSource _swipeAudio;
     [SerializeField]
     float _damage = 10;
+    [SerializeField]
+    ParticleSystem _flash;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +49,7 @@ public class PatternNodeScript : MonoBehaviour
                 //ShowDebugtextScript._instance.SetDebug("Player in" + name );
                 PatternManager._instance.ReachTriggeredNode_Random(_nodeId);
                 Enemy_Script.Damage(_damage);
+                _flash.Play();
             }
         }
 
