@@ -15,6 +15,8 @@ public class PatternNodeScript : MonoBehaviour
     SpriteRenderer _reachableImage;
     [SerializeField]
     AudioSource _swipeAudio;
+    [SerializeField]
+    float _damage = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +46,7 @@ public class PatternNodeScript : MonoBehaviour
                 LineTracer.instance.SetDrawLineEnd(transform.position);
                 //ShowDebugtextScript._instance.SetDebug("Player in" + name );
                 PatternManager._instance.ReachTriggeredNode_Random(_nodeId);
+                Enemy_Script.Damage(_damage);
             }
         }
 
