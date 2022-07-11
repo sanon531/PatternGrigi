@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace RengeGames.HealthBars {
 
@@ -40,6 +41,7 @@ namespace RengeGames.HealthBars {
 
         private bool materialAssigned = false;
         private const string MATERIAL_NAME = "radialSegmentedHealthBarInstance";
+        Tween _fadeTween;
 
         private static string BaseMaterialName {
             get {
@@ -59,7 +61,6 @@ namespace RengeGames.HealthBars {
             radiusID = Shader.PropertyToID("_Radius");
             linewidthID = Shader.PropertyToID("_LineWidth");
             rotationID = Shader.PropertyToID("_Rotation");
-
             SpriteRenderer r = GetComponent<SpriteRenderer>();
             if (r != null) {
                 AssignMaterial(r);
@@ -100,6 +101,9 @@ namespace RengeGames.HealthBars {
             if (currentMaterial != null && currentMaterial.name == MATERIAL_NAME) {
                 materialAssigned = true;
             }
+            _fadeTween = currentMaterial.DOFade(0f, 1f);
+
+
         }
 
         private void Update() {
@@ -238,6 +242,13 @@ namespace RengeGames.HealthBars {
         public void AddRemovePercent(float value) {
             RemovedSegments += value * SegmentCount;
             RemovedSegments = Mathf.Clamp(RemovedSegments, 0, SegmentCount);
+        }
+        public void DoFadeHealth(float _time) 
+        {
+            if (_fadeTween.IsPlaying())
+                _fadeTween.Kill();
+            currentMaterial.color = Color.red;
+            _fadeTween = currentMaterial.DOFade(0, _time);
         }
     }
 }
