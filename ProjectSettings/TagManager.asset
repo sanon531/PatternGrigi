@@ -44,6 +44,9 @@ TagManager:
   - name: Item
     uniqueID: 226672163
     locked: 0
-  - name: New Layer
+  - name: Pannel
+    uniqueID: 3708867593
+    locked: 0
+  - name: High_UI
     uniqueID: 2776791319
     locked: 0
