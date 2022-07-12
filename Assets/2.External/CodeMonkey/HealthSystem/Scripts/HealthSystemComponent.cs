@@ -12,6 +12,7 @@ namespace CodeMonkey.HealthSystemCM {
 
         [Tooltip("Starting Health amount, leave at 0 to start at full health.")]
         [SerializeField] private float startingHealthAmount;
+        [SerializeField] float currenthealth;
 
         private HealthSystem healthSystem;
 
@@ -22,6 +23,7 @@ namespace CodeMonkey.HealthSystemCM {
 
             if (startingHealthAmount != 0) {
                 healthSystem.SetHealth(startingHealthAmount);
+                currenthealth = startingHealthAmount;
             }
         }
 

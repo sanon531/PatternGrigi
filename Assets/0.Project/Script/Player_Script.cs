@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.HealthSystemCM;
 using DG.Tweening;
-public class Player_Script : MonoBehaviour
+public class Player_Script : MonoBehaviour, IGetHealthSystem
 {
     public static Player_Script Instance;
     HealthSystemComponent _this_healthComponent;
-    HealthSystem _this_health;
+    HealthSystem _healthSystem;
+    [SerializeField] 
+    private float healthAmountMax, startingHealthAmount, currentHealth;
+
     [SerializeField]
     SpriteRenderer _thisSprite;
     [SerializeField]
@@ -17,32 +20,42 @@ public class Player_Script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _this_healthComponent = GetComponent<HealthSystemComponent>();
-        _this_health = _this_healthComponent.GetHealthSystem();
-        _this_health.OnDead += HealthSystem_OnDead;
+        Instance = this;
+        _healthSystem = new HealthSystem(healthAmountMax);
+        _healthSystem.SetHealth(startingHealthAmount);
+        _healthSystem.OnDead += HealthSystem_OnDead;
+        Health_Refresh();
     }
 
     void Health_Refresh() 
     {
         //단위는 20에 1칸임.
-        float max_health = _this_health.GetHealthMax();
-        float currenthealth = _this_health.GetHealth();
-        float currentProperty = currenthealth/ max_health;
-
-        _healthBar.
-
+        float currentProperty = currentHealth / healthAmountMax;
+        _healthBar.SetSegmentCount(healthAmountMax/ 20);
+        _healthBar.SetPercent(currentProperty);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Q)) 
+        {
+            _healthBar.AddRemoveSegments(1f);
+        }
+        if (Input.GetKeyDown(KeyCode.E)) 
+        {
+            _healthBar.AddRemoveSegments(-1f);
+        }
+
+
+
     }
     public static void Damage(float _amount)
     {
-        Instance._this_health.Damage(_amount);
-        Instance._this_health.GetHealth();
+        Instance._healthSystem.Damage(_amount);
+        Instance.currentHealth -= _amount;
+        Instance.Health_Refresh();
         Instance._damageFX.Play();
         Instance._healthBar.DoFadeHealth(Instance._healthFadeTime);
     }
@@ -53,6 +66,11 @@ public class Player_Script : MonoBehaviour
     {
         _thisSprite.DOFade(0, _healthFadeTime);
 
+    }
+
+    public HealthSystem GetHealthSystem()
+    {
+        return _healthSystem;
     }
 
 }

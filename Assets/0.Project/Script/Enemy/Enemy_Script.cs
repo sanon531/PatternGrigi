@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.HealthSystemCM;
 using DG.Tweening;
-public class Enemy_Script : MonoBehaviour
+public class Enemy_Script : MonoBehaviour , IGetHealthSystem
 {
     public static Enemy_Script Instance;
-    HealthSystemComponent _this_health;
+    [SerializeField]
+    private float healthAmountMax, startingHealthAmount, currentHealth;
+    private HealthSystem _healthSystem;
     [SerializeField]
     SpriteRenderer _sprite;
     [SerializeField]
@@ -18,13 +20,14 @@ public class Enemy_Script : MonoBehaviour
         if (Instance != null)
             Debug.LogError("nore than one enemy error");
         Instance = this;
-        _this_health = GetComponent<HealthSystemComponent>();
-        _this_health.GetHealthSystem().OnDead += HealthSystem_OnDead;
+        _healthSystem = new HealthSystem(healthAmountMax);
+        _healthSystem.SetHealth(startingHealthAmount);
+        _healthSystem.OnDead += HealthSystem_OnDead;
     }
 
     public static void Damage(float _amount)
     {
-        Instance._this_health.GetHealthSystem().Damage(_amount);
+        Instance._healthSystem.Damage(_amount);
         Instance._damageFX.Play();
     }
 
@@ -33,6 +36,10 @@ public class Enemy_Script : MonoBehaviour
         _sprite.DOFade(0, 2);
     }
 
+    public HealthSystem GetHealthSystem()
+    {
+        return _healthSystem;
+    }
 
 }
 
