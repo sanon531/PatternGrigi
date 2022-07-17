@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-
+    public static AudioManager instance;
+    [SerializeField]
+    StringAudioDictionary stringAudioDict = new StringAudioDictionary();
+    [SerializeField]
+    AudioSource _backgroundmusic;
+    [SerializeField]
+    List<AudioSource> _audioList =new List<AudioSource>() ;
 
     // Start is called before the first frame update
     void Start()
@@ -12,11 +18,7 @@ public class AudioManager : MonoBehaviour
         
     }
 
-    
-
-
-    // Update is called once per frame
-    void Update()
+    public static void CallSFX(string _string) 
     {
         
     }
