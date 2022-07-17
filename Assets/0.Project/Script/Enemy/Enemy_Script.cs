@@ -14,6 +14,8 @@ public class Enemy_Script : MonoBehaviour , IGetHealthSystem
     SpriteRenderer _sprite;
     [SerializeField]
     ParticleSystem _damageFX;
+    public List<PresetDemoItem> _VibrationItems;
+
     private void Start()
     {
         if (Instance != null)
@@ -44,6 +46,15 @@ public class Enemy_Script : MonoBehaviour , IGetHealthSystem
         return _healthSystem;
     }
 
+    public virtual void PlayAHAP(int index)
+    {
+        MMVibrationManager.AdvancedHapticPattern(_VibrationItems[index].AHAPFile.text,
+                                         _VibrationItems[index].WaveFormAsset.WaveForm.Pattern, _VibrationItems[index].WaveFormAsset.WaveForm.Amplitudes, -1,
+                                         _VibrationItems[index].RumbleWaveFormAsset.WaveForm.Pattern, _VibrationItems[index].RumbleWaveFormAsset.WaveForm.LowFrequencyAmplitudes,
+                                         _VibrationItems[index].RumbleWaveFormAsset.WaveForm.HighFrequencyAmplitudes, -1,
+                                         HapticTypes.LightImpact, this, -1, false);
+
+    }
 }
 
 
