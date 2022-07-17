@@ -58,6 +58,8 @@ public class Player_Script : MonoBehaviour, IGetHealthSystem
         Instance.Health_Refresh();
         Instance._damageFX.Play();
         Instance._healthBar.DoFadeHealth(Instance._healthFadeTime);
+        DamageTextScript.Create(Instance._thisSprite.transform.position, 0.5f, 0.3f, (int)_amount, Color.green);
+
     }
 
     [SerializeField]
@@ -73,4 +75,9 @@ public class Player_Script : MonoBehaviour, IGetHealthSystem
         return _healthSystem;
     }
 
+
+    public static Vector3 ReturnCurrentTransform() 
+    {
+        return Instance.transform.position;
+    }
 }
