@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
+    public static AudioManager _instance;
     [SerializeField]
-    StringAudioDictionary stringAudioDict = new StringAudioDictionary();
+    StringAudioDictionary _stringAudioDict = new StringAudioDictionary();
     [SerializeField]
     AudioSource _backgroundmusic;
     [SerializeField]
@@ -20,6 +20,5 @@ public class AudioManager : MonoBehaviour
 
     public static void CallSFX(string _string) 
     {
-        
     }
 }

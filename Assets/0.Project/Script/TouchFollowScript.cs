@@ -10,7 +10,7 @@ public class TouchFollowScript : MonoBehaviour
     Rigidbody2D _thisRB;
     Vector3 _direction;
     [SerializeField]
-    float moveSpeed = 10f;
+    float _moveSpeed = 10f;
 
     // Start is called before the first frame update
 
@@ -68,7 +68,7 @@ public class TouchFollowScript : MonoBehaviour
             _targetPos.z = 0;
             _direction = _targetPos - transform.position;
             _direction = _direction.normalized;
-            _thisRB.velocity = new Vector2(_direction.x, _direction.y) * moveSpeed;
+            _thisRB.velocity = new Vector2(_direction.x, _direction.y) * _moveSpeed;
         }
         else
             _thisRB.velocity = Vector2.zero;

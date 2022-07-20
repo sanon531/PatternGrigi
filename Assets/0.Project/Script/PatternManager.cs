@@ -12,9 +12,14 @@ public class PatternManager : MonoBehaviour
 
     [SerializeField]
     List<int> _defaultNode = new List<int>(9) { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+    //1-4로 들어가는 것이 최초의 공격이 될것.
+    [SerializeField]
+    int _lastNode = 1;
     [SerializeField]
     List<int> _inactivatedNode;
     public static PatternManager _instance;
+    [SerializeField]
+    float _damage = 10;
 
     // Start is called before the first frame update
     void Awake()
@@ -42,6 +47,16 @@ public class PatternManager : MonoBehaviour
     public void SetTriggerNodeById(int _id) 
     {
         SetNodeToNextReach(_id);
+    }
+
+    //데미지가 산출 되었을때의 정보.
+    public static void DamageCall(int nodeID) 
+    {
+        float _resultDamage = _instance.GetNodePositionByID(_instance._lastNode, nodeID) * _instance._damage;
+        _instance.ReachTriggeredNode_Random(nodeID);
+        Enemy_Script.Damage(_resultDamage);
+        LineTracer.instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
+
     }
 
     //나중에 이벤트로 넣어서 
@@ -104,10 +119,10 @@ public class PatternManager : MonoBehaviour
         MMVibrationManager.ContinuousHaptic(_currentIntensity, _currentIntensity, _leftTime, HapticTypes.LightImpact, this, true, -1, true);
 
     }
-    void CallVib(float _time)
+    void CallVib(float time)
     {
         _vibAlive = true;
-        _leftTime = _time;
+        _leftTime = time;
     }
     void CheckVibration()
     {
@@ -127,19 +142,38 @@ public class PatternManager : MonoBehaviour
 
     }
 
-    public void SetIntensity(Slider _s) 
+    public void SetIntensity(Slider s) 
     {
-        _currentIntensity = _s.value;
+        _currentIntensity = s.value;
     }
-    public void SetSharpness(Slider _s)
+    public void SetSharpness(Slider s)
     {
-        _currentSharpness = _s.value;
+        _currentSharpness = s.value;
     }
-    public void SetTime_Slider(Slider _s)
+    public void SetTimeSlider(Slider s)
     {
-        _limitTime = _s.value;
+        _limitTime = s.value;
     }
 
 
+    Dictionary<int, Vector2Int> _IDDic = new Dictionary<int, Vector2Int>() 
+    {
+        {0,new Vector2Int(0,0) },
+        {1,new Vector2Int(1,0) },
+        {2,new Vector2Int(2,0) },
+        {3,new Vector2Int(0,1) },
+        {4,new Vector2Int(1,1) },
+        {5,new Vector2Int(2,1) },
+        {6,new Vector2Int(0,2) },
+        {7,new Vector2Int(1,2) },
+        {8,new Vector2Int(2,2) }
+    };
+    float GetNodePositionByID(int startID, int endID) 
+    {
+        float _xval = Mathf.Pow(_IDDic[startID].x - _IDDic[endID].x,2);
+        float _yval = Mathf.Pow(_IDDic[startID].y - _IDDic[endID].y,2);
+        
+        return Mathf.Sqrt(_xval+_yval);
+    }
 
 }
