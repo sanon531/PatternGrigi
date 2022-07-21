@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-
+using PG.Data;
 [Serializable]
 public class StringStringDictionary : SerializableDictionary<string, string> {}
 
@@ -17,6 +17,8 @@ public class StringColorArrayDictionary : SerializableDictionary<string, Color[]
 
 [Serializable]
 public class StringAudioDictionary : SerializableDictionary<string, AudioClip> { }
+[Serializable]
+public class ObstacleIDObjectDic : SerializableDictionary<ObstacleID, GameObject> { }
 
 
 

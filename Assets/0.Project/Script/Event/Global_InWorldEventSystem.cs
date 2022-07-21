@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ToronPuzzle.Data;
+using PG.Data;
 
-namespace ToronPuzzle.Event
+namespace PG.Event
 {
     public delegate void On이벤트();
 

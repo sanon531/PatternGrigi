@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ToronPuzzle
+namespace PG
 {
     public partial class DataEntity
     {

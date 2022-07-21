@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ToronPuzzle.Data;
-using ToronPuzzle.Event;
+using PG.Data;
+using PG.Event;
 
-namespace ToronPuzzle
+namespace PG
 {
     public enum CharacterSide
     {
@@ -56,7 +56,7 @@ namespace ToronPuzzle
     }
 }
 
-namespace ToronPuzzle.Data
+namespace PG.Data
 {
     public enum CharSide
     {

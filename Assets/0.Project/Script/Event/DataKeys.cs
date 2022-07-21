@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ToronPuzzle.Data
+namespace PG.Data
 {
-
     public enum CharacterID
     {
         //플레이어는 1 적은 다양한 바리에이션이 있다.

@@ -4,7 +4,7 @@ using UnityEngine;
 using CodeMonkey.HealthSystemCM;
 using DG.Tweening;
 using MoreMountains.NiceVibrations;
-public class Enemy_Script : MonoBehaviour , IGetHealthSystem
+public class Enemy_Script : MonoBehaviour, IGetHealthSystem
 {
     public static Enemy_Script Instance;
     [SerializeField]
@@ -26,6 +26,22 @@ public class Enemy_Script : MonoBehaviour , IGetHealthSystem
         _healthSystem.OnDead += HealthSystem_OnDead;
     }
 
+
+    private void Update()
+    {
+
+    }
+
+
+    void CheckAction() 
+    {
+    
+    }
+
+
+
+
+    #region //Damage related
     public static void Damage(float _amount)
     {
         Instance._healthSystem.Damage(_amount);
@@ -55,6 +71,10 @@ public class Enemy_Script : MonoBehaviour , IGetHealthSystem
                                          HapticTypes.LightImpact, this, -1, false);
 
     }
+
+    #endregion
+
+
 }
 
 
