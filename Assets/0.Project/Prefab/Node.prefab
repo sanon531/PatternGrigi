@@ -129,7 +129,6 @@ MonoBehaviour:
   _isReachable: 0
   _reachableImage: {fileID: 3029746754225888170}
   _swipeAudio: {fileID: 9005020849898480961}
-  _damage: 10
   _flash: {fileID: 4677265633711123819}
 --- !u!1 &2914097967599654587
 GameObject:
@@ -199,8 +198,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 226672163
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f32f6c70384ef2743b579a43b8d2029b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
