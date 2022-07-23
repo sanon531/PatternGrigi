@@ -21,6 +21,19 @@ namespace PG.Data
     {
 
     }
+
+
+    public enum EnemyAction 
+    {
+        Wait, 
+        BasicAttack_1,
+        BasicAttack_2,
+        BasicAttack_3,
+        SpecialAttack
+
+    }
+
+
     [System.Serializable]
     public class StageInfo
     {

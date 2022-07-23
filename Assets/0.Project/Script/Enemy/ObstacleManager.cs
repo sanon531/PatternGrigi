@@ -34,7 +34,7 @@ namespace PG.Battle
 
         public static void SetObstacle(ObstacleID id, Vector2 pos)
         {
-            GameObject _temp = Instantiate(_instance._obstacleDic[id], pos, Quaternion.identity(), _instance.transform);
+            GameObject _temp = Instantiate(_instance._obstacleDic[id], pos, Quaternion.identity, _instance.transform);
         }
 
         void Update()

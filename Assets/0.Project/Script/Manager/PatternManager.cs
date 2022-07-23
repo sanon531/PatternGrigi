@@ -54,6 +54,7 @@ namespace PG.Battle
         public static void DamageCall(int nodeID)
         {
             float _resultDamage = _instance.GetNodePositionByID(_instance._lastNode, nodeID) * _instance._damage;
+            _instance._lastNode = nodeID;
             _instance.ReachTriggeredNode_Random(nodeID);
             Enemy_Script.Damage(_resultDamage);
             LineTracer.instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
@@ -77,7 +78,7 @@ namespace PG.Battle
         {
             int i = _inactivatedNode.Count;
             int _deleteTarget = Random.Range(0, i);
-            Debug.Log(i + "set" + _deleteTarget);
+            //Debug.Log(i + "set" + _deleteTarget);
             SetNodeToNextReach(_inactivatedNode[_deleteTarget]);
         }
 
@@ -173,7 +174,8 @@ namespace PG.Battle
         {
             float _xval = Mathf.Pow(_IDDic[startID].x - _IDDic[endID].x, 2);
             float _yval = Mathf.Pow(_IDDic[startID].y - _IDDic[endID].y, 2);
-
+            //Debug.Log(startID + " and " + endID);
+            //Debug.Log(_IDDic[startID] + " + "+ _IDDic[endID] + ":"+ _xval +"+" + _yval);
             return Mathf.Sqrt(_xval + _yval);
         }
 

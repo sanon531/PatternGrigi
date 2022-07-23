@@ -60,7 +60,7 @@ public class DamageTextScript : MonoBehaviour
         List<GameObject> nums = new List<GameObject>();
         int targetNum = text;
         int unit = 0;
-        Debug.Log(targetNum);
+        //Debug.Log(targetNum);
         while (targetNum > 0.1)
         {
             int segment = targetNum % 10;
