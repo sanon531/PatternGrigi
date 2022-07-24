@@ -4,8 +4,8 @@ using UnityEngine;
 using CodeMonkey.HealthSystemCM;
 using DG.Tweening;
 using MoreMountains.NiceVibrations;
-
 using PG.Data;
+using System;
 namespace PG.Battle
 {
     public class Enemy_Script : MonoBehaviour, IGetHealthSystem
@@ -54,34 +54,26 @@ namespace PG.Battle
         int _currentActionOrder = 0;
         [SerializeField]
         List<EnemyAction> _enemyActionList = new List<EnemyAction>() { EnemyAction.Wait};
+
         [SerializeField]
-        ActionFloatDic _actionTimeDic;
+        ActionDataDic _actionDataDic;
         void SetNextAction()
         {
 
             EnemyAction _tempAction = _enemyActionList[_currentActionOrder];
-            _maxActionTime = _actionTimeDic[_tempAction];
+            _maxActionTime = _actionDataDic[_tempAction]._actionTime;
             _actionTime = _maxActionTime;
+            Debug.Log(_tempAction.ToString());
 
+            ShowDebugtextScript.SetDebug(_tempAction.ToString());
             //여기서 액션의 처리가 진행이 되고 액션은주어진 리스트에 따라 결정 된다고 하자.
-            switch (_tempAction)
+            //나중에 코루틴으로 캔슬도 되고 막 그럴 꺼지만 지금은 간단한 형성만
+            if(_tempAction!= EnemyAction.Wait) 
             {
-                case EnemyAction.Wait:
-                    //Debug.Log("Wait");
-                    break;
-                case EnemyAction.BasicAttack_1:
-                    //Debug.Log("BasicAttack_1");
-                    break;
-                case EnemyAction.BasicAttack_2:
-                    //Debug.Log("BasicAttack_2");
-                    break;
-                case EnemyAction.BasicAttack_3:
-                    //Debug.Log("BasicAttack_3");
-                    break;
-                case EnemyAction.SpecialAttack:
-                    //Debug.Log("SpecialAttack");
-                    break;
+                ObstacleManager.SetObstacle(_actionDataDic[_tempAction]._spawnData);
             }
+
+
             _currentActionOrder++;
             _currentActionOrder =
                 (_currentActionOrder < _enemyActionList.Count) ? _currentActionOrder : 0;
@@ -95,9 +87,9 @@ namespace PG.Battle
         {
             Instance._healthSystem.Damage(_amount);
             Instance._damageFX.Play();
-            Debug.Log(_amount);
+            //Debug.Log(_amount);
 
-            DamageTextScript.Create(Instance._sprite.transform.position, 2f, 0.3f, (int)_amount, Color.red);
+            DamageTextScript.Create(Instance._sprite.transform.position, 2f, 0.3f, Mathf.FloorToInt(_amount), Color.red);
 
         }
 
@@ -127,6 +119,5 @@ namespace PG.Battle
 
 
     }
-
 
 }

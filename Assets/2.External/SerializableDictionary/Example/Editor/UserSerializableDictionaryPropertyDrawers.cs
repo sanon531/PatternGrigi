@@ -8,7 +8,7 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(StringColorArrayDictionary))]
 [CustomPropertyDrawer(typeof(StringAudioDictionary))]
 [CustomPropertyDrawer(typeof(ObstacleIDObjectDic))]
-[CustomPropertyDrawer(typeof(ActionFloatDic))]
+[CustomPropertyDrawer(typeof(ActionDataDic))]
 public class AnySerializableDictionaryPropertyDrawer : SerializableDictionaryPropertyDrawer {}
 
 [CustomPropertyDrawer(typeof(ColorArrayStorage))]

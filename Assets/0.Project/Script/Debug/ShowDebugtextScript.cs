@@ -15,10 +15,10 @@ public class ShowDebugtextScript : MonoBehaviour
     }
 
 
-    public void SetDebug(string _str) 
+    public static void SetDebug(string _str) 
     {
-        _debugshower.text = "_";
-        _debugshower.text = _str;
+        _instance._debugshower.text = "_";
+        _instance._debugshower.text = _str;
     }
 
 }

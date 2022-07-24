@@ -134,7 +134,7 @@ namespace PG.Battle
             if (_leftTime > 0f)
             {
                 _leftTime -= Time.deltaTime;
-                ShowDebugtextScript._instance.SetDebug("time left" + _leftTime);
+                //ShowDebugtextScript.SetDebug("time left" + _leftTime);
             }
             else
             {

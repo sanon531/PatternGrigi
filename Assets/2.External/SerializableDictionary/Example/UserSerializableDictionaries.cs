@@ -20,7 +20,7 @@ public class StringAudioDictionary : SerializableDictionary<string, AudioClip> {
 [Serializable]
 public class ObstacleIDObjectDic : SerializableDictionary<ObstacleID, GameObject> { }
 [Serializable]
-public class ActionFloatDic : SerializableDictionary<EnemyAction, float> { }
+public class ActionDataDic : SerializableDictionary<EnemyAction, ActionData> { }
 
 
 

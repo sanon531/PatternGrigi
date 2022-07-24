@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 namespace PG.Data
@@ -20,6 +21,25 @@ namespace PG.Data
     public enum StageKind
     {
 
+    }
+    [Serializable]
+    public class ActionData 
+    {
+        public EnemyAction _action = EnemyAction.BasicAttack_1;
+        public float _actionTime = 5;
+        public SpawnData _spawnData;
+        public int _placeCount = 1;
+    }
+    [Serializable]
+    public class SpawnData
+    {
+        //파괴되는 시간 또는 작동이 정지하는 시간.
+        public ObstacleID _thisID;
+        public float _lifeTime= 4;
+        //발동전까지의 시간.
+        public float _activeTime = 1;
+        public float _damage_Of_Spawn= 8;
+        public Vector2 _setPos = new Vector2();
     }
 
 

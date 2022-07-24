@@ -2053,6 +2053,87 @@ MonoBehaviour:
   _backgroundmusic: {fileID: 1734568899}
   _audioList:
   - {fileID: 1487519330}
+--- !u!21 &888091895
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: radialSegmentedHealthBarInstance
+  m_Shader: {fileID: 4800000, guid: 4f4011c7964fdec4d896307c35d3946c, type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AlphaClip: 0
+    - _Blend: 0
+    - _BumpScale: 1
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DstBlend: 0
+    - _EnvironmentReflections: 1
+    - _GlossMapScale: 0
+    - _Glossiness: 0
+    - _GlossyReflections: 0
+    - _LineWidth: 0.131
+    - _Metallic: 0
+    - _OcclusionStrength: 1
+    - _QueueOffset: 0
+    - _Radius: 0.276
+    - _ReceiveShadows: 1
+    - _RemoveSegments: 0
+    - _Rotation: 200
+    - _SegmentCount: 5
+    - _SegmentSpacing: 0.029
+    - _Smoothness: 0.5
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Surface: 0
+    - _WorkflowMode: 1
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.31044602, g: 1, b: 0, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1001 &953154125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2293,7 +2374,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3772f0eb37162f84ea0253e83397e8fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _passedTime: 0
+  _maxLifetime: 0
+  _lifeTime: 0
+  _activetime: 1
+  _isPlaced: 0
   _damageDeal: 8
+  _thisCollider: {fileID: 0}
 --- !u!212 &1140323287
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2358,7 +2445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3029746754225888170, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4991278360167196549, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
       propertyPath: _nodeId
@@ -3284,8 +3371,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _obstacleDic:
-    m_keys: 
-    m_values: []
+    m_keys: 0000000001000000020000000300000004000000
+    m_values:
+    - {fileID: 5778512831870487334, guid: 29024fbc6f928f347b94d7e35f95f2ab, type: 3}
+    - {fileID: 5778512831870487334, guid: c74fc91063af3bf4482a3af84ae1eb9d, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   _activeObstacleList: []
 --- !u!1 &1596155786
 GameObject:
@@ -3405,6 +3497,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 990445689598462029, guid: 29024fbc6f928f347b94d7e35f95f2ab, type: 3}
+      propertyPath: _isPlaced
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5778512831870487333, guid: 29024fbc6f928f347b94d7e35f95f2ab, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3455,87 +3551,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29024fbc6f928f347b94d7e35f95f2ab, type: 3}
---- !u!21 &1690311117
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: radialSegmentedHealthBarInstance
-  m_Shader: {fileID: 4800000, guid: 4f4011c7964fdec4d896307c35d3946c, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BaseMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SpecGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _AlphaClip: 0
-    - _Blend: 0
-    - _BumpScale: 1
-    - _Cull: 2
-    - _Cutoff: 0.5
-    - _DstBlend: 0
-    - _EnvironmentReflections: 1
-    - _GlossMapScale: 0
-    - _Glossiness: 0
-    - _GlossyReflections: 0
-    - _LineWidth: 0.131
-    - _Metallic: 0
-    - _OcclusionStrength: 1
-    - _QueueOffset: 0
-    - _Radius: 0.276
-    - _ReceiveShadows: 1
-    - _RemoveSegments: 0
-    - _Rotation: 200
-    - _SegmentCount: 5
-    - _SegmentSpacing: 0.029
-    - _Smoothness: 0.5
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _Surface: 0
-    - _WorkflowMode: 1
-    - _ZWrite: 1
-    m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.31044602, g: 1, b: 0, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1697868084
 GameObject:
   m_ObjectHideFlags: 0
@@ -3682,13 +3697,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f2dc79988ca8044a9650c19e4a6ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthAmountMax: 100
-  startingHealthAmount: 100
-  currentHealth: 100
+  healthAmountMax: 300
+  startingHealthAmount: 300
+  currentHealth: 300
   _sprite: {fileID: 78377260}
   _damageFX: {fileID: 434139479}
   _VibrationItems: []
-  a: 0
+  _currentActionOrder: 0
+  _enemyActionList: 0000000001000000
+  _actionDataDic:
+    m_keys: 0000000001000000
+    m_values:
+    - _action: 0
+      _actionTime: 5
+      _spawnData:
+        _thisID: 4
+        _lifeTime: 0
+        _activeTime: 0
+        _damage_Of_Spawn: 0
+        _setPos: {x: 0, y: 0}
+      _placeCount: 0
+    - _action: 1
+      _actionTime: 3
+      _spawnData:
+        _thisID: 1
+        _lifeTime: 5
+        _activeTime: 2
+        _damage_Of_Spawn: 8
+        _setPos: {x: 1.25, y: 0}
+      _placeCount: 0
 --- !u!1 &1724036541
 GameObject:
   m_ObjectHideFlags: 0

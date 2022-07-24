@@ -27,7 +27,7 @@ namespace PG.Battle
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            ShowDebugtextScript._instance.SetDebug(name + "Player in _11" + collision.transform.tag);
+            //ShowDebugtextScript.SetDebug(name + "Player in _11" + collision.transform.tag);
             if (collision.transform.tag == "Player")
             {
                 if (_isReachable)
