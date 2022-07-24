@@ -32,12 +32,12 @@ namespace PG.Battle
             }
         }
 
-        public static void SetObstacle(SpawnData _data)
+        public static void SetObstacle(SpawnData data,Vector2 pos)
         {
-            GameObject _temp = Instantiate(_instance._obstacleDic[_data._thisID], _instance.transform);
-            _temp.transform.position = _data._setPos;
+            GameObject _temp = Instantiate(_instance._obstacleDic[data._thisID], _instance.transform);
+            _temp.transform.position = pos;
             Obstacle _tempObstacle = _temp.GetComponent<Obstacle>();
-            _tempObstacle.SetSpawnData(_data._lifeTime, _data._activeTime);
+            _tempObstacle.SetSpawnData(data._lifeTime, data._activeTime);
             _instance._activeObstacleList.Add(_tempObstacle);
         }
 

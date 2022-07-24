@@ -27,8 +27,13 @@ namespace PG.Data
     {
         public EnemyAction _action = EnemyAction.BasicAttack_1;
         public float _actionTime = 5;
+        public SpawnType _spawnType = SpawnType.SetAtOnce;
+        /// <summary>
+        /// gradually 에서만 쓰임.
+        /// </summary>
+        public float _placeTimeGradual = 0.5f;
+        public List<Vector2> _placeList = new List<Vector2>();
         public SpawnData _spawnData;
-        public int _placeCount = 1;
     }
     [Serializable]
     public class SpawnData
@@ -39,7 +44,6 @@ namespace PG.Data
         //발동전까지의 시간.
         public float _activeTime = 1;
         public float _damage_Of_Spawn= 8;
-        public Vector2 _setPos = new Vector2();
     }
 
 
@@ -51,6 +55,12 @@ namespace PG.Data
         BasicAttack_3,
         SpecialAttack
 
+    }
+    public enum SpawnType 
+    {
+        SetAtOnce,
+        SetGradually,
+        SetRandomly
     }
 
 

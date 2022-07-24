@@ -61,22 +61,45 @@ namespace PG.Battle
         {
 
             EnemyAction _tempAction = _enemyActionList[_currentActionOrder];
-            _maxActionTime = _actionDataDic[_tempAction]._actionTime;
+            ActionData _temptdata = _actionDataDic[_tempAction];
+            _maxActionTime = _temptdata._actionTime;
             _actionTime = _maxActionTime;
-            Debug.Log(_tempAction.ToString());
-
             ShowDebugtextScript.SetDebug(_tempAction.ToString());
             //여기서 액션의 처리가 진행이 되고 액션은주어진 리스트에 따라 결정 된다고 하자.
             //나중에 코루틴으로 캔슬도 되고 막 그럴 꺼지만 지금은 간단한 형성만
             if(_tempAction!= EnemyAction.Wait) 
             {
-                ObstacleManager.SetObstacle(_actionDataDic[_tempAction]._spawnData);
+                int i = 0;
+
+                if (_temptdata._spawnType == SpawnType.SetAtOnce)
+                {
+                    foreach (Vector2 v in _temptdata._placeList)
+                        StartCoroutine(SetObstacleRoutine(_temptdata._spawnData, v, _temptdata._placeTimeGradual));
+                }
+                else 
+                {
+                    foreach (Vector2 v in _temptdata._placeList)
+                    {
+                        i++;
+                        StartCoroutine(SetObstacleRoutine(_temptdata._spawnData, v, i * _temptdata._placeTimeGradual));
+                    }
+                }
+
+
             }
 
 
             _currentActionOrder++;
             _currentActionOrder =
                 (_currentActionOrder < _enemyActionList.Count) ? _currentActionOrder : 0;
+        }
+
+        IEnumerator SetObstacleRoutine(SpawnData data,Vector2 pos,float waitTime) 
+        {
+            //Debug.Log(waitTime);
+            yield return new WaitForSecondsRealtime(waitTime);
+            ObstacleManager.SetObstacle(data, pos);
+
         }
 
 
