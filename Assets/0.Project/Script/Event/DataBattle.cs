@@ -27,13 +27,15 @@ namespace PG.Data
     {
         public EnemyAction _action = EnemyAction.BasicAttack_1;
         public float _actionTime = 5;
-        public SpawnType _spawnType = SpawnType.SetAtOnce;
+        public SpawnType _spawnType = SpawnType.SetAtOnce_WithSame;
         /// <summary>
         /// gradually 에서만 쓰임.
         /// </summary>
         public float _placeTimeGradual = 0.5f;
         public List<Vector2> _placeList = new List<Vector2>();
-        public SpawnData _spawnData;
+
+
+        public List <SpawnData> _spawnDataList = new List<SpawnData>();
     }
     [Serializable]
     public class SpawnData
@@ -58,8 +60,10 @@ namespace PG.Data
     }
     public enum SpawnType 
     {
-        SetAtOnce,
-        SetGradually,
+        SetAtOnce_WithSame,
+        SetGradually_WithSame,
+        SetAtOnce_WithDifferent,
+        SetGradually_WithDifferent,
         SetRandomly
     }
 

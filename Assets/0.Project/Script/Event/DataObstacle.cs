@@ -8,7 +8,8 @@ namespace PG.Data
     public enum ObstacleID
     {
         SmallFire ,
-        LongThinFire ,
+        LongThinFire_Vertical ,
+        LongThinFire_Horizontal ,
         ThinLaser,
         SmallMissle,
         Flack

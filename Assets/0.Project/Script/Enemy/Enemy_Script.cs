@@ -71,20 +71,36 @@ namespace PG.Battle
             {
                 int i = 0;
 
-                if (_temptdata._spawnType == SpawnType.SetAtOnce)
+                switch (_temptdata._spawnType)
                 {
-                    foreach (Vector2 v in _temptdata._placeList)
-                        StartCoroutine(SetObstacleRoutine(_temptdata._spawnData, v, _temptdata._placeTimeGradual));
+                    case SpawnType.SetAtOnce_WithSame:
+                        foreach (Vector2 v in _temptdata._placeList)
+                            StartCoroutine(SetObstacleRoutine(_temptdata._spawnDataList[0], v, 0));
+                        break;
+                    case SpawnType.SetGradually_WithSame:
+                        foreach (Vector2 v in _temptdata._placeList)
+                        {
+                            StartCoroutine(SetObstacleRoutine(_temptdata._spawnDataList[0], v, i * _temptdata._placeTimeGradual));
+                            i++;
+                        }
+                        break;
+                    case SpawnType.SetAtOnce_WithDifferent:
+                        foreach (Vector2 v in _temptdata._placeList)
+                        {
+                            StartCoroutine(SetObstacleRoutine(_temptdata._spawnDataList[i], v, 0));
+                            i++;
+                        }
+                        break;
+                    case SpawnType.SetGradually_WithDifferent:
+                        foreach (Vector2 v in _temptdata._placeList)
+                        {
+                            StartCoroutine(SetObstacleRoutine(_temptdata._spawnDataList[i], v, i*_temptdata._placeTimeGradual));
+                            i++;
+                        }
+                        break;
+                    case SpawnType.SetRandomly:
+                        break;
                 }
-                else 
-                {
-                    foreach (Vector2 v in _temptdata._placeList)
-                    {
-                        i++;
-                        StartCoroutine(SetObstacleRoutine(_temptdata._spawnData, v, i * _temptdata._placeTimeGradual));
-                    }
-                }
-
 
             }
 
