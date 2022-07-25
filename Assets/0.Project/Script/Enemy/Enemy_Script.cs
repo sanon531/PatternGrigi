@@ -64,7 +64,8 @@ namespace PG.Battle
             ActionData _temptdata = _actionDataDic[_tempAction];
             _maxActionTime = _temptdata._actionTime;
             _actionTime = _maxActionTime;
-            ShowDebugtextScript.SetDebug(_tempAction.ToString());
+            CurrentStatusScript.SetTextOnCurrentScript(_tempAction.ToString(), 1f);
+            //ShowDebugtextScript.SetDebug(_tempAction.ToString());
             //여기서 액션의 처리가 진행이 되고 액션은주어진 리스트에 따라 결정 된다고 하자.
             //나중에 코루틴으로 캔슬도 되고 막 그럴 꺼지만 지금은 간단한 형성만
             if(_tempAction!= EnemyAction.Wait) 
