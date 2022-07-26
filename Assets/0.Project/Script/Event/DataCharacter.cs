@@ -45,7 +45,7 @@ namespace PG
             get
             {
                 DataEntity 최대생명력data = DataEntity.고유데이터(최대생명력_Default);
-                Global_InWorldEventSystem.CallOnCalc최대생명력(this, 최대생명력data);
+                Global_BattleEventSystem.CallOnCalc최대생명력(this, 최대생명력data);
                 return (int)최대생명력data.FinalValue;
             }
         }

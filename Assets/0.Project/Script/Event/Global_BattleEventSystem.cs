@@ -10,7 +10,6 @@ namespace PG.Event
     public delegate void OnCalc데이터_0형식(DataEntity 정보체);
     public delegate void OnCalc데이터_1형식(Data_Character 대상, DataEntity 정보체);
     public delegate void OnCalc데이터_2형식(Data_Character 정보계산주체, Data_Character 부체, DataEntity 정보체);
-    //블록에 의한 이벤트임
     public delegate void On배틀이벤트();
 
     public delegate void On휴식회복(DataEntity 정보체);
@@ -22,11 +21,13 @@ namespace PG.Event
     public delegate void On이벤트With대상Float수치값(Data_Character 대상자, float 수치값);
 
 
-    public static class Global_InWorldEventSystem 
+    public static class Global_BattleEventSystem 
     {
         //맵
         public static event On이벤트 _on맵입장;
         public static void CallOn맵입장() { _on맵입장?.Invoke(); }
+
+
 
         public static event On이벤트 _on노드선택;
         public static void CallOn노드선택() { _on노드선택?.Invoke(); }
@@ -61,15 +62,50 @@ namespace PG.Event
         public static void CallOn발언활성화() { _on발언활성화?.Invoke(); }
 
 
-        public static event On이벤트 _on모듈생성;
-        public static void CallOn모듈생성() { _on모듈생성?.Invoke(); }
 
 
-        
-        public static event On이벤트 _on토론시작;
-        public static void CallOn토론시작() { _on토론시작?.Invoke(); }
-        public static event On이벤트 _on토론휴식;
-        public static void CallOn토론휴식() { _on토론휴식?.Invoke(); }
+        public static bool _isLevelupPaused = false;
+        public static void Call레벨업일시정지() 
+        {
+            if (_isLevelupPaused) 
+            {
+                _isLevelupPaused = false;
+                CallOn레벨업일시정지해제();
+            }
+            else
+            {
+                _isLevelupPaused = true;
+                CallOn레벨업일시정지();
+            }
+
+
+        }
+        public static event On이벤트 _on레벨업일시정지;
+        private static void CallOn레벨업일시정지() { _on레벨업일시정지?.Invoke(); }
+        public static event On이벤트 _on레벨업일시정지해제;
+        private static void CallOn레벨업일시정지해제() { _on레벨업일시정지해제?.Invoke(); }
+
+
+
+        private static bool _isTotalPaused = false;
+        public static void Call완전일시정지()
+        {
+            if (_isTotalPaused)
+            {
+                _isTotalPaused = false;
+                CallOn완전일시정지해제();
+            }
+            else
+            {
+                _isTotalPaused = true;
+                CallOn완전일시정지();
+            }
+        }
+        public static event On이벤트 _on완전일시정지;
+        private static void CallOn완전일시정지() { _on완전일시정지?.Invoke(); }
+        public static event On이벤트 _on완전일시정지해제;
+        private static void CallOn완전일시정지해제() { _on완전일시정지해제?.Invoke(); }
+
 
         //애니메이션 관련
         #region

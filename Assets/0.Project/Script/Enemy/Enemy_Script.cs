@@ -5,12 +5,13 @@ using CodeMonkey.HealthSystemCM;
 using DG.Tweening;
 using MoreMountains.NiceVibrations;
 using PG.Data;
+using PG.Event;
 using System;
 namespace PG.Battle
 {
     public class Enemy_Script : MonoBehaviour, IGetHealthSystem
     {
-        public static Enemy_Script Instance;
+        private static Enemy_Script _instance;
 
         [SerializeField]
         private float healthAmountMax, startingHealthAmount, currentHealth;
@@ -22,14 +23,17 @@ namespace PG.Battle
         ParticleSystem _damageFX;
         public List<PresetDemoItem> _VibrationItems;
 
-        private void Start()
+        private void Awake()
         {
-            if (Instance != null)
+            if (_instance != null&& _instance!=this)
                 Debug.LogError("nore than one enemy error");
-            Instance = this;
+            _instance = this;
             _healthSystem = new HealthSystem(healthAmountMax);
             _healthSystem.SetHealth(startingHealthAmount);
             _healthSystem.OnDead += HealthSystem_OnDead;
+
+            Global_BattleEventSystem._on레벨업일시정지 += LevelUpPause;
+            Global_BattleEventSystem._on레벨업일시정지해제 += LevelUpUnpause;
         }
 
         bool _isStatusChangable = true;
@@ -49,6 +53,9 @@ namespace PG.Battle
             }
         }
 
+
+        
+        #region//Action related
 
         [SerializeField]
         int _currentActionOrder = 0;
@@ -119,18 +126,27 @@ namespace PG.Battle
 
         }
 
-
-
-
-        #region //Damage related
-        public static void Damage(float _amount)
+        //액션을 일시정지해야하는 상황에서 활용함.
+        void LevelUpPause() 
         {
-            Instance._healthSystem.Damage(_amount);
-            Instance._damageFX.Play();
+            Debug.Log("PAUSE CALL");
+        }
+        void LevelUpUnpause()
+        {
+            Debug.Log("UNPAUSE CALL");
+
+        }
+
+        #endregion
+        #region //Damage related
+        public static bool Damage(float _amount)
+        {
+            _instance._healthSystem.Damage(_amount);
+            _instance._damageFX.Play();
             //Debug.Log(_amount);
 
-            DamageTextScript.Create(Instance._sprite.transform.position, 2f, 0.3f, Mathf.FloorToInt(_amount), Color.red);
-
+            DamageTextScript.Create(_instance._sprite.transform.position, 2f, 0.3f, Mathf.FloorToInt(_amount), Color.red);
+            return _instance._isEnemyAlive;
         }
 
         private void HealthSystem_OnDead(object sender, System.EventArgs e)
@@ -157,7 +173,10 @@ namespace PG.Battle
 
         #endregion
 
-
+        public static void SetIsStatusChangeable(bool val)
+        {
+            _instance._isStatusChangable = val;
+        }
     }
 
 }

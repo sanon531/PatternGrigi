@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using MoreMountains.NiceVibrations;
+using PG.Event;
+
 namespace PG.Battle
 {
     public class PatternManager : MonoBehaviour
@@ -28,12 +30,11 @@ namespace PG.Battle
             if (_instance == null)
                 _instance = this;
             _inactivatedNode = _defaultNode.ToList();
-
+            Global_BattleEventSystem._on배틀시작 += StartTriggerNode;
         }
         private void Start()
         {
             //가운데 점에서부터 시작한다.
-            SetTriggerNodeByID(4);
         }
         // Update is called once per frame
         void Update()
@@ -44,6 +45,12 @@ namespace PG.Battle
 
 
 
+
+        void StartTriggerNode() 
+        {
+            SetTriggerNodeByID(4);
+
+        }
         //나중에 추가할 만한 이벤트와 연관 짓기 위해서.
         public void SetTriggerNodeByID(int id)
         {
@@ -56,7 +63,10 @@ namespace PG.Battle
             float _resultDamage = _instance.GetNodePositionByID(_instance._lastNode, nodeID) * _instance._damage;
             _instance._lastNode = nodeID;
             _instance.ReachTriggeredNode_Random(nodeID);
-            Enemy_Script.Damage(_resultDamage);
+
+            //죽었으면 모든 노드 값을 초기화 한다.
+            if (!Enemy_Script.Damage(_resultDamage))
+                _instance.ResetAllNode();
             LineTracer.instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
 
         }
@@ -103,7 +113,7 @@ namespace PG.Battle
                 Debug.LogError("Wrong node Error: Already Exist");
         }
 
-
+     
 
 
         float _leftTime = 0f;
