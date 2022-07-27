@@ -2,7 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+namespace PG.Event 
+{
+    public interface ISetLevelupPause
+    {
+        void SetLevelUpPauseOn();
+        void SetLevelUpPauseOff();
+    }
 
+}
 
 namespace PG.Data
 {
@@ -17,6 +25,7 @@ namespace PG.Data
         BOSS_ARG,
         BOSS_CYN
     }
+ 
 
     public enum StageKind
     {

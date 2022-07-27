@@ -35,10 +35,12 @@ namespace PG.Battle
             if (Input.GetKeyDown(KeyCode.L))
             {
                 Global_BattleEventSystem.Call레벨업일시정지();
+                Debug.Log("Levelup Paused button");
             }
             if (Input.GetKeyDown(KeyCode.P))
             {
                 Global_BattleEventSystem.Call완전일시정지();
+                Debug.Log("Paused button");
             }
 
         }

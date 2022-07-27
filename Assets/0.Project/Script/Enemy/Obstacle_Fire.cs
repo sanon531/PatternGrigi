@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PG.Event;
 
 namespace PG.Battle
 {
@@ -12,10 +13,13 @@ namespace PG.Battle
         Animator _Animator;
 
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
+            Global_BattleEventSystem._on레벨업일시정지 += SetLevelUpPauseOn;
+            Global_BattleEventSystem._on레벨업일시정지해제 += SetLevelUpPauseOff;
 
         }
+
 
         public override void SetSpawnData(float lifeTime, float activetimes)
         {

@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PG.Event;
+
 namespace PG.Battle
 {
-    public class TouchFollowScript : MonoBehaviour
+    public class TouchFollowScript : MonoBehaviour, ISetLevelupPause
     {
 
         [SerializeField]
@@ -27,6 +29,8 @@ namespace PG.Battle
             _moveLUvec = _moveLU.position;
             _moveRDvec = _moveRD.position;
             _touchLUvec = _touchLU.position;
+            Global_BattleEventSystem._on레벨업일시정지 += SetLevelUpPauseOn;
+            Global_BattleEventSystem._on레벨업일시정지해제 += SetLevelUpPauseOff;
         }
 
 
@@ -59,10 +63,16 @@ namespace PG.Battle
 
         }
 
+        bool _isLevelUpPaused = false;
+
         //터치 상한선과 작동 상한선 두가지로 나누자.
         void SetPlayerPos(Vector3 targetPos)
         {
             //먼저 현재 캐릭터가 제한 범위를 넘어갈경우 잡아주는걸 해야한다.
+
+            if (_isLevelUpPaused)
+                return;
+
 
             if (_touchLUvec.x < targetPos.x && _moveRDvec.x > targetPos.x &&
             _touchLUvec.y > targetPos.y && _moveRDvec.y < targetPos.y)
@@ -81,6 +91,8 @@ namespace PG.Battle
             transform.position = _curTF;
         }
 
+        public void SetLevelUpPauseOn() { _isLevelUpPaused = true; }
+        public void SetLevelUpPauseOff() { _isLevelUpPaused = false; }
 
 
     }

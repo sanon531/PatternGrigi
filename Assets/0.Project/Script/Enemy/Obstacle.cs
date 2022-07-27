@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PG.Event;
 namespace PG.Battle
 {
-    public class Obstacle : MonoBehaviour
+    public class Obstacle : MonoBehaviour, ISetLevelupPause
     {
 
         // Start is called before the first frame update
         void Start()
         {
-
+            Global_BattleEventSystem._on레벨업일시정지 += SetLevelUpPauseOn;
+            Global_BattleEventSystem._on레벨업일시정지해제 += SetLevelUpPauseOff;
         }
 
-        
+
         [SerializeField]
         protected float _passedTime = 0f;
         [SerializeField]
@@ -20,6 +22,9 @@ namespace PG.Battle
         [SerializeField]
         protected bool _isPlaced = false;
         protected bool _isActive = false;
+        protected bool _isLevelUpPaused = false;
+
+
         [SerializeField]
         protected float _damageDeal = 8f;
         [SerializeField]
@@ -44,7 +49,7 @@ namespace PG.Battle
         }
         protected virtual void CheckStatus() 
         {
-            if (!_isPlaced)
+            if (!_isPlaced|| _isLevelUpPaused)
                 return;
 
             _passedTime += Time.deltaTime;
@@ -71,5 +76,14 @@ namespace PG.Battle
                 Player_Script.Damage(_damageDeal);
         }
 
+        public void SetLevelUpPauseOn()
+        {
+            _isLevelUpPaused = true;
+        }
+
+        public void SetLevelUpPauseOff()
+        {
+            _isLevelUpPaused = false;
+        }
     }
 }
