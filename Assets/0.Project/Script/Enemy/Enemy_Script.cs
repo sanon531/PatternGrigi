@@ -41,6 +41,7 @@ namespace PG.Battle
         bool _isStatusChangable = true;
         float _actionTime, _maxActionTime;
         //코루틴내에서 시간차로 발생하는 오류제어를 위함.
+        [SerializeField]
         float _enemyroutineTime;
         private void Update()
         {
@@ -107,7 +108,7 @@ namespace PG.Battle
                             StartCoroutine(_tempIEnum);
                             i++;
                         }
-                        _tempIEnum = RemoveAllRoutine(i * _temptdata._placeTimeGradual);
+                        _tempIEnum = RemoveAllRoutine((i-1) * _temptdata._placeTimeGradual);
                         _routineList.Add(_tempIEnum);
                         StartCoroutine(_tempIEnum);
 
@@ -132,7 +133,7 @@ namespace PG.Battle
 
                             i++;
                         }
-                        _tempIEnum = RemoveAllRoutine(i * _temptdata._placeTimeGradual);
+                        _tempIEnum = RemoveAllRoutine((i-1) * _temptdata._placeTimeGradual);
                         _routineList.Add(_tempIEnum);
                         StartCoroutine(_tempIEnum);
 
@@ -143,7 +144,7 @@ namespace PG.Battle
 
             }
 
-            Debug.Log("CoroutineList : " + _routineList.Count);
+            //Debug.Log("CoroutineList : " + _routineList.Count);
 
             _currentActionOrder++;
             _currentActionOrder =
@@ -154,6 +155,8 @@ namespace PG.Battle
         {
             float _deadLine = _enemyroutineTime + waitTime;
             yield return new WaitWhile(() =>  _deadLine > _enemyroutineTime);
+            yield return new WaitWhile(() => _deadLine > _enemyroutineTime);
+
             Debug.Log("rip : " + (_deadLine > _enemyroutineTime));
             ObstacleManager.SetObstacle(data, pos);
 
@@ -162,7 +165,9 @@ namespace PG.Battle
         {
             float _deadLine = _enemyroutineTime + waitTime;
             //여기 왜이게 맞는건지 모르겠음.
-            yield return new WaitUntil (() => (_deadLine > _enemyroutineTime));
+            yield return new WaitWhile(() => (_deadLine > _enemyroutineTime));
+            while (_deadLine > _enemyroutineTime)
+                yield return new WaitWhile(() => (_deadLine > _enemyroutineTime));
             Debug.Log("Cleaning" + (_deadLine > _enemyroutineTime));
             _routineList.Clear();
         }
@@ -174,6 +179,7 @@ namespace PG.Battle
             for (int i = _routineList.Count -1; i>=0; i--) 
             {
                 StopCoroutine(_routineList[i]);
+                //아 스타트 하면서 전체 강제 시작이 되어서 발생하는 문제인듯.
             }
         }
 
