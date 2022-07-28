@@ -8,10 +8,11 @@ namespace PG.Battle
     {
 
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
             Global_BattleEventSystem._on레벨업일시정지 += SetLevelUpPauseOn;
             Global_BattleEventSystem._on레벨업일시정지해제 += SetLevelUpPauseOff;
+
         }
 
 

@@ -26,9 +26,6 @@ namespace PG.Event
         //맵
         public static event On이벤트 _on맵입장;
         public static void CallOn맵입장() { _on맵입장?.Invoke(); }
-
-
-
         public static event On이벤트 _on노드선택;
         public static void CallOn노드선택() { _on노드선택?.Invoke(); }
         public static event On이벤트 _on노드로드완료;
@@ -85,6 +82,8 @@ namespace PG.Event
         public static event On이벤트 _on레벨업일시정지해제;
         private static void CallOn레벨업일시정지해제() { _on레벨업일시정지해제?.Invoke(); }
 
+        public static event On이벤트WithFloat수치값 _on경험치획득;
+        private static void CallOn경험치획득(float exp) { _on경험치획득?.Invoke(exp); }
 
 
         private static bool _isTotalPaused = false;
