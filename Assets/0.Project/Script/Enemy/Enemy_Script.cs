@@ -23,7 +23,7 @@ namespace PG.Battle
         SpriteRenderer _sprite;
         [SerializeField]
         ParticleSystem _damageFX;
-        public List<PresetDemoItem> _VibrationItems;
+        public PresetDemoItem _vibrationItems;
         Text _gametime, Enemytime;
         private void Awake()
         {
@@ -157,7 +157,7 @@ namespace PG.Battle
             yield return new WaitWhile(() =>  _deadLine > _enemyroutineTime);
             yield return new WaitWhile(() => _deadLine > _enemyroutineTime);
 
-            Debug.Log("rip : " + (_deadLine > _enemyroutineTime));
+            //Debug.Log("rip : " + (_deadLine > _enemyroutineTime));
             ObstacleManager.SetObstacle(data, pos);
 
         }
@@ -168,7 +168,7 @@ namespace PG.Battle
             yield return new WaitWhile(() => (_deadLine > _enemyroutineTime));
             while (_deadLine > _enemyroutineTime)
                 yield return new WaitWhile(() => (_deadLine > _enemyroutineTime));
-            Debug.Log("Cleaning" + (_deadLine > _enemyroutineTime));
+            //Debug.Log("Cleaning" + (_deadLine > _enemyroutineTime));
             _routineList.Clear();
         }
 
@@ -212,6 +212,12 @@ namespace PG.Battle
             CameraShaker.ShakeCamera(10, 1);
             _sprite.DOFade(0, 2);
             _isEnemyAlive = false;
+            MMVibrationManager.AdvancedHapticPattern(_vibrationItems.AHAPFile.text,
+                                             _vibrationItems.WaveFormAsset.WaveForm.Pattern, _vibrationItems.WaveFormAsset.WaveForm.Amplitudes, -1,
+                                             _vibrationItems.RumbleWaveFormAsset.WaveForm.Pattern, _vibrationItems.RumbleWaveFormAsset.WaveForm.LowFrequencyAmplitudes,
+                                             _vibrationItems.RumbleWaveFormAsset.WaveForm.HighFrequencyAmplitudes, -1,
+                                             HapticTypes.LightImpact, this, -1, false);
+
         }
 
         public HealthSystem GetHealthSystem()
@@ -219,15 +225,6 @@ namespace PG.Battle
             return _healthSystem;
         }
 
-        public virtual void PlayAHAP(int index)
-        {
-            MMVibrationManager.AdvancedHapticPattern(_VibrationItems[index].AHAPFile.text,
-                                             _VibrationItems[index].WaveFormAsset.WaveForm.Pattern, _VibrationItems[index].WaveFormAsset.WaveForm.Amplitudes, -1,
-                                             _VibrationItems[index].RumbleWaveFormAsset.WaveForm.Pattern, _VibrationItems[index].RumbleWaveFormAsset.WaveForm.LowFrequencyAmplitudes,
-                                             _VibrationItems[index].RumbleWaveFormAsset.WaveForm.HighFrequencyAmplitudes, -1,
-                                             HapticTypes.LightImpact, this, -1, false);
-
-        }
 
         #endregion
 

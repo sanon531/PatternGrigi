@@ -79,8 +79,17 @@ namespace PG.Battle
             {
                 targetPos.z = 0;
                 _direction = targetPos - transform.position;
-                _direction = _direction.normalized;
-                _thisRB.velocity = new Vector2(_direction.x, _direction.y) * _moveSpeed;
+                if (_direction.magnitude < 0.3f)
+                {
+                    transform.position = targetPos;
+                    _thisRB.velocity = new Vector2();
+                }
+                else 
+                {
+                    _direction = _direction.normalized;
+                    _thisRB.velocity = new Vector2(_direction.x, _direction.y) * _moveSpeed;
+                }
+
             }
             else
                 _thisRB.velocity = Vector2.zero;
