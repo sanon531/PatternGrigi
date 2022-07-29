@@ -68,7 +68,7 @@ namespace PG.Battle
             if (!Enemy_Script.Damage(_resultDamage))
                 _instance.ResetAllNode();
             LineTracer.instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
-
+            Global_BattleEventSystem.CallOn경험치획득(10f);
         }
 
         //나중에 이벤트로 넣어서 

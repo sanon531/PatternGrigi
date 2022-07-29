@@ -83,7 +83,7 @@ namespace PG.Event
         private static void CallOn레벨업일시정지해제() { _on레벨업일시정지해제?.Invoke(); }
 
         public static event On이벤트WithFloat수치값 _on경험치획득;
-        private static void CallOn경험치획득(float exp) { _on경험치획득?.Invoke(exp); }
+        public static void CallOn경험치획득(float exp) { _on경험치획득?.Invoke(exp); }
 
 
         private static bool _isTotalPaused = false;
