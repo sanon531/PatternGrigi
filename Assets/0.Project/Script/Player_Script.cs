@@ -9,6 +9,12 @@ namespace PG.Battle
     public class Player_Script : MonoBehaviour, IGetHealthSystem, ISetLevelupPause
     {
         public static Player_Script Instance;
+
+
+
+        #region//damage related
+
+
         HealthSystemComponent _this_healthComponent;
         HealthSystem _healthSystem;
         [SerializeField]
@@ -59,6 +65,7 @@ namespace PG.Battle
         }
         public static void Damage(float _amount)
         {
+            CameraShaker.ShakeCamera(1, 1);
             Instance._healthSystem.Damage(_amount);
             Instance.currentHealth -= _amount;
             Instance.Health_Refresh();
@@ -81,13 +88,17 @@ namespace PG.Battle
             return _healthSystem;
         }
 
+        #endregion
+
+
+
+
+
 
         public static Vector3 ReturnCurrentTransform()
         {
             return Instance.transform.position;
         }
-
-
         //일시정지시 정지할 행동들
 
         bool _isLevelupPaused = false;

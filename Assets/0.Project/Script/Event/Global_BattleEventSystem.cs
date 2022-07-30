@@ -53,14 +53,6 @@ namespace PG.Event
 
 
 
-        public static event On이벤트 _on발언비활성화;
-        public static void CallOn발언비활성화() { _on발언비활성화?.Invoke(); }
-        public static event On이벤트 _on발언활성화;
-        public static void CallOn발언활성화() { _on발언활성화?.Invoke(); }
-
-
-
-
         public static bool _isLevelupPaused = false;
         public static void Call레벨업일시정지() 
         {
@@ -105,16 +97,14 @@ namespace PG.Event
         public static event On이벤트 _on완전일시정지해제;
         private static void CallOn완전일시정지해제() { _on완전일시정지해제?.Invoke(); }
 
+        public static event On이벤트 _on게임오버;
+        public static void CallOn게임오버() { _on게임오버?.Invoke(); }
+
+
 
         //애니메이션 관련
         #region
         #endregion
-
-
-        //블록 생성및 배치 관련
-        public static event On이벤트WithFloat수치값 _on계산쿨타임변동;
-        public static void CallOn계산쿨타임변동(float _changeVal) { _on계산쿨타임변동?.Invoke(_changeVal); }
-
 
         //데미지 계산
         public static event OnCalc데이터_1형식 _onCalc데미지;

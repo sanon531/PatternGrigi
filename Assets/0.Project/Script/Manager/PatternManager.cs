@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-using MoreMountains.NiceVibrations;
 using PG.Event;
 
 namespace PG.Battle
@@ -37,10 +36,6 @@ namespace PG.Battle
             //가운데 점에서부터 시작한다.
         }
         // Update is called once per frame
-        void Update()
-        {
-            CheckVibration();
-        }
 
 
 
@@ -105,7 +100,7 @@ namespace PG.Battle
             //Debug.Log("input " + i );
             if (_inactivatedNode.Contains(i))
             {
-                CallVib();
+                VibrationManager.CallVibration();
                 _patternNodes[i].SetIsReachable(true);
                 _inactivatedNode.Remove(i);
             }
@@ -116,56 +111,7 @@ namespace PG.Battle
      
 
 
-        float _leftTime = 0f;
-        [SerializeField]
-        float _limitTime = 0.25f;
-        bool _vibAlive = false;
-        [SerializeField]
-        float _currentIntensity, _currentSharpness = 1;
 
-        void CallVib()
-        {
-            MMVibrationManager.StopContinuousHaptic(true);
-            _vibAlive = true;
-            _leftTime = _limitTime;
-            MMVibrationManager.ContinuousHaptic(_currentIntensity, _currentIntensity, _leftTime, HapticTypes.LightImpact, this, true, -1, true);
-
-        }
-        void CallVib(float time)
-        {
-            _vibAlive = true;
-            _leftTime = time;
-        }
-        void CheckVibration()
-        {
-            if (!_vibAlive)
-                return;
-
-            if (_leftTime > 0f)
-            {
-                _leftTime -= Time.deltaTime;
-                //ShowDebugtextScript.SetDebug("time left" + _leftTime);
-            }
-            else
-            {
-                _vibAlive = false;
-            }
-
-
-        }
-
-        public void SetIntensity(Slider s)
-        {
-            _currentIntensity = s.value;
-        }
-        public void SetSharpness(Slider s)
-        {
-            _currentSharpness = s.value;
-        }
-        public void SetTimeSlider(Slider s)
-        {
-            _limitTime = s.value;
-        }
 
 
         Dictionary<int, Vector2Int> _IDDic = new Dictionary<int, Vector2Int>()
