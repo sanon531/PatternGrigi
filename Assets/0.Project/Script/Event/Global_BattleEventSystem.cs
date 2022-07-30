@@ -151,8 +151,6 @@ namespace PG.Event
         public static event On이벤트 _on시퀀스넘기기;
         public static void CallOn시퀀스넘기기() { _on시퀀스넘기기?.Invoke(); }
 
-        public static event On이벤트 _on게임종료;
-        public static void CallOn게임종료() { _on게임종료?.Invoke(); }
 
 
     }

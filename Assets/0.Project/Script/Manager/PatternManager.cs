@@ -59,6 +59,10 @@ namespace PG.Battle
             _instance._lastNode = nodeID;
             _instance.ReachTriggeredNode_Random(nodeID);
 
+
+            //진동 호출
+            VibrationManager.CallVibration();
+
             //죽었으면 모든 노드 값을 초기화 한다.
             if (!Enemy_Script.Damage(_resultDamage))
                 _instance.ResetAllNode();
@@ -100,7 +104,6 @@ namespace PG.Battle
             //Debug.Log("input " + i );
             if (_inactivatedNode.Contains(i))
             {
-                VibrationManager.CallVibration();
                 _patternNodes[i].SetIsReachable(true);
                 _inactivatedNode.Remove(i);
             }
@@ -115,17 +118,17 @@ namespace PG.Battle
 
 
         Dictionary<int, Vector2Int> _IDDic = new Dictionary<int, Vector2Int>()
-    {
-        {0,new Vector2Int(0,0) },
-        {1,new Vector2Int(1,0) },
-        {2,new Vector2Int(2,0) },
-        {3,new Vector2Int(0,1) },
-        {4,new Vector2Int(1,1) },
-        {5,new Vector2Int(2,1) },
-        {6,new Vector2Int(0,2) },
-        {7,new Vector2Int(1,2) },
-        {8,new Vector2Int(2,2) }
-    };
+        {
+            {0,new Vector2Int(0,0) },
+            {1,new Vector2Int(1,0) },
+            {2,new Vector2Int(2,0) },
+            {3,new Vector2Int(0,1) },
+            {4,new Vector2Int(1,1) },
+            {5,new Vector2Int(2,1) },
+            {6,new Vector2Int(0,2) },
+            {7,new Vector2Int(1,2) },
+            {8,new Vector2Int(2,2) }
+        };
         float GetNodePositionByID(int startID, int endID)
         {
             float _xval = Mathf.Pow(_IDDic[startID].x - _IDDic[endID].x, 2);

@@ -8,7 +8,7 @@ namespace PG.Battle
 {
     public class Player_Script : MonoBehaviour, IGetHealthSystem, ISetLevelupPause
     {
-        public static Player_Script Instance;
+        public static Player_Script _instance;
 
 
 
@@ -20,6 +20,7 @@ namespace PG.Battle
         [SerializeField]
         private float healthAmountMax, startingHealthAmount, currentHealth;
 
+        private bool _isDead = false;
         [SerializeField]
         SpriteRenderer _thisSprite;
         [SerializeField]
@@ -29,14 +30,14 @@ namespace PG.Battle
         // Start is called before the first frame update
         void Awake()
         {
-            Instance = this;
+            _instance = this;
             _healthSystem = new HealthSystem(healthAmountMax);
             _healthSystem.SetHealth(startingHealthAmount);
             _healthSystem.OnDead += HealthSystem_OnDead;
             Health_Refresh();
             Global_BattleEventSystem._on레벨업일시정지 += SetLevelUpPauseOn;
             Global_BattleEventSystem._on레벨업일시정지해제 += SetLevelUpPauseOff;
-
+            _isDead = false;
         }
 
         void Health_Refresh()
@@ -65,13 +66,16 @@ namespace PG.Battle
         }
         public static void Damage(float _amount)
         {
-            CameraShaker.ShakeCamera(1, 1);
-            Instance._healthSystem.Damage(_amount);
-            Instance.currentHealth -= _amount;
-            Instance.Health_Refresh();
-            Instance._damageFX.Play();
-            Instance._healthBar.DoFadeHealth(Instance._healthFadeTime);
-            DamageTextScript.Create(Instance._thisSprite.transform.position, 0.5f, 0.3f, (int)_amount, Color.green);
+            if (_instance._isDead)
+                return;
+
+            CameraShaker.ShakeCamera(0.5f, 1);
+            _instance._healthSystem.Damage(_amount);
+            _instance.currentHealth -= _amount;
+            _instance.Health_Refresh();
+            _instance._damageFX.Play();
+            _instance._healthBar.DoFadeHealth(_instance._healthFadeTime);
+            DamageTextScript.Create(_instance._thisSprite.transform.position, 0.5f, 0.3f, (int)_amount, Color.green);
 
         }
 
@@ -80,7 +84,9 @@ namespace PG.Battle
         private void HealthSystem_OnDead(object sender, System.EventArgs e)
         {
             _thisSprite.DOFade(0, _healthFadeTime);
-
+            VibrationManager.CallGameOverVib();
+            Global_BattleEventSystem.CallOn게임오버();
+            _isDead = true;
         }
 
         public HealthSystem GetHealthSystem()
@@ -97,7 +103,7 @@ namespace PG.Battle
 
         public static Vector3 ReturnCurrentTransform()
         {
-            return Instance.transform.position;
+            return _instance.transform.position;
         }
         //일시정지시 정지할 행동들
 

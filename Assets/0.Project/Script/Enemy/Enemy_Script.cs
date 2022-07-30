@@ -212,12 +212,7 @@ namespace PG.Battle
             CameraShaker.ShakeCamera(10, 1);
             _sprite.DOFade(0, 2);
             _isEnemyAlive = false;
-            MMVibrationManager.AdvancedHapticPattern(_vibrationItems.AHAPFile.text,
-                                             _vibrationItems.WaveFormAsset.WaveForm.Pattern, _vibrationItems.WaveFormAsset.WaveForm.Amplitudes, -1,
-                                             _vibrationItems.RumbleWaveFormAsset.WaveForm.Pattern, _vibrationItems.RumbleWaveFormAsset.WaveForm.LowFrequencyAmplitudes,
-                                             _vibrationItems.RumbleWaveFormAsset.WaveForm.HighFrequencyAmplitudes, -1,
-                                             HapticTypes.LightImpact, this, -1, false);
-
+            VibrationManager.CallEnemyDieVib();
         }
 
         public HealthSystem GetHealthSystem()

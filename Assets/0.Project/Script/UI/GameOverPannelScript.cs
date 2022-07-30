@@ -4,23 +4,47 @@ using UnityEngine;
 using UnityEngine.UI;
 using PG.Event;
 using DG.Tweening;
-using PG.Event;
-public class GameOverPannelScript : MonoBehaviour
+using TMPro;
+using Febucci.UI;
+namespace PG.Battle 
 {
-
-    Image _BackGround;
-
-    // Start is called before the first frame update
-    void Start()
+    public class GameOverPannelScript : MonoBehaviour
     {
-        Global_BattleEventSystem._on게임오버 += StartGameOverScene;
+        [SerializeField]
+        Image _backGround;
+        [SerializeField]
+        TextMeshProUGUI _gameOverText;
+        [SerializeField]
+        TextAnimatorPlayer _gameOverTextPlayer;
+        [SerializeField]
+        GameObject _buttonSet;
+        // Start is called before the first frame update
+        void Start()
+        {
+            Global_BattleEventSystem._on게임오버 += StartGameOverScene;
+            _backGround.enabled = false;
+            _gameOverText.enabled = false;
+            _buttonSet.SetActive(false);
+
+        }
+
+        void StartGameOverScene()
+        {
+            _backGround.enabled = true;
+            _gameOverText.enabled = true;
+            _gameOverTextPlayer.ShowText("게임오버");
+            _backGround.DOFade(1f, 1f);
+            StartCoroutine(Delayed());
+        }
+
+        IEnumerator Delayed() 
+        {
+            yield return new WaitForSecondsRealtime(2f);
+            _buttonSet.SetActive(true);
+
+
+        }
+
     }
-
-    void StartGameOverScene() 
-    {
-    
-    }
-
-
 
 }
