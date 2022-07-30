@@ -14204,7 +14204,7 @@ MonoBehaviour:
   _lifeTime: 3
   _activetime: 1
   _isPlaced: 0
-  _damageDeal: 8
+  _damageDeal: 20
   _thisCollider: {fileID: 5778512831870487331}
   _Animator: {fileID: 9100930142684951926}
   _spawnedParticle: {fileID: 1185278156586701887}

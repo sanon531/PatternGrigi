@@ -47,6 +47,9 @@ TagManager:
   - name: Item
     uniqueID: 226672163
     locked: 0
+  - name: BattleFX
+    uniqueID: 1663292755
+    locked: 0
   - name: Pannel
     uniqueID: 3708867593
     locked: 0

@@ -41,9 +41,20 @@ namespace PG.Battle
         {
             yield return new WaitForSecondsRealtime(2f);
             _buttonSet.SetActive(true);
-
-
         }
+
+
+        public void CallReloadScene() 
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(gameObject.scene.name);
+        }
+
+        public void CallTurnBacktoScene() 
+        {
+        
+        
+        }
+
 
     }
 

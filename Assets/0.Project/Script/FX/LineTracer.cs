@@ -17,6 +17,8 @@ namespace PG.Battle
         TextMeshPro _textForShowRatio;
         Vector2 _lastLineStartPos, _lastLineEndPos = new Vector2();
 
+        [SerializeField]
+        Hovl_Laser2 _laser2;
 
         private void Awake() { instance = this; }
 
@@ -51,6 +53,18 @@ namespace PG.Battle
             _linerenderer.SetPosition(0, new Vector3());
             _linerenderer.SetPosition(1, new Vector3());
         }
+
+
+
+
+        void SetLineStartByAsset(Vector2 startPos) 
+        {
+        
+        
+        
+        }
+
+
         void Start()
         {
 
