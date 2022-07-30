@@ -12,6 +12,11 @@ namespace PG.Battle
         [SerializeField]
         Animator _Animator;
 
+        [SerializeField]
+        ParticleSystem _spawnedParticle;
+        [SerializeField]
+        ParticleSystem _activeParticle;
+
         // Start is called before the first frame update
         private void Start()
         {
@@ -28,10 +33,13 @@ namespace PG.Battle
             _lifeTime = _maxLifetime;
             _activetime = activetimes;
             _isPlaced = true;
+            _spawnedParticle.Play();
+
         }
         protected override void SetActiveObstacle()
         {
             _thisCollider.enabled = true;
+            _activeParticle.Play();
             _Animator.SetBool("isActive", true);
         }
 

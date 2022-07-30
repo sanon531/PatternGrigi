@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 using CodeMonkey.HealthSystemCM;
 using DG.Tweening;
 using MoreMountains.NiceVibrations;
@@ -22,7 +21,8 @@ namespace PG.Battle
         [SerializeField]
         SpriteRenderer _sprite;
         [SerializeField]
-        ParticleSystem _damageFX;
+        List<ParticleSystem> _damageFXLists;
+
         public PresetDemoItem _vibrationItems;
         Text _gametime, Enemytime;
         private void Awake()
@@ -200,11 +200,18 @@ namespace PG.Battle
         public static bool Damage(float _amount)
         {
             _instance._healthSystem.Damage(_amount);
-            _instance._damageFX.Play();
+            _instance.RandomDamageFX();
             //Debug.Log(_amount);
-
             DamageTextScript.Create(_instance._sprite.transform.position, 2f, 0.3f, Mathf.FloorToInt(_amount), Color.red);
             return _instance._isEnemyAlive;
+        }
+
+
+        void RandomDamageFX() 
+        {
+            int _randomIndex = UnityEngine.Random.Range(0, _damageFXLists.Count);
+            _damageFXLists[_randomIndex].Play();
+
         }
 
         private void HealthSystem_OnDead(object sender, System.EventArgs e)
