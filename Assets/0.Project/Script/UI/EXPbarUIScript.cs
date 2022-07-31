@@ -21,6 +21,10 @@ public class EXPbarUIScript : MonoBehaviour
         _maxEXP = 100f;
         Global_BattleEventSystem._on°æÇèÄ¡È¹µæ += SetCurrentEXP;
     }
+    private void OnDestroy()
+    {
+        Global_BattleEventSystem._on°æÇèÄ¡È¹µæ -= SetCurrentEXP;
+    }
 
     // Update is called once per frame
     void Update()

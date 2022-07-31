@@ -22,34 +22,43 @@ namespace PG.Battle
         public static PatternManager _instance;
         [SerializeField]
         float _damage = 10;
+        [SerializeField]
+        ParticleSystem _signParticle;
 
         // Start is called before the first frame update
         void Awake()
+        {
+        }
+        private void Start()
         {
             if (_instance == null)
                 _instance = this;
             _inactivatedNode = _defaultNode.ToList();
             Global_BattleEventSystem._on배틀시작 += StartTriggerNode;
         }
-        private void Start()
-        {
-            //가운데 점에서부터 시작한다.
-        }
         // Update is called once per frame
 
+        private void OnDestroy()
+        {
+            // Update is called once per frame
+            Global_BattleEventSystem._on배틀시작 -= StartTriggerNode;
 
+        }
 
 
 
         void StartTriggerNode() 
         {
-            SetTriggerNodeByID(4);
+            if(_lastNode != 4)
+                SetTriggerNodeByID(4);
 
         }
         //나중에 추가할 만한 이벤트와 연관 짓기 위해서.
         public void SetTriggerNodeByID(int id)
         {
             SetNodeToNextReach(id);
+
+
         }
 
         //데미지가 산출 되었을때의 정보.
@@ -101,9 +110,12 @@ namespace PG.Battle
 
         void SetNodeToNextReach(int i)
         {
-            //Debug.Log("input " + i );
+            Debug.Log("input " + i );
             if (_inactivatedNode.Contains(i))
             {
+                _signParticle.Play();
+                Vector3 _targetpos = new Vector3((_IDDic[i].x - 1) * 1.75f, (-_IDDic[i].y) * 1.75f, 0);
+                _signParticle.gameObject.transform.position = _targetpos;
                 _patternNodes[i].SetIsReachable(true);
                 _inactivatedNode.Remove(i);
             }

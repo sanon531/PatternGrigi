@@ -38,6 +38,13 @@ namespace PG.Battle
             Global_BattleEventSystem._on레벨업일시정지해제 += SetLevelUpPauseOff;
         }
 
+        private void OnDestroy()
+        {
+            Global_BattleEventSystem._on레벨업일시정지 -= SetLevelUpPauseOn;
+            Global_BattleEventSystem._on레벨업일시정지해제 -= SetLevelUpPauseOff;
+
+        }
+
         bool _isStatusChangable = true;
         float _actionTime, _maxActionTime;
         //코루틴내에서 시간차로 발생하는 오류제어를 위함.

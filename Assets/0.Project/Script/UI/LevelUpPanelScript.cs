@@ -20,7 +20,11 @@ namespace PG.Battle
             Global_BattleEventSystem._on레벨업일시정지 += SetLevelUpPauseOn;
             Global_BattleEventSystem._on레벨업일시정지해제 += SetLevelUpPauseOff;
         }
-
+        private void OnDestroy()
+        {
+            Global_BattleEventSystem._on레벨업일시정지 -= SetLevelUpPauseOn;
+            Global_BattleEventSystem._on레벨업일시정지해제 -= SetLevelUpPauseOff;
+        }
         public void SetLevelUpPauseOn()
         {
             _panelBG.enabled = true;

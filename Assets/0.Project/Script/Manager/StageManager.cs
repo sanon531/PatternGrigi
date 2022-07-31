@@ -16,12 +16,10 @@ namespace PG.Battle
         // Start is called before the first frame update
         void Start()
         {
-            StartCoroutine(DelayedStart(_delayedTime));
-
             Global_BattleEventSystem._on완전일시정지 += TotalPause;
             Global_BattleEventSystem._on완전일시정지해제 += TotalUnpause;
+            StartCoroutine(DelayedStart(_delayedTime));
         }
-
         IEnumerator DelayedStart(float delayedTime) 
         {
             yield return new WaitForSeconds(delayedTime);
@@ -42,6 +40,10 @@ namespace PG.Battle
                 Global_BattleEventSystem.Call완전일시정지();
                 Debug.Log("Paused button");
             }
+            if (Input.GetKeyDown(KeyCode.Y))
+                Global_BattleEventSystem.CallOn게임오버();
+
+
 
         }
 
@@ -54,7 +56,12 @@ namespace PG.Battle
             Time.timeScale = 1;
         }
 
+        private void OnDestroy()
+        {
+            Global_BattleEventSystem._on완전일시정지 -= TotalPause;
+            Global_BattleEventSystem._on완전일시정지해제 -= TotalUnpause;
 
+        }
     }
 
 }

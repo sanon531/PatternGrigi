@@ -25,6 +25,10 @@ namespace PG.Battle
             _backGround.enabled = false;
             _gameOverText.enabled = false;
             _buttonSet.SetActive(false);
+        }
+        private void OnDestroy()
+        {
+            Global_BattleEventSystem._on게임오버 -= StartGameOverScene;
 
         }
 

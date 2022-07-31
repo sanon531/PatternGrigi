@@ -13,16 +13,17 @@ namespace PG.Battle
         [SerializeField]
         bool _isReachable = false;
         [SerializeField]
-        SpriteRenderer _reachableImage;
-        [SerializeField]
         AudioSource _swipeAudio;
         [SerializeField]
         ParticleSystem _flash;
 
+        private void Start()
+        {
+        }
+
         public void SetIsReachable(bool active)
         {
             _isReachable = active;
-            _reachableImage.enabled = active;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
