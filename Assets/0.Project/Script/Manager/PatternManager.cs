@@ -14,6 +14,9 @@ namespace PG.Battle
 
         [SerializeField]
         List<int> _defaultNode = new List<int>(9) { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+        List<int> _nodeHistory = new List<int>();
+
         //1-4로 들어가는 것이 최초의 공격이 될것.
         [SerializeField]
         int _lastNode = 1;
@@ -31,6 +34,7 @@ namespace PG.Battle
         }
         private void Start()
         {
+            _nodeHistory = new List<int>(1) { 4 };
             if (_instance == null)
                 _instance = this;
             _inactivatedNode = _defaultNode.ToList();
@@ -42,7 +46,6 @@ namespace PG.Battle
         {
             // Update is called once per frame
             Global_BattleEventSystem._on배틀시작 -= StartTriggerNode;
-
         }
 
 
@@ -110,7 +113,7 @@ namespace PG.Battle
 
         void SetNodeToNextReach(int i)
         {
-            Debug.Log("input " + i );
+            //Debug.Log("input " + i );
             if (_inactivatedNode.Contains(i))
             {
                 _signParticle.Play();
@@ -122,9 +125,6 @@ namespace PG.Battle
             else
                 Debug.LogError("Wrong node Error: Already Exist");
         }
-
-     
-
 
 
 
