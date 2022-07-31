@@ -36,13 +36,13 @@ namespace PG.Battle
             _healthSystem.OnDead += HealthSystem_OnDead;
             Health_Refresh();
             Global_BattleEventSystem._on레벨업일시정지 += SetLevelUpPauseOn;
-            Global_BattleEventSystem._on레벨업일시정지해제 += SetLevelUpPauseOff;
+            Global_BattleEventSystem._off레벨업일시정지 += SetLevelUpPauseOff;
             _isDead = false;
         }
         private void OnDestroy()
         {
             Global_BattleEventSystem._on레벨업일시정지 -= SetLevelUpPauseOn;
-            Global_BattleEventSystem._on레벨업일시정지해제 -= SetLevelUpPauseOff;
+            Global_BattleEventSystem._off레벨업일시정지 -= SetLevelUpPauseOff;
         }
         void Health_Refresh()
         {

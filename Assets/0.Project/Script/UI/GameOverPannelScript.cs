@@ -25,6 +25,7 @@ namespace PG.Battle
             _backGround.enabled = false;
             _gameOverText.enabled = false;
             _buttonSet.SetActive(false);
+            _isBackScene = false;
         }
         private void OnDestroy()
         {
@@ -48,15 +49,33 @@ namespace PG.Battle
         }
 
 
+        bool _isBackScene = false;
+
         public void CallReloadScene() 
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(gameObject.scene.name);
+            if (!_isBackScene) 
+            {
+                GlobalUIEventSystem.CallOn암전스위치();
+                StartCoroutine(DelayedMove(gameObject.scene.name));
+                _isBackScene = true;
+            }
         }
+
 
         public void CallTurnBacktoScene() 
         {
-        
-        
+            if (!_isBackScene)
+            {
+                GlobalUIEventSystem.CallOn암전스위치();
+                StartCoroutine(DelayedMove("Main_Scene"));
+                _isBackScene = true;
+            }
+        }
+
+        IEnumerator DelayedMove(string scenename) 
+        {
+            yield return new WaitForSecondsRealtime(1.25f);
+            SceneMoveManager.MoveSceneByCall(scenename);
         }
 
 

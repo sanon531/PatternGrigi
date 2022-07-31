@@ -16,8 +16,11 @@ namespace PG.Battle
         // Start is called before the first frame update
         void Start()
         {
+            if (GlobalUIEventSystem._is암전) 
+                GlobalUIEventSystem.CallOn암전스위치();
+
             Global_BattleEventSystem._on완전일시정지 += TotalPause;
-            Global_BattleEventSystem._on완전일시정지해제 += TotalUnpause;
+            Global_BattleEventSystem._off완전일시정지 += TotalUnpause;
             StartCoroutine(DelayedStart(_delayedTime));
         }
         IEnumerator DelayedStart(float delayedTime) 
@@ -59,7 +62,7 @@ namespace PG.Battle
         private void OnDestroy()
         {
             Global_BattleEventSystem._on완전일시정지 -= TotalPause;
-            Global_BattleEventSystem._on완전일시정지해제 -= TotalUnpause;
+            Global_BattleEventSystem._off완전일시정지 -= TotalUnpause;
 
         }
     }

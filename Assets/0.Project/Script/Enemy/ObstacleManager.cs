@@ -19,13 +19,13 @@ namespace PG.Battle
                 Debug.LogError("Double Obstacle Manager");
              _instance = this;
             Global_BattleEventSystem._on레벨업일시정지 += SetLevelUpPauseOn;
-            Global_BattleEventSystem._on레벨업일시정지해제 += SetLevelUpPauseOff;
+            Global_BattleEventSystem._off레벨업일시정지 += SetLevelUpPauseOff;
 
         }
         private void OnDestroy()
         {
             Global_BattleEventSystem._on레벨업일시정지 -= SetLevelUpPauseOn;
-            Global_BattleEventSystem._on레벨업일시정지해제 -= SetLevelUpPauseOff;
+            Global_BattleEventSystem._off레벨업일시정지 -= SetLevelUpPauseOff;
         }
         public void InitializeDictionary(List<ObstacleID> obstacleIDs)
         {

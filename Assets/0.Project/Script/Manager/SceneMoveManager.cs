@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneMoveManager : MonoBehaviour
+using UnityEngine.SceneManagement;
+
+namespace PG 
 {
-    // Start is called before the first frame update
-    void Start()
+    public class SceneMoveManager : MonoBehaviour
     {
-        
+        // Start is called before the first frame update
+        void Start()
+        {
+
+        }
+
+        public static void MoveSceneByCall(string name) 
+        {
+            SceneManager.LoadScene(name);
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

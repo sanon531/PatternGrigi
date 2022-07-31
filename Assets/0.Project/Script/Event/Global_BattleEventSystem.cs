@@ -59,7 +59,7 @@ namespace PG.Event
             if (_isLevelupPaused) 
             {
                 _isLevelupPaused = false;
-                CallOn레벨업일시정지해제();
+                CallOff레벨업일시정지();
             }
             else
             {
@@ -71,8 +71,8 @@ namespace PG.Event
         }
         public static event On이벤트 _on레벨업일시정지;
         private static void CallOn레벨업일시정지() { _on레벨업일시정지?.Invoke(); }
-        public static event On이벤트 _on레벨업일시정지해제;
-        private static void CallOn레벨업일시정지해제() { _on레벨업일시정지해제?.Invoke(); }
+        public static event On이벤트 _off레벨업일시정지;
+        private static void CallOff레벨업일시정지() { _off레벨업일시정지?.Invoke(); }
 
         public static event On이벤트WithFloat수치값 _on경험치획득;
         public static void CallOn경험치획득(float exp) { _on경험치획득?.Invoke(exp); }
@@ -84,7 +84,7 @@ namespace PG.Event
             if (_isTotalPaused)
             {
                 _isTotalPaused = false;
-                CallOn완전일시정지해제();
+                CallOff완전일시정지();
             }
             else
             {
@@ -94,8 +94,8 @@ namespace PG.Event
         }
         public static event On이벤트 _on완전일시정지;
         private static void CallOn완전일시정지() { _on완전일시정지?.Invoke(); }
-        public static event On이벤트 _on완전일시정지해제;
-        private static void CallOn완전일시정지해제() { _on완전일시정지해제?.Invoke(); }
+        public static event On이벤트 _off완전일시정지;
+        private static void CallOff완전일시정지() { _off완전일시정지?.Invoke(); }
 
         public static event On이벤트 _on게임오버;
         public static void CallOn게임오버() { _on게임오버?.Invoke(); }
