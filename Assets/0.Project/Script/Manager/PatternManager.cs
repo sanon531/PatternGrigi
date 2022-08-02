@@ -34,7 +34,6 @@ namespace PG.Battle
         }
         private void Start()
         {
-            _nodeHistory = new List<int>(1) { 4 };
             if (_instance == null)
                 _instance = this;
             _inactivatedNode = _defaultNode.ToList();
@@ -52,8 +51,12 @@ namespace PG.Battle
 
         void StartTriggerNode() 
         {
-            if(_lastNode != 4)
+            if (_lastNode != 4) 
+            {
+
+                _nodeHistory = new List<int>(1) { 4 };
                 SetTriggerNodeByID(4);
+            }
 
         }
         //나중에 추가할 만한 이벤트와 연관 짓기 위해서.

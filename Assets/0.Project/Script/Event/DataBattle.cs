@@ -29,7 +29,9 @@ namespace PG.Data
 
     public enum StageKind
     {
-
+        Earth_Fighter,
+        Fire_Mage,
+        Dark_Artistian
     }
     [Serializable]
     public class ActionData 
@@ -82,25 +84,14 @@ namespace PG.Data
     {
         //그냥 스테이지 데이터
         public string _stageName = "Sample_Map";
-        public float _battleTime = 10;
-        public float _spawnSpeed = 10;
+        public StageKind _stageKind = StageKind.Earth_Fighter;
 
-        public float _startCoolTime = 10f;
-        public float _battleCoolTime = 10f;
-
-        //적의 정보
-        public List<CharacterID> _stageEnemys;
 
         // float array는 순차적으로, 한 배틀 당의 시간 쿨타임간의 관계임 
         //그리고 아직은 그냥 대강 놓은 거고 대부분의 내용들은 아이템 얻어가면서 바꿔갈것.
-        public StageInfo(string _argname,float[] _argFloatData,List<CharacterID> _argStageEnemys)
+        public StageInfo(StageKind _argname, )
         {
-            _stageName = _argname;
-            _battleTime = _argFloatData[0];
-            _spawnSpeed = _argFloatData[1];
-            _startCoolTime = _argFloatData[2];
-            _battleCoolTime = _argFloatData[3];
-            _stageEnemys = _argStageEnemys;
+            _stageKind = _argname;
         } 
     }
 
@@ -109,9 +100,9 @@ namespace PG.Data
     // 
     public static class StageDataPool
     {
-        public static Dictionary<string, StageInfo> StageinfoDic
-            = new Dictionary<string, StageInfo> {
-                { "멸고단_1",
+        public static Dictionary<int, StageInfo> StageinfoDic
+            = new Dictionary<int, StageInfo> {
+                { 0,
                     new StageInfo("멸고단_1",new float[]{
                         25f,1f,5f,10f},
                         new List<CharacterID>(){
