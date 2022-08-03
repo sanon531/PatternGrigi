@@ -89,7 +89,7 @@ namespace PG.Data
 
         // float array는 순차적으로, 한 배틀 당의 시간 쿨타임간의 관계임 
         //그리고 아직은 그냥 대강 놓은 거고 대부분의 내용들은 아이템 얻어가면서 바꿔갈것.
-        public StageInfo(StageKind _argname, )
+        public StageInfo(StageKind _argname)
         {
             _stageKind = _argname;
         } 
@@ -102,16 +102,7 @@ namespace PG.Data
     {
         public static Dictionary<int, StageInfo> StageinfoDic
             = new Dictionary<int, StageInfo> {
-                { 0,
-                    new StageInfo("멸고단_1",new float[]{
-                        25f,1f,5f,10f},
-                        new List<CharacterID>(){
-                            CharacterID.멸고단원
-                        }
-                )},
-            
-
-
+                { 0, new StageInfo(StageKind.Dark_Artistian)}
             };
 
         public static Dictionary<string, List<CharactorActionInfo>> StrActionListDic = 
