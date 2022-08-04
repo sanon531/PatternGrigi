@@ -52,7 +52,7 @@ namespace PG.Event
         { _on모듈항상들기?.Invoke(수치값); }
 
 
-
+        #region//일시정지
         public static bool _isLevelupPaused = false;
         public static void Call레벨업일시정지() 
         {
@@ -73,6 +73,38 @@ namespace PG.Event
         private static void CallOn레벨업일시정지() { _on레벨업일시정지?.Invoke(); }
         public static event On이벤트 _off레벨업일시정지;
         private static void CallOff레벨업일시정지() { _off레벨업일시정지?.Invoke(); }
+        
+        public static bool _isCutScenePaused = false;
+        public static void Call컷씬일시정지()
+        {
+            if (_isLevelupPaused)
+            {
+                _isLevelupPaused = false;
+                CallOff컷씬일시정지();
+            }
+            else
+            {
+                _isLevelupPaused = true;
+                CallOn컷씬일시정지();
+            }
+
+
+        }
+        public static event On이벤트 _on컷씬일시정지;
+        private static void CallOn컷씬일시정지() { _on컷씬일시정지?.Invoke(); }
+        public static event On이벤트 _off컷씬일시정지;
+        private static void CallOff컷씬일시정지() { _off컷씬일시정지?.Invoke(); }
+        #endregion
+
+        #region
+
+
+
+
+        #endregion
+
+
+
 
         public static event On이벤트WithFloat수치값 _on경험치획득;
         public static void CallOn경험치획득(float exp) { _on경험치획득?.Invoke(exp); }

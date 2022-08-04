@@ -17,22 +17,25 @@ namespace PG.Data
     /// <summary>
     /// 배경 화면의 이미지에대한 설정
     /// </summary>
-    public enum BGImageKind
-    {
-        AGR_1,
-        CYN_1,
-        FRN_1,
-        BOSS_ARG,
-        BOSS_CYN
-    }
- 
 
-    public enum StageKind
+    public enum EStageKind
     {
         Earth_Fighter,
         Fire_Mage,
         Dark_Artistian
     }
+
+    public enum EDrawPatternPreset 
+    {
+    
+    }
+
+    public static class S_PatternStorage
+    {
+
+        public static Dictionary<EDrawPatternPreset, List<int>> S_PatternPresetDic = new Dictionary<EDrawPatternPreset, List<int>>() { };
+    }
+
     [Serializable]
     public class ActionData 
     {
@@ -84,12 +87,12 @@ namespace PG.Data
     {
         //그냥 스테이지 데이터
         public string _stageName = "Sample_Map";
-        public StageKind _stageKind = StageKind.Earth_Fighter;
+        public EStageKind _stageKind = EStageKind.Earth_Fighter;
 
 
         // float array는 순차적으로, 한 배틀 당의 시간 쿨타임간의 관계임 
         //그리고 아직은 그냥 대강 놓은 거고 대부분의 내용들은 아이템 얻어가면서 바꿔갈것.
-        public StageInfo(StageKind _argname)
+        public StageInfo(EStageKind _argname)
         {
             _stageKind = _argname;
         } 
@@ -102,7 +105,7 @@ namespace PG.Data
     {
         public static Dictionary<int, StageInfo> StageinfoDic
             = new Dictionary<int, StageInfo> {
-                { 0, new StageInfo(StageKind.Dark_Artistian)}
+                { 0, new StageInfo(EStageKind.Dark_Artistian)}
             };
 
         public static Dictionary<string, List<CharactorActionInfo>> StrActionListDic = 

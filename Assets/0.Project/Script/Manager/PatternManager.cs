@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using PG.Event;
+using PG.Data;
 
 namespace PG.Battle
 {
@@ -60,19 +61,42 @@ namespace PG.Battle
 
         }
         //나중에 추가할 만한 이벤트와 연관 짓기 위해서.
+
+
+
+
+        //기존 노드에 도달할 수 있는 상황이 되었으면실행하는 키
+        void SetNodeCheck(int nodeID) 
+        {
+            _lastNode = nodeID;
+            if (_isRandomNodeSetMode)
+            {
+                ReachTriggeredNode_Random(nodeID);
+                //기존의 노드들을 그냥 랜덤으로 놓는 부분들을 만든다.
+            }
+            else
+            {
+                _currentPresetNodeNumber++;
+                if (_currentPresetNodeNumber < _presetNodes.Count)
+                    SetNodeToNextReach(_presetNodes[_currentPresetNodeNumber]);
+                else
+                {
+                    _isRandomNodeSetMode = true;
+                    ReachTriggeredNode_Random(nodeID);
+                }
+            }
+        }
+
         public void SetTriggerNodeByID(int id)
         {
             SetNodeToNextReach(id);
-
-
         }
 
         //데미지가 산출 되었을때의 정보.
         public static void DamageCall(int nodeID)
         {
             float _resultDamage = _instance.GetNodePositionByID(_instance._lastNode, nodeID) * _instance._damage;
-            _instance._lastNode = nodeID;
-            _instance.ReachTriggeredNode_Random(nodeID);
+            _instance.SetNodeCheck(nodeID);
 
 
             //진동 호출
@@ -84,6 +108,28 @@ namespace PG.Battle
             LineTracer.instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
             Global_BattleEventSystem.CallOn경험치획득(10f);
         }
+
+        [SerializeField]
+        bool _isRandomNodeSetMode = true;
+        [SerializeField]
+        List<int> _presetNodes = new List<int>();
+        int _currentPresetNodeNumber = 0;
+
+        void SetSkillToPresetNodeFollow(EDrawPatternPreset drawPattern)
+        {
+            if (!_isRandomNodeSetMode)
+            {
+                _currentPresetNodeNumber = 0;
+                _presetNodes = S_PatternStorage.S_PatternPresetDic[drawPattern];
+                //presetDataDic 은 새로운 딕셔너리로 키값으로EPresetOfDrawPattern를 받는다.
+                _isRandomNodeSetMode = true;
+            }
+            else
+            {
+                Debug.Log("AlreadyAnother");
+            }
+        }
+
 
         //나중에 이벤트로 넣어서 
         //만약 여러개의 위치가 지정 되어있다면 그거는 안된다고 표시함.
