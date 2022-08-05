@@ -56,3 +56,6 @@ TagManager:
   - name: High_UI
     uniqueID: 2776791319
     locked: 0
+  - name: High_FX
+    uniqueID: 2449979437
+    locked: 0

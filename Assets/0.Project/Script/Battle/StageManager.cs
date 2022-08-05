@@ -16,8 +16,8 @@ namespace PG.Battle
         // Start is called before the first frame update
         void Start()
         {
-            if (GlobalUIEventSystem._is암전) 
-                GlobalUIEventSystem.CallOn암전스위치();
+            if (GlobalUIEventSystem._isTotalFade) 
+                GlobalUIEventSystem.CallTotalFade();
 
             Global_BattleEventSystem._onTotalPause += TotalPause;
             Global_BattleEventSystem._offTotalPause += TotalUnpause;

@@ -7,26 +7,46 @@ namespace PG.Event
     public static class GlobalUIEventSystem
     {
 
-        public static bool _is암전 = false;
+        public static bool _isTotalFade = false;
 
-        public static void CallOn암전스위치() 
+        public static void CallTotalFade() 
         {
-            if (_is암전)
+            if (_isTotalFade)
             {
-                _is암전 = false;
-                CallOff암전();
+                _isTotalFade = false;
+                CallOnFadeIn();
             }
             else
             {
-                _is암전 = true;
-                CallOn암전();
+                _isTotalFade = true;
+                CallOnFadeOut();
             }
         }
 
-        public static event OnEvent _on암전;
-        private static void CallOn암전() { _on암전?.Invoke(); }
-        public static event OnEvent _off암전;
-        private static void CallOff암전() { _off암전?.Invoke(); }
+        public static event OnEvent _onFadeOut;
+        private static void CallOnFadeOut() { _onFadeOut?.Invoke(); }
+        public static event OnEvent _onFadeIn;
+        private static void CallOnFadeIn() { _onFadeIn?.Invoke(); }
+
+        public static bool _isCharge = false;
+        public static void CallChargeEvent()
+        {
+            if (_isCharge)
+            {
+                _isCharge = false;
+                CallOffChargeStart();
+            }
+            else
+            {
+                _isCharge = true;
+                CallOnChargeStart();
+            }
+        }
+
+        public static event OnEvent _onCallChargeStart;
+        private static void CallOnChargeStart() { _onCallChargeStart?.Invoke(); }
+        public static event OnEvent _offChargeStart;
+        private static void CallOffChargeStart() { _offChargeStart?.Invoke(); }
 
 
 

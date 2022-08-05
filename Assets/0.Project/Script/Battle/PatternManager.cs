@@ -47,12 +47,37 @@ namespace PG.Battle
             // Update is called once per frame
             Global_BattleEventSystem._onBattleBegin -= StartTriggerNode;
         }
-
-
-
-        void StartTriggerNode() 
+        private void Update()
         {
-            if (_lastNode != 4) 
+            CheckIsCharge();
+        }
+
+
+        //데미지가 산출 되었을때의 정보.(이벤트로 바꿀것.)
+        public static void DamageCall(int nodeID)
+        {
+            float _resultDamage = _instance.GetNodePositionByID(_instance._lastNode, nodeID) * _instance._damage;
+            _instance.CheckNodeOnDamage(nodeID);
+
+
+            //진동 호출
+            VibrationManager.CallVibration();
+
+            //죽었으면 모든 노드 값을 초기화 한다.
+            if (!Enemy_Script.Damage(_resultDamage)) 
+            {
+                _instance.ResetAllNode();
+                _instance._lastNode = -1;
+            }
+            LineTracer.instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
+            Global_BattleEventSystem.CallOnGainEXP(10f);
+        }
+
+        #region//nodereach
+        //전투가 시작될 때 사용하는 코드
+        void StartTriggerNode()
+        {
+            if (_lastNode != 4)
             {
                 _nodeHistory = new List<int>(1) { 4 };
                 SetTriggerNodeByID(4);
@@ -60,14 +85,12 @@ namespace PG.Battle
 
         }
         //나중에 추가할 만한 이벤트와 연관 짓기 위해서.
-
-
-
-
         //기존 노드에 도달할 수 있는 상황이 되었으면실행하는 키
-        void SetNodeCheck(int nodeID) 
+        void CheckNodeOnDamage(int nodeID)
         {
             _lastNode = nodeID;
+            SetGaugeChange();
+
             if (_isRandomNodeSetMode)
             {
                 ReachTriggeredNode_Random(nodeID);
@@ -84,6 +107,8 @@ namespace PG.Battle
                     ReachTriggeredNode_Random(nodeID);
                 }
             }
+
+
         }
 
         public void SetTriggerNodeByID(int id)
@@ -91,25 +116,7 @@ namespace PG.Battle
             SetNodeToNextReach(id);
         }
 
-        //데미지가 산출 되었을때의 정보.(이벤트로 바꿀것.)
-        public static void DamageCall(int nodeID)
-        {
-            float _resultDamage = _instance.GetNodePositionByID(_instance._lastNode, nodeID) * _instance._damage;
-            _instance.SetNodeCheck(nodeID);
 
-
-            //진동 호출
-            VibrationManager.CallVibration();
-
-            //죽었으면 모든 노드 값을 초기화 한다.
-            if (!Enemy_Script.Damage(_resultDamage)) 
-            {
-                _instance.ResetAllNode();
-                _instance._lastNode = -1;
-            }
-            LineTracer.instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
-            Global_BattleEventSystem.CallOnGainEXP(10f);
-        }
 
         [SerializeField]
         bool _isRandomNodeSetMode = true;
@@ -176,9 +183,61 @@ namespace PG.Battle
             else
                 Debug.LogError("Wrong node Error: Already Exist");
         }
+        #endregion
 
 
 
+        #region//charge
+        [SerializeField]
+        float _maxCharge = 100;
+        [SerializeField]
+        float _currentCharge = 0;
+        [SerializeField]
+        float _chargeAmount = 25f;
+        [SerializeField]
+        bool _isChargeStart = false;
+
+        void CheckIsCharge() 
+        {
+            if (_isChargeStart)
+            {
+                if (_currentCharge > 0)
+                {
+                    _currentCharge -= Time.deltaTime;
+                }
+                else 
+                {
+                    GlobalUIEventSystem.CallChargeEvent();
+                    Global_BattleEventSystem.CallOn차지종료();
+                    _isChargeStart = false;
+                }
+            }
+
+        }
+        void SetGaugeChange()
+        {
+            _currentCharge += _chargeAmount;
+            if (_maxCharge <= _currentCharge)
+            {
+                StartPatternSkill();
+            }
+            ChargeGaugeUIScript.SetChargeGauge(_currentCharge/ _maxCharge);
+        }
+        void StartPatternSkill()
+        {
+            GlobalUIEventSystem.CallChargeEvent();
+            Global_BattleEventSystem.CallOn차지시작();
+            _isChargeStart = true;
+        }
+
+        void EndChargePattern()
+        {
+
+        }
+        #endregion
+
+
+        #region
 
         Dictionary<int, Vector2Int> _IDDic = new Dictionary<int, Vector2Int>()
         {
@@ -200,6 +259,6 @@ namespace PG.Battle
             //Debug.Log(_IDDic[startID] + " + "+ _IDDic[endID] + ":"+ _xval +"+" + _yval);
             return Mathf.Sqrt(_xval + _yval);
         }
-
+        #endregion
     }
 }

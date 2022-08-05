@@ -10,8 +10,8 @@ namespace PG
 
         private void Start()
         {
-            if (GlobalUIEventSystem._is암전)
-                GlobalUIEventSystem.CallOn암전스위치();
+            if (GlobalUIEventSystem._isTotalFade)
+                GlobalUIEventSystem.CallTotalFade();
 
         }
 
@@ -22,7 +22,7 @@ namespace PG
         {
             if (!_pressedStart) 
             {
-                GlobalUIEventSystem.CallOn암전스위치();
+                GlobalUIEventSystem.CallTotalFade();
                 Debug.Log("pressed");
                 _pressedStart = true;
                 StartCoroutine(DelayedChangeScene());

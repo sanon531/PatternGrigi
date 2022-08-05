@@ -55,7 +55,7 @@ namespace PG.Battle
         {
             if (!_isBackScene) 
             {
-                GlobalUIEventSystem.CallOn암전스위치();
+                GlobalUIEventSystem.CallTotalFade();
                 StartCoroutine(DelayedMove(gameObject.scene.name));
                 _isBackScene = true;
             }
@@ -66,7 +66,7 @@ namespace PG.Battle
         {
             if (!_isBackScene)
             {
-                GlobalUIEventSystem.CallOn암전스위치();
+                GlobalUIEventSystem.CallTotalFade();
                 StartCoroutine(DelayedMove("Main_Scene"));
                 _isBackScene = true;
             }
