@@ -25,6 +25,7 @@ namespace PG.Data
         Dark_Artistian
     }
 
+    //이곳에서
     public enum EDrawPatternPreset 
     {
         Default_Thunder,
@@ -37,7 +38,7 @@ namespace PG.Data
         public static Dictionary<EDrawPatternPreset, List<int>> S_PatternPresetDic = 
             new Dictionary<EDrawPatternPreset, List<int>>() 
             {
-                {Default_Thunder,new List<int>(){1,3,4,6,2,5,7 } }
+                {EDrawPatternPreset.Default_Thunder,new List<int>(){1,3,4,6,2,5,7 } }
             };
     }
 
@@ -47,9 +48,7 @@ namespace PG.Data
         public EnemyAction _action = EnemyAction.BasicAttack_1;
         public float _actionTime = 5;
         public SpawnType _spawnType = SpawnType.SetAtOnce_WithSame;
-        /// <summary>
-        /// gradually 에서만 쓰임.
-        /// </summary>
+        // gradually 에서만 쓰임.
         public float _placeTimeGradual = 0.5f;
         public List<Vector2> _placeList = new List<Vector2>();
 
@@ -68,6 +67,7 @@ namespace PG.Data
     }
 
 
+    //적 패턴은 많아야 4개고  중간 이상의 적에게는 필살기 1개 정도 있다고 보면 될듯함
     public enum EnemyAction 
     {
         Wait, 
@@ -77,6 +77,9 @@ namespace PG.Data
         SpecialAttack
 
     }
+    //스폰하는 방식을 의미함
+    //한번에 같은거 소환하는가
+    //그런 류를 정하는 곳
     public enum SpawnType 
     {
         SetAtOnce_WithSame,
@@ -93,7 +96,6 @@ namespace PG.Data
         //그냥 스테이지 데이터
         public string _stageName = "Sample_Map";
         public EStageKind _stageKind = EStageKind.Earth_Fighter;
-
 
         // float array는 순차적으로, 한 배틀 당의 시간 쿨타임간의 관계임 
         //그리고 아직은 그냥 대강 놓은 거고 대부분의 내용들은 아이템 얻어가면서 바꿔갈것.

@@ -23,9 +23,9 @@ namespace PG.Event
             }
         }
 
-        public static event On이벤트 _on암전;
+        public static event OnEvent _on암전;
         private static void CallOn암전() { _on암전?.Invoke(); }
-        public static event On이벤트 _off암전;
+        public static event OnEvent _off암전;
         private static void CallOff암전() { _off암전?.Invoke(); }
 
 

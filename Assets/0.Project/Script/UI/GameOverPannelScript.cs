@@ -21,7 +21,7 @@ namespace PG.Battle
         // Start is called before the first frame update
         void Start()
         {
-            Global_BattleEventSystem._on게임오버 += StartGameOverScene;
+            Global_BattleEventSystem._onGameOver += StartGameOverScene;
             _backGround.enabled = false;
             _gameOverText.enabled = false;
             _buttonSet.SetActive(false);
@@ -29,7 +29,7 @@ namespace PG.Battle
         }
         private void OnDestroy()
         {
-            Global_BattleEventSystem._on게임오버 -= StartGameOverScene;
+            Global_BattleEventSystem._onGameOver -= StartGameOverScene;
 
         }
 

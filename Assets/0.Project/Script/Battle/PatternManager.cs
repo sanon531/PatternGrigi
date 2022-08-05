@@ -38,14 +38,14 @@ namespace PG.Battle
             if (_instance == null)
                 _instance = this;
             _inactivatedNode = _defaultNode.ToList();
-            Global_BattleEventSystem._on배틀시작 += StartTriggerNode;
+            Global_BattleEventSystem._onBattleBegin += StartTriggerNode;
         }
         // Update is called once per frame
 
         private void OnDestroy()
         {
             // Update is called once per frame
-            Global_BattleEventSystem._on배틀시작 -= StartTriggerNode;
+            Global_BattleEventSystem._onBattleBegin -= StartTriggerNode;
         }
 
 
@@ -105,10 +105,10 @@ namespace PG.Battle
             if (!Enemy_Script.Damage(_resultDamage)) 
             {
                 _instance.ResetAllNode();
-                _lastNode = -1;
+                _instance._lastNode = -1;
             }
             LineTracer.instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
-            Global_BattleEventSystem.CallOn경험치획득(10f);
+            Global_BattleEventSystem.CallOnGainEXP(10f);
         }
 
         [SerializeField]

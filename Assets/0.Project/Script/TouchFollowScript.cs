@@ -29,13 +29,13 @@ namespace PG.Battle
             _moveLUvec = _moveLU.position;
             _moveRDvec = _moveRD.position;
             _touchLUvec = _touchLU.position;
-            Global_BattleEventSystem._on레벨업일시정지 += SetLevelUpPauseOn;
-            Global_BattleEventSystem._off레벨업일시정지 += SetLevelUpPauseOff;
+            Global_BattleEventSystem._onLevelUpPause += SetLevelUpPauseOn;
+            Global_BattleEventSystem._offLevelUpPause += SetLevelUpPauseOff;
         }
         private void OnDestroy()
         {
-            Global_BattleEventSystem._on레벨업일시정지 -= SetLevelUpPauseOn;
-            Global_BattleEventSystem._off레벨업일시정지 -= SetLevelUpPauseOff;
+            Global_BattleEventSystem._onLevelUpPause -= SetLevelUpPauseOn;
+            Global_BattleEventSystem._offLevelUpPause -= SetLevelUpPauseOff;
         }
 
 

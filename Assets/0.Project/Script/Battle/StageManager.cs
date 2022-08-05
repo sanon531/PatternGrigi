@@ -19,14 +19,14 @@ namespace PG.Battle
             if (GlobalUIEventSystem._is암전) 
                 GlobalUIEventSystem.CallOn암전스위치();
 
-            Global_BattleEventSystem._on완전일시정지 += TotalPause;
-            Global_BattleEventSystem._off완전일시정지 += TotalUnpause;
+            Global_BattleEventSystem._onTotalPause += TotalPause;
+            Global_BattleEventSystem._offTotalPause += TotalUnpause;
             StartCoroutine(DelayedStart(_delayedTime));
         }
         IEnumerator DelayedStart(float delayedTime) 
         {
             yield return new WaitForSeconds(delayedTime);
-            Global_BattleEventSystem.CallOn배틀시작();
+            Global_BattleEventSystem.CallOnBattleBegih();
         }
         bool _isPaused = false;
 
@@ -35,16 +35,16 @@ namespace PG.Battle
         {
             if (Input.GetKeyDown(KeyCode.L))
             {
-                Global_BattleEventSystem.Call레벨업일시정지();
+                Global_BattleEventSystem.CallLevelUpPause();
                 Debug.Log("Levelup Paused button");
             }
             if (Input.GetKeyDown(KeyCode.P))
             {
-                Global_BattleEventSystem.Call완전일시정지();
+                Global_BattleEventSystem.CallTotalPause();
                 Debug.Log("Paused button");
             }
             if (Input.GetKeyDown(KeyCode.Y))
-                Global_BattleEventSystem.CallOn게임오버();
+                Global_BattleEventSystem.CallOnGameOver();
 
 
 
@@ -61,8 +61,8 @@ namespace PG.Battle
 
         private void OnDestroy()
         {
-            Global_BattleEventSystem._on완전일시정지 -= TotalPause;
-            Global_BattleEventSystem._off완전일시정지 -= TotalUnpause;
+            Global_BattleEventSystem._onTotalPause -= TotalPause;
+            Global_BattleEventSystem._offTotalPause -= TotalUnpause;
 
         }
     }

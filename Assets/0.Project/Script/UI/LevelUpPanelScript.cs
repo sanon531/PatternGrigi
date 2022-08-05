@@ -17,13 +17,13 @@ namespace PG.Battle
         // Start is called before the first frame update
         void Start()
         {
-            Global_BattleEventSystem._on레벨업일시정지 += SetLevelUpPauseOn;
-            Global_BattleEventSystem._off레벨업일시정지 += SetLevelUpPauseOff;
+            Global_BattleEventSystem._onLevelUpPause += SetLevelUpPauseOn;
+            Global_BattleEventSystem._offLevelUpPause += SetLevelUpPauseOff;
         }
         private void OnDestroy()
         {
-            Global_BattleEventSystem._on레벨업일시정지 -= SetLevelUpPauseOn;
-            Global_BattleEventSystem._off레벨업일시정지 -= SetLevelUpPauseOff;
+            Global_BattleEventSystem._onLevelUpPause -= SetLevelUpPauseOn;
+            Global_BattleEventSystem._offLevelUpPause -= SetLevelUpPauseOff;
         }
         public void SetLevelUpPauseOn()
         {
@@ -49,7 +49,7 @@ namespace PG.Battle
 
         public void GetButtonPressed() 
         {
-            Global_BattleEventSystem.Call레벨업일시정지();
+            Global_BattleEventSystem.CallLevelUpPause();
         }
 
 

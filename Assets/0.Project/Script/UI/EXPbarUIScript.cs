@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using PG.Event;
+using TMPro;
+using DG.Tweening;
 
 public class EXPbarUIScript : MonoBehaviour
 {
@@ -15,15 +17,18 @@ public class EXPbarUIScript : MonoBehaviour
     [SerializeField]
     float _currentEXP = 0 ;
     int _plaverLevel = 1;
+    [SerializeField]
+    TextMeshProUGUI _levelShow;
+
     // Start is called before the first frame update
     void Start()
     {
         _maxEXP = 100f;
-        Global_BattleEventSystem._on경험치획득 += SetCurrentEXP;
+        Global_BattleEventSystem._onGainEXP += SetCurrentEXP;
     }
     private void OnDestroy()
     {
-        Global_BattleEventSystem._on경험치획득 -= SetCurrentEXP;
+        Global_BattleEventSystem._onGainEXP -= SetCurrentEXP;
     }
 
     // Update is called once per frame
@@ -36,6 +41,8 @@ public class EXPbarUIScript : MonoBehaviour
     {
         //일단 100애서 20%씩 늘어난다고 하자.
         _maxEXP = val;
+        _plaverLevel++;
+        _levelShow.text = "Lv." + _plaverLevel.ToString();
     }
     void SetCurrentEXP(float val) 
     {
@@ -49,7 +56,7 @@ public class EXPbarUIScript : MonoBehaviour
     }
     void SetLevelUp() 
     {
-        Global_BattleEventSystem.Call레벨업일시정지();
+        Global_BattleEventSystem.CallLevelUpPause();
         SetFullEXP(_maxEXP * 1.2f); 
     }
 
