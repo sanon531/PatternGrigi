@@ -11,7 +11,7 @@ namespace PG.Data
         LongThinFire_Vertical ,
         LongThinFire_Horizontal ,
         ThinLaser,
-        SmallMissle,
+        SmallMissile,
         Flack
     }
 
