@@ -27,13 +27,18 @@ namespace PG.Data
 
     public enum EDrawPatternPreset 
     {
-    
+        Default_Thunder,
+        
+       
     }
 
     public static class S_PatternStorage
     {
-
-        public static Dictionary<EDrawPatternPreset, List<int>> S_PatternPresetDic = new Dictionary<EDrawPatternPreset, List<int>>() { };
+        public static Dictionary<EDrawPatternPreset, List<int>> S_PatternPresetDic = 
+            new Dictionary<EDrawPatternPreset, List<int>>() 
+            {
+                {Default_Thunder,new List<int>(){1,3,4,6,2,5,7 } }
+            };
     }
 
     [Serializable]

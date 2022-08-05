@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using PG.Event;
+using DG.Tweening;
 
 namespace PG.Battle
 {
@@ -22,7 +23,7 @@ namespace PG.Battle
         void Start()
         {
             s_instance = this;
-
+            // 여기서 이미지에 .SetLoops(-1, LoopType.Restart); 를 사용한 차지 공격시의 애니메이션 표시를 해보자.
 
         }
 
@@ -37,9 +38,7 @@ namespace PG.Battle
                     _chargeGaugeImage.fillAmount = (float)(_currentCharge / _maxCharge);
                 }
                 else
-                {
-                    _isChargeStart = false;
-                }
+                    EndChargePattern();
             }
 
 
@@ -64,8 +63,16 @@ namespace PG.Battle
         {
             //patternmanager.call특수패턴부르기();
             //글로벌 배틀 이벤트.call차지게이지다참();
+            Global_BattleEventSystem.CallOn차지시작();
             _fulledParticle.Play();
             _isChargeStart = true;
+        }
+        void EndChargePattern() 
+        {
+            _fulledParticle.Stop();
+            Global_BattleEventSystem.CallOn차지종료();
+            _isChargeStart = false;
+
         }
     }
 

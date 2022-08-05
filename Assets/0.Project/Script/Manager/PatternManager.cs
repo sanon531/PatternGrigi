@@ -54,7 +54,6 @@ namespace PG.Battle
         {
             if (_lastNode != 4) 
             {
-
                 _nodeHistory = new List<int>(1) { 4 };
                 SetTriggerNodeByID(4);
             }
@@ -92,7 +91,7 @@ namespace PG.Battle
             SetNodeToNextReach(id);
         }
 
-        //데미지가 산출 되었을때의 정보.
+        //데미지가 산출 되었을때의 정보.(이벤트로 바꿀것.)
         public static void DamageCall(int nodeID)
         {
             float _resultDamage = _instance.GetNodePositionByID(_instance._lastNode, nodeID) * _instance._damage;
@@ -103,8 +102,11 @@ namespace PG.Battle
             VibrationManager.CallVibration();
 
             //죽었으면 모든 노드 값을 초기화 한다.
-            if (!Enemy_Script.Damage(_resultDamage))
+            if (!Enemy_Script.Damage(_resultDamage)) 
+            {
                 _instance.ResetAllNode();
+                _lastNode = -1;
+            }
             LineTracer.instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
             Global_BattleEventSystem.CallOn경험치획득(10f);
         }

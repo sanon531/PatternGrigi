@@ -94,22 +94,6 @@ namespace PG.Event
         private static void CallOn컷씬일시정지() { _on컷씬일시정지?.Invoke(); }
         public static event On이벤트 _off컷씬일시정지;
         private static void CallOff컷씬일시정지() { _off컷씬일시정지?.Invoke(); }
-        #endregion
-
-        #region
-
-
-
-
-        #endregion
-
-
-
-
-        public static event On이벤트WithFloat수치값 _on경험치획득;
-        public static void CallOn경험치획득(float exp) { _on경험치획득?.Invoke(exp); }
-
-
         private static bool _isTotalPaused = false;
         public static void Call완전일시정지()
         {
@@ -128,6 +112,25 @@ namespace PG.Event
         private static void CallOn완전일시정지() { _on완전일시정지?.Invoke(); }
         public static event On이벤트 _off완전일시정지;
         private static void CallOff완전일시정지() { _off완전일시정지?.Invoke(); }
+        #endregion
+
+        #region//차지 관련
+        public static event On이벤트 _on차지시작;
+        public static void CallOn차지시작() { _on차지시작?.Invoke(); }
+        public static event On이벤트 _on차지종료;
+        public static void CallOn차지종료() { _on차지종료?.Invoke(); }
+
+        #endregion
+
+
+
+
+        public static event On이벤트WithFloat수치값 _on경험치획득;
+        public static void CallOn경험치획득(float exp) { _on경험치획득?.Invoke(exp); }
+
+
+      
+        
 
         public static event On이벤트 _on게임오버;
         public static void CallOn게임오버() { _on게임오버?.Invoke(); }
