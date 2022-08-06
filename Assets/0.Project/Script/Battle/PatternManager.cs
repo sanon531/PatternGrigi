@@ -57,9 +57,10 @@ namespace PG.Battle
         public static void DamageCall(int nodeID)
         {
             float _resultDamage = _instance.GetNodePositionByID(_instance._lastNode, nodeID) * _instance._damage;
+
+            //먼저 게이지를 채우고 만약 게이지가 다찼을경우 주어진 노드가 나오도록함. 
+            _instance.SetGaugeChange();
             _instance.CheckNodeOnDamage(nodeID);
-
-
             //진동 호출
             VibrationManager.CallVibration();
 
@@ -84,25 +85,35 @@ namespace PG.Battle
             }
 
         }
-        //나중에 추가할 만한 이벤트와 연관 짓기 위해서.
-        //기존 노드에 도달할 수 있는 상황이 되었으면실행하는 키
+
+        //확정으로 다음 노드를 지정해주는 코드
+        public void SetTriggerNodeByID(int id)
+        {
+            SetNodeToNextReach(id);
+        }
+
+
+        //데미지가 가해졌을때 다음 노드를 결정하는 메소드
         void CheckNodeOnDamage(int nodeID)
         {
-            _lastNode = nodeID;
-            SetGaugeChange();
-
             if (_isRandomNodeSetMode)
             {
+                _lastNode = nodeID;
                 ReachTriggeredNode_Random(nodeID);
                 //기존의 노드들을 그냥 랜덤으로 놓는 부분들을 만든다.
             }
             else
             {
-                _currentPresetNodeNumber++;
-                if (_currentPresetNodeNumber < _presetNodes.Count)
+                //만약
+                ShowDebugtextScript.SetDebug(_presetNodes.Count.ToString() + " and " + _currentPresetNodeNumber);
+                if (_currentPresetNodeNumber < _presetNodes.Count) 
+                {
                     SetNodeToNextReach(_presetNodes[_currentPresetNodeNumber]);
+                    _currentPresetNodeNumber++;
+                }
                 else
                 {
+                    _lastNode = nodeID;
                     _isRandomNodeSetMode = true;
                     ReachTriggeredNode_Random(nodeID);
                 }
@@ -111,37 +122,37 @@ namespace PG.Battle
 
         }
 
-        public void SetTriggerNodeByID(int id)
-        {
-            SetNodeToNextReach(id);
-        }
 
-
-
-        [SerializeField]
+        //지금이 랜덤 노드를 선택하는 상황인가 아닌가.
         bool _isRandomNodeSetMode = true;
+        //지금 패턴이 설치 되었는가.
+        bool _IsCurrentNodeSetted = false;
+
         [SerializeField]
         List<int> _presetNodes = new List<int>();
+        [SerializeField]
         int _currentPresetNodeNumber = 0;
 
+        // 패턴 세팅을 하는곳 
         void SetSkillToPresetNodeFollow(EDrawPatternPreset drawPattern)
         {
-            if (!_isRandomNodeSetMode)
+            if (!_isRandomNodeSetMode && !_IsCurrentNodeSetted)
             {
                 _currentPresetNodeNumber = 0;
                 _presetNodes = S_PatternStorage.S_PatternPresetDic[drawPattern];
+                PresetPatternShower.ShowPresetPattern();
                 //presetDataDic 은 새로운 딕셔너리로 키값으로EPresetOfDrawPattern를 받는다.
-                _isRandomNodeSetMode = true;
+                _IsCurrentNodeSetted = true;
+
             }
             else
             {
-                Debug.Log("AlreadyAnother");
+                Debug.Log("AlreadyAnother" + _isRandomNodeSetMode + _IsCurrentNodeSetted);
             }
         }
 
 
-        //나중에 이벤트로 넣어서 
-        //만약 여러개의 위치가 지정 되어있다면 그거는 안된다고 표시함.
+        //노드를 랜덤으로 배치하는 메소드 id는 겹치지않도록 하는것 
         public void ReachTriggeredNode_Random(int reachedNode)
         {
             //Debug.Log("reached : " + _reachedNode);
@@ -195,27 +206,33 @@ namespace PG.Battle
         [SerializeField]
         float _chargeAmount = 25f;
         [SerializeField]
+        float _chargeReduction = 10f;
+
+        [SerializeField]
         bool _isChargeStart = false;
 
         void CheckIsCharge() 
         {
             if (_isChargeStart)
             {
+                //ShowDebugtextScript.SetDebug(_currentCharge.ToString());
                 if (_currentCharge > 0)
                 {
-                    _currentCharge -= Time.deltaTime;
+                    _currentCharge -= Time.deltaTime* _chargeReduction;
+                    ChargeGaugeUIScript.SetChargeGauge(_currentCharge/ _maxCharge);
                 }
                 else 
                 {
-                    GlobalUIEventSystem.CallChargeEvent();
+                    _currentCharge = 0;
                     Global_BattleEventSystem.CallOn차지종료();
-                    _isChargeStart = false;
+                    EndChargePattern();
                 }
             }
 
         }
         void SetGaugeChange()
         {
+            if (_isChargeStart) return;
             _currentCharge += _chargeAmount;
             if (_maxCharge <= _currentCharge)
             {
@@ -225,14 +242,21 @@ namespace PG.Battle
         }
         void StartPatternSkill()
         {
-            GlobalUIEventSystem.CallChargeEvent();
             Global_BattleEventSystem.CallOn차지시작();
+            ChargeGaugeUIScript.StartChargeSkill();
+            CameraShaker.ShakeCamera(3f, 0.5f);
+
+            _isRandomNodeSetMode = false;
+            //플레이어에게 패턴을 받아온다.
+            SetSkillToPresetNodeFollow(Player_Script.GetPlayerStatus()._currentChargePattern);
             _isChargeStart = true;
         }
 
         void EndChargePattern()
         {
-
+            Global_BattleEventSystem.CallOn차지종료();
+            ChargeGaugeUIScript.EndChargeSkill();
+            _isChargeStart = false;
         }
         #endregion
 

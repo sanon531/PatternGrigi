@@ -84,7 +84,7 @@ namespace PG.Battle
         void SetNextAction()
         {
             EnemyAction _tempAction = _enemyActionList[_currentActionOrder];
-            ActionData _temptdata = _actionDataDic[_tempAction];
+            EnemyActionData _temptdata = _actionDataDic[_tempAction];
             _maxActionTime = _temptdata._actionTime;
             _actionTime = _maxActionTime;
             CurrentStatusScript.SetTextOnCurrentScript(_tempAction.ToString(), 1f);

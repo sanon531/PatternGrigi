@@ -25,7 +25,6 @@ namespace PG.Battle
             s_instance = this;
             // 여기서 이미지에 .SetLoops(-1, LoopType.Restart); 를 사용한 차지 공격시의 애니메이션 표시를 해보자.
         }
-
         private void OnDestroy()
         {
         }
@@ -40,15 +39,15 @@ namespace PG.Battle
             _chargeGaugeImage.fillAmount = (inputCharge);
         }
 
-        void StartChargeSkill()
+        public static void StartChargeSkill()
         {
-            _fulledParticle.Play();
-            _keepGoingParticle.Play();
+            s_instance._fulledParticle.Play();
+            s_instance._keepGoingParticle.Play();
         }
-        void EndPatternSkill()
+        public static void EndChargeSkill()
         {
-            _fulledParticle.Play();
-            _keepGoingParticle.Play();
+            s_instance._fulledParticle.Stop();
+            s_instance._keepGoingParticle.Stop();
         }
 
 

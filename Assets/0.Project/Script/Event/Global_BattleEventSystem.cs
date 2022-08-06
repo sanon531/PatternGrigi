@@ -36,7 +36,10 @@ namespace PG.Event
 
         // 진짜 시작 되었을때 발동 waitforStart 때
         public static event OnEvent _onBattleBegin;
-        public static void CallOnBattleBegih() { _onBattleBegin?.Invoke(); }
+        public static void CallOnBattleBegin() { _onBattleBegin?.Invoke(); }
+
+        public static OnCalcDataEntity _onAddCharge;
+        public static void CallAddCharge() { _onBattleBegin?.Invoke(); }
 
 
         public static event OnEventWithFloat _onAddAttackMag;

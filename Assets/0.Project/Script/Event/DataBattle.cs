@@ -29,21 +29,22 @@ namespace PG.Data
     public enum EDrawPatternPreset 
     {
         Default_Thunder,
-        
-       
     }
 
+    //패턴과 관련한 정보들이 저장되어있는 구간.
     public static class S_PatternStorage
     {
         public static Dictionary<EDrawPatternPreset, List<int>> S_PatternPresetDic = 
             new Dictionary<EDrawPatternPreset, List<int>>() 
             {
-                {EDrawPatternPreset.Default_Thunder,new List<int>(){1,3,4,6,2,5,7 } }
+                {EDrawPatternPreset.Default_Thunder,new List<int>(){1,3,4,6,7,5} }
             };
     }
 
+
+    //여기서 액션이란 적의 액션을 의미한다.
     [Serializable]
-    public class ActionData 
+    public class EnemyActionData 
     {
         public EnemyAction _action = EnemyAction.BasicAttack_1;
         public float _actionTime = 5;

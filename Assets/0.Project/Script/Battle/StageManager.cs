@@ -26,7 +26,7 @@ namespace PG.Battle
         IEnumerator DelayedStart(float delayedTime) 
         {
             yield return new WaitForSeconds(delayedTime);
-            Global_BattleEventSystem.CallOnBattleBegih();
+            Global_BattleEventSystem.CallOnBattleBegin();
         }
         bool _isPaused = false;
 
