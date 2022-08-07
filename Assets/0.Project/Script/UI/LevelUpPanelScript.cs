@@ -6,7 +6,7 @@ using PG.Event;
 using DG.Tweening;
 namespace PG.Battle 
 {
-    public class LevelUpPanelScript : MonoBehaviour, ISetLevelupPause
+    public class LevelUpPanelScript : MonoBehaviour, ISetNontotalPause
     {
         [SerializeField]
         Image _panelBG;
@@ -17,15 +17,15 @@ namespace PG.Battle
         // Start is called before the first frame update
         void Start()
         {
-            Global_BattleEventSystem._onLevelUpPause += SetLevelUpPauseOn;
-            Global_BattleEventSystem._offLevelUpPause += SetLevelUpPauseOff;
+            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
         }
         private void OnDestroy()
         {
-            Global_BattleEventSystem._onLevelUpPause -= SetLevelUpPauseOn;
-            Global_BattleEventSystem._offLevelUpPause -= SetLevelUpPauseOff;
+            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
         }
-        public void SetLevelUpPauseOn()
+        public void SetNonTotalPauseOn()
         {
             _panelBG.enabled = true;
             foreach(GameObject i in _upgradePanelList) 
@@ -35,7 +35,7 @@ namespace PG.Battle
             }
         }
 
-        public void SetLevelUpPauseOff()
+        public void SetNonTotalPauseOff()
         {
             _panelBG.enabled = false;
 
@@ -49,7 +49,7 @@ namespace PG.Battle
 
         public void GetButtonPressed() 
         {
-            Global_BattleEventSystem.CallLevelUpPause();
+            Global_BattleEventSystem.CallNonTotalPause();
         }
 
 

@@ -8,7 +8,7 @@ using PG.Data;
 
 namespace PG.Battle
 {
-    public class PatternManager : MonoBehaviour
+    public class PatternManager : MonoBehaviour , ISetNontotalPause
     {
         [SerializeField]
         List<PatternNodeScript> _patternNodes = new List<PatternNodeScript>();
@@ -39,6 +39,9 @@ namespace PG.Battle
                 _instance = this;
             _inactivatedNode = _defaultNode.ToList();
             Global_BattleEventSystem._onBattleBegin += StartTriggerNode;
+            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
+
         }
         // Update is called once per frame
 
@@ -46,6 +49,9 @@ namespace PG.Battle
         {
             // Update is called once per frame
             Global_BattleEventSystem._onBattleBegin -= StartTriggerNode;
+            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
+
         }
         private void Update()
         {
@@ -108,7 +114,10 @@ namespace PG.Battle
                 ShowDebugtextScript.SetDebug(_presetNodes.Count.ToString() + " and " + _currentPresetNodeNumber);
                 if (_currentPresetNodeNumber < _presetNodes.Count) 
                 {
+                    ResetAllNode();
                     SetNodeToNextReach(_presetNodes[_currentPresetNodeNumber]);
+                    if (_currentPresetNodeNumber != 0)
+                        PresetPatternShower.HidePresetPatternByID(_currentPresetNodeNumber - 1);
                     _currentPresetNodeNumber++;
                 }
                 else
@@ -117,6 +126,7 @@ namespace PG.Battle
                     _isRandomNodeSetMode = true;
                     ReachTriggeredNode_Random(nodeID);
                 }
+                //처음의 공격은 무시한다.
             }
 
 
@@ -140,7 +150,7 @@ namespace PG.Battle
             {
                 _currentPresetNodeNumber = 0;
                 _presetNodes = S_PatternStorage.S_PatternPresetDic[drawPattern];
-                PresetPatternShower.ShowPresetPattern();
+                PresetPatternShower.ShowPresetPatternAll();
                 //presetDataDic 은 새로운 딕셔너리로 키값으로EPresetOfDrawPattern를 받는다.
                 _IsCurrentNodeSetted = true;
 
@@ -160,16 +170,11 @@ namespace PG.Battle
             //기존의 도달한 위치는 사용불가로 만들어야한다.
             _inactivatedNode.Remove(reachedNode);
             //추후 여러개의 도달점을 가져야할때를 위해서 무작위로 한다.
-            RandomNodeSet();
-        }
-
-        //이렇게 만드는거는 이제 다음 목표점이 2개이상일때 무작위로 배치할때 사용할것.
-        void RandomNodeSet()
-        {
             int i = _inactivatedNode.Count;
             int _deleteTarget = Random.Range(0, i);
             //Debug.Log(i + "set" + _deleteTarget);
             SetNodeToNextReach(_inactivatedNode[_deleteTarget]);
+
         }
 
         void ResetAllNode()
@@ -199,6 +204,9 @@ namespace PG.Battle
 
 
         #region//charge
+
+        //일시정지용 코드임 ㅇㅅㅇ
+        bool _isPaused = false;
         [SerializeField]
         float _maxCharge = 100;
         [SerializeField]
@@ -213,6 +221,10 @@ namespace PG.Battle
 
         void CheckIsCharge() 
         {
+            // 만약 일시정지 상태면 그냥 넘김
+            if (_isPaused)
+                return;
+
             if (_isChargeStart)
             {
                 //ShowDebugtextScript.SetDebug(_currentCharge.ToString());
@@ -258,6 +270,19 @@ namespace PG.Battle
             ChargeGaugeUIScript.EndChargeSkill();
             _isChargeStart = false;
         }
+
+
+        public void SetNonTotalPauseOn()
+        {
+            _isPaused = true;
+        }
+
+        public void SetNonTotalPauseOff()
+        {
+            _isPaused = false;
+        }
+
+
         #endregion
 
 
@@ -283,6 +308,7 @@ namespace PG.Battle
             //Debug.Log(_IDDic[startID] + " + "+ _IDDic[endID] + ":"+ _xval +"+" + _yval);
             return Mathf.Sqrt(_xval + _yval);
         }
+
         #endregion
     }
 }

@@ -6,7 +6,7 @@ using DG.Tweening;
 using PG.Event;
 namespace PG.Battle 
 {
-    public class Player_Script : MonoBehaviour, IGetHealthSystem, ISetLevelupPause
+    public class Player_Script : MonoBehaviour, IGetHealthSystem, ISetNontotalPause
     {
         public static Player_Script s_instance;
         #region//damage related
@@ -32,14 +32,14 @@ namespace PG.Battle
             _healthSystem.SetHealth(startingHealthAmount);
             _healthSystem.OnDead += HealthSystem_OnDead;
             Health_Refresh();
-            Global_BattleEventSystem._onLevelUpPause += SetLevelUpPauseOn;
-            Global_BattleEventSystem._offLevelUpPause += SetLevelUpPauseOff;
+            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
             _isDead = false;
         }
         private void OnDestroy()
         {
-            Global_BattleEventSystem._onLevelUpPause -= SetLevelUpPauseOn;
-            Global_BattleEventSystem._offLevelUpPause -= SetLevelUpPauseOff;
+            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
         }
         void Health_Refresh()
         {
@@ -114,12 +114,12 @@ namespace PG.Battle
         //일시정지시 정지할 행동들
 
         bool _isLevelupPaused = false;
-        public void SetLevelUpPauseOn()
+        public void SetNonTotalPauseOn()
         {
             _isLevelupPaused = true;
         }
 
-        public void SetLevelUpPauseOff()
+        public void SetNonTotalPauseOff()
         {
             _isLevelupPaused = false;
         }

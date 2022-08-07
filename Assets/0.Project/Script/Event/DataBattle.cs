@@ -4,10 +4,10 @@ using UnityEngine;
 using System;
 namespace PG.Event 
 {
-    public interface ISetLevelupPause
+    public interface ISetNontotalPause
     {
-        void SetLevelUpPauseOn();
-        void SetLevelUpPauseOff();
+        void SetNonTotalPauseOn();
+        void SetNonTotalPauseOff();
     }
 
 }
@@ -20,9 +20,10 @@ namespace PG.Data
 
     public enum EStageKind
     {
+        Fire_TInyMage,
         Earth_Fighter,
+        Dark_Artsian,
         Fire_Mage,
-        Dark_Artistian
     }
 
     //이곳에서
@@ -113,7 +114,10 @@ namespace PG.Data
     {
         public static Dictionary<int, StageInfo> StageinfoDic
             = new Dictionary<int, StageInfo> {
-                { 0, new StageInfo(EStageKind.Dark_Artistian)}
+                { 0, new StageInfo(EStageKind.Fire_TInyMage)},
+                { 1, new StageInfo(EStageKind.Earth_Fighter)},
+                { 2, new StageInfo(EStageKind.Dark_Artsian)},
+                { 2, new StageInfo(EStageKind.Fire_Mage)},
             };
 
         public static Dictionary<string, List<CharactorActionInfo>> StrActionListDic = 

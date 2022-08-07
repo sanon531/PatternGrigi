@@ -10,7 +10,7 @@ using PG.Event;
 using System;
 namespace PG.Battle
 {
-    public class Enemy_Script : MonoBehaviour, IGetHealthSystem, ISetLevelupPause
+    public class Enemy_Script : MonoBehaviour, IGetHealthSystem, ISetNontotalPause
     {
         private static Enemy_Script _instance;
 
@@ -34,14 +34,14 @@ namespace PG.Battle
             _healthSystem.SetHealth(startingHealthAmount);
             _healthSystem.OnDead += HealthSystem_OnDead;
 
-            Global_BattleEventSystem._onLevelUpPause += SetLevelUpPauseOn;
-            Global_BattleEventSystem._offLevelUpPause += SetLevelUpPauseOff;
+            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
         }
 
         private void OnDestroy()
         {
-            Global_BattleEventSystem._onLevelUpPause -= SetLevelUpPauseOn;
-            Global_BattleEventSystem._offLevelUpPause -= SetLevelUpPauseOff;
+            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
 
         }
 
@@ -180,7 +180,7 @@ namespace PG.Battle
         }
 
         bool _isLevelUpPaused = false;
-        public void SetLevelUpPauseOn()
+        public void SetNonTotalPauseOn()
         {
             _isLevelUpPaused = true;
             for (int i = _routineList.Count -1; i>=0; i--) 
@@ -190,12 +190,12 @@ namespace PG.Battle
             }
         }
 
-        public void SetLevelUpPauseOff()
+        public void SetNonTotalPauseOff()
         {
             _isLevelUpPaused = false;
             for (int i = _routineList.Count - 1; i >= 0; i--)
             {
-                print("aa"+i +"+"+ _routineList.Count);
+                //print("aa"+i +"+"+ _routineList.Count);
                 StartCoroutine(_routineList[i]);
             }
 

@@ -48,26 +48,26 @@ namespace PG.Event
 
 
         #region//일시정지
-        public static bool _isLevelupPaused = false;
-        public static void CallLevelUpPause() 
+        public static bool _isNonTotalPaused = false;
+        public static void CallNonTotalPause() 
         {
-            if (_isLevelupPaused) 
+            if (_isNonTotalPaused) 
             {
-                _isLevelupPaused = false;
-                CallOffLevelUpPause();
+                _isNonTotalPaused = false;
+                CallOffNonTotalPause();
             }
             else
             {
-                _isLevelupPaused = true;
-                CallOnLevelUpPause();
+                _isNonTotalPaused = true;
+                CallOnNontotalPause();
             }
 
 
         }
-        public static event OnEvent _onLevelUpPause;
-        private static void CallOnLevelUpPause() { _onLevelUpPause?.Invoke(); }
-        public static event OnEvent _offLevelUpPause;
-        private static void CallOffLevelUpPause() { _offLevelUpPause?.Invoke(); }
+        public static event OnEvent _onNonTotalPause;
+        private static void CallOnNontotalPause() { _onNonTotalPause?.Invoke(); }
+        public static event OnEvent _offNonTotalPause;
+        private static void CallOffNonTotalPause() { _offNonTotalPause?.Invoke(); }
         
         public static bool _isCutScenePaused = false;
         public static void CallCutScenePause()
@@ -79,7 +79,7 @@ namespace PG.Event
             }
             else
             {
-                _isLevelupPaused = true;
+                _isNonTotalPaused = true;
                 CallOnCutScenePause();
             }
 

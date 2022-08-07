@@ -4,20 +4,20 @@ using UnityEngine;
 using PG.Event;
 namespace PG.Battle
 {
-    public class Obstacle : MonoBehaviour, ISetLevelupPause
+    public class Obstacle : MonoBehaviour, ISetNontotalPause
     {
 
         // Start is called before the first frame update
         private void Start()
         {
-            Global_BattleEventSystem._onLevelUpPause += SetLevelUpPauseOn;
-            Global_BattleEventSystem._offLevelUpPause += SetLevelUpPauseOff;
+            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
         }
 
         private void OnDestroy()
         {
-            Global_BattleEventSystem._onLevelUpPause -= SetLevelUpPauseOn;
-            Global_BattleEventSystem._offLevelUpPause -= SetLevelUpPauseOff;
+            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
         }
 
         [SerializeField]
@@ -81,12 +81,12 @@ namespace PG.Battle
                 Player_Script.Damage(_damageDeal);
         }
 
-        public void SetLevelUpPauseOn()
+        public void SetNonTotalPauseOn()
         {
             _isLevelUpPaused = true;
         }
 
-        public void SetLevelUpPauseOff()
+        public void SetNonTotalPauseOff()
         {
             _isLevelUpPaused = false;
         }

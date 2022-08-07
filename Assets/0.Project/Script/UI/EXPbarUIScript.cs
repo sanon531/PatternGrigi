@@ -56,7 +56,7 @@ public class EXPbarUIScript : MonoBehaviour
     }
     void SetLevelUp() 
     {
-        Global_BattleEventSystem.CallLevelUpPause();
+        Global_BattleEventSystem.CallNonTotalPause();
         SetFullEXP(_maxEXP * 1.2f); 
     }
 

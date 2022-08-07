@@ -35,7 +35,7 @@ namespace PG.Battle
         {
             if (Input.GetKeyDown(KeyCode.L))
             {
-                Global_BattleEventSystem.CallLevelUpPause();
+                Global_BattleEventSystem.CallNonTotalPause();
                 Debug.Log("Levelup Paused button");
             }
             if (Input.GetKeyDown(KeyCode.P))

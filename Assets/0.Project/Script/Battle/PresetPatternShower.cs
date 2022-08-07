@@ -21,15 +21,20 @@ namespace PG.Battle
             }
         }
 
-        public static void ShowPresetPattern() 
+        public static void ShowPresetPatternAll() 
         {
             foreach (GameObject obj in s_instance._listOfShow)
                 obj.SetActive(true);
 
         }
-        public static void ClosePresetPatternByID(int id)
+        public static void HidePresetPatternByID(int id)
         {
-            s_instance._listOfShow[id].SetActive(true);
+            s_instance._listOfShow[id].SetActive(false);
+        }
+        public static void HidePresetPatternAll(int id)
+        {
+            foreach (GameObject obj in s_instance._listOfShow)
+                obj.SetActive(false);
         }
 
     }
