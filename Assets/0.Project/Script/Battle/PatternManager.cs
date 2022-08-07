@@ -111,7 +111,6 @@ namespace PG.Battle
             else
             {
                 //만약
-                ShowDebugtextScript.SetDebug(_presetNodes.Count.ToString() + " and " + _currentPresetNodeNumber);
                 if (_currentPresetNodeNumber < _presetNodes.Count) 
                 {
                     ResetAllNode();
@@ -125,6 +124,8 @@ namespace PG.Battle
                     _lastNode = nodeID;
                     _isRandomNodeSetMode = true;
                     ReachTriggeredNode_Random(nodeID);
+                    ShowDebugtextScript.SetDebug("Pattern Success!");
+
                 }
                 //처음의 공격은 무시한다.
             }
@@ -236,7 +237,7 @@ namespace PG.Battle
                 else 
                 {
                     _currentCharge = 0;
-                    Global_BattleEventSystem.CallOn차지종료();
+                    Global_BattleEventSystem.CallOnChargeEnd();
                     EndChargePattern();
                 }
             }
@@ -254,7 +255,7 @@ namespace PG.Battle
         }
         void StartPatternSkill()
         {
-            Global_BattleEventSystem.CallOn차지시작();
+            Global_BattleEventSystem.CallOnChargeStart();
             ChargeGaugeUIScript.StartChargeSkill();
             CameraShaker.ShakeCamera(3f, 0.5f);
 
@@ -266,7 +267,7 @@ namespace PG.Battle
 
         void EndChargePattern()
         {
-            Global_BattleEventSystem.CallOn차지종료();
+            Global_BattleEventSystem.CallOnChargeEnd();
             ChargeGaugeUIScript.EndChargeSkill();
             _isChargeStart = false;
         }

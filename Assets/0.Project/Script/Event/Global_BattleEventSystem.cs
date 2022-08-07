@@ -110,10 +110,10 @@ namespace PG.Event
         #endregion
 
         #region//차지 관련
-        public static event OnEvent _on차지시작;
-        public static void CallOn차지시작() { _on차지시작?.Invoke(); }
-        public static event OnEvent _on차지종료;
-        public static void CallOn차지종료() { _on차지종료?.Invoke(); }
+        public static event OnEvent _onChargeStart;
+        public static void CallOnChargeStart() { _onChargeStart?.Invoke(); }
+        public static event OnEvent _onChargeEnd;
+        public static void CallOnChargeEnd() { _onChargeEnd?.Invoke(); }
 
         #endregion
 
