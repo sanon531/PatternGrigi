@@ -33,17 +33,15 @@ namespace PG.Battle
         ParticleSystem _signParticle;
 
         // Start is called before the first frame update
-        void Awake()
-        {
-        }
+  
         private void Start()
         {
             if (_instance == null)
                 _instance = this;
             _inactivatedNode = _defaultNode.ToList();
             Global_BattleEventSystem._onBattleBegin += StartTriggerNode;
-            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
+            StartChargeEvent();
+
 
         }
         // Update is called once per frame
@@ -52,9 +50,7 @@ namespace PG.Battle
         {
             // Update is called once per frame
             Global_BattleEventSystem._onBattleBegin -= StartTriggerNode;
-            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
-
+            DeleteChargeEvent();
         }
         private void Update()
         {
@@ -113,7 +109,7 @@ namespace PG.Battle
             }
             else
             {
-                //만약
+                //아직 차지 공격 안끝남이면
                 if (_currentPresetNodeNumber < _presetNodes.Count) 
                 {
                     ResetAllNode();
@@ -124,11 +120,14 @@ namespace PG.Battle
                 }
                 else
                 {
+                    //차지 성공시
                     _lastNode = nodeID;
                     _isRandomNodeSetMode = true;
                     ReachTriggeredNode_Random(nodeID);
+                    Global_BattleEventSystem.CallOnChargeSuccessed();
                     ShowDebugtextScript.SetDebug("Pattern Success!");
-
+                    //일단 차지 공격 끝나면 바로 패턴 성공 하도록 함
+                    EndChargePattern();
                 }
                 //처음의 공격은 무시한다.
             }
@@ -223,6 +222,19 @@ namespace PG.Battle
         [SerializeField]
         bool _isChargeStart = false;
 
+        //시작시 , 해제시 이벤트 탈부착
+        void StartChargeEvent() 
+        {
+            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
+        }
+        void DeleteChargeEvent()
+        {
+            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
+
+        }
+
         void CheckIsCharge() 
         {
             // 만약 일시정지 상태면 그냥 넘김
@@ -232,15 +244,19 @@ namespace PG.Battle
             if (_isChargeStart)
             {
                 //ShowDebugtextScript.SetDebug(_currentCharge.ToString());
+                //차지 시간은 간다
                 if (_currentCharge > 0)
                 {
                     _currentCharge -= Time.deltaTime* _chargeReduction;
                     ChargeGaugeUIScript.SetChargeGauge(_currentCharge/ _maxCharge);
                 }
+                //시간 초과 시실패 처리. 이전에 
                 else 
                 {
-                    _currentCharge = 0;
+                    //일단은 뭐가 되었든 패턴이 끝이나면 차지도 끝나도록 설계함,
+                    //차지 이어가면서 뭐 하는거는 나중에 생각해보도록 함.
                     Global_BattleEventSystem.CallOnChargeFailed();
+                    _currentCharge = 0;
                     EndChargePattern();
                 }
             }
@@ -270,7 +286,6 @@ namespace PG.Battle
 
         void EndChargePattern()
         {
-            Global_BattleEventSystem.CallOnChargeFailed();
             ChargeGaugeUIScript.EndChargeSkill();
             _isChargeStart = false;
         }

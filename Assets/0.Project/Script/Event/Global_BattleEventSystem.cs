@@ -63,7 +63,6 @@ namespace PG.Event
         }
 
 
-
         #region//일시정지
         public static bool _isNonTotalPaused = false;
         public static void CallNonTotalPause() 
