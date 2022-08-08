@@ -27,6 +27,9 @@ namespace PG.Battle
         [SerializeField]
         float _damage = 10;
         [SerializeField]
+        float _gainEXP= 10;
+
+        [SerializeField]
         ParticleSystem _signParticle;
 
         // Start is called before the first frame update
@@ -77,7 +80,7 @@ namespace PG.Battle
                 _instance._lastNode = -1;
             }
             LineTracer.instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
-            Global_BattleEventSystem.CallOnGainEXP(10f);
+            Global_BattleEventSystem.CallOnGainEXP(_instance._gainEXP);
         }
 
         #region//nodereach
@@ -237,7 +240,7 @@ namespace PG.Battle
                 else 
                 {
                     _currentCharge = 0;
-                    Global_BattleEventSystem.CallOnChargeEnd();
+                    Global_BattleEventSystem.CallOnChargeFailed();
                     EndChargePattern();
                 }
             }
@@ -267,7 +270,7 @@ namespace PG.Battle
 
         void EndChargePattern()
         {
-            Global_BattleEventSystem.CallOnChargeEnd();
+            Global_BattleEventSystem.CallOnChargeFailed();
             ChargeGaugeUIScript.EndChargeSkill();
             _isChargeStart = false;
         }

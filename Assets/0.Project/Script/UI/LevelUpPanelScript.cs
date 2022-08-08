@@ -6,50 +6,49 @@ using PG.Event;
 using DG.Tweening;
 namespace PG.Battle 
 {
-    public class LevelUpPanelScript : MonoBehaviour, ISetNontotalPause
+    public class LevelUpPanelScript : MonoBehaviour
     {
         [SerializeField]
         Image _panelBG;
 
         [SerializeField]
-        List<GameObject> _upgradePanelList;
+        List<Button> _upgradePanelList;
 
         // Start is called before the first frame update
         void Start()
         {
-            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
+            Global_BattleEventSystem._onLevelUpShow += SetLevelUpOn;
+            Global_BattleEventSystem._onLevelUpHide += SetLevelUpOff;
         }
         private void OnDestroy()
         {
-            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
+            Global_BattleEventSystem._onLevelUpShow -= SetLevelUpOn;
+            Global_BattleEventSystem._onLevelUpHide -= SetLevelUpOff;
         }
-        public void SetNonTotalPauseOn()
+        public void SetLevelUpOn()
         {
             _panelBG.enabled = true;
-            foreach(GameObject i in _upgradePanelList) 
+            foreach(Button i in _upgradePanelList) 
             {
                 i.transform.DOScale(1, 0.5f);
-                i.GetComponent<Button>().interactable = true;
+                i.interactable = true;
             }
         }
 
-        public void SetNonTotalPauseOff()
+        public void SetLevelUpOff()
         {
             _panelBG.enabled = false;
-
-            foreach (GameObject i in _upgradePanelList)
+            foreach (Button i in _upgradePanelList)
             {
                 i.transform.DOScale(0, 0.5f);
-                i.GetComponent<Button>().interactable = false;
-
+                i.interactable = false;
             }
         }
 
+        //º±≈√¿ª 
         public void GetButtonPressed() 
         {
-            Global_BattleEventSystem.CallNonTotalPause();
+            Global_BattleEventSystem.CallOffLevelUp();
         }
 
 

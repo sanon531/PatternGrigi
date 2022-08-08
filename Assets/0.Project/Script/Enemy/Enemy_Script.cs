@@ -52,7 +52,7 @@ namespace PG.Battle
         float _enemyroutineTime;
         private void Update()
         {
-            if (_isLevelUpPaused)
+            if (_isNontotalPaused)
                 return;
 
             if (_isStatusChangable && _isEnemyAlive)
@@ -179,10 +179,11 @@ namespace PG.Battle
             _routineList.Clear();
         }
 
-        bool _isLevelUpPaused = false;
+        bool _isNontotalPaused = false;
         public void SetNonTotalPauseOn()
         {
-            _isLevelUpPaused = true;
+            Debug.Log("SetNonTotalPauseOn");
+            _isNontotalPaused = true;
             for (int i = _routineList.Count -1; i>=0; i--) 
             {
                 StopCoroutine(_routineList[i]);
@@ -192,7 +193,9 @@ namespace PG.Battle
 
         public void SetNonTotalPauseOff()
         {
-            _isLevelUpPaused = false;
+            Debug.Log("SetNonTotalPauseOf");
+
+            _isNontotalPaused = false;
             for (int i = _routineList.Count - 1; i >= 0; i--)
             {
                 //print("aa"+i +"+"+ _routineList.Count);

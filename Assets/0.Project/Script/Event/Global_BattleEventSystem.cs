@@ -46,6 +46,23 @@ namespace PG.Event
         public static void CallOnAddAttackMag(float _배수) { _onAddAttackMag?.Invoke(_배수);  }
 
 
+        //레벨업 할 경우 콜함 
+        public static event OnEvent _onLevelUpShow;
+        public static event OnEvent _onLevelUpHide;
+        public static void CallOnLevelUp() 
+        {
+            if (!_isNonTotalPaused)
+                CallNonTotalPause();
+            _onLevelUpShow?.Invoke();
+        }
+        public static void CallOffLevelUp()
+        {
+            if (_isNonTotalPaused)
+                CallNonTotalPause();
+            _onLevelUpHide?.Invoke();
+        }
+
+
 
         #region//일시정지
         public static bool _isNonTotalPaused = false;
@@ -112,13 +129,15 @@ namespace PG.Event
         #region//차지 관련
         public static event OnEvent _onChargeStart;
         public static void CallOnChargeStart() { _onChargeStart?.Invoke(); }
-        public static event OnEvent _onChargeEnd;
-        public static void CallOnChargeEnd() { _onChargeEnd?.Invoke(); }
+
+        public static event OnEvent _onChargeFailed;
+        public static void CallOnChargeFailed() { _onChargeFailed?.Invoke(); }
+
+        public static event OnEvent _onChargeSuccessed;
+        public static void CallOnChargeSuccessed() { _onChargeSuccessed?.Invoke(); }
+
 
         #endregion
-
-
-
 
         public static event OnEventWithFloat _onGainEXP;
         public static void CallOnGainEXP(float exp) { _onGainEXP?.Invoke(exp); }
