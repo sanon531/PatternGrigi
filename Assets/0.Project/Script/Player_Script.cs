@@ -75,7 +75,7 @@ namespace PG.Battle
             s_instance.currentHealth -= _amount;
             s_instance.Health_Refresh();
             s_instance._damageFX.Play();
-            s_instance._healthBar.DoFadeHealth(s_instance._healthFadeTime);
+            //s_instance._healthBar.DoFadeHealth(s_instance._healthFadeTime);
             DamageTextScript.Create(s_instance._thisSprite.transform.position, 0.5f, 0.3f, (int)_amount, Color.green);
 
         }
@@ -84,7 +84,7 @@ namespace PG.Battle
         float _healthFadeTime = 1f;
         private void HealthSystem_OnDead(object sender, System.EventArgs e)
         {
-            _thisSprite.DOFade(0, _healthFadeTime);
+            //_thisSprite.DOFade(0, _healthFadeTime);
             VibrationManager.CallGameOverVib();
             Global_BattleEventSystem.CallOnGameOver();
             _isDead = true;

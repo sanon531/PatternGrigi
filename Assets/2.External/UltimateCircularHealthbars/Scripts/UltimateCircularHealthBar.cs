@@ -101,7 +101,7 @@ namespace RengeGames.HealthBars {
             if (currentMaterial != null && currentMaterial.name == MATERIAL_NAME) {
                 materialAssigned = true;
             }
-            _fadeTween = currentMaterial.DOFade(0f, 1f);
+            //_fadeTween = currentMaterial.DOFade(0f, 1f);
 
 
         }
