@@ -5,13 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/0.Project/Scenes/Main_Scene.unity
     guid: 5b14ab500c3c9db41b611f266dff4123
-  - enabled: 1
+  - enabled: 0
     path: Assets/0.Project/Scenes/Play_Scene.unity
     guid: 66dde086383f0c445827d3eeb7d7df05
   - enabled: 0
     path: Assets/2.External/NiceVibrations/Demos/NiceVibrationsDemo.unity
     guid: a40d966b5d8df3140955c23cdc4994c8
+  - enabled: 1
+    path: Assets/0.Project/Scenes/Play_Scene_Joystick.unity
+    guid: 4909e5ea7c5d018448f0099a7e8774c2
   m_configObjects: {}
