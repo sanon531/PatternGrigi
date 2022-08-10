@@ -165,6 +165,12 @@ namespace PG.Battle
 
         }
 
+
+        void SetShockedAction() 
+        {
+        
+        }
+
         IEnumerator SetObstacleRoutine(SpawnData data,Vector2 pos,float waitTime) 
         {
             float _deadLine = _enemyroutineTime + waitTime;

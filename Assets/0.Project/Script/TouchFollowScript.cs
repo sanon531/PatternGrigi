@@ -55,6 +55,9 @@ namespace PG.Battle
                 _touchPosition = Camera.main.ScreenToWorldPoint(_touch.position);
                 SetPlayerPos(_touchPosition);
 
+                //ShowDebugtextScript.SetDebug(_touchPosition + " -> " + transform.position);
+                //ShowDebugtextScript.SetDebug2(_touchLUvec +","+ _moveRDvec + " , " + PositionCheck(_touchPosition));
+
                 if (_touch.phase == TouchPhase.Ended)
                     _thisRB.velocity = Vector2.zero;
             }
@@ -78,9 +81,9 @@ namespace PG.Battle
                 return;
 
 
-            if (_touchLUvec.x < targetPos.x && _moveRDvec.x > targetPos.x &&
-            _touchLUvec.y > targetPos.y && _moveRDvec.y < targetPos.y)
+            if (PositionCheck(targetPos))
             {
+
                 targetPos.z = 0;
                 _direction = targetPos - transform.position;
                 if (_direction.magnitude < 0.3f)
@@ -103,6 +106,19 @@ namespace PG.Battle
             _curTF.y = Mathf.Clamp(_curTF.y, _moveRDvec.y, _moveLUvec.y);
             transform.position = _curTF;
         }
+
+        bool PositionCheck(Vector2 targetPos) 
+        {
+
+            return 
+                _touchLUvec.x < targetPos.x && 
+                _moveRDvec.x > targetPos.x && 
+                _touchLUvec.y > targetPos.y && 
+                _moveRDvec.y < targetPos.y;
+
+
+        }
+
 
         public void SetNonTotalPauseOn() { _isLevelUpPaused = true; }
         public void SetNonTotalPauseOff() { _isLevelUpPaused = false; }

@@ -245,8 +245,8 @@ namespace RengeGames.HealthBars {
         }
         public void DoFadeHealth(float _time) 
         {
-            _fadeTween = currentMaterial.DOFade(1, 0);
-            _fadeTween = currentMaterial.DOFade(0, _time);
+            //_fadeTween = currentMaterial.DOFade(1, 0);
+            //_fadeTween = currentMaterial.DOFade(0, _time);
         }
     }
 }

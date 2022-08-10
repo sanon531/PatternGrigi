@@ -73,6 +73,7 @@ namespace PG.Data
     public enum EnemyAction 
     {
         Wait, 
+        Stunned,
         BasicAttack_1,
         BasicAttack_2,
         BasicAttack_3,
