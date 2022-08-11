@@ -33275,7 +33275,7 @@ MonoBehaviour:
   _currentAction: 0
   _enemyActionList: 0000000001000000020000000000000001000000
   _actionDataDic:
-    m_keys: 00000000010000000200000004000000
+    m_keys: 00000000010000000200000063000000
     m_values:
     - _action: 0
       _actionTime: 2

@@ -72,12 +72,12 @@ namespace PG.Data
     //적 패턴은 많아야 4개고  중간 이상의 적에게는 필살기 1개 정도 있다고 보면 될듯함
     public enum EnemyAction 
     {
-        Wait, 
-        Stunned,
-        BasicAttack_1,
-        BasicAttack_2,
-        BasicAttack_3,
-        SpecialAttack
+        Wait=0, 
+        BasicAttack_1=1,
+        BasicAttack_2=2,
+        BasicAttack_3=3,
+        SpecialAttack=4,
+        Stunned = 99
 
     }
     //스폰하는 방식을 의미함

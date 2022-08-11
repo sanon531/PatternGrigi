@@ -77,6 +77,7 @@ namespace PG.Battle
             s_instance._damageFX.Play();
             //s_instance._healthBar.DoFadeHealth(s_instance._healthFadeTime);
             DamageTextScript.Create(s_instance._thisSprite.transform.position, 0.5f, 0.3f, (int)_amount, Color.green);
+            DamageFXManager.Damage(_amount);
 
         }
 
