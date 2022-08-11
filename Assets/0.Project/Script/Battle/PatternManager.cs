@@ -120,19 +120,16 @@ namespace PG.Battle
                 }
                 else
                 {
-                    //차지 성공시
+                    //스킬성공시 랜덤하는 공격이 나감.
                     _lastNode = nodeID;
                     _isRandomNodeSetMode = true;
                     ReachTriggeredNode_Random(nodeID);
-                    Global_BattleEventSystem.CallOnChargeSuccessed();
+                    Global_BattleEventSystem.CallOnChargeSuccessed(_currentPattern);
                     ShowDebugtextScript.SetDebug("Pattern Success!");
                     //일단 차지 공격 끝나면 바로 패턴 성공 하도록 함
-                    EndChargePattern();
                 }
                 //처음의 공격은 무시한다.
             }
-
-
         }
 
 
@@ -145,13 +142,14 @@ namespace PG.Battle
         List<int> _presetNodes = new List<int>();
         [SerializeField]
         int _currentPresetNodeNumber = 0;
-
+        EDrawPatternPreset _currentPattern;
         // 패턴 세팅을 하는곳 
         void SetSkillToPresetNodeFollow(EDrawPatternPreset drawPattern)
         {
             if (!_isRandomNodeSetMode && !_IsCurrentNodeSetted)
             {
                 _currentPresetNodeNumber = 0;
+                _currentPattern = drawPattern;
                 _presetNodes = S_PatternStorage.S_PatternPresetDic[drawPattern];
                 PresetPatternShower.ShowPresetPatternAll();
                 //presetDataDic 은 새로운 딕셔너리로 키값으로EPresetOfDrawPattern를 받는다.
@@ -180,6 +178,7 @@ namespace PG.Battle
 
         }
 
+        //현재 노드가 뭐든지 일단 없애고 보는거. 
         void ResetAllNode()
         {
             _inactivatedNode = _defaultNode.ToList();
@@ -257,7 +256,7 @@ namespace PG.Battle
                     //차지 이어가면서 뭐 하는거는 나중에 생각해보도록 함.
                     Global_BattleEventSystem.CallOnChargeFailed();
                     _currentCharge = 0;
-                    EndChargePattern();
+                    EndChargeSequence();
                 }
             }
 
@@ -268,11 +267,13 @@ namespace PG.Battle
             _currentCharge += _chargeAmount;
             if (_maxCharge <= _currentCharge)
             {
-                StartPatternSkill();
+                StartChargeSequence();
             }
             ChargeGaugeUIScript.SetChargeGauge(_currentCharge/ _maxCharge);
         }
-        void StartPatternSkill()
+
+        //차지 시작할때
+        void StartChargeSequence()
         {
             Global_BattleEventSystem.CallOnChargeStart();
             ChargeGaugeUIScript.StartChargeSkill();
@@ -284,7 +285,8 @@ namespace PG.Battle
             _isChargeStart = true;
         }
 
-        void EndChargePattern()
+        //차지가 종료 되었을 때 사용됨
+        void EndChargeSequence()
         {
             ChargeGaugeUIScript.EndChargeSkill();
             _isChargeStart = false;

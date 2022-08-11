@@ -18,6 +18,7 @@ namespace PG.Event
     public delegate void OnEventWithString(string 수치값);
     public delegate void OnEventWithIntWithTarget(Data_Character 대상자, int 수치값);
     public delegate void OnEventWithFloatWithTarget(Data_Character 대상자, float 수치값);
+    public delegate void OnEventWithPattern(EDrawPatternPreset 수치값);
 
 
     public static class Global_BattleEventSystem 
@@ -132,8 +133,8 @@ namespace PG.Event
         public static event OnEvent _onChargeFailed;
         public static void CallOnChargeFailed() { _onChargeFailed?.Invoke(); }
 
-        public static event OnEvent _onChargeSuccessed;
-        public static void CallOnChargeSuccessed() { _onChargeSuccessed?.Invoke(); }
+        public static event OnEventWithPattern _onChargeSuccessed;
+        public static void CallOnChargeSuccessed(EDrawPatternPreset patternPreset) { _onChargeSuccessed?.Invoke(patternPreset); }
 
 
         #endregion

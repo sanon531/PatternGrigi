@@ -48,6 +48,8 @@ namespace PG.Event
         public static event OnEvent _offChargeStart;
         private static void CallOffChargeStart() { _offChargeStart?.Invoke(); }
 
+        public static event OnEvent _onDamageUI;
+        public static void CallOnDamageUI() { _onDamageUI?.Invoke(); }
 
 
     }
