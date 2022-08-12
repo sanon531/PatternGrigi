@@ -5,7 +5,7 @@ using PG.Data;
 using PG.Event;
 namespace PG.Battle
 {
-    public class ObstacleManager : MonoBehaviour, ISetLevelupPause
+    public class ObstacleManager : MonoBehaviour, ISetNontotalPause
     {
         [SerializeField]
         ObstacleIDObjectDic _obstacleDic;
@@ -18,14 +18,14 @@ namespace PG.Battle
             if (_instance != null)
                 Debug.LogError("Double Obstacle Manager");
              _instance = this;
-            Global_BattleEventSystem._on레벨업일시정지 += SetLevelUpPauseOn;
-            Global_BattleEventSystem._off레벨업일시정지 += SetLevelUpPauseOff;
+            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
 
         }
         private void OnDestroy()
         {
-            Global_BattleEventSystem._on레벨업일시정지 -= SetLevelUpPauseOn;
-            Global_BattleEventSystem._off레벨업일시정지 -= SetLevelUpPauseOff;
+            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
         }
         public void InitializeDictionary(List<ObstacleID> obstacleIDs)
         {
@@ -61,12 +61,12 @@ namespace PG.Battle
 
 
         bool _isLevelupPaused = false;
-        public void SetLevelUpPauseOn()
+        public void SetNonTotalPauseOn()
         {
             _isLevelupPaused = true;
         }
 
-        public void SetLevelUpPauseOff()
+        public void SetNonTotalPauseOff()
         {
             _isLevelupPaused = false;
         }

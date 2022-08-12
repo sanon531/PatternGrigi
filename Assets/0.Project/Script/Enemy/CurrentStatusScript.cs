@@ -6,6 +6,7 @@ using TMPro;
 using DG.Tweening;
 namespace PG.Battle 
 {
+    //적이 등장하거나 게임이 시작되거나 하는 상황등을 알리는 UI 같은 것.
     public class CurrentStatusScript : MonoBehaviour
     {
         [SerializeField]

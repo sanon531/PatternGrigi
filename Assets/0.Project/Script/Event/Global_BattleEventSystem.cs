@@ -5,100 +5,149 @@ using PG.Data;
 
 namespace PG.Event
 {
-    public delegate void On이벤트();
+    public delegate void OnEvent();
 
-    public delegate void OnCalc데이터_0형식(DataEntity 정보체);
-    public delegate void OnCalc데이터_1형식(Data_Character 대상, DataEntity 정보체);
-    public delegate void OnCalc데이터_2형식(Data_Character 정보계산주체, Data_Character 부체, DataEntity 정보체);
+    public delegate void OnCalcDataEntity(DataEntity 정보체);
+    public delegate void OnCalcData_Form1(Data_Character 대상, DataEntity 정보체);
+    public delegate void OnCalcData_Form_2(Data_Character 정보계산주체, Data_Character 부체, DataEntity 정보체);
     public delegate void On배틀이벤트();
 
-    public delegate void On휴식회복(DataEntity 정보체);
-    public delegate void On이벤트Withbool수치값(bool 수치값);
-    public delegate void On이벤트With정수수치값(int 수치값);
-    public delegate void On이벤트WithFloat수치값(float 수치값);
-    public delegate void On이벤트WithString수치값(string 수치값);
-    public delegate void On이벤트With대상수치값(Data_Character 대상자, int 수치값);
-    public delegate void On이벤트With대상Float수치값(Data_Character 대상자, float 수치값);
+    public delegate void OnEventWithbool(bool 수치값);
+    public delegate void OnEventWithInt(int 수치값);
+    public delegate void OnEventWithFloat(float 수치값);
+    public delegate void OnEventWithString(string 수치값);
+    public delegate void OnEventWithIntWithTarget(Data_Character 대상자, int 수치값);
+    public delegate void OnEventWithFloatWithTarget(Data_Character 대상자, float 수치값);
+    public delegate void OnEventWithPattern(EDrawPatternPreset 수치값);
 
 
     public static class Global_BattleEventSystem 
     {
         //맵
-        public static event On이벤트 _on맵입장;
-        public static void CallOn맵입장() { _on맵입장?.Invoke(); }
-        public static event On이벤트 _on노드선택;
-        public static void CallOn노드선택() { _on노드선택?.Invoke(); }
-        public static event On이벤트 _on노드로드완료;
-        public static void CallOn노드로드완료() { _on노드로드완료?.Invoke(); }
+        public static event OnEvent _onEnterStage;
+        public static void CallOnEnterStage() { _onEnterStage?.Invoke(); }
 
+
+        public static event OnEventWithInt _onNodeReached;
+        public static void CallOnNodeReached(int id) { _onNodeReached?.Invoke(id); }
 
         //배틀 중 이벤트 
-        public static event On이벤트 _onTouchMain;
+        public static event OnEvent _onTouchMain;
         public static void CallOnTouchMain() { _onTouchMain?.Invoke(); }
 
         // 진짜 시작 되었을때 발동 waitforStart 때
-        public static event On이벤트 _on배틀시작;
-        public static void CallOn배틀시작() { _on배틀시작?.Invoke(); }
+        public static event OnEvent _onBattleBegin;
+        public static void CallOnBattleBegin() { _onBattleBegin?.Invoke(); }
+
+        public static OnCalcDataEntity _onAddCharge;
+        public static void CallAddCharge() { _onBattleBegin?.Invoke(); }
 
 
-        public static event On이벤트WithFloat수치값 _on공격배수추가;
-        public static void CallOn공격배수추가(float _배수) { _on공격배수추가?.Invoke(_배수);  }
-        public static event On이벤트WithFloat수치값 _on방어배수추가;
-        public static void CallOn방어배수추가(float _배수) { _on방어배수추가?.Invoke(_배수); }
+        public static event OnEventWithFloat _onAddAttackMag;
+        public static void CallOnAddAttackMag(float _배수) { _onAddAttackMag?.Invoke(_배수);  }
 
 
-        public static event On이벤트Withbool수치값 _on모듈항상들기;
-        public static void CallOn모듈항상들기(bool 수치값)
-        { _on모듈항상들기?.Invoke(수치값); }
-
-
-
-        public static bool _isLevelupPaused = false;
-        public static void Call레벨업일시정지() 
+        //레벨업 할 경우 콜함 
+        public static event OnEvent _onLevelUpShow;
+        public static event OnEvent _onLevelUpHide;
+        public static void CallOnLevelUp() 
         {
-            if (_isLevelupPaused) 
+            if (!_isNonTotalPaused)
+                CallNonTotalPause();
+            _onLevelUpShow?.Invoke();
+        }
+        public static void CallOffLevelUp()
+        {
+            if (_isNonTotalPaused)
+                CallNonTotalPause();
+            _onLevelUpHide?.Invoke();
+        }
+
+
+        #region//일시정지
+        public static bool _isNonTotalPaused = false;
+        public static void CallNonTotalPause() 
+        {
+            if (_isNonTotalPaused) 
             {
-                _isLevelupPaused = false;
-                CallOff레벨업일시정지();
+                _isNonTotalPaused = false;
+                CallOffNonTotalPause();
             }
             else
             {
-                _isLevelupPaused = true;
-                CallOn레벨업일시정지();
+                _isNonTotalPaused = true;
+                CallOnNontotalPause();
             }
 
 
         }
-        public static event On이벤트 _on레벨업일시정지;
-        private static void CallOn레벨업일시정지() { _on레벨업일시정지?.Invoke(); }
-        public static event On이벤트 _off레벨업일시정지;
-        private static void CallOff레벨업일시정지() { _off레벨업일시정지?.Invoke(); }
+        public static event OnEvent _onNonTotalPause;
+        private static void CallOnNontotalPause() { _onNonTotalPause?.Invoke(); }
+        public static event OnEvent _offNonTotalPause;
+        private static void CallOffNonTotalPause() { _offNonTotalPause?.Invoke(); }
+        
+        public static bool _isCutScenePaused = false;
+        public static void CallCutScenePause()
+        {
+            if (_isCutScenePaused)
+            {
+                _isCutScenePaused = false;
+                CallOffCutScenePause();
+            }
+            else
+            {
+                _isNonTotalPaused = true;
+                CallOnCutScenePause();
+            }
 
-        public static event On이벤트WithFloat수치값 _on경험치획득;
-        public static void CallOn경험치획득(float exp) { _on경험치획득?.Invoke(exp); }
 
-
+        }
+        public static event OnEvent _onCutScenePause;
+        private static void CallOnCutScenePause() { _onCutScenePause?.Invoke(); }
+        public static event OnEvent _offCutScenePause;
+        private static void CallOffCutScenePause() { _offCutScenePause?.Invoke(); }
         private static bool _isTotalPaused = false;
-        public static void Call완전일시정지()
+        public static void CallTotalPause()
         {
             if (_isTotalPaused)
             {
                 _isTotalPaused = false;
-                CallOff완전일시정지();
+                CallOffTotalPause();
             }
             else
             {
                 _isTotalPaused = true;
-                CallOn완전일시정지();
+                CallOnTotalPause();
             }
         }
-        public static event On이벤트 _on완전일시정지;
-        private static void CallOn완전일시정지() { _on완전일시정지?.Invoke(); }
-        public static event On이벤트 _off완전일시정지;
-        private static void CallOff완전일시정지() { _off완전일시정지?.Invoke(); }
+        public static event OnEvent _onTotalPause;
+        private static void CallOnTotalPause() { _onTotalPause?.Invoke(); }
+        public static event OnEvent _offTotalPause;
+        private static void CallOffTotalPause() { _offTotalPause?.Invoke(); }
+        #endregion
 
-        public static event On이벤트 _on게임오버;
-        public static void CallOn게임오버() { _on게임오버?.Invoke(); }
+        #region//차지 관련
+        public static event OnEvent _onChargeStart;
+        public static void CallOnChargeStart() { _onChargeStart?.Invoke(); }
+
+        public static event OnEvent _onChargeFailed;
+        public static void CallOnChargeFailed() { _onChargeFailed?.Invoke(); }
+
+        public static event OnEventWithPattern _onChargeSuccessed;
+        public static void CallOnChargeSuccessed(EDrawPatternPreset patternPreset) { _onChargeSuccessed?.Invoke(patternPreset); }
+
+
+        #endregion
+
+        public static event OnEventWithFloat _onGainEXP;
+        public static void CallOnGainEXP(float exp) { _onGainEXP?.Invoke(exp); }
+
+
+      
+        
+
+        public static event OnEvent _onGameOver;
+        public static void CallOnGameOver() { _onGameOver?.Invoke(); }
 
 
 
@@ -107,49 +156,22 @@ namespace PG.Event
         #endregion
 
         //데미지 계산
-        public static event OnCalc데이터_1형식 _onCalc데미지;
+        public static event OnCalcData_Form1 _onCalc데미지;
         public static void CallOnCalc데미지(Data_Character 피해대상, DataEntity 계산정보체)
         { _onCalc데미지?.Invoke(피해대상, 계산정보체); }
-        public static event OnCalc데이터_1형식 _onCalc방어도;
+        public static event OnCalcData_Form1 _onCalc방어도;
         public static void CallOnCalc방어도(Data_Character 피해대상, DataEntity 계산정보체)
         { _onCalc방어도?.Invoke(피해대상, 계산정보체); }
 
 
 
         //생명력 계산
-        public static event OnCalc데이터_1형식 _onCalc최대생명력;
+        public static event OnCalcData_Form1 _onCalc최대생명력;
         public static void CallOnCalc최대생명력(Data_Character 대상, DataEntity 최대생명력계산정보체)
         { _onCalc최대생명력?.Invoke(대상, 최대생명력계산정보체); }
 
 
-        //계산하는데 걸리는 쿨타임과 관련됨
-        public static event OnCalc데이터_0형식 _onCalc토론시작쿨타임;
-        public static void CallOnCalc토론시작쿨타임(DataEntity 계산정보체)
-        { _onCalc토론시작쿨타임?.Invoke(계산정보체); }
 
-
-
-        public static event OnCalc데이터_0형식 _onCalc쿨타임;
-        public static void CallOnCalc쿨타임(DataEntity 계산정보체)
-        { _onCalc쿨타임?.Invoke(계산정보체); }
-
-
-        //계산(발언)을 할때 활용 할것. 계산 직전은 계산 하기 전에 발동
-        public static event On이벤트 _on판계산선언;
-        public static void CallOn판계산선언() { _on판계산선언?.Invoke(); }
-
-        public static event OnCalc데이터_1형식 _on판계산;
-        public static void CallOn판계산(Data_Character 정보계산타겟, DataEntity 정보체)
-        { _on판계산?.Invoke(정보계산타겟, 정보체); }
-
-
-
-
-        public static event On이벤트 _on적턴시작;
-        public static void CallOn적턴시작() { _on적턴시작?.Invoke(); }
-
-        public static event On이벤트 _on시퀀스넘기기;
-        public static void CallOn시퀀스넘기기() { _on시퀀스넘기기?.Invoke(); }
 
 
 

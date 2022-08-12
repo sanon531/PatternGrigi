@@ -6,50 +6,49 @@ using PG.Event;
 using DG.Tweening;
 namespace PG.Battle 
 {
-    public class LevelUpPanelScript : MonoBehaviour, ISetLevelupPause
+    public class LevelUpPanelScript : MonoBehaviour
     {
         [SerializeField]
         Image _panelBG;
 
         [SerializeField]
-        List<GameObject> _upgradePanelList;
+        List<Button> _upgradePanelList;
 
         // Start is called before the first frame update
         void Start()
         {
-            Global_BattleEventSystem._on레벨업일시정지 += SetLevelUpPauseOn;
-            Global_BattleEventSystem._off레벨업일시정지 += SetLevelUpPauseOff;
+            Global_BattleEventSystem._onLevelUpShow += SetLevelUpOn;
+            Global_BattleEventSystem._onLevelUpHide += SetLevelUpOff;
         }
         private void OnDestroy()
         {
-            Global_BattleEventSystem._on레벨업일시정지 -= SetLevelUpPauseOn;
-            Global_BattleEventSystem._off레벨업일시정지 -= SetLevelUpPauseOff;
+            Global_BattleEventSystem._onLevelUpShow -= SetLevelUpOn;
+            Global_BattleEventSystem._onLevelUpHide -= SetLevelUpOff;
         }
-        public void SetLevelUpPauseOn()
+        public void SetLevelUpOn()
         {
             _panelBG.enabled = true;
-            foreach(GameObject i in _upgradePanelList) 
+            foreach(Button i in _upgradePanelList) 
             {
                 i.transform.DOScale(1, 0.5f);
-                i.GetComponent<Button>().interactable = true;
+                i.interactable = true;
             }
         }
 
-        public void SetLevelUpPauseOff()
+        public void SetLevelUpOff()
         {
             _panelBG.enabled = false;
-
-            foreach (GameObject i in _upgradePanelList)
+            foreach (Button i in _upgradePanelList)
             {
                 i.transform.DOScale(0, 0.5f);
-                i.GetComponent<Button>().interactable = false;
-
+                i.interactable = false;
             }
         }
 
+        //선택을 
         public void GetButtonPressed() 
         {
-            Global_BattleEventSystem.Call레벨업일시정지();
+            Global_BattleEventSystem.CallOffLevelUp();
         }
 
 

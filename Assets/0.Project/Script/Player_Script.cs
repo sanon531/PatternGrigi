@@ -6,12 +6,9 @@ using DG.Tweening;
 using PG.Event;
 namespace PG.Battle 
 {
-    public class Player_Script : MonoBehaviour, IGetHealthSystem, ISetLevelupPause
+    public class Player_Script : MonoBehaviour, IGetHealthSystem, ISetNontotalPause
     {
-        public static Player_Script _instance;
-
-
-
+        public static Player_Script s_instance;
         #region//damage related
 
 
@@ -30,19 +27,19 @@ namespace PG.Battle
         // Start is called before the first frame update
         void Awake()
         {
-            _instance = this;
+            s_instance = this;
             _healthSystem = new HealthSystem(healthAmountMax);
             _healthSystem.SetHealth(startingHealthAmount);
             _healthSystem.OnDead += HealthSystem_OnDead;
             Health_Refresh();
-            Global_BattleEventSystem._on레벨업일시정지 += SetLevelUpPauseOn;
-            Global_BattleEventSystem._off레벨업일시정지 += SetLevelUpPauseOff;
+            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
             _isDead = false;
         }
         private void OnDestroy()
         {
-            Global_BattleEventSystem._on레벨업일시정지 -= SetLevelUpPauseOn;
-            Global_BattleEventSystem._off레벨업일시정지 -= SetLevelUpPauseOff;
+            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
         }
         void Health_Refresh()
         {
@@ -70,16 +67,18 @@ namespace PG.Battle
         }
         public static void Damage(float _amount)
         {
-            if (_instance._isDead)
+            if (s_instance._isDead)
                 return;
 
             CameraShaker.ShakeCamera(0.5f, 1);
-            _instance._healthSystem.Damage(_amount);
-            _instance.currentHealth -= _amount;
-            _instance.Health_Refresh();
-            _instance._damageFX.Play();
-            _instance._healthBar.DoFadeHealth(_instance._healthFadeTime);
-            DamageTextScript.Create(_instance._thisSprite.transform.position, 0.5f, 0.3f, (int)_amount, Color.green);
+            s_instance._healthSystem.Damage(_amount);
+            s_instance.currentHealth -= _amount;
+            s_instance.Health_Refresh();
+            s_instance._damageFX.Play();
+            //s_instance._healthBar.DoFadeHealth(s_instance._healthFadeTime);
+            DamageTextScript.Create(s_instance._thisSprite.transform.position, 0.5f, 0.3f, (int)_amount, Color.green);
+            GlobalUIEventSystem.CallOnDamageUI();
+            //DamageFXManager.Damage(_amount);
 
         }
 
@@ -87,9 +86,9 @@ namespace PG.Battle
         float _healthFadeTime = 1f;
         private void HealthSystem_OnDead(object sender, System.EventArgs e)
         {
-            _thisSprite.DOFade(0, _healthFadeTime);
+            //_thisSprite.DOFade(0, _healthFadeTime);
             VibrationManager.CallGameOverVib();
-            Global_BattleEventSystem.CallOn게임오버();
+            Global_BattleEventSystem.CallOnGameOver();
             _isDead = true;
         }
 
@@ -100,27 +99,48 @@ namespace PG.Battle
 
         #endregion
 
+        public Player_Status _playerStatus = new Player_Status(Data.EDrawPatternPreset.Default_Thunder);
 
 
-
+        //현재의 플레이어 스테이터스를 인식으로 받는다.
+        public static Player_Status GetPlayerStatus() 
+        {
+            return s_instance._playerStatus;
+        }
 
 
         public static Vector3 ReturnCurrentTransform()
         {
-            return _instance.transform.position;
+            return s_instance.transform.position;
         }
         //일시정지시 정지할 행동들
 
         bool _isLevelupPaused = false;
-        public void SetLevelUpPauseOn()
+        public void SetNonTotalPauseOn()
         {
             _isLevelupPaused = true;
         }
 
-        public void SetLevelUpPauseOff()
+        public void SetNonTotalPauseOff()
         {
             _isLevelupPaused = false;
         }
+    }
+
+
+    //앞으로 플레이어의 공격 배율과 관련된 데이터를 담단 하는 부분.
+    [System.Serializable]
+    public class Player_Status 
+    {
+        public DataEntity _damageData = new DataEntity(DataEntity.Type.Damage,10);
+        public DataEntity _chargeData = new DataEntity(DataEntity.Type.ChargeGauge, 10);
+        public Data.EDrawPatternPreset _currentChargePattern = Data.EDrawPatternPreset.Default_Thunder;
+
+        public Player_Status(Data.EDrawPatternPreset currentpattern) 
+        {
+            _currentChargePattern = currentpattern;
+        }
+
     }
 
 }

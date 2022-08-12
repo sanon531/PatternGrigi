@@ -19,7 +19,7 @@ public class SceneMoveUndestructable_onlyOne : MonoBehaviour
         }
         else 
         {
-            Debug.Log("aad");
+            //Debug.Log("aad");
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
         }

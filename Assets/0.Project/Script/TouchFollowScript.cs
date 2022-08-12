@@ -5,7 +5,7 @@ using PG.Event;
 
 namespace PG.Battle
 {
-    public class TouchFollowScript : MonoBehaviour, ISetLevelupPause
+    public class TouchFollowScript : MonoBehaviour, ISetNontotalPause
     {
 
         [SerializeField]
@@ -29,13 +29,13 @@ namespace PG.Battle
             _moveLUvec = _moveLU.position;
             _moveRDvec = _moveRD.position;
             _touchLUvec = _touchLU.position;
-            Global_BattleEventSystem._on레벨업일시정지 += SetLevelUpPauseOn;
-            Global_BattleEventSystem._off레벨업일시정지 += SetLevelUpPauseOff;
+            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
         }
         private void OnDestroy()
         {
-            Global_BattleEventSystem._on레벨업일시정지 -= SetLevelUpPauseOn;
-            Global_BattleEventSystem._off레벨업일시정지 -= SetLevelUpPauseOff;
+            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
         }
 
 
@@ -54,6 +54,9 @@ namespace PG.Battle
                 Touch _touch = Input.GetTouch(0);
                 _touchPosition = Camera.main.ScreenToWorldPoint(_touch.position);
                 SetPlayerPos(_touchPosition);
+
+                //ShowDebugtextScript.SetDebug(_touchPosition + " -> " + transform.position);
+                //ShowDebugtextScript.SetDebug2(_touchLUvec +","+ _moveRDvec + " , " + PositionCheck(_touchPosition));
 
                 if (_touch.phase == TouchPhase.Ended)
                     _thisRB.velocity = Vector2.zero;
@@ -78,9 +81,9 @@ namespace PG.Battle
                 return;
 
 
-            if (_touchLUvec.x < targetPos.x && _moveRDvec.x > targetPos.x &&
-            _touchLUvec.y > targetPos.y && _moveRDvec.y < targetPos.y)
+            if (PositionCheck(targetPos))
             {
+
                 targetPos.z = 0;
                 _direction = targetPos - transform.position;
                 if (_direction.magnitude < 0.3f)
@@ -104,8 +107,21 @@ namespace PG.Battle
             transform.position = _curTF;
         }
 
-        public void SetLevelUpPauseOn() { _isLevelUpPaused = true; }
-        public void SetLevelUpPauseOff() { _isLevelUpPaused = false; }
+        bool PositionCheck(Vector2 targetPos) 
+        {
+
+            return 
+                _touchLUvec.x < targetPos.x && 
+                _moveRDvec.x > targetPos.x && 
+                _touchLUvec.y > targetPos.y && 
+                _moveRDvec.y < targetPos.y;
+
+
+        }
+
+
+        public void SetNonTotalPauseOn() { _isLevelUpPaused = true; }
+        public void SetNonTotalPauseOff() { _isLevelUpPaused = false; }
 
 
     }

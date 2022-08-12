@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace PG
 {
+    [System.Serializable]
     public partial class DataEntity
     {
         public void ResetAdd() { _증가량 = 0; }
@@ -31,11 +32,11 @@ namespace PG
 
         public enum Type
         {
-            없음 = 0,
+            None = 0,
 
-            피해량 = 1,
-            회복량 = 2,
-            방어도 = 3,
+            Damage = 1,
+            ChargeGauge = 2,
+            Defence = 3,
             생명력직접대입 = 4,   //피해나 회복이 아닌 생명력을 N으로 만듭니다 등의 효과.
                            //피해나 회복에따른 이벤트를 발생시키지 않는다.
             방어도직접대입 = 5,   //방어도 획득이나 소모가아님.

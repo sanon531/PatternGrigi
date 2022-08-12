@@ -15,8 +15,8 @@ namespace PG
         // Start is called before the first frame update
         void Start()
         {
-            GlobalUIEventSystem._on암전 += PublicFadeIn;
-            GlobalUIEventSystem._off암전 += PublicFadeOut;
+            GlobalUIEventSystem._onFadeOut += PublicFadeIn;
+            GlobalUIEventSystem._onFadeIn += PublicFadeOut;
             _FadeInImage.enabled = false;
 
         }

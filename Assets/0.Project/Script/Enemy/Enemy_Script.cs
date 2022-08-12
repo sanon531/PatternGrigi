@@ -8,9 +8,10 @@ using MoreMountains.NiceVibrations;
 using PG.Data;
 using PG.Event;
 using System;
+using Spine.Unity;
 namespace PG.Battle
 {
-    public class Enemy_Script : MonoBehaviour, IGetHealthSystem, ISetLevelupPause
+    public class Enemy_Script : MonoBehaviour, IGetHealthSystem, ISetNontotalPause
     {
         private static Enemy_Script _instance;
 
@@ -19,7 +20,8 @@ namespace PG.Battle
         bool _isEnemyAlive = true;
         private HealthSystem _healthSystem;
         [SerializeField]
-        SpriteRenderer _sprite;
+        SkeletonAnimation _enemyskeleton;
+        //SpriteRenderer _sprite;
         [SerializeField]
         List<ParticleSystem> _damageFXLists;
 
@@ -34,14 +36,14 @@ namespace PG.Battle
             _healthSystem.SetHealth(startingHealthAmount);
             _healthSystem.OnDead += HealthSystem_OnDead;
 
-            Global_BattleEventSystem._on레벨업일시정지 += SetLevelUpPauseOn;
-            Global_BattleEventSystem._off레벨업일시정지 += SetLevelUpPauseOff;
+            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
         }
 
         private void OnDestroy()
         {
-            Global_BattleEventSystem._on레벨업일시정지 -= SetLevelUpPauseOn;
-            Global_BattleEventSystem._off레벨업일시정지 -= SetLevelUpPauseOff;
+            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
 
         }
 
@@ -52,7 +54,7 @@ namespace PG.Battle
         float _enemyroutineTime;
         private void Update()
         {
-            if (_isLevelUpPaused)
+            if (_isNontotalPaused)
                 return;
 
             if (_isStatusChangable && _isEnemyAlive)
@@ -77,21 +79,23 @@ namespace PG.Battle
         [SerializeField]
         int _currentActionOrder = 0;
         [SerializeField]
+        EnemyAction _currentAction;
+        [SerializeField]
         List<EnemyAction> _enemyActionList = new List<EnemyAction>() { EnemyAction.Wait};
         List<IEnumerator> _routineList= new List<IEnumerator>();
         [SerializeField]
         ActionDataDic _actionDataDic;
         void SetNextAction()
         {
-            EnemyAction _tempAction = _enemyActionList[_currentActionOrder];
-            ActionData _temptdata = _actionDataDic[_tempAction];
+            _currentAction = _enemyActionList[_currentActionOrder];
+            EnemyActionData _temptdata = _actionDataDic[_currentAction];
             _maxActionTime = _temptdata._actionTime;
             _actionTime = _maxActionTime;
-            CurrentStatusScript.SetTextOnCurrentScript(_tempAction.ToString(), 1f);
+            CurrentStatusScript.SetTextOnCurrentScript(_currentAction.ToString(), 1f);
             //ShowDebugtextScript.SetDebug(_tempAction.ToString());
             //여기서 액션의 처리가 진행이 되고 액션은주어진 리스트에 따라 결정 된다고 하자.
             //나중에 코루틴으로 캔슬도 되고 막 그럴 꺼지만 지금은 간단한 형성만
-            if(_tempAction!= EnemyAction.Wait) 
+            if(_currentAction!= EnemyAction.Wait) 
             {
                 int i = 0;
                 IEnumerator _tempIEnum;
@@ -152,10 +156,19 @@ namespace PG.Battle
             }
 
             //Debug.Log("CoroutineList : " + _routineList.Count);
-
             _currentActionOrder++;
             _currentActionOrder =
                 (_currentActionOrder < _enemyActionList.Count) ? _currentActionOrder : 0;
+
+            //애니메이션 틀기.
+            StartAnimationByCurrentAction();
+
+        }
+
+
+        void SetShockedAction() 
+        {
+        
         }
 
         IEnumerator SetObstacleRoutine(SpawnData data,Vector2 pos,float waitTime) 
@@ -179,10 +192,11 @@ namespace PG.Battle
             _routineList.Clear();
         }
 
-        bool _isLevelUpPaused = false;
-        public void SetLevelUpPauseOn()
+        bool _isNontotalPaused = false;
+        public void SetNonTotalPauseOn()
         {
-            _isLevelUpPaused = true;
+            Debug.Log("SetNonTotalPauseOn");
+            _isNontotalPaused = true;
             for (int i = _routineList.Count -1; i>=0; i--) 
             {
                 StopCoroutine(_routineList[i]);
@@ -190,12 +204,14 @@ namespace PG.Battle
             }
         }
 
-        public void SetLevelUpPauseOff()
+        public void SetNonTotalPauseOff()
         {
-            _isLevelUpPaused = false;
+            Debug.Log("SetNonTotalPauseOf");
+
+            _isNontotalPaused = false;
             for (int i = _routineList.Count - 1; i >= 0; i--)
             {
-                print("aa"+i +"+"+ _routineList.Count);
+                //print("aa"+i +"+"+ _routineList.Count);
                 StartCoroutine(_routineList[i]);
             }
 
@@ -209,7 +225,7 @@ namespace PG.Battle
             _instance._healthSystem.Damage(_amount);
             _instance.RandomDamageFX();
             //Debug.Log(_amount);
-            DamageTextScript.Create(_instance._sprite.transform.position, 2f, 0.3f, Mathf.FloorToInt(_amount), Color.red);
+            DamageTextScript.Create(_instance.transform.position, 2f, 0.3f, Mathf.FloorToInt(_amount), Color.red);
             return _instance._isEnemyAlive;
         }
 
@@ -224,7 +240,8 @@ namespace PG.Battle
         private void HealthSystem_OnDead(object sender, System.EventArgs e)
         {
             CameraShaker.ShakeCamera(10, 1);
-            _sprite.DOFade(0, 2);
+            //_sprite.DOFade(0, 2);
+            StartAnimation_Dead();
             _isEnemyAlive = false;
             VibrationManager.CallEnemyDieVib();
         }
@@ -242,7 +259,26 @@ namespace PG.Battle
             _instance._isStatusChangable = val;
         }
 
-       
+
+        #region//animation related
+
+        Dictionary<EnemyAction, string> _actionStringDic = new Dictionary<EnemyAction, string>(){ 
+            { EnemyAction.BasicAttack_1, "Pattern_1" },
+            { EnemyAction.BasicAttack_2, "Pattern_2" }, 
+            { EnemyAction.Wait, "Wait" }};
+
+        void StartAnimationByCurrentAction() 
+        {
+            _enemyskeleton.state.SetAnimation(1, _actionStringDic[_currentAction], _currentAction == EnemyAction.Wait);
+        }
+        void StartAnimation_Dead()
+        {
+            _enemyskeleton.state.SetAnimation(1, "Dead", false);
+        }
+
+
+        #endregion
+
     }
 
 }
