@@ -226,6 +226,8 @@ namespace PG.Battle
             _instance.RandomDamageFX();
             //Debug.Log(_amount);
             DamageTextScript.Create(_instance.transform.position, 2f, 0.3f, Mathf.FloorToInt(_amount), Color.red);
+            Global_BattleEventSystem.CallOnCalcDamage(_amount);
+
             return _instance._isEnemyAlive;
         }
 

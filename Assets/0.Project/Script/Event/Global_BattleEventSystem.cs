@@ -156,6 +156,13 @@ namespace PG.Event
         #endregion
 
         //데미지 계산
+
+        public static event OnEventWithFloat _onCalcDamage;
+        public static void CallOnCalcDamage(float val)
+        { _onCalcDamage?.Invoke(val); }
+
+
+
         public static event OnCalcData_Form1 _onCalc데미지;
         public static void CallOnCalc데미지(Data_Character 피해대상, DataEntity 계산정보체)
         { _onCalc데미지?.Invoke(피해대상, 계산정보체); }
