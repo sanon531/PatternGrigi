@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3539628873850702809}
   - component: {fileID: 8133792909156711639}
   m_Layer: 0
-  m_Name: Small_Missile_H
+  m_Name: Small_Missile_H_ToLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,8 +151,8 @@ MonoBehaviour:
   _damageDeal: 8
   _thisCollider: {fileID: 2261599503248962956}
   Range: {fileID: 4434594641084015080}
-  moveDirection: {x: 1, y: 0}
-  moveSpeed: 0.0081
+  moveDirection: {x: -1, y: 0}
+  moveSpeed: 0.014
   _thisSpriteRd: {fileID: 2261599503248962957}
 --- !u!1 &4434594641084015080
 GameObject:

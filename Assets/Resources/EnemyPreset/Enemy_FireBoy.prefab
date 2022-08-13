@@ -33219,7 +33219,7 @@ GameObject:
   - component: {fileID: 759499210209487320}
   - component: {fileID: 759499210209487326}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy_FireBoy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
