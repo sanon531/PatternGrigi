@@ -38,16 +38,23 @@ namespace PG.Battle
 
             Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
+            Global_BattleEventSystem._onChargeStart += SetOnActionStunned;
+            Global_BattleEventSystem._onChargeEnd += SetOffActionStunned;
+
         }
 
         private void OnDestroy()
         {
             Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
+            Global_BattleEventSystem._onChargeStart -= SetOnActionStunned;
+            Global_BattleEventSystem._onChargeEnd -= SetOffActionStunned;
 
         }
 
         bool _isStatusChangable = true;
+        bool _isStunned = false;
+
         float _actionTime, _maxActionTime;
         //코루틴내에서 시간차로 발생하는 오류제어를 위함.
         [SerializeField]
@@ -56,11 +63,15 @@ namespace PG.Battle
         {
             if (_isNontotalPaused)
                 return;
-
-            if (_isStatusChangable && _isEnemyAlive)
+            else if (_isStatusChangable && _isEnemyAlive)
             {
                 _enemyroutineTime += Time.deltaTime;
-                if (_actionTime > 0)
+
+                //만약 스턴인 상태면 작동을 멈추도록 만든다.
+                if (_isStunned)
+                    return;
+
+                if (_actionTime > 0 )
                 {
                     _actionTime -= Time.deltaTime;
                 }
@@ -95,7 +106,7 @@ namespace PG.Battle
             //ShowDebugtextScript.SetDebug(_tempAction.ToString());
             //여기서 액션의 처리가 진행이 되고 액션은주어진 리스트에 따라 결정 된다고 하자.
             //나중에 코루틴으로 캔슬도 되고 막 그럴 꺼지만 지금은 간단한 형성만
-            if(_currentAction!= EnemyAction.Wait) 
+            if(_currentAction!= EnemyAction.Wait ) 
             {
                 int i = 0;
                 IEnumerator _tempIEnum;
@@ -162,14 +173,23 @@ namespace PG.Battle
 
             //애니메이션 틀기.
             StartAnimationByCurrentAction();
-
         }
 
-
-        void SetShockedAction() 
+        //분명히 버그 있을꺼임. 지웠는데도 
+        void SetOnActionStunned() 
         {
-        
+            _isStunned = true;
+            ObstacleManager.DeleteObstacleOnListAll();
+            foreach (IEnumerator routine in _routineList)
+                StopCoroutine(routine);
+            _routineList.Clear();
+
         }
+        void SetOffActionStunned()
+        {
+            _isStunned = false;
+        }
+
 
         IEnumerator SetObstacleRoutine(SpawnData data,Vector2 pos,float waitTime) 
         {
@@ -188,7 +208,7 @@ namespace PG.Battle
             yield return new WaitWhile(() => (_deadLine > _enemyroutineTime));
             while (_deadLine > _enemyroutineTime)
                 yield return new WaitWhile(() => (_deadLine > _enemyroutineTime));
-            //Debug.Log("Cleaning" + (_deadLine > _enemyroutineTime));
+            Debug.Log("Cleaning" + _routineList.Count);
             _routineList.Clear();
         }
 

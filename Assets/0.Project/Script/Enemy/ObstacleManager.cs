@@ -49,10 +49,24 @@ namespace PG.Battle
             _instance._activeObstacleList.Add(_tempObstacle);
         }
 
-        public static void DeleteObstacleOnList(Obstacle _obstacle) 
+        public static void DeleteObstacleOnList(Obstacle obstacle) 
         {
-            _instance._activeObstacleList.Remove(_obstacle);
+            if (_instance._activeObstacleList.Contains(obstacle)) 
+            {
+                _instance._activeObstacleList.Remove(obstacle);
+                Destroy(obstacle.gameObject);
+            }
         }
+        public static void DeleteObstacleOnListAll() 
+        {
+            foreach (Obstacle obstacle in _instance._activeObstacleList) 
+            {
+                _instance._activeObstacleList.Remove(obstacle);
+                Destroy(obstacle.gameObject);
+            }
+
+        }
+
 
         void Update()
         {

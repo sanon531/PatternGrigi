@@ -124,7 +124,7 @@ namespace PG.Battle
                     _lastNode = nodeID;
                     _isRandomNodeSetMode = true;
                     ReachTriggeredNode_Random(nodeID);
-                    Global_BattleEventSystem.CallOnChargeSuccessed(_currentPattern);
+                    Global_BattleEventSystem.CallOnPatternSuccessed(_currentPattern);
                     ShowDebugtextScript.SetDebug("Pattern Success!");
                     //일단 차지 공격 끝나면 바로 패턴 성공 하도록 함
                 }
@@ -254,7 +254,7 @@ namespace PG.Battle
                 {
                     //일단은 뭐가 되었든 패턴이 끝이나면 차지도 끝나도록 설계함,
                     //차지 이어가면서 뭐 하는거는 나중에 생각해보도록 함.
-                    Global_BattleEventSystem.CallOnChargeFailed();
+                    Global_BattleEventSystem.CallOnChargeEnd();
                     _currentCharge = 0;
                     EndChargeSequence();
                 }

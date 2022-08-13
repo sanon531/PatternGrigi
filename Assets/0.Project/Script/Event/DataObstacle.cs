@@ -7,12 +7,17 @@ namespace PG.Data
     //
     public enum ObstacleID
     {
-        SmallFire ,
-        LongThinFire_Vertical ,
-        LongThinFire_Horizontal ,
-        ThinLaser,
-        SmallMissile,
-        Flack
+        SmallFire=0 ,
+        LongThinFire_Vertical =1 ,
+        LongThinFire_Horizontal =2 ,
+        ThinLaser=3,
+        SmallMissile=4,
+        Flack=5,
+        MovingLeafRight = 6,
+        MovingLeafLeft = 7,
+
+
+
     }
 
 

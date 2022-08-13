@@ -45,9 +45,10 @@ namespace PG.Battle
         // Update is called once per frame
         void Update()
         {
-            //터치가능 영역만을 설정할수있도록 만든다.
-            //절반아래일때만
             LineTracer.instance.SetDrawLineStart(transform.position);
+
+
+            //클릭 담당 부분.
             if (Input.GetMouseButtonDown(0)) 
                 _isClicked = true;
             else if(Input.GetMouseButtonUp(0))
@@ -56,7 +57,12 @@ namespace PG.Battle
 
             if (_isClicked)
                 CallClickProcess();
+            else
+                _thisRB.velocity = Vector2.zero;
 
+
+
+            //터치 담당 부분.
             if (Input.touchCount > 0)
             {
                 Touch _touch = Input.GetTouch(0);

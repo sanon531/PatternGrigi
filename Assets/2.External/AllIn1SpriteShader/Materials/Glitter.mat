@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HPMAt
+  m_Name: Glitter
   m_Shader: {fileID: 4800000, guid: a53f4bb29f3644b43b5075c6dcfecb32, type: 3}
-  m_ShaderKeywords: ROUNDWAVEUV_ON WAVEUV_ON
+  m_ShaderKeywords: DISTORT_ON SHINE_ON WAVEUV_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -98,15 +98,15 @@ Material:
     - _ColorSwapGreenLuminosity: 0.5
     - _ColorSwapRedLuminosity: 0.5
     - _Contrast: 1
-    - _DistortAmount: 0.5
-    - _DistortTexXSpeed: 5
+    - _DistortAmount: 0.037
+    - _DistortTexXSpeed: 48.1
     - _DistortTexYSpeed: 5
     - _EditorDrawers: 6
     - _FadeAmount: -0.1
     - _FadeBurnGlow: 2
     - _FadeBurnTransition: 0.075
     - _FadeBurnWidth: 0.025
-    - _FishEyeUvAmount: 0.35
+    - _FishEyeUvAmount: 0
     - _FlickerAlpha: 0
     - _FlickerFreq: 0.2
     - _FlickerPercent: 0.05
@@ -115,7 +115,7 @@ Material:
     - _GhostTransparency: 0
     - _GlitchAmount: 3
     - _GlitchSize: 1
-    - _Glow: 51.3
+    - _Glow: 10
     - _GlowGlobal: 1
     - _GlowTexUsed: 0
     - _GradBlend: 1
@@ -188,8 +188,8 @@ Material:
     - _RandomSeed: 0
     - _RectSize: 1
     - _RotateUvAmount: 0
-    - _RoundWaveSpeed: 2.42
-    - _RoundWaveStrength: 0.372
+    - _RoundWaveSpeed: 2
+    - _RoundWaveStrength: 0.033
     - _ShadowAlpha: 0.5
     - _ShadowX: 0.1
     - _ShadowY: -0.05
@@ -197,8 +197,8 @@ Material:
     - _ShakeUvX: 1.5
     - _ShakeUvY: 1
     - _ShineGlow: 1
-    - _ShineLocation: 0.357
-    - _ShineRotate: 0
+    - _ShineLocation: 0
+    - _ShineRotate: 1.59
     - _ShineWidth: 0.1
     - _Stencil: 0
     - _StencilComp: 8
@@ -211,13 +211,13 @@ Material:
     - _TwistUvPosX: 0.5
     - _TwistUvPosY: 0.5
     - _TwistUvRadius: 0.75
-    - _WaveAmount: 12.48
+    - _WaveAmount: 7
     - _WaveSpeed: 10
     - _WaveStrength: 7.5
     - _WaveX: 0
     - _WaveY: 0.5
     - _ZWrite: 0
-    - _ZoomUvAmount: 0.1
+    - _ZoomUvAmount: 0.86
     m_Colors:
     - _AlphaOutlineColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -229,7 +229,7 @@ Material:
     - _ColorChangeTarget3: {r: 1, g: 0, b: 0, a: 1}
     - _ColorSwapBlue: {r: 1, g: 1, b: 1, a: 1}
     - _ColorSwapGreen: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorSwapRed: {r: 1, g: 0, b: 0, a: 1}
+    - _ColorSwapRed: {r: 1, g: 1, b: 1, a: 1}
     - _FadeBurnColor: {r: 1, g: 1, b: 0, a: 1}
     - _GlowColor: {r: 1, g: 1, b: 1, a: 1}
     - _GradBotLeftCol: {r: 0, g: 0, b: 1, a: 1}

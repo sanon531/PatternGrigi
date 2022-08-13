@@ -66,11 +66,7 @@ namespace PG.Battle
             else if (_passedTime > _lifeTime)
             {
                 ObstacleManager.DeleteObstacleOnList(this);
-                Destroy(gameObject);
             }
-
-
-
         }
 
 

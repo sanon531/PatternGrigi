@@ -130,11 +130,12 @@ namespace PG.Event
         public static event OnEvent _onChargeStart;
         public static void CallOnChargeStart() { _onChargeStart?.Invoke(); }
 
-        public static event OnEvent _onChargeFailed;
-        public static void CallOnChargeFailed() { _onChargeFailed?.Invoke(); }
+        public static event OnEvent _onChargeEnd;
+        public static void CallOnChargeEnd() { _onChargeEnd?.Invoke(); }
 
-        public static event OnEventWithPattern _onChargeSuccessed;
-        public static void CallOnChargeSuccessed(EDrawPatternPreset patternPreset) { _onChargeSuccessed?.Invoke(patternPreset); }
+        //패턴 성공시
+        public static event OnEventWithPattern _onPatternSuccessed;
+        public static void CallOnPatternSuccessed(EDrawPatternPreset patternPreset) { _onPatternSuccessed?.Invoke(patternPreset); }
 
 
         #endregion
