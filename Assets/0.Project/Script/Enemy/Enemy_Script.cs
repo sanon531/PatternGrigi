@@ -209,7 +209,7 @@ namespace PG.Battle
             yield return new WaitWhile(() => (_deadLine > _enemyroutineTime));
             while (_deadLine > _enemyroutineTime)
                 yield return new WaitWhile(() => (_deadLine > _enemyroutineTime));
-            Debug.Log("Cleaning" + _routineList.Count);
+            //Debug.Log("Cleaning" + _routineList.Count);
             _routineList.Clear();
         }
 

@@ -17,7 +17,7 @@ namespace PG.Battle
         private float moveSpeed;
 
         [SerializeField]
-        private SpriteRenderer _thisSpriteRd;
+        private ParticleSystem _flameParticle;
 
         // Start is called before the first frame update
         private void Start()
@@ -39,7 +39,7 @@ namespace PG.Battle
         protected override void SetActiveObstacle()
         {
             _thisCollider.enabled = true;
-            _thisSpriteRd.enabled = true;
+            _flameParticle.Play();
             Destroy(Range);
         }
 
