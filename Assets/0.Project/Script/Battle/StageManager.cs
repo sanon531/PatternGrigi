@@ -5,7 +5,7 @@ using PG.Event;
 
 namespace PG.Battle 
 {
-    public class StageManager : MonoBehaviour
+    public class StageManager : MonoSingleton<StageManager>
     {
         [SerializeField]
         Player_Script _ingamePlayer;

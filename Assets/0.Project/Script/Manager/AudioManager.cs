@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace PG
 {
-    public class AudioManager : MonoBehaviour
+    public class AudioManager : MonoSingleton<AudioManager>
     {
-        public static AudioManager _instance;
         [SerializeField]
         StringAudioDictionary _stringAudioDict = new StringAudioDictionary();
         [SerializeField]

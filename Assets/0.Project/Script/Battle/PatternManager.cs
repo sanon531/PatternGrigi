@@ -8,7 +8,7 @@ using PG.Data;
 
 namespace PG.Battle
 {
-    public class PatternManager : MonoBehaviour , ISetNontotalPause
+    public class PatternManager : MonoSingleton<PatternManager>, ISetNontotalPause
     {
         [SerializeField]
         List<PatternNodeScript> _patternNodes = new List<PatternNodeScript>();
@@ -23,7 +23,6 @@ namespace PG.Battle
         int _lastNode = 1;
         [SerializeField]
         List<int> _inactivatedNode;
-        public static PatternManager _instance;
         [SerializeField]
         float _damage = 10;
         [SerializeField]
@@ -36,8 +35,6 @@ namespace PG.Battle
   
         private void Start()
         {
-            if (_instance == null)
-                _instance = this;
             _inactivatedNode = _defaultNode.ToList();
             Global_BattleEventSystem._onBattleBegin += StartTriggerNode;
             StartChargeEvent();
@@ -75,7 +72,7 @@ namespace PG.Battle
                 _instance.ResetAllNode();
                 _instance._lastNode = -1;
             }
-            LineTracer.instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
+            LineTracer._instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
             Global_BattleEventSystem.CallOnGainEXP(_instance._gainEXP);
         }
 

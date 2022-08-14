@@ -5,9 +5,8 @@ using UnityEngine;
 using TMPro;
 namespace PG.Battle
 {
-    public class LineTracer : MonoBehaviour
+    public class LineTracer : MonoSingleton<LineTracer>
     {
-        public static LineTracer instance;
         // Start is called before the first frame update
         [SerializeField]
         LineRenderer _linerenderer;
@@ -20,7 +19,6 @@ namespace PG.Battle
         [SerializeField]
         Hovl_Laser2 _laser2;
 
-        private void Awake() { instance = this; }
 
 
         //여기 내부에서 현재 배율에대한정보를 그냥 패턴 매니져에서 담당함. 

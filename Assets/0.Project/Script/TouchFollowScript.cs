@@ -45,7 +45,7 @@ namespace PG.Battle
         // Update is called once per frame
         void Update()
         {
-            LineTracer.instance.SetDrawLineStart(transform.position);
+            LineTracer._instance.SetDrawLineStart(transform.position);
 
 
             //클릭 담당 부분.

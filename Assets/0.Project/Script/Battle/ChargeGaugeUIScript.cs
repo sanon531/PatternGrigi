@@ -7,9 +7,8 @@ using DG.Tweening;
 
 namespace PG.Battle
 {
-    public class ChargeGaugeUIScript : MonoBehaviour
+    public class ChargeGaugeUIScript : MonoSingleton<ChargeGaugeUIScript>
     {
-        static ChargeGaugeUIScript s_instance;
 
         [SerializeField]
         Image _chargeGaugeImage;
@@ -22,7 +21,6 @@ namespace PG.Battle
         // Start is called before the first frame update
         void Start()
         {
-            s_instance = this;
             // 여기서 이미지에 .SetLoops(-1, LoopType.Restart); 를 사용한 차지 공격시의 애니메이션 표시를 해보자.
         }
         private void OnDestroy()
@@ -31,7 +29,7 @@ namespace PG.Battle
 
         public static void SetChargeGauge(float inputCharge) 
         {
-            s_instance.SetGaugeChange(inputCharge);
+            _instance.SetGaugeChange(inputCharge);
         }
 
         void SetGaugeChange(float inputCharge)
@@ -41,13 +39,13 @@ namespace PG.Battle
 
         public static void StartChargeSkill()
         {
-            s_instance._fulledParticle.Play();
-            s_instance._keepGoingParticle.Play();
+            _instance._fulledParticle.Play();
+            _instance._keepGoingParticle.Play();
         }
         public static void EndChargeSkill()
         {
-            s_instance._fulledParticle.Stop();
-            s_instance._keepGoingParticle.Stop();
+            _instance._fulledParticle.Stop();
+            _instance._keepGoingParticle.Stop();
         }
 
 

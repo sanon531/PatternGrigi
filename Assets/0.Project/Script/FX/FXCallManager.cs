@@ -6,7 +6,7 @@ using PG.Data;
 
 namespace PG.Battle 
 {
-    public class FXCallManager : MonoBehaviour
+    public class FXCallManager : MonoSingleton<FXCallManager>
     {
 
         [SerializeField]

@@ -5,19 +5,15 @@ using PG.Data;
 using PG.Event;
 namespace PG.Battle
 {
-    public class ObstacleManager : MonoBehaviour, ISetNontotalPause
+    public class ObstacleManager : MonoSingleton<ObstacleManager>, ISetNontotalPause
     {
         [SerializeField]
         ObstacleIDObjectDic _obstacleDic;
-        private static ObstacleManager _instance;
         [SerializeField]
         List<Obstacle> _activeObstacleList = new List<Obstacle>();
 
-        void Awake()
+        protected override void OnAwake()
         {
-            if (_instance != null)
-                Debug.LogError("Double Obstacle Manager");
-            _instance = this;
             Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
 

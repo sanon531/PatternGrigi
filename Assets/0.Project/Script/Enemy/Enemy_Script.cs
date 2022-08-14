@@ -11,9 +11,8 @@ using System;
 using Spine.Unity;
 namespace PG.Battle
 {
-    public class Enemy_Script : MonoBehaviour, IGetHealthSystem, ISetNontotalPause
+    public class Enemy_Script : MonoSingleton<Enemy_Script>, IGetHealthSystem, ISetNontotalPause
     {
-        private static Enemy_Script _instance;
 
         [SerializeField]
         private float healthAmountMax, startingHealthAmount, currentHealth;
@@ -27,14 +26,16 @@ namespace PG.Battle
 
         public PresetDemoItem _vibrationItems;
         Text _gametime, Enemytime;
-        private void Awake()
+        private void Start()
         {
             if (_instance != null&& _instance!=this)
                 Debug.LogError("nore than one enemy error");
-            _instance = this;
             _healthSystem = new HealthSystem(healthAmountMax);
             _healthSystem.SetHealth(startingHealthAmount);
             _healthSystem.OnDead += HealthSystem_OnDead;
+
+            GameObject.Find("EnemyHealthBarUI").GetComponent<HealthBarUI>().SetHealthSystem(_healthSystem);
+
 
             Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
@@ -102,7 +103,7 @@ namespace PG.Battle
             EnemyActionData _temptdata = _actionDataDic[_currentAction];
             _maxActionTime = _temptdata._actionTime;
             _actionTime = _maxActionTime;
-            CurrentStatusScript.SetTextOnCurrentScript(_currentAction.ToString(), 1f);
+            CurrentActionScript.SetTextOnCurrentScript(_currentAction.ToString(), 1f);
             //ShowDebugtextScript.SetDebug(_tempAction.ToString());
             //여기서 액션의 처리가 진행이 되고 액션은주어진 리스트에 따라 결정 된다고 하자.
             //나중에 코루틴으로 캔슬도 되고 막 그럴 꺼지만 지금은 간단한 형성만

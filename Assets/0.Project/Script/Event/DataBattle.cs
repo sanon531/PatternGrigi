@@ -77,6 +77,8 @@ namespace PG.Data
         BasicAttack_2=2,
         BasicAttack_3=3,
         SpecialAttack=4,
+        BasicAttack_4 = 5,
+        BasicAttack_5 = 6,
         Stunned = 99
 
     }

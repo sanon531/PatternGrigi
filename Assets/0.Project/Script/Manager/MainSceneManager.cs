@@ -5,7 +5,7 @@ using PG.Event;
 
 namespace PG 
 {
-    public class MainSceneManager : MonoBehaviour
+    public class MainSceneManager : MonoSingleton<MainSceneManager>
     {
 
         private void Start()

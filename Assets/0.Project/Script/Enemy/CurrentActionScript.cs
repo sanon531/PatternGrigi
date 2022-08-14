@@ -7,20 +7,16 @@ using DG.Tweening;
 namespace PG.Battle 
 {
     //적이 등장하거나 게임이 시작되거나 하는 상황등을 알리는 UI 같은 것.
-    public class CurrentStatusScript : MonoBehaviour
+    public class CurrentActionScript : MonoSingleton<CurrentActionScript>
     {
         [SerializeField]
         Image _image;
         [SerializeField]
         TextMeshProUGUI _text;
-        private static CurrentStatusScript _instance;
         float _leftTime = 0f;
         // Start is called before the first frame update
         void Start()
         {
-            if (_instance != null)
-                Debug.LogError("one more current Status");
-            _instance = this;
         }
         // Update is called once per frame
         void Update()
