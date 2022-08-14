@@ -17,7 +17,7 @@ namespace PG.Battle
         {
             if (_instance != null)
                 Debug.LogError("Double Obstacle Manager");
-             _instance = this;
+            _instance = this;
             Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
 
@@ -29,18 +29,18 @@ namespace PG.Battle
         }
         public void InitializeDictionary(List<ObstacleID> obstacleIDs)
         {
-            foreach (ObstacleID id in obstacleIDs) 
+            foreach (ObstacleID id in obstacleIDs)
             {
-                GameObject _tempfromobject = Resources.Load<GameObject>("Obstacle/"+ id.ToString());
-                if (_tempfromobject == null) 
+                GameObject _tempfromobject = Resources.Load<GameObject>("Obstacle/" + id.ToString());
+                if (_tempfromobject == null)
                 {
-                    Debug.LogError("Obstacle is not in resource"+ id.ToString());
+                    Debug.LogError("Obstacle is not in resource" + id.ToString());
                 }
                 _obstacleDic.Add(id, _tempfromobject);
             }
         }
 
-        public static void SetObstacle(SpawnData data,Vector2 pos)
+        public static void SetObstacle(SpawnData data, Vector2 pos)
         {
             GameObject _temp = Instantiate(_instance._obstacleDic[data._thisID], _instance.transform);
             _temp.transform.position = pos;
@@ -49,10 +49,23 @@ namespace PG.Battle
             _instance._activeObstacleList.Add(_tempObstacle);
         }
 
-        public static void DeleteObstacleOnList(Obstacle _obstacle) 
+        public static void DeleteObstacleOnList(Obstacle obstacle)
         {
-            _instance._activeObstacleList.Remove(_obstacle);
+            if (_instance._activeObstacleList.Contains(obstacle))
+            {
+                _instance._activeObstacleList.Remove(obstacle);
+                Destroy(obstacle.gameObject);
+            }
         }
+        public static void DeleteObstacleOnListAll()
+        {
+            foreach (Obstacle obs in _instance._activeObstacleList) 
+            {
+                obs.SetLifeTime(0);
+            }
+
+        }
+
 
         void Update()
         {

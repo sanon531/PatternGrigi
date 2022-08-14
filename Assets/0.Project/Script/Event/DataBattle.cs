@@ -91,6 +91,22 @@ namespace PG.Data
         SetGradually_WithDifferent,
         SetRandomly
     }
+    public enum ObstacleID
+    {
+        SmallFire = 0,
+        LongThinFire_Vertical = 1,
+        LongThinFire_Horizontal = 2,
+        ThinLaser = 3,
+        SmallMissile = 4,
+        Flack = 5,
+        MovingLeafRightToleft = 6,
+        MovingLeafLeftToRight = 7,
+        MovingLeafUpToDown = 8,
+        MovingLeafDownToUp = 9,
+
+
+
+    }
 
 
     [System.Serializable]

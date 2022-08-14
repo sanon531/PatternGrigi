@@ -130,11 +130,12 @@ namespace PG.Event
         public static event OnEvent _onChargeStart;
         public static void CallOnChargeStart() { _onChargeStart?.Invoke(); }
 
-        public static event OnEvent _onChargeFailed;
-        public static void CallOnChargeFailed() { _onChargeFailed?.Invoke(); }
+        public static event OnEvent _onChargeEnd;
+        public static void CallOnChargeEnd() { _onChargeEnd?.Invoke(); }
 
-        public static event OnEventWithPattern _onChargeSuccessed;
-        public static void CallOnChargeSuccessed(EDrawPatternPreset patternPreset) { _onChargeSuccessed?.Invoke(patternPreset); }
+        //패턴 성공시
+        public static event OnEventWithPattern _onPatternSuccessed;
+        public static void CallOnPatternSuccessed(EDrawPatternPreset patternPreset) { _onPatternSuccessed?.Invoke(patternPreset); }
 
 
         #endregion
@@ -156,6 +157,13 @@ namespace PG.Event
         #endregion
 
         //데미지 계산
+
+        public static event OnEventWithFloat _onCalcDamage;
+        public static void CallOnCalcDamage(float val)
+        { _onCalcDamage?.Invoke(val); }
+
+
+
         public static event OnCalcData_Form1 _onCalc데미지;
         public static void CallOnCalc데미지(Data_Character 피해대상, DataEntity 계산정보체)
         { _onCalc데미지?.Invoke(피해대상, 계산정보체); }

@@ -66,14 +66,13 @@ namespace PG.Battle
             else if (_passedTime > _lifeTime)
             {
                 ObstacleManager.DeleteObstacleOnList(this);
-                Destroy(gameObject);
             }
-
-
-
         }
 
-
+        public void SetLifeTime(float time) 
+        {
+            _lifeTime = time;
+        }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {

@@ -5,15 +5,6 @@ using UnityEngine;
 namespace PG.Data 
 {
     //
-    public enum ObstacleID
-    {
-        SmallFire ,
-        LongThinFire_Vertical ,
-        LongThinFire_Horizontal ,
-        ThinLaser,
-        SmallMissile,
-        Flack
-    }
 
 
 }

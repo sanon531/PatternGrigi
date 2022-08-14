@@ -31,6 +31,7 @@ namespace PG.Battle
         {
             s_instance._listOfShow[id].SetActive(false);
         }
+
         public static void HidePresetPatternAll(int id)
         {
             foreach (GameObject obj in s_instance._listOfShow)
