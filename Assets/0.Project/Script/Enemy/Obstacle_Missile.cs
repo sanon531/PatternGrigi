@@ -18,8 +18,9 @@ namespace PG.Battle
 
         [SerializeField]
         private ParticleSystem _flameParticle;
+        [SerializeField]
+        private SpriteRenderer _thisSpriteRd;
 
-        // Start is called before the first frame update
         private void Start()
         {
             Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
@@ -40,6 +41,8 @@ namespace PG.Battle
         {
             _thisCollider.enabled = true;
             _flameParticle.Play();
+            base.SetActiveObstacle();
+            _thisSpriteRd.enabled = true;
             Destroy(Range);
         }
 

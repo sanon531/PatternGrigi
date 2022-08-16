@@ -12,7 +12,7 @@ namespace PG.Battle
             Global_BattleEventSystem._onBattleBegin += RefreshCurrentArtifact;
         }
 
-        Dictionary<>
+        Dictionary<Data.EArtifactID, Artifact_Base> _currentArtifactDic;
 
         void RefreshCurrentArtifact() 
         {

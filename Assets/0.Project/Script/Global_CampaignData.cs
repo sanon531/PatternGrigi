@@ -1,18 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Global_CampaignData : MonoBehaviour
+namespace PG.Battle
 {
-    // Start is called before the first frame update
-    void Start()
+    public static class Global_CampaignData
     {
-        
+
+
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

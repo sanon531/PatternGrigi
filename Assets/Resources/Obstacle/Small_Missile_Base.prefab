@@ -156,6 +156,7 @@ MonoBehaviour:
   moveDirection: {x: -1, y: 0}
   moveSpeed: 0.014
   _flameParticle: {fileID: 8847123385772090151}
+  _thisSpriteRd: {fileID: 2261599503248962957}
 --- !u!1 &4434594641084015080
 GameObject:
   m_ObjectHideFlags: 0
