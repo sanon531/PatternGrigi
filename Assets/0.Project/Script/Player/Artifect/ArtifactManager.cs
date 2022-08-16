@@ -7,16 +7,19 @@ namespace PG.Battle
     public class ArtifactManager : MonoSingleton<ArtifactManager>
     {
 
-
         void Start()
         {
-
+            Global_BattleEventSystem._onBattleBegin += RefreshCurrentArtifact;
         }
 
-        // Update is called once per frame
-        void Update()
+        Dictionary<>
+
+        void RefreshCurrentArtifact() 
         {
-
+        
+        
         }
+
+
     }
 }

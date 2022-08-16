@@ -28,6 +28,7 @@ namespace PG.Event
         public static void CallOnEnterStage() { _onEnterStage?.Invoke(); }
 
 
+        //특정 노드를 다가갈 때 
         public static event OnEventWithInt _onNodeReached;
         public static void CallOnNodeReached(int id) { _onNodeReached?.Invoke(id); }
 
@@ -62,6 +63,14 @@ namespace PG.Event
                 CallNonTotalPause();
             _onLevelUpHide?.Invoke();
         }
+
+        #region//
+
+
+
+
+        #endregion
+
 
 
         #region//일시정지
@@ -163,7 +172,7 @@ namespace PG.Event
         { _onCalcDamage?.Invoke(val); }
 
 
-
+        /*
         public static event OnCalcData_Form1 _onCalc데미지;
         public static void CallOnCalc데미지(Data_Character 피해대상, DataEntity 계산정보체)
         { _onCalc데미지?.Invoke(피해대상, 계산정보체); }
@@ -171,13 +180,7 @@ namespace PG.Event
         public static void CallOnCalc방어도(Data_Character 피해대상, DataEntity 계산정보체)
         { _onCalc방어도?.Invoke(피해대상, 계산정보체); }
 
-
-
-        //생명력 계산
-        public static event OnCalcData_Form1 _onCalc최대생명력;
-        public static void CallOnCalc최대생명력(Data_Character 대상, DataEntity 최대생명력계산정보체)
-        { _onCalc최대생명력?.Invoke(대상, 최대생명력계산정보체); }
-
+        */
 
 
 
