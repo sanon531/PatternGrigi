@@ -1,38 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class SceneMoveUndestructable_onlyOne : MonoBehaviour
+namespace PG 
 {
-    public static SceneMoveUndestructable_onlyOne _instance;
-    public bool _aaa = false;
-    // Start is called before the first frame update
-    void Awake()
+    public class SceneMoveUndestructable_onlyOne : MonoSingleton<SceneMoveUndestructable_onlyOne>
     {
-        if (_instance != null )
+        public bool _aaa = false;
+        // Start is called before the first frame update
+        protected override void OnAwake()
         {
-            if (_instance != this)
-            {
-                Destroy(gameObject);
-                Debug.Log("a");
-            }
+            DontDestroyOnLoad(gameObject);
         }
-        else 
-        {
-            //Debug.Log("aad");
-            _instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-    }
-    void Start()
-    {
-    }
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -6,13 +6,13 @@ using PG.Data;
 
 namespace PG.Battle 
 {
-    public class FXCallManager : MonoBehaviour
+    public class FXCallManager : MonoSingleton<FXCallManager>
     {
 
         [SerializeField]
-        List<EDrawPatternPreset> _ownningPattern = new List<EDrawPatternPreset>() { };
-        Dictionary<EDrawPatternPreset, ParticleSystem> _patternPrefabDic = 
-            new Dictionary<EDrawPatternPreset, ParticleSystem>() {};
+        List<DrawPatternPreset> _ownningPattern = new List<DrawPatternPreset>() { };
+        Dictionary<DrawPatternPreset, ParticleSystem> _patternPrefabDic = 
+            new Dictionary<DrawPatternPreset, ParticleSystem>() {};
 
         [SerializeField]
         Transform _patternTransform;
@@ -22,7 +22,7 @@ namespace PG.Battle
         void Start()
         {
             Global_BattleEventSystem._onPatternSuccessed += CallPatternEvent;
-            foreach (EDrawPatternPreset val in _ownningPattern) 
+            foreach (DrawPatternPreset val in _ownningPattern) 
             {
                 GameObject _tempt = Instantiate(
                     Resources.Load<GameObject>("Effect/PatternFX/" + val.ToString()), 
@@ -35,7 +35,7 @@ namespace PG.Battle
         {
             Global_BattleEventSystem._onPatternSuccessed -= CallPatternEvent;
         }
-        private void CallPatternEvent(EDrawPatternPreset _patternPreset) 
+        private void CallPatternEvent(DrawPatternPreset _patternPreset) 
         {
             _patternPrefabDic[_patternPreset].Play();
         }

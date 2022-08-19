@@ -8,7 +8,6 @@ using DG.Tweening;
 
 public class EXPbarUIScript : MonoBehaviour
 {
-    static EXPbarUIScript _instance;
 
     [SerializeField]
     Image _bar;

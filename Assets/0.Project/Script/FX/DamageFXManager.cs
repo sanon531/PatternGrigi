@@ -6,7 +6,7 @@ using DG.Tweening;
 using PG.Event;
 namespace PG.Battle
 {
-    public class DamageFXManager : MonoBehaviour 
+    public class DamageFXManager : MonoSingleton<DamageFXManager>
     {
 
         [SerializeField]

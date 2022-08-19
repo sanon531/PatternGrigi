@@ -5,10 +5,9 @@ using MoreMountains.NiceVibrations;
 
 namespace PG.Battle 
 {
-    public class VibrationManager : MonoBehaviour
+    public class VibrationManager : MonoSingleton<VibrationManager> 
     {
 
-        static VibrationManager _instance;
 
         [SerializeField]
         PresetDemoItem _enemyDeadVib;
@@ -17,10 +16,6 @@ namespace PG.Battle
 
 
         // Start is called before the first frame update
-        void Awake()
-        {
-            _instance = this;
-        }
 
 
         public static void CallVibration() 

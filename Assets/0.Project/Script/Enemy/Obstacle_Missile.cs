@@ -17,8 +17,9 @@ namespace PG.Battle
         private float moveSpeed;
 
         [SerializeField]
+        private ParticleSystem _flameParticle;
+        [SerializeField]
         private SpriteRenderer _thisSpriteRd;
-
 
         private void Start()
         {
@@ -38,6 +39,8 @@ namespace PG.Battle
 
         protected override void SetActiveObstacle()
         {
+            _thisCollider.enabled = true;
+            _flameParticle.Play();
             base.SetActiveObstacle();
             _thisSpriteRd.enabled = true;
             Destroy(Range);
