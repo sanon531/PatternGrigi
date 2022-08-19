@@ -11,7 +11,7 @@ namespace PG.Battle
     public class PatternManager : MonoSingleton<PatternManager>, ISetNontotalPause
     {
         [SerializeField]
-        List<PatternNodeScript> _patternNodes = new List<PatternNodeScript>();
+        public List<PatternNodeScript> _patternNodes = new List<PatternNodeScript>();
 
         [SerializeField]
         List<int> _defaultNode = new List<int>(9) { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
@@ -149,6 +149,7 @@ namespace PG.Battle
                 _currentPresetNodeNumber = 0;
                 _currentPattern = drawPattern;
                 _presetNodes = GlobalDataStorage.PatternPresetDic[drawPattern];
+                PresetPatternShower.SetPresetPatternList(_presetNodes);
                 PresetPatternShower.ShowPresetPatternAll();
                 //presetDataDic 은 새로운 딕셔너리로 키값으로EPresetOfDrawPattern를 받는다.
                 _IsCurrentNodeSetted = true;
