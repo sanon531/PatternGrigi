@@ -7,6 +7,7 @@ using DG.Tweening;
 using MoreMountains.NiceVibrations;
 using PG.Data;
 using PG.Event;
+using System.Linq;
 using System;
 using Spine.Unity;
 namespace PG.Battle
@@ -114,16 +115,23 @@ namespace PG.Battle
                 switch (_temptdata._spawnType)
                 {
                     case SpawnType.SetAtOnce_WithSame:
-                        foreach (Vector2 v in _temptdata._placeList) 
+                        //1이상의 값이 있을때 뭔가 잘못되었다고 알림.
+                        if (_temptdata._spawnDataList.Count > 1)
+                            Debug.LogError("Error:ItPlaced more than one");
+                        foreach (Vector2 v in _temptdata._placeList)
                         {
                             _tempIEnum = SetObstacleRoutine(_temptdata._spawnDataList[0], v, 0);
                             _routineList.Add(_tempIEnum);
                             StartCoroutine(_tempIEnum);
                         }
                         StartCoroutine(RemoveAllRoutine(0));
-
                         break;
                     case SpawnType.SetGradually_WithSame:
+                        
+                        //1이상의 값이 있을때 뭔가 잘못되었다고 알림.
+                        if (_temptdata._spawnDataList.Count > 1)
+                            Debug.LogError("Error:ItPlaced more than one");
+
                         foreach (Vector2 v in _temptdata._placeList)
                         {
                             _tempIEnum = SetObstacleRoutine(_temptdata._spawnDataList[0], v, i * _temptdata._placeTimeGradual);
@@ -131,7 +139,7 @@ namespace PG.Battle
                             StartCoroutine(_tempIEnum);
                             i++;
                         }
-                        _tempIEnum = RemoveAllRoutine((i-1) * _temptdata._placeTimeGradual);
+                        _tempIEnum = RemoveAllRoutine((i - 1) * _temptdata._placeTimeGradual);
                         _routineList.Add(_tempIEnum);
                         StartCoroutine(_tempIEnum);
 
@@ -150,18 +158,52 @@ namespace PG.Battle
                     case SpawnType.SetGradually_WithDifferent:
                         foreach (Vector2 v in _temptdata._placeList)
                         {
-                            _tempIEnum = SetObstacleRoutine(_temptdata._spawnDataList[i], v, i*_temptdata._placeTimeGradual);
+                            _tempIEnum = SetObstacleRoutine(_temptdata._spawnDataList[i], v, i * _temptdata._placeTimeGradual);
                             _routineList.Add(_tempIEnum);
                             StartCoroutine(_tempIEnum);
 
                             i++;
                         }
-                        _tempIEnum = RemoveAllRoutine((i-1) * _temptdata._placeTimeGradual);
+                        _tempIEnum = RemoveAllRoutine((i - 1) * _temptdata._placeTimeGradual);
                         _routineList.Add(_tempIEnum);
                         StartCoroutine(_tempIEnum);
 
                         break;
+                    case SpawnType.SetPresettime_WithSame:
+                        if (_temptdata._spawnDataList.Count > 1)
+                            Debug.LogError("Error:ItPlaced more than one");
+                        //배치는 그냥 간격 입력 하셈.
+                        foreach (Vector2 v in _temptdata._placeList)
+                        {
+                            _tempIEnum = SetObstacleRoutine(_temptdata._spawnDataList[0], v, _temptdata._placetimeList.GetRange(0,i).Sum());
+                            _routineList.Add(_tempIEnum);
+                            StartCoroutine(_tempIEnum);
+                            i++;
+                        }
+                        _tempIEnum = RemoveAllRoutine(_temptdata._placetimeList.Sum());
+                        Debug.Log("Place total time"+_temptdata._placetimeList.Sum());
+                        _routineList.Add(_tempIEnum);
+                        StartCoroutine(_tempIEnum);
+                        break;
+                    case SpawnType.SetPresettime_WithDifference:
+                        //배치는 그냥 간격 입력 하셈.
+                        foreach (Vector2 v in _temptdata._placeList)
+                        {
+                            _tempIEnum = SetObstacleRoutine(_temptdata._spawnDataList[i], v, _temptdata._placetimeList.GetRange(0, i).Sum());
+                            _routineList.Add(_tempIEnum);
+                            StartCoroutine(_tempIEnum);
+                            i++;
+                        }
+                        _tempIEnum = RemoveAllRoutine(_temptdata._placetimeList.Sum());
+                        Debug.Log("Place total time" + _temptdata._placetimeList.Sum());
+                        _routineList.Add(_tempIEnum);
+                        StartCoroutine(_tempIEnum);
+                        break;
                     case SpawnType.SetRandomly:
+                        Debug.LogError("Error: setrandonly is underconstruction");
+                        break;
+                    default:
+                        Debug.LogError("Error: Default is underconstruction");
                         break;
                 }
 

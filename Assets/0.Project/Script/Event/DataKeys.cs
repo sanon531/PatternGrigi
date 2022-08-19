@@ -4,32 +4,9 @@ using UnityEngine;
 
 namespace PG.Data
 {
-    public enum ECharacterID
+    public enum CharacterID
     {
-        //플레이어는 1 적은 다양한 바리에이션이 있다.
-        플레이어_정세진 = 1,
-
-
-        //잡졸
-        멸고단원 = 2,
-        멸고단_허깨비,
-        반멸고단원,
-        반멸고단_허깨비,
-        자생_허깨비,
-        사기꾼,
-
-        //보스
-        파괴_중간보스_멸망희망자,
-        유지_중간보스_허깨비,
-        창조_중간보스_광대도공,
-        유지_보스_어제,
-        파괴_보스_부마,
-        공허_보스_체념
-
-
-    }
-    public enum EArtifactID
-    {
+        player = 1,
 
 
     }
@@ -41,12 +18,49 @@ namespace PG.Data
 
 
     }
+    public enum ArtifactID
+    {
+
+        //기본 유물.
+        FragileRush =10,
+        //적도 - 공격력을 상승 시킴.
+        Equatore =11,
+        PoloNord = 12,
+        StrangeTropics =13,
+        BlackAndWhite = 14
+
+    }
+
+
+    public enum Rarity
+    {
+        None = -1,
+
+        Common = 0,
+        Uncommon = 1,
+        Rare = 2,
+        Unique = 3,
+    }
     public enum SceneType
     {
         Entry,
         Title,
         WorldMap,
         Battle
+    }
+
+    public enum StageKind
+    {
+        Fire_TInyMage,
+        Earth_Fighter,
+        Dark_Artsian,
+        Fire_Mage,
+    }
+
+    //이곳에서
+    public enum DrawPatternPreset
+    {
+        Default_Thunder,
     }
 
 }

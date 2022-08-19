@@ -99,7 +99,7 @@ namespace PG.Battle
 
         #endregion
 
-        public Player_Status _playerStatus = new Player_Status(Data.EDrawPatternPreset.Default_Thunder);
+        public Player_Status _playerStatus = new Player_Status(Data.DrawPatternPreset.Default_Thunder);
 
 
         //현재의 플레이어 스테이터스를 인식으로 받는다.
@@ -134,9 +134,9 @@ namespace PG.Battle
     {
         public DataEntity _damageData = new DataEntity(DataEntity.Type.Damage,10);
         public DataEntity _chargeData = new DataEntity(DataEntity.Type.ChargeGauge, 10);
-        public Data.EDrawPatternPreset _currentChargePattern = Data.EDrawPatternPreset.Default_Thunder;
+        public Data.DrawPatternPreset _currentChargePattern = Data.DrawPatternPreset.Default_Thunder;
 
-        public Player_Status(Data.EDrawPatternPreset currentpattern) 
+        public Player_Status(Data.DrawPatternPreset currentpattern) 
         {
             _currentChargePattern = currentpattern;
         }

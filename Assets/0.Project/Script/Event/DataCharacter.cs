@@ -27,7 +27,7 @@ namespace PG
         public void SetDead() { IsDead = true; }
         public void SetAlive() { IsDead = false; }
 
-        public ECharacterID characterID;
+        public CharacterID characterID;
         public CharacterSide 소속진영 ;
         public CharacterSide 상대진영
         {

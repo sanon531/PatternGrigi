@@ -139,15 +139,15 @@ namespace PG.Battle
         List<int> _presetNodes = new List<int>();
         [SerializeField]
         int _currentPresetNodeNumber = 0;
-        EDrawPatternPreset _currentPattern;
+        DrawPatternPreset _currentPattern;
         // 패턴 세팅을 하는곳 
-        void SetSkillToPresetNodeFollow(EDrawPatternPreset drawPattern)
+        void SetSkillToPresetNodeFollow(DrawPatternPreset drawPattern)
         {
             if (!_isRandomNodeSetMode && !_IsCurrentNodeSetted)
             {
                 _currentPresetNodeNumber = 0;
                 _currentPattern = drawPattern;
-                _presetNodes = S_PatternStorage.S_PatternPresetDic[drawPattern];
+                _presetNodes = GlobalDataStorage.PatternPresetDic[drawPattern];
                 PresetPatternShower.ShowPresetPatternAll();
                 //presetDataDic 은 새로운 딕셔너리로 키값으로EPresetOfDrawPattern를 받는다.
                 _IsCurrentNodeSetted = true;
