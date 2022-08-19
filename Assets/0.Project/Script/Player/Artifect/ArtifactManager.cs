@@ -32,6 +32,8 @@ namespace PG.Battle
 
         void RefreshCurrentArtifact() 
         {
+
+
         }
 
 

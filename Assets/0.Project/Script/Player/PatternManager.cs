@@ -139,6 +139,7 @@ namespace PG.Battle
         List<int> _presetNodes = new List<int>();
         [SerializeField]
         int _currentPresetNodeNumber = 0;
+        [SerializeField]
         DrawPatternPreset _currentPattern;
         // 패턴 세팅을 하는곳 
         void SetSkillToPresetNodeFollow(DrawPatternPreset drawPattern)

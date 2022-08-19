@@ -24,7 +24,9 @@ namespace PG.Data
         public static Dictionary<DrawPatternPreset, List<int>> PatternPresetDic =
             new Dictionary<DrawPatternPreset, List<int>>()
             {
-                {DrawPatternPreset.Default_Thunder,new List<int>(){1,3,4,6,7,5} }
+                {DrawPatternPreset.Default_Thunder,new List<int>(){1,3,4,6,7,5} },
+                {DrawPatternPreset.LoveAndPeace,new List<int>(){4,2,5,7,3,0,4} }
+
             };
 
 
