@@ -25,7 +25,8 @@ namespace PG.Data
             new Dictionary<DrawPatternPreset, List<int>>()
             {
                 {DrawPatternPreset.Default_Thunder,new List<int>(){1,3,4,6,7,5} },
-                {DrawPatternPreset.LoveAndPeace,new List<int>(){4,2,5,7,3,0,4} }
+                {DrawPatternPreset.LoveAndPeace,new List<int>(){4,2,5,7,3,0,4} },
+                {DrawPatternPreset.Sandglass,new List<int>(){2,0,8,6,2} }
 
             };
 
