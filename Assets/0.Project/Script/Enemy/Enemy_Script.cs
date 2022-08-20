@@ -36,23 +36,27 @@ namespace PG.Battle
             _healthSystem.OnDead += HealthSystem_OnDead;
 
             GameObject.Find("EnemyHealthBarUI").GetComponent<HealthBarUI>().SetHealthSystem(_healthSystem);
-
-
-            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
-            Global_BattleEventSystem._onChargeStart += SetOnActionStunned;
-            Global_BattleEventSystem._onChargeEnd += SetOffActionStunned;
+            OnStartEventCall();
 
         }
-
         private void OnDestroy()
         {
             Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
             Global_BattleEventSystem._onChargeStart -= SetOnActionStunned;
             Global_BattleEventSystem._onChargeEnd -= SetOffActionStunned;
-
+            Global_BattleEventSystem._onAddCalcDamage -= AddChangeGetDamage;
         }
+
+        void OnStartEventCall() 
+        {
+            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
+            Global_BattleEventSystem._onChargeStart += SetOnActionStunned;
+            Global_BattleEventSystem._onChargeEnd += SetOffActionStunned;
+            Global_BattleEventSystem._onAddCalcDamage += AddChangeGetDamage;
+        }
+
 
         bool _isStatusChangable = true;
         bool _isStunned = false;
@@ -283,17 +287,25 @@ namespace PG.Battle
 
         #endregion
         #region //Damage related
+
+
+        [SerializeField]
+        float _changedData = 0 ;
         public static bool Damage(float _amount)
         {
+            _amount += _instance._changedData;
             _instance._healthSystem.Damage(_amount);
             _instance.RandomDamageFX();
-            //Debug.Log(_amount);
+            Debug.Log(_amount);
             DamageTextScript.Create(_instance.transform.position, 2f, 0.3f, Mathf.FloorToInt(_amount), Color.red);
             Global_BattleEventSystem.CallOnCalcDamage(_amount);
 
             return _instance._isEnemyAlive;
         }
-
+        public void AddChangeGetDamage(float _amount) 
+        {
+            _changedData += _amount;
+        }
 
         void RandomDamageFX() 
         {
@@ -329,7 +341,9 @@ namespace PG.Battle
 
         Dictionary<EnemyAction, string> _actionStringDic = new Dictionary<EnemyAction, string>(){ 
             { EnemyAction.BasicAttack_1, "Pattern_1" },
-            { EnemyAction.BasicAttack_2, "Pattern_2" }, 
+            { EnemyAction.BasicAttack_2, "Pattern_2" },
+            { EnemyAction.BasicAttack_3, "Pattern_2" },
+            { EnemyAction.BasicAttack_4, "Pattern_2" },
             { EnemyAction.Wait, "Wait" }};
 
         void StartAnimationByCurrentAction() 

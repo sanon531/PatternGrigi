@@ -27,14 +27,34 @@ namespace PG.Battle
         List<ArtifactID> _temptTestArtifectList = new List<ArtifactID>() { };
         void Start()
         {
-            Global_BattleEventSystem._onBattleBegin += RefreshCurrentArtifact;
+            Global_BattleEventSystem._onBattleBegin += InitializeCurrentArtifact;
         }
 
-        void RefreshCurrentArtifact() 
+
+        //현재 가지고 있는 아티팩트를 전부 재 확인후 적용함,.
+        void InitializeCurrentArtifact() 
         {
+            if(_isTestSet)
+                foreach (ArtifactID id in _temptTestArtifectList) 
+                {
+                    GlobalDataStorage.TotalArtifactClassDic[id].ActiveArtifact();
+                    //Debug.Log(id.ToString());
+                }
+        }
+        public static void AddArtifactToPlayer_tempUse(ArtifactID id)
+        {
+            if (_instance._isTestSet) 
+            {
+                _instance._temptTestArtifectList.Add(id);
+                GlobalDataStorage.TotalArtifactClassDic[id].ActiveArtifact();
+            }
+
+
 
 
         }
+
+
 
 
 

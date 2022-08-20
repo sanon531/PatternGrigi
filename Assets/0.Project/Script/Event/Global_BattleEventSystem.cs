@@ -21,7 +21,7 @@ namespace PG.Event
     public delegate void OnEventWithPattern(DrawPatternPreset 수치값);
 
 
-    public static class Global_BattleEventSystem 
+    public static class Global_BattleEventSystem
     {
         //맵
         public static event OnEvent _onEnterStage;
@@ -45,13 +45,13 @@ namespace PG.Event
 
 
         public static event OnEventWithFloat _onAddAttackMag;
-        public static void CallOnAddAttackMag(float _배수) { _onAddAttackMag?.Invoke(_배수);  }
+        public static void CallOnAddAttackMag(float _배수) { _onAddAttackMag?.Invoke(_배수); }
 
 
         //레벨업 할 경우 콜함 
         public static event OnEvent _onLevelUpShow;
         public static event OnEvent _onLevelUpHide;
-        public static void CallOnLevelUp() 
+        public static void CallOnLevelUp()
         {
             if (!_isNonTotalPaused)
                 CallNonTotalPause();
@@ -75,9 +75,9 @@ namespace PG.Event
 
         #region//일시정지
         public static bool _isNonTotalPaused = false;
-        public static void CallNonTotalPause() 
+        public static void CallNonTotalPause()
         {
-            if (_isNonTotalPaused) 
+            if (_isNonTotalPaused)
             {
                 _isNonTotalPaused = false;
                 CallOffNonTotalPause();
@@ -94,7 +94,7 @@ namespace PG.Event
         private static void CallOnNontotalPause() { _onNonTotalPause?.Invoke(); }
         public static event OnEvent _offNonTotalPause;
         private static void CallOffNonTotalPause() { _offNonTotalPause?.Invoke(); }
-        
+
         public static bool _isCutScenePaused = false;
         public static void CallCutScenePause()
         {
@@ -153,8 +153,8 @@ namespace PG.Event
         public static void CallOnGainEXP(float exp) { _onGainEXP?.Invoke(exp); }
 
 
-      
-        
+
+
 
         public static event OnEvent _onGameOver;
         public static void CallOnGameOver() { _onGameOver?.Invoke(); }
@@ -170,6 +170,15 @@ namespace PG.Event
         public static event OnEventWithFloat _onCalcDamage;
         public static void CallOnCalcDamage(float val)
         { _onCalcDamage?.Invoke(val); }
+
+        public static event OnEventWithFloat _onAddCalcDamage;
+        public static void CallOnAddCalcDamage(float val) 
+        { _onAddCalcDamage?.Invoke(val); }
+
+        public static event OnCalcDataEntity _onCalcDamageByEntity;
+        //public static float CallOnCalcDamageByEntity(float val)
+        //{ _onCalcDamage?.Invoke(val); 
+        //}
 
 
         /*

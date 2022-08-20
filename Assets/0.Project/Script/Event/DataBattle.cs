@@ -30,26 +30,42 @@ namespace PG.Data
 
             };
 
-
-        public static Dictionary<ArtifactID, ArtifactTableData> TotalArtifactTableDataDic =
-            new Dictionary<ArtifactID, ArtifactTableData>()
+        //아티팩트의 수치와 행동을 분리하여야 한다.그래야 나중에 텍스트 처리할때 편하다.
+        public static Dictionary<ArtifactID, ArtifactData> TotalArtifactTableDataDic =
+            new Dictionary<ArtifactID, ArtifactData>()
             {
-                {ArtifactID.FragileRush, new ArtifactTableData(
+                {ArtifactID.FragileRush, new ArtifactData(
                     ArtifactID.FragileRush,
                     "","",
-                    (int)Rarity.Common,true,0)},
-                {ArtifactID.Equatore, new ArtifactTableData(
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0)},
+                {ArtifactID.Equatore, new ArtifactData(
                     ArtifactID.Equatore,
                     "","",
-                    (int)Rarity.Common,true,0)},
-                {ArtifactID.PoloNord, new ArtifactTableData(
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0)},
+                {ArtifactID.PoloNord, new ArtifactData(
                     ArtifactID.PoloNord,
                     "","",
-                    (int)Rarity.Common,true,0)},
-                {ArtifactID.StrangeTropics, new ArtifactTableData(
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0)},
+                {ArtifactID.StrangeTropics, new ArtifactData(
                     ArtifactID.StrangeTropics,
                     "","",
-                    (int)Rarity.Common,true,0)},
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0)},
+            };
+        public static Dictionary<ArtifactID, Artifact> TotalArtifactClassDic =
+            new Dictionary<ArtifactID, Artifact>() 
+            {
+                {ArtifactID.FragileRush, new Arfifact_FragileRush()},
+
+
+
             };
 
 

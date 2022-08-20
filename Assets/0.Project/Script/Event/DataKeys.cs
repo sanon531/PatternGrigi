@@ -4,6 +4,18 @@ using UnityEngine;
 
 namespace PG.Data
 {
+    public enum ArtifacProperty
+    {
+        None = 0,
+        CountValue = 1,
+    }
+
+    public enum ArtifactFlag
+    {
+        Active = 0,
+        Inactive = 1,
+    }
+
     public enum CharacterID
     {
         player = 1,
@@ -32,7 +44,7 @@ namespace PG.Data
     }
 
 
-    public enum Rarity
+    public enum ArtifactRarity
     {
         None = -1,
 
