@@ -99,7 +99,7 @@ namespace PG.Data
         public float _lifeTime = 4;
         //발동전까지의 시간.
         public float _activeTime = 1;
-        public float _damage_Of_Spawn = 8;
+        public float _damageMag = 1;
     }
 
 

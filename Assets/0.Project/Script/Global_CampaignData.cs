@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PG.Data;
-namespace PG.Battle
+using PG.Battle;
+namespace PG.Data
 {
     public struct Data_CampaignOption
     {
@@ -28,14 +28,16 @@ namespace PG.Battle
 
         //적들의 데이터를 먼저 매치 하는 부분. 한버넹 강한 공격 도 공격이지만 아무튼.
         //값은 언제든 수정이 가능.
-        public static Dictionary<CharacterID, DataEntity> _charactorAttack = 
+        public static Dictionary<CharacterID, DataEntity> _charactorAttackDic = 
             new Dictionary<CharacterID, DataEntity>() 
             {
-                { CharacterID.player,new DataEntity(DataEntity.Type.Damage,10)},
+                { CharacterID.Player,new DataEntity(DataEntity.Type.Damage,10)},
                 { CharacterID.Enemy_Fireboy,new DataEntity(DataEntity.Type.Damage,8)},
                 { CharacterID.Enemy_WindShooter,new DataEntity(DataEntity.Type.Damage,16)},
 
             };
+
+        //모든 적들의 공격관련한 데이터 엔티티를 수정하는 예시임..
 
         public static DataEntity _chargeGaugeData = new DataEntity(DataEntity.Type.ChargeGauge, 8);
 

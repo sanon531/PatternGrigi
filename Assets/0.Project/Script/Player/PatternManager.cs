@@ -58,22 +58,21 @@ namespace PG.Battle
         //데미지가 산출 되었을때의 정보.(이벤트로 바꿀것.)
         public static void DamageCall(int nodeID)
         {
-            float _resultDamage = _instance.GetNodePositionByID(_instance._lastNode, nodeID) * _instance._damage;
-
             //먼저 게이지를 채우고 만약 게이지가 다찼을경우 주어진 노드가 나오도록함. 
             _instance.SetGaugeChange();
+            //길이 계산한다음에 초기화 해줘야함 아래 두줄 순서 바꾸지 마셈
+            float _length = _instance.GetNodePositionByID(_instance._lastNode, nodeID);
             _instance.CheckNodeOnDamage(nodeID);
-            //진동 호출
-            VibrationManager.CallVibration();
-
             //죽었으면 모든 노드 값을 초기화 한다.
-            if (!Enemy_Script.Damage(_resultDamage)) 
+            if (!Enemy_Script.Damage(_length)) 
             {
                 _instance.ResetAllNode();
                 _instance._lastNode = -1;
             }
-            LineTracer._instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
             Global_BattleEventSystem.CallOnGainEXP(_instance._gainEXP);
+
+            LineTracer._instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
+            VibrationManager.CallVibration();
         }
 
         #region//nodereach
@@ -320,13 +319,17 @@ namespace PG.Battle
             {7,new Vector2Int(1,2) },
             {8,new Vector2Int(2,2) }
         };
+        //거리 재는 부분
         float GetNodePositionByID(int startID, int endID)
         {
             float _xval = Mathf.Pow(_IDDic[startID].x - _IDDic[endID].x, 2);
             float _yval = Mathf.Pow(_IDDic[startID].y - _IDDic[endID].y, 2);
-            //Debug.Log(startID + " and " + endID);
-            //Debug.Log(_IDDic[startID] + " + "+ _IDDic[endID] + ":"+ _xval +"+" + _yval);
-            return Mathf.Sqrt(_xval + _yval);
+            Debug.Log(startID + " and " + endID);
+            Debug.Log(_IDDic[startID] + " + "+ _IDDic[endID] + ":"+ _xval +"+" + _yval);
+            if (_xval == 0f && _yval == 0f)
+                return 1;
+            else 
+                return Mathf.Sqrt(_xval + _yval);
         }
 
         #endregion

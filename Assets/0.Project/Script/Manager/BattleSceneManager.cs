@@ -48,6 +48,7 @@ namespace PG.Battle
         }
 
         #region//Combat EventSetter
+
         bool _isCombatSetted = false;
         void SwitchEventCombat() 
         {

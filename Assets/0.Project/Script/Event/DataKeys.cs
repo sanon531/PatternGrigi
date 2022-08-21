@@ -18,10 +18,9 @@ namespace PG.Data
 
     public enum CharacterID
     {
-        player = 1,
+        Player = 1,
         Enemy_Fireboy = 2,
         Enemy_WindShooter = 3,
-
 
     }
     public enum EffectID
@@ -63,6 +62,7 @@ namespace PG.Data
         Battle
     }
 
+    //charactor kinds 로 바꾸기
     public enum StageKind
     {
         Fire_TInyMage,

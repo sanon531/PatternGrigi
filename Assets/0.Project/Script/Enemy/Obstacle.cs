@@ -35,11 +35,12 @@ namespace PG.Battle
         [SerializeField]
         protected Collider2D _thisCollider;
 
-        public virtual void SetSpawnData(float lifeTime, float activetimes)
+        public virtual void SetSpawnData(float lifeTime, float activetimes,float damage)
         {
             _maxLifetime = lifeTime;
             _lifeTime = _maxLifetime;
             _activetime = activetimes;
+            _damageDeal = damage;
             _isPlaced = true;
         }
         protected virtual void SetActiveObstacle() 
@@ -74,6 +75,7 @@ namespace PG.Battle
             _lifeTime = time;
         }
 
+        // 이부분 개선 할꺼임.
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.tag == "Player")

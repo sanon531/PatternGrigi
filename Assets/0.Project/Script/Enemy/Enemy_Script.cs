@@ -90,7 +90,8 @@ namespace PG.Battle
 
 
         #region//Action related
-
+        [SerializeField]
+        CharacterID _characterID = CharacterID.Enemy_Fireboy;
         [SerializeField]
         int _currentActionOrder = 0;
         [SerializeField]
@@ -243,9 +244,13 @@ namespace PG.Battle
             yield return new WaitWhile(() => _deadLine > _enemyroutineTime);
 
             //Debug.Log("rip : " + (_deadLine > _enemyroutineTime));
-            ObstacleManager.SetObstacle(data, pos);
+            ObstacleManager.SetObstacle(data, pos,Global_CampaignData._charactorAttackDic[_characterID].FinalValue);
 
         }
+
+
+
+
         IEnumerator RemoveAllRoutine(float waitTime)
         {
             float _deadLine = _enemyroutineTime + waitTime;
@@ -286,18 +291,19 @@ namespace PG.Battle
         #endregion
         #region //Damage related
 
-
-        public static bool Damage(float _amount)
+        public static bool Damage(float length)
         {
-            _instance._healthSystem.Damage(_amount);
+            float _amount = Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue;
             _instance.RandomDamageFX();
-            //Debug.Log(_amount);
+            _instance._healthSystem.Damage(_amount);
+            //Debug.Log(_amount+"+"+length);
+            _amount *= length;
             DamageTextScript.Create(_instance.transform.position, 2f, 0.3f, Mathf.FloorToInt(_amount), Color.red);
             Global_BattleEventSystem.CallOnCalcDamage(_amount);
-
             return _instance._isEnemyAlive;
         }
 
+        //데미지 이펙트.
         void RandomDamageFX() 
         {
             int _randomIndex = UnityEngine.Random.Range(0, _damageFXLists.Count);
