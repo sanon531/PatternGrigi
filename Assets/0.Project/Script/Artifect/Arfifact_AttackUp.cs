@@ -21,6 +21,11 @@ namespace PG
         {
         }
 
+        public override void OnGetArtifact()
+        {
+            Global_BattleEventSystem.CallOnAddCalcDamage(10f);
+        }
+
         protected override void Enable()
         {
             base.Enable();

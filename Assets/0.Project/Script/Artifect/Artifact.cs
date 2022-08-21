@@ -58,6 +58,10 @@ namespace PG
             //_flag |= ArtifactFlag.Inactive;
             Disable();
         }
+        public virtual void AddCountOnArtifact() 
+        {
+        
+        }
 
 
 

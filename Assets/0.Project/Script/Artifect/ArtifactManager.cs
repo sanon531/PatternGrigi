@@ -4,7 +4,7 @@ using UnityEngine;
 using PG.Event;
 using PG.Data;
 
-namespace PG.Battle 
+namespace PG.Battle
 {
     public class ArtifactManager : MonoSingleton<ArtifactManager>
     {
@@ -23,7 +23,7 @@ namespace PG.Battle
 
         [SerializeField]
         bool _isTestSet = true;
-        [SerializeField] 
+        [SerializeField]
         List<ArtifactID> _temptTestArtifectList = new List<ArtifactID>() { };
         void Start()
         {
@@ -32,29 +32,38 @@ namespace PG.Battle
 
 
         //현재 가지고 있는 아티팩트를 전부 재 확인후 적용함,.
-        void InitializeCurrentArtifact() 
+        void InitializeCurrentArtifact()
         {
-            if(_isTestSet)
-                foreach (ArtifactID id in _temptTestArtifectList) 
+            if (_isTestSet)
+                foreach (ArtifactID id in _temptTestArtifectList)
                 {
-                    GlobalDataStorage.TotalArtifactClassDic[id].ActiveArtifact();
-                    //Debug.Log(id.ToString());
+                    Global_CampaignData._currentArtifactDictionary.Add(id, GlobalDataStorage.TotalArtifactClassDic[id]);
+                    Global_CampaignData._currentArtifactDictionary[id].ActiveArtifact();
                 }
+            else
+            {
+                //여기는 아예 전달 받은걸로 만든다.
+                //GlobalDataStorage.TotalArtifactTableDataDic;
+            }
         }
         public static void AddArtifactToPlayer_tempUse(ArtifactID id)
         {
-            if (_instance._isTestSet) 
+
+            //일단 유물은 딕셔너리에서 1개씩 얻을 수 있으며 여러번 넣어지면 그냥 숫자가 상승한다고 하자. 
+            //미래에는 그냥 간단하게
+            if (Global_CampaignData._currentArtifactDictionary.ContainsKey(id) == false)
             {
+                Debug.Log("Upgrade" + id.ToString());
                 _instance._temptTestArtifectList.Add(id);
-                GlobalDataStorage.TotalArtifactClassDic[id].ActiveArtifact();
+                Global_CampaignData._currentArtifactDictionary.Add(id, GlobalDataStorage.TotalArtifactClassDic[id]);
+                Global_CampaignData._currentArtifactDictionary[id].OnGetArtifact();
             }
-
-
-
-
+            else 
+            {
+            
+            
+            }
         }
-
-
 
 
 

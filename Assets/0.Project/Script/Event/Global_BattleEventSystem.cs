@@ -115,7 +115,7 @@ namespace PG.Event
         private static void CallOnCutScenePause() { _onCutScenePause?.Invoke(); }
         public static event OnEvent _offCutScenePause;
         private static void CallOffCutScenePause() { _offCutScenePause?.Invoke(); }
-        private static bool _isTotalPaused = false;
+        public static bool _isTotalPaused = false;
         public static void CallTotalPause()
         {
             if (_isTotalPaused)

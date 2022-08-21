@@ -434,7 +434,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 71
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.1
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -796,7 +796,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 43.45
+  m_fontSize: 69.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -885,6 +885,7 @@ GameObject:
   - component: {fileID: 5552580520793690055}
   - component: {fileID: 5552580520793690052}
   - component: {fileID: 5552580521296070317}
+  - component: {fileID: 6060035455461757244}
   m_Layer: 5
   m_Name: PannelForChoose_2
   m_TagString: Untagged
@@ -996,9 +997,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5552580520838923979}
-        m_TargetAssemblyTypeName: PG.Battle.LevelUpPanelScript, Assembly-CSharp
-        m_MethodName: GetButtonPressed
+      - m_Target: {fileID: 6060035455461757244}
+        m_TargetAssemblyTypeName: PG.Battle.PannelForChooseScript, Assembly-CSharp
+        m_MethodName: CallButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1008,6 +1009,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6060035455461757244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5552580520793690053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c64d8b73578284ebef46a3e84db2b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttoNum: 2
 --- !u!1 &5552580520838923977
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,6 +1090,7 @@ MonoBehaviour:
   - {fileID: 5552580521048687427}
   - {fileID: 5552580521296070317}
   - {fileID: 5552580521620368048}
+  _upgradeDataList: 0a0000000a0000000a0000000a000000
 --- !u!1 &5552580520841390289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,7 +1183,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 71
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1275,7 +1290,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "status\uC0C1\uD0DC "
+  m_text: "Action \n\uD589\uB3D9"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30d03c5fd2051db4c92afa4aaa175c24, type: 2}
   m_sharedMaterial: {fileID: -1837002359321199104, guid: 30d03c5fd2051db4c92afa4aaa175c24, type: 2}
@@ -1616,7 +1631,7 @@ GameObject:
   - component: {fileID: 5552580521067433037}
   - component: {fileID: 5552580521067433034}
   m_Layer: 5
-  m_Name: 'CurrentStatus '
+  m_Name: CurrentAction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1984,6 +1999,7 @@ GameObject:
   - component: {fileID: 5552580521216755510}
   - component: {fileID: 5552580521216755511}
   - component: {fileID: 5552580521620368048}
+  - component: {fileID: 6566824666141286903}
   m_Layer: 5
   m_Name: PannelForChoose_3
   m_TagString: Untagged
@@ -2094,19 +2110,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5552580521216755511}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5552580520838923979}
-        m_TargetAssemblyTypeName: PG.Battle.LevelUpPanelScript, Assembly-CSharp
-        m_MethodName: GetButtonPressed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &6566824666141286903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5552580521216755508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c64d8b73578284ebef46a3e84db2b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttoNum: 3
 --- !u!1 &5552580521228759293
 GameObject:
   m_ObjectHideFlags: 0
@@ -2364,6 +2381,7 @@ GameObject:
   - component: {fileID: 5552580521289609839}
   - component: {fileID: 5552580521289609836}
   - component: {fileID: 5552580521969911034}
+  - component: {fileID: 302912090}
   m_Layer: 5
   m_Name: PannelForChoose
   m_TagString: Untagged
@@ -2474,19 +2492,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5552580521289609836}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5552580520838923979}
-        m_TargetAssemblyTypeName: PG.Battle.LevelUpPanelScript, Assembly-CSharp
-        m_MethodName: GetButtonPressed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &302912090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5552580521289609837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c64d8b73578284ebef46a3e84db2b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttoNum: 0
 --- !u!1 &5552580521608524239
 GameObject:
   m_ObjectHideFlags: 0
@@ -2579,7 +2598,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 71
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3474,7 +3493,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 71
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3785,7 +3804,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: -1518175977
+  m_SortingLayerID: -4187025
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &5552580522246485245
@@ -4010,6 +4029,7 @@ GameObject:
   - component: {fileID: 5552580522465584135}
   - component: {fileID: 5552580522465584132}
   - component: {fileID: 5552580521048687427}
+  - component: {fileID: 8813828599634108409}
   m_Layer: 5
   m_Name: PannelForChoose_1
   m_TagString: Untagged
@@ -4120,19 +4140,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5552580522465584132}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5552580520838923979}
-        m_TargetAssemblyTypeName: PG.Battle.LevelUpPanelScript, Assembly-CSharp
-        m_MethodName: GetButtonPressed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &8813828599634108409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5552580522465584133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c64d8b73578284ebef46a3e84db2b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttoNum: 1
 --- !u!1 &5552580522499920430
 GameObject:
   m_ObjectHideFlags: 0

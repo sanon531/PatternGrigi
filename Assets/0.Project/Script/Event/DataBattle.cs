@@ -36,7 +36,7 @@ namespace PG.Data
             {
                 {ArtifactID.FragileRush, new ArtifactData(
                     ArtifactID.FragileRush,
-                    "","",
+                    "적에게 가하는 공격력 +10 플레이어가 받는 데미지도 10 증가합니다.","",
                     (int)ArtifactRarity.Common,
                     true,
                     0)},
@@ -59,6 +59,11 @@ namespace PG.Data
                     true,
                     0)},
             };
+        public static Dictionary<ArtifactID, string> ArtifactToNameText_KR = new Dictionary<ArtifactID, string>() { };
+
+
+
+
         public static Dictionary<ArtifactID, Artifact> TotalArtifactClassDic =
             new Dictionary<ArtifactID, Artifact>() 
             {

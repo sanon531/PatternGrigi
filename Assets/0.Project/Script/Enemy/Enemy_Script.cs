@@ -262,7 +262,7 @@ namespace PG.Battle
         bool _isNontotalPaused = false;
         public void SetNonTotalPauseOn()
         {
-            Debug.Log("SetNonTotalPauseOn");
+            //Debug.Log("SetNonTotalPauseOn");
             _isNontotalPaused = true;
             for (int i = _routineList.Count -1; i>=0; i--) 
             {
@@ -273,7 +273,7 @@ namespace PG.Battle
 
         public void SetNonTotalPauseOff()
         {
-            Debug.Log("SetNonTotalPauseOf");
+            //Debug.Log("SetNonTotalPauseOf");
 
             _isNontotalPaused = false;
             for (int i = _routineList.Count - 1; i >= 0; i--)
@@ -296,7 +296,7 @@ namespace PG.Battle
             _amount += _instance._changedData;
             _instance._healthSystem.Damage(_amount);
             _instance.RandomDamageFX();
-            Debug.Log(_amount);
+            //Debug.Log(_amount);
             DamageTextScript.Create(_instance.transform.position, 2f, 0.3f, Mathf.FloorToInt(_amount), Color.red);
             Global_BattleEventSystem.CallOnCalcDamage(_amount);
 

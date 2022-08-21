@@ -21,12 +21,12 @@ namespace PG.Battle
     [System.Serializable]
     public static class Global_CampaignData
     {
-        public static Dictionary<ArtifactID, ArtifactData> _currentArtifactDictionary = 
-            new Dictionary<ArtifactID, ArtifactData>();
-        public static Dictionary<ArtifactID, ArtifactData> _currentActivateDictionary =
-            new Dictionary<ArtifactID, ArtifactData>();
+        public static Dictionary<ArtifactID, Artifact> _currentArtifactDictionary = 
+            new Dictionary<ArtifactID, Artifact>();
 
-        public static ArtifactManager _dataManager = new ArtifactManager(); 
+        //public static Dictionary<ArtifactID, ArtifactData> _currentActivateDictionary =
+            //new Dictionary<ArtifactID, ArtifactData>();
+        public static Enemy_Script _currentEnemy;
 
     }
 
