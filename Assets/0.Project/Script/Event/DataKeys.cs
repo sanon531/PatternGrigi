@@ -19,6 +19,8 @@ namespace PG.Data
     public enum CharacterID
     {
         player = 1,
+        Enemy_Fireboy = 2,
+        Enemy_WindShooter = 3,
 
 
     }

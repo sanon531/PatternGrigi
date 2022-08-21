@@ -20,12 +20,12 @@ namespace PG.Battle
 
 
         // Start is called before the first frame update
-        void Start()
+        protected override void CallOnAwake()
         {
             Global_BattleEventSystem._onLevelUpShow += SetLevelUpOn;
             Global_BattleEventSystem._onLevelUpHide += SetLevelUpOff;
         }
-        private void OnDestroy()
+        protected override void CallOnDestroy()
         {
             Global_BattleEventSystem._onLevelUpShow -= SetLevelUpOn;
             Global_BattleEventSystem._onLevelUpHide -= SetLevelUpOff;

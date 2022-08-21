@@ -7,7 +7,7 @@ namespace PG
     {
         public bool _aaa = false;
         // Start is called before the first frame update
-        protected override void OnAwake()
+        protected override void CallOnAwake()
         {
             DontDestroyOnLoad(gameObject);
         }

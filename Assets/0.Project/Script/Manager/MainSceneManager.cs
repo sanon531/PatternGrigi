@@ -8,7 +8,7 @@ namespace PG
     public class MainSceneManager : MonoSingleton<MainSceneManager>
     {
 
-        private void Start()
+        protected override void CallOnAwake()
         {
             if (GlobalUIEventSystem._isTotalFade)
                 GlobalUIEventSystem.CallTotalFade();

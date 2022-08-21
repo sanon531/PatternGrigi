@@ -32,8 +32,8 @@ namespace PG.Battle
         ParticleSystem _signParticle;
 
         // Start is called before the first frame update
-  
-        private void Start()
+
+        protected override void CallOnAwake()
         {
             _inactivatedNode = _defaultNode.ToList();
             Global_BattleEventSystem._onBattleBegin += StartTriggerNode;
@@ -43,7 +43,7 @@ namespace PG.Battle
         }
         // Update is called once per frame
 
-        private void OnDestroy()
+        protected override void CallOnDestroy()
         {
             // Update is called once per frame
             Global_BattleEventSystem._onBattleBegin -= StartTriggerNode;

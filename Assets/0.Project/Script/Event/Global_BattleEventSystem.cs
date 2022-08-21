@@ -7,9 +7,11 @@ namespace PG.Event
 {
     public delegate void OnEvent();
 
-    public delegate void OnCalcDataEntity(DataEntity 정보체);
+    public delegate void OnCalcDataEntity(DataEntity entity);
     public delegate void OnCalcData_Form1(Data_Character 대상, DataEntity 정보체);
     public delegate void OnCalcData_Form_2(Data_Character 정보계산주체, Data_Character 부체, DataEntity 정보체);
+
+
     public delegate void On배틀이벤트();
 
     public delegate void OnEventWithbool(bool 수치값);
@@ -41,7 +43,7 @@ namespace PG.Event
         public static void CallOnBattleBegin() { _onBattleBegin?.Invoke(); }
 
         public static OnCalcDataEntity _onAddCharge;
-        public static void CallAddCharge() { _onBattleBegin?.Invoke(); }
+        public static void CallAddCharge(DataEntity entity) { _onAddCharge?.Invoke(entity); }
 
 
         public static event OnEventWithFloat _onAddAttackMag;
@@ -64,7 +66,7 @@ namespace PG.Event
             _onLevelUpHide?.Invoke();
         }
 
-        #region//
+        #region//Combat
 
 
 

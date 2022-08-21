@@ -18,9 +18,7 @@ namespace PG.Battle
         [SerializeField]
         Transform _placeTransform;
 
-        private void Start()
-        {
-        }
+    
 
 
         //이곳에서 새로 이미지를 올린다.

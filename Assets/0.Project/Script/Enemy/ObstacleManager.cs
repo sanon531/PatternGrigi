@@ -12,13 +12,13 @@ namespace PG.Battle
         [SerializeField]
         List<Obstacle> _activeObstacleList = new List<Obstacle>();
 
-        protected override void OnAwake()
+        protected override void CallOnAwake()
         {
             Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
 
         }
-        private void OnDestroy()
+        protected override void CallOnDestroy()
         {
             Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;

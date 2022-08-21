@@ -15,11 +15,11 @@ namespace PG.Battle
         Image _damageFadeImage;
 
         // Start is called before the first frame update
-        void Start()
+        protected override void CallOnAwake()
         {
             GlobalUIEventSystem._onDamageUI += GetDamage;
         }
-        private void OnDestroy()
+        protected override void CallOnDestroy()
         {
             GlobalUIEventSystem._onDamageUI -= GetDamage;
         }

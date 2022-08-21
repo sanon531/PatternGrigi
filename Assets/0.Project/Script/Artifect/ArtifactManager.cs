@@ -25,7 +25,7 @@ namespace PG.Battle
         bool _isTestSet = true;
         [SerializeField]
         List<ArtifactID> _temptTestArtifectList = new List<ArtifactID>() { };
-        void Start()
+        protected override void CallOnAwake()
         {
             Global_BattleEventSystem._onBattleBegin += InitializeCurrentArtifact;
         }

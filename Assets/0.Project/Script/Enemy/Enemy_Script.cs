@@ -39,13 +39,12 @@ namespace PG.Battle
             OnStartEventCall();
 
         }
-        private void OnDestroy()
+        protected override void CallOnDestroy()
         {
             Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
             Global_BattleEventSystem._onChargeStart -= SetOnActionStunned;
             Global_BattleEventSystem._onChargeEnd -= SetOffActionStunned;
-            Global_BattleEventSystem._onAddCalcDamage -= AddChangeGetDamage;
         }
 
         void OnStartEventCall() 
@@ -54,7 +53,6 @@ namespace PG.Battle
             Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
             Global_BattleEventSystem._onChargeStart += SetOnActionStunned;
             Global_BattleEventSystem._onChargeEnd += SetOffActionStunned;
-            Global_BattleEventSystem._onAddCalcDamage += AddChangeGetDamage;
         }
 
 
@@ -289,11 +287,8 @@ namespace PG.Battle
         #region //Damage related
 
 
-        [SerializeField]
-        float _changedData = 0 ;
         public static bool Damage(float _amount)
         {
-            _amount += _instance._changedData;
             _instance._healthSystem.Damage(_amount);
             _instance.RandomDamageFX();
             //Debug.Log(_amount);
@@ -301,10 +296,6 @@ namespace PG.Battle
             Global_BattleEventSystem.CallOnCalcDamage(_amount);
 
             return _instance._isEnemyAlive;
-        }
-        public void AddChangeGetDamage(float _amount) 
-        {
-            _changedData += _amount;
         }
 
         void RandomDamageFX() 

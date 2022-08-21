@@ -17,7 +17,7 @@ namespace PG.Battle
         List<GameObject> _listOfShow;
 
 
-        private void Start()
+        protected override void CallOnAwake()
         {
             //노드 9개 위치를 리스트에 저장
             foreach (PatternNodeScript node in PatternManager._instance._patternNodes)

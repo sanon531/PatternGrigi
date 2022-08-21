@@ -26,6 +26,19 @@ namespace PG.Battle
             //new Dictionary<ArtifactID, ArtifactData>();
         public static Enemy_Script _currentEnemy;
 
+        //적들의 데이터를 먼저 매치 하는 부분. 한버넹 강한 공격 도 공격이지만 아무튼.
+        //값은 언제든 수정이 가능.
+        public static Dictionary<CharacterID, DataEntity> _charactorAttack = 
+            new Dictionary<CharacterID, DataEntity>() 
+            {
+                { CharacterID.player,new DataEntity(DataEntity.Type.Damage,10)},
+                { CharacterID.Enemy_Fireboy,new DataEntity(DataEntity.Type.Damage,8)},
+                { CharacterID.Enemy_WindShooter,new DataEntity(DataEntity.Type.Damage,16)},
+
+            };
+
+        public static DataEntity _chargeGaugeData = new DataEntity(DataEntity.Type.ChargeGauge, 8);
+
     }
 
 
