@@ -14,8 +14,6 @@ namespace PG
         {
         }
     }
-
-
     // 해당 아티펙트는 적과 플레이어의 공격력을 둘다 올려주는 거
     public sealed class Arfifact_FragileRush : Artifact
     {
@@ -36,7 +34,7 @@ namespace PG
             //Debug.Log("Fragile_Rush LEL");
             for (int i = 0; i < Global_CampaignData._charactorAttackDic.Count; i++)
             {
-                if(Global_CampaignData._charactorAttackDic.ElementAt(i).Key == CharacterID.Player)
+                if(Global_CampaignData._charactorAttackDic.ElementAt(i).Key != CharacterID.Player)
                     Global_CampaignData._charactorAttackDic.ElementAt(i).Value.Add증가량(10f);
             }
 
@@ -46,6 +44,11 @@ namespace PG
         {
             base.Disable();
             Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(-10f);
+            for (int i = 0; i < Global_CampaignData._charactorAttackDic.Count; i++)
+            {
+                if (Global_CampaignData._charactorAttackDic.ElementAt(i).Key != CharacterID.Player)
+                    Global_CampaignData._charactorAttackDic.ElementAt(i).Value.Add증가량(-10f);
+            }
         }
         public override void AddCountOnArtifact()
         {
@@ -53,7 +56,7 @@ namespace PG
             _value++;
             for (int i = 0; i < Global_CampaignData._charactorAttackDic.Count; i++)
             {
-                if (Global_CampaignData._charactorAttackDic.ElementAt(i).Key == CharacterID.Player)
+                if (Global_CampaignData._charactorAttackDic.ElementAt(i).Key != CharacterID.Player)
                     Global_CampaignData._charactorAttackDic.ElementAt(i).Value.Add증가량(10f);
             }
             //Debug.Log("Fragile_Rush LEL");

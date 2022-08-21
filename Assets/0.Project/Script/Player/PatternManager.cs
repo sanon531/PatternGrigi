@@ -324,8 +324,8 @@ namespace PG.Battle
         {
             float _xval = Mathf.Pow(_IDDic[startID].x - _IDDic[endID].x, 2);
             float _yval = Mathf.Pow(_IDDic[startID].y - _IDDic[endID].y, 2);
-            Debug.Log(startID + " and " + endID);
-            Debug.Log(_IDDic[startID] + " + "+ _IDDic[endID] + ":"+ _xval +"+" + _yval);
+            //Debug.Log(startID + " and " + endID);
+            //Debug.Log(_IDDic[startID] + " + "+ _IDDic[endID] + ":"+ _xval +"+" + _yval);
             if (_xval == 0f && _yval == 0f)
                 return 1;
             else 
