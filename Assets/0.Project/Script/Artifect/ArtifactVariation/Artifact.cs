@@ -60,7 +60,7 @@ namespace PG
         }
         public virtual void AddCountOnArtifact() 
         {
-        
+            _value++;
         }
 
 

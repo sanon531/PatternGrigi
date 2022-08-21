@@ -46,6 +46,7 @@ namespace PG.Battle
                 //GlobalDataStorage.TotalArtifactTableDataDic;
             }
         }
+        //À¯¹° È¹µæÇÏ´Â
         public static void AddArtifactToPlayer_tempUse(ArtifactID id)
         {
 
@@ -57,11 +58,14 @@ namespace PG.Battle
                 _instance._temptTestArtifectList.Add(id);
                 Global_CampaignData._currentArtifactDictionary.Add(id, GlobalDataStorage.TotalArtifactClassDic[id]);
                 Global_CampaignData._currentArtifactDictionary[id].OnGetArtifact();
+                //Äµ¹ö½ºÀÇ ºÐÀÌ¸¦ À§ÇØ ³²°ÜµÒ.
+                ArtifactListShower.SetNewCaseOnList(id);
             }
             else 
             {
-            
-            
+                Global_CampaignData._currentArtifactDictionary[id].AddCountOnArtifact();
+                //Äµ¹ö½ºÀÇ ºÐÀÌ¸¦ À§ÇØ ³²°ÜµÒ.
+                ArtifactListShower.SetNumberOnCase(id, Global_CampaignData._currentArtifactDictionary[id].Value);
             }
         }
 

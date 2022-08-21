@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using PG.Data;
+using PG.Battle;
 [Serializable]
 public class StringStringDictionary : SerializableDictionary<string, string> {}
 
@@ -21,6 +22,8 @@ public class StringAudioDictionary : SerializableDictionary<string, AudioClip> {
 public class ObstacleIDObjectDic : SerializableDictionary<ObstacleID, GameObject> { }
 [Serializable]
 public class ActionDataDic : SerializableDictionary<EnemyAction, EnemyActionData> { }
+[Serializable]
+public class ArtifactIDShowCaseDic : SerializableDictionary<ArtifactID, ArtifactShowCase> { }
 
 
 

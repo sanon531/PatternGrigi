@@ -53,6 +53,14 @@ namespace PG.Battle
             }
         }
 
+
+        //새 랜덤 아이템들이 창으로 올라오도록 만들기.
+        void SetRandomItemOnPannel() 
+        {
+        
+        }
+
+
         //선택을 
         public static void GetButtonPressed(int buttonNum) 
         {

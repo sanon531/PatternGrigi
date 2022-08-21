@@ -23,7 +23,7 @@ namespace PG
 
         public override void OnGetArtifact()
         {
-            Global_BattleEventSystem.CallOnAddCalcDamage(10f);
+            Enable();
         }
 
         protected override void Enable()
@@ -38,6 +38,14 @@ namespace PG
             base.Disable();
             Global_BattleEventSystem.CallOnAddCalcDamage(-10f);
         }
+        public override void AddCountOnArtifact()
+        {
+            Global_BattleEventSystem.CallOnAddCalcDamage(10f);
+            _value++;
+            //Debug.Log("Fragile_Rush LEL");
+        }
+
+
     }
 
 }

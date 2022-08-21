@@ -23,22 +23,19 @@ namespace PG.Battle
             Global_BattleEventSystem.CallTotalPause();
             if (_isPannelshow)
             {
+                _pausePannel.transform.position = new Vector3(10000,0,0);
                 _isPannelshow = false;
             }
             else 
             {
+                int i_width = Screen.width;
+                int i_height = Screen.height;
+                _pausePannel.transform.position = new Vector3(i_width/2, i_height/2, 0);
                 _isPannelshow = true;
             }
-            _pausePannel.SetActive(_isPannelshow);
 
         }
 
-        //현재 유물들이 어떤건지 확인하는 코드
-        void ShowCurrentArtifactImage() 
-        {
-        
-        
-        }
 
 
     }
