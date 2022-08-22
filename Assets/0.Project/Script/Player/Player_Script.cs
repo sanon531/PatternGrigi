@@ -6,9 +6,8 @@ using DG.Tweening;
 using PG.Event;
 namespace PG.Battle 
 {
-    public class Player_Script : MonoBehaviour, IGetHealthSystem, ISetNontotalPause
+    public class Player_Script : MonoSingleton<Player_Script>, IGetHealthSystem, ISetNontotalPause
     {
-        public static Player_Script s_instance;
         #region//damage related
 
 
@@ -25,9 +24,8 @@ namespace PG.Battle
         [SerializeField]
         ParticleSystem _damageFX;
         // Start is called before the first frame update
-        void Awake()
+        protected override void CallOnAwake()
         {
-            s_instance = this;
             _healthSystem = new HealthSystem(healthAmountMax);
             _healthSystem.SetHealth(startingHealthAmount);
             _healthSystem.OnDead += HealthSystem_OnDead;
@@ -36,7 +34,7 @@ namespace PG.Battle
             Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
             _isDead = false;
         }
-        private void OnDestroy()
+        protected override void CallOnDestroy()
         {
             Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
@@ -67,16 +65,20 @@ namespace PG.Battle
         }
         public static void Damage(float _amount)
         {
-            if (s_instance._isDead)
+            if (_instance._isDead)
                 return;
 
             CameraShaker.ShakeCamera(0.5f, 1);
-            s_instance._healthSystem.Damage(_amount);
-            s_instance.currentHealth -= _amount;
-            s_instance.Health_Refresh();
-            s_instance._damageFX.Play();
+            _instance._healthSystem.Damage(_amount);
+            _instance.currentHealth -= _amount;
+            _instance.Health_Refresh();
+            _instance._damageFX.Play();
             //s_instance._healthBar.DoFadeHealth(s_instance._healthFadeTime);
-            DamageTextScript.Create(s_instance._thisSprite.transform.position, 0.5f, 0.3f, (int)_amount, Color.green);
+            //DamageTextScript.Create(s_instance._thisSprite.transform.position, 0.5f, 0.3f, (int)_amount, Color.green);
+            DamageFXManager.ShowDamage(Player_Script.ReturnCurrentTransform(), 1f, Mathf.FloorToInt(_amount),
+                Color.green, _instance.transform, _instance.transform);
+
+
             GlobalUIEventSystem.CallOnDamageUI();
             //DamageFXManager.Damage(_amount);
 
@@ -105,13 +107,13 @@ namespace PG.Battle
         //현재의 플레이어 스테이터스를 인식으로 받는다.
         public static Player_Status GetPlayerStatus() 
         {
-            return s_instance._playerStatus;
+            return _instance._playerStatus;
         }
 
 
         public static Vector3 ReturnCurrentTransform()
         {
-            return s_instance.transform.position;
+            return _instance.transform.position;
         }
         //일시정지시 정지할 행동들
 

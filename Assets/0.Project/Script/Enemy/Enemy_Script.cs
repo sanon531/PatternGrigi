@@ -26,7 +26,10 @@ namespace PG.Battle
         List<ParticleSystem> _damageFXLists;
 
         public PresetDemoItem _vibrationItems;
-        Text _gametime, Enemytime;
+        [SerializeField]
+        Transform _enemyPositionByAnimation;
+
+
         private void Start()
         {
             if (_instance != null&& _instance!=this)
@@ -298,7 +301,9 @@ namespace PG.Battle
             _instance._healthSystem.Damage(_amount);
             //Debug.Log(_amount+"+"+length);
             _amount *= length;
-            DamageTextScript.Create(_instance.transform.position, 2f, 0.3f, Mathf.FloorToInt(_amount), Color.red);
+            //DamageTextScript.Create(_instance.transform.position, 2f, 0.3f, Mathf.FloorToInt(_amount), Color.red);
+            DamageFXManager.ShowDamage(Player_Script.ReturnCurrentTransform(), 1f, Mathf.FloorToInt(_amount), 
+                Color.red, _instance._enemyPositionByAnimation, _instance.transform);
             Global_BattleEventSystem.CallOnCalcDamage(_amount);
             return _instance._isEnemyAlive;
         }
@@ -310,6 +315,7 @@ namespace PG.Battle
             _damageFXLists[_randomIndex].Play();
 
         }
+
 
         private void HealthSystem_OnDead(object sender, System.EventArgs e)
         {
