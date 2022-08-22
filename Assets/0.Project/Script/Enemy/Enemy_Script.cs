@@ -36,23 +36,25 @@ namespace PG.Battle
             _healthSystem.OnDead += HealthSystem_OnDead;
 
             GameObject.Find("EnemyHealthBarUI").GetComponent<HealthBarUI>().SetHealthSystem(_healthSystem);
-
-
-            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
-            Global_BattleEventSystem._onChargeStart += SetOnActionStunned;
-            Global_BattleEventSystem._onChargeEnd += SetOffActionStunned;
+            OnStartEventCall();
 
         }
-
-        private void OnDestroy()
+        protected override void CallOnDestroy()
         {
             Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
             Global_BattleEventSystem._onChargeStart -= SetOnActionStunned;
             Global_BattleEventSystem._onChargeEnd -= SetOffActionStunned;
-
         }
+
+        void OnStartEventCall() 
+        {
+            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
+            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
+            Global_BattleEventSystem._onChargeStart += SetOnActionStunned;
+            Global_BattleEventSystem._onChargeEnd += SetOffActionStunned;
+        }
+
 
         bool _isStatusChangable = true;
         bool _isStunned = false;
@@ -88,13 +90,14 @@ namespace PG.Battle
 
 
         #region//Action related
-
+        [SerializeField]
+        CharacterID _characterID = CharacterID.Enemy_Fireboy;
         [SerializeField]
         int _currentActionOrder = 0;
         [SerializeField]
-        EnemyAction _currentAction;
+        EnemyActionID _currentAction;
         [SerializeField]
-        List<EnemyAction> _enemyActionList = new List<EnemyAction>() { EnemyAction.Wait};
+        List<EnemyActionID> _enemyActionList = new List<EnemyActionID>() { EnemyActionID.Wait};
         List<IEnumerator> _routineList= new List<IEnumerator>();
         [SerializeField]
         ActionDataDic _actionDataDic;
@@ -108,7 +111,7 @@ namespace PG.Battle
             //ShowDebugtextScript.SetDebug(_tempAction.ToString());
             //여기서 액션의 처리가 진행이 되고 액션은주어진 리스트에 따라 결정 된다고 하자.
             //나중에 코루틴으로 캔슬도 되고 막 그럴 꺼지만 지금은 간단한 형성만
-            if(_currentAction!= EnemyAction.Wait ) 
+            if(_currentAction!= EnemyActionID.Wait ) 
             {
                 int i = 0;
                 IEnumerator _tempIEnum;
@@ -241,9 +244,13 @@ namespace PG.Battle
             yield return new WaitWhile(() => _deadLine > _enemyroutineTime);
 
             //Debug.Log("rip : " + (_deadLine > _enemyroutineTime));
-            ObstacleManager.SetObstacle(data, pos);
+            ObstacleManager.SetObstacle(data, pos,Global_CampaignData._charactorAttackDic[_characterID].FinalValue);
 
         }
+
+
+
+
         IEnumerator RemoveAllRoutine(float waitTime)
         {
             float _deadLine = _enemyroutineTime + waitTime;
@@ -258,7 +265,7 @@ namespace PG.Battle
         bool _isNontotalPaused = false;
         public void SetNonTotalPauseOn()
         {
-            Debug.Log("SetNonTotalPauseOn");
+            //Debug.Log("SetNonTotalPauseOn");
             _isNontotalPaused = true;
             for (int i = _routineList.Count -1; i>=0; i--) 
             {
@@ -269,7 +276,7 @@ namespace PG.Battle
 
         public void SetNonTotalPauseOff()
         {
-            Debug.Log("SetNonTotalPauseOf");
+            //Debug.Log("SetNonTotalPauseOf");
 
             _isNontotalPaused = false;
             for (int i = _routineList.Count - 1; i >= 0; i--)
@@ -283,18 +290,20 @@ namespace PG.Battle
 
         #endregion
         #region //Damage related
-        public static bool Damage(float _amount)
+
+        public static bool Damage(float length)
         {
-            _instance._healthSystem.Damage(_amount);
+            float _amount = Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue;
             _instance.RandomDamageFX();
-            //Debug.Log(_amount);
+            _instance._healthSystem.Damage(_amount);
+            //Debug.Log(_amount+"+"+length);
+            _amount *= length;
             DamageTextScript.Create(_instance.transform.position, 2f, 0.3f, Mathf.FloorToInt(_amount), Color.red);
             Global_BattleEventSystem.CallOnCalcDamage(_amount);
-
             return _instance._isEnemyAlive;
         }
 
-
+        //데미지 이펙트.
         void RandomDamageFX() 
         {
             int _randomIndex = UnityEngine.Random.Range(0, _damageFXLists.Count);
@@ -327,14 +336,16 @@ namespace PG.Battle
 
         #region//animation related
 
-        Dictionary<EnemyAction, string> _actionStringDic = new Dictionary<EnemyAction, string>(){ 
-            { EnemyAction.BasicAttack_1, "Pattern_1" },
-            { EnemyAction.BasicAttack_2, "Pattern_2" }, 
-            { EnemyAction.Wait, "Wait" }};
+        Dictionary<EnemyActionID, string> _actionStringDic = new Dictionary<EnemyActionID, string>(){ 
+            { EnemyActionID.BasicAttack_1, "Pattern_1" },
+            { EnemyActionID.BasicAttack_2, "Pattern_2" },
+            { EnemyActionID.BasicAttack_3, "Pattern_2" },
+            { EnemyActionID.BasicAttack_4, "Pattern_2" },
+            { EnemyActionID.Wait, "Wait" }};
 
         void StartAnimationByCurrentAction() 
         {
-            _enemyskeleton.state.SetAnimation(1, _actionStringDic[_currentAction], _currentAction == EnemyAction.Wait);
+            _enemyskeleton.state.SetAnimation(1, _actionStringDic[_currentAction], _currentAction == EnemyActionID.Wait);
         }
         void StartAnimation_Dead()
         {

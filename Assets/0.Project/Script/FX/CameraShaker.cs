@@ -13,7 +13,7 @@ namespace PG
         float _shakerTimer = 0;
         CinemachineBasicMultiChannelPerlin _cinemachinePerlin;
         // Start is called before the first frame update
-        void Start()
+        protected override void CallOnAwake()
         {
             _cinemachinePerlin = _cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 

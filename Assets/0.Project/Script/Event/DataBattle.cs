@@ -30,26 +30,62 @@ namespace PG.Data
 
             };
 
-
-        public static Dictionary<ArtifactID, ArtifactTableData> TotalArtifactTableDataDic =
-            new Dictionary<ArtifactID, ArtifactTableData>()
+        //아티팩트의 수치와 행동을 분리하여야 한다.그래야 나중에 텍스트 처리할때 편하다.
+        public static Dictionary<ArtifactID, ArtifactData> TotalArtifactTableDataDic =
+            new Dictionary<ArtifactID, ArtifactData>()
             {
-                {ArtifactID.FragileRush, new ArtifactTableData(
+                {ArtifactID.FragileRush, new ArtifactData(
                     ArtifactID.FragileRush,
-                    "","",
-                    (int)Rarity.Common,true,0)},
-                {ArtifactID.Equatore, new ArtifactTableData(
+                    "적에게 가하는 공격력 +10 플레이어가 받는 데미지도 10 증가합니다.","",
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0)},
+                {ArtifactID.Equatore, new ArtifactData(
                     ArtifactID.Equatore,
-                    "","",
-                    (int)Rarity.Common,true,0)},
-                {ArtifactID.PoloNord, new ArtifactTableData(
+                    "적에 가하는 공격력이 5만큼 상승합니다","",
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0)},
+                {ArtifactID.PoloNord, new ArtifactData(
                     ArtifactID.PoloNord,
                     "","",
-                    (int)Rarity.Common,true,0)},
-                {ArtifactID.StrangeTropics, new ArtifactTableData(
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0)},
+                {ArtifactID.StrangeTropics, new ArtifactData(
                     ArtifactID.StrangeTropics,
                     "","",
-                    (int)Rarity.Common,true,0)},
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0)},
+                {ArtifactID.BubbleGun, new ArtifactData(
+                    ArtifactID.BubbleGun,
+                    "거리에 따른 배율이 소량 상승하고 공격력이 약간 감소합니다.","",
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0)},
+                {ArtifactID.QuickSlice, new ArtifactData(
+                    ArtifactID.QuickSlice,
+                    "거리에 따른 배율이 소량 감소합니다.공격력이 10 상승합니다.","",
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0)},
+
+            };
+        //나중에 로컬라이제이션 할때 사용 할 생각.
+        public static Dictionary<ArtifactID, string> ArtifactToNameText_KR = new Dictionary<ArtifactID, string>() { };
+
+
+
+
+        public static Dictionary<ArtifactID, Artifact> TotalArtifactClassDic =
+            new Dictionary<ArtifactID, Artifact>() 
+            {
+                {ArtifactID.FragileRush, new Arfifact_FragileRush()},
+                {ArtifactID.BubbleGun, new Arfifact_BubbleGun()},
+                {ArtifactID.Equatore, new Arfifact_Equatore()},
+                {ArtifactID.QuickSlice, new Arfifact_QuickSlice()},
+
             };
 
 
@@ -60,7 +96,7 @@ namespace PG.Data
     [Serializable]
     public class EnemyActionData
     {
-        public EnemyAction _action = EnemyAction.BasicAttack_1;
+        public EnemyActionID _action = EnemyActionID.BasicAttack_1;
         public float _actionTime = 5;
         public SpawnType _spawnType = SpawnType.SetAtOnce_WithSame;
         // gradually 에서만 쓰임.
@@ -78,12 +114,12 @@ namespace PG.Data
         public float _lifeTime = 4;
         //발동전까지의 시간.
         public float _activeTime = 1;
-        public float _damage_Of_Spawn = 8;
+        public float _damageMag = 1;
     }
 
 
     //적 패턴은 많아야 4개고  중간 이상의 적에게는 필살기 1개 정도 있다고 보면 될듯함
-    public enum EnemyAction
+    public enum EnemyActionID
     {
         Wait = 0,
         BasicAttack_1 = 1,

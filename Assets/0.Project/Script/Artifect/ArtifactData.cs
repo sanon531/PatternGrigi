@@ -5,9 +5,8 @@ using System.Collections;
 namespace PG.Data
 {
     [System.Serializable]
-    public class ArtifactTableData
+    public class ArtifactData
     {
-
 
         [SerializeField]
         string key;
@@ -39,8 +38,9 @@ namespace PG.Data
 
         [SerializeField]
         bool isonoff;
+        public bool Isonoff { get { return isonoff; } set { this.isonoff = value; } }
 
-        public ArtifactTableData(ArtifactID id, string devcomment, string devcomment2, int rarity, bool isonoff, int value)
+        public ArtifactData(ArtifactID id, string devcomment, string devcomment2, int rarity, bool isonoff, int value)
         {
             this.key = id.ToString();
             this.devcomment = devcomment;
@@ -50,7 +50,7 @@ namespace PG.Data
             this.value = value;
         }
 
-        public bool Isonoff { get { return isonoff; } set { this.isonoff = value; } }
+
 
     }
 }

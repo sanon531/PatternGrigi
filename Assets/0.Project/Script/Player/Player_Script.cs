@@ -52,7 +52,7 @@ namespace PG.Battle
 
         // Update is called once per frame
         void Update()
-        {
+        {/*
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 _healthBar.AddRemoveSegments(1f);
@@ -62,7 +62,7 @@ namespace PG.Battle
                 _healthBar.AddRemoveSegments(-1f);
             }
 
-
+            */
 
         }
         public static void Damage(float _amount)

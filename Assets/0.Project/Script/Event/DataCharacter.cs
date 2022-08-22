@@ -39,17 +39,17 @@ namespace PG
             }
         }
 
-        public int 최대생명력_Default = 100;
-        public int 최대생명력
+        public int Max_Health_Default = 100;
+        public int MaxHealth
         {
             get
             {
-                DataEntity 최대생명력data = DataEntity.고유데이터(최대생명력_Default);
+                DataEntity Maxhealthdata = DataEntity.OriginalData(Max_Health_Default);
                 //Global_BattleEventSystem.CallOnCalc최대생명력(this, 최대생명력data);
-                return (int)최대생명력data.FinalValue;
+                return (int)Maxhealthdata.FinalValue;
             }
         }
-        public int 현재생명력;
+        public int CurrentHealth;
         public int 현재방어도;
 
 

@@ -30,13 +30,10 @@ namespace PG.Battle
         }
 
 
-        public override void SetSpawnData(float lifeTime, float activetimes)
+        public override void SetSpawnData(float lifeTime, float activetimes,float damage)
         {
+            base.SetSpawnData(lifeTime, activetimes, damage);
             _Animator.SetBool("isActive",false);
-            _maxLifetime = lifeTime;
-            _lifeTime = _maxLifetime;
-            _activetime = activetimes;
-            _isPlaced = true;
             _spawnedParticle.Play();
 
         }

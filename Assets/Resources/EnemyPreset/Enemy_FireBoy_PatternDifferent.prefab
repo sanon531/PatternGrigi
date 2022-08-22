@@ -33255,9 +33255,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f2dc79988ca8044a9650c19e4a6ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthAmountMax: 300
-  startingHealthAmount: 300
-  currentHealth: 300
+  healthAmountMax: 10000
+  startingHealthAmount: 10000
+  currentHealth: 10000
   _enemyskeleton: {fileID: 6813999688783816045}
   _damageFXLists:
   - {fileID: 1777708210387732293}
@@ -33271,11 +33271,12 @@ MonoBehaviour:
     WaveFormAsset: {fileID: 11400000, guid: 6eb4d8418c141c543b783100ff1df7a1, type: 2}
     RumbleWaveFormAsset: {fileID: 11400000, guid: f0fdac4b02998f24bbe6e096fa054490, type: 2}
   _enemyroutineTime: 0
+  _characterID: 2
   _currentActionOrder: 0
   _currentAction: 0
-  _enemyActionList: 0000000001000000020000000000000001000000
+  _enemyActionList: 000000000300000002000000000000000100000001000000
   _actionDataDic:
-    m_keys: 00000000010000000200000063000000
+    m_keys: 0000000001000000020000006300000003000000
     m_values:
     - _action: 0
       _actionTime: 2
@@ -33287,9 +33288,10 @@ MonoBehaviour:
         _lifeTime: 0
         _activeTime: 0
         _damage_Of_Spawn: 0
+      _placetimeList: []
     - _action: 1
       _actionTime: 2
-      _spawnType: 3
+      _spawnType: 2
       _placeTimeGradual: 0.5
       _placeList:
       - {x: 1, y: -0.3}
@@ -33300,19 +33302,20 @@ MonoBehaviour:
       - _thisID: 8
         _lifeTime: 3
         _activeTime: 1
-        _damage_Of_Spawn: 8
+        _damage_Of_Spawn: 1
       - _thisID: 7
         _lifeTime: 3
         _activeTime: 1
-        _damage_Of_Spawn: 8
+        _damage_Of_Spawn: 1
       - _thisID: 9
         _lifeTime: 3
         _activeTime: 1
-        _damage_Of_Spawn: 8
+        _damage_Of_Spawn: 1
       - _thisID: 6
         _lifeTime: 3
         _activeTime: 1
-        _damage_Of_Spawn: 8
+        _damage_Of_Spawn: 1
+      _placetimeList: []
     - _action: 2
       _actionTime: 3
       _spawnType: 0
@@ -33326,7 +33329,8 @@ MonoBehaviour:
       - _thisID: 0
         _lifeTime: 3
         _activeTime: 1
-        _damage_Of_Spawn: 8
+        _damage_Of_Spawn: 1
+      _placetimeList: []
     - _action: 2
       _actionTime: 3
       _spawnType: 0
@@ -33341,6 +33345,38 @@ MonoBehaviour:
         _lifeTime: 0
         _activeTime: 0
         _damage_Of_Spawn: 0
+      _placetimeList: []
+    - _action: 1
+      _actionTime: 2
+      _spawnType: 5
+      _placeTimeGradual: 0.5
+      _placeList:
+      - {x: 1, y: -0.3}
+      - {x: -1.4, y: -0.85}
+      - {x: -1, y: -3.2}
+      - {x: 1.45, y: -2.85}
+      _spawnDataList:
+      - _thisID: 8
+        _lifeTime: 3
+        _activeTime: 1
+        _damage_Of_Spawn: 1
+      - _thisID: 7
+        _lifeTime: 3
+        _activeTime: 1
+        _damage_Of_Spawn: 1
+      - _thisID: 9
+        _lifeTime: 3
+        _activeTime: 1
+        _damage_Of_Spawn: 1
+      - _thisID: 6
+        _lifeTime: 3
+        _activeTime: 1
+        _damage_Of_Spawn: 1
+      _placetimeList:
+      - 0.5
+      - 0.2
+      - 0.1
+      - 0.05
 --- !u!1 &759499210340218935
 GameObject:
   m_ObjectHideFlags: 0

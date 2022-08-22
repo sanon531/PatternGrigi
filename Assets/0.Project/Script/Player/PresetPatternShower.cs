@@ -17,6 +17,9 @@ namespace PG.Battle
         List<GameObject> _listOfShow;
 
 
+        protected override void CallOnAwake()
+        {
+        }
         private void Start()
         {
             //노드 9개 위치를 리스트에 저장

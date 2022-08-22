@@ -31,7 +31,7 @@ namespace PG.Battle
             }
 
         }
-        private void OnDestroy()
+        protected override void CallOnDestroy()
         {
             Global_BattleEventSystem._onPatternSuccessed -= CallPatternEvent;
         }

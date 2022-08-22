@@ -19,7 +19,7 @@ namespace PG
         }
 
 
-        public static DataEntity 고유데이터(int 기본값)
+        public static DataEntity OriginalData(int 기본값)
         {
             return new DataEntity(Type.None, 기본값);
         }

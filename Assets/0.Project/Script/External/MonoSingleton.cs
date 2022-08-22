@@ -11,11 +11,25 @@ namespace PG
             if (_instance != null)
                 Debug.LogError("one more current Status");
             _instance = this as T;
-            OnAwake();
+            CallOnAwake();
         }
 
-        protected virtual void OnAwake()
+        protected virtual void CallOnAwake()
         {
         }
+
+        private void OnDestroy() 
+        {
+            _instance = null;
+            CallOnDestroy();
+        }
+
+        protected virtual void CallOnDestroy() 
+        {
+        
+        
+        }
+
+
     }
 } 

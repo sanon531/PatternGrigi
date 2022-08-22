@@ -19,7 +19,12 @@ namespace PG
         private float _증가량배수 = 1f;  //증가량에만 곱한다. (공격력 계수 등에 사용)
         private float _배수 = 1f;        //기본값에 증가량이 더해진 값에 곱한다.
         private float _추가량 = 0;         //나머지 계산이 다 완료 된 후, 값을 추가한다.
-        public float FinalValue { get { return (float)((_기본값 + _증가량 * _증가량배수) * _배수) + _추가량; } }
+        public float FinalValue { get {
+                //Debug.Log("기본값: " + _기본값 + ", 증가량" + _증가량 +", 증가량 배수"+ _증가량배수 + ", 추가량 "+ _추가량+" , 배수" +_배수);
+                //Debug.Log(" a"+(float)((_기본값 + _증가량 * _증가량배수) * _배수));
+                return (float)((_기본값 + _증가량 * _증가량배수) * _배수 + _추가량); 
+            
+            } }
 
 
         public Property properties { get; private set; }
@@ -37,6 +42,7 @@ namespace PG
             Damage = 1,
             ChargeGauge = 2,
             Defence = 3,
+
             생명력직접대입 = 4,   //피해나 회복이 아닌 생명력을 N으로 만듭니다 등의 효과.
                            //피해나 회복에따른 이벤트를 발생시키지 않는다.
             방어도직접대입 = 5,   //방어도 획득이나 소모가아님.
@@ -54,7 +60,9 @@ namespace PG
             소모품획득 = 20,
 
             유물수치변동 = 100,
-            금화수치변동 = 101,
+
+            LengthMag = 65, // 이동한 거리에따른 배율
+
         }
         public enum Property
         {

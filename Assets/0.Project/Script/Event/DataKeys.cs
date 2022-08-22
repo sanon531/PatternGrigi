@@ -4,10 +4,23 @@ using UnityEngine;
 
 namespace PG.Data
 {
+    public enum ArtifacProperty
+    {
+        None = 0,
+        CountValue = 1,
+    }
+
+    public enum ArtifactFlag
+    {
+        Active = 0,
+        Inactive = 1,
+    }
+
     public enum CharacterID
     {
-        player = 1,
-
+        Player = 1,
+        Enemy_Fireboy = 2,
+        Enemy_WindShooter = 3,
 
     }
     public enum EffectID
@@ -21,18 +34,29 @@ namespace PG.Data
     public enum ArtifactID
     {
 
-        //기본 유물.
+        //유리대포처럼 적 공격 업 + 내 공격 업.
         FragileRush =10,
-        //적도 - 공격력을 상승 시킴.
+        //적도 - 약간공격력을 상승 시킴.
         Equatore =11,
         PoloNord = 12,
         StrangeTropics =13,
-        BlackAndWhite = 14
+        BlackAndWhite = 14,
+
+
+        //장거리세트
+        BubbleGun = 20,// 길어질때의 배율 추가.
+        Iceberg = 27,
+
+        //단거리세트
+        HonetBatik = 40,
+        KrisDagger = 41,
+        QuickSlice = 42,
+
 
     }
 
 
-    public enum Rarity
+    public enum ArtifactRarity
     {
         None = -1,
 
@@ -49,6 +73,7 @@ namespace PG.Data
         Battle
     }
 
+    //charactor kinds 로 바꾸기
     public enum StageKind
     {
         Fire_TInyMage,

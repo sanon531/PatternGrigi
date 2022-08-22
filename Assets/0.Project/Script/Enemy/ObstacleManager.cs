@@ -12,13 +12,13 @@ namespace PG.Battle
         [SerializeField]
         List<Obstacle> _activeObstacleList = new List<Obstacle>();
 
-        protected override void OnAwake()
+        protected override void CallOnAwake()
         {
             Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
 
         }
-        private void OnDestroy()
+        protected override void CallOnDestroy()
         {
             Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
@@ -36,12 +36,12 @@ namespace PG.Battle
             }
         }
 
-        public static void SetObstacle(SpawnData data, Vector2 pos)
+        public static void SetObstacle(SpawnData data, Vector2 pos,float damage)
         {
             GameObject _temp = Instantiate(_instance._obstacleDic[data._thisID], _instance.transform);
             _temp.transform.position = pos;
             Obstacle _tempObstacle = _temp.GetComponent<Obstacle>();
-            _tempObstacle.SetSpawnData(data._lifeTime, data._activeTime);
+            _tempObstacle.SetSpawnData(data._lifeTime, data._activeTime, data._damageMag*damage);
             _instance._activeObstacleList.Add(_tempObstacle);
         }
 
