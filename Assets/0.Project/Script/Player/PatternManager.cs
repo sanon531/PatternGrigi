@@ -61,8 +61,13 @@ namespace PG.Battle
             //먼저 게이지를 채우고 만약 게이지가 다찼을경우 주어진 노드가 나오도록함. 
             _instance.SetGaugeChange();
             //길이 계산한다음에 초기화 해줘야함 아래 두줄 순서 바꾸지 마셈
-            float _length = _instance.GetNodePositionByID(_instance._lastNode, nodeID);
+            float _length = 
+                _instance.GetNodePositionByID(_instance._lastNode, nodeID) * 
+                Global_CampaignData._lengthMagnData.FinalValue; ;
             _instance.CheckNodeOnDamage(nodeID);
+           
+
+            //데미지 계산과
             //죽었으면 모든 노드 값을 초기화 한다.
             if (!Enemy_Script.Damage(_length)) 
             {
@@ -128,7 +133,6 @@ namespace PG.Battle
             }
         }
 
-
         //지금이 랜덤 노드를 선택하는 상황인가 아닌가.
         bool _isRandomNodeSetMode = true;
         //지금 패턴이 설치 되었는가.
@@ -173,7 +177,6 @@ namespace PG.Battle
             int _deleteTarget = Random.Range(0, i);
             //Debug.Log(i + "set" + _deleteTarget);
             SetNodeToNextReach(_inactivatedNode[_deleteTarget]);
-
         }
 
         //현재 노드가 뭐든지 일단 없애고 보는거. 

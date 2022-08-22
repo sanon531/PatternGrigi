@@ -9,6 +9,9 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(StringAudioDictionary))]
 [CustomPropertyDrawer(typeof(ObstacleIDObjectDic))]
 [CustomPropertyDrawer(typeof(ActionDataDic))]
+[CustomPropertyDrawer(typeof(QuaternionMyClassDictionary))]
+
+
 public class AnySerializableDictionaryPropertyDrawer : SerializableDictionaryPropertyDrawer {}
 
 [CustomPropertyDrawer(typeof(ColorArrayStorage))]

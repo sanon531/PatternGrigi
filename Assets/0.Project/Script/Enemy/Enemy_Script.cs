@@ -95,9 +95,9 @@ namespace PG.Battle
         [SerializeField]
         int _currentActionOrder = 0;
         [SerializeField]
-        EnemyAction _currentAction;
+        EnemyActionID _currentAction;
         [SerializeField]
-        List<EnemyAction> _enemyActionList = new List<EnemyAction>() { EnemyAction.Wait};
+        List<EnemyActionID> _enemyActionList = new List<EnemyActionID>() { EnemyActionID.Wait};
         List<IEnumerator> _routineList= new List<IEnumerator>();
         [SerializeField]
         ActionDataDic _actionDataDic;
@@ -111,7 +111,7 @@ namespace PG.Battle
             //ShowDebugtextScript.SetDebug(_tempAction.ToString());
             //여기서 액션의 처리가 진행이 되고 액션은주어진 리스트에 따라 결정 된다고 하자.
             //나중에 코루틴으로 캔슬도 되고 막 그럴 꺼지만 지금은 간단한 형성만
-            if(_currentAction!= EnemyAction.Wait ) 
+            if(_currentAction!= EnemyActionID.Wait ) 
             {
                 int i = 0;
                 IEnumerator _tempIEnum;
@@ -336,16 +336,16 @@ namespace PG.Battle
 
         #region//animation related
 
-        Dictionary<EnemyAction, string> _actionStringDic = new Dictionary<EnemyAction, string>(){ 
-            { EnemyAction.BasicAttack_1, "Pattern_1" },
-            { EnemyAction.BasicAttack_2, "Pattern_2" },
-            { EnemyAction.BasicAttack_3, "Pattern_2" },
-            { EnemyAction.BasicAttack_4, "Pattern_2" },
-            { EnemyAction.Wait, "Wait" }};
+        Dictionary<EnemyActionID, string> _actionStringDic = new Dictionary<EnemyActionID, string>(){ 
+            { EnemyActionID.BasicAttack_1, "Pattern_1" },
+            { EnemyActionID.BasicAttack_2, "Pattern_2" },
+            { EnemyActionID.BasicAttack_3, "Pattern_2" },
+            { EnemyActionID.BasicAttack_4, "Pattern_2" },
+            { EnemyActionID.Wait, "Wait" }};
 
         void StartAnimationByCurrentAction() 
         {
-            _enemyskeleton.state.SetAnimation(1, _actionStringDic[_currentAction], _currentAction == EnemyAction.Wait);
+            _enemyskeleton.state.SetAnimation(1, _actionStringDic[_currentAction], _currentAction == EnemyActionID.Wait);
         }
         void StartAnimation_Dead()
         {

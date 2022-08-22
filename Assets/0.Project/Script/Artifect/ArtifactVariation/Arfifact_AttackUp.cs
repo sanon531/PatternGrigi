@@ -14,6 +14,37 @@ namespace PG
         {
         }
     }
+    public sealed class Arfifact_Equatore : Artifact
+    {
+        public Arfifact_Equatore() : base(ArtifactID.Equatore)
+        {
+        }
+        public override void OnGetArtifact()
+        {
+            Enable();
+        }
+
+        protected override void Enable()
+        {
+            base.Enable();
+            //간단히 칼크 데미지를 전부 실행함
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(5f);
+
+
+        }
+        protected override void Disable()
+        {
+            base.Disable();
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(-5f);
+        }
+        public override void AddCountOnArtifact()
+        {
+
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(5f);
+            _value++;
+        }
+
+    }
     // 해당 아티펙트는 적과 플레이어의 공격력을 둘다 올려주는 거
     public sealed class Arfifact_FragileRush : Artifact
     {
@@ -62,6 +93,78 @@ namespace PG
             //Debug.Log("Fragile_Rush LEL");
         }
 
+
+    }
+
+
+
+
+    //거리에따라 그 길이의 배율이 증가하나 기본 데미지가 감소함.
+    public sealed class Arfifact_BubbleGun : Artifact
+    {
+        public Arfifact_BubbleGun() : base(ArtifactID.BubbleGun)
+        {
+        }
+
+        public override void OnGetArtifact()
+        {
+            Enable();
+        }
+
+        protected override void Enable()
+        {
+            base.Enable();
+            //간단히 칼크 데미지를 전부 실행함
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(-5f);
+            Global_CampaignData._lengthMagnData.Add증가량(0.75f);
+
+        }
+        protected override void Disable()
+        {
+            base.Disable();
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(5f);
+            Global_CampaignData._lengthMagnData.Add증가량(-0.75f);
+
+        }
+        public override void AddCountOnArtifact()
+        {
+            _value++;
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(-5f);
+            Global_CampaignData._lengthMagnData.Add증가량(0.75f);
+        }
+
+    }
+    public sealed class Arfifact_QuickSlice : Artifact
+    {
+        public Arfifact_QuickSlice() : base(ArtifactID.QuickSlice)
+        {
+        }
+
+        public override void OnGetArtifact()
+        {
+            Enable();
+        }
+
+        protected override void Enable()
+        {
+            base.Enable();
+            //간단히 칼크 데미지를 전부 실행함
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(5f);
+            Global_CampaignData._lengthMagnData.Add증가량(-0.2f);
+        }
+        protected override void Disable()
+        {
+            base.Disable();
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(-5f);
+            Global_CampaignData._lengthMagnData.Add증가량(0.2f);
+
+        }
+        public override void AddCountOnArtifact()
+        {
+            _value++;
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(5f);
+            Global_CampaignData._lengthMagnData.Add증가량(-0.2f);
+        }
 
     }
 

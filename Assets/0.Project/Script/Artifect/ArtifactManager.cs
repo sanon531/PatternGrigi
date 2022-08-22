@@ -49,7 +49,6 @@ namespace PG.Battle
         //유물 획득하는
         public static void AddArtifactToPlayer_tempUse(ArtifactID id)
         {
-
             //일단 유물은 딕셔너리에서 1개씩 얻을 수 있으며 여러번 넣어지면 그냥 숫자가 상승한다고 하자. 
             //미래에는 그냥 간단하게
             if (Global_CampaignData._currentArtifactDictionary.ContainsKey(id) == false)

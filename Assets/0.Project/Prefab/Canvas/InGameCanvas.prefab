@@ -996,19 +996,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5552580520793690052}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6060035455461757244}
-        m_TargetAssemblyTypeName: PG.Battle.PannelForChooseScript, Assembly-CSharp
-        m_MethodName: CallButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &6060035455461757244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1021,7 +1009,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c64d8b73578284ebef46a3e84db2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttoNum: 2
+  _buttonNum: 2
+  _title: {fileID: 0}
+  _content: {fileID: 0}
+  _contentImage: {fileID: 0}
 --- !u!1 &5552580520838923977
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,7 +1081,7 @@ MonoBehaviour:
   - {fileID: 5552580521048687427}
   - {fileID: 5552580521296070317}
   - {fileID: 5552580521620368048}
-  _upgradeDataList: 0a0000000a0000000a0000000a000000
+  _upgradeDataList: 0a0000000b0000002a00000014000000
 --- !u!1 &5552580520841390289
 GameObject:
   m_ObjectHideFlags: 0
@@ -2123,7 +2114,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c64d8b73578284ebef46a3e84db2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttoNum: 3
+  _buttonNum: 3
+  _title: {fileID: 0}
+  _content: {fileID: 0}
+  _contentImage: {fileID: 0}
 --- !u!1 &5552580521228759293
 GameObject:
   m_ObjectHideFlags: 0
@@ -2505,7 +2499,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c64d8b73578284ebef46a3e84db2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttoNum: 0
+  _buttonNum: 0
+  _title: {fileID: 0}
+  _content: {fileID: 0}
+  _contentImage: {fileID: 0}
 --- !u!1 &5552580521608524239
 GameObject:
   m_ObjectHideFlags: 0
@@ -4153,7 +4150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c64d8b73578284ebef46a3e84db2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttoNum: 1
+  _buttonNum: 1
+  _title: {fileID: 0}
+  _content: {fileID: 0}
+  _contentImage: {fileID: 0}
 --- !u!1 &5552580522499920430
 GameObject:
   m_ObjectHideFlags: 0

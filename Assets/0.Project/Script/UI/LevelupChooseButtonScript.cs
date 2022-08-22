@@ -8,7 +8,7 @@ using PG.Data;
 namespace PG.Battle
 {
     //레벨업, 아이템 얻었을때 나오는 창.
-    public class PannelForChooseScript : MonoBehaviour
+    public class LevelupChooseButtonScript : MonoBehaviour
     {
         [SerializeField]
         int _buttonNum=0;

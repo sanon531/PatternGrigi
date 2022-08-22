@@ -37,8 +37,8 @@ namespace PG.Data
 
             };
 
-        //모든 적들의 공격관련한 데이터 엔티티를 수정하는 예시임..
-
+        //거리에따른 배율임 
+        public static DataEntity _lengthMagnData = new DataEntity(DataEntity.Type.LengthMag, 1);
         public static DataEntity _chargeGaugeData = new DataEntity(DataEntity.Type.ChargeGauge, 8);
 
     }
