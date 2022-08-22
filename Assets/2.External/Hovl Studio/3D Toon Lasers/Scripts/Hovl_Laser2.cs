@@ -10,20 +10,21 @@ public class Hovl_Laser2 : MonoBehaviour
     public Color laserColor = new Vector4(1,1,1,1);
     public GameObject HitEffect;
     public GameObject FlashEffect;
-    public float HitOffset = 0;
 
+    [Header("Another Setting")]
+    public float HitOffset = 0;
     public float MaxLength;
 
-    private bool UpdateSaver = false;
-    private ParticleSystem laserPS;
-    private ParticleSystem[] Flash;
-    private ParticleSystem[] Hit;
-    private Material laserMat;
-    private int particleCount;
-    private ParticleSystem.Particle[] particles;
-    private Vector3[] particlesPositions;
-    private float dissovleTimer = 0;
-    private bool startDissovle = false;
+    protected bool UpdateSaver = false;
+    protected ParticleSystem laserPS;
+    protected ParticleSystem[] Flash;
+    protected ParticleSystem[] Hit;
+    protected Material laserMat;
+    protected int particleCount;
+    protected ParticleSystem.Particle[] particles;
+    protected Vector3[] particlesPositions;
+    protected float dissovleTimer = 0;
+    protected bool startDissovle = false;
 
     void Start()
     {
@@ -42,6 +43,7 @@ public class Hovl_Laser2 : MonoBehaviour
             laserMat.SetVector("_StartPoint", transform.position);
             //Set end laser point
             RaycastHit hit;
+            //물체랑 부딪히는지 아닌지 검사
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, MaxLength))
             {
                 particleCount = Mathf.RoundToInt(hit.distance / (2 * laserScale));
@@ -106,7 +108,7 @@ public class Hovl_Laser2 : MonoBehaviour
         }
     }
 
-    void AddParticles()
+    protected void AddParticles()
     {
         //Old particles settings
         /*
