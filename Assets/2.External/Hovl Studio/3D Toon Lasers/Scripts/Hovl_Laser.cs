@@ -6,26 +6,28 @@ using UnityEngine;
 
 public class Hovl_Laser : MonoBehaviour
 {
-    public int damageOverTime = 30;
+    //public int damageOverTime = 30;
 
     public GameObject HitEffect;
+
+    [Header("Another Setting")]
     public float HitOffset = 0;
     public bool useLaserRotation = false;
 
     public float MaxLength;
-    private LineRenderer Laser;
+    protected LineRenderer Laser;
 
     public float MainTextureLength = 1f;
     public float NoiseTextureLength = 1f;
-    private Vector4 Length = new Vector4(1,1,1,1);
+    protected Vector4 Length = new Vector4(1,1,1,1);
     //private Vector4 LaserSpeed = new Vector4(0, 0, 0, 0); {DISABLED AFTER UPDATE}
     //private Vector4 LaserStartSpeed; {DISABLED AFTER UPDATE}
     //One activation per shoot
-    private bool LaserSaver = false;
-    private bool UpdateSaver = false;
+    protected bool LaserSaver = false;
+    protected bool UpdateSaver = false;
 
-    private ParticleSystem[] Effects;
-    private ParticleSystem[] Hit;
+    protected ParticleSystem[] Effects;
+    protected ParticleSystem[] Hit;
 
     void Start ()
     {

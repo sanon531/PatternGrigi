@@ -11,15 +11,12 @@ namespace PG.Battle
         // 일단 
         
         [SerializeField]
-        GameObject _lightningBoltPrefab;
+        GameObject _LazerPrefab;
         
         List<Transform> _nodes = new List<Transform>();
         List<GameObject> _listOfShow;
 
 
-        protected override void CallOnAwake()
-        {
-        }
         private void Start()
         {
             //노드 9개 위치를 리스트에 저장
@@ -33,16 +30,25 @@ namespace PG.Battle
         {
             _instance._listOfShow = new List<GameObject>();
 
-            GameObject temp, start, end;
+            GameObject temp;
+            Transform startTr, endTr;
 
             //패턴의 노드번호를 받아서 해당하는 레이저 만들고 리스트에 추가
             for (int i=0; i < presetNodes.Count-1; i++)
             {
-                temp = Instantiate(_instance._lightningBoltPrefab, _instance.transform);
-                start = temp.GetComponent<LightningBoltScript>().StartObject;
-                end = temp.GetComponent<LightningBoltScript>().EndObject;
-                start.transform.position = _instance._nodes[presetNodes[i]].position;
-                end.transform.position = _instance._nodes[presetNodes[i+1]].position;
+                temp = Instantiate(_instance._LazerPrefab, _instance.transform);
+
+                if(temp.GetComponent<LazerParticle>() != null) 
+                {
+                    temp.GetComponent<LazerParticle>()._StartPos = _instance._nodes[presetNodes[i]].position;
+                    temp.GetComponent<LazerParticle>()._EndPos = _instance._nodes[presetNodes[i + 1]].position;
+                }
+                else
+                {
+                    temp.GetComponent<LazerLine>()._StartPos = _instance._nodes[presetNodes[i]].position;
+                    temp.GetComponent<LazerLine>()._EndPos = _instance._nodes[presetNodes[i + 1]].position;
+                }
+
                 _instance._listOfShow.Add(temp);
             }
         }

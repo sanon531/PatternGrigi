@@ -4,11 +4,11 @@ Shader "Hovl/Particles/VolumeLaser"
 {
 	Properties
 	{
-		[HideInInspector]_StartPoint("StartPoint", Vector) = (0,1,0,0)
+		_StartPoint("StartPoint", Vector) = (0,1,0,0)
 		_StartDistance("Start Distance", Float) = 2
 		_StartRound("Start Round", Float) = 6
 		[Toggle]_UseEndRound("Use End Round", Float) = 1
-		[HideInInspector]_EndPoint("EndPoint", Vector) = (-10,1,0,0)
+		_EndPoint("EndPoint", Vector) = (-10,1,0,0)
 		_EndDistance("End Distance", Float) = 2
 		_EndRound("End Round", Float) = 6
 		_Distance("Distance", Float) = 10
