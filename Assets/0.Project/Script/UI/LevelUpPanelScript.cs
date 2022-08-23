@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using PG.Event;
 using PG.Data;
 using DG.Tweening;
-namespace PG.Battle 
+namespace PG.Battle
 {
     public class LevelUpPanelScript : MonoSingleton<LevelUpPanelScript>
     {
@@ -13,7 +13,7 @@ namespace PG.Battle
         Image _panelBG;
 
         [SerializeField]
-        List<Button> _upgradePanelList;
+        List<LevelupChooseButtonScript> _upgradePanelList;
 
         [SerializeField]
         List<ArtifactID> _upgradeDataList = new List<ArtifactID>() { ArtifactID.FragileRush, ArtifactID.FragileRush, ArtifactID.FragileRush, ArtifactID.FragileRush };
@@ -36,37 +36,43 @@ namespace PG.Battle
         public void SetLevelUpOn()
         {
             _panelBG.enabled = true;
-            foreach(Button i in _upgradePanelList) 
+            foreach (LevelupChooseButtonScript i in _upgradePanelList)
             {
                 i.transform.DOScale(1, 0.5f);
-                i.interactable = true;
+                i.SetActiveButton(true);
             }
+            //나중에 변경하자
             SetRandomItemOnPannel();
         }
 
         public void SetLevelUpOff()
         {
             _panelBG.enabled = false;
-            foreach (Button i in _upgradePanelList)
+            foreach (LevelupChooseButtonScript i in _upgradePanelList)
             {
                 i.transform.DOScale(0, 0.5f);
-                i.interactable = false;
+                i.SetActiveButton(false); ;
             }
         }
 
 
         //새 랜덤 아이템들이 창으로 올라오도록 만들기.
-        void SetRandomItemOnPannel() 
+        void SetRandomItemOnPannel()
         {
-            //지금은 그냥 무작위지만 나중에는 확률에따른 무작위로 만들자.
-        
+            int i = 0;
+            //지금은 그냥 배치일뿐 나중에는 확률에따른 무작위로 만들자.
+            foreach (LevelupChooseButtonScript script in _upgradePanelList)
+            {
+                script.SetTextAndImageOnButton(_upgradeDataList[i]);
+                i++;
+            }
         }
 
 
         //선택을 
-        public static void GetButtonPressed(int buttonNum) 
+        public static void GetButtonPressed(int buttonNum)
         {
-            Debug.Log(buttonNum);
+            //Debug.Log(buttonNum);
             ArtifactManager.AddArtifactToPlayer_tempUse(_instance._upgradeDataList[buttonNum]);
             Global_BattleEventSystem.CallOffLevelUp();
         }

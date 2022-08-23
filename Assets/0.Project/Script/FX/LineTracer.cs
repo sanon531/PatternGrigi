@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using PG.Data;
 namespace PG.Battle
 {
     public class LineTracer : MonoSingleton<LineTracer>
@@ -42,7 +43,7 @@ namespace PG.Battle
             float _xval = Mathf.Pow((_lastLineStartPos.x - _lastLineEndPos.x) / 1.75f, 2);
             float _yval = Mathf.Pow((_lastLineStartPos.y - _lastLineEndPos.y) / 1.75f, 2);
 
-            return Mathf.Sqrt(_xval + _yval);
+            return Mathf.Sqrt(_xval + _yval)*Global_CampaignData._lengthMagnData.FinalValue;
         }
 
 

@@ -4,14 +4,13 @@ using UnityEngine;
 using CodeMonkey.HealthSystemCM;
 using DG.Tweening;
 using PG.Event;
+using PG.Data;
 namespace PG.Battle 
 {
     public class Player_Script : MonoSingleton<Player_Script>, IGetHealthSystem, ISetNontotalPause
     {
-        #region//damage related
+       
 
-
-        HealthSystemComponent _this_healthComponent;
         HealthSystem _healthSystem;
         [SerializeField]
         private float healthAmountMax, startingHealthAmount, currentHealth;
@@ -32,12 +31,14 @@ namespace PG.Battle
             Health_Refresh();
             Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
+            Global_BattleEventSystem._onPlayerSizeChanged += SetPlayerSizeByEvent;
             _isDead = false;
         }
         protected override void CallOnDestroy()
         {
             Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
+            Global_BattleEventSystem._onPlayerSizeChanged -= SetPlayerSizeByEvent;
         }
         void Health_Refresh()
         {
@@ -63,6 +64,8 @@ namespace PG.Battle
             */
 
         }
+        #region//damage related
+
         public static void Damage(float _amount)
         {
             if (_instance._isDead)
@@ -102,20 +105,20 @@ namespace PG.Battle
         #endregion
 
         public Player_Status _playerStatus = new Player_Status(Data.DrawPatternPreset.Default_Thunder);
-
+        #region //get
 
         //현재의 플레이어 스테이터스를 인식으로 받는다.
         public static Player_Status GetPlayerStatus() 
         {
             return _instance._playerStatus;
         }
-
-
         public static Vector3 ReturnCurrentTransform()
         {
             return _instance.transform.position;
         }
-        //일시정지시 정지할 행동들
+
+        #endregion
+        #region//일시정지시 정지할 행동들
 
         bool _isLevelupPaused = false;
         public void SetNonTotalPauseOn()
@@ -127,6 +130,17 @@ namespace PG.Battle
         {
             _isLevelupPaused = false;
         }
+        #endregion
+
+
+        public void SetPlayerSizeByEvent() 
+        {
+            Debug.Log(Global_CampaignData._playerSize.FinalValue);
+            //현재의 플레이어의 사이즈를 잘 조절 하여서 만든다.
+            transform.localScale = (Global_CampaignData._playerSize.FinalValue * new Vector3(1, 1, 1));
+        }
+
+
     }
 
 

@@ -18,17 +18,23 @@ namespace PG.Battle
         TextMeshProUGUI _content;
         [SerializeField]
         Image _contentImage;
-
+        Button _button;
         private void Start()
         {
-            GetComponent<Button>().onClick.AddListener(CallButton);
+            _button = GetComponent<Button>();
+            _button.onClick.AddListener(CallButton);
+        }
+
+        public void SetActiveButton(bool val)
+        {
+            _button.interactable = val;
         }
 
         void CallButton() 
         {
             LevelUpPanelScript.GetButtonPressed(_buttonNum);
         }
-        void SetTextAndImageOnButton(ArtifactID id) 
+        public void SetTextAndImageOnButton(ArtifactID id) 
         {
             _contentImage.sprite = Resources.Load<Sprite>("Artifact/" + id.ToString());
             ArtifactData data= GlobalDataStorage.TotalArtifactTableDataDic[id];

@@ -13,6 +13,30 @@ namespace PG
         public Arfifact_AttackUp(ArtifactID artifactID) : base(artifactID)
         {
         }
+        public override void OnGetArtifact()
+        {
+            Enable();
+        }
+
+        protected override void Enable()
+        {
+            base.Enable();
+            //간단히 칼크 데미지를 전부 실행함
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(5f);
+
+
+        }
+        protected override void Disable()
+        {
+            base.Disable();
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(-5f);
+        }
+        public override void AddCountOnArtifact()
+        {
+
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(5f);
+            _value++;
+        }
     }
     public sealed class Arfifact_Equatore : Artifact
     {

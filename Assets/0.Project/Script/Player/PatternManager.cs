@@ -124,6 +124,7 @@ namespace PG.Battle
                     //스킬성공시 랜덤하는 공격이 나감.
                     _lastNode = nodeID;
                     _isRandomNodeSetMode = true;
+                    _IsCurrentNodeSetted = false;
                     ReachTriggeredNode_Random(nodeID);
                     Global_BattleEventSystem.CallOnPatternSuccessed(_currentPattern);
                     ShowDebugtextScript.SetDebug("Pattern Success!");
