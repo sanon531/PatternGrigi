@@ -280,7 +280,6 @@ namespace PG.Battle
             Global_BattleEventSystem.CallOnChargeStart();
             ChargeGaugeUIScript.StartChargeSkill();
             CameraShaker.ShakeCamera(3f, 0.5f);
-
             _isRandomNodeSetMode = false;
             //플레이어에게 패턴을 받아온다.
             SetSkillToPresetNodeFollow(Player_Script.GetPlayerStatus()._currentChargePattern);

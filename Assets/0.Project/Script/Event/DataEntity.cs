@@ -62,7 +62,7 @@ namespace PG
             유물수치변동 = 100,
 
             LengthMag = 65, // 이동한 거리에따른 배율
-            PlayerSize = 66, // 
+            PlayerSize = 66, // 플레이어 사이즈 
 
         }
         public enum Property

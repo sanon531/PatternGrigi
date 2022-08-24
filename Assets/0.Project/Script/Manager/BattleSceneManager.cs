@@ -19,7 +19,7 @@ namespace PG.Battle
         {
             if (GlobalUIEventSystem._isTotalFade) 
                 GlobalUIEventSystem.CallTotalFade();
-
+            Debug.Log("Call Awake");
             StartCoroutine(DelayedStart(_delayedTime));
             SwitchEventPause();
             SwitchEventCombat();

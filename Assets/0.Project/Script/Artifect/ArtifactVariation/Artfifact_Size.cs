@@ -22,7 +22,7 @@ namespace PG
             base.Enable();
             //간단히 칼크 데미지를 전부 실행함
             Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(10f);
-            Global_CampaignData._playerSize.Add증가량(0.2f);
+            Global_CampaignData._playerSize.Add증가량(0.5f);
             //Debug.Log("Fragile_Rush LEL");
             Global_BattleEventSystem.CallOnSizeChanged();
 
@@ -32,14 +32,14 @@ namespace PG
         {
             base.Disable();
             Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(-10f);
-            Global_CampaignData._playerSize.Add증가량(-0.2f);
+            Global_CampaignData._playerSize.Add증가량(-0.5f);
             Global_BattleEventSystem.CallOnSizeChanged();
 
         }
         public override void AddCountOnArtifact()
         {
             Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(10f);
-            Global_CampaignData._playerSize.Add증가량(0.2f);
+            Global_CampaignData._playerSize.Add증가량(0.5f);
             Global_BattleEventSystem.CallOnSizeChanged();
 
             _value++;
@@ -66,7 +66,7 @@ namespace PG
             base.Enable();
             //간단히 칼크 데미지를 전부 실행함
             Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(-5f);
-            Global_CampaignData._playerSize.Add증가량(-0.2f);
+            Global_CampaignData._playerSize.Add증가량(-0.5f);
             Global_BattleEventSystem.CallOnSizeChanged();
             //Debug.Log("Fragile_Rush LEL");
         }
@@ -74,13 +74,13 @@ namespace PG
         {
             base.Disable();
             Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(5f);
-            Global_CampaignData._playerSize.Add증가량(0.2f);
+            Global_CampaignData._playerSize.Add증가량(0.5f);
             Global_BattleEventSystem.CallOnSizeChanged();
         }
         public override void AddCountOnArtifact()
         {
             Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(5f);
-            Global_CampaignData._playerSize.Add증가량(-0.2f);
+            Global_CampaignData._playerSize.Add증가량(-0.5f);
             _value++;
             Global_BattleEventSystem.CallOnSizeChanged();
             //Debug.Log("Fragile_Rush LEL");
