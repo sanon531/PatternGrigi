@@ -40,6 +40,8 @@ namespace PG.Data
         //거리에따른 배율임 
         public static DataEntity _lengthMagnData = new DataEntity(DataEntity.Type.LengthMag, 1);
         public static DataEntity _chargeGaugeData = new DataEntity(DataEntity.Type.ChargeGauge, 8);
+        public static DataEntity _chargeEXPData = new DataEntity(DataEntity.Type.ChargeGauge, 8);
+
         //플레이어 사이즈
         public static DataEntity _playerSize= new DataEntity(DataEntity.Type.LengthMag, 1);
 

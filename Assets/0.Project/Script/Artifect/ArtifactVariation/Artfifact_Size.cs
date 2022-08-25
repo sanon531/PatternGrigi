@@ -25,9 +25,10 @@ namespace PG
             Global_CampaignData._playerSize.Add¡ı∞°∑Æ(0.5f);
             //Debug.Log("Fragile_Rush LEL");
             Global_BattleEventSystem.CallOnSizeChanged();
-
-
         }
+
+
+
         protected override void Disable()
         {
             base.Disable();

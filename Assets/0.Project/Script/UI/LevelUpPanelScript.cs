@@ -38,7 +38,7 @@ namespace PG.Battle
             _panelBG.enabled = true;
             foreach (LevelupChooseButtonScript i in _upgradePanelList)
             {
-                i.transform.DOScale(1, 0.5f);
+                i.transform.DOScale(0.8f, 0.5f);
                 i.SetActiveButton(true);
             }
             //나중에 변경하자
