@@ -17,17 +17,22 @@ namespace PG.Battle
         // Start is called before the first frame update
         protected override void CallOnAwake()
         {
-            GlobalUIEventSystem._onDamageUI += GetDamage;
         }
         protected override void CallOnDestroy()
         {
-            GlobalUIEventSystem._onDamageUI -= GetDamage;
         }
-        public void GetDamage() 
+        public static void ShowDamage(Vector3 startPos, float lifeTime, int text, Color color,Transform target,Transform middle) 
         {
             //Instantiate(s_instance._showPrefab, s_instance.transform);
-            _damageFadeImage.color = new Color(1,1,1,0.75f);
-            _damageFadeImage.DOFade(0f,0.5f);
+            //_damageFadeImage.color = new Color(1,1,1,0.75f);
+            //_damageFadeImage.DOFade(0f,0.5f);
+            GameObject ob = GameObject.Instantiate(_instance._showPrefab, startPos, Quaternion.identity);
+            FloatingText floattext = ob.GetComponentInChildren<FloatingText>();
+            floattext.SetText(text.ToString());
+            floattext.SetColor(color);
+
+            DamageTextTweener tweener = ob.GetComponentInChildren<DamageTextTweener>();
+            tweener.BeginTextTweeener(target, middle, lifeTime);
         }
 
 

@@ -36,12 +36,12 @@ namespace PG.Data
 
         //유리대포처럼 적 공격 업 + 내 공격 업.
         FragileRush =10,
+
         //적도 - 약간공격력을 상승 시킴.
         Equatore =11,
         PoloNord = 12,
         StrangeTropics =13,
         BlackAndWhite = 14,
-
 
         //장거리세트
         BubbleGun = 20,// 길어질때의 배율 추가.
@@ -51,6 +51,10 @@ namespace PG.Data
         HonetBatik = 40,
         KrisDagger = 41,
         QuickSlice = 42,
+
+        //사이즈 관련
+        PadThai = 51,
+        SesameOil = 52
 
 
     }

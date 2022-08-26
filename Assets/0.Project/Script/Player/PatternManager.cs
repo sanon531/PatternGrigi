@@ -124,6 +124,7 @@ namespace PG.Battle
                     //스킬성공시 랜덤하는 공격이 나감.
                     _lastNode = nodeID;
                     _isRandomNodeSetMode = true;
+                    _IsCurrentNodeSetted = false;
                     ReachTriggeredNode_Random(nodeID);
                     Global_BattleEventSystem.CallOnPatternSuccessed(_currentPattern);
                     ShowDebugtextScript.SetDebug("Pattern Success!");
@@ -279,7 +280,6 @@ namespace PG.Battle
             Global_BattleEventSystem.CallOnChargeStart();
             ChargeGaugeUIScript.StartChargeSkill();
             CameraShaker.ShakeCamera(3f, 0.5f);
-
             _isRandomNodeSetMode = false;
             //플레이어에게 패턴을 받아온다.
             SetSkillToPresetNodeFollow(Player_Script.GetPlayerStatus()._currentChargePattern);

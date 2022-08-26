@@ -4,15 +4,13 @@ using UnityEngine;
 using CodeMonkey.HealthSystemCM;
 using DG.Tweening;
 using PG.Event;
+using PG.Data;
 namespace PG.Battle 
 {
-    public class Player_Script : MonoBehaviour, IGetHealthSystem, ISetNontotalPause
+    public class Player_Script : MonoSingleton<Player_Script>, IGetHealthSystem, ISetNontotalPause
     {
-        public static Player_Script s_instance;
-        #region//damage related
+       
 
-
-        HealthSystemComponent _this_healthComponent;
         HealthSystem _healthSystem;
         [SerializeField]
         private float healthAmountMax, startingHealthAmount, currentHealth;
@@ -25,21 +23,22 @@ namespace PG.Battle
         [SerializeField]
         ParticleSystem _damageFX;
         // Start is called before the first frame update
-        void Awake()
+        protected override void CallOnAwake()
         {
-            s_instance = this;
             _healthSystem = new HealthSystem(healthAmountMax);
             _healthSystem.SetHealth(startingHealthAmount);
             _healthSystem.OnDead += HealthSystem_OnDead;
             Health_Refresh();
             Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
+            Global_BattleEventSystem._onPlayerSizeChanged += SetPlayerSizeByEvent;
             _isDead = false;
         }
-        private void OnDestroy()
+        protected override void CallOnDestroy()
         {
             Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
+            Global_BattleEventSystem._onPlayerSizeChanged -= SetPlayerSizeByEvent;
         }
         void Health_Refresh()
         {
@@ -65,18 +64,24 @@ namespace PG.Battle
             */
 
         }
+        #region//damage related
+
         public static void Damage(float _amount)
         {
-            if (s_instance._isDead)
+            if (_instance._isDead)
                 return;
 
             CameraShaker.ShakeCamera(0.5f, 1);
-            s_instance._healthSystem.Damage(_amount);
-            s_instance.currentHealth -= _amount;
-            s_instance.Health_Refresh();
-            s_instance._damageFX.Play();
+            _instance._healthSystem.Damage(_amount);
+            _instance.currentHealth -= _amount;
+            _instance.Health_Refresh();
+            _instance._damageFX.Play();
             //s_instance._healthBar.DoFadeHealth(s_instance._healthFadeTime);
-            DamageTextScript.Create(s_instance._thisSprite.transform.position, 0.5f, 0.3f, (int)_amount, Color.green);
+            //DamageTextScript.Create(s_instance._thisSprite.transform.position, 0.5f, 0.3f, (int)_amount, Color.green);
+            DamageFXManager.ShowDamage(Player_Script.ReturnCurrentTransform(), 1f, Mathf.FloorToInt(_amount),
+                Color.green, _instance.transform, _instance.transform);
+
+
             GlobalUIEventSystem.CallOnDamageUI();
             //DamageFXManager.Damage(_amount);
 
@@ -100,20 +105,20 @@ namespace PG.Battle
         #endregion
 
         public Player_Status _playerStatus = new Player_Status(Data.DrawPatternPreset.Default_Thunder);
-
+        #region //get
 
         //현재의 플레이어 스테이터스를 인식으로 받는다.
         public static Player_Status GetPlayerStatus() 
         {
-            return s_instance._playerStatus;
+            return _instance._playerStatus;
         }
-
-
         public static Vector3 ReturnCurrentTransform()
         {
-            return s_instance.transform.position;
+            return _instance.transform.position;
         }
-        //일시정지시 정지할 행동들
+
+        #endregion
+        #region//일시정지시 정지할 행동들
 
         bool _isLevelupPaused = false;
         public void SetNonTotalPauseOn()
@@ -125,6 +130,17 @@ namespace PG.Battle
         {
             _isLevelupPaused = false;
         }
+        #endregion
+
+
+        public void SetPlayerSizeByEvent() 
+        {
+            Debug.Log(Global_CampaignData._playerSize.FinalValue);
+            //현재의 플레이어의 사이즈를 잘 조절 하여서 만든다.
+            transform.localScale = (Global_CampaignData._playerSize.FinalValue * new Vector3(1, 1, 1));
+        }
+
+
     }
 
 

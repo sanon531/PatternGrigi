@@ -67,7 +67,11 @@ namespace PG.Event
         }
 
         #region//Combat
-
+        public static event OnEvent _onPlayerSizeChanged;
+        public static void CallOnSizeChanged() 
+        {
+            _onPlayerSizeChanged?.Invoke();
+        }
 
 
 
