@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PG.Battle;
-
+using System.Linq;
 namespace PG.Data
 {
     public struct Data_CampaignOption
@@ -18,7 +18,7 @@ namespace PG.Data
         public bool masterKeyUsed { get; }
     }
 
-
+    //인게임 내부에서 작동을 하는부분임.
     [System.Serializable]
     public static class Global_CampaignData
     {
@@ -36,6 +36,7 @@ namespace PG.Data
             {
             };
 
+        public static List<ArtifactID> _obtainableArtifactIDList = new List<ArtifactID>();
         //거리에따른 배율임 
         public static DataEntity _lengthMagnData = new DataEntity(DataEntity.Type.LengthMag, 1);
         public static DataEntity _chargeGaugeData = new DataEntity(DataEntity.Type.ChargeGauge, 8);
@@ -57,6 +58,7 @@ namespace PG.Data
         {
             _currentArtifactDictionary.CopyFrom(data._currentArtifactDictionary);
             _charactorAttackDic.CopyFrom(data._charactorAttackDic);
+            _obtainableArtifactIDList = data._obtainableArtifactIDList.ToList();
 
             _lengthMagnData = new DataEntity(data._lengthMagnData.type, data._lengthMagnData.FinalValue);
             Debug.Log(data._lengthMagnData.FinalValue);
@@ -68,13 +70,13 @@ namespace PG.Data
     }
 
     //그냥 해당하는버전을 여러개 만들어둘수있으면 좋을것 같아서 그럼
-
-
     [CreateAssetMenu(fileName = "Global_CampaignData", menuName = "PG/GlobalCampaignData")]
     public class CampaignData : ScriptableObject
     {
         public ArtifactIDArtifactDic _currentArtifactDictionary =
             new ArtifactIDArtifactDic();
+
+        public List<ArtifactID> _obtainableArtifactIDList = new List<ArtifactID>();
 
 
         //적들의 데이터를 먼저 매치 하는 부분. 한버넹 강한 공격 도 공격이지만 아무튼.

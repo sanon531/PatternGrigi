@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: ASDF
   m_EditorClassIdentifier: Assembly-CSharp:PG.Data:CampaignData
+  _currentArtifactDictionary:
+    m_keys: 
+  _obtainableArtifactIDList: 0a0000000b0000001400000034000000330000002a000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000
     m_values:
