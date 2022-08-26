@@ -10,6 +10,8 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(ObstacleIDObjectDic))]
 [CustomPropertyDrawer(typeof(ActionDataDic))]
 [CustomPropertyDrawer(typeof(QuaternionMyClassDictionary))]
+[CustomPropertyDrawer(typeof(ArtifactIDArtifactDic))]
+[CustomPropertyDrawer(typeof(ArtifactIDDataEntityDic))]
 
 
 public class AnySerializableDictionaryPropertyDrawer : SerializableDictionaryPropertyDrawer {}

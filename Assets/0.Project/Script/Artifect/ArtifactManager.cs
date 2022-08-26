@@ -29,7 +29,10 @@ namespace PG.Battle
         {
             Global_BattleEventSystem._onBattleBegin += InitializeCurrentArtifact;
         }
-
+        protected override void CallOnDestroy()
+        {
+            Global_BattleEventSystem._onBattleBegin -= InitializeCurrentArtifact;
+        }
 
         //현재 가지고 있는 아티팩트를 전부 재 확인후 적용함,.
         void InitializeCurrentArtifact()

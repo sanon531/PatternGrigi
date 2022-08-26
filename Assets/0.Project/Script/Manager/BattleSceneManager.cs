@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PG.Event;
+using PG.Data;
 
 namespace PG.Battle 
 {
@@ -14,6 +15,10 @@ namespace PG.Battle
         Enemy_Script _ingameEnemy;
         [SerializeField]
         float _delayedTime =2.5f;
+        [SerializeField]
+        string _currentCampaignName;
+        CampaignData _currentCampaignData;
+
         // Start is called before the first frame update
         protected override void CallOnAwake()
         {
@@ -21,8 +26,11 @@ namespace PG.Battle
                 GlobalUIEventSystem.CallTotalFade();
             Debug.Log("Call Awake");
             StartCoroutine(DelayedStart(_delayedTime));
+
             SwitchEventPause();
             SwitchEventCombat();
+            _currentCampaignData = Resources.Load<CampaignData>("CampaignData/" + _currentCampaignName);
+            Global_CampaignData.SetCampaginInitialize(_currentCampaignData);
         }
 
         protected override void CallOnDestroy()
@@ -47,6 +55,10 @@ namespace PG.Battle
 
         }
 
+
+
+
+
         #region//Combat EventSetter
 
         bool _isCombatSetted = false;
@@ -68,8 +80,6 @@ namespace PG.Battle
 
 
         #endregion
-
-
 
         #region//pauseset
         bool _isPauseSet = false;

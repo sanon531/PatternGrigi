@@ -73,8 +73,6 @@ namespace PG.Event
             _onPlayerSizeChanged?.Invoke();
         }
 
-
-
         #endregion
 
 
@@ -157,9 +155,6 @@ namespace PG.Event
 
         public static event OnEventWithFloat _onGainEXP;
         public static void CallOnGainEXP(float exp) { _onGainEXP?.Invoke(exp); }
-
-
-
 
 
         public static event OnEvent _onGameOver;

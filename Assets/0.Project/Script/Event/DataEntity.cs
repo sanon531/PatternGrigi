@@ -13,7 +13,7 @@ namespace PG
         public void Add배수(float amount) { _배수 *= amount; }
         public void Add추가량(int amount) { _추가량 += amount; }
 
-
+        [SerializeField]
         private float _기본값 = 0;
         private float _증가량 = 0;
         private float _증가량배수 = 1f;  //증가량에만 곱한다. (공격력 계수 등에 사용)
@@ -25,13 +25,14 @@ namespace PG
                 return (float)((_기본값 + _증가량 * _증가량배수) * _배수 + _추가량); 
             
             } }
-
+        public int BaseValue { get { return (int)_기본값; } }
 
         public Property properties { get; private set; }
 
         public void AddProperty(Property property){ properties |= property;}
 
-        public Type type { get; }
+        [SerializeField]
+        public Type type;
 
                      
 
@@ -41,7 +42,7 @@ namespace PG
 
             Damage = 1,
             ChargeGauge = 2,
-            Defence = 3,
+            ChargeEXP = 3,
 
             생명력직접대입 = 4,   //피해나 회복이 아닌 생명력을 N으로 만듭니다 등의 효과.
                            //피해나 회복에따른 이벤트를 발생시키지 않는다.
