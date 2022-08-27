@@ -9,7 +9,7 @@ namespace PG.Battle
 {
     public class Player_Script : MonoSingleton<Player_Script>, IGetHealthSystem, ISetNontotalPause
     {
-       
+        
 
         HealthSystem _healthSystem;
         [SerializeField]
