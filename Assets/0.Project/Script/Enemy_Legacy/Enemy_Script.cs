@@ -297,6 +297,7 @@ namespace PG.Battle
         public static bool Damage(float length)
         {
             float _amount = Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue;
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].PrintCurrent();
             _instance.RandomDamageFX();
             _instance._healthSystem.Damage(_amount);
             //Debug.Log(_amount+"+"+length);

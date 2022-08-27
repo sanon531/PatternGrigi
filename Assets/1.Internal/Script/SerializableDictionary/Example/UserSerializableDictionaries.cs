@@ -31,12 +31,35 @@ public class ArtifactIDShowCaseDic : SerializableDictionary<ArtifactID, Artifact
 
 }
 [Serializable]
-public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact> { }
+public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact> 
+{
+    public override void CopyFrom(IDictionary<ArtifactID, Artifact> dict) 
+    {
+        this.Clear();
+        foreach (var kvp in dict)
+        {
+            this[kvp.Key] = Artifact.Create(kvp.Key);
+        }
+    }
+
+}
 
 
 
 [Serializable]
-public class ArtifactIDDataEntityDic : SerializableDictionary<CharacterID, DataEntity>, ISerializationCallbackReceiver { }
+public class CharactorIDDataEntityDic : SerializableDictionary<CharacterID, DataEntity>
+{
+    public void CopyFrom(CharactorIDDataEntityDic dict)
+    {
+
+        this.Clear();
+        foreach (var kvp in dict)
+        {
+            Add(kvp.Key, new DataEntity(kvp.Value));
+        }
+    }
+
+}
 
 
 

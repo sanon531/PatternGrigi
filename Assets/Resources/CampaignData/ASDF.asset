@@ -9,30 +9,59 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: cb0b2ca909a209340afe36adeafe0b8e, type: 3}
   m_Name: ASDF
-  m_EditorClassIdentifier: Assembly-CSharp:PG.Data:CampaignData
+  m_EditorClassIdentifier: 
   _currentArtifactDictionary:
     m_keys: 
-  _obtainableArtifactIDList: 0a0000000b0000001400000034000000330000002a000000
+    m_values: []
+  _obtainableArtifactIDList: 330000000a00000014000000340000000b000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000
     m_values:
     - "_\uAE30\uBCF8\uAC12": 10
+      "_\uC99D\uAC00\uB7C9": 0
+      "_\uC99D\uAC00\uB7C9\uBC30\uC218": 0
+      "_\uBC30\uC218": 1
+      "_\uCD94\uAC00\uB7C9": 0
       type: 1
     - "_\uAE30\uBCF8\uAC12": 8
+      "_\uC99D\uAC00\uB7C9": 0
+      "_\uC99D\uAC00\uB7C9\uBC30\uC218": 0
+      "_\uBC30\uC218": 1
+      "_\uCD94\uAC00\uB7C9": 0
       type: 1
     - "_\uAE30\uBCF8\uAC12": 16
+      "_\uC99D\uAC00\uB7C9": 0
+      "_\uC99D\uAC00\uB7C9\uBC30\uC218": 0
+      "_\uBC30\uC218": 1
+      "_\uCD94\uAC00\uB7C9": 0
       type: 1
   _lengthMagnData:
     "_\uAE30\uBCF8\uAC12": 1
+    "_\uC99D\uAC00\uB7C9": 0
+    "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+    "_\uBC30\uC218": 1
+    "_\uCD94\uAC00\uB7C9": 0
     type: 65
   _chargeGaugeData:
     "_\uAE30\uBCF8\uAC12": 8
+    "_\uC99D\uAC00\uB7C9": 0
+    "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+    "_\uBC30\uC218": 1
+    "_\uCD94\uAC00\uB7C9": 0
     type: 2
   _chargeEXPData:
     "_\uAE30\uBCF8\uAC12": 8
+    "_\uC99D\uAC00\uB7C9": 0
+    "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+    "_\uBC30\uC218": 1
+    "_\uCD94\uAC00\uB7C9": 0
     type: 3
   _playerSize:
     "_\uAE30\uBCF8\uAC12": 1
+    "_\uC99D\uAC00\uB7C9": 0
+    "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+    "_\uBC30\uC218": 1
+    "_\uCD94\uAC00\uB7C9": 0
     type: 66

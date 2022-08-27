@@ -15,9 +15,13 @@ namespace PG
 
         [SerializeField]
         private float _기본값 = 0;
+        [SerializeField]
         private float _증가량 = 0;
+        [SerializeField]
         private float _증가량배수 = 1f;  //증가량에만 곱한다. (공격력 계수 등에 사용)
+        [SerializeField]
         private float _배수 = 1f;        //기본값에 증가량이 더해진 값에 곱한다.
+        [SerializeField]
         private float _추가량 = 0;         //나머지 계산이 다 완료 된 후, 값을 추가한다.
         public float FinalValue { get {
                 //Debug.Log("기본값: " + _기본값 + ", 증가량" + _증가량 +", 증가량 배수"+ _증가량배수 + ", 추가량 "+ _추가량+" , 배수" +_배수);
@@ -26,7 +30,7 @@ namespace PG
             
             } }
         public int BaseValue { get { return (int)_기본값; } }
-
+        public void PrintCurrent() { Debug.Log("기본값: " + _기본값 + ", 증가량" + _증가량 + ", 증가량 배수" + _증가량배수 + ", 추가량 " + _추가량 + " , 배수" + _배수); }
         public Property properties { get; private set; }
 
         public void AddProperty(Property property){ properties |= property;}

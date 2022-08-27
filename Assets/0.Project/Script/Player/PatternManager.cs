@@ -24,8 +24,6 @@ namespace PG.Battle
         [SerializeField]
         List<int> _inactivatedNode;
         [SerializeField]
-        float _damage = 10;
-        [SerializeField]
         float _gainEXP= 10;
 
         [SerializeField]
@@ -68,12 +66,15 @@ namespace PG.Battle
            
 
             //데미지 계산과
-            //죽었으면 모든 노드 값을 초기화 한다.
+            //죽었으면 모든 노드 값을 초기화 한다. 그런데 지금은 적이 없으니 일단.분리해야겠네
+            //데미지를 가했을때 - 데미지 가한 뒤 계산 - 매니져에서 변경해줘야함.
             if (!Enemy_Script.Damage(_length)) 
             {
                 _instance.ResetAllNode();
                 _instance._lastNode = -1;
             }
+
+            //이부분에서 경험치 관련 코드를 변동 해야함.
             Global_BattleEventSystem.CallOnGainEXP(_instance._gainEXP);
 
             LineTracer._instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
@@ -100,13 +101,24 @@ namespace PG.Battle
 
 
         //데미지가 가해졌을때 다음 노드를 결정하는 메소드
+        //추후에 타겟노드를 2개 이상 만들때 사용할 부분. 지금은 안씀.
+        int _targetCount = 1;
+        //처음에는 무조건 랜덤만.
+        float[] _weightRandom = new float[3] {1.0f,1.0f,2.0f };
+        NodePlaceType[] nodePlaceTypes = new NodePlaceType[3] { NodePlaceType.Random, NodePlaceType.Close, NodePlaceType.Far };
         void CheckNodeOnDamage(int nodeID)
         {
             if (_isRandomNodeSetMode)
             {
-                _lastNode = nodeID;
-                ReachTriggeredNode_Random(nodeID);
+                int _temptid = nodeID;
+                ResetAllNode();
+                _lastNode = _temptid;
                 //기존의 노드들을 그냥 랜덤으로 놓는 부분들을 만든다.
+                NodePlaceType currentPlace= NodePlaceType.Random;
+                currentPlace = nodePlaceTypes.PickRandomWeighted(_weightRandom);
+                //Debug.Log(currentPlace +"sdfa");
+                for(int i = 0; i< _targetCount; i ++)
+                    _temptid = ReachTriggeredNode_Random(_temptid);
             }
             else
             {
@@ -167,10 +179,9 @@ namespace PG.Battle
 
 
         //노드를 랜덤으로 배치하는 메소드 id는 겹치지않도록 하는것 
-        public void ReachTriggeredNode_Random(int reachedNode)
+        public int ReachTriggeredNode_Random(int reachedNode)
         {
             //Debug.Log("reached : " + _reachedNode);
-            ResetAllNode();
             //기존의 도달한 위치는 사용불가로 만들어야한다.
             _inactivatedNode.Remove(reachedNode);
             //추후 여러개의 도달점을 가져야할때를 위해서 무작위로 한다.
@@ -178,6 +189,7 @@ namespace PG.Battle
             int _deleteTarget = Random.Range(0, i);
             //Debug.Log(i + "set" + _deleteTarget);
             SetNodeToNextReach(_inactivatedNode[_deleteTarget]);
+            return _deleteTarget;
         }
 
         //현재 노드가 뭐든지 일단 없애고 보는거. 

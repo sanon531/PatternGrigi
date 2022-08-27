@@ -74,18 +74,7 @@ namespace PG.Data
                     (int)ArtifactRarity.Common,
                     true,
                     0)},
-                {ArtifactID.PoloNord, new ArtifactData(
-                    ArtifactID.PoloNord,
-                    "","",
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-                {ArtifactID.StrangeTropics, new ArtifactData(
-                    ArtifactID.StrangeTropics,
-                    "","",
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
+               
 
             };
         //나중에 로컬라이제이션 할때 사용 할 생각.

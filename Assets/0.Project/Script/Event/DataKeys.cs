@@ -27,9 +27,6 @@ namespace PG.Data
     {
         공격력 = 0,
         방어력 = 1,
-
-
-
     }
     public enum ArtifactID
     {
@@ -39,17 +36,11 @@ namespace PG.Data
 
         //적도 - 약간공격력을 상승 시킴.
         Equatore =11,
-        PoloNord = 12,
-        StrangeTropics =13,
-        BlackAndWhite = 14,
 
         //장거리세트
         BubbleGun = 20,// 길어질때의 배율 추가.
-        Iceberg = 27,
 
         //단거리세트
-        HonetBatik = 40,
-        KrisDagger = 41,
         QuickSlice = 42,
 
         //사이즈 관련
@@ -58,7 +49,17 @@ namespace PG.Data
 
 
     }
-
+    public enum ProjectileID 
+    {
+        NormalBullet = 0,
+    
+    }
+    public enum NodePlaceType
+    {
+        Random = 0,
+        Close = 1,
+        Far= 2,
+    }
 
     public enum ArtifactRarity
     {

@@ -177,6 +177,11 @@ namespace PG.Event
         { _onAddCalcDamage?.Invoke(val); }
 
         public static event OnCalcDataEntity _onCalcDamageByEntity;
+        
+
+
+
+        
         //public static float CallOnCalcDamageByEntity(float val)
         //{ _onCalcDamage?.Invoke(val); 
         //}
