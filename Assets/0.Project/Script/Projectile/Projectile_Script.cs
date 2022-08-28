@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using PG.Data;
 
 namespace PG.Battle 
 {
@@ -10,6 +10,9 @@ namespace PG.Battle
     //projectile 은 플레이어만 활용하는것으로 한다.
     public class Projectile_Script : PoolableObject
     {
+        [SerializeField]
+        public ProjectileID _id = ProjectileID.NormalBullet;  
+
         [SerializeField]
         protected float _initialSpeed = 1;
         protected float _acceleration = 0 ;
@@ -37,6 +40,7 @@ namespace PG.Battle
         public virtual void SetInitialProjectileData(Vector3 direction, float damage, float speed, float lifetime) 
         {
             OnObjectEnabled();
+            transform.position = Player_Script.GetPlayerPosition();
             _direction = direction;
             _damage = damage;
             _initialSpeed = speed;
@@ -67,6 +71,10 @@ namespace PG.Battle
                 }
                 _initialSpeed += _acceleration * Time.deltaTime;
             }
+            else 
+            { 
+                OnObjectDisabled(); 
+            }
         }
 
         protected override void OnObjectEnabled()
@@ -81,7 +89,7 @@ namespace PG.Battle
             base.OnObjectDisabled();
             _projectileImage.enabled = false;
             _ongoingFX.Stop();
-
+            ProjectileManager.SetBackProjectile(gameObject,_id);
         }
 
         protected virtual void OnTriggerEnter2D(Collider2D collision)
