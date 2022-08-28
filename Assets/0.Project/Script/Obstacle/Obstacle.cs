@@ -4,7 +4,7 @@ using UnityEngine;
 using PG.Event;
 namespace PG.Battle
 {
-    public class Obstacle : MonoBehaviour, ISetNontotalPause
+    public class Obstacle : PoolableObject, ISetNontotalPause
     {
 
         // Start is called before the first frame update
@@ -26,7 +26,6 @@ namespace PG.Battle
         protected float _maxLifetime, _lifeTime, _activetime;
         [SerializeField]
         protected bool _isPlaced = false;
-        protected bool _isActive = false;
         protected bool _isLevelUpPaused = false;
 
 
@@ -49,7 +48,7 @@ namespace PG.Battle
         }
 
         // Update is called once per frame
-        void Update()
+        protected virtual void FixedUpdate()
         {
             CheckStatus();
         }

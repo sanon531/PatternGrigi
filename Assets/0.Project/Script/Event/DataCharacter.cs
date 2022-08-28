@@ -8,9 +8,9 @@ namespace PG
 {
     public enum CharacterSide
     {
-        Ally = 0,       // 아군 (전투 시, 왼쪽에 서있음)
-        Enemy = 1,      // 적군 (전투 시, 오른쪽에 서있음)
-        Nuetral = 2,    // 중립 (전투 시, 전장 바깥에 서있음)
+        Ally = 0,       // 아군 
+        Enemy = 1,      // 적군 
+        Nuetral = 2,    // 중립 
     }
 
     [System.Serializable]

@@ -31,7 +31,7 @@ namespace PG.Battle
             Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
         }
-        void Update()
+        protected override void FixedUpdate()
         {
             CheckStatus();
             MoveObstacle();

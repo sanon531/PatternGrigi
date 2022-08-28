@@ -13,7 +13,7 @@
 using System;
 using UnityEngine;
 
-namespace CodeMonkey.HealthSystemCM {
+namespace PG.HealthSystemCM {
 
     /// <summary>
     /// Health System: Damage, Heal, fires several events when data changes.

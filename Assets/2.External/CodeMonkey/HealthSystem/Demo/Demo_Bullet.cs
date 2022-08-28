@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CodeMonkey.HealthSystemCM {
+namespace PG.HealthSystemCM {
 
     public class Demo_Bullet : MonoBehaviour {
 

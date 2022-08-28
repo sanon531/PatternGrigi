@@ -168,13 +168,9 @@ namespace PG.Event
 
         //데미지 계산
 
-        public static event OnEventWithFloat _onCalcDamage;
-        public static void CallOnCalcDamage(float val)
-        { _onCalcDamage?.Invoke(val); }
-
-        public static event OnEventWithFloat _onAddCalcDamage;
-        public static void CallOnAddCalcDamage(float val) 
-        { _onAddCalcDamage?.Invoke(val); }
+        public static event OnEventWithFloat _onCalcPlayerAttack;
+        public static void CallOnCalcPlayerAttack(float val)
+        { _onCalcPlayerAttack?.Invoke(val); }
 
         public static event OnCalcDataEntity _onCalcDamageByEntity;
         

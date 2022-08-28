@@ -334,6 +334,12 @@ namespace PG.Battle
             {7,new Vector2Int(1,2) },
             {8,new Vector2Int(2,2) }
         };
+        Dictionary<int, int[]> _IDWithClose = new Dictionary<int, int[]>() 
+        {
+            {0,new int[2]{1,3} }, {1,new int[3]{0,2,4} },{2,new int[2]{1,5} },
+            {3,new int[3]{0,4,6} },{4,new int[4]{1,3,5,7} },{5,new int[3]{2,4,8} },
+            {6,new int[2]{4,7} },{7,new int[3]{4,6,8} },{8,new int[2]{5,7} }
+        };
         //거리 재는 부분
         float GetNodePositionByID(int startID, int endID)
         {

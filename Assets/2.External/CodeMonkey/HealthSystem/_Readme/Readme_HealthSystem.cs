@@ -13,7 +13,7 @@
 using System;
 using UnityEngine;
 
-namespace CodeMonkey.HealthSystemCM {
+namespace PG.HealthSystemCM {
 
     //[CreateAssetMenu(fileName = "Readme", menuName = "CodeMonkey/HealthSystem/ReadMe", order = 1)]
     public class Readme_HealthSystem : ScriptableObject {

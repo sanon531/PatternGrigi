@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CodeMonkey.HealthSystemCM {
+namespace PG.HealthSystemCM {
 
     /// <summary>
     /// Demo Unit
