@@ -63,16 +63,17 @@ namespace PG.Battle
                 _instance.GetNodePositionByID(_instance._lastNode, nodeID) * 
                 Global_CampaignData._lengthMagnData.FinalValue; ;
             _instance.CheckNodeOnDamage(nodeID);
-           
 
-            //데미지 계산과
-            //죽었으면 모든 노드 값을 초기화 한다. 그런데 지금은 적이 없으니 일단.분리해야겠네
-            //데미지를 가했을때 - 데미지 가한 뒤 계산 - 매니져에서 변경해줘야함.
-            if (!Enemy_Script.Damage(_length)) 
+            float _resultDamage = _length * Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue;
+            Global_BattleEventSystem.CallOnCalcPlayerAttack(_resultDamage);
+
+            //이제는 그냥 프로젝타일
+
+            /*if (!Enemy_Script.Damage(_length)) 
             {
                 _instance.ResetAllNode();
                 _instance._lastNode = -1;
-            }
+            }*/
 
             //이부분에서 경험치 관련 코드를 변동 해야함.
             Global_BattleEventSystem.CallOnGainEXP(_instance._gainEXP);

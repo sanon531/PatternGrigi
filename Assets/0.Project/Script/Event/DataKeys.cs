@@ -39,6 +39,7 @@ namespace PG.Data
 
         //장거리세트
         BubbleGun = 20,// 길어질때의 배율 추가.
+        BulletTeleportShooter = 21,
 
         //단거리세트
         QuickSlice = 42,

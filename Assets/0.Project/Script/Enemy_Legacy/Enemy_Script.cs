@@ -305,7 +305,6 @@ namespace PG.Battle
             //DamageTextScript.Create(_instance.transform.position, 2f, 0.3f, Mathf.FloorToInt(_amount), Color.red);
             DamageFXManager.ShowDamage(Player_Script.GetPlayerPosition(), 1f, Mathf.FloorToInt(_amount), 
                 Color.red, _instance._enemyPositionByAnimation, _instance.transform);
-            Global_BattleEventSystem.CallOnCalcPlayerAttack(_amount);
             return _instance._isEnemyAlive;
         }
 

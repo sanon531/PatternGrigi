@@ -9,10 +9,11 @@ namespace PG.Battle
     //게임 시작, 적에 의한 이벤트 세팅
     public class BattleSceneManager : MonoSingleton<BattleSceneManager>
     {
-        [SerializeField]
-        Player_Script _ingamePlayer;
-        [SerializeField]
-        Enemy_Script _ingameEnemy;
+
+
+        bool _isgameStarted = false;
+        float _playTime = 0f;
+
         [SerializeField]
         float _delayedTime =2.5f;
         [SerializeField]
@@ -24,14 +25,16 @@ namespace PG.Battle
         {
             if (GlobalUIEventSystem._isTotalFade) 
                 GlobalUIEventSystem.CallTotalFade();
-            Debug.Log("Call Awake");
+            //Debug.Log("Call Awake");
+            _isgameStarted = false;
+            _playTime = 0f;
             StartCoroutine(DelayedStart(_delayedTime));
-
             SwitchEventPause();
             SwitchEventCombat();
             _currentCampaignData = Resources.Load<CampaignData>("CampaignData/" + _currentCampaignName);
             Global_CampaignData.SetCampaginInitialize(_currentCampaignData);
             Debug.Log(Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue);
+
         }
 
         protected override void CallOnDestroy()
@@ -45,14 +48,16 @@ namespace PG.Battle
         {
             yield return new WaitForSeconds(delayedTime);
             Global_BattleEventSystem.CallOnBattleBegin();
+            _isgameStarted = true;
         }
 
-        // Update is called once per frame
+        // 적의 스폰과 보스 스폰 은 그냥. 현재의 형태로 만들자.
         void Update()
         {
-    
-
-
+            if (_isgameStarted && _isNon_TotalPaused) 
+            {
+                _playTime += Time.deltaTime;
+            }
 
         }
 
@@ -84,23 +89,38 @@ namespace PG.Battle
 
         #region//pauseset
         bool _isPauseSet = false;
-
+        bool _isNon_TotalPaused = false; 
         void SwitchEventPause() 
         {
             if (!_isPauseSet)
             {
                 Global_BattleEventSystem._onTotalPause += TotalPause;
                 Global_BattleEventSystem._offTotalPause += TotalUnpause;
+                Global_BattleEventSystem._onNonTotalPause += NonTotalPause;
+                Global_BattleEventSystem._offNonTotalPause += NonTotalUnpause;
+
                 _isPauseSet = true;
             }
             else 
             {
                 Global_BattleEventSystem._onTotalPause -= TotalPause;
                 Global_BattleEventSystem._offTotalPause -= TotalUnpause;
+                Global_BattleEventSystem._onNonTotalPause -= NonTotalPause;
+                Global_BattleEventSystem._offNonTotalPause -= NonTotalUnpause;
                 _isPauseSet = false;
             }
         }
 
+
+
+        void NonTotalPause() 
+        {
+            _isNon_TotalPaused = true;
+        }
+        void NonTotalUnpause()
+        {
+            _isNon_TotalPaused = false;
+        }
 
         void TotalPause() 
         {

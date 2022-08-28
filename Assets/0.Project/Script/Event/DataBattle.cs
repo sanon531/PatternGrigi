@@ -60,6 +60,12 @@ namespace PG.Data
                     (int)ArtifactRarity.Common,
                     true,
                     0)},
+                {ArtifactID.BulletTeleportShooter, new ArtifactData(
+                    ArtifactID.BulletTeleportShooter,
+                    "투사체의 속력과 사격타겟이 2배 증가합니다.","",
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0)},
                
                 #endregion
                 {ArtifactID.PadThai, new ArtifactData(
@@ -80,9 +86,6 @@ namespace PG.Data
         //나중에 로컬라이제이션 할때 사용 할 생각.
         public static Dictionary<ArtifactID, string> ArtifactToNameText_KR = new Dictionary<ArtifactID, string>() { };
 
-
-
-
         public static Dictionary<ArtifactID, Artifact> TotalArtifactClassDic =
             new Dictionary<ArtifactID, Artifact>()
             {
@@ -92,6 +95,7 @@ namespace PG.Data
                 {ArtifactID.QuickSlice, new Arfifact_QuickSlice()},
                 {ArtifactID.PadThai, new Arfifact_PadThai()},
                 {ArtifactID.SesameOil, new Arfifact_SesameOil()},
+                {ArtifactID.BulletTeleportShooter, new Arfifact_BulletTeleportShooter()},
 
             };
 

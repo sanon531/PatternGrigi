@@ -68,13 +68,12 @@ namespace PG.Battle
                 _targetList.Add(i);
 
                 maxTargetNum++;
-                if (maxTargetNum >= _targetEnemyCount)
+                if (maxTargetNum >= Global_CampaignData._projectileTargetNum.FinalValue)
                     break;
             }
 
             foreach (GameObject obj in _temptenemyList)
                 obj.GetComponent<SpriteRenderer>().color = Color.white;
-
             foreach (int i in _targetList)
                 _temptenemyList[i].GetComponent<SpriteRenderer>().color = Color.red;
         }
@@ -84,7 +83,7 @@ namespace PG.Battle
         {
             TargetTheEnemy();
             float _dividedDamage = Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue / _targetList.Count;
-            Debug.Log(_dividedDamage);
+            //Debug.Log(_dividedDamage);
 
             //지금은 그냥 instantiate를 하지만 나중에는 오브젝트 풀링이 가능하도록 만들것..
 
@@ -98,12 +97,6 @@ namespace PG.Battle
 
         }
 
-
-
-        void SetTargetCount(int val) 
-        {
-            _targetEnemyCount = val;
-        }
 
 
 

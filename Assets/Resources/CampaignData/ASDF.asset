@@ -15,7 +15,7 @@ MonoBehaviour:
   _currentArtifactDictionary:
     m_keys: 
     m_values: []
-  _obtainableArtifactIDList: 330000000a00000014000000340000000b000000
+  _obtainableArtifactIDList: 330000000a00000014000000340000000b00000015000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000
     m_values:
@@ -72,3 +72,10 @@ MonoBehaviour:
     "_\uBC30\uC218": 1
     "_\uCD94\uAC00\uB7C9": 0
     type: 64
+  _projectileTargetNum:
+    "_\uAE30\uBCF8\uAC12": 1
+    "_\uC99D\uAC00\uB7C9": 0
+    "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+    "_\uBC30\uC218": 1
+    "_\uCD94\uAC00\uB7C9": 0
+    type: 63

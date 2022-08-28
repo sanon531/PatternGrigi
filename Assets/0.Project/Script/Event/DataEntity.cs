@@ -63,7 +63,7 @@ namespace PG
 
 
             유물수치변동 = 100,
-
+            ProjectileCount = 63,
             ProjectileSpeed = 64,
             LengthMag = 65, // 이동한 거리에따른 배율
             PlayerSize = 66, // 플레이어 사이즈 

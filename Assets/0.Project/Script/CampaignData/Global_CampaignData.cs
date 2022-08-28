@@ -43,6 +43,7 @@ namespace PG.Data
         //플레이어 사이즈
         public static DataEntity _playerSize = new DataEntity(DataEntity.Type.PlayerSize, 1);
         public static DataEntity _projectileSpeed = new DataEntity(DataEntity.Type.ProjectileSpeed, 5);
+        public static DataEntity _projectileTargetNum = new DataEntity(DataEntity.Type.ProjectileCount, 1);
 
 
         #endregion;
@@ -69,6 +70,7 @@ namespace PG.Data
             _chargeEXPData = new DataEntity(data._chargeEXPData);
             _playerSize = new DataEntity(data._playerSize);
             _projectileSpeed = new DataEntity(data._projectileSpeed);
+            _projectileTargetNum = new DataEntity(data._projectileTargetNum);
         }
         #endregion
     }

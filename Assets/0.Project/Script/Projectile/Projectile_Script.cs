@@ -24,6 +24,12 @@ namespace PG.Battle
         protected Rigidbody2D _rigidBody2D;
         [SerializeField]
         protected SpriteRenderer _projectileImage;
+        [SerializeField]
+        ParticleSystem _ongoingFX;
+        [SerializeField]
+        ParticleSystem _hitFX;
+
+
 
         //관통 횟수.
         protected int _pierceCount = 0;
@@ -67,12 +73,14 @@ namespace PG.Battle
         {
             base.OnObjectEnabled();
             _projectileImage.enabled = true;
+            _ongoingFX.Play();
         }
 
         protected override void OnObjectDisabled()
         {
             base.OnObjectDisabled();
             _projectileImage.enabled = false;
+            _ongoingFX.Stop();
 
         }
 
@@ -81,10 +89,8 @@ namespace PG.Battle
             if (collision.tag =="Enemy" && !_piercedList.Contains(collision.gameObject)) 
             {
                 // 이곳에서 적에 대한 데미지를 처리하는 코드를 짠다.
-
-
-
-                if(_pierceCount <=0)
+                _hitFX.Play();
+                if (_pierceCount <=0)
                     OnObjectDisabled();
                 _pierceCount--;
             }

@@ -19,7 +19,8 @@ namespace PG.Data
             ArtifactID.BubbleGun,
             ArtifactID.SesameOil,
             ArtifactID.Equatore,
-            ArtifactID.QuickSlice
+            ArtifactID.QuickSlice,
+            ArtifactID.BulletTeleportShooter
 
         };
 
@@ -42,6 +43,7 @@ namespace PG.Data
         //플레이어 사이즈
         public DataEntity _playerSize = new DataEntity(DataEntity.Type.PlayerSize, 1);
         public DataEntity _projectileSpeed = new DataEntity(DataEntity.Type.ProjectileSpeed, 5);
+        public DataEntity _projectileTargetNum = new DataEntity(DataEntity.Type.ProjectileCount, 1);
 
 
 
