@@ -1,0 +1,20 @@
+{
+  "Items": [
+    {
+      "key":"item1",
+      "value":"시작"
+    },
+    {
+      "key":"item2",
+      "value":"세팅"
+    },
+    {
+      "key":"item3",
+      "value":"나가기"
+    },
+    {
+      "key":"label",
+      "value":"언어"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "Items": [
+    {
+      "key":"item1",
+      "value":"Anfang"
+    },
+    {
+      "key":"item2",
+      "value":"Aufbau"
+    },
+    {
+      "key":"item3",
+      "value":"Ausgabe"
+    },
+    {
+      "key":"label",
+      "value":"Zunge"
+    }
+  ]
+}
