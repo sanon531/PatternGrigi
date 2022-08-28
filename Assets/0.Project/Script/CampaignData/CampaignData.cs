@@ -41,6 +41,7 @@ namespace PG.Data
 
         //플레이어 사이즈
         public DataEntity _playerSize = new DataEntity(DataEntity.Type.PlayerSize, 1);
+        public DataEntity _projectileSpeed = new DataEntity(DataEntity.Type.ProjectileSpeed, 5);
 
 
 

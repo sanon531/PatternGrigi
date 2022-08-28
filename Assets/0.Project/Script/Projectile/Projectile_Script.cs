@@ -10,27 +10,32 @@ namespace PG.Battle
     //projectile 은 플레이어만 활용하는것으로 한다.
     public class Projectile_Script : PoolableObject
     {
-        protected float _initialSpeed;
-        protected float _acceleration;
-        protected float _damage;
-        protected float _lifeTime;
+        [SerializeField]
+        protected float _initialSpeed = 1;
+        protected float _acceleration = 0 ;
+        protected float _damage = 10f;
+        protected float _lifeTime = 10f;
         protected Vector3 _movement;
+        [SerializeField]
         protected Vector3 _direction;
+        [SerializeField]
         protected Collider2D _collider2D;
+        [SerializeField]
         protected Rigidbody2D _rigidBody2D;
+        [SerializeField]
+        protected SpriteRenderer _projectileImage;
 
         //관통 횟수.
         protected int _pierceCount = 0;
         protected List<GameObject> _piercedList = new List<GameObject>();
         public virtual void SetInitialProjectileData(Vector3 direction, float damage, float speed, float lifetime) 
         {
-            _isActive = true;
-            _collider2D = GetComponent<Collider2D>();
-            _rigidBody2D = GetComponent<Rigidbody2D>();
+            OnObjectEnabled();
             _direction = direction;
             _damage = damage;
             _initialSpeed = speed;
             _lifeTime = lifetime;
+
         }
 
 
@@ -39,7 +44,9 @@ namespace PG.Battle
         {
             if (_isActive) 
             {
+                Movement();
             }
+
         }
 
         public void Movement() 
@@ -56,12 +63,30 @@ namespace PG.Battle
             }
         }
 
+        protected override void OnObjectEnabled()
+        {
+            base.OnObjectEnabled();
+            _projectileImage.enabled = true;
+        }
+
+        protected override void OnObjectDisabled()
+        {
+            base.OnObjectDisabled();
+            _projectileImage.enabled = false;
+
+        }
+
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.tag =="Enemy" && !_piercedList.Contains(collision.gameObject)) 
             {
-            
-            
+                // 이곳에서 적에 대한 데미지를 처리하는 코드를 짠다.
+
+
+
+                if(_pierceCount <=0)
+                    OnObjectDisabled();
+                _pierceCount--;
             }
         }
 

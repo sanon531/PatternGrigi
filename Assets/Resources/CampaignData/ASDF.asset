@@ -65,3 +65,10 @@ MonoBehaviour:
     "_\uBC30\uC218": 1
     "_\uCD94\uAC00\uB7C9": 0
     type: 66
+  _projectileSpeed:
+    "_\uAE30\uBCF8\uAC12": 20
+    "_\uC99D\uAC00\uB7C9": 0
+    "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+    "_\uBC30\uC218": 1
+    "_\uCD94\uAC00\uB7C9": 0
+    type: 64

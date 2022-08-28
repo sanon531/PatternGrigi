@@ -34,14 +34,18 @@ namespace PG.Data
         public static CharactorIDDataEntityDic _charactorAttackDic =new CharactorIDDataEntityDic();
 
         public static List<ArtifactID> _obtainableArtifactIDList = new List<ArtifactID>();
+
+        #region//플레이 데이터 관련
         //거리에따른 배율임 
         public static DataEntity _lengthMagnData = new DataEntity(DataEntity.Type.LengthMag, 1);
         public static DataEntity _chargeGaugeData = new DataEntity(DataEntity.Type.ChargeGauge, 8);
         public static DataEntity _chargeEXPData = new DataEntity(DataEntity.Type.ChargeEXP, 8);
-
         //플레이어 사이즈
         public static DataEntity _playerSize = new DataEntity(DataEntity.Type.PlayerSize, 1);
+        public static DataEntity _projectileSpeed = new DataEntity(DataEntity.Type.ProjectileSpeed, 5);
 
+
+        #endregion;
         #region//초기화 관련
 
         //완전히 게임이 종료 되었을 때 활용한다.데이터를 리셋하는경우에 활용한다.
@@ -55,15 +59,16 @@ namespace PG.Data
         {
             if(data._currentArtifactDictionary.Count !=0)
                 _currentArtifactDictionary.CopyFrom(data._currentArtifactDictionary);
-            Debug.Log(data._charactorAttackDic.GetType());
+            //Debug.Log(data._charactorAttackDic.GetType());
             _charactorAttackDic.CopyFrom(data._charactorAttackDic);
             _obtainableArtifactIDList = data._obtainableArtifactIDList.ToList();
 
-            _lengthMagnData = new DataEntity(data._lengthMagnData.type, data._lengthMagnData.FinalValue);
+            _lengthMagnData = new DataEntity(data._lengthMagnData);
             //Debug.Log(data._lengthMagnData.FinalValue);
-            _chargeGaugeData = new DataEntity(data._chargeGaugeData.type, data._chargeGaugeData.FinalValue);
-            _chargeEXPData = new DataEntity(data._chargeEXPData.type, data._chargeEXPData.FinalValue);
-            _playerSize = new DataEntity(data._playerSize.type, data._playerSize.FinalValue);
+            _chargeGaugeData = new DataEntity(data._chargeGaugeData);
+            _chargeEXPData = new DataEntity(data._chargeEXPData);
+            _playerSize = new DataEntity(data._playerSize);
+            _projectileSpeed = new DataEntity(data._projectileSpeed);
         }
         #endregion
     }

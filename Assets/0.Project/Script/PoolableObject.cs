@@ -8,9 +8,15 @@ namespace PG.Battle
     {
         protected bool _isActive = false;
 
+        protected virtual void OnObjectEnabled()
+        {
+            _isActive = true;
+        }
+
+
         protected virtual void OnObjectDisabled() 
         {
-        
+            _isActive = false;
         }
 
     }

@@ -36,6 +36,7 @@ namespace PG.Battle
 
         public virtual void SetSpawnData(float lifeTime, float activetimes,float damage)
         {
+            OnObjectEnabled();
             _maxLifetime = lifeTime;
             _lifeTime = _maxLifetime;
             _activetime = activetimes;
