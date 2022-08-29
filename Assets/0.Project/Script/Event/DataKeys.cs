@@ -62,6 +62,13 @@ namespace PG.Data
         Far= 2,
     }
 
+    public enum ArtifactJsonData 
+    {
+        ArtifactName,
+        ArtifactEffect,
+        DevComment
+    }
+
     public enum ArtifactRarity
     {
         None = -1,

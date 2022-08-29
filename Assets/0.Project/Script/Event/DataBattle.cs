@@ -38,31 +38,26 @@ namespace PG.Data
 
                 {ArtifactID.FragileRush, new ArtifactData(
                     ArtifactID.FragileRush,
-                    "적에게 가하는 공격력 +10 플레이어가 받는 데미지도 10 증가합니다.","",
                     (int)ArtifactRarity.Common,
                     true,
                     0)},
                 {ArtifactID.Equatore, new ArtifactData(
                     ArtifactID.Equatore,
-                    "적에 가하는 공격력이 5만큼 상승합니다","",
                     (int)ArtifactRarity.Common,
                     true,
                     0)},
                 {ArtifactID.BubbleGun, new ArtifactData(
                     ArtifactID.BubbleGun,
-                    "거리에 따른 배율이 소량 상승하고 공격력이 약간 감소합니다.","",
                     (int)ArtifactRarity.Common,
                     true,
                     0)},
                 {ArtifactID.QuickSlice, new ArtifactData(
                     ArtifactID.QuickSlice,
-                    "거리에 따른 배율이 소량 감소합니다.공격력이 소량 상승합니다.","",
                     (int)ArtifactRarity.Common,
                     true,
                     0)},
                 {ArtifactID.BulletTeleportShooter, new ArtifactData(
                     ArtifactID.BulletTeleportShooter,
-                    "투사체의 속력과 사격타겟이 2배 증가합니다.","",
                     (int)ArtifactRarity.Common,
                     true,
                     0)},
@@ -70,13 +65,11 @@ namespace PG.Data
                 #endregion
                 {ArtifactID.PadThai, new ArtifactData(
                     ArtifactID.PadThai,
-                    "공격이 상승하며 플레이어의사이즈가 약간 커집니다.","",
                     (int)ArtifactRarity.Common,
                     true,
                     0)},
                 {ArtifactID.SesameOil, new ArtifactData(
                     ArtifactID.SesameOil,
-                    "공격이 하락하며 플레이어의사이즈가 약간 작아집니다","",
                     (int)ArtifactRarity.Common,
                     true,
                     0)},

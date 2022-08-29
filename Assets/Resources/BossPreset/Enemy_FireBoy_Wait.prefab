@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 759499210209487322, guid: 1c2097c8abce0a2499424cd3573b2d74, type: 3}
       propertyPath: m_Name
-      value: Enemy_FireBoy_PatternDifferent
+      value: Enemy_FireBoy_Wait
       objectReference: {fileID: 0}
     - target: {fileID: 759499210209487322, guid: 1c2097c8abce0a2499424cd3573b2d74, type: 3}
       propertyPath: m_IsActive

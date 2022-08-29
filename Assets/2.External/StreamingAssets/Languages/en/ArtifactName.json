@@ -1,0 +1,32 @@
+{
+  "Items": [
+    {
+      "key":"FragileRush",
+      "value":"사상누각"
+    },
+    {
+      "key":"Equatore",
+      "value":"적도"
+    },
+    {
+      "key":"BubbleGun",
+      "value":"풍선 건"
+    },
+    {
+      "key":"BulletTeleportShooter",
+      "value":"총알 탄 사나이"
+    },
+    {
+      "key":"QuickSlice",
+      "value":"쾌도난마"
+    },
+    {
+      "key":"PadThai",
+      "value":"팟타이"
+    },
+    {
+      "key":"SesameOil",
+      "value":"참기름"
+    }
+ ]
+}
