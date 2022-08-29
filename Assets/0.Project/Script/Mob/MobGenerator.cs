@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PG.Data;
+
 namespace PG.Battle 
 {
     public class MobGenerator : MonoSingleton<MobGenerator>
@@ -16,11 +18,16 @@ namespace PG.Battle
         private bool _spawnStart;
 
         [SerializeField]
+        MobIDObjectDic _mobDic;
+
+        [SerializeField]
         private List<MobSpawnData> _mobSpawnDataList = new List<MobSpawnData>();
         [SerializeField]
         private List<GameObject> _mobList;
 
         private int _mobCount = 0;
+
+        
 
         void Start()
         {
@@ -61,7 +68,8 @@ namespace PG.Battle
             Vector3 pos = new Vector3(UnityEngine.Random.Range(_SpawnRange_Left.position.x, _SpawnRange_Right.position.x), 
                 _SpawnRange_Left.position.y, _SpawnRange_Left.position.z);
 
-            GameObject temp = Instantiate(mobSpawnData.mob.gameObject, pos, _SpawnRange_Left.rotation);
+            GameObject temp = Instantiate(_mobDic[mobSpawnData.mobID], pos, _SpawnRange_Left.rotation);
+            temp.GetComponent<MobScript>()._moveSpeed = mobSpawnData.move_speed;
             _mobList.Add(temp);
             _mobCount++;
 
@@ -80,9 +88,11 @@ namespace PG.Battle
         [Serializable]
         public class MobSpawnData
         {
-            public MobScript mob;
+            public MobID mobID;
             public float wait_time;
             public float respawn_delay;
+
+            public float move_speed;
             
         }
     }

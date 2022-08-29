@@ -25,7 +25,8 @@ public class ActionDataDic : SerializableDictionary<EnemyActionID, EnemyActionDa
 [Serializable]
 public class ArtifactIDShowCaseDic : SerializableDictionary<ArtifactID, ArtifactShowCase> { }
 
-
+[Serializable]
+public class MobIDObjectDic : SerializableDictionary<MobID, GameObject> { }
 
 
 [Serializable]
