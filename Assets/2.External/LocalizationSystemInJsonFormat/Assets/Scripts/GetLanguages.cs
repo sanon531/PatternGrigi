@@ -49,13 +49,13 @@ public class GetLanguages : MonoBehaviour
     private string getPath()
     {
 #if UNITY_EDITOR
-        return Application.dataPath + "/2.External/StreamingAssets/Languages/";
+        return Application.dataPath + "/Localization/Languages/";
 #elif UNITY_ANDROID
-		return Application.persistentDataPath+"/2.External/StreamingAssets/Languages/";
+		return Application.persistentDataPath+"/Localization/Languages/";
 #elif UNITY_IPHONE
-		return Application.persistentDataPath+"/2.External/StreamingAssets/Languages/";
+		return Application.persistentDataPath+"/Localization/Languages/";
 #else
-        return Application.dataPath + "/2.External/StreamingAssets/Languages/";
+        return Application.dataPath + "/Localization/Languages/";
 #endif
     }
 

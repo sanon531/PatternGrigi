@@ -8,8 +8,12 @@ namespace PG
 
         private void Awake()
         {
-            if (_instance != null)
-                Debug.LogError("one more current Status");
+            if (_instance != null) 
+            {
+                Debug.Log("one more current Status");
+                Destroy(gameObject);
+                return;
+            }
             _instance = this as T;
             CallOnAwake();
         }

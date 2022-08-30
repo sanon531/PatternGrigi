@@ -1,0 +1,32 @@
+{
+  "Items": [
+    {
+      "key":"FragileRush",
+      "value":"atk +10,recive damage + 10"
+    },
+    {
+      "key":"Equatore",
+      "value":"atk+5"
+    },
+    {
+      "key":"BubbleGun",
+      "value":"mag + , attack-"
+    },
+    {
+      "key":"BulletTeleportShooter",
+      "value":"projectile speed,target x2 ."
+    },
+    {
+      "key":"QuickSlice",
+      "value":"mag - , attack+."
+    },
+    {
+      "key":"PadThai",
+      "value":"size ++ , atk +"
+    },
+    {
+      "key":"SesameOil",
+      "value":"size -- , atk -"
+    }
+ ]
+}

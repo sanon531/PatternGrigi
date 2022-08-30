@@ -2,31 +2,31 @@
   "Items": [
     {
       "key":"FragileRush",
-      "value":"사상누각"
+      "value":"FragileRush"
     },
     {
       "key":"Equatore",
-      "value":"적도"
+      "value":"Equatore"
     },
     {
       "key":"BubbleGun",
-      "value":"풍선 건"
+      "value":"BubbleGun"
     },
     {
       "key":"BulletTeleportShooter",
-      "value":"총알 탄 사나이"
+      "value":"BulletTeleportShooter"
     },
     {
       "key":"QuickSlice",
-      "value":"쾌도난마"
+      "value":"QuickSlice"
     },
     {
       "key":"PadThai",
-      "value":"팟타이"
+      "value":"PadThai"
     },
     {
       "key":"SesameOil",
-      "value":"참기름"
+      "value":"SesameOil"
     }
  ]
 }
