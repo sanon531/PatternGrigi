@@ -29,7 +29,6 @@ namespace PG.Battle
 
         private int _mobCount = 0;
 
-        
 
         void Start()
         {
@@ -42,6 +41,7 @@ namespace PG.Battle
             {
                 SpawnMob();
                 _spawnStart = false;
+                
             }
         }
 
@@ -86,6 +86,12 @@ namespace PG.Battle
             Destroy(target);
         }
 
+        //현재 몹들의 위치 순으로 리스트 정렬하고 리턴
+        public List<GameObject> GetMobList()
+        {
+            _mobList.Sort((mobA, mobB) => mobA.transform.position.y.CompareTo(mobB.transform.position.y));
+            return _mobList;
+        }
 
         [Serializable]
         public class MobSpawnData
