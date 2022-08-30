@@ -1,0 +1,32 @@
+{
+  "Items": [
+    {
+      "key":"FragileRush",
+      "value":"FragileRush"
+    },
+    {
+      "key":"Equatore",
+      "value":"Equatore"
+    },
+    {
+      "key":"BubbleGun",
+      "value":"BubbleGun"
+    },
+    {
+      "key":"BulletTeleportShooter",
+      "value":"BulletTeleportShooter"
+    },
+    {
+      "key":"QuickSlice",
+      "value":"QuickSlice"
+    },
+    {
+      "key":"PadThai",
+      "value":"PadThai"
+    },
+    {
+      "key":"SesameOil",
+      "value":"SesameOil"
+    }
+ ]
+}

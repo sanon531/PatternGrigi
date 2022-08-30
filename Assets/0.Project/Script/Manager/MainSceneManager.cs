@@ -8,6 +8,8 @@ namespace PG
     public class MainSceneManager : MonoSingleton<MainSceneManager>
     {
 
+        [SerializeField]
+        string _targetScene = "Play_Scene";
         protected override void CallOnAwake()
         {
             if (GlobalUIEventSystem._isTotalFade)
@@ -31,7 +33,7 @@ namespace PG
         IEnumerator DelayedChangeScene() 
         {
             yield return new WaitForSecondsRealtime(1.25f);
-            SceneMoveManager.MoveSceneByCall("Play_Scene");
+            SceneMoveManager.MoveSceneByCall(_targetScene);
             Debug.Log("called");
 
         }

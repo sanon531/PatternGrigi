@@ -13,11 +13,15 @@ namespace PG
         public void Add배수(float amount) { _배수 *= amount; }
         public void Add추가량(int amount) { _추가량 += amount; }
 
-
+        [SerializeField]
         private float _기본값 = 0;
+        [SerializeField]
         private float _증가량 = 0;
+        [SerializeField]
         private float _증가량배수 = 1f;  //증가량에만 곱한다. (공격력 계수 등에 사용)
+        [SerializeField]
         private float _배수 = 1f;        //기본값에 증가량이 더해진 값에 곱한다.
+        [SerializeField]
         private float _추가량 = 0;         //나머지 계산이 다 완료 된 후, 값을 추가한다.
         public float FinalValue { get {
                 //Debug.Log("기본값: " + _기본값 + ", 증가량" + _증가량 +", 증가량 배수"+ _증가량배수 + ", 추가량 "+ _추가량+" , 배수" +_배수);
@@ -25,13 +29,14 @@ namespace PG
                 return (float)((_기본값 + _증가량 * _증가량배수) * _배수 + _추가량); 
             
             } }
-
-
+        public int BaseValue { get { return (int)_기본값; } }
+        public void PrintCurrent() { Debug.Log("기본값: " + _기본값 + ", 증가량" + _증가량 + ", 증가량 배수" + _증가량배수 + ", 추가량 " + _추가량 + " , 배수" + _배수); }
         public Property properties { get; private set; }
 
         public void AddProperty(Property property){ properties |= property;}
 
-        public Type type { get; }
+        [SerializeField]
+        public Type type;
 
                      
 
@@ -41,8 +46,7 @@ namespace PG
 
             Damage = 1,
             ChargeGauge = 2,
-            Defence = 3,
-
+            ChargeEXP = 3,
             생명력직접대입 = 4,   //피해나 회복이 아닌 생명력을 N으로 만듭니다 등의 효과.
                            //피해나 회복에따른 이벤트를 발생시키지 않는다.
             방어도직접대입 = 5,   //방어도 획득이나 소모가아님.
@@ -57,10 +61,10 @@ namespace PG
             효과회수 = 12,
             효과제거 = 13,
 
-            소모품획득 = 20,
 
             유물수치변동 = 100,
-
+            ProjectileCount = 63,
+            ProjectileSpeed = 64,
             LengthMag = 65, // 이동한 거리에따른 배율
             PlayerSize = 66, // 플레이어 사이즈 
 

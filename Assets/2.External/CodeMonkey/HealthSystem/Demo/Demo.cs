@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace CodeMonkey.HealthSystemCM {
+namespace PG.HealthSystemCM {
 
     /// <summary>
     /// Health System Demo

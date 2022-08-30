@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-namespace CodeMonkey.HealthSystemCM {
+namespace PG.HealthSystemCM {
 
     [CustomEditor(typeof(Readme_HealthSystem))]
     [InitializeOnLoad]

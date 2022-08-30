@@ -6,18 +6,20 @@ using System;
 
 
 namespace PG 
-{
+{   [Serializable]
     public class Artifact : Affector
     {
 
         #region//º¯¼ö
-
+        [SerializeField]
         protected ArtifacProperty _properties;
         public ArtifacProperty Properties { get { return _properties; } }
         protected readonly ArtifactRarity _rarity;
         public ArtifactRarity Rarity { get { return _rarity; } }
         protected readonly ArtifactID _artifactID;
         public ArtifactID _ArtifactID { get { return _artifactID; } }
+
+        [SerializeField]
         protected int _value;
         public virtual int Value{get { return _value; }protected set { _value = value; }}
         private ArtifactFlag _flag;

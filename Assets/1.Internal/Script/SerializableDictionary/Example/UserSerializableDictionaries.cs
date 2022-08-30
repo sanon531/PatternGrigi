@@ -4,6 +4,8 @@ using System;
 using UnityEngine;
 using PG.Data;
 using PG.Battle;
+using PG;
+
 [Serializable]
 public class StringStringDictionary : SerializableDictionary<string, string> {}
 
@@ -23,10 +25,38 @@ public class ObstacleIDObjectDic : SerializableDictionary<ObstacleID, GameObject
 [Serializable]
 public class ActionDataDic : SerializableDictionary<EnemyActionID, EnemyActionData> { }
 [Serializable]
-public class ArtifactIDShowCaseDic : SerializableDictionary<ArtifactID, ArtifactShowCase> { }
+public class ArtifactIDShowCaseDic : SerializableDictionary<ArtifactID, ArtifactShowCase> {}
+[Serializable]
+public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact> 
+{
+    public override void CopyFrom(IDictionary<ArtifactID, Artifact> dict) 
+    {
+        this.Clear();
+        foreach (var kvp in dict)
+        {
+            this[kvp.Key] = Artifact.Create(kvp.Key);
+        }
+    }
 
 [Serializable]
 public class MobIDObjectDic : SerializableDictionary<MobID, GameObject> { }
+}
+
+[Serializable]
+public class CharactorIDDataEntityDic : SerializableDictionary<CharacterID, DataEntity>
+{
+    public void CopyFrom(CharactorIDDataEntityDic dict)
+    {
+
+        this.Clear();
+        foreach (var kvp in dict)
+        {
+            Add(kvp.Key, new DataEntity(kvp.Value));
+        }
+    }
+
+}
+
 
 
 [Serializable]

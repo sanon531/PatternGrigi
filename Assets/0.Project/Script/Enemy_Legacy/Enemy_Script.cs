@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using CodeMonkey.HealthSystemCM;
+using PG.HealthSystemCM;
 using DG.Tweening;
 using MoreMountains.NiceVibrations;
 using PG.Data;
@@ -297,14 +297,14 @@ namespace PG.Battle
         public static bool Damage(float length)
         {
             float _amount = Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue;
+            //Global_CampaignData._charactorAttackDic[CharacterID.Player].PrintCurrent();
             _instance.RandomDamageFX();
             _instance._healthSystem.Damage(_amount);
             //Debug.Log(_amount+"+"+length);
             _amount *= length;
             //DamageTextScript.Create(_instance.transform.position, 2f, 0.3f, Mathf.FloorToInt(_amount), Color.red);
-            DamageFXManager.ShowDamage(Player_Script.ReturnCurrentTransform(), 1f, Mathf.FloorToInt(_amount), 
+            DamageFXManager.ShowDamage(Player_Script.GetPlayerPosition(), 1f, Mathf.FloorToInt(_amount), 
                 Color.red, _instance._enemyPositionByAnimation, _instance.transform);
-            Global_BattleEventSystem.CallOnCalcDamage(_amount);
             return _instance._isEnemyAlive;
         }
 

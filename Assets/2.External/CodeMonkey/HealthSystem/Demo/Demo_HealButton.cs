@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace CodeMonkey.HealthSystemCM {
+namespace PG.HealthSystemCM {
 
     /// <summary>
     /// Heal the HealthSystem on Click

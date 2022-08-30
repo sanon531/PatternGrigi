@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CodeMonkey.HealthSystemCM {
+namespace PG.HealthSystemCM {
 
     /// <summary>
     /// Utility script to make a Transform look straight at the main camera

@@ -1,0 +1,20 @@
+{
+  "Items": [
+    {
+      "key":"item1",
+      "value":"Старт"
+    },
+    {
+      "key":"item2",
+      "value":"Настройки"
+    },
+    {
+      "key":"item3",
+      "value":"Выход"
+    },
+    {
+      "key":"label",
+      "value":"Языки"
+    }
+  ]
+}

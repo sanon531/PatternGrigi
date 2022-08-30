@@ -79,6 +79,41 @@ namespace PG.Battle
         {
             _isLevelupPaused = false;
         }
+
+
+        #region
+
+        Dictionary<ObstacleID, List<GameObject>> _activateObstacleDictionary = new Dictionary<ObstacleID, List<GameObject>>()
+        {
+            {ObstacleID.SmallFire ,new List<GameObject>(){ } }
+        };
+        Dictionary<ObstacleID, List<GameObject>> _deactivateObstacleDictionary = new Dictionary<ObstacleID, List<GameObject>>()
+        {
+            {ObstacleID.SmallFire ,new List<GameObject>(){ } }
+        };
+
+
+        GameObject ShootProjectile(ObstacleID id)
+        {
+            if (_deactivateObstacleDictionary[id].Count == 0)
+            {
+                _deactivateObstacleDictionary[id].Add(Instantiate(_obstacleDic[id], transform));
+            }
+            GameObject _tempt = _deactivateObstacleDictionary[id][0];
+            _deactivateObstacleDictionary[id].Remove(_tempt);
+            _activateObstacleDictionary[id].Add(_tempt);
+            return _tempt;
+        }
+        public static void SetBackProjectile(GameObject projectile, ObstacleID id)
+        {
+            if (_instance._activateObstacleDictionary[id].Contains(projectile))
+            {
+                _instance._activateObstacleDictionary[id].Remove(projectile);
+                _instance._deactivateObstacleDictionary[id].Add(projectile);
+            }
+        }
+        #endregion
+
     }
 
 }

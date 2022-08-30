@@ -44,11 +44,11 @@ namespace PG.Battle
             _Animator.SetBool("isActive", true);
         }
 
-
-        void Update()
+        protected override void FixedUpdate()
         {
             CheckStatus();
         }
+
 
 
     }

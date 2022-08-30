@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace CodeMonkey.HealthSystemCM {
+namespace PG.HealthSystemCM {
 
     /// <summary>
     /// Simple UI Health Bar, sets the Image fillAmount based on the linked HealthSystem

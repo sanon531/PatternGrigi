@@ -446,6 +446,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1364576309081082828, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: jsontext
+      value: 
+      objectReference: {fileID: 4900000, guid: d690a8d7ba457e348803b471d70b26f9, type: 3}
     - target: {fileID: 7435981629800215618, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -502,6 +506,30 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 464091426}
+    - target: {fileID: 7504855527261867977, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7504855527261867977, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964876256455990930, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00011721961
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166785324373634168, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166785324373634168, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166785324373634168, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
 --- !u!1 &1242688171
@@ -1172,3 +1200,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cdf234d2ae41284dbb610f4f85f7bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _targetScene: Play_Scene_Defence

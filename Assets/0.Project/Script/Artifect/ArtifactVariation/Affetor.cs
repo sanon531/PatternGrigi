@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace PG 
 {
+    [SerializeField]
     public class Affector
     {
         public bool IsEnabled { get; private set; } = false;

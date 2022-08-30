@@ -37,8 +37,9 @@ namespace PG.Battle
         public void SetTextAndImageOnButton(ArtifactID id) 
         {
             _contentImage.sprite = Resources.Load<Sprite>("Artifact/" + id.ToString());
-            ArtifactData data= GlobalDataStorage.TotalArtifactTableDataDic[id];
-            _content.text = data.Devcomment;
+            //ArtifactData data= GlobalDataStorage.TotalArtifactTableDataDic[id];
+            _title.text = GetLocalizedTextScript.GetArtifactDataFromJson(ArtifactJsonData.ArtifactName, id);
+            _content.text = GetLocalizedTextScript.GetArtifactDataFromJson(ArtifactJsonData.ArtifactEffect,id);
         
         }
 

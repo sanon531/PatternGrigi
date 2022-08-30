@@ -38,25 +38,26 @@ namespace PG.Data
 
                 {ArtifactID.FragileRush, new ArtifactData(
                     ArtifactID.FragileRush,
-                    "적에게 가하는 공격력 +10 플레이어가 받는 데미지도 10 증가합니다.","",
                     (int)ArtifactRarity.Common,
                     true,
                     0)},
                 {ArtifactID.Equatore, new ArtifactData(
                     ArtifactID.Equatore,
-                    "적에 가하는 공격력이 5만큼 상승합니다","",
                     (int)ArtifactRarity.Common,
                     true,
                     0)},
                 {ArtifactID.BubbleGun, new ArtifactData(
                     ArtifactID.BubbleGun,
-                    "거리에 따른 배율이 소량 상승하고 공격력이 약간 감소합니다.","",
                     (int)ArtifactRarity.Common,
                     true,
                     0)},
                 {ArtifactID.QuickSlice, new ArtifactData(
                     ArtifactID.QuickSlice,
-                    "거리에 따른 배율이 소량 감소합니다.공격력이 소량 상승합니다.","",
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0)},
+                {ArtifactID.BulletTeleportShooter, new ArtifactData(
+                    ArtifactID.BulletTeleportShooter,
                     (int)ArtifactRarity.Common,
                     true,
                     0)},
@@ -64,35 +65,19 @@ namespace PG.Data
                 #endregion
                 {ArtifactID.PadThai, new ArtifactData(
                     ArtifactID.PadThai,
-                    "공격이 상승하며 플레이어의사이즈가 약간 커집니다.","",
                     (int)ArtifactRarity.Common,
                     true,
                     0)},
                 {ArtifactID.SesameOil, new ArtifactData(
                     ArtifactID.SesameOil,
-                    "공격이 하락하며 플레이어의사이즈가 약간 작아집니다","",
                     (int)ArtifactRarity.Common,
                     true,
                     0)},
-                {ArtifactID.PoloNord, new ArtifactData(
-                    ArtifactID.PoloNord,
-                    "","",
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-                {ArtifactID.StrangeTropics, new ArtifactData(
-                    ArtifactID.StrangeTropics,
-                    "","",
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
+               
 
             };
         //나중에 로컬라이제이션 할때 사용 할 생각.
         public static Dictionary<ArtifactID, string> ArtifactToNameText_KR = new Dictionary<ArtifactID, string>() { };
-
-
-
 
         public static Dictionary<ArtifactID, Artifact> TotalArtifactClassDic =
             new Dictionary<ArtifactID, Artifact>()
@@ -103,6 +88,7 @@ namespace PG.Data
                 {ArtifactID.QuickSlice, new Arfifact_QuickSlice()},
                 {ArtifactID.PadThai, new Arfifact_PadThai()},
                 {ArtifactID.SesameOil, new Arfifact_SesameOil()},
+                {ArtifactID.BulletTeleportShooter, new Arfifact_BulletTeleportShooter()},
 
             };
 

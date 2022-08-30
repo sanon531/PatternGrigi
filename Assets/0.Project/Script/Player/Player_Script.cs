@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CodeMonkey.HealthSystemCM;
+using PG.HealthSystemCM;
 using DG.Tweening;
 using PG.Event;
 using PG.Data;
@@ -78,7 +78,7 @@ namespace PG.Battle
             _instance._damageFX.Play();
             //s_instance._healthBar.DoFadeHealth(s_instance._healthFadeTime);
             //DamageTextScript.Create(s_instance._thisSprite.transform.position, 0.5f, 0.3f, (int)_amount, Color.green);
-            DamageFXManager.ShowDamage(Player_Script.ReturnCurrentTransform(), 1f, Mathf.FloorToInt(_amount),
+            DamageFXManager.ShowDamage(Player_Script.GetPlayerPosition(), 1f, Mathf.FloorToInt(_amount),
                 Color.green, _instance.transform, _instance.transform);
 
 
@@ -112,7 +112,7 @@ namespace PG.Battle
         {
             return _instance._playerStatus;
         }
-        public static Vector3 ReturnCurrentTransform()
+        public static Vector3 GetPlayerPosition()
         {
             return _instance.transform.position;
         }
