@@ -7,16 +7,16 @@ using PG.Battle;
 using PG;
 
 [Serializable]
-public class StringStringDictionary : SerializableDictionary<string, string> {}
+public class StringStringDictionary : SerializableDictionary<string, string> { }
 
 [Serializable]
-public class ObjectColorDictionary : SerializableDictionary<UnityEngine.Object, Color> {}
+public class ObjectColorDictionary : SerializableDictionary<UnityEngine.Object, Color> { }
 
 [Serializable]
-public class ColorArrayStorage : SerializableDictionary.Storage<Color[]> {}
+public class ColorArrayStorage : SerializableDictionary.Storage<Color[]> { }
 
 [Serializable]
-public class StringColorArrayDictionary : SerializableDictionary<string, Color[], ColorArrayStorage> {}
+public class StringColorArrayDictionary : SerializableDictionary<string, Color[], ColorArrayStorage> { }
 
 [Serializable]
 public class StringAudioDictionary : SerializableDictionary<string, AudioClip> { }
@@ -25,11 +25,11 @@ public class ObstacleIDObjectDic : SerializableDictionary<ObstacleID, GameObject
 [Serializable]
 public class ActionDataDic : SerializableDictionary<EnemyActionID, EnemyActionData> { }
 [Serializable]
-public class ArtifactIDShowCaseDic : SerializableDictionary<ArtifactID, ArtifactShowCase> {}
+public class ArtifactIDShowCaseDic : SerializableDictionary<ArtifactID, ArtifactShowCase> { }
 [Serializable]
-public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact> 
+public class ArtifactIDArtifactDic : SerializableDictionary<ArtifactID, Artifact>
 {
-    public override void CopyFrom(IDictionary<ArtifactID, Artifact> dict) 
+    public override void CopyFrom(IDictionary<ArtifactID, Artifact> dict)
     {
         this.Clear();
         foreach (var kvp in dict)
@@ -37,8 +37,9 @@ public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact>
             this[kvp.Key] = Artifact.Create(kvp.Key);
         }
     }
-
 }
+[Serializable]
+public class MobIDObjectDic : SerializableDictionary<MobID, GameObject> { }
 
 [Serializable]
 public class CharactorIDDataEntityDic : SerializableDictionary<CharacterID, DataEntity>
@@ -70,4 +71,4 @@ public class MyClass
 }
 
 [Serializable]
-public class QuaternionMyClassDictionary : SerializableDictionary<Quaternion, MyClass> {}
+public class QuaternionMyClassDictionary : SerializableDictionary<Quaternion, MyClass> { }

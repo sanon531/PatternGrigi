@@ -31,7 +31,6 @@ namespace PG.Battle
             _instance._listOfShow = new List<GameObject>();
 
             GameObject temp;
-            Transform startTr, endTr;
 
             //패턴의 노드번호를 받아서 해당하는 레이저 만들고 리스트에 추가
             for (int i=0; i < presetNodes.Count-1; i++)

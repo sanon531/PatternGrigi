@@ -135,6 +135,34 @@ namespace PG.Data
         Stunned = 99
 
     }
+
+    public enum MobID
+    { 
+        Temp0 = 0,
+        Temp1 = 1,
+        Temp2 = 2,
+        Temp3 = 3
+    }
+
+    public enum MobActionID
+    {
+        Wait = 0,
+        Move = 1,
+        Attack = 2,
+        Stunned = 99
+
+    }
+
+    [Serializable]
+    public class MobActionData
+    {
+        public MobActionID _action;
+        public float _actionTime = 5;
+        public List<Vector2> _placeList = new List<Vector2>();
+        public List<SpawnData> _spawnDataList = new List<SpawnData>();
+
+    }
+
     //스폰하는 방식을 의미함
     //한번에 같은거 소환하는가
     //그런 류를 정하는 곳

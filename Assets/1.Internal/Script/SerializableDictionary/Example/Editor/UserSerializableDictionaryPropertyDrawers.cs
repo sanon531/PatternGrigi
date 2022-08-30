@@ -12,7 +12,7 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(QuaternionMyClassDictionary))]
 [CustomPropertyDrawer(typeof(ArtifactIDArtifactDic))]
 [CustomPropertyDrawer(typeof(CharactorIDDataEntityDic))]
-
+[CustomPropertyDrawer(typeof(MobIDObjectDic))]
 
 public class AnySerializableDictionaryPropertyDrawer : SerializableDictionaryPropertyDrawer {}
 
