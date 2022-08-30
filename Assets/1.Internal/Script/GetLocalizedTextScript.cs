@@ -92,7 +92,7 @@ namespace PG
         public static string GetArtifactDataFromJson(ArtifactJsonData jsonData, ArtifactID targetid)
         {
             string _returnval = "Error";
-            Debug.Log(jsonData + "," + targetid);
+            //Debug.Log(jsonData + "," + targetid);
             switch (jsonData)
             {
                 case ArtifactJsonData.ArtifactName:

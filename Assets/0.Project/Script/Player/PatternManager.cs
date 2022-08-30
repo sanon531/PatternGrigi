@@ -105,7 +105,7 @@ namespace PG.Battle
         //추후에 타겟노드를 2개 이상 만들때 사용할 부분. 지금은 안씀.
         int _targetCount = 1;
         //처음에는 무조건 랜덤만.
-        float[] _weightRandom = new float[3] {1.0f,1.0f,2.0f };
+        float[] _weightRandom = new float[3] {1.0f,0f,0f };
         NodePlaceType[] nodePlaceTypes = new NodePlaceType[3] { NodePlaceType.Random, NodePlaceType.Close, NodePlaceType.Far };
         void CheckNodeOnDamage(int nodeID)
         {
@@ -117,30 +117,17 @@ namespace PG.Battle
                 //기존의 노드들을 그냥 랜덤으로 놓는 부분들을 만든다.
                 NodePlaceType currentPlace= NodePlaceType.Random;
                 currentPlace = nodePlaceTypes.PickRandomWeighted(_weightRandom);
-                //Debug.Log(currentPlace +"sdfa");
+                Debug.Log(currentPlace +"sdfa");
                 switch (currentPlace)
                 {
                     case NodePlaceType.Random:
-                        for (int i = 0; i < _targetCount; i++)
-                            _temptid = ReachTriggeredNode_Random(_temptid);
+                        _temptid = ReachTriggeredNode_Random(_temptid);
                         break;
                     case NodePlaceType.Close:
-                        for (int i = 0; i < _targetCount; i++) 
-                        {
-                            if (i< _IDWithClose[_temptid].Length)
-                                _temptid = ReachTriggeredNode_Close(_temptid);
-                            else
-                                _temptid = ReachTriggeredNode_Random(_temptid);
-                        }
+                        _temptid = ReachTriggeredNode_Close(_temptid);
                         break;
                     case NodePlaceType.Far:
-                        for (int i = 0; i < _targetCount; i++)
-                        {
-                            if (i < _IDWithClose[_temptid].Length)
-                                _temptid = ReachTriggeredNode_Far(_temptid);
-                            else
-                                _temptid = ReachTriggeredNode_Random(_temptid);
-                        }
+                        _temptid = ReachTriggeredNode_Far(_temptid);
                         break;
                     default:
                         Debug.LogError("CheckNodeOnDamage Error: no id");
@@ -220,12 +207,17 @@ namespace PG.Battle
         }
         public int ReachTriggeredNode_Close(int reachedNode)
         {
+            _inactivatedNode.Remove(reachedNode);
+            int _deleteTarget = _IDWithCloseDic[reachedNode].PickRandom();
+            SetNodeToNextReach(_inactivatedNode[_deleteTarget]);
 
             return 0;
         }
         public int ReachTriggeredNode_Far(int reachedNode)
         {
-
+            _inactivatedNode.Remove(reachedNode);
+            int _deleteTarget = _IDWithFarDic[reachedNode].PickRandom();
+            SetNodeToNextReach(_inactivatedNode[_deleteTarget]);
             return 0;
         }
 
@@ -372,14 +364,14 @@ namespace PG.Battle
             {7,new Vector2Int(1,2) },
             {8,new Vector2Int(2,2) }
         };
-        Dictionary<int, int[]> _IDWithClose = new Dictionary<int, int[]>() 
+        Dictionary<int, int[]> _IDWithCloseDic = new Dictionary<int, int[]>() 
         {
             {0,new int[2]{1,3} }, {1,new int[3]{0,2,4} },{2,new int[2]{1,5} },
             {3,new int[3]{0,4,6} },{4,new int[4]{1,3,5,7} },{5,new int[3]{2,4,8} },
             {6,new int[2]{4,7} },{7,new int[3]{4,6,8} },{8,new int[2]{5,7} }
         };
 
-        Dictionary<int, int[]> _IDWithFar = new Dictionary<int, int[]>()
+        Dictionary<int, int[]> _IDWithFarDic = new Dictionary<int, int[]>()
         {
             {0,new int[3]{5,7,8} }, {1,new int[3]{6,7,8} },{2,new int[3]{3,6,7} },
             {3,new int[3]{2,5,8} },{4,new int[4]{0,2,6,7} },{5,new int[3]{0,3,6} },

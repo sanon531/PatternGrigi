@@ -34,6 +34,11 @@ namespace PG.Event
         public static event OnEventWithInt _onNodeReached;
         public static void CallOnNodeReached(int id) { _onNodeReached?.Invoke(id); }
 
+        public static event OnEvent _onNodeSetFar;
+        public static void CallOnNodeSetFar() { _onNodeSetFar?.Invoke(); }
+
+
+
         //배틀 중 이벤트 
         public static event OnEvent _onTouchMain;
         public static void CallOnTouchMain() { _onTouchMain?.Invoke(); }
