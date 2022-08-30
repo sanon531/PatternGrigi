@@ -118,8 +118,34 @@ namespace PG.Battle
                 NodePlaceType currentPlace= NodePlaceType.Random;
                 currentPlace = nodePlaceTypes.PickRandomWeighted(_weightRandom);
                 //Debug.Log(currentPlace +"sdfa");
-                for(int i = 0; i< _targetCount; i ++)
-                    _temptid = ReachTriggeredNode_Random(_temptid);
+                switch (currentPlace)
+                {
+                    case NodePlaceType.Random:
+                        for (int i = 0; i < _targetCount; i++)
+                            _temptid = ReachTriggeredNode_Random(_temptid);
+                        break;
+                    case NodePlaceType.Close:
+                        for (int i = 0; i < _targetCount; i++) 
+                        {
+                            if (i< _IDWithClose[_temptid].Length)
+                                _temptid = ReachTriggeredNode_Close(_temptid);
+                            else
+                                _temptid = ReachTriggeredNode_Random(_temptid);
+                        }
+                        break;
+                    case NodePlaceType.Far:
+                        for (int i = 0; i < _targetCount; i++)
+                        {
+                            if (i < _IDWithClose[_temptid].Length)
+                                _temptid = ReachTriggeredNode_Far(_temptid);
+                            else
+                                _temptid = ReachTriggeredNode_Random(_temptid);
+                        }
+                        break;
+                    default:
+                        Debug.LogError("CheckNodeOnDamage Error: no id");
+                        break;
+                }
             }
             else
             {
@@ -192,6 +218,17 @@ namespace PG.Battle
             SetNodeToNextReach(_inactivatedNode[_deleteTarget]);
             return _deleteTarget;
         }
+        public int ReachTriggeredNode_Close(int reachedNode)
+        {
+
+            return 0;
+        }
+        public int ReachTriggeredNode_Far(int reachedNode)
+        {
+
+            return 0;
+        }
+
 
         //현재 노드가 뭐든지 일단 없애고 보는거. 
         void ResetAllNode()
@@ -340,6 +377,13 @@ namespace PG.Battle
             {0,new int[2]{1,3} }, {1,new int[3]{0,2,4} },{2,new int[2]{1,5} },
             {3,new int[3]{0,4,6} },{4,new int[4]{1,3,5,7} },{5,new int[3]{2,4,8} },
             {6,new int[2]{4,7} },{7,new int[3]{4,6,8} },{8,new int[2]{5,7} }
+        };
+
+        Dictionary<int, int[]> _IDWithFar = new Dictionary<int, int[]>()
+        {
+            {0,new int[3]{5,7,8} }, {1,new int[3]{6,7,8} },{2,new int[3]{3,6,7} },
+            {3,new int[3]{2,5,8} },{4,new int[4]{0,2,6,7} },{5,new int[3]{0,3,6} },
+            {6,new int[3]{1,2,5} },{7,new int[3]{0,1,2} },{8,new int[3]{0,1,3} }
         };
         //거리 재는 부분
         float GetNodePositionByID(int startID, int endID)
