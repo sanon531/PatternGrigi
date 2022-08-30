@@ -13,6 +13,8 @@ namespace PG.Battle
         private Transform _SpawnRange_Left;
         [SerializeField]
         private Transform _SpawnRange_Right;
+        public Transform _DamageLine;
+        
 
         [SerializeField]
         private bool _spawnStart;

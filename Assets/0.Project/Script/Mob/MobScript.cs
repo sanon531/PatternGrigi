@@ -77,6 +77,14 @@ namespace PG.Battle
                 case MobActionID.Move:
 
                     transform.Translate(_moveDirection * _moveSpeed * Time.deltaTime);
+
+                    if (transform.position.y <= MobGenerator._instance._DamageLine.position.y)
+                    {
+                        MobGenerator._instance.DestroyMob(gameObject);
+
+                        //데미지 입는 부분
+                        Debug.Log("damage");
+                    }
                     break;
 
                 case MobActionID.Attack:
