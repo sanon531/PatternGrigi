@@ -128,3 +128,7 @@ MonoBehaviour:
       _lifeTime: 3
       _activeTime: 1
       _damageMag: 1
+  - _action: 1
+    _actionTime: 3
+    _placeList: []
+    _spawnDataList: []
