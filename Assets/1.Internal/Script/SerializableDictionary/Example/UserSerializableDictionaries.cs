@@ -27,7 +27,8 @@ public class ActionDataDic : SerializableDictionary<EnemyActionID, EnemyActionDa
 [Serializable]
 public class ArtifactIDShowCaseDic : SerializableDictionary<ArtifactID, ArtifactShowCase> { }
 [Serializable]
-public class ArtifactIDArtifactDic : SerializableDictionary<ArtifactID, Artifact>
+public class MobIDObjectDic : SerializableDictionary<MobID, GameObject> { }
+public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact> 
 {
     public override void CopyFrom(IDictionary<ArtifactID, Artifact> dict)
     {
@@ -37,6 +38,9 @@ public class ArtifactIDArtifactDic : SerializableDictionary<ArtifactID, Artifact
             this[kvp.Key] = Artifact.Create(kvp.Key);
         }
     }
+
+[Serializable]
+public class MobIDObjectDic : SerializableDictionary<MobID, GameObject> { }
 }
 [Serializable]
 public class MobIDObjectDic : SerializableDictionary<MobID, GameObject> { }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PG.HealthSystemCM;
 using PG.Data;
+using PG.HealthSystemCM;
 
 namespace PG.Battle 
 {
@@ -23,7 +24,7 @@ namespace PG.Battle
         [SerializeField]
         private Vector3 _moveDirection;
 
-        //ÀÌ µÎ°³´Â ¾ÆÁ÷ ¾È¾²ÀÓ
+        //ï¿½ï¿½ ï¿½Î°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È¾ï¿½ï¿½ï¿½
         bool _isEnemyAlive = true;
         bool _isStunned = false;
 
@@ -41,7 +42,7 @@ namespace PG.Battle
             else */if (_isEnemyAlive)
             {
 
-                //¸¸¾à ½ºÅÏÀÎ »óÅÂ¸é ÀÛµ¿À» ¸ØÃßµµ·Ï ¸¸µç´Ù.
+                //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½Ûµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ßµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
                 if (_isStunned)
                     return;
 
@@ -55,8 +56,8 @@ namespace PG.Battle
         private MobActionID _currentAction;
         private int _currentActionOrder = 0;
         private MobActionData _currentActionData;
-        private bool _inAction = false;     //¾×¼Ç ÇÏ³ª ÇÏ´Â ÁßÀÎÁö
-        private bool _inAttack = false;     //°ø°Ý ÇÏ³ª ÇÏ´Â ÁßÀÎÁö 
+        private bool _inAction = false;     //ï¿½×¼ï¿½ ï¿½Ï³ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        private bool _inAttack = false;     //ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 
         [SerializeField]
         private List<MobActionData> _mobActionDataList = new List<MobActionData>();
@@ -68,7 +69,7 @@ namespace PG.Battle
 
             if (!_inAction)
             {
-                //¾×¼Ç Ã¹ ½ÃÀÛÀÌ¸é
+                //ï¿½×¼ï¿½ Ã¹ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½
                 StartCoroutine(ActionCoroutine(_currentActionData._actionTime));
             }
 
@@ -82,15 +83,15 @@ namespace PG.Battle
                     {
                         MobGenerator._instance.DestroyMob(gameObject);
 
-                        //µ¥¹ÌÁö ÀÔ´Â ºÎºÐ
+                        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´ï¿½ ï¿½Îºï¿½
                         Debug.Log("damage");
                     }
                     break;
 
                 case MobActionID.Attack:
                    
-                    //Àå¾Ö¹° ÇÑ¹ø ¼ÒÈ¯ ÈÄ ³²Àº actionTime µ¿¾ÈÀº wait°ú ¶È°°ÀÌ ÀÛµ¿        
-                    if (_inAttack) { break; }   //ÀÌ¹Ì Àå¾Ö¹° ¼ÒÈ¯ ³¡³µÀ¸¸é
+                    //ï¿½ï¿½Ö¹ï¿½ ï¿½Ñ¹ï¿½ ï¿½ï¿½È¯ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ actionTime ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ waitï¿½ï¿½ ï¿½È°ï¿½ï¿½ï¿½ ï¿½Ûµï¿½        
+                    if (_inAttack) { break; }   //ï¿½Ì¹ï¿½ ï¿½ï¿½Ö¹ï¿½ ï¿½ï¿½È¯ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
                     for(int i = 0; i < _currentActionData._spawnDataList.Count; i++)
                     {
@@ -102,7 +103,7 @@ namespace PG.Battle
 
                 case MobActionID.Stunned:
                     _isStunned = true;
-                    //½ºÅÏÀ» ¾î¶»°Ô Çª´Â°ÇÁö ¹°¾îº¸°í ¼öÁ¤ÇØ¾ßÇÔ
+                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½î¶»ï¿½ï¿½ Çªï¿½Â°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½îº¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½
                     break;
             }
         }
@@ -111,13 +112,13 @@ namespace PG.Battle
         {
             _inAction = true;
             yield return new WaitForSeconds(actionTime);
-            //¾×¼Ç ³¡
+            //ï¿½×¼ï¿½ ï¿½ï¿½
 
             _currentActionOrder++;
 
             if(_currentActionOrder >= _mobActionDataList.Count)
             {
-                //¾×¼Ç ³¡³­°Å ¿ì¼±Àº ÆÄ±«µÇ´Â°É·Î
+                //ï¿½×¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ì¼±ï¿½ï¿½ ï¿½Ä±ï¿½ï¿½Ç´Â°É·ï¿½
                 MobGenerator._instance.DestroyMob(gameObject);
             }
 
