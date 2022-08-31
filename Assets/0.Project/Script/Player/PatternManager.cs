@@ -113,8 +113,6 @@ namespace PG.Battle
 
 
         //데미지가 가해졌을때 다음 노드를 결정하는 메소드
-        //추후에 타겟노드를 2개 이상 만들때 사용할 부분. 지금은 안씀.
-        int _targetCount = 1;
         //처음에는 무조건 랜덤만.
         float[] _weightRandom = new float[3] {1.0f,0f,0f };
         NodePlaceType[] nodePlaceTypes = new NodePlaceType[3] { NodePlaceType.Random, NodePlaceType.Close, NodePlaceType.Far };
@@ -288,11 +286,14 @@ namespace PG.Battle
         {
             Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
+            Global_BattleEventSystem._onPatternSuccessed += CallPatternEvent;
+
         }
         void DeleteChargeEvent()
         {
             Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
+            Global_BattleEventSystem._onPatternSuccessed -= CallPatternEvent;
 
         }
 
@@ -351,6 +352,10 @@ namespace PG.Battle
         {
             ChargeGaugeUIScript.EndChargeSkill();
             _isChargeStart = false;
+        }
+        private void CallPatternEvent(DrawPatternPreset _patternPreset)
+        {
+            GlobalDataStorage.PatternWIthActionDic[_patternPreset].StartPatternAction();
         }
 
 

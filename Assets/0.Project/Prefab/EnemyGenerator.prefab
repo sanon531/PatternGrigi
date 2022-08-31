@@ -295,19 +295,52 @@ MonoBehaviour:
   _SpawnRange_Left: {fileID: 6747084384727533547}
   _SpawnRange_Right: {fileID: 6747084384509434428}
   _DamageLine: {fileID: 969792002}
-  _spawnStart: 0
+  _spawnStart: 1
   _mobDic:
-    m_keys: 0000000001000000
+    m_keys: 1500000016000000
     m_values:
-    - {fileID: 3641260654999283697, guid: 0c0d0d6087a52d143b3b1f762f888261, type: 3}
-    - {fileID: 6512317271173661028, guid: f65d0b3280b2fbe4eb7d9adb33938202, type: 3}
+    - {fileID: 3641260654999283697, guid: 8b81cc7325a1f534abc344e228e8628e, type: 3}
+    - {fileID: 3641260654999283697, guid: 6181227a77197e844a180ce2ac848553, type: 3}
   _mobSpawnDataList:
-  - mobID: 0
-    wait_time: 1
-    respawn_delay: 3
-    move_speed: 2
-  - mobID: 1
-    wait_time: 5
-    respawn_delay: 10
-    move_speed: 2
+  - mobID: 21
+    wait_time: 0.15
+    respawn_delay: 4
+    _actionDic:
+      m_keys: 0000000001000000
+      m_values:
+      - _actionTime: 1
+        _speed: 0
+        _acceleration: 0
+        _placeList: []
+        _spawnDataList: []
+      - _actionTime: 10
+        _speed: 10
+        _acceleration: 0
+        _placeList: []
+        _spawnDataList: []
+  - mobID: 22
+    wait_time: 0.15
+    respawn_delay: 4
+    _actionDic:
+      m_keys: 000000000100000002000000
+      m_values:
+      - _actionTime: 1
+        _speed: 0
+        _acceleration: 0
+        _placeList: []
+        _spawnDataList: []
+      - _actionTime: 3
+        _speed: 10
+        _acceleration: 0
+        _placeList: []
+        _spawnDataList: []
+      - _actionTime: 10
+        _speed: 10
+        _acceleration: 0
+        _placeList: []
+        _spawnDataList:
+        - _thisID: 10
+          _lifeTime: 10
+          _activeTime: 1
+          _damageMag: 1
   _mobList: []

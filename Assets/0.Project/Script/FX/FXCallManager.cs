@@ -38,6 +38,7 @@ namespace PG.Battle
         private void CallPatternEvent(DrawPatternPreset _patternPreset) 
         {
             _patternPrefabDic[_patternPreset].Play();
+
         }
 
     }

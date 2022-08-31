@@ -159,7 +159,7 @@ namespace PG.Battle
             }
             if (transform.position.y <= MobGenerator.GetDeadLine())
             {
-                MobGenerator.DestroyMob(gameObject);
+                MobGenerator.DestroyMob(this);
                 Debug.Log("damage on Player");
                 Player_Script.Damage(_reachedDamage);
             }
@@ -177,9 +177,16 @@ namespace PG.Battle
         private void OnDead(object sender, System.EventArgs e)
         {
             _isEnemyAlive = false;
-            MobGenerator.DestroyMob(gameObject);
+            MobGenerator.DestroyMob(this);
         }
 
+
+        [SerializeField]
+        SpriteRenderer _targetSprite;
+        public void SetTargetted(bool val) 
+        {
+            _targetSprite.enabled = val;
+        }
 
         #region//paused
 

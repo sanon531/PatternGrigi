@@ -29,6 +29,13 @@ namespace PG.Data
                 {DrawPatternPreset.Sandglass,new List<int>(){2,0,8,6,2} }
 
             };
+        public static Dictionary<DrawPatternPreset, PresetPatternAction_Base> PatternWIthActionDic =
+            new Dictionary<DrawPatternPreset, PresetPatternAction_Base>()
+            {
+                {DrawPatternPreset.Default_Thunder,new PresetPattern_DefaultThunder()},
+                {DrawPatternPreset.LoveAndPeace,new PresetPattern_LoveAndPeace()},
+                {DrawPatternPreset.Sandglass,new PresetPattern_Sandglass() }
+            };
 
         //아티팩트의 수치와 행동을 분리하여야 한다.그래야 나중에 텍스트 처리할때 편하다.
         public static Dictionary<ArtifactID, ArtifactData> TotalArtifactTableDataDic =

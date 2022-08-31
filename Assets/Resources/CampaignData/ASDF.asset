@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _obtainableArtifactIDList: 330000000a000000140000003c0000003d00000015000000
   _charactorAttackDic:
-    m_keys: 010000000200000003000000
+    m_keys: 0100000002000000030000001500000016000000
     m_values:
     - "_\uAE30\uBCF8\uAC12": 10
       "_\uC99D\uAC00\uB7C9": 0
@@ -23,6 +23,18 @@ MonoBehaviour:
       "_\uCD94\uAC00\uB7C9": 0
       type: 1
     - "_\uAE30\uBCF8\uAC12": 8
+      "_\uC99D\uAC00\uB7C9": 0
+      "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+      "_\uBC30\uC218": 1
+      "_\uCD94\uAC00\uB7C9": 0
+      type: 1
+    - "_\uAE30\uBCF8\uAC12": 16
+      "_\uC99D\uAC00\uB7C9": 0
+      "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+      "_\uBC30\uC218": 1
+      "_\uCD94\uAC00\uB7C9": 0
+      type: 1
+    - "_\uAE30\uBCF8\uAC12": 16
       "_\uC99D\uAC00\uB7C9": 0
       "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
       "_\uBC30\uC218": 1

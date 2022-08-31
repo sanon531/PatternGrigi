@@ -23,7 +23,7 @@ namespace PG.Battle
         [SerializeField]
         ProjectileID _currentProjectile = ProjectileID.NormalBullet;
         [SerializeField]
-        List<GameObject> _temptenemyList = new List<GameObject>();
+        List<MobScript> _temptenemyList = new List<MobScript>();
 
 
         protected override void CallOnAwake()
@@ -99,11 +99,19 @@ namespace PG.Battle
                 if (maxTargetNum >= Global_CampaignData._projectileTargetNum.FinalValue)
                     break;
             }
+            // 타겟 되었다는거 표시하기
+            for (int i = 0; i < _temptenemyList.Count; i++) 
+            {
+                if (_targetList.Contains(i))
+                {
+                    _temptenemyList[i].SetTargetted(true);
+                }
+                else 
+                {
+                    _temptenemyList[i].SetTargetted(false);
+                }
+            }
 
-            foreach (GameObject obj in _temptenemyList)
-                obj.GetComponent<SpriteRenderer>().color = Color.white;
-            foreach (int i in _targetList)
-                _temptenemyList[i].GetComponent<SpriteRenderer>().color = Color.red;
         }
 
         //투사체를 쏜다면 앧티베이션에다가 놓고
