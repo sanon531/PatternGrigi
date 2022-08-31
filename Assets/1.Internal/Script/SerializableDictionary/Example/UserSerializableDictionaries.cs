@@ -27,9 +27,9 @@ public class EnemyActionDataDic : SerializableDictionary<EnemyActionID, EnemyAct
 [Serializable]
 public class ArtifactIDShowCaseDic : SerializableDictionary<ArtifactID, ArtifactShowCase> { }
 [Serializable]
-public class MobIDObjectDic : SerializableDictionary<MobID, GameObject> { }
+public class MobIDObjectDic : SerializableDictionary<CharacterID, GameObject> { }
 [Serializable]
-public class MobIDMobScriptListDic : SerializableDictionary<MobID, List<MobScript>> { }
+public class MobIDMobScriptListDic : SerializableDictionary<CharacterID, List<MobScript>> { }
 [Serializable]
 public class MobActionDataDic : SerializableDictionary<MobActionID, MobActionData> { }
 
@@ -45,7 +45,7 @@ public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact>
     }
 
 [Serializable]
-public class MobIDObjectDic : SerializableDictionary<MobID, GameObject> { }
+public class MobIDObjectDic : SerializableDictionary<CharacterID, GameObject> { }
 }
 
 [Serializable]

@@ -91,26 +91,30 @@ namespace PG
 
         public static string GetArtifactDataFromJson(ArtifactJsonData jsonData, ArtifactID targetid)
         {
-            string _returnval = "Error";
+            string _returnval = "Non Data";
             //Debug.Log(jsonData + "," + targetid);
-            switch (jsonData)
+            try
             {
-                case ArtifactJsonData.ArtifactName:
-                    _returnval = _instance._artifactNameDic[targetid];
-                    break;
-                case ArtifactJsonData.ArtifactEffect:
-                    _returnval = _instance._artifactArtifactEffectDic[targetid];
-                    break;
-                case ArtifactJsonData.DevComment:
-                    _returnval = _instance._artifactDevCommentDic[targetid];
-                    break;
-                default:
-                    Debug.LogError("GetArtifact data type Error");
-                    break;
+                switch (jsonData)
+                {
+                    case ArtifactJsonData.ArtifactName:
+                        _returnval = _instance._artifactNameDic[targetid];
+                        break;
+                    case ArtifactJsonData.ArtifactEffect:
+                        _returnval = _instance._artifactArtifactEffectDic[targetid];
+                        break;
+                    case ArtifactJsonData.DevComment:
+                        _returnval = _instance._artifactDevCommentDic[targetid];
+                        break;
+                    default:
+                        Debug.LogError("GetArtifact data type Error");
+                        break;
+                }
             }
-            if (_returnval == "Error")
-                Debug.LogError("Get ArtifactData failed");
-
+            catch (Exception e) 
+            {
+                Debug.Log("Data NONO"+ jsonData.ToString()+" + " + targetid.ToString());
+            }
 
             return _returnval;
         }

@@ -68,7 +68,7 @@ namespace PG.Battle
 
             foreach (int i in _targetList) 
             {
-                float _dividedDamage = Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue / _targetList.Count;
+                float _dividedDamage = val / _targetList.Count;
                 GameObject _obj = ShootProjectile();
                 Projectile_Script _tempt = _obj.GetComponent<Projectile_Script>();
                 Vector3 _direction = _temptenemyList[i].transform.position - Player_Script.GetPlayerPosition();

@@ -30,6 +30,7 @@ namespace PG.Battle
         protected Rigidbody2D _rigidBody2D;
 
         [Header("Current Status")]
+        CharacterID _currentCharactor = CharacterID.Slime;
         bool _isEnemyAlive = true;
         bool _isStunned = false;
         bool _isNontotalPaused = false;
@@ -108,11 +109,26 @@ namespace PG.Battle
                     _initialSpeed = _mobActionDic[MobActionID.Move]._speed;
                     break;
                 case MobActionID.Attack:
-                    for (int i = 0; i < _currentActionData._spawnDataList.Count; i++)
+                    //만약 위치가 설정이 안된 경우 몹 위치에서 발사함.
+                    if (_currentActionData._placeList.Count > 0)
                     {
-                        ObstacleManager.SetObstacle(_currentActionData._spawnDataList[i],
-                                       _currentActionData._placeList[i], _currentActionData._spawnDataList[i]._damageMag);
+                        for (int i = 0; i < _currentActionData._spawnDataList.Count; i++)
+                        {
+                            ObstacleManager.SetObstacle(_currentActionData._spawnDataList[i],_currentActionData._placeList[i],
+                                            Global_CampaignData._charactorAttackDic[_currentCharactor].FinalValue *
+                                            _currentActionData._spawnDataList[i]._damageMag);
+                        }
                     }
+                    else 
+                    {
+                        for (int i = 0; i < _currentActionData._spawnDataList.Count; i++)
+                        {
+                            ObstacleManager.SetObstacle(_currentActionData._spawnDataList[i],gameObject.transform.position, 
+                                           Global_CampaignData._charactorAttackDic[_currentCharactor].FinalValue* 
+                                           _currentActionData._spawnDataList[i]._damageMag);
+                        }
+                    }
+
                     break;
                 case MobActionID.Stunned:
                     break;
@@ -130,7 +146,7 @@ namespace PG.Battle
 
         void CalcMovement()
         {
-            if (_currentAction != MobActionID.Move)
+            if (_currentAction != MobActionID.Move )
                 return;
 
 
@@ -141,7 +157,6 @@ namespace PG.Battle
                 _rigidBody2D.MovePosition(transform.position + _movement);
                 //_initialSpeed += _acceleration * Time.deltaTime;
             }
-
             if (transform.position.y <= MobGenerator.GetDeadLine())
             {
                 MobGenerator.DestroyMob(gameObject);

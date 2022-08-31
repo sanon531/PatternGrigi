@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8078943542995106493}
   - component: {fileID: 6666853327509349367}
   m_Layer: 0
-  m_Name: LookAt_Obstacle
+  m_Name: LookAt_Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

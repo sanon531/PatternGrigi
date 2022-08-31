@@ -22,6 +22,12 @@ namespace PG.Data
         Enemy_Fireboy = 2,
         Enemy_WindShooter = 3,
 
+
+
+        Slime = 21,
+        Tempt_Mob = 22
+
+
     }
     public enum EffectID
     {
@@ -46,7 +52,11 @@ namespace PG.Data
 
         //사이즈 관련
         PadThai = 51,
-        SesameOil = 52
+        SesameOil = 52,
+        
+        //장거리 노드 세팅
+        Pinocchio = 60 ,
+        AtomSetting = 61,
 
 
     }

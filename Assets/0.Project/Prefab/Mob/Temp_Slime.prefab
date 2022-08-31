@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isPlaced: 0
-  healthAmountMax: 0
-  startingHealthAmount: 0
-  currentHealth: 0
+  healthAmountMax: 100
+  startingHealthAmount: 100
+  currentHealth: 100
   _initialSpeed: 1
   _acceleration: 1
   _movement: {x: 0, y: 0, z: 0}
@@ -110,8 +110,18 @@ MonoBehaviour:
   _currentAction: 0
   _mobActionIDList: 0000000001000000
   _mobActionDic:
-    m_keys: 
-    m_values: []
+    m_keys: 0000000001000000
+    m_values:
+    - _actionTime: 2
+      _speed: 0
+      _acceleration: 0
+      _placeList: []
+      _spawnDataList: []
+    - _actionTime: 2
+      _speed: 5
+      _acceleration: 0
+      _placeList: []
+      _spawnDataList: []
 --- !u!95 &8107951174962157429
 Animator:
   serializedVersion: 3

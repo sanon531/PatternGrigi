@@ -107,7 +107,7 @@ namespace PG.Battle
         [Serializable]
         public class MobSpawnData
         {
-            public MobID mobID;
+            public CharacterID mobID;
             public float wait_time;
             public float respawn_delay;
             public MobActionDataDic _actionDic;

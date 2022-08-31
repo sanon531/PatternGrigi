@@ -34,18 +34,16 @@ namespace PG.Battle
         protected override void CallOnAwake()
         {
             _inactivatedNode = _defaultNode.ToList();
-            Global_BattleEventSystem._onBattleBegin += StartTriggerNode;
             StartChargeEvent();
-
-
+            StartNodeEvent();
         }
         // Update is called once per frame
 
         protected override void CallOnDestroy()
         {
             // Update is called once per frame
-            Global_BattleEventSystem._onBattleBegin -= StartTriggerNode;
             DeleteChargeEvent();
+            DeleteNodeEvent();
         }
         private void Update()
         {
@@ -83,6 +81,19 @@ namespace PG.Battle
         }
 
         #region//nodereach
+
+
+        void StartNodeEvent() 
+        {
+            Global_BattleEventSystem._onBattleBegin += StartTriggerNode;
+            Global_BattleEventSystem._onNodeSetWeight += SetNodeWeightby;
+            
+        }
+        void DeleteNodeEvent()
+        {
+            Global_BattleEventSystem._onNodeSetWeight -= SetNodeWeightby;
+            Global_BattleEventSystem._onBattleBegin -= StartTriggerNode;
+        }
         //전투가 시작될 때 사용하는 코드
         void StartTriggerNode()
         {
@@ -117,7 +128,7 @@ namespace PG.Battle
                 //기존의 노드들을 그냥 랜덤으로 놓는 부분들을 만든다.
                 NodePlaceType currentPlace= NodePlaceType.Random;
                 currentPlace = nodePlaceTypes.PickRandomWeighted(_weightRandom);
-                Debug.Log(currentPlace +"sdfa");
+                //Debug.Log(currentPlace +"sdfa");
                 switch (currentPlace)
                 {
                     case NodePlaceType.Random:
@@ -191,7 +202,13 @@ namespace PG.Battle
             }
         }
 
+        void SetNodeWeightby(float[] weight) 
+        {
+            _weightRandom[0] += weight[0];
+            _weightRandom[1] += weight[1];
+            _weightRandom[2] += weight[2];
 
+        }
         //노드를 랜덤으로 배치하는 메소드 id는 겹치지않도록 하는것 
         public int ReachTriggeredNode_Random(int reachedNode)
         {
@@ -210,7 +227,7 @@ namespace PG.Battle
             _inactivatedNode.Remove(reachedNode);
             int _deleteTarget = _IDWithCloseDic[reachedNode].PickRandom();
             SetNodeToNextReach(_inactivatedNode[_deleteTarget]);
-
+            Global_BattleEventSystem.CallOnNodeSetClose();
             return 0;
         }
         public int ReachTriggeredNode_Far(int reachedNode)
@@ -218,6 +235,7 @@ namespace PG.Battle
             _inactivatedNode.Remove(reachedNode);
             int _deleteTarget = _IDWithFarDic[reachedNode].PickRandom();
             SetNodeToNextReach(_inactivatedNode[_deleteTarget]);
+            Global_BattleEventSystem.CallOnNodeSetFar();
             return 0;
         }
 

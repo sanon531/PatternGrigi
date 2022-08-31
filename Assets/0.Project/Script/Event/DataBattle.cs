@@ -62,7 +62,6 @@ namespace PG.Data
                     true,
                     0)},
                
-                #endregion
                 {ArtifactID.PadThai, new ArtifactData(
                     ArtifactID.PadThai,
                     (int)ArtifactRarity.Common,
@@ -73,7 +72,18 @@ namespace PG.Data
                     (int)ArtifactRarity.Common,
                     true,
                     0)},
+                {ArtifactID.Pinocchio, new ArtifactData(
+                    ArtifactID.Pinocchio,
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0)},
+                {ArtifactID.AtomSetting, new ArtifactData(
+                    ArtifactID.AtomSetting,
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0)},
                
+                #endregion
 
             };
         //나중에 로컬라이제이션 할때 사용 할 생각.
@@ -89,6 +99,8 @@ namespace PG.Data
                 {ArtifactID.PadThai, new Arfifact_PadThai()},
                 {ArtifactID.SesameOil, new Arfifact_SesameOil()},
                 {ArtifactID.BulletTeleportShooter, new Arfifact_BulletTeleportShooter()},
+                {ArtifactID.Pinocchio, new Arfifact_Pinnochio()},
+                {ArtifactID.AtomSetting, new Arfifact_AtomSetting()},
 
             };
 
@@ -136,13 +148,6 @@ namespace PG.Data
 
     }
 
-    public enum MobID
-    { 
-        Temp0 = 0,
-        Temp1 = 1,
-        Temp2 = 2,
-        Temp3 = 3
-    }
 
     public enum MobActionID
     {
@@ -181,18 +186,18 @@ namespace PG.Data
     }
     public enum ObstacleID
     {
-        SmallFire = 0,
+        Small_Fire = 0,
         LongThinFire_Vertical = 1,
         LongThinFire_Horizontal = 2,
         ThinLaser = 3,
-        SmallMissile = 4,
+        Chase_Obstacle = 4,
         Flack = 5,
         MovingLeafRightToleft = 6,
         MovingLeafLeftToRight = 7,
         MovingLeafUpToDown = 8,
         MovingLeafDownToUp = 9,
 
-
+        LookAt_Arrow = 10,
 
     }
 

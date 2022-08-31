@@ -79,7 +79,6 @@ namespace PG.Battle
         // 이부분 개선 할꺼임.
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log(collision.tag);
             if (collision.tag == "Player")
                 Player_Script.Damage(_damageDeal);
         }

@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0b2ca909a209340afe36adeafe0b8e, type: 3}
   m_Name: ASDF
   m_EditorClassIdentifier: 
-  _currentArtifactDictionary:
-    m_keys: 
-    m_values: []
-  _obtainableArtifactIDList: 330000000a00000014000000340000000b00000015000000
+  _obtainableArtifactIDList: 330000000a000000140000003c0000003d00000015000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000
     m_values:
