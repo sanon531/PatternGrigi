@@ -156,8 +156,10 @@ namespace PG.Data
     [Serializable]
     public class MobActionData
     {
-        public MobActionID _action;
         public float _actionTime = 5;
+        public float _speed = 3;
+        public float _acceleration = 0;
+
         public List<Vector2> _placeList = new List<Vector2>();
         public List<SpawnData> _spawnDataList = new List<SpawnData>();
 

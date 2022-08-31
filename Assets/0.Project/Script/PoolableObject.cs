@@ -6,17 +6,18 @@ namespace PG.Battle
 {
     public class PoolableObject : MonoBehaviour
     {
-        protected bool _isActive = false;
+        [SerializeField]
+        protected bool _isPlaced = false;
 
         protected virtual void OnObjectEnabled()
         {
-            _isActive = true;
+            _isPlaced = true;
         }
 
 
         protected virtual void OnObjectDisabled() 
         {
-            _isActive = false;
+            _isPlaced = false;
         }
 
     }

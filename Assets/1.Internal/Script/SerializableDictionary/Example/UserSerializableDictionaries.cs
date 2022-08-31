@@ -23,11 +23,16 @@ public class StringAudioDictionary : SerializableDictionary<string, AudioClip> {
 [Serializable]
 public class ObstacleIDObjectDic : SerializableDictionary<ObstacleID, GameObject> { }
 [Serializable]
-public class ActionDataDic : SerializableDictionary<EnemyActionID, EnemyActionData> { }
+public class EnemyActionDataDic : SerializableDictionary<EnemyActionID, EnemyActionData> { }
 [Serializable]
 public class ArtifactIDShowCaseDic : SerializableDictionary<ArtifactID, ArtifactShowCase> { }
 [Serializable]
 public class MobIDObjectDic : SerializableDictionary<MobID, GameObject> { }
+[Serializable]
+public class MobIDMobScriptListDic : SerializableDictionary<MobID, List<MobScript>> { }
+[Serializable]
+public class MobActionDataDic : SerializableDictionary<MobActionID, MobActionData> { }
+
 public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact> 
 {
     public override void CopyFrom(IDictionary<ArtifactID, Artifact> dict)
@@ -42,8 +47,6 @@ public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact>
 [Serializable]
 public class MobIDObjectDic : SerializableDictionary<MobID, GameObject> { }
 }
-[Serializable]
-public class MobIDObjectDic : SerializableDictionary<MobID, GameObject> { }
 
 [Serializable]
 public class CharactorIDDataEntityDic : SerializableDictionary<CharacterID, DataEntity>

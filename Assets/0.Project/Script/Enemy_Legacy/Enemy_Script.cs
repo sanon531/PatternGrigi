@@ -102,8 +102,9 @@ namespace PG.Battle
         [SerializeField]
         List<EnemyActionID> _enemyActionList = new List<EnemyActionID>() { EnemyActionID.Wait};
         List<IEnumerator> _routineList= new List<IEnumerator>();
+
         [SerializeField]
-        ActionDataDic _actionDataDic;
+        EnemyActionDataDic _actionDataDic;
         void SetNextAction()
         {
             _currentAction = _enemyActionList[_currentActionOrder];

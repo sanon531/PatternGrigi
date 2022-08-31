@@ -20,9 +20,6 @@ namespace PG.Battle
             {ProjectileID.NormalBullet ,new List<GameObject>(){ } }
         };
 
-        //플레이어가
-        [SerializeField]
-        int _targetEnemyCount = 1;
         [SerializeField]
         ProjectileID _currentProjectile = ProjectileID.NormalBullet;
         [SerializeField]
@@ -82,6 +79,8 @@ namespace PG.Battle
         }
         public void TargetTheEnemy()
         {
+            _temptenemyList = MobGenerator.GetMobList();
+
             if (_temptenemyList.Count == 0)
             {
                 Debug.Log("no Enemy");

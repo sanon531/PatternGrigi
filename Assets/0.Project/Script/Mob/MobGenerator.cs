@@ -27,6 +27,7 @@ namespace PG.Battle
         [SerializeField]
         private List<GameObject> _mobList;
 
+
         private int _mobCount = 0;
 
 
@@ -71,7 +72,7 @@ namespace PG.Battle
                 _SpawnRange_Left.position.y, _SpawnRange_Left.position.z);
 
             GameObject temp = Instantiate(_mobDic[mobSpawnData.mobID], pos, _SpawnRange_Left.rotation);
-            temp.GetComponent<MobScript>()._moveSpeed = mobSpawnData.move_speed;
+            temp.GetComponent<MobScript>().SetInitializeMob(mobSpawnData._actionDic);
             _mobList.Add(temp);
             _mobCount++;
 
@@ -79,19 +80,29 @@ namespace PG.Battle
         }
 
         //삭제는 나중에 사용할 때에 맞게 수정해야 할 듯
-        public void DestroyMob(GameObject target)
+        public static void DestroyMob(GameObject target)
         {
-            _mobList.Remove(target);
-            _mobCount--;
+            _instance._mobList.Remove(target);
+            _instance._mobCount--;
             Destroy(target);
         }
 
         //현재 몹들의 위치 순으로 리스트 정렬하고 리턴
-        public List<GameObject> GetMobList()
+        public static List<GameObject> GetMobList()
         {
-            _mobList.Sort((mobA, mobB) => mobA.transform.position.y.CompareTo(mobB.transform.position.y));
-            return _mobList;
+            _instance._mobList.Sort((mobA, mobB) => mobA.transform.position.y.CompareTo(mobB.transform.position.y));
+            return _instance._mobList;
         }
+
+        public static float GetDeadLine() 
+        {
+            return _instance._DamageLine.position.y;
+        }
+
+        // 몹의 스폰은이렇게하지말자. 
+        // 주어진 시트로 현재 최소한으로 소환일 될 적들의 수,
+        // 적들의
+
 
         [Serializable]
         public class MobSpawnData
@@ -99,9 +110,8 @@ namespace PG.Battle
             public MobID mobID;
             public float wait_time;
             public float respawn_delay;
+            public MobActionDataDic _actionDic;
 
-            public float move_speed;
-            
         }
     }
 

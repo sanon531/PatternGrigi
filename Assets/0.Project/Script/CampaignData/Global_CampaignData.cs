@@ -47,6 +47,13 @@ namespace PG.Data
 
 
         #endregion;
+
+        #region
+
+
+
+        #endregion
+
         #region//초기화 관련
 
         //완전히 게임이 종료 되었을 때 활용한다.데이터를 리셋하는경우에 활용한다.

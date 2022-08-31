@@ -39,7 +39,6 @@ namespace PG.Battle
 
         protected override void SetActiveObstacle()
         {
-            _thisCollider.enabled = true;
             _flameParticle.Play();
             base.SetActiveObstacle();
             _thisSpriteRd.enabled = true;
@@ -49,7 +48,7 @@ namespace PG.Battle
 
         private void MoveObstacle()
         {
-            if (!_isActive) return;
+            if (!_isActived) return;
 
             transform.Translate(moveDirection * moveSpeed);
         }

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using PG.HealthSystemCM;
 using PG.Data;
-using PG.HealthSystemCM;
+using PG.Event;
 
-namespace PG.Battle 
+namespace PG.Battle
 {
-    public class MobScript : MonoBehaviour
+    public class MobScript : PoolableObject
     {
-
+        #region//variables
         [Header("Health")]
         [SerializeField]
         private float healthAmountMax;
@@ -20,33 +20,54 @@ namespace PG.Battle
         private HealthSystem _healthSystem;
 
         [Header("Move Stat")]
-        public float _moveSpeed;
+        public float _initialSpeed =1;
+        public float _acceleration = 1;
         [SerializeField]
-        private Vector3 _moveDirection;
+        private Vector3 _movement;
+        [SerializeField]
+        protected Collider2D _collider2D;
+        [SerializeField]
+        protected Rigidbody2D _rigidBody2D;
 
-        //�� �ΰ��� ���� �Ⱦ���
+        [Header("Current Status")]
         bool _isEnemyAlive = true;
         bool _isStunned = false;
+        bool _isNontotalPaused = false;
+        float _actionTime, _maxActionTime;
+        float _reachedDamage = 20;
 
+
+        #endregion
         void Start()
         {
             _healthSystem = new HealthSystem(healthAmountMax);
             _healthSystem.SetHealth(startingHealthAmount);
-
+            _healthSystem.OnDead += OnDead;
+            Global_BattleEventSystem._onNonTotalPause += SetOnNonTotalPaused;
+            Global_BattleEventSystem._offNonTotalPause += SetOffNonTotalPaused;
         }
-
+        void OnDestroy()
+        {
+            Global_BattleEventSystem._onNonTotalPause -= SetOnNonTotalPaused;
+            Global_BattleEventSystem._offNonTotalPause -= SetOffNonTotalPaused;
+        }
         void Update()
         {
-            /*if (_isNontotalPaused)
+            if (_isNontotalPaused)
                 return;
-            else */if (_isEnemyAlive)
+            else if (_isEnemyAlive)
             {
-
-                //���� ������ ���¸� �۵��� ���ߵ��� �����.
                 if (_isStunned)
                     return;
-
-                 SetNextAction();
+                if (_actionTime > 0)
+                {
+                    _actionTime -= Time.deltaTime;
+                    CalcMovement();
+                }
+                else
+                {
+                    SetNextAction();
+                }
 
             }
         }
@@ -56,75 +77,110 @@ namespace PG.Battle
         private MobActionID _currentAction;
         private int _currentActionOrder = 0;
         private MobActionData _currentActionData;
-        private bool _inAction = false;     //�׼� �ϳ� �ϴ� ������
-        private bool _inAttack = false;     //���� �ϳ� �ϴ� ������ 
 
         [SerializeField]
-        private List<MobActionData> _mobActionDataList = new List<MobActionData>();
+        private List<MobActionID> _mobActionIDList = new List<MobActionID>();
+        [SerializeField]
+        MobActionDataDic _mobActionDic = new MobActionDataDic();
 
+        //몹을 스폰 할때 초기 데이터들을 넣어주는 코드. 같은 몬스터라도 레벨에 따른 유동적인 강화, 이미지 변화를 위해 짜게됨
+        public void SetInitializeMob(MobActionDataDic dic)
+        {
+            _mobActionDic = dic;
+            _currentActionOrder = 0;
+
+        }
+
+        //set은 단 한번 이뤄지며 동시에 계속되는 반복방식은 move 로 바꾼다.
+        //이렇게 바꾼 이유는 애니메이션, 파티클 등의 효과는 한번만 선언하면 되고 그게더 성능에 좋기 때문
         void SetNextAction()
         {
-            _currentActionData = _mobActionDataList[_currentActionOrder];
-            _currentAction = _currentActionData._action;
-
-            if (!_inAction)
-            {
-                //�׼� ù �����̸�
-                StartCoroutine(ActionCoroutine(_currentActionData._actionTime));
-            }
+            _currentAction = _mobActionIDList[_currentActionOrder];
+            _currentActionData = _mobActionDic[_currentAction];
+            _maxActionTime = _currentActionData._actionTime;
+            _actionTime = _maxActionTime;
 
             switch (_currentAction)
             {
-                case MobActionID.Move:
-
-                    transform.Translate(_moveDirection * _moveSpeed * Time.deltaTime);
-
-                    if (transform.position.y <= MobGenerator._instance._DamageLine.position.y)
-                    {
-                        MobGenerator._instance.DestroyMob(gameObject);
-
-                        //������ �Դ� �κ�
-                        Debug.Log("damage");
-                    }
+                case MobActionID.Wait:
                     break;
-
+                case MobActionID.Move://1회만 호출 되는 곳으로 속력과 이동을 설정해줌. 
+                    _initialSpeed = _mobActionDic[MobActionID.Move]._speed;
+                    break;
                 case MobActionID.Attack:
-                   
-                    //��ֹ� �ѹ� ��ȯ �� ���� actionTime ������ wait�� �Ȱ��� �۵�        
-                    if (_inAttack) { break; }   //�̹� ��ֹ� ��ȯ ��������
-
-                    for(int i = 0; i < _currentActionData._spawnDataList.Count; i++)
+                    for (int i = 0; i < _currentActionData._spawnDataList.Count; i++)
                     {
                         ObstacleManager.SetObstacle(_currentActionData._spawnDataList[i],
                                        _currentActionData._placeList[i], _currentActionData._spawnDataList[i]._damageMag);
                     }
-                    _inAttack = true;
                     break;
-
                 case MobActionID.Stunned:
-                    _isStunned = true;
-                    //������ ��� Ǫ�°��� ����� �����ؾ���
+                    break;
+                default:
+                    Debug.LogError("Mob action not included ");
                     break;
             }
-        }
-
-        IEnumerator ActionCoroutine(float actionTime)
-        {
-            _inAction = true;
-            yield return new WaitForSeconds(actionTime);
-            //�׼� ��
 
             _currentActionOrder++;
-
-            if(_currentActionOrder >= _mobActionDataList.Count)
+            if (_currentActionOrder >= _mobActionIDList.Count)
             {
-                //�׼� ������ �켱�� �ı��Ǵ°ɷ�
-                MobGenerator._instance.DestroyMob(gameObject);
+                _currentActionOrder = 0;
+            }
+        }
+
+        void CalcMovement()
+        {
+            if (_currentAction != MobActionID.Move)
+                return;
+
+
+            if (_rigidBody2D != null)
+            {
+                //무조건 아래로 내려가기 때문.
+                _movement = (-1)*(_initialSpeed / 10) * Time.deltaTime * Vector3.up;
+                _rigidBody2D.MovePosition(transform.position + _movement);
+                //_initialSpeed += _acceleration * Time.deltaTime;
             }
 
-            _inAction = false;
-            _inAttack = false;
+            if (transform.position.y <= MobGenerator.GetDeadLine())
+            {
+                MobGenerator.DestroyMob(gameObject);
+                Debug.Log("damage on Player");
+                Player_Script.Damage(_reachedDamage);
+            }
+
+
         }
+
+
+        public void Damage(float val)
+        {
+            _healthSystem.Damage(val);
+        }
+
+        //Called on dead
+        private void OnDead(object sender, System.EventArgs e)
+        {
+            _isEnemyAlive = false;
+            MobGenerator.DestroyMob(gameObject);
+        }
+
+
+        #region//paused
+
+        void SetOnNonTotalPaused()
+        {
+            _isNontotalPaused = true;
+        }
+        void SetOffNonTotalPaused()
+        {
+            _isNontotalPaused = false;
+
+        }
+
+
+        #endregion
+
 
     }
 
