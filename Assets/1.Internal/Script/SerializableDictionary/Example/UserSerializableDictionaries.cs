@@ -32,6 +32,10 @@ public class MobIDObjectDic : SerializableDictionary<CharacterID, GameObject> { 
 public class MobIDMobScriptListDic : SerializableDictionary<CharacterID, List<MobScript>> { }
 [Serializable]
 public class MobActionDataDic : SerializableDictionary<MobActionID, MobActionData> { }
+[Serializable]
+public class ArtifactStringaDic : SerializableDictionary<ArtifactID, string> { }
+
+
 
 public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact> 
 {
