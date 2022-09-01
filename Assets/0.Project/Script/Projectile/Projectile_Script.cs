@@ -30,6 +30,8 @@ namespace PG.Battle
         [SerializeField]
         ParticleSystem _ongoingFX;
         [SerializeField]
+        TrailRenderer _ongoingTrail;
+        [SerializeField]
         ParticleSystem _hitFX;
 
 
@@ -81,6 +83,7 @@ namespace PG.Battle
         {
             base.OnObjectEnabled();
             _projectileImage.enabled = true;
+            _ongoingTrail.enabled = true;
             _ongoingFX.Play();
         }
 
@@ -88,6 +91,7 @@ namespace PG.Battle
         {
             base.OnObjectDisabled();
             _projectileImage.enabled = false;
+            _ongoingTrail.enabled = false;
             _ongoingFX.Stop();
             ProjectileManager.SetBackProjectile(gameObject,_id);
         }

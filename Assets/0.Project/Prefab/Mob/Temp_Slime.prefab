@@ -100,9 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isPlaced: 0
-  healthAmountMax: 100
-  startingHealthAmount: 100
-  currentHealth: 100
+  healthAmountMax: 75
+  startingHealthAmount: 75
+  currentHealth: 75
   _initialSpeed: 1
   _acceleration: 1
   _movement: {x: 0, y: 0, z: 0}
@@ -228,7 +228,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6241146166020938523}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

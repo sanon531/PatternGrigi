@@ -162,7 +162,7 @@ namespace PG.Battle
                     _IsCurrentNodeSetted = false;
                     ReachTriggeredNode_Random(nodeID);
                     Global_BattleEventSystem.CallOnPatternSuccessed(_currentPattern);
-                    ShowDebugtextScript.SetDebug("Pattern Success!");
+                    //ShowDebugtextScript.SetDebug("Pattern Success!");
                     //일단 차지 공격 끝나면 바로 패턴 성공 하도록 함
                 }
                 //처음의 공격은 무시한다.

@@ -135,6 +135,7 @@ namespace PG.Battle
             {
                 _instance._activateProjectileDictionary[id].Remove(projectile);
                 _instance._deactivateProjectileDictionary[id].Add(projectile);
+                projectile.transform.position = _instance.transform.position;
             }
         }
 

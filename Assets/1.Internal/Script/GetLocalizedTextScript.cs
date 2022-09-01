@@ -21,13 +21,12 @@ namespace PG
 
         protected override void CallOnAwake()
         {
-            base.CallOnAwake();
             LanguageDefinition();
             SetAllTextByLanguage();
         }
         private void LanguageDefinition()
         {
-            //Debug.Log("System Language - " + Application.systemLanguage + "  " + SystemLanguage.Korean.ToString());
+            Debug.Log("System Language - " + Application.systemLanguage + "  " + SystemLanguage.Korean.ToString());
 
             if (Application.systemLanguage == SystemLanguage.Korean)
                 _lang = "kr";

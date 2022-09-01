@@ -89,7 +89,7 @@ namespace PG.Battle
         {
             _mobActionDic = dic;
             _currentActionOrder = 0;
-
+            _isPlaced = true;
         }
 
         //set은 단 한번 이뤄지며 동시에 계속되는 반복방식은 move 로 바꾼다.
@@ -146,8 +146,11 @@ namespace PG.Battle
 
         void CalcMovement()
         {
-            if (_currentAction != MobActionID.Move )
+            if (_currentAction != MobActionID.Move) 
+            {
+                _rigidBody2D.MovePosition(transform.position);
                 return;
+            }
 
 
             if (_rigidBody2D != null)
@@ -157,10 +160,10 @@ namespace PG.Battle
                 _rigidBody2D.MovePosition(transform.position + _movement);
                 //_initialSpeed += _acceleration * Time.deltaTime;
             }
+
             if (transform.position.y <= MobGenerator.GetDeadLine())
             {
                 MobGenerator.DestroyMob(this);
-                Debug.Log("damage on Player");
                 Player_Script.Damage(_reachedDamage);
             }
 
@@ -171,6 +174,7 @@ namespace PG.Battle
         public void Damage(float val)
         {
             _healthSystem.Damage(val);
+            DamageFXManager.ShowDamage(transform.position, Mathf.Round(val).ToString());
         }
 
         //Called on dead
