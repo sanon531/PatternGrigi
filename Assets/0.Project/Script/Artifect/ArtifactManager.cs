@@ -90,7 +90,6 @@ namespace PG.Battle
                 //캔버스의 분리를 위해 남겨둠.
                 ArtifactListShower.SetNewCaseOnList(id);
                 //또한 지금은 선택을 하고나면 기존의 데이터 셋에서 지워야함.
-
             }
             else 
             {
