@@ -224,7 +224,7 @@ namespace PG.Battle
         {
             _inactivatedNode.Remove(reachedNode);
             int _deleteTarget = _IDWithCloseDic[reachedNode].PickRandom();
-            SetNodeToNextReach(_inactivatedNode[_deleteTarget]);
+            SetNodeToNextReach(_deleteTarget);
             Global_BattleEventSystem.CallOnNodeSetClose();
             return 0;
         }
@@ -232,7 +232,8 @@ namespace PG.Battle
         {
             _inactivatedNode.Remove(reachedNode);
             int _deleteTarget = _IDWithFarDic[reachedNode].PickRandom();
-            SetNodeToNextReach(_inactivatedNode[_deleteTarget]);
+            Debug.Log(reachedNode+" -> :" + _deleteTarget);
+            SetNodeToNextReach(_deleteTarget);
             Global_BattleEventSystem.CallOnNodeSetFar();
             return 0;
         }

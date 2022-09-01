@@ -27,6 +27,16 @@
     {
       "key":"SesameOil",
       "value":"참기름"
+    },
+    {
+      "key":"Pinocchio",
+      "value":"피노키오"
+    },
+    {
+      "key":"AtomSetting",
+      "value":"원자상태"
     }
- ]
+
+
+  ]
 }
