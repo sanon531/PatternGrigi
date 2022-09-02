@@ -7,30 +7,35 @@ using PG.Battle;
 using PG;
 
 [Serializable]
-public class StringStringDictionary : SerializableDictionary<string, string> {}
+public class StringStringDictionary : SerializableDictionary<string, string> { }
 
 [Serializable]
-public class ObjectColorDictionary : SerializableDictionary<UnityEngine.Object, Color> {}
+public class ObjectColorDictionary : SerializableDictionary<UnityEngine.Object, Color> { }
 
 [Serializable]
-public class ColorArrayStorage : SerializableDictionary.Storage<Color[]> {}
+public class ColorArrayStorage : SerializableDictionary.Storage<Color[]> { }
 
 [Serializable]
-public class StringColorArrayDictionary : SerializableDictionary<string, Color[], ColorArrayStorage> {}
+public class StringColorArrayDictionary : SerializableDictionary<string, Color[], ColorArrayStorage> { }
 
 [Serializable]
 public class StringAudioDictionary : SerializableDictionary<string, AudioClip> { }
 [Serializable]
 public class ObstacleIDObjectDic : SerializableDictionary<ObstacleID, GameObject> { }
 [Serializable]
-public class ActionDataDic : SerializableDictionary<EnemyActionID, EnemyActionData> { }
+public class EnemyActionDataDic : SerializableDictionary<EnemyActionID, EnemyActionData> { }
 [Serializable]
-public class ArtifactIDShowCaseDic : SerializableDictionary<ArtifactID, ArtifactShowCase> {}
+public class ArtifactIDShowCaseDic : SerializableDictionary<ArtifactID, ArtifactShowCase> { }
 [Serializable]
-public class MobIDObjectDic : SerializableDictionary<MobID, GameObject> { }
+public class MobIDObjectDic : SerializableDictionary<CharacterID, GameObject> { }
+[Serializable]
+public class MobIDMobScriptListDic : SerializableDictionary<CharacterID, List<MobScript>> { }
+[Serializable]
+public class MobActionDataDic : SerializableDictionary<MobActionID, MobActionData> { }
+
 public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact> 
 {
-    public override void CopyFrom(IDictionary<ArtifactID, Artifact> dict) 
+    public override void CopyFrom(IDictionary<ArtifactID, Artifact> dict)
     {
         this.Clear();
         foreach (var kvp in dict)
@@ -40,7 +45,7 @@ public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact>
     }
 
 [Serializable]
-public class MobIDObjectDic : SerializableDictionary<MobID, GameObject> { }
+public class MobIDObjectDic : SerializableDictionary<CharacterID, GameObject> { }
 }
 
 [Serializable]
@@ -73,4 +78,4 @@ public class MyClass
 }
 
 [Serializable]
-public class QuaternionMyClassDictionary : SerializableDictionary<Quaternion, MyClass> {}
+public class QuaternionMyClassDictionary : SerializableDictionary<Quaternion, MyClass> { }

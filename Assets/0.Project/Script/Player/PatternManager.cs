@@ -34,18 +34,16 @@ namespace PG.Battle
         protected override void CallOnAwake()
         {
             _inactivatedNode = _defaultNode.ToList();
-            Global_BattleEventSystem._onBattleBegin += StartTriggerNode;
             StartChargeEvent();
-
-
+            StartNodeEvent();
         }
         // Update is called once per frame
 
         protected override void CallOnDestroy()
         {
             // Update is called once per frame
-            Global_BattleEventSystem._onBattleBegin -= StartTriggerNode;
             DeleteChargeEvent();
+            DeleteNodeEvent();
         }
         private void Update()
         {
@@ -83,6 +81,19 @@ namespace PG.Battle
         }
 
         #region//nodereach
+
+
+        void StartNodeEvent() 
+        {
+            Global_BattleEventSystem._onBattleBegin += StartTriggerNode;
+            Global_BattleEventSystem._onNodeSetWeight += SetNodeWeightby;
+            
+        }
+        void DeleteNodeEvent()
+        {
+            Global_BattleEventSystem._onNodeSetWeight -= SetNodeWeightby;
+            Global_BattleEventSystem._onBattleBegin -= StartTriggerNode;
+        }
         //전투가 시작될 때 사용하는 코드
         void StartTriggerNode()
         {
@@ -102,10 +113,8 @@ namespace PG.Battle
 
 
         //데미지가 가해졌을때 다음 노드를 결정하는 메소드
-        //추후에 타겟노드를 2개 이상 만들때 사용할 부분. 지금은 안씀.
-        int _targetCount = 1;
         //처음에는 무조건 랜덤만.
-        float[] _weightRandom = new float[3] {1.0f,1.0f,2.0f };
+        float[] _weightRandom = new float[3] {1.0f,0f,0f };
         NodePlaceType[] nodePlaceTypes = new NodePlaceType[3] { NodePlaceType.Random, NodePlaceType.Close, NodePlaceType.Far };
         void CheckNodeOnDamage(int nodeID)
         {
@@ -121,26 +130,13 @@ namespace PG.Battle
                 switch (currentPlace)
                 {
                     case NodePlaceType.Random:
-                        for (int i = 0; i < _targetCount; i++)
-                            _temptid = ReachTriggeredNode_Random(_temptid);
+                        _temptid = ReachTriggeredNode_Random(_temptid);
                         break;
                     case NodePlaceType.Close:
-                        for (int i = 0; i < _targetCount; i++) 
-                        {
-                            if (i< _IDWithClose[_temptid].Length)
-                                _temptid = ReachTriggeredNode_Close(_temptid);
-                            else
-                                _temptid = ReachTriggeredNode_Random(_temptid);
-                        }
+                        _temptid = ReachTriggeredNode_Close(_temptid);
                         break;
                     case NodePlaceType.Far:
-                        for (int i = 0; i < _targetCount; i++)
-                        {
-                            if (i < _IDWithClose[_temptid].Length)
-                                _temptid = ReachTriggeredNode_Far(_temptid);
-                            else
-                                _temptid = ReachTriggeredNode_Random(_temptid);
-                        }
+                        _temptid = ReachTriggeredNode_Far(_temptid);
                         break;
                     default:
                         Debug.LogError("CheckNodeOnDamage Error: no id");
@@ -166,7 +162,7 @@ namespace PG.Battle
                     _IsCurrentNodeSetted = false;
                     ReachTriggeredNode_Random(nodeID);
                     Global_BattleEventSystem.CallOnPatternSuccessed(_currentPattern);
-                    ShowDebugtextScript.SetDebug("Pattern Success!");
+                    //ShowDebugtextScript.SetDebug("Pattern Success!");
                     //일단 차지 공격 끝나면 바로 패턴 성공 하도록 함
                 }
                 //처음의 공격은 무시한다.
@@ -204,7 +200,13 @@ namespace PG.Battle
             }
         }
 
+        void SetNodeWeightby(float[] weight) 
+        {
+            _weightRandom[0] += weight[0];
+            _weightRandom[1] += weight[1];
+            _weightRandom[2] += weight[2];
 
+        }
         //노드를 랜덤으로 배치하는 메소드 id는 겹치지않도록 하는것 
         public int ReachTriggeredNode_Random(int reachedNode)
         {
@@ -220,12 +222,19 @@ namespace PG.Battle
         }
         public int ReachTriggeredNode_Close(int reachedNode)
         {
-
+            _inactivatedNode.Remove(reachedNode);
+            int _deleteTarget = _IDWithCloseDic[reachedNode].PickRandom();
+            SetNodeToNextReach(_deleteTarget);
+            Global_BattleEventSystem.CallOnNodeSetClose();
             return 0;
         }
         public int ReachTriggeredNode_Far(int reachedNode)
         {
-
+            _inactivatedNode.Remove(reachedNode);
+            int _deleteTarget = _IDWithFarDic[reachedNode].PickRandom();
+            Debug.Log(reachedNode+" -> :" + _deleteTarget);
+            SetNodeToNextReach(_deleteTarget);
+            Global_BattleEventSystem.CallOnNodeSetFar();
             return 0;
         }
 
@@ -278,11 +287,14 @@ namespace PG.Battle
         {
             Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
+            Global_BattleEventSystem._onPatternSuccessed += CallPatternEvent;
+
         }
         void DeleteChargeEvent()
         {
             Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
+            Global_BattleEventSystem._onPatternSuccessed -= CallPatternEvent;
 
         }
 
@@ -342,6 +354,10 @@ namespace PG.Battle
             ChargeGaugeUIScript.EndChargeSkill();
             _isChargeStart = false;
         }
+        private void CallPatternEvent(DrawPatternPreset _patternPreset)
+        {
+            GlobalDataStorage.PatternWIthActionDic[_patternPreset].StartPatternAction();
+        }
 
 
         public void SetNonTotalPauseOn()
@@ -372,14 +388,14 @@ namespace PG.Battle
             {7,new Vector2Int(1,2) },
             {8,new Vector2Int(2,2) }
         };
-        Dictionary<int, int[]> _IDWithClose = new Dictionary<int, int[]>() 
+        Dictionary<int, int[]> _IDWithCloseDic = new Dictionary<int, int[]>() 
         {
             {0,new int[2]{1,3} }, {1,new int[3]{0,2,4} },{2,new int[2]{1,5} },
             {3,new int[3]{0,4,6} },{4,new int[4]{1,3,5,7} },{5,new int[3]{2,4,8} },
             {6,new int[2]{4,7} },{7,new int[3]{4,6,8} },{8,new int[2]{5,7} }
         };
 
-        Dictionary<int, int[]> _IDWithFar = new Dictionary<int, int[]>()
+        Dictionary<int, int[]> _IDWithFarDic = new Dictionary<int, int[]>()
         {
             {0,new int[3]{5,7,8} }, {1,new int[3]{6,7,8} },{2,new int[3]{3,6,7} },
             {3,new int[3]{2,5,8} },{4,new int[4]{0,2,6,7} },{5,new int[3]{0,3,6} },

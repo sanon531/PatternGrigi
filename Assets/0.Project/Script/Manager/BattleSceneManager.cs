@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using PG.Event;
 using PG.Data;
 
@@ -12,8 +13,10 @@ namespace PG.Battle
 
 
         bool _isgameStarted = false;
+        [SerializeField]
         float _playTime = 0f;
-
+        [SerializeField]
+        TextMeshProUGUI _timeShower;
         [SerializeField]
         float _delayedTime =2.5f;
         [SerializeField]
@@ -54,9 +57,10 @@ namespace PG.Battle
         // 적의 스폰과 보스 스폰 은 그냥. 현재의 형태로 만들자.
         void Update()
         {
-            if (_isgameStarted && _isNon_TotalPaused) 
+            if (_isgameStarted && !_isNon_TotalPaused) 
             {
                 _playTime += Time.deltaTime;
+                _timeShower.SetText(Mathf.Round(_playTime).ToString());
             }
 
         }

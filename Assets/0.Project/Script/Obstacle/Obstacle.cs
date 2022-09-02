@@ -25,7 +25,7 @@ namespace PG.Battle
         [SerializeField]
         protected float _maxLifetime, _lifeTime, _activetime;
         [SerializeField]
-        protected bool _isPlaced = false;
+        protected bool _isActived = false;
         protected bool _isLevelUpPaused = false;
 
 
@@ -42,10 +42,12 @@ namespace PG.Battle
             _activetime = activetimes;
             _damageDeal = damage;
             _isPlaced = true;
+            _isActived = false;
         }
         protected virtual void SetActiveObstacle() 
         {
             _thisCollider.enabled = true;
+            _isActived = true;
         }
 
         // Update is called once per frame
@@ -59,10 +61,9 @@ namespace PG.Battle
                 return;
 
             _passedTime += Time.deltaTime;
-            if (_passedTime > _activetime && !_isActive)
+            if (_passedTime > _activetime && !_isActived)
             {
                 SetActiveObstacle();
-                _isActive = true;
             }
             else if (_passedTime > _lifeTime)
             {

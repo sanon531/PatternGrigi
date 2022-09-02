@@ -8,11 +8,12 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(StringColorArrayDictionary))]
 [CustomPropertyDrawer(typeof(StringAudioDictionary))]
 [CustomPropertyDrawer(typeof(ObstacleIDObjectDic))]
-[CustomPropertyDrawer(typeof(ActionDataDic))]
+[CustomPropertyDrawer(typeof(EnemyActionDataDic))]
 [CustomPropertyDrawer(typeof(QuaternionMyClassDictionary))]
-[CustomPropertyDrawer(typeof(MobIDObjectDic))]
 [CustomPropertyDrawer(typeof(ArtifactIDArtifactDic))]
 [CustomPropertyDrawer(typeof(CharactorIDDataEntityDic))]
+[CustomPropertyDrawer(typeof(MobIDObjectDic))]
+[CustomPropertyDrawer(typeof(MobActionDataDic))]
 
 public class AnySerializableDictionaryPropertyDrawer : SerializableDictionaryPropertyDrawer {}
 

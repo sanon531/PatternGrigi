@@ -17,6 +17,7 @@ namespace PG.Event
     public delegate void OnEventWithbool(bool 수치값);
     public delegate void OnEventWithInt(int 수치값);
     public delegate void OnEventWithFloat(float 수치값);
+    public delegate void OnEventWithFloatArray(float[] 수치값);
     public delegate void OnEventWithString(string 수치값);
     public delegate void OnEventWithIntWithTarget(Data_Character 대상자, int 수치값);
     public delegate void OnEventWithFloatWithTarget(Data_Character 대상자, float 수치값);
@@ -33,6 +34,17 @@ namespace PG.Event
         //특정 노드를 다가갈 때 
         public static event OnEventWithInt _onNodeReached;
         public static void CallOnNodeReached(int id) { _onNodeReached?.Invoke(id); }
+
+        public static event OnEventWithFloatArray _onNodeSetWeight;
+        public static void CallOnNodeSetWeight(float[] 수치값) { _onNodeSetWeight?.Invoke(수치값); }
+
+
+        public static event OnEvent _onNodeSetFar;
+        public static void CallOnNodeSetFar() { _onNodeSetFar?.Invoke(); }
+        public static event OnEvent _onNodeSetClose;
+        public static void CallOnNodeSetClose() { _onNodeSetClose?.Invoke(); }
+
+
 
         //배틀 중 이벤트 
         public static event OnEvent _onTouchMain;

@@ -23797,7 +23797,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1370612967880661966}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -28683,7 +28683,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7694395298027797552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1451524, y: 3.3183737, z: -6.8919206}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 1370612967881046962}
@@ -28703,12 +28703,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c247eb387f963d4fbb6a0bf17e469e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isPlaced: 0
+  _id: 0
   _initialSpeed: 1
   _direction: {x: 0, y: 0, z: 0}
   _collider2D: {fileID: 5623361393577949031}
   _rigidBody2D: {fileID: 1634703765405443898}
   _projectileImage: {fileID: 6817514856662169467}
   _ongoingFX: {fileID: 1370612967866819186}
+  _ongoingTrail: {fileID: 1370612967888124750}
   _hitFX: {fileID: 167268430173530026}
 --- !u!212 &6817514856662169467
 SpriteRenderer:

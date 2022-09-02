@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using PG.Data;
 using PG.Event;
@@ -20,13 +21,10 @@ namespace PG.Battle
             {ProjectileID.NormalBullet ,new List<GameObject>(){ } }
         };
 
-        //플레이어가
-        [SerializeField]
-        int _targetEnemyCount = 1;
         [SerializeField]
         ProjectileID _currentProjectile = ProjectileID.NormalBullet;
         [SerializeField]
-        List<GameObject> _temptenemyList = new List<GameObject>();
+        List<MobScript> _temptenemyList = new List<MobScript>();
 
 
         protected override void CallOnAwake()
@@ -60,7 +58,7 @@ namespace PG.Battle
 
         //자동으로 
         List<int> _targetList = new List<int>();
-
+        List<Vector3> _targetTransforms = new List<Vector3>();
         //플레이어는 현재 공격할수있는 적에게 데미지를
         void SetProjectileToEnemy(float val) 
         {
@@ -68,13 +66,13 @@ namespace PG.Battle
             //Debug.Log(_dividedDamage);
 
             //지금은 그냥 instantiate를 하지만 나중에는 오브젝트 풀링이 가능하도록 만들것..
-
-            foreach (int i in _targetList) 
+            
+            for (int i = _targetList.Count -1; i>=0;i-- ) 
             {
-                float _dividedDamage = Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue / _targetList.Count;
+                float _dividedDamage = val / _targetList.Count;
                 GameObject _obj = ShootProjectile();
                 Projectile_Script _tempt = _obj.GetComponent<Projectile_Script>();
-                Vector3 _direction = _temptenemyList[i].transform.position - Player_Script.GetPlayerPosition();
+                Vector3 _direction = _targetTransforms[i] - Player_Script.GetPlayerPosition();
                 _direction = _direction.normalized;
                 _tempt.SetInitialProjectileData(_direction, _dividedDamage, Global_CampaignData._projectileSpeed.FinalValue, 10);
             }
@@ -82,29 +80,41 @@ namespace PG.Battle
         }
         public void TargetTheEnemy()
         {
+            _temptenemyList = MobGenerator.GetMobList();
+
             if (_temptenemyList.Count == 0)
             {
                 Debug.Log("no Enemy");
                 return;
             }
             int maxTargetNum = 0;
-            _targetList = new List<int>();
+            _targetList.Clear();
+            _targetTransforms.Clear();
             //지금은 적의 스폰 순서 대로 대충 정하긴하지만. 
             //나중에는 몹제네레이터에서 몹들의 위치를 정해줌.
             for (int i = 0; i < _temptenemyList.Count; i++)
             {
                 //몹에도 타겟 표시함.
                 _targetList.Add(i);
-
                 maxTargetNum++;
                 if (maxTargetNum >= Global_CampaignData._projectileTargetNum.FinalValue)
                     break;
             }
+            // 타겟 되었다는거 표시하기 + 위치 표시 관련
+            for (int i = 0; i < _temptenemyList.Count; i++) 
+            {
+                _targetTransforms.Add(_temptenemyList[i].transform.position);
 
-            foreach (GameObject obj in _temptenemyList)
-                obj.GetComponent<SpriteRenderer>().color = Color.white;
-            foreach (int i in _targetList)
-                _temptenemyList[i].GetComponent<SpriteRenderer>().color = Color.red;
+                if (_targetList.Contains(i))
+                {
+                    _temptenemyList[i].SetTargetted(true);
+                }
+                else 
+                {
+                    _temptenemyList[i].SetTargetted(false);
+                }
+            }
+
         }
 
         //투사체를 쏜다면 앧티베이션에다가 놓고
@@ -125,6 +135,7 @@ namespace PG.Battle
             {
                 _instance._activateProjectileDictionary[id].Remove(projectile);
                 _instance._deactivateProjectileDictionary[id].Add(projectile);
+                projectile.transform.position = _instance.transform.position;
             }
         }
 

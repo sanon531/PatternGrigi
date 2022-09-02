@@ -95,40 +95,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39f41297164a5849b705c3eac6927ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isPlaced: 0
   healthAmountMax: 0
   startingHealthAmount: 0
   currentHealth: 0
-  _moveSpeed: 1
-  _moveDirection: {x: 0, y: -1, z: 0}
+  _initialSpeed: 1
+  _acceleration: 1
+  _movement: {x: 0, y: 0, z: 0}
+  _collider2D: {fileID: 0}
+  _rigidBody2D: {fileID: 0}
   _currentAction: 0
-  _mobActionDataList:
-  - _action: 1
-    _actionTime: 1
-    _placeList: []
-    _spawnDataList: []
-  - _action: 0
-    _actionTime: 3
-    _placeList: []
-    _spawnDataList: []
-  - _action: 1
-    _actionTime: 1
-    _placeList: []
-    _spawnDataList: []
-  - _action: 2
-    _actionTime: 3
-    _placeList:
-    - {x: -1.75, y: 0}
-    - {x: 0, y: 0}
-    _spawnDataList:
-    - _thisID: 0
-      _lifeTime: 3
-      _activeTime: 1
-      _damageMag: 1
-    - _thisID: 7
-      _lifeTime: 3
-      _activeTime: 1
-      _damageMag: 1
-  - _action: 1
-    _actionTime: 3
-    _placeList: []
-    _spawnDataList: []
+  _mobActionIDList: 0100000002000000000000000200000002000000
+  _mobActionDic:
+    m_keys: 000000000100000002000000
+    m_values:
+    - _actionTime: 4
+      _speed: 0
+      _acceleration: 0
+      _placeList: []
+      _spawnDataList: []
+    - _actionTime: 4
+      _speed: 10
+      _acceleration: 1
+      _placeList: []
+      _spawnDataList: []
+    - _actionTime: 4
+      _speed: 10
+      _acceleration: 1
+      _placeList: []
+      _spawnDataList: []

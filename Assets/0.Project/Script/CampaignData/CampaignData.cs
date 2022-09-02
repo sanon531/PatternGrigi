@@ -33,6 +33,8 @@ namespace PG.Data
                 { CharacterID.Player,new DataEntity(DataEntity.Type.Damage,10)},
                 { CharacterID.Enemy_Fireboy,new DataEntity(DataEntity.Type.Damage,8)},
                 { CharacterID.Enemy_WindShooter,new DataEntity(DataEntity.Type.Damage,16)},
+                { CharacterID.Slime,new DataEntity(DataEntity.Type.Damage,8)},
+                { CharacterID.Tempt_Mob,new DataEntity(DataEntity.Type.Damage,8)},
            };
 
         //거리에따른 배율임 

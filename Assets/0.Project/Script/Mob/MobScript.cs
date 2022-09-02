@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PG.Data;
 using PG.HealthSystemCM;
+using PG.Data;
+using PG.Event;
 
-namespace PG.Battle 
+namespace PG.Battle
 {
-    public class MobScript : MonoBehaviour
+    public class MobScript : PoolableObject
     {
-
+        #region//variables
         [Header("Health")]
         [SerializeField]
         private float healthAmountMax;
@@ -19,33 +20,55 @@ namespace PG.Battle
         private HealthSystem _healthSystem;
 
         [Header("Move Stat")]
-        public float _moveSpeed;
+        public float _initialSpeed =1;
+        public float _acceleration = 1;
         [SerializeField]
-        private Vector3 _moveDirection;
+        private Vector3 _movement;
+        [SerializeField]
+        protected Collider2D _collider2D;
+        [SerializeField]
+        protected Rigidbody2D _rigidBody2D;
 
-        //ÀÌ µÎ°³´Â ¾ÆÁ÷ ¾È¾²ÀÓ
+        [Header("Current Status")]
+        CharacterID _currentCharactor = CharacterID.Slime;
         bool _isEnemyAlive = true;
         bool _isStunned = false;
+        bool _isNontotalPaused = false;
+        float _actionTime, _maxActionTime;
+        float _reachedDamage = 20;
 
+
+        #endregion
         void Start()
         {
             _healthSystem = new HealthSystem(healthAmountMax);
             _healthSystem.SetHealth(startingHealthAmount);
-
+            _healthSystem.OnDead += OnDead;
+            Global_BattleEventSystem._onNonTotalPause += SetOnNonTotalPaused;
+            Global_BattleEventSystem._offNonTotalPause += SetOffNonTotalPaused;
         }
-
+        void OnDestroy()
+        {
+            Global_BattleEventSystem._onNonTotalPause -= SetOnNonTotalPaused;
+            Global_BattleEventSystem._offNonTotalPause -= SetOffNonTotalPaused;
+        }
         void Update()
         {
-            /*if (_isNontotalPaused)
+            if (_isNontotalPaused)
                 return;
-            else */if (_isEnemyAlive)
+            else if (_isEnemyAlive)
             {
-
-                //¸¸¾à ½ºÅÏÀÎ »óÅÂ¸é ÀÛµ¿À» ¸ØÃßµµ·Ï ¸¸µç´Ù.
                 if (_isStunned)
                     return;
-
-                 SetNextAction();
+                if (_actionTime > 0)
+                {
+                    _actionTime -= Time.deltaTime;
+                    CalcMovement();
+                }
+                else
+                {
+                    SetNextAction();
+                }
 
             }
         }
@@ -55,75 +78,135 @@ namespace PG.Battle
         private MobActionID _currentAction;
         private int _currentActionOrder = 0;
         private MobActionData _currentActionData;
-        private bool _inAction = false;     //¾×¼Ç ÇÏ³ª ÇÏ´Â ÁßÀÎÁö
-        private bool _inAttack = false;     //°ø°İ ÇÏ³ª ÇÏ´Â ÁßÀÎÁö 
 
         [SerializeField]
-        private List<MobActionData> _mobActionDataList = new List<MobActionData>();
+        private List<MobActionID> _mobActionIDList = new List<MobActionID>();
+        [SerializeField]
+        MobActionDataDic _mobActionDic = new MobActionDataDic();
 
+        //ëª¹ì„ ìŠ¤í° í• ë•Œ ì´ˆê¸° ë°ì´í„°ë“¤ì„ ë„£ì–´ì£¼ëŠ” ì½”ë“œ. ê°™ì€ ëª¬ìŠ¤í„°ë¼ë„ ë ˆë²¨ì— ë”°ë¥¸ ìœ ë™ì ì¸ ê°•í™”, ì´ë¯¸ì§€ ë³€í™”ë¥¼ ìœ„í•´ ì§œê²Œë¨
+        public void SetInitializeMob(MobActionDataDic dic)
+        {
+            _mobActionDic = dic;
+            _currentActionOrder = 0;
+            _isPlaced = true;
+        }
+
+        //setì€ ë‹¨ í•œë²ˆ ì´ë¤„ì§€ë©° ë™ì‹œì— ê³„ì†ë˜ëŠ” ë°˜ë³µë°©ì‹ì€ move ë¡œ ë°”ê¾¼ë‹¤.
+        //ì´ë ‡ê²Œ ë°”ê¾¼ ì´ìœ ëŠ” ì• ë‹ˆë©”ì´ì…˜, íŒŒí‹°í´ ë“±ì˜ íš¨ê³¼ëŠ” í•œë²ˆë§Œ ì„ ì–¸í•˜ë©´ ë˜ê³  ê·¸ê²Œë” ì„±ëŠ¥ì— ì¢‹ê¸° ë•Œë¬¸
         void SetNextAction()
         {
-            _currentActionData = _mobActionDataList[_currentActionOrder];
-            _currentAction = _currentActionData._action;
-
-            if (!_inAction)
-            {
-                //¾×¼Ç Ã¹ ½ÃÀÛÀÌ¸é
-                StartCoroutine(ActionCoroutine(_currentActionData._actionTime));
-            }
+            _currentAction = _mobActionIDList[_currentActionOrder];
+            _currentActionData = _mobActionDic[_currentAction];
+            _maxActionTime = _currentActionData._actionTime;
+            _actionTime = _maxActionTime;
 
             switch (_currentAction)
             {
-                case MobActionID.Move:
-
-                    transform.Translate(_moveDirection * _moveSpeed * Time.deltaTime);
-
-                    if (transform.position.y <= MobGenerator._instance._DamageLine.position.y)
-                    {
-                        MobGenerator._instance.DestroyMob(gameObject);
-
-                        //µ¥¹ÌÁö ÀÔ´Â ºÎºĞ
-                        Debug.Log("damage");
-                    }
+                case MobActionID.Wait:
                     break;
-
+                case MobActionID.Move://1íšŒë§Œ í˜¸ì¶œ ë˜ëŠ” ê³³ìœ¼ë¡œ ì†ë ¥ê³¼ ì´ë™ì„ ì„¤ì •í•´ì¤Œ. 
+                    _initialSpeed = _mobActionDic[MobActionID.Move]._speed;
+                    break;
                 case MobActionID.Attack:
-                   
-                    //Àå¾Ö¹° ÇÑ¹ø ¼ÒÈ¯ ÈÄ ³²Àº actionTime µ¿¾ÈÀº wait°ú ¶È°°ÀÌ ÀÛµ¿        
-                    if (_inAttack) { break; }   //ÀÌ¹Ì Àå¾Ö¹° ¼ÒÈ¯ ³¡³µÀ¸¸é
-
-                    for(int i = 0; i < _currentActionData._spawnDataList.Count; i++)
+                    //ë§Œì•½ ìœ„ì¹˜ê°€ ì„¤ì •ì´ ì•ˆëœ ê²½ìš° ëª¹ ìœ„ì¹˜ì—ì„œ ë°œì‚¬í•¨.
+                    if (_currentActionData._placeList.Count > 0)
                     {
-                        ObstacleManager.SetObstacle(_currentActionData._spawnDataList[i],
-                                       _currentActionData._placeList[i], _currentActionData._spawnDataList[i]._damageMag);
+                        for (int i = 0; i < _currentActionData._spawnDataList.Count; i++)
+                        {
+                            ObstacleManager.SetObstacle(_currentActionData._spawnDataList[i],_currentActionData._placeList[i],
+                                            Global_CampaignData._charactorAttackDic[_currentCharactor].FinalValue *
+                                            _currentActionData._spawnDataList[i]._damageMag);
+                        }
                     }
-                    _inAttack = true;
-                    break;
+                    else 
+                    {
+                        for (int i = 0; i < _currentActionData._spawnDataList.Count; i++)
+                        {
+                            ObstacleManager.SetObstacle(_currentActionData._spawnDataList[i],gameObject.transform.position, 
+                                           Global_CampaignData._charactorAttackDic[_currentCharactor].FinalValue* 
+                                           _currentActionData._spawnDataList[i]._damageMag);
+                        }
+                    }
 
+                    break;
                 case MobActionID.Stunned:
-                    _isStunned = true;
-                    //½ºÅÏÀ» ¾î¶»°Ô Çª´Â°ÇÁö ¹°¾îº¸°í ¼öÁ¤ÇØ¾ßÇÔ
+                    break;
+                default:
+                    Debug.LogError("Mob action not included ");
                     break;
             }
-        }
-
-        IEnumerator ActionCoroutine(float actionTime)
-        {
-            _inAction = true;
-            yield return new WaitForSeconds(actionTime);
-            //¾×¼Ç ³¡
 
             _currentActionOrder++;
-
-            if(_currentActionOrder >= _mobActionDataList.Count)
+            if (_currentActionOrder >= _mobActionIDList.Count)
             {
-                //¾×¼Ç ³¡³­°Å ¿ì¼±Àº ÆÄ±«µÇ´Â°É·Î
-                MobGenerator._instance.DestroyMob(gameObject);
+                _currentActionOrder = 0;
+            }
+        }
+
+        void CalcMovement()
+        {
+            if (_currentAction != MobActionID.Move) 
+            {
+                _rigidBody2D.MovePosition(transform.position);
+                return;
             }
 
-            _inAction = false;
-            _inAttack = false;
+
+            if (_rigidBody2D != null)
+            {
+                //ë¬´ì¡°ê±´ ì•„ë˜ë¡œ ë‚´ë ¤ê°€ê¸° ë•Œë¬¸.
+                _movement = (-1)*(_initialSpeed / 10) * Time.deltaTime * Vector3.up;
+                _rigidBody2D.MovePosition(transform.position + _movement);
+                //_initialSpeed += _acceleration * Time.deltaTime;
+            }
+
+            if (transform.position.y <= MobGenerator.GetDeadLine())
+            {
+                MobGenerator.DestroyMob(this);
+                Player_Script.Damage(_reachedDamage);
+            }
+
+
         }
+
+
+        public void Damage(float val)
+        {
+            _healthSystem.Damage(val);
+            DamageFXManager.ShowDamage(transform.position, Mathf.Round(val).ToString());
+        }
+
+        //Called on dead
+        private void OnDead(object sender, System.EventArgs e)
+        {
+            _isEnemyAlive = false;
+            MobGenerator.DestroyMob(this);
+        }
+
+
+        [SerializeField]
+        SpriteRenderer _targetSprite;
+        public void SetTargetted(bool val) 
+        {
+            _targetSprite.enabled = val;
+        }
+
+        #region//paused
+
+        void SetOnNonTotalPaused()
+        {
+            _isNontotalPaused = true;
+        }
+        void SetOffNonTotalPaused()
+        {
+            _isNontotalPaused = false;
+
+        }
+
+
+        #endregion
+
 
     }
 

@@ -12,20 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0b2ca909a209340afe36adeafe0b8e, type: 3}
   m_Name: ASDF
   m_EditorClassIdentifier: 
-  _currentArtifactDictionary:
-    m_keys: 
-    m_values: []
-  _obtainableArtifactIDList: 330000000a00000014000000340000000b00000015000000
+  _obtainableArtifactIDList: 0b0000000a000000140000003c0000001500000033000000
   _charactorAttackDic:
-    m_keys: 010000000200000003000000
+    m_keys: 0100000002000000030000001500000016000000
     m_values:
-    - "_\uAE30\uBCF8\uAC12": 10
+    - "_\uAE30\uBCF8\uAC12": 15
       "_\uC99D\uAC00\uB7C9": 0
       "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
       "_\uBC30\uC218": 1
       "_\uCD94\uAC00\uB7C9": 0
       type: 1
     - "_\uAE30\uBCF8\uAC12": 8
+      "_\uC99D\uAC00\uB7C9": 0
+      "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+      "_\uBC30\uC218": 1
+      "_\uCD94\uAC00\uB7C9": 0
+      type: 1
+    - "_\uAE30\uBCF8\uAC12": 16
+      "_\uC99D\uAC00\uB7C9": 0
+      "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+      "_\uBC30\uC218": 1
+      "_\uCD94\uAC00\uB7C9": 0
+      type: 1
+    - "_\uAE30\uBCF8\uAC12": 16
       "_\uC99D\uAC00\uB7C9": 0
       "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
       "_\uBC30\uC218": 1

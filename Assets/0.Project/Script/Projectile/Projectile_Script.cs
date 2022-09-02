@@ -30,6 +30,8 @@ namespace PG.Battle
         [SerializeField]
         ParticleSystem _ongoingFX;
         [SerializeField]
+        TrailRenderer _ongoingTrail;
+        [SerializeField]
         ParticleSystem _hitFX;
 
 
@@ -52,7 +54,7 @@ namespace PG.Battle
 
         protected virtual void FixedUpdate()
         {
-            if (_isActive) 
+            if (_isPlaced) 
             {
                 Movement();
             }
@@ -64,7 +66,7 @@ namespace PG.Battle
             if (_lifeTime > 0)
             {
                 _lifeTime -= Time.deltaTime;
-                _movement = _direction * (_initialSpeed / 10) * Time.deltaTime;
+                _movement = (_initialSpeed / 10) * Time.deltaTime * _direction;
                 if (_rigidBody2D != null)
                 {
                     _rigidBody2D.MovePosition(this.transform.position + _movement);
@@ -81,6 +83,7 @@ namespace PG.Battle
         {
             base.OnObjectEnabled();
             _projectileImage.enabled = true;
+            _ongoingTrail.enabled = true;
             _ongoingFX.Play();
         }
 
@@ -88,6 +91,7 @@ namespace PG.Battle
         {
             base.OnObjectDisabled();
             _projectileImage.enabled = false;
+            _ongoingTrail.enabled = false;
             _ongoingFX.Stop();
             ProjectileManager.SetBackProjectile(gameObject,_id);
         }
@@ -98,6 +102,7 @@ namespace PG.Battle
             {
                 // 이곳에서 적에 대한 데미지를 처리하는 코드를 짠다.
                 _hitFX.Play();
+                collision.GetComponent<MobScript>().Damage(_damage);
                 if (_pierceCount <=0)
                     OnObjectDisabled();
                 _pierceCount--;

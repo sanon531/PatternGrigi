@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using System.Linq;
 using UnityEngine;
 using PG.Data;
 using PG.Event;
@@ -16,15 +18,18 @@ namespace PG.Battle
         {
             Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
-
+            InitializeDictionary();
         }
         protected override void CallOnDestroy()
         {
             Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
             Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
         }
-        public void InitializeDictionary(List<ObstacleID> obstacleIDs)
+        public void InitializeDictionary()
         {
+            _obstacleDic.Clear();
+            List<ObstacleID> obstacleIDs = Enum.GetValues(typeof(ObstacleID)).Cast<ObstacleID>().ToList();
+
             foreach (ObstacleID id in obstacleIDs)
             {
                 GameObject _tempfromobject = Resources.Load<GameObject>("Obstacle/" + id.ToString());
@@ -43,6 +48,7 @@ namespace PG.Battle
             Obstacle _tempObstacle = _temp.GetComponent<Obstacle>();
             _tempObstacle.SetSpawnData(data._lifeTime, data._activeTime, data._damageMag*damage);
             _instance._activeObstacleList.Add(_tempObstacle);
+
         }
 
         public static void DeleteObstacleOnList(Obstacle obstacle)
@@ -85,15 +91,31 @@ namespace PG.Battle
 
         Dictionary<ObstacleID, List<GameObject>> _activateObstacleDictionary = new Dictionary<ObstacleID, List<GameObject>>()
         {
-            {ObstacleID.SmallFire ,new List<GameObject>(){ } }
+            {ObstacleID.Small_Fire ,new List<GameObject>(){ } },
+            {ObstacleID.LongThinFire_Horizontal ,new List<GameObject>(){ } },
+            {ObstacleID.LongThinFire_Vertical,new List<GameObject>(){ } },
+            {ObstacleID.MovingLeafDownToUp,new List<GameObject>(){ } },
+            {ObstacleID.MovingLeafLeftToRight,new List<GameObject>(){ } },
+            {ObstacleID.MovingLeafRightToleft,new List<GameObject>(){ } },
+            {ObstacleID.MovingLeafUpToDown,new List<GameObject>(){ } },
+            {ObstacleID.Chase_Obstacle,new List<GameObject>(){ } },
+            {ObstacleID.LookAt_Arrow,new List<GameObject>(){ } }
+
         };
         Dictionary<ObstacleID, List<GameObject>> _deactivateObstacleDictionary = new Dictionary<ObstacleID, List<GameObject>>()
         {
-            {ObstacleID.SmallFire ,new List<GameObject>(){ } }
-        };
+            {ObstacleID.Small_Fire ,new List<GameObject>(){ } },
+            {ObstacleID.LongThinFire_Horizontal ,new List<GameObject>(){ } },
+            {ObstacleID.LongThinFire_Vertical,new List<GameObject>(){ } },
+            {ObstacleID.MovingLeafDownToUp,new List<GameObject>(){ } },
+            {ObstacleID.MovingLeafLeftToRight,new List<GameObject>(){ } },
+            {ObstacleID.MovingLeafRightToleft,new List<GameObject>(){ } },
+            {ObstacleID.MovingLeafUpToDown,new List<GameObject>(){ } },
+            {ObstacleID.Chase_Obstacle,new List<GameObject>(){ } },
+            {ObstacleID.LookAt_Arrow,new List<GameObject>(){ } }        };
 
 
-        GameObject ShootProjectile(ObstacleID id)
+        GameObject PlaceObject(ObstacleID id)
         {
             if (_deactivateObstacleDictionary[id].Count == 0)
             {
@@ -104,7 +126,7 @@ namespace PG.Battle
             _activateObstacleDictionary[id].Add(_tempt);
             return _tempt;
         }
-        public static void SetBackProjectile(GameObject projectile, ObstacleID id)
+        public static void SetBackObject(GameObject projectile, ObstacleID id)
         {
             if (_instance._activateObstacleDictionary[id].Contains(projectile))
             {

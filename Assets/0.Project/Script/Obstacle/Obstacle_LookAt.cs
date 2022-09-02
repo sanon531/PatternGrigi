@@ -37,7 +37,7 @@ namespace PG.Battle
 
         private void LookPlayer()
         {
-            if (_isActive) return;
+            if (!_isPlaced || _isActived) return;
 
             Vector2 direction = new Vector2(
                      transform.position.x - playerTr.position.x,
@@ -52,7 +52,7 @@ namespace PG.Battle
 
         private void Shoot()
         {
-            if (!_isActive) return;
+            if (!_isActived) return;
 
             transform.Translate(forward * moveSpeed * Time.deltaTime);
         }
