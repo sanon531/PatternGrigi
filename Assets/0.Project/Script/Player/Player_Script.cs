@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using PG.HealthSystemCM;
 using DG.Tweening;
 using PG.Event;
 using PG.Data;
+
 namespace PG.Battle 
 {
     public class Player_Script : MonoSingleton<Player_Script>, IGetHealthSystem, ISetNontotalPause
@@ -19,7 +21,7 @@ namespace PG.Battle
         [SerializeField]
         SpriteRenderer _thisSprite;
         [SerializeField]
-        RengeGames.HealthBars.UltimateCircularHealthBar _healthBar;
+        Image _healthBar;
         [SerializeField]
         ParticleSystem _damageFX;
         // Start is called before the first frame update
@@ -44,8 +46,7 @@ namespace PG.Battle
         {
             //단위는 20에 1칸임.
             float currentProperty = currentHealth / healthAmountMax;
-            _healthBar.SetSegmentCount(healthAmountMax / 20);
-            _healthBar.SetPercent(currentProperty);
+            _healthBar.DOFillAmount(currentProperty,0.5f);
 
         }
 

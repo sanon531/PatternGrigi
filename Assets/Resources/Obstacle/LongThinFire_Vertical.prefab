@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5778512831870487330, guid: 29024fbc6f928f347b94d7e35f95f2ab, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5778512831870487330, guid: 29024fbc6f928f347b94d7e35f95f2ab, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1663292755
+      objectReference: {fileID: 0}
     - target: {fileID: 5778512831870487333, guid: 29024fbc6f928f347b94d7e35f95f2ab, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -57,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5778512831870487334, guid: 29024fbc6f928f347b94d7e35f95f2ab, type: 3}
       propertyPath: m_Name
-      value: Long_Thin_V_Fire
+      value: LongThinFire_Vertical
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29024fbc6f928f347b94d7e35f95f2ab, type: 3}

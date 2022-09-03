@@ -107,7 +107,7 @@ namespace PG.Battle
                 return;
 
 
-            if (PositionCheck(targetPos))
+            if (PositionCheckX(targetPos))
             {
 
                 targetPos.z = 0;
@@ -133,7 +133,7 @@ namespace PG.Battle
             transform.position = _curTF;
         }
 
-        bool PositionCheck(Vector2 targetPos) 
+        bool PositionCheckX(Vector2 targetPos) 
         {
 
             return 
