@@ -176,6 +176,13 @@ namespace PG.Data
         public List<SpawnData> _spawnDataList = new List<SpawnData>();
 
     }
+    [Serializable]
+    public class MobSpawnData
+    {
+        public int _스폰수;
+        public float _스폰대기시간;
+        public float _리스폰딜레이;
+    }
 
     //스폰하는 방식을 의미함
     //한번에 같은거 소환하는가

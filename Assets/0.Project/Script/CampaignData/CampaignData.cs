@@ -24,7 +24,6 @@ namespace PG.Data
 
         };
 
-
         //적들의 데이터를 먼저 매치 하는 부분. 한버넹 강한 공격 도 공격이지만 아무튼.
         //값은 언제든 수정이 가능.
         public CharactorIDDataEntityDic _charactorAttackDic =
@@ -37,6 +36,8 @@ namespace PG.Data
                 { CharacterID.Tempt_Mob,new DataEntity(DataEntity.Type.Damage,8)},
            };
 
+        public TimeWaveDic _waveDic = new TimeWaveDic();
+
         //거리에따른 배율임 
         public DataEntity _lengthMagnData = new DataEntity(DataEntity.Type.LengthMag, 1);
         public DataEntity _chargeGaugeData = new DataEntity(DataEntity.Type.ChargeGauge, 8);
@@ -46,8 +47,6 @@ namespace PG.Data
         public DataEntity _playerSize = new DataEntity(DataEntity.Type.PlayerSize, 1);
         public DataEntity _projectileSpeed = new DataEntity(DataEntity.Type.ProjectileSpeed, 5);
         public DataEntity _projectileTargetNum = new DataEntity(DataEntity.Type.ProjectileCount, 1);
-
-
 
     }
 

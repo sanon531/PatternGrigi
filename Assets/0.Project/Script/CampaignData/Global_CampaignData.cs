@@ -45,6 +45,8 @@ namespace PG.Data
         public static DataEntity _projectileSpeed = new DataEntity(DataEntity.Type.ProjectileSpeed, 5);
         public static DataEntity _projectileTargetNum = new DataEntity(DataEntity.Type.ProjectileCount, 1);
 
+        public static List<float> _waveTimeList = new List<float>();
+        public static List<WaveClass> _waveClassList = new List<WaveClass>();
 
         #endregion;
 
@@ -78,6 +80,16 @@ namespace PG.Data
             _playerSize = new DataEntity(data._playerSize);
             _projectileSpeed = new DataEntity(data._projectileSpeed);
             _projectileTargetNum = new DataEntity(data._projectileTargetNum);
+
+            _waveTimeList = new List<float>(data._waveDic.Keys);
+            //켐페인데이터에 웨이브 시간 순서를 꼭 오름차순으로 입력 안해도 되도록 정렬+이에맞게 class리스트 만듦
+            _waveTimeList.Sort();
+            foreach (float key in _waveTimeList)
+            {
+                _waveClassList.Add(data._waveDic[key]);
+                //Debug.Log(key);
+            }
+            //굳이 그럴필요없으면 이거 _waveClassList = new List<WaveClass>(data._waveDic.Values);
         }
         #endregion
     }
