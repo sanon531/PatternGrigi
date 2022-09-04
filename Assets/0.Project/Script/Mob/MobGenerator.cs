@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PG.Event;
 using PG.Data;
 
 namespace PG.Battle 
@@ -23,18 +24,13 @@ namespace PG.Battle
         MobIDObjectDic _mobDic;
 
         [SerializeField]
-        private List<MobSpawnData> _mobSpawnDataList = new List<MobSpawnData>();
+        private List<MobSpawnData2> _mobSpawnDataList = new List<MobSpawnData2>();
         [SerializeField]
         private List<MobScript> _mobList;
 
 
         private int _mobCount = 0;
 
-
-        void Start()
-        {
-
-        }
 
         void Update()
         {
@@ -49,20 +45,20 @@ namespace PG.Battle
 
         public void SpawnMob()
         {
-            foreach (MobSpawnData mobSpawnData in _mobSpawnDataList)
+            foreach (MobSpawnData2 mobSpawnData in _mobSpawnDataList)
             {
                 StartCoroutine(SpawnStartCoroutine(mobSpawnData));
             }
         }
 
-        IEnumerator SpawnStartCoroutine(MobSpawnData mobSpawnData)
+        IEnumerator SpawnStartCoroutine(MobSpawnData2 mobSpawnData)
         {
             yield return new WaitForSeconds(mobSpawnData.wait_time);
 
             StartCoroutine(SpawnCoroutine(mobSpawnData));
         }
 
-        IEnumerator SpawnCoroutine(MobSpawnData mobSpawnData)
+        IEnumerator SpawnCoroutine(MobSpawnData2 mobSpawnData)
         {
             yield return new WaitForSeconds(mobSpawnData.respawn_delay);
 
@@ -105,7 +101,7 @@ namespace PG.Battle
 
 
         [Serializable]
-        public class MobSpawnData
+        public class MobSpawnData2
         {
             public CharacterID mobID;
             public float wait_time;

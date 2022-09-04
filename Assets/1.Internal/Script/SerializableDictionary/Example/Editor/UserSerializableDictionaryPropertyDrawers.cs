@@ -15,6 +15,8 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(MobIDObjectDic))]
 [CustomPropertyDrawer(typeof(MobActionDataDic))]
 [CustomPropertyDrawer(typeof(ArtifactStringaDic))]
+[CustomPropertyDrawer(typeof(TimeWaveDic))]
+[CustomPropertyDrawer(typeof(MobIDSpawnDataDic))]
 
 public class AnySerializableDictionaryPropertyDrawer : SerializableDictionaryPropertyDrawer {}
 
