@@ -43,7 +43,7 @@ namespace PG.Battle
         public static void ShowDamage(Vector2 position, string text)
         {
             GameObject newText = Instantiate(_instance._canvasPrefab, position, Quaternion.identity, _instance._canvasTransform);
-            newText.GetComponent<DynamicText2D>().Initialise(text, _instance._defaultData);
+            newText.GetComponent<DynamicTextForOneCanvas>().Initialise(text, _instance._defaultData);
         }
 
 

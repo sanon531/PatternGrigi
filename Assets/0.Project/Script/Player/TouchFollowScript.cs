@@ -97,7 +97,8 @@ namespace PG.Battle
 
 
         bool _isLevelUpPaused = false;
-
+        float _direction_x = 0;
+        float _direction_y = 0;
         //터치 상한선과 작동 상한선 두가지로 나누자.
         void SetPlayerPos(Vector3 targetPos)
         {
@@ -106,29 +107,36 @@ namespace PG.Battle
             if (_isLevelUpPaused)
                 return;
 
+            _thisRB.velocity = Vector2.zero;
+            targetPos.z = 0;
+            _direction_x = 0;
+            _direction_y = 0;
+            _direction = targetPos - transform.position;
 
             if (PositionCheckX(targetPos))
             {
-                targetPos.z = 0;
-                _direction = targetPos - transform.position;
                 if (_direction.magnitude < 0.5f)
                 {
                     transform.position = targetPos;
-                    _thisRB.velocity = new Vector2();
                 }
                 else
                 {
-                    _direction = _direction.normalized;
-                    _thisRB.velocity = new Vector2(_direction.x, _direction.y) * _moveSpeed;
+                    _direction_x = _direction.normalized.x;
                 }
+            } 
 
-            } else if (PositionCheckY(targetPos)) 
+            if (PositionCheckY(targetPos)) 
             {
-            
+                if (_direction.magnitude < 0.5f)
+                {
+                    transform.position = targetPos;
+                }
+                else
+                {
+                    _direction_y = _direction.normalized.y;
+                }
             }
-            else
-                _thisRB.velocity = Vector2.zero;
-
+            _thisRB.velocity = new Vector2(_direction.x, _direction.y) * _moveSpeed;
             Vector3 _curTF = transform.position;
             _curTF.x = Mathf.Clamp(_curTF.x, _moveLUvec.x, _moveRDvec.x);
             _curTF.y = Mathf.Clamp(_curTF.y, _moveRDvec.y, _moveLUvec.y);
@@ -144,10 +152,9 @@ namespace PG.Battle
         }
         bool PositionCheckY(Vector2 targetPos) 
         {
-
             return 
-                _touchLUvec.x < targetPos.x && 
-                _moveRDvec.x > targetPos.x;
+                _touchLUvec.y > targetPos.y && 
+                _moveRDvec.y < targetPos.y;
         }
 
 

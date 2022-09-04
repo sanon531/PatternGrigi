@@ -35,6 +35,7 @@ Material:
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52,6 +53,7 @@ MonoBehaviour:
   materialHashCode: 0
   m_Version: 1.1.0
   m_FaceInfo:
+    m_FaceIndex: 0
     m_FamilyName: 
     m_StyleName: 
     m_PointSize: 0
@@ -77,20 +79,20 @@ MonoBehaviour:
     m_Unicode: 128522
     m_GlyphIndex: 0
     m_Scale: 1
-    m_Name: Smiling face with smiling eyes
-    m_HashCode: -1318250903
+    m_Name: Increase_Little
+    m_HashCode: 517574103
   - m_ElementType: 2
     m_Unicode: 128523
     m_GlyphIndex: 1
     m_Scale: 1
-    m_Name: 1f60b
-    m_HashCode: 57188339
+    m_Name: Increase
+    m_HashCode: 137042660
   - m_ElementType: 2
     m_Unicode: 128525
     m_GlyphIndex: 2
     m_Scale: 1
-    m_Name: 1f60d
-    m_HashCode: 57188341
+    m_Name: Increase_Big
+    m_HashCode: 204499959
   - m_ElementType: 2
     m_Unicode: 128526
     m_GlyphIndex: 3
@@ -101,20 +103,20 @@ MonoBehaviour:
     m_Unicode: 128512
     m_GlyphIndex: 4
     m_Scale: 1
-    m_Name: Grinning face
-    m_HashCode: -95541379
+    m_Name: Decrease_Little
+    m_HashCode: -1451928335
   - m_ElementType: 2
     m_Unicode: 128513
     m_GlyphIndex: 5
     m_Scale: 1
-    m_Name: 1f601
-    m_HashCode: 57188256
+    m_Name: Decrease
+    m_HashCode: -312254334
   - m_ElementType: 2
     m_Unicode: 128514
     m_GlyphIndex: 6
     m_Scale: 1
-    m_Name: Face with tears of joy
-    m_HashCode: 239522663
+    m_Name: Decrease_Big
+    m_HashCode: -1187997039
   - m_ElementType: 2
     m_Unicode: 128515
     m_GlyphIndex: 7
@@ -149,14 +151,14 @@ MonoBehaviour:
     m_Unicode: 0
     m_GlyphIndex: 12
     m_Scale: 1
-    m_Name: .notdef
-    m_HashCode: -600915428
+    m_Name: Plus
+    m_HashCode: 2853530
   - m_ElementType: 2
     m_Unicode: 129315
     m_GlyphIndex: 13
     m_Scale: 1
-    m_Name: 1f923
-    m_HashCode: 57200239
+    m_Name: Minus
+    m_HashCode: 87655372
   - m_ElementType: 2
     m_Unicode: 9786
     m_GlyphIndex: 14
@@ -657,3 +659,4 @@ Material:
     m_TexEnvs: []
     m_Floats: []
     m_Colors: []
+  m_BuildTextureStacks: []

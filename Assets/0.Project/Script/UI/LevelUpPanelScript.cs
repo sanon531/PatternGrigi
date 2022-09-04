@@ -12,6 +12,8 @@ namespace PG.Battle
     {
         [SerializeField]
         Image _panelBG;
+        [SerializeField]
+        Image _levelTitle;
 
         [SerializeField]
         List<LevelupChooseButtonScript> _upgradePanelList;
@@ -33,6 +35,8 @@ namespace PG.Battle
         public static void LevelUpPannelOn()
         {
             _instance._panelBG.enabled = true;
+            _instance._levelTitle.enabled = true;
+
             foreach (LevelupChooseButtonScript i in _instance._upgradePanelList)
             {
                 i.transform.DOScale(0.8f, 0.5f);
@@ -42,8 +46,8 @@ namespace PG.Battle
 
         public static void LevelUpPannelOff()
         {
-
             _instance._panelBG.enabled = false;
+            _instance._levelTitle.enabled = false;
             foreach (LevelupChooseButtonScript i in _instance._upgradePanelList)
             {
                 i.transform.DOScale(0, 0.5f);

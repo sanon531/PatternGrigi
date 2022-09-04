@@ -42,11 +42,19 @@ namespace PG.Battle
 
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerStay2D(Collider2D collision)
         {
-
-
-
+            if (collision.transform.tag == "Player")
+            {
+                if (_isReachable)
+                {
+                    _swipeAudio.Play();
+                    //ShowDebugtextScript._instance.SetDebug("Player in" + name );
+                    PatternManager.DamageCall(_nodeId);
+                    _flash.Play();
+                }
+            }
         }
+
     }
 }
