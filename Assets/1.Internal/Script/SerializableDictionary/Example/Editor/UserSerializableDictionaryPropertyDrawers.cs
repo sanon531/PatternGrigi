@@ -14,6 +14,7 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(CharactorIDDataEntityDic))]
 [CustomPropertyDrawer(typeof(MobIDObjectDic))]
 [CustomPropertyDrawer(typeof(MobActionDataDic))]
+[CustomPropertyDrawer(typeof(ArtifactStringaDic))]
 [CustomPropertyDrawer(typeof(TimeWaveDic))]
 [CustomPropertyDrawer(typeof(MobIDSpawnDataDic))]
 

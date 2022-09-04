@@ -51,7 +51,8 @@ public class EXPbarUIScript : MonoBehaviour
             _currentEXP -= _maxEXP;
             SetLevelUp();
         }
-        _bar.fillAmount = _currentEXP / _maxEXP;
+        _bar.DOFillAmount(_currentEXP / _maxEXP,0.5f);
+
     }
     void SetLevelUp() 
     {

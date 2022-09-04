@@ -63,9 +63,12 @@ namespace PG
 
 
         #region//artifact
-        Dictionary<ArtifactID, string> _artifactNameDic = new Dictionary<ArtifactID, string>() { };
-        Dictionary<ArtifactID, string> _artifactArtifactEffectDic = new Dictionary<ArtifactID, string>() { };
-        Dictionary<ArtifactID, string> _artifactDevCommentDic = new Dictionary<ArtifactID, string>() { };
+        [SerializeField]
+        ArtifactStringaDic _artifactNameDic = new ArtifactStringaDic() { };
+        [SerializeField]
+        ArtifactStringaDic _artifactArtifactEffectDic = new ArtifactStringaDic() { };
+        [SerializeField]
+        ArtifactStringaDic _artifactDevCommentDic = new ArtifactStringaDic() { };
 
         public void SetArtifactDataFromJson()
         {
@@ -91,7 +94,7 @@ namespace PG
         public static string GetArtifactDataFromJson(ArtifactJsonData jsonData, ArtifactID targetid)
         {
             string _returnval = "Non Data";
-            //Debug.Log(jsonData + "," + targetid);
+            Debug.Log(_instance._artifactNameDic[targetid]);
             try
             {
                 switch (jsonData)

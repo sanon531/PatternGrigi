@@ -62,12 +62,16 @@ namespace PG.Data
         public static void ResetData() 
         {
             _currentArtifactDictionary.Clear();
+            _charactorAttackDic.Clear();
+            _obtainableArtifactIDList.Clear();
+
         }
 
         //이곳에서 최초의 스테이지 데이터를 수정한다.
         public static void SetCampaginInitialize(CampaignData data) 
         {
-            if(data._currentArtifactDictionary.Count !=0)
+            ResetData();
+            if (data._currentArtifactDictionary.Count !=0)
                 _currentArtifactDictionary.CopyFrom(data._currentArtifactDictionary);
             //Debug.Log(data._charactorAttackDic.GetType());
             _charactorAttackDic.CopyFrom(data._charactorAttackDic);

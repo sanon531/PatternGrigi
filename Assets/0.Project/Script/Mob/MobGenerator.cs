@@ -5,7 +5,7 @@ using UnityEngine;
 using PG.Event;
 using PG.Data;
 
-namespace PG.Battle 
+namespace PG.Battle
 {
     public class MobGenerator : MonoSingleton<MobGenerator>
     {
@@ -15,64 +15,68 @@ namespace PG.Battle
         [SerializeField]
         private Transform _SpawnRange_Right;
         public Transform _DamageLine;
-        
-
-        [SerializeField]
-        private bool _spawnStart;
 
         [SerializeField]
         MobIDObjectDic _mobDic;
 
         [SerializeField]
-        private List<MobSpawnData2> _mobSpawnDataList = new List<MobSpawnData2>();
-        [SerializeField]
         private List<MobScript> _mobList;
-
-
         private int _mobCount = 0;
 
+        private MobIDSpawnDataDic _currentMobSpawnDataDic;
+        private List<float> _waveTimeList;
+        private List<WaveClass> _waveClassList;
+        private int _currentWaveOrder = 0;
+
+        void Start()
+        {
+            _waveTimeList = Global_CampaignData._waveTimeList;
+            _waveClassList = Global_CampaignData._waveClassList;
+        }
 
         void Update()
         {
-            if (_spawnStart)
+            //웨이브 넘어갈 때
+            if (BattleSceneManager._instance.GetTime_Minute() > _waveTimeList[_currentWaveOrder])
             {
-                SpawnMob();
-                _spawnStart = false;
-                
+                StopAllCoroutines();
+                _currentMobSpawnDataDic = _waveClassList[_currentWaveOrder].GetSpawnDataDic();
+                foreach (CharacterID charID in _currentMobSpawnDataDic.Keys)
+                {
+                    SpawnMob(charID, _currentMobSpawnDataDic[charID]);
+                }
+                _currentWaveOrder++;
             }
         }
 
 
-        public void SpawnMob()
+        public void SpawnMob(CharacterID charID, MobSpawnData mobSpawnData)
         {
-            foreach (MobSpawnData2 mobSpawnData in _mobSpawnDataList)
-            {
-                StartCoroutine(SpawnStartCoroutine(mobSpawnData));
-            }
+            StartCoroutine(SpawnStartCoroutine(charID, mobSpawnData));
         }
 
-        IEnumerator SpawnStartCoroutine(MobSpawnData2 mobSpawnData)
+        IEnumerator SpawnStartCoroutine(CharacterID charID, MobSpawnData mobSpawnData)
         {
-            yield return new WaitForSeconds(mobSpawnData.wait_time);
+            yield return new WaitForSeconds(mobSpawnData._스폰대기시간);
 
-            StartCoroutine(SpawnCoroutine(mobSpawnData));
+            StartCoroutine(SpawnCoroutine(charID, mobSpawnData));
         }
 
-        IEnumerator SpawnCoroutine(MobSpawnData2 mobSpawnData)
+        IEnumerator SpawnCoroutine(CharacterID charID, MobSpawnData mobSpawnData)
         {
-            yield return new WaitForSeconds(mobSpawnData.respawn_delay);
+            yield return new WaitForSeconds(mobSpawnData._리스폰딜레이);
 
             //스폰하는 부분
 
-            Vector3 pos = new Vector3(UnityEngine.Random.Range(_SpawnRange_Left.position.x, _SpawnRange_Right.position.x), 
+            Vector3 pos = new Vector3(UnityEngine.Random.Range(_SpawnRange_Left.position.x, _SpawnRange_Right.position.x),
                 _SpawnRange_Left.position.y, _SpawnRange_Left.position.z);
 
-            MobScript temp = Instantiate(_mobDic[mobSpawnData.mobID], pos, _SpawnRange_Left.rotation).GetComponent<MobScript>();
-            temp.SetInitializeMob(mobSpawnData._actionDic);
+            MobScript temp = Instantiate(_mobDic[charID], pos, _SpawnRange_Left.rotation).GetComponent<MobScript>();
+            //temp.SetInitializeMob(mobSpawnData._actionDic);
             _mobList.Add(temp);
             _mobCount++;
 
-            StartCoroutine(SpawnCoroutine(mobSpawnData));
+            StartCoroutine(SpawnCoroutine(charID, mobSpawnData));
         }
 
         //삭제는 나중에 사용할 때에 맞게 수정해야 할 듯
@@ -90,7 +94,7 @@ namespace PG.Battle
             return _instance._mobList;
         }
 
-        public static float GetDeadLine() 
+        public static float GetDeadLine()
         {
             return _instance._DamageLine.position.y;
         }
@@ -100,15 +104,6 @@ namespace PG.Battle
         // 적들의
 
 
-        [Serializable]
-        public class MobSpawnData2
-        {
-            public CharacterID mobID;
-            public float wait_time;
-            public float respawn_delay;
-            public MobActionDataDic _actionDic;
-
-        }
     }
 
 }
