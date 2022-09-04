@@ -109,20 +109,22 @@ namespace PG.Battle
 
             if (PositionCheckX(targetPos))
             {
-
                 targetPos.z = 0;
                 _direction = targetPos - transform.position;
-                if (_direction.magnitude < 0.3f)
+                if (_direction.magnitude < 0.5f)
                 {
                     transform.position = targetPos;
                     _thisRB.velocity = new Vector2();
                 }
-                else 
+                else
                 {
                     _direction = _direction.normalized;
                     _thisRB.velocity = new Vector2(_direction.x, _direction.y) * _moveSpeed;
                 }
 
+            } else if (PositionCheckY(targetPos)) 
+            {
+            
             }
             else
                 _thisRB.velocity = Vector2.zero;
@@ -138,11 +140,14 @@ namespace PG.Battle
 
             return 
                 _touchLUvec.x < targetPos.x && 
-                _moveRDvec.x > targetPos.x && 
-                _touchLUvec.y > targetPos.y && 
-                _moveRDvec.y < targetPos.y;
+                _moveRDvec.x > targetPos.x;
+        }
+        bool PositionCheckY(Vector2 targetPos) 
+        {
 
-
+            return 
+                _touchLUvec.x < targetPos.x && 
+                _moveRDvec.x > targetPos.x;
         }
 
 
