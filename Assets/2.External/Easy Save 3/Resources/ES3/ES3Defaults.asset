@@ -38,16 +38,16 @@ MonoBehaviour:
     - spine-csharp
     - AllIn1SpriteShaderAssembly
     - CodeMonkey_HealthSystem
+    - Sirenix.OdinInspector.CompatibilityLayer
     - Febucci.TextAnimator.Demo.Runtime
     - MoreMountains.NiceVibrations
-    - Sirenix.OdinInspector.CompatibilityLayer
     - PsdPlugin
+    - Sirenix.OdinInspector.CompatibilityLayer.Editor
     - spine-unity-editor
     - Febucci.TextAnimator.Editor
     - MoreMountains.NiceVibrations.Editor
     - CodeMonkey_HealthSystem_Editor
     - Febucci.TextAnimator.Demo.Editor
-    - Sirenix.OdinInspector.CompatibilityLayer.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
