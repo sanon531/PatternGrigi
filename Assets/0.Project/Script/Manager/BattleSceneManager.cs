@@ -65,9 +65,9 @@ namespace PG.Battle
 
         }
 
-        public float GetTime_Minute()
+        public float GetPlayTime()
         {
-            return _playTime / 60;
+            return _playTime;
         }
 
 
