@@ -16,13 +16,13 @@ namespace PG
             }
             else if (_instance == null)
             {
-                Debug.Log("Set this");
+                //Debug.Log("Set this");
                 _instance = this as T;
                 CallOnAwake();
             }
             else 
             {
-                Debug.Log("ok" + _instance);
+                //Debug.Log("ok" + _instance);
             }
 
         }

@@ -18,6 +18,14 @@ namespace PG
         }
 
     }
+    public sealed class PresetPattern_EmptyBreath : PresetPatternAction_Base
+    {
+        public override void StartPatternAction()
+        {
+            Debug.Log("Start Game");
+        }
+
+    }
 
 
 }
