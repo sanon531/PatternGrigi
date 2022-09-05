@@ -26,7 +26,10 @@ namespace PG.Data
             {
                 {DrawPatternPreset.Default_Thunder,new List<int>(){1,3,4,6,7,5} },
                 {DrawPatternPreset.LoveAndPeace,new List<int>(){4,2,5,7,3,0,4} },
-                {DrawPatternPreset.Sandglass,new List<int>(){2,0,8,6,2} }
+                {DrawPatternPreset.Sandglass,new List<int>(){2,0,8,6,2} },
+
+
+                {DrawPatternPreset.Empty_Breath,new List<int>(){4}},
 
             };
         public static Dictionary<DrawPatternPreset, PresetPatternAction_Base> PatternWIthActionDic =
@@ -34,7 +37,9 @@ namespace PG.Data
             {
                 {DrawPatternPreset.Default_Thunder,new PresetPattern_DefaultThunder()},
                 {DrawPatternPreset.LoveAndPeace,new PresetPattern_LoveAndPeace()},
-                {DrawPatternPreset.Sandglass,new PresetPattern_Sandglass() }
+                {DrawPatternPreset.Sandglass,new PresetPattern_Sandglass() },
+
+                {DrawPatternPreset.Empty_Breath,new PresetPattern_EmptyBreath() }
             };
 
         //아티팩트의 수치와 행동을 분리하여야 한다.그래야 나중에 텍스트 처리할때 편하다.
@@ -93,8 +98,6 @@ namespace PG.Data
                 #endregion
 
             };
-        //나중에 로컬라이제이션 할때 사용 할 생각.
-        public static Dictionary<ArtifactID, string> ArtifactToNameText_KR = new Dictionary<ArtifactID, string>() { };
 
         public static Dictionary<ArtifactID, Artifact> TotalArtifactClassDic =
             new Dictionary<ArtifactID, Artifact>()
@@ -141,6 +144,7 @@ namespace PG.Data
     }
 
 
+
     //적 패턴은 많아야 4개고  중간 이상의 적에게는 필살기 1개 정도 있다고 보면 될듯함
     public enum EnemyActionID
     {
@@ -152,6 +156,12 @@ namespace PG.Data
         BasicAttack_4 = 5,
         BasicAttack_5 = 6,
         Stunned = 99
+
+    }
+    public enum LaserKindID 
+    {
+        Default_laser= 0,
+        Electric_lightening =1,
 
     }
 

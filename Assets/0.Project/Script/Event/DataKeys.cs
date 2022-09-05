@@ -110,7 +110,12 @@ namespace PG.Data
     {
         Default_Thunder = 0,
         LoveAndPeace = 1,
-        Sandglass = 2
+        Sandglass = 2,
+
+
+
+
+        Empty_Breath= 999 // 최초의 시작에 호출되는 코드
     }
 
 }

@@ -39,7 +39,7 @@ namespace PG.Battle
             tweener.BeginTextTweeener(target, middle, lifeTime);
         }
 
-
+        //오브젝트 풀링 적용하기
         public static void ShowDamage(Vector2 position, string text)
         {
             GameObject newText = Instantiate(_instance._canvasPrefab, position, Quaternion.identity, _instance._canvasTransform);

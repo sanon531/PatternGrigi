@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using PG.Event;
 using PG.Data;
+using System;
+using System.Linq;
 
 namespace PG.Battle 
 {
     public class FXCallManager : MonoSingleton<FXCallManager>
     {
 
-        [SerializeField]
-        List<DrawPatternPreset> _ownningPattern = new List<DrawPatternPreset>() { };
+        List<DrawPatternPreset> _allOwnningPattern = new List<DrawPatternPreset>() { };
         Dictionary<DrawPatternPreset, ParticleSystem> _patternPrefabDic = 
             new Dictionary<DrawPatternPreset, ParticleSystem>() {};
 
@@ -19,10 +20,12 @@ namespace PG.Battle
         // Start is called before the first frame update
         
         //패턴FX 의 경우 생성 될경우 어차피 여러번 쓸꺼니까 생성 시키고 저장해두지뭐 
-        void Start()
+        
+        protected override void CallOnAwake ()
         {
             Global_BattleEventSystem._onPatternSuccessed += CallPatternEvent;
-            foreach (DrawPatternPreset val in _ownningPattern) 
+            _allOwnningPattern = Enum.GetValues(typeof(DrawPatternPreset)).Cast<DrawPatternPreset>().ToList();
+            foreach (DrawPatternPreset val in _allOwnningPattern) 
             {
                 GameObject _tempt = Instantiate(
                     Resources.Load<GameObject>("Effect/PatternFX/" + val.ToString()), 
