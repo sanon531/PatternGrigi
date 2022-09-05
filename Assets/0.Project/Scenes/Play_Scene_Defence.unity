@@ -166,7 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0fca23587e99c45b546c2696858770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ownningPattern: 000000000100000002000000
   _patternTransform: {fileID: 23443378}
 --- !u!4 &42253765 stripped
 Transform:
@@ -1339,7 +1338,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
 --- !u!114 &437061468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8336,6 +8335,10 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.048
       objectReference: {fileID: 0}
+    - target: {fileID: 7435981631448181675, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 55
+      objectReference: {fileID: 0}
     - target: {fileID: 7504855527261867977, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -8346,7 +8349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8964876256455990930, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00001617816
+      value: -0.00006165821
       objectReference: {fileID: 0}
     - target: {fileID: 9166785324373634168, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -70632,7 +70635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8593451072201227060, guid: 6168722e09adabb45bd65f6a93a1df70, type: 3}
       propertyPath: _chargeAmount
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8593451072201227060, guid: 6168722e09adabb45bd65f6a93a1df70, type: 3}
       propertyPath: _currentPattern

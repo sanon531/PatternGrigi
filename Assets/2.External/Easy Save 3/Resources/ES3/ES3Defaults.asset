@@ -40,12 +40,15 @@ MonoBehaviour:
     - CodeMonkey_HealthSystem
     - Febucci.TextAnimator.Demo.Runtime
     - MoreMountains.NiceVibrations
+    - Sirenix.OdinInspector.CompatibilityLayer
     - PsdPlugin
     - spine-unity-editor
     - Febucci.TextAnimator.Editor
     - MoreMountains.NiceVibrations.Editor
     - CodeMonkey_HealthSystem_Editor
     - Febucci.TextAnimator.Demo.Editor
+    - Sirenix.OdinInspector.CompatibilityLayer.Editor
+    - Sirenix.OdinInspector.Modules.UnityMathematics
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
