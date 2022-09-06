@@ -18,9 +18,11 @@ namespace PG.Data
         public bool masterKeyUsed { get; }
     }
 
+
+
     //인게임 내부에서 작동을 하는부분임.
     [System.Serializable]
-    public static class Global_CampaignData
+    public static class Global_CampaignData 
     {
         public static ArtifactIDArtifactDic _currentArtifactDictionary =
             new ArtifactIDArtifactDic();
@@ -44,6 +46,7 @@ namespace PG.Data
         public static DataEntity _playerSize = new DataEntity(DataEntity.Type.PlayerSize, 1);
         public static DataEntity _projectileSpeed = new DataEntity(DataEntity.Type.ProjectileSpeed, 5);
         public static DataEntity _projectileTargetNum = new DataEntity(DataEntity.Type.ProjectileCount, 1);
+        public static DataEntity _randomPatternNodeCount = new DataEntity(DataEntity.Type.RandomPatternCount,3);
 
         public static List<float> _waveTimeList = new List<float>();
         public static List<WaveClass> _waveClassList = new List<WaveClass>();
@@ -84,7 +87,7 @@ namespace PG.Data
             _playerSize = new DataEntity(data._playerSize);
             _projectileSpeed = new DataEntity(data._projectileSpeed);
             _projectileTargetNum = new DataEntity(data._projectileTargetNum);
-
+            _randomPatternNodeCount = new DataEntity(data._randomPatternNodeCount);
             _waveTimeList = new List<float>(data._waveDic.Keys);
             //켐페인데이터에 웨이브 시간 순서를 꼭 오름차순으로 입력 안해도 되도록 정렬+이에맞게 class리스트 만듦
             _waveTimeList.Sort();

@@ -43775,6 +43775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f59498f61d5a69642895bfd6ee8edcdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isPlaced: 0
   HitEffect: {fileID: 64906643626840160}
   HitOffset: 0
   useLaserRotation: 0
@@ -43825,7 +43826,7 @@ LineRenderer:
   m_SortingOrder: -1
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 1, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.25

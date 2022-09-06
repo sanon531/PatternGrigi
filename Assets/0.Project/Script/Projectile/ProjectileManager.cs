@@ -84,7 +84,7 @@ namespace PG.Battle
 
             if (_temptenemyList.Count == 0)
             {
-                Debug.Log("no Enemy");
+                //Debug.Log("no Enemy");
                 return;
             }
             int maxTargetNum = 0;

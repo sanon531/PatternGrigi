@@ -26,7 +26,7 @@ namespace PG
         }
         private void LanguageDefinition()
         {
-            Debug.Log("System Language - " + Application.systemLanguage + "  " + SystemLanguage.Korean.ToString());
+            //Debug.Log("System Language - " + Application.systemLanguage + "  " + SystemLanguage.Korean.ToString());
 
             if (Application.systemLanguage == SystemLanguage.Korean)
                 _lang = "kr";

@@ -89,7 +89,7 @@ namespace PG.Battle
         //전투가 시작될 때 사용하는 코드
         void StartTriggerNode()
         {
-            SetPresetPattern(DrawPatternPreset.Empty_Breath);
+            SetPresetPattern(DrawPatternPresetID.Empty_Breath);
         }
 
 
@@ -97,13 +97,13 @@ namespace PG.Battle
         //지금이 랜덤 노드를 선택하는 상황인가 아닌가.
         //지금 패턴이 설치 되었는가. 처음에는 패턴이 있는채로 시작한다.
         bool _IsPatternSetted = false;
-        //차지는 현재 패턴이
+        //차지는 현재 패턴이 랜덤 패턴으로 되었는가를 보이는 부분.
         bool _IsChargeReady = false;
         [SerializeField]
         List<int> _presetNodes = new List<int>();
         [SerializeField]
         int _currentPresetNodeNumber = 0;
-        DrawPatternPreset _currentPattern;
+        DrawPatternPresetID _currentPattern;
 
         //데미지가 가해졌을때 다음 노드를 결정하는 메소드
         //처음에는 무조건 랜덤만.
@@ -115,29 +115,27 @@ namespace PG.Battle
             if (!_IsPatternSetted)
             {
                 //랜덤 패턴을 생성하는 부분 
-                if (!_IsChargeReady)
-                    SetRandomPattern(nodeID);
-                else 
-                {
-                
-                }
+                SetRandomPattern(nodeID);
 
             }
             else
             {
-                //아직 차지 공격 안끝남이면
+                //아직 패턴 수가 안끝남이면
+                Debug.Log(_currentPresetNodeNumber+":"+ _presetNodes.Count);
+                if (_currentPresetNodeNumber != 0)
+                    PresetPatternShower.HidePresetPatternByID(_currentPresetNodeNumber - 1);
+                _currentPresetNodeNumber++;
                 if (_currentPresetNodeNumber < _presetNodes.Count)
                 {
                     ResetAllNode();
-                    SetNodeToNextReach(_presetNodes[_currentPresetNodeNumber]);
-                    if (_currentPresetNodeNumber != 0)
-                        PresetPatternShower.HidePresetPatternByID(_currentPresetNodeNumber - 1);
-                    _currentPresetNodeNumber++;
+                    SetNodeToNextReachWithCheckIsPlacable(_presetNodes[_currentPresetNodeNumber]);
                 }
                 else
                 {
                     //스킬성공시 랜덤하는 공격이 나감.
+
                     _IsPatternSetted = false;
+                    Debug.Log("call by end Pattern");
                     SetRandomPattern(nodeID);
                     Global_BattleEventSystem.CallOnPatternSuccessed(_currentPattern);
                     //ShowDebugtextScript.SetDebug("Pattern Success!");
@@ -150,46 +148,56 @@ namespace PG.Battle
         }
 
         // 패턴 세팅을 하는곳 
-        void SetPresetPattern(DrawPatternPreset drawPattern)
+        void SetPresetPattern(DrawPatternPresetID drawPattern)
         {
             _currentPresetNodeNumber = 0;
             _currentPattern = drawPattern;
             _presetNodes = GlobalDataStorage.PatternPresetDic[drawPattern];
             //Debug.Log(_presetNodes.Count);
-            PresetPatternShower.SetPresetPatternList(_presetNodes);
+            PresetPatternShower.SetPresetPatternList(_presetNodes, GlobalDataStorage.PatternWIthLaserDic[drawPattern]);
             PresetPatternShower.ShowPresetPatternAll();
             //presetDataDic 은 새로운 딕셔너리로 키값으로EPresetOfDrawPattern를 받는다.
             _IsPatternSetted = true;
-            SetNodeToNextReach(_presetNodes[_currentPresetNodeNumber]);
+            SetNodeToNextReachWithCheckIsPlacable(_presetNodes[_currentPresetNodeNumber]);
         }
         void SetRandomPattern(int nodeID)
         {
             int _temptid = nodeID;
             ResetAllNode();
+            _currentPresetNodeNumber = 0;
+            _presetNodes.Clear();
+            _currentPattern = DrawPatternPresetID.Empty_Breath;
 
-            //기존의 노드들을 그냥 랜덤으로 놓는 부분들을 만든다.
-            NodePlaceType currentPlace = nodePlaceTypes.PickRandomWeighted(_weightRandom);
-
-            //Debug.Log(currentPlace +"sdfa");
-            switch (currentPlace)
+            NodePlaceType currentPlace;
+            for (int i = 0; i < Global_CampaignData._randomPatternNodeCount.FinalValue; i++)
             {
-                case NodePlaceType.Random:
-                    _temptid = ReachTriggeredNode_Random(_temptid);
-                    break;
-                case NodePlaceType.Close:
-                    _temptid = ReachTriggeredNode_Close(_temptid);
-                    break;
-                case NodePlaceType.Far:
-                    _temptid = ReachTriggeredNode_Far(_temptid);
-                    break;
-                default:
-                    Debug.LogError("CheckNodeOnDamage Error: no id");
-                    break;
+                currentPlace = nodePlaceTypes.PickRandomWeighted(_weightRandom);
+
+                //Debug.Log(currentPlace +"sdfa");
+                switch (currentPlace)
+                {
+                    case NodePlaceType.Random:
+                        _temptid = ReachTriggeredNode_Random(_temptid);
+                        break;
+                    case NodePlaceType.Close:
+                        _temptid = ReachTriggeredNode_Close(_temptid);
+                        break;
+                    case NodePlaceType.Far:
+                        _temptid = ReachTriggeredNode_Far(_temptid);
+                        break;
+                    default:
+                        Debug.LogError("CheckNodeOnDamage Error: no id");
+                        break;
+                }
+                _presetNodes.Add(_temptid);
             }
 
+            //기존의 노드들을 그냥 랜덤으로 놓는 부분들을 만든다.
+            PresetPatternShower.SetPresetPatternList(_presetNodes, LaserKindID.Default_laser);
             _IsPatternSetted = true;
+            SetNodeToNextReach(_presetNodes[_currentPresetNodeNumber]);
+
             //Debug.Log(_presetNodes[_currentPresetNodeNumber]);
-            //SetNodeToNextReach(_presetNodes[_currentPresetNodeNumber]);
 
         }
 
@@ -205,32 +213,45 @@ namespace PG.Battle
         //노드를 랜덤으로 배치하는 메소드 id는 겹치지않도록 하는것 
         public int ReachTriggeredNode_Random(int reachedNode)
         {
-            Debug.Log("reached : " + reachedNode);
+            //Debug.Log("reached : " + reachedNode);
             //기존의 도달한 위치는 사용불가로 만들어야한다.
-            _inactivatedNode.Remove(reachedNode);
+            if (_inactivatedNode.Contains(reachedNode))
+                _inactivatedNode.Remove(reachedNode);
+            else
+                Debug.Log("No More ProperNode : Random");
             //추후 여러개의 도달점을 가져야할때를 위해서 무작위로 한다.
             int i = _inactivatedNode.Count;
-            int _deleteTarget = Random.Range(0, i);
+            int _deleteTarget = _inactivatedNode[Random.Range(0, i)];
             //Debug.Log(i + "set" + _deleteTarget);
-            SetNodeToNextReach(_inactivatedNode[_deleteTarget]);
+            //SetNodeToNextReach(_inactivatedNode[_deleteTarget]);
             return _deleteTarget;
         }
         public int ReachTriggeredNode_Close(int reachedNode)
         {
-            _inactivatedNode.Remove(reachedNode);
-            int _deleteTarget = _IDWithCloseDic[reachedNode].PickRandom();
-            SetNodeToNextReach(_deleteTarget);
+            if (_inactivatedNode.Contains(reachedNode))
+                _inactivatedNode.Remove(reachedNode);
+            else
+                Debug.Log("No More ProperNode : Close");
+
+            int[] _targetArr = (int[])_IDWithCloseDic[reachedNode].Clone();
+            int _deleteTarget = _targetArr.PickRandom();
+            //SetNodeToNextReach(_deleteTarget);
             Global_BattleEventSystem.CallOnNodeSetClose();
-            return 0;
+            return _deleteTarget;
         }
         public int ReachTriggeredNode_Far(int reachedNode)
         {
-            _inactivatedNode.Remove(reachedNode);
-            int _deleteTarget = _IDWithFarDic[reachedNode].PickRandom();
+            if (_inactivatedNode.Contains(reachedNode))
+                _inactivatedNode.Remove(reachedNode);
+            else
+                Debug.Log("No More ProperNode : Far");
+
+            int[] _targetArr = (int[])_IDWithFarDic[reachedNode].Clone();
+            int _deleteTarget = _targetArr.PickRandom();
             //Debug.Log(reachedNode+" -> :" + _deleteTarget);
-            SetNodeToNextReach(_deleteTarget);
+            //SetNodeToNextReach(_deleteTarget);
             Global_BattleEventSystem.CallOnNodeSetFar();
-            return 0;
+            return _deleteTarget;
         }
 
         #endregion
@@ -243,7 +264,7 @@ namespace PG.Battle
 
         }
 
-        void SetNodeToNextReach(int i)
+        void SetNodeToNextReachWithCheckIsPlacable(int i)
         {
             //Debug.Log("input " + i );
             if (_inactivatedNode.Contains(i))
@@ -257,7 +278,18 @@ namespace PG.Battle
             else
                 Debug.LogError("Wrong node Error: Already Exist");
         }
+        void SetNodeToNextReach(int i)
+        {
+            //Debug.Log("input " + i );
+            _signParticle.Play();
+            Vector3 _targetpos = new Vector3((_IDDic[i].x - 1) * 1.75f, (-_IDDic[i].y) * 1.75f, 0);
+            _signParticle.gameObject.transform.position = _targetpos;
+            _patternNodes[i].SetIsReachable(true);
+            _inactivatedNode.Remove(i);
+        }
+
         #endregion
+
 
 
 
@@ -348,7 +380,7 @@ namespace PG.Battle
             ChargeGaugeUIScript.EndChargeSkill();
             _isChargeStart = false;
         }
-        private void CallPatternEvent(DrawPatternPreset _patternPreset)
+        private void CallPatternEvent(DrawPatternPresetID _patternPreset)
         {
             GlobalDataStorage.PatternWIthActionDic[_patternPreset].StartPatternAction();
         }

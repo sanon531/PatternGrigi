@@ -1,64 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class LazerParticle : Hovl_Laser2
+namespace PG.Battle
 {
-    [Header("Position")]
-    public Vector3 _StartPos;
-    public Vector3 _EndPos;
-
-
-    void Start()
+    public class LazerParticle : Hovl_Laser2
     {
-        laserPS = GetComponent<ParticleSystem>();
-        laserMat = GetComponent<ParticleSystemRenderer>().material;
-        Flash = FlashEffect.GetComponentsInChildren<ParticleSystem>();
-        Hit = HitEffect.GetComponentsInChildren<ParticleSystem>();
-        laserMat.SetFloat("_Scale", laserScale);
+        [Header("Position")]
+        public Vector3 _StartPos;
+        public Vector3 _EndPos;
 
-        transform.position = _StartPos;
-    }
 
-    void Update()
-    {
-        if (laserPS != null && UpdateSaver == false)
+        void Start()
         {
-            laserMat.SetVector("_StartPoint", _StartPos);
-            
-            var distance = Vector3.Distance(_EndPos, _StartPos);
-            particleCount = Mathf.RoundToInt(distance / (2 * laserScale));
-            if (particleCount < distance / (2 * laserScale))
-            {
-                particleCount += 1;
-            }
-            particlesPositions = new Vector3[particleCount];
-            AddParticles();
+            laserPS = GetComponent<ParticleSystem>();
+            laserMat = GetComponent<ParticleSystemRenderer>().material;
+            Flash = FlashEffect.GetComponentsInChildren<ParticleSystem>();
+            Hit = HitEffect.GetComponentsInChildren<ParticleSystem>();
+            laserMat.SetFloat("_Scale", laserScale);
 
-            laserMat.SetFloat("_Distance", distance);
-            laserMat.SetVector("_EndPoint", _EndPos);
-
-            transform.LookAt(_EndPos);
-            
-            if (Hit != null)
-            {
-                HitEffect.transform.position = _EndPos;
-                HitEffect.transform.LookAt(_EndPos);
-                foreach (var AllHits in Hit)
-                {
-                    if (!AllHits.isPlaying) AllHits.Play();
-                }
-                foreach (var AllFlashes in Flash)
-                {
-                    if (!AllFlashes.isPlaying) AllFlashes.Play();
-                }
-            }
+            transform.position = _StartPos;
         }
 
-        if (startDissovle)
+        void Update()
         {
-            dissovleTimer += Time.deltaTime;
-            laserMat.SetFloat("_Dissolve", dissovleTimer * 5);
+            if (laserPS != null && UpdateSaver == false)
+            {
+                laserMat.SetVector("_StartPoint", _StartPos);
+
+                var distance = Vector3.Distance(_EndPos, _StartPos);
+                particleCount = Mathf.RoundToInt(distance / (2 * laserScale));
+                if (particleCount < distance / (2 * laserScale))
+                {
+                    particleCount += 1;
+                }
+                particlesPositions = new Vector3[particleCount];
+                AddParticles();
+
+                laserMat.SetFloat("_Distance", distance);
+                laserMat.SetVector("_EndPoint", _EndPos);
+
+                transform.LookAt(_EndPos);
+
+                if (Hit != null)
+                {
+                    HitEffect.transform.position = _EndPos;
+                    HitEffect.transform.LookAt(_EndPos);
+                    foreach (var AllHits in Hit)
+                    {
+                        if (!AllHits.isPlaying) AllHits.Play();
+                    }
+                    foreach (var AllFlashes in Flash)
+                    {
+                        if (!AllFlashes.isPlaying) AllFlashes.Play();
+                    }
+                }
+            }
+
+            if (startDissovle)
+            {
+                dissovleTimer += Time.deltaTime;
+                laserMat.SetFloat("_Dissolve", dissovleTimer * 5);
+            }
         }
     }
 }

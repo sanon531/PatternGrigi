@@ -21,25 +21,25 @@ namespace PG.Data
     //패턴과 관련한 정보들이 저장되어있는 구간.
     public static class GlobalDataStorage
     {
-        public static Dictionary<DrawPatternPreset, List<int>> PatternPresetDic =
-            new Dictionary<DrawPatternPreset, List<int>>()
+        public static Dictionary<DrawPatternPresetID, List<int>> PatternPresetDic =
+            new Dictionary<DrawPatternPresetID, List<int>>()
             {
-                {DrawPatternPreset.Default_Thunder,new List<int>(){1,3,4,6,7,5} },
-                {DrawPatternPreset.LoveAndPeace,new List<int>(){4,2,5,7,3,0,4} },
-                {DrawPatternPreset.Sandglass,new List<int>(){2,0,8,6,2} },
+                {DrawPatternPresetID.Default_Thunder,new List<int>(){1,3,4,6,7,5} },
+                {DrawPatternPresetID.LoveAndPeace,new List<int>(){4,2,5,7,3,0,4} },
+                {DrawPatternPresetID.Sandglass,new List<int>(){2,0,8,6,2} },
 
 
-                {DrawPatternPreset.Empty_Breath,new List<int>(){4}},
+                {DrawPatternPresetID.Empty_Breath,new List<int>(){4}},
 
             };
-        public static Dictionary<DrawPatternPreset, PresetPatternAction_Base> PatternWIthActionDic =
-            new Dictionary<DrawPatternPreset, PresetPatternAction_Base>()
+        public static Dictionary<DrawPatternPresetID, PresetPatternAction_Base> PatternWIthActionDic =
+            new Dictionary<DrawPatternPresetID, PresetPatternAction_Base>()
             {
-                {DrawPatternPreset.Default_Thunder,new PresetPattern_DefaultThunder()},
-                {DrawPatternPreset.LoveAndPeace,new PresetPattern_LoveAndPeace()},
-                {DrawPatternPreset.Sandglass,new PresetPattern_Sandglass() },
+                {DrawPatternPresetID.Default_Thunder,new PresetPattern_DefaultThunder()},
+                {DrawPatternPresetID.LoveAndPeace,new PresetPattern_LoveAndPeace()},
+                {DrawPatternPresetID.Sandglass,new PresetPattern_Sandglass() },
 
-                {DrawPatternPreset.Empty_Breath,new PresetPattern_EmptyBreath() }
+                {DrawPatternPresetID.Empty_Breath,new PresetPattern_EmptyBreath() }
             };
 
         //아티팩트의 수치와 행동을 분리하여야 한다.그래야 나중에 텍스트 처리할때 편하다.
@@ -114,6 +114,15 @@ namespace PG.Data
 
             };
 
+        public static Dictionary<DrawPatternPresetID, LaserKindID> PatternWIthLaserDic =
+            new Dictionary<DrawPatternPresetID, LaserKindID>()
+            {
+                {DrawPatternPresetID.Default_Thunder,LaserKindID.Electric_lightening },
+                {DrawPatternPresetID.Empty_Breath,LaserKindID.Default_laser},
+                {DrawPatternPresetID.LoveAndPeace,LaserKindID.Default_laser},
+                {DrawPatternPresetID.Sandglass,LaserKindID.Default_laser},
+
+            };
 
     }
 

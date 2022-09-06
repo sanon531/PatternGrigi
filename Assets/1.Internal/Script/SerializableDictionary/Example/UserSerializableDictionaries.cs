@@ -39,6 +39,10 @@ public class MobIDSpawnDataDic : SerializableDictionary<CharacterID, MobSpawnDat
 //public class WaveMobSpawnDic : SerializableDictionary<CharacterID, int> { }
 [Serializable]
 public class ArtifactStringaDic : SerializableDictionary<ArtifactID, string> { }
+[Serializable]
+public class LaserIDObjectDic : SerializableDictionary<LaserKindID, GameObject> { }
+[Serializable]
+public class LaserIDObjectListDic : SerializableDictionary<LaserKindID, List<GameObject>> { }
 
 
 

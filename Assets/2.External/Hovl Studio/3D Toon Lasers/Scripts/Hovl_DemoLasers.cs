@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters;
 using System;
 using UnityEngine;
-
+using PG.Battle;
 public class Hovl_DemoLasers : MonoBehaviour
-{
-    public GameObject FirePoint;
+{   public GameObject FirePoint;
     public Camera Cam;
     public float MaxLength;
     public GameObject[] Prefabs;
@@ -22,8 +21,8 @@ public class Hovl_DemoLasers : MonoBehaviour
     private GameObject Instance;
     private Hovl_Laser LaserScript;
     private Hovl_Laser2 LaserScript2;
-
-    //Double-click protection
+    /* 참고용으로만 
+      //Double-click protection
     private float buttonSaver = 0f;
 
     void Start ()
@@ -122,4 +121,5 @@ public class Hovl_DemoLasers : MonoBehaviour
         rotation = Quaternion.LookRotation(direction);     
         obj.transform.localRotation = Quaternion.Lerp(obj.transform.rotation, rotation, 1);
     }
+    */
 }

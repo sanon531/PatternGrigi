@@ -21,7 +21,7 @@ namespace PG.Event
     public delegate void OnEventWithString(string 수치값);
     public delegate void OnEventWithIntWithTarget(Data_Character 대상자, int 수치값);
     public delegate void OnEventWithFloatWithTarget(Data_Character 대상자, float 수치값);
-    public delegate void OnEventWithPattern(DrawPatternPreset 수치값);
+    public delegate void OnEventWithPattern(DrawPatternPresetID 수치값);
 
 
     public static class Global_BattleEventSystem
@@ -160,7 +160,7 @@ namespace PG.Event
 
         //패턴 성공시
         public static event OnEventWithPattern _onPatternSuccessed;
-        public static void CallOnPatternSuccessed(DrawPatternPreset patternPreset) { _onPatternSuccessed?.Invoke(patternPreset); }
+        public static void CallOnPatternSuccessed(DrawPatternPresetID patternPreset) { _onPatternSuccessed?.Invoke(patternPreset); }
 
 
         #endregion

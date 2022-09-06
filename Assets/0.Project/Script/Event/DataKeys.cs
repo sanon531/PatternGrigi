@@ -106,7 +106,7 @@ namespace PG.Data
     }
 
     //이곳에서
-    public enum DrawPatternPreset
+    public enum DrawPatternPresetID
     {
         Default_Thunder = 0,
         LoveAndPeace = 1,

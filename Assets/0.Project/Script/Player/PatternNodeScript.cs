@@ -37,6 +37,7 @@ namespace PG.Battle
                     //ShowDebugtextScript._instance.SetDebug("Player in" + name );
                     PatternManager.DamageCall(_nodeId);
                     _flash.Play();
+                    _isReachable = false;
                 }
             }
 
@@ -52,6 +53,7 @@ namespace PG.Battle
                     //ShowDebugtextScript._instance.SetDebug("Player in" + name );
                     PatternManager.DamageCall(_nodeId);
                     _flash.Play();
+                    _isReachable = false;
                 }
             }
         }

@@ -11,9 +11,9 @@ namespace PG.Battle
     public class FXCallManager : MonoSingleton<FXCallManager>
     {
 
-        List<DrawPatternPreset> _allOwnningPattern = new List<DrawPatternPreset>() { };
-        Dictionary<DrawPatternPreset, ParticleSystem> _patternPrefabDic = 
-            new Dictionary<DrawPatternPreset, ParticleSystem>() {};
+        List<DrawPatternPresetID> _allOwnningPattern = new List<DrawPatternPresetID>() { };
+        Dictionary<DrawPatternPresetID, ParticleSystem> _patternPrefabDic = 
+            new Dictionary<DrawPatternPresetID, ParticleSystem>() {};
 
         [SerializeField]
         Transform _patternTransform;
@@ -24,8 +24,8 @@ namespace PG.Battle
         protected override void CallOnAwake ()
         {
             Global_BattleEventSystem._onPatternSuccessed += CallPatternEvent;
-            _allOwnningPattern = Enum.GetValues(typeof(DrawPatternPreset)).Cast<DrawPatternPreset>().ToList();
-            foreach (DrawPatternPreset val in _allOwnningPattern) 
+            _allOwnningPattern = Enum.GetValues(typeof(DrawPatternPresetID)).Cast<DrawPatternPresetID>().ToList();
+            foreach (DrawPatternPresetID val in _allOwnningPattern) 
             {
                 GameObject _tempt = Instantiate(
                     Resources.Load<GameObject>("Effect/PatternFX/" + val.ToString()), 
@@ -38,7 +38,7 @@ namespace PG.Battle
         {
             Global_BattleEventSystem._onPatternSuccessed -= CallPatternEvent;
         }
-        private void CallPatternEvent(DrawPatternPreset _patternPreset) 
+        private void CallPatternEvent(DrawPatternPresetID _patternPreset) 
         {
             _patternPrefabDic[_patternPreset].Play();
 

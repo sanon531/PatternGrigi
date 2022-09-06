@@ -36,7 +36,7 @@ namespace PG.Battle
             SwitchEventCombat();
             _currentCampaignData = Resources.Load<CampaignData>("CampaignData/" + _currentCampaignName);
             Global_CampaignData.SetCampaginInitialize(_currentCampaignData);
-            Debug.Log(Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue);
+            //Debug.Log(Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue);
 
         }
 
