@@ -111,40 +111,41 @@ namespace PG.Battle
         NodePlaceType[] nodePlaceTypes = new NodePlaceType[3] { NodePlaceType.Random, NodePlaceType.Close, NodePlaceType.Far };
         void CheckNodeOnDamage(int nodeID)
         {
+            SetGaugeChange();
             _lastNode = nodeID;
-            if (!_IsPatternSetted)
+            //아직 패턴 수가 안끝남이면
+            //Debug.Log(_currentPresetNodeNumber + ":" + _presetNodes.Count);
+            if (_currentPresetNodeNumber != 0)
+                PresetPatternShower.HidePresetPatternByID(_currentPresetNodeNumber - 1);
+            _currentPresetNodeNumber++;
+            if (_currentPresetNodeNumber < _presetNodes.Count)
             {
-                //랜덤 패턴을 생성하는 부분 
-                SetRandomPattern(nodeID);
-
+                ResetAllNode();
+                SetNodeToNextReachWithCheckIsPlacable(_presetNodes[_currentPresetNodeNumber]);
             }
             else
             {
-                //아직 패턴 수가 안끝남이면
-                Debug.Log(_currentPresetNodeNumber+":"+ _presetNodes.Count);
-                if (_currentPresetNodeNumber != 0)
-                    PresetPatternShower.HidePresetPatternByID(_currentPresetNodeNumber - 1);
-                _currentPresetNodeNumber++;
-                if (_currentPresetNodeNumber < _presetNodes.Count)
-                {
-                    ResetAllNode();
-                    SetNodeToNextReachWithCheckIsPlacable(_presetNodes[_currentPresetNodeNumber]);
-                }
-                else
-                {
-                    //스킬성공시 랜덤하는 공격이 나감.
+                //스킬성공시 랜덤하는 공격이 나감.
 
-                    _IsPatternSetted = false;
-                    Debug.Log("call by end Pattern");
-                    SetRandomPattern(nodeID);
-                    Global_BattleEventSystem.CallOnPatternSuccessed(_currentPattern);
-                    //ShowDebugtextScript.SetDebug("Pattern Success!");
-                    //일단 차지 공격 끝나면 바로 패턴 성공 하도록 함
+                Debug.Log("call by end Pattern"+ _currentPattern);
+
+
+                if (_IsChargeReady)
+                {
+                    StartChargeSequence();
+                    _IsChargeReady = false;
                 }
-                //처음의 공격은 무시한다.
+                else 
+                {
+                    Global_BattleEventSystem.CallOnPatternSuccessed(_currentPattern);
+                    SetRandomPattern(nodeID);
+                }
+
+                //ShowDebugtextScript.SetDebug("Pattern Success!");
+                //일단 차지 공격 끝나면 바로 패턴 성공 하도록 함
             }
+            //처음의 공격은 무시한다.
             //게이지는 데미지 딜링때 꽉찬다음 다른 패턴이 남는게 없을 때 발동하도록 함
-            //SetGaugeChange();
         }
 
         // 패턴 세팅을 하는곳 
@@ -157,7 +158,6 @@ namespace PG.Battle
             PresetPatternShower.SetPresetPatternList(_presetNodes, GlobalDataStorage.PatternWIthLaserDic[drawPattern]);
             PresetPatternShower.ShowPresetPatternAll();
             //presetDataDic 은 새로운 딕셔너리로 키값으로EPresetOfDrawPattern를 받는다.
-            _IsPatternSetted = true;
             SetNodeToNextReachWithCheckIsPlacable(_presetNodes[_currentPresetNodeNumber]);
         }
         void SetRandomPattern(int nodeID)
@@ -194,7 +194,6 @@ namespace PG.Battle
 
             //기존의 노드들을 그냥 랜덤으로 놓는 부분들을 만든다.
             PresetPatternShower.SetPresetPatternList(_presetNodes, LaserKindID.Default_laser);
-            _IsPatternSetted = true;
             SetNodeToNextReach(_presetNodes[_currentPresetNodeNumber]);
 
             //Debug.Log(_presetNodes[_currentPresetNodeNumber]);
@@ -355,10 +354,13 @@ namespace PG.Battle
         void SetGaugeChange()
         {
             if (_isChargeStart) return;
+            if (_IsChargeReady) return;
+
             _currentCharge += _chargeAmount;
-            if (_maxCharge <= _currentCharge)
+            if (_currentCharge >= _maxCharge )
             {
-                StartChargeSequence();
+                _IsChargeReady = true;
+                //이렇게 세팅이 되면 데미지 계산 시에 차지 여부로 결정됨.
             }
             ChargeGaugeUIScript.SetChargeGauge(_currentCharge / _maxCharge);
         }
