@@ -67,12 +67,11 @@ namespace PG.Battle
         //현재 가지고 있는 아티팩트를 전부 재 확인후 적용함,.
         void InitializeCurrentArtifact()
         {
-            if (Global_CampaignData._currentArtifactDictionary.Count != 0) 
+            if (Global_CampaignData._startArtifactList.Count != 0) 
             {
-                foreach (KeyValuePair<ArtifactID, Artifact> set in Global_CampaignData._currentArtifactDictionary) 
+                foreach (ArtifactID id in Global_CampaignData._startArtifactList) 
                 {
-                    _showerArtifectList.Add(set.Key);
-                    set.Value.ActiveArtifact();
+                    AddArtifactToPlayer_tempUse(id);
                 }
             }
         }

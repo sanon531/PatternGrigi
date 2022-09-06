@@ -24,6 +24,8 @@ namespace PG.Data
     [System.Serializable]
     public static class Global_CampaignData 
     {
+        public static List<ArtifactID> _startArtifactList =  new List<ArtifactID>();
+
         public static ArtifactIDArtifactDic _currentArtifactDictionary =
             new ArtifactIDArtifactDic();
 
@@ -37,7 +39,13 @@ namespace PG.Data
 
         public static List<ArtifactID> _obtainableArtifactIDList = new List<ArtifactID>();
 
+
+
+
         #region//플레이 데이터 관련
+
+        public static DrawPatternPresetID _currentChargePattern = DrawPatternPresetID.Empty_Breath;
+
         //거리에따른 배율임 
         public static DataEntity _lengthMagnData = new DataEntity(DataEntity.Type.LengthMag, 1);
         public static DataEntity _chargeGaugeData = new DataEntity(DataEntity.Type.ChargeGauge, 8);
@@ -74,14 +82,13 @@ namespace PG.Data
         public static void SetCampaginInitialize(CampaignData data) 
         {
             ResetData();
-            if (data._currentArtifactDictionary.Count !=0)
-                _currentArtifactDictionary.CopyFrom(data._currentArtifactDictionary);
+            _startArtifactList = data._startArtifactList.ToList();
             //Debug.Log(data._charactorAttackDic.GetType());
             _charactorAttackDic.CopyFrom(data._charactorAttackDic);
             _obtainableArtifactIDList = data._obtainableArtifactIDList.ToList();
+            _currentChargePattern = data._currentChargePattern;
 
             _lengthMagnData = new DataEntity(data._lengthMagnData);
-            //Debug.Log(data._lengthMagnData.FinalValue);
             _chargeGaugeData = new DataEntity(data._chargeGaugeData);
             _chargeEXPData = new DataEntity(data._chargeEXPData);
             _playerSize = new DataEntity(data._playerSize);

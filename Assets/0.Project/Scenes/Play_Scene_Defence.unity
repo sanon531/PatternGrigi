@@ -5296,7 +5296,7 @@ MonoBehaviour:
   _playTime: 0
   _timeShower: {fileID: 1993351351}
   _delayedTime: 0.5
-  _currentCampaignName: ASDF
+  _currentCampaignName: ThunderBegining
 --- !u!1 &1993351349
 GameObject:
   m_ObjectHideFlags: 0
@@ -6703,7 +6703,6 @@ MonoBehaviour:
       "_\uBC30\uC218": 1
       "_\uCD94\uAC00\uB7C9": 0
       type: 2
-    _currentChargePattern: 0
 --- !u!1 &7285711641861274626
 GameObject:
   m_ObjectHideFlags: 0
@@ -6929,7 +6928,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8964876256455990930, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000895372
+      value: 0.00013079081
       objectReference: {fileID: 0}
     - target: {fileID: 9166785324373634168, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -69215,7 +69214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8593451072201227060, guid: 6168722e09adabb45bd65f6a93a1df70, type: 3}
       propertyPath: _chargeAmount
-      value: 50
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8593451072201227060, guid: 6168722e09adabb45bd65f6a93a1df70, type: 3}
       propertyPath: _currentPattern
@@ -69296,15 +69295,19 @@ PrefabInstance:
       objectReference: {fileID: 3730723503022052533, guid: 982b9f4a6f682cb4284dbe4464a3d128, type: 3}
     - target: {fileID: 9005964661476378510, guid: fb0535fdf12528d4e82293e589a1cec5, type: 3}
       propertyPath: _laserIDDic.m_keys.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9005964661476378510, guid: fb0535fdf12528d4e82293e589a1cec5, type: 3}
       propertyPath: _laserIDDic.m_values.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9005964661476378510, guid: fb0535fdf12528d4e82293e589a1cec5, type: 3}
       propertyPath: _laserIDDic.m_keys.Array.data[0]
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9005964661476378510, guid: fb0535fdf12528d4e82293e589a1cec5, type: 3}
+      propertyPath: _laserIDDic.m_keys.Array.data[2]
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9005964661476378510, guid: fb0535fdf12528d4e82293e589a1cec5, type: 3}
       propertyPath: _laserIDDic.m_values.Array.data[0]
@@ -69314,6 +69317,10 @@ PrefabInstance:
       propertyPath: _laserIDDic.m_values.Array.data[1]
       value: 
       objectReference: {fileID: 65179769715539764, guid: 5d711a3c25eb3f54f971a3945a8d21ee, type: 3}
+    - target: {fileID: 9005964661476378510, guid: fb0535fdf12528d4e82293e589a1cec5, type: 3}
+      propertyPath: _laserIDDic.m_values.Array.data[2]
+      value: 
+      objectReference: {fileID: 1675430201863959086, guid: 7dc123eb023b81f48a852da69ad0c258, type: 3}
     - target: {fileID: 9005964661476378511, guid: fb0535fdf12528d4e82293e589a1cec5, type: 3}
       propertyPath: m_RootOrder
       value: 7

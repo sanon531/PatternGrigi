@@ -24,7 +24,7 @@ namespace PG.Data
         public static Dictionary<DrawPatternPresetID, List<int>> PatternPresetDic =
             new Dictionary<DrawPatternPresetID, List<int>>()
             {
-                {DrawPatternPresetID.Default_Thunder,new List<int>(){1,3,4,6,7,5} },
+                {DrawPatternPresetID.Thunder_Manimekhala,new List<int>(){1,3,4,6,7,5} },
                 {DrawPatternPresetID.LoveAndPeace,new List<int>(){4,2,5,7,3,0,4} },
                 {DrawPatternPresetID.Sandglass,new List<int>(){2,0,8,6,2} },
 
@@ -35,7 +35,7 @@ namespace PG.Data
         public static Dictionary<DrawPatternPresetID, PresetPatternAction_Base> PatternWIthActionDic =
             new Dictionary<DrawPatternPresetID, PresetPatternAction_Base>()
             {
-                {DrawPatternPresetID.Default_Thunder,new PresetPattern_DefaultThunder()},
+                {DrawPatternPresetID.Thunder_Manimekhala,new PresetPattern_Thunder_Manimekhala()},
                 {DrawPatternPresetID.LoveAndPeace,new PresetPattern_LoveAndPeace()},
                 {DrawPatternPresetID.Sandglass,new PresetPattern_Sandglass() },
 
@@ -46,6 +46,23 @@ namespace PG.Data
         public static Dictionary<ArtifactID, ArtifactData> TotalArtifactTableDataDic =
             new Dictionary<ArtifactID, ArtifactData>()
             {
+                
+                #region//시작 유물.
+                {ArtifactID.Thunder_Manimekhala, new ArtifactData(
+                    ArtifactID.Thunder_Manimekhala,
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0)},
+                {ArtifactID.LoveAndPeace, new ArtifactData(
+                    ArtifactID.LoveAndPeace,
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0)},
+
+
+                #endregion
+
+
                 #region//임시라도 배정 완료
 
                 {ArtifactID.FragileRush, new ArtifactData(
@@ -102,6 +119,9 @@ namespace PG.Data
         public static Dictionary<ArtifactID, Artifact> TotalArtifactClassDic =
             new Dictionary<ArtifactID, Artifact>()
             {
+                {ArtifactID.Thunder_Manimekhala, new Artifact_Thunder_Manimekhala()},
+                {ArtifactID.LoveAndPeace, new Artifact_LoveAndPeace()},
+
                 {ArtifactID.FragileRush, new Arfifact_FragileRush()},
                 {ArtifactID.BubbleGun, new Arfifact_BubbleGun()},
                 {ArtifactID.Equatore, new Arfifact_Equatore()},
@@ -117,9 +137,9 @@ namespace PG.Data
         public static Dictionary<DrawPatternPresetID, LaserKindID> PatternWIthLaserDic =
             new Dictionary<DrawPatternPresetID, LaserKindID>()
             {
-                {DrawPatternPresetID.Default_Thunder,LaserKindID.Electric_lightening },
+                {DrawPatternPresetID.Thunder_Manimekhala,LaserKindID.Electric_lightening },
                 {DrawPatternPresetID.Empty_Breath,LaserKindID.Default_laser},
-                {DrawPatternPresetID.LoveAndPeace,LaserKindID.Default_laser},
+                {DrawPatternPresetID.LoveAndPeace,LaserKindID.Love_Laser},
                 {DrawPatternPresetID.Sandglass,LaserKindID.Default_laser},
 
             };
@@ -171,6 +191,7 @@ namespace PG.Data
     {
         Default_laser= 0,
         Electric_lightening =1,
+        Love_Laser = 2,
 
     }
 

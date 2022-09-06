@@ -6,7 +6,7 @@ using PG.Event;
 
 namespace PG 
 {
-    public sealed class PresetPattern_DefaultThunder : PresetPatternAction_Base
+    public sealed class PresetPattern_Thunder_Manimekhala : PresetPatternAction_Base
     {
         public override void StartPatternAction()
         {

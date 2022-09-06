@@ -1,0 +1,147 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0b2ca909a209340afe36adeafe0b8e, type: 3}
+  m_Name: ThunderBegining
+  m_EditorClassIdentifier: 
+  _startArtifactList: 01000000
+  _obtainableArtifactIDList: 0a0000000b00000014000000150000003300000034000000
+  _charactorAttackDic:
+    m_keys: 0100000002000000030000001500000016000000
+    m_values:
+    - "_\uAE30\uBCF8\uAC12": 10
+      "_\uC99D\uAC00\uB7C9": 0
+      "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+      "_\uBC30\uC218": 1
+      "_\uCD94\uAC00\uB7C9": 0
+      type: 1
+    - "_\uAE30\uBCF8\uAC12": 8
+      "_\uC99D\uAC00\uB7C9": 0
+      "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+      "_\uBC30\uC218": 1
+      "_\uCD94\uAC00\uB7C9": 0
+      type: 1
+    - "_\uAE30\uBCF8\uAC12": 16
+      "_\uC99D\uAC00\uB7C9": 0
+      "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+      "_\uBC30\uC218": 1
+      "_\uCD94\uAC00\uB7C9": 0
+      type: 1
+    - "_\uAE30\uBCF8\uAC12": 16
+      "_\uC99D\uAC00\uB7C9": 0
+      "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+      "_\uBC30\uC218": 1
+      "_\uCD94\uAC00\uB7C9": 0
+      type: 1
+    - "_\uAE30\uBCF8\uAC12": 16
+      "_\uC99D\uAC00\uB7C9": 0
+      "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+      "_\uBC30\uC218": 1
+      "_\uCD94\uAC00\uB7C9": 0
+      type: 1
+  _waveDic:
+    m_keys:
+    - 0
+    - 300
+    - 100
+    - 200
+    m_values:
+    - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 0
+      "_\uC801\uBC30\uCE58":
+        m_keys: 15000000
+        m_values:
+        - "_\uC2A4\uD3F0\uC218": 5
+          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0.2
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 2
+      "_\uC2A4\uD3F0\uD0C0\uC785": 0
+    - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 3
+      "_\uC801\uBC30\uCE58":
+        m_keys: 1500000016000000
+        m_values:
+        - "_\uC2A4\uD3F0\uC218": 5
+          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 2
+        - "_\uC2A4\uD3F0\uC218": 5
+          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 8
+      "_\uC2A4\uD3F0\uD0C0\uC785": 0
+    - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 10
+      "_\uC801\uBC30\uCE58":
+        m_keys: 1500000016000000
+        m_values:
+        - "_\uC2A4\uD3F0\uC218": 5
+          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 4
+        - "_\uC2A4\uD3F0\uC218": 5
+          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 8
+      "_\uC2A4\uD3F0\uD0C0\uC785": 0
+    - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 10
+      "_\uC801\uBC30\uCE58":
+        m_keys: 1500000016000000
+        m_values:
+        - "_\uC2A4\uD3F0\uC218": 5
+          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 4
+        - "_\uC2A4\uD3F0\uC218": 5
+          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 8
+      "_\uC2A4\uD3F0\uD0C0\uC785": 0
+  _currentChargePattern: 999
+  _lengthMagnData:
+    "_\uAE30\uBCF8\uAC12": 1
+    "_\uC99D\uAC00\uB7C9": 0
+    "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+    "_\uBC30\uC218": 1
+    "_\uCD94\uAC00\uB7C9": 0
+    type: 65
+  _chargeGaugeData:
+    "_\uAE30\uBCF8\uAC12": 8
+    "_\uC99D\uAC00\uB7C9": 0
+    "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+    "_\uBC30\uC218": 1
+    "_\uCD94\uAC00\uB7C9": 0
+    type: 2
+  _chargeEXPData:
+    "_\uAE30\uBCF8\uAC12": 8
+    "_\uC99D\uAC00\uB7C9": 0
+    "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+    "_\uBC30\uC218": 1
+    "_\uCD94\uAC00\uB7C9": 0
+    type: 3
+  _playerSize:
+    "_\uAE30\uBCF8\uAC12": 1
+    "_\uC99D\uAC00\uB7C9": 0
+    "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+    "_\uBC30\uC218": 1
+    "_\uCD94\uAC00\uB7C9": 0
+    type: 66
+  _projectileSpeed:
+    "_\uAE30\uBCF8\uAC12": 40
+    "_\uC99D\uAC00\uB7C9": 0
+    "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+    "_\uBC30\uC218": 1
+    "_\uCD94\uAC00\uB7C9": 0
+    type: 64
+  _projectileTargetNum:
+    "_\uAE30\uBCF8\uAC12": 1
+    "_\uC99D\uAC00\uB7C9": 0
+    "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+    "_\uBC30\uC218": 1
+    "_\uCD94\uAC00\uB7C9": 0
+    type: 63
+  _randomPatternNodeCount:
+    "_\uAE30\uBCF8\uAC12": 3
+    "_\uC99D\uAC00\uB7C9": 0
+    "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
+    "_\uBC30\uC218": 1
+    "_\uCD94\uAC00\uB7C9": 0
+    type: 7

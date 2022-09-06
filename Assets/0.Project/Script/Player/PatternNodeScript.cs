@@ -34,10 +34,10 @@ namespace PG.Battle
                 if (_isReachable)
                 {
                     _swipeAudio.Play();
+                    _isReachable = false;
                     //ShowDebugtextScript._instance.SetDebug("Player in" + name );
                     PatternManager.DamageCall(_nodeId);
                     _flash.Play();
-                    _isReachable = false;
                 }
             }
 
@@ -50,10 +50,10 @@ namespace PG.Battle
                 if (_isReachable)
                 {
                     _swipeAudio.Play();
+                    _isReachable = false;
                     //ShowDebugtextScript._instance.SetDebug("Player in" + name );
                     PatternManager.DamageCall(_nodeId);
                     _flash.Play();
-                    _isReachable = false;
                 }
             }
         }

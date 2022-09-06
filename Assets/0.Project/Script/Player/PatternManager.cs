@@ -94,9 +94,7 @@ namespace PG.Battle
 
 
 
-        //지금이 랜덤 노드를 선택하는 상황인가 아닌가.
-        //지금 패턴이 설치 되었는가. 처음에는 패턴이 있는채로 시작한다.
-        bool _IsPatternSetted = false;
+        //지금이 랜덤 노드를 선택하는 상황인가 아닌가를 정하는 부분.
         //차지는 현재 패턴이 랜덤 패턴으로 되었는가를 보이는 부분.
         bool _IsChargeReady = false;
         [SerializeField]
@@ -114,21 +112,20 @@ namespace PG.Battle
             SetGaugeChange();
             _lastNode = nodeID;
             //아직 패턴 수가 안끝남이면
-            //Debug.Log(_currentPresetNodeNumber + ":" + _presetNodes.Count);
+            Debug.Log(_currentPresetNodeNumber + ":" + _presetNodes.Count);
             if (_currentPresetNodeNumber != 0)
                 PresetPatternShower.HidePresetPatternByID(_currentPresetNodeNumber - 1);
             _currentPresetNodeNumber++;
             if (_currentPresetNodeNumber < _presetNodes.Count)
             {
                 ResetAllNode();
-                SetNodeToNextReachWithCheckIsPlacable(_presetNodes[_currentPresetNodeNumber]);
+                SetNodeToNextReach(_presetNodes[_currentPresetNodeNumber]);
             }
             else
             {
                 //스킬성공시 랜덤하는 공격이 나감.
 
                 Debug.Log("call by end Pattern"+ _currentPattern);
-
 
                 if (_IsChargeReady)
                 {
@@ -157,7 +154,7 @@ namespace PG.Battle
             PresetPatternShower.SetPresetPatternList(_presetNodes, GlobalDataStorage.PatternWIthLaserDic[drawPattern]);
             PresetPatternShower.ShowPresetPatternAll();
             //presetDataDic 은 새로운 딕셔너리로 키값으로EPresetOfDrawPattern를 받는다.
-            SetNodeToNextReachWithCheckIsPlacable(_presetNodes[_currentPresetNodeNumber]);
+            SetNodeToNextReach(_presetNodes[_currentPresetNodeNumber]);
         }
         void SetRandomPattern(int nodeID)
         {
@@ -352,8 +349,12 @@ namespace PG.Battle
         }
         void SetGaugeChange()
         {
-            if (_isChargeStart) return;
-            if (_IsChargeReady) return;
+            if (_isChargeStart)
+                return;
+            if (Global_CampaignData._currentChargePattern == DrawPatternPresetID.Empty_Breath)
+                return;
+            if (_IsChargeReady) 
+                return;
 
             _currentCharge += _chargeAmount;
             if (_currentCharge >= _maxCharge )
@@ -371,7 +372,7 @@ namespace PG.Battle
             ChargeGaugeUIScript.StartChargeSkill();
             CameraShaker.ShakeCamera(3f, 0.5f);
             //플레이어에게 패턴을 받아온다.
-            SetPresetPattern(Player_Script.GetPlayerStatus()._currentChargePattern);
+            SetPresetPattern(Global_CampaignData._currentChargePattern);
             _isChargeStart = true;
             _IsChargeReady = false;
         }

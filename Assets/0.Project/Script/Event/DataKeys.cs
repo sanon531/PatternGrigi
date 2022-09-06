@@ -36,9 +36,14 @@ namespace PG.Data
     }
     public enum ArtifactID
     {
+        //최초의 기본 유물 동남아 설화인 마하니파타 자카타를 모티브로 하였으며
+        //번개 공격을기본적으로 주게 됨.
+        Thunder_Manimekhala = 0,
+        LoveAndPeace = 1,
+
 
         //유리대포처럼 적 공격 업 + 내 공격 업.
-        FragileRush =10,
+        FragileRush = 10,
 
         //적도 - 약간공격력을 상승 시킴.
         Equatore =11,
@@ -108,7 +113,7 @@ namespace PG.Data
     //이곳에서
     public enum DrawPatternPresetID
     {
-        Default_Thunder = 0,
+        Thunder_Manimekhala = 0,
         LoveAndPeace = 1,
         Sandglass = 2,
 

@@ -152,6 +152,8 @@ namespace PG.Event
         #endregion
 
         #region//차지 관련
+        
+
         public static event OnEvent _onChargeStart;
         public static void CallOnChargeStart() { _onChargeStart?.Invoke(); }
 
