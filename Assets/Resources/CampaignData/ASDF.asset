@@ -16,7 +16,7 @@ MonoBehaviour:
   _charactorAttackDic:
     m_keys: 0100000002000000030000001500000016000000
     m_values:
-    - "_\uAE30\uBCF8\uAC12": 15
+    - "_\uAE30\uBCF8\uAC12": 300
       "_\uC99D\uAC00\uB7C9": 0
       "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
       "_\uBC30\uC218": 1
@@ -49,11 +49,11 @@ MonoBehaviour:
   _waveDic:
     m_keys:
     - 0
-    - 30
     - 60
-    - 90
+    - 302
+    - 900
     m_values:
-    - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 1
+    - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 10
       "_\uC801\uBC30\uCE58":
         m_keys: 15000000
         m_values:
@@ -61,7 +61,18 @@ MonoBehaviour:
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0.2
           "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 2
       "_\uC2A4\uD3F0\uD0C0\uC785": 0
-    - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 1
+    - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 15
+      "_\uC801\uBC30\uCE58":
+        m_keys: 1500000016000000
+        m_values:
+        - "_\uC2A4\uD3F0\uC218": 5
+          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 2
+        - "_\uC2A4\uD3F0\uC218": 5
+          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 8
+      "_\uC2A4\uD3F0\uD0C0\uC785": 0
+    - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 0
       "_\uC801\uBC30\uCE58":
         m_keys: 1500000016000000
         m_values:
@@ -72,18 +83,7 @@ MonoBehaviour:
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
           "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 8
       "_\uC2A4\uD3F0\uD0C0\uC785": 0
-    - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 1
-      "_\uC801\uBC30\uCE58":
-        m_keys: 1500000016000000
-        m_values:
-        - "_\uC2A4\uD3F0\uC218": 5
-          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
-          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 4
-        - "_\uC2A4\uD3F0\uC218": 5
-          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
-          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 8
-      "_\uC2A4\uD3F0\uD0C0\uC785": 0
-    - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 1
+    - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 0
       "_\uC801\uBC30\uCE58":
         m_keys: 1500000016000000
         m_values:
