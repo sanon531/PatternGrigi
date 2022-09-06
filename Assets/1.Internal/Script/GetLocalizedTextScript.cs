@@ -94,7 +94,7 @@ namespace PG
         public static string GetArtifactDataFromJson(ArtifactJsonData jsonData, ArtifactID targetid)
         {
             string _returnval = "Non Data";
-            Debug.Log(_instance._artifactNameDic[targetid]);
+            //Debug.Log(_instance._artifactNameDic[targetid]);
             try
             {
                 switch (jsonData)

@@ -133,7 +133,6 @@ namespace PG.Battle
                 if (_IsChargeReady)
                 {
                     StartChargeSequence();
-                    _IsChargeReady = false;
                 }
                 else 
                 {
@@ -153,7 +152,7 @@ namespace PG.Battle
         {
             _currentPresetNodeNumber = 0;
             _currentPattern = drawPattern;
-            _presetNodes = GlobalDataStorage.PatternPresetDic[drawPattern];
+            _presetNodes = GlobalDataStorage.PatternPresetDic[drawPattern].ToList();
             //Debug.Log(_presetNodes.Count);
             PresetPatternShower.SetPresetPatternList(_presetNodes, GlobalDataStorage.PatternWIthLaserDic[drawPattern]);
             PresetPatternShower.ShowPresetPatternAll();
@@ -374,6 +373,7 @@ namespace PG.Battle
             //플레이어에게 패턴을 받아온다.
             SetPresetPattern(Player_Script.GetPlayerStatus()._currentChargePattern);
             _isChargeStart = true;
+            _IsChargeReady = false;
         }
 
         //차지가 종료 되었을 때 사용됨

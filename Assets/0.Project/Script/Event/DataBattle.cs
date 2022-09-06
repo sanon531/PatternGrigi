@@ -39,7 +39,7 @@ namespace PG.Data
                 {DrawPatternPresetID.LoveAndPeace,new PresetPattern_LoveAndPeace()},
                 {DrawPatternPresetID.Sandglass,new PresetPattern_Sandglass() },
 
-                {DrawPatternPresetID.Empty_Breath,new PresetPattern_EmptyBreath() }
+                {DrawPatternPresetID.Empty_Breath,new PresetPatternAction_Base() }
             };
 
         //아티팩트의 수치와 행동을 분리하여야 한다.그래야 나중에 텍스트 처리할때 편하다.
