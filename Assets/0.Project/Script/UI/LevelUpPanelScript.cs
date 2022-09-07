@@ -14,6 +14,8 @@ namespace PG.Battle
         Image _panelBG;
         [SerializeField]
         Image _levelTitle;
+        [SerializeField]
+        GridLayoutGroup _gridlayout;
 
         [SerializeField]
         List<LevelupChooseButtonScript> _upgradePanelList;
@@ -25,6 +27,8 @@ namespace PG.Battle
         // Start is called before the first frame update
         protected override void CallOnAwake()
         {
+            _gridlayout.cellSize = new Vector2(Screen.height*0.2f, Screen.width * 0.45f);
+            _gridlayout.spacing = new Vector2(Screen.height*0.05f,Screen.width * 0.05f);
         }
         protected override void CallOnDestroy()
         {

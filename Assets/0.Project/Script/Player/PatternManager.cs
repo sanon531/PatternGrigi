@@ -35,6 +35,8 @@ namespace PG.Battle
             _inactivatedNode = _defaultNode.ToList();
             StartChargeEvent();
             StartNodeEvent();
+            StartDelayData();
+
         }
         // Update is called once per frame
 
@@ -47,6 +49,7 @@ namespace PG.Battle
         private void Update()
         {
             CheckIsCharge();
+            CheckDelayData();
         }
 
 
@@ -112,7 +115,7 @@ namespace PG.Battle
             SetGaugeChange();
             _lastNode = nodeID;
             //아직 패턴 수가 안끝남이면
-            Debug.Log(_currentPresetNodeNumber + ":" + _presetNodes.Count);
+            //Debug.Log(_currentPresetNodeNumber + ":" + _presetNodes.Count);
             if (_currentPresetNodeNumber != 0)
                 PresetPatternShower.HidePresetPatternByID(_currentPresetNodeNumber - 1);
             _currentPresetNodeNumber++;
@@ -124,8 +127,9 @@ namespace PG.Battle
             else
             {
                 //스킬성공시 랜덤하는 공격이 나감.
-
-                Debug.Log("call by end Pattern"+ _currentPattern);
+                //Debug.Log("call by end Pattern"+ _currentPattern);
+                if (_coolTimeToken > 0)
+                    _coolTimeToken--;
 
                 if (_IsChargeReady)
                 {
@@ -195,6 +199,39 @@ namespace PG.Battle
             //Debug.Log(_presetNodes[_currentPresetNodeNumber]);
 
         }
+
+        #region // delayed
+        [SerializeField]
+        PatternDelayingShowManager _delayingManager;
+        int _coolTimeToken = 0;
+        int _maxCoolTimeToken = 0;
+        float _currentDelayPercent = 0;
+        float _increaseAmount = 0.2f;
+        void StartDelayData() 
+        {
+            _delayingManager = GameObject.Find("PatternDelayingShowManager").GetComponent<PatternDelayingShowManager>();
+            _maxCoolTimeToken = Mathf.RoundToInt(Global_CampaignData._coolTimeTokenCount.FinalValue);
+            _coolTimeToken = _maxCoolTimeToken;
+            _currentDelayPercent = 0;
+            _delayingManager.SetValueofDelay(_currentDelayPercent, _coolTimeToken);
+
+        }
+        void CheckDelayData() 
+        {
+            if (_maxCoolTimeToken <= _coolTimeToken)
+                return;
+            _currentDelayPercent += Time.deltaTime * _increaseAmount;
+            if (_currentDelayPercent > 1) 
+            {
+                _coolTimeToken++;
+                _currentDelayPercent = 0;
+            }
+
+
+            _delayingManager.SetValueofDelay(_currentDelayPercent, _coolTimeToken);
+        }
+        #endregion
+
 
         #region//무게
         void SetNodeWeightby(float[] weight)

@@ -51,7 +51,7 @@ namespace PG
                            //피해나 회복에따른 이벤트를 발생시키지 않는다.
             방어도직접대입 = 5,   //방어도 획득이나 소모가아님.
                            //대표적으로 턴 시작시 방어도 초기화될때 사용.
-            PatternCoolTime=6,
+            MaxCooltimeToken=6,
             RandomPatternCount= 7,
 
             경험치 = 10,
