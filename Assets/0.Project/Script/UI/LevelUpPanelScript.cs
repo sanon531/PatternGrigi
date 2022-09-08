@@ -27,11 +27,15 @@ namespace PG.Battle
         // Start is called before the first frame update
         protected override void CallOnAwake()
         {
-            _gridlayout.cellSize = new Vector2(Screen.height*0.2f, Screen.width * 0.45f);
-            _gridlayout.spacing = new Vector2(Screen.height*0.05f,Screen.width * 0.05f);
+            _gridlayout.cellSize = new Vector2(Screen.height * 0.2f, Screen.width * 0.45f);
+            _gridlayout.spacing = new Vector2(Screen.height * 0.05f, Screen.width * 0.05f);
+            _confirmedButton = GameObject.Find("LevelUpSelectionButton").GetComponent<Button>();
+            _confirmedButton.onClick.AddListener(ConfirmButtonPressed);
+            _confirmedButton.interactable = false;
         }
         protected override void CallOnDestroy()
         {
+            _confirmedButton.onClick.RemoveAllListeners();
         }
 
 
@@ -44,8 +48,12 @@ namespace PG.Battle
             foreach (LevelupChooseButtonScript i in _instance._upgradePanelList)
             {
                 i.transform.DOScale(0.8f, 0.5f);
-                i.SetActiveButton(true);
+                i.transform.DOShakeRotation(0.5f);
+                i.SetInterectiveButton(true);
             }
+            _instance._confirmedButton.transform.DOScale(0.8f, 0.5f);
+            _instance._confirmedButton.transform.DOShakeRotation(0.5f); ;
+
         }
 
         public static void LevelUpPannelOff()
@@ -55,8 +63,9 @@ namespace PG.Battle
             foreach (LevelupChooseButtonScript i in _instance._upgradePanelList)
             {
                 i.transform.DOScale(0, 0.5f);
-                i.SetActiveButton(false); ;
+                i.SetInterectiveButton(false); ;
             }
+            _instance._confirmedButton.transform.DOScale(0f, 0.5f);
         }
 
 
@@ -74,13 +83,47 @@ namespace PG.Battle
         }
 
 
+        //-1 이면 아예 선택이 안된거임
+        [SerializeField]
+        Button _confirmedButton;
+        int _choosedButtonNum = -1;
         //선택을 
         public static void GetButtonPressed(int buttonNum)
         {
-            //Debug.Log(buttonNum);
-            ArtifactManager.AddArtifactToPlayer_tempUse(_instance._upgradeDataList[buttonNum]);
-            Global_BattleEventSystem.CallOffLevelUp();
+            _instance._choosedButtonNum = buttonNum;
+            _instance._confirmedButton.interactable = true;
+            for (int i = 0; i < _instance._upgradePanelList.Count; i++)
+            {
+                if (buttonNum != i)
+                    _instance._upgradePanelList[i].SetInactivateButton();
+                else
+                    _instance._upgradePanelList[i].SetActivateButton();
+            }
+
         }
+
+        void ConfirmButtonPressed()
+        {
+            if (_choosedButtonNum != -1)
+            {
+                _instance._confirmedButton.interactable = false;
+                ArtifactManager.AddArtifactToPlayer_tempUse(_instance._upgradeDataList[_choosedButtonNum]);
+                _choosedButtonNum = -1;
+                Global_BattleEventSystem.CallOffLevelUp();
+                for (int i = 0; i < _instance._upgradePanelList.Count; i++)
+                {
+                    _instance._upgradePanelList[i].SetInactivateButton();
+                }
+
+            }
+            else
+            {
+                Debug.LogError("Error: Confirm Button is activated without Selection of Artifact");
+            }
+
+
+        }
+
 
     }
 
