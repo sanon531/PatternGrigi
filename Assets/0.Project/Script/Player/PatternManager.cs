@@ -48,6 +48,8 @@ namespace PG.Battle
         }
         private void Update()
         {
+            if (_isPaused)
+                return;
             CheckIsCharge();
             CheckDelayData();
         }
@@ -128,8 +130,6 @@ namespace PG.Battle
             {
                 //스킬성공시 랜덤하는 공격이 나감.
                 //Debug.Log("call by end Pattern"+ _currentPattern);
-                if (_coolTimeToken > 0)
-                    _coolTimeToken--;
 
                 if (_IsChargeReady)
                 {
@@ -138,7 +138,18 @@ namespace PG.Battle
                 else 
                 {
                     Global_BattleEventSystem.CallOnPatternSuccessed(_currentPattern);
-                    SetRandomPattern(nodeID);
+
+                    if (_coolTimeToken > 0) 
+                    {
+                        SetRandomPattern(_lastNode);
+                        _coolTimeToken--;
+                    }
+                    else
+                    {
+                        _isPatternDelayed = true;
+                    }
+
+
                 }
 
                 //ShowDebugtextScript.SetDebug("Pattern Success!");
@@ -203,6 +214,7 @@ namespace PG.Battle
         #region // delayed
         [SerializeField]
         PatternDelayingShowManager _delayingManager;
+        bool _isPatternDelayed = false;
         int _coolTimeToken = 0;
         int _maxCoolTimeToken = 0;
         float _currentDelayPercent = 0;
@@ -223,11 +235,18 @@ namespace PG.Battle
             _currentDelayPercent += Time.deltaTime * _increaseAmount;
             if (_currentDelayPercent > 1) 
             {
-                _coolTimeToken++;
                 _currentDelayPercent = 0;
+
+                if (_isPatternDelayed)
+                {
+                    SetRandomPattern(_lastNode);
+                    _isPatternDelayed = false;
+                }
+                else 
+                {
+                    _coolTimeToken++;
+                }
             }
-
-
             _delayingManager.SetValueofDelay(_currentDelayPercent, _coolTimeToken);
         }
         #endregion
@@ -360,8 +379,6 @@ namespace PG.Battle
         void CheckIsCharge()
         {
             // 만약 일시정지 상태면 그냥 넘김
-            if (_isPaused)
-                return;
 
             if (_isChargeStart)
             {

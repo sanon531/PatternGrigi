@@ -22,7 +22,7 @@ namespace PG.Battle
             _settingGrid.cellSize = new Vector2(Screen.width * 0.15f, Screen.width * 0.15f);
         }
 
-        bool _activatedMajorDelayBar = false;
+        bool _activatedMajorDelayBar = true;
         void ActivateMajorDelayBar(bool val)
         {
             _majorLateBar.enabled = val;
