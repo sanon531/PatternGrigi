@@ -38,6 +38,7 @@ namespace PG
         private void SetAllTextByLanguage()
         {
             SetArtifactDataFromJson();
+            SetUIDataFromJson();
         }
 
 
@@ -70,6 +71,8 @@ namespace PG
         [SerializeField]
         ArtifactStringaDic _artifactDevCommentDic = new ArtifactStringaDic() { };
 
+        Dictionary<UITextID, string> _uiTextDic = new Dictionary<UITextID, string>();
+
         public void SetArtifactDataFromJson()
         {
             List<JsonStructure> _temptList = new List<JsonStructure>();
@@ -86,10 +89,24 @@ namespace PG
             {
                 //Debug.Log(json.key + json.value);
                 _artifactArtifactEffectDic.Add((ArtifactID)Enum.Parse(typeof(ArtifactID), json.key), json.value);
+            }
+        }
 
+
+        public void SetUIDataFromJson() 
+        {
+            List<JsonStructure> _temptList = new List<JsonStructure>();
+            _uiTextDic.Clear();
+            _temptList = LoadItem(getPath("UI", _lang));
+            foreach (JsonStructure json in _temptList)
+            {
+                Debug.Log(json.key + json.value);
+                _uiTextDic.Add((UITextID)Enum.Parse(typeof(UITextID), json.key), json.value);
             }
 
+
         }
+
 
         public static string GetArtifactDataFromJson(ArtifactJsonData jsonData, ArtifactID targetid)
         {
@@ -120,6 +137,26 @@ namespace PG
 
             return _returnval;
         }
+
+
+        public static string GetUIDataFromJson(UITextID uiTextID) 
+        {
+            string _returnval = "Non Data";
+            //Debug.Log(_instance._artifactNameDic[targetid]);
+            try
+            {
+                _returnval = _instance._uiTextDic[uiTextID];
+            }
+            catch (Exception e)
+            {
+                Debug.Log("Data NONO" + uiTextID.ToString());
+            }
+
+            return _returnval;
+
+        }
+
+
         #endregion
     }
 

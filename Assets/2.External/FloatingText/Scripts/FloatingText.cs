@@ -1,35 +1,36 @@
 using UnityEngine;
 using DG.Tweening;
-[RequireComponent(typeof(TextMesh))]
-public class FloatingText : MonoBehaviour
+namespace PG.Battle
 {
-    public TextMesh textMesh;
-    public float LifeTime = 1;
 
-    private float timeTemp = 0;
-    [SerializeField]
-    Ease _fadeEase = Ease.InCirc;
-    private void Awake()
+    [RequireComponent(typeof(TextMesh))]
+    public class FloatingText : PoolableObject
     {
-        textMesh = this.GetComponent<TextMesh>();
-    }
+        public TextMesh textMesh;
+        public float LifeTime = 1;
 
-    void Start()
-    {
-        timeTemp = Time.time;
-    }
+        [SerializeField]
+        Ease _fadeEase = Ease.InCirc;
+        private void Awake()
+        {
+            textMesh = this.GetComponent<TextMesh>();
+        }
 
-    public void SetText(string text)
-    {
-        if (textMesh)
-            textMesh.text = text;
-    }
-    public void SetColor(Color color)
-    {
-        if (textMesh)
-            textMesh.color= color;
 
-        DOTween.ToAlpha(() => textMesh.color, x => textMesh.color =x, 0, 1.25f).SetEase(_fadeEase);
-    }
+        public void SetText(string text, Color color)
+        {
+            if (textMesh)
+                textMesh.text = text;
+            Vector3 _targetPos = new Vector2(Random.value, Random.value);
+            _targetPos = transform.position + _targetPos.normalized;
+            transform.DOJump(_targetPos, 1f, 1, LifeTime);
+            if (textMesh)
+                textMesh.color = color;
+            DOTween.ToAlpha(() => textMesh.color, x => textMesh.color = x, 0, LifeTime).
+                SetEase(_fadeEase).OnComplete(()=>DamageFXManager.FinishFX(gameObject));
 
+        }
+
+
+    }
 }

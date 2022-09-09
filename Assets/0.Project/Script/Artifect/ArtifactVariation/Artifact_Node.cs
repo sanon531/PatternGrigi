@@ -14,6 +14,7 @@ namespace PG
         }
         public override void OnGetArtifact()
         {
+            base.OnGetArtifact();
             Enable();
         }
         float[] _addWeight = new float[3] {-0.5f,0,1 };
@@ -46,6 +47,7 @@ namespace PG
         }
         public override void OnGetArtifact()
         {
+            base.OnGetArtifact();
             Enable();
         }
         float[] _addWeight = new float[3] { -0.5f, 1, 0 };

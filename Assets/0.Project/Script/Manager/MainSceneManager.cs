@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PG.Event;
-
+using TMPro;
 namespace PG 
 {
     public class MainSceneManager : MonoSingleton<MainSceneManager>
@@ -10,13 +10,24 @@ namespace PG
 
         [SerializeField]
         string _targetScene = "Play_Scene";
+
+        [SerializeField]
+        TextMeshProUGUI _titleText;
+        [SerializeField]
+        TextMeshProUGUI _gameStartText;
+
+
         protected override void CallOnAwake()
         {
             if (GlobalUIEventSystem._isTotalFade)
                 GlobalUIEventSystem.CallTotalFade();
 
         }
-
+        private void Start()
+        {
+            _titleText.text = "<bounce>" + GetLocalizedTextScript.GetUIDataFromJson(Data.UITextID.Main_GameTitle) + "</>";
+            _gameStartText.text = "<wave>" +GetLocalizedTextScript.GetUIDataFromJson(Data.UITextID.Main_GameStart) + "</>";
+        }
 
         bool _pressedStart = false;
         // Start is called before the first frame update

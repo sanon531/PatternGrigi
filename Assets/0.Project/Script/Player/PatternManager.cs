@@ -11,6 +11,10 @@ namespace PG.Battle
     public class PatternManager : MonoSingleton<PatternManager>, ISetNontotalPause
     {
         [SerializeField]
+        bool _isDebug = true;
+
+
+        [SerializeField]
         public List<PatternNodeScript> _patternNodes = new List<PatternNodeScript>();
 
         [SerializeField]
@@ -23,7 +27,7 @@ namespace PG.Battle
         [SerializeField]
         List<int> _inactivatedNode;
         [SerializeField]
-        float _gainEXP = 10;
+        float _gainEXP_byDebug = 10;
 
         [SerializeField]
         ParticleSystem _signParticle;
@@ -56,7 +60,7 @@ namespace PG.Battle
 
 
         //데미지가 산출 되었을때의 정보
-        public static void DamageCall(int nodeID)
+        public static void DamageCallWhenNodeReach(int nodeID)
         {
             //먼저 게이지를 채우고 만약 게이지가 다찼을경우 주어진 노드가 나오도록함. 
             //_instance.SetGaugeChange();
@@ -72,11 +76,16 @@ namespace PG.Battle
 
             //이부분에서 경험치 관련 코드를 변동 해야함.
             //
-            Global_BattleEventSystem.CallOnGainEXP(_instance._gainEXP);
+            if(_instance._isDebug)
+                Global_BattleEventSystem.CallOnGainEXP(_instance._gainEXP_byDebug);
+            else
+                Global_BattleEventSystem.CallOnGainEXP(Global_CampaignData._chargeEXPData.FinalValue);
 
             LineTracer._instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
             VibrationManager.CallVibration();
         }
+
+
 
         #region//nodereach
 
@@ -222,6 +231,8 @@ namespace PG.Battle
         void StartDelayData() 
         {
             _delayingManager = GameObject.Find("PatternDelayingShowManager").GetComponent<PatternDelayingShowManager>();
+            _delayingManager.InitialzeShowManager();
+
             _maxCoolTimeToken = Mathf.RoundToInt(Global_CampaignData._coolTimeTokenCount.FinalValue);
             _coolTimeToken = _maxCoolTimeToken;
             _currentDelayPercent = 0;
@@ -232,7 +243,9 @@ namespace PG.Battle
         {
             if (_maxCoolTimeToken <= _coolTimeToken)
                 return;
+
             _currentDelayPercent += Time.deltaTime * _increaseAmount;
+
             if (_currentDelayPercent > 1) 
             {
                 _currentDelayPercent = 0;
@@ -343,7 +356,6 @@ namespace PG.Battle
 
 
 
-
         #region//charge
 
         //일시정지용 코드임 ㅇㅅㅇ
@@ -353,7 +365,7 @@ namespace PG.Battle
         [SerializeField]
         float _currentCharge = 0;
         [SerializeField]
-        float _chargeAmount = 25f;
+        float _chargeAmount_forDebug = 25f;
         [SerializeField]
         float _chargeReduction = 10f;
 
@@ -410,7 +422,12 @@ namespace PG.Battle
             if (_IsChargeReady) 
                 return;
 
-            _currentCharge += _chargeAmount;
+            if (_isDebug)
+                _currentCharge += _chargeAmount_forDebug;
+            else
+                _currentCharge += Global_CampaignData._chargeGaugeData.FinalValue;
+
+
             if (_currentCharge >= _maxCharge )
             {
                 _IsChargeReady = true;
@@ -457,7 +474,7 @@ namespace PG.Battle
         #endregion
 
 
-        #region
+        #region//private dictionary
 
         Dictionary<int, Vector2Int> _IDDic = new Dictionary<int, Vector2Int>()
         {

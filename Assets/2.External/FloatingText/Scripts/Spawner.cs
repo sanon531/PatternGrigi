@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using PG.Battle;
 public class Spawner : MonoBehaviour
 {
 
@@ -44,7 +44,7 @@ public class Spawner : MonoBehaviour
                     GameObject.Destroy(ob, LifeTime);
                     FloatingText floattext = ob.GetComponentInChildren<FloatingText>();
                     if (floattext != null)
-                        floattext.SetText("+" + Random.Range(5, 100));
+                        floattext.SetText("+" + Random.Range(5, 100),Color.black);
                 }
             }
         }

@@ -15,6 +15,7 @@ namespace PG
         }
         public override void OnGetArtifact()
         {
+            base.OnGetArtifact();
             Enable();
         }
 
@@ -23,8 +24,6 @@ namespace PG
             base.Enable();
             //간단히 칼크 데미지를 전부 실행함
             Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(5f);
-
-
         }
         protected override void Disable()
         {
@@ -45,6 +44,7 @@ namespace PG
         }
         public override void OnGetArtifact()
         {
+            base.OnGetArtifact();
             Enable();
         }
 
@@ -63,7 +63,6 @@ namespace PG
         }
         public override void AddCountOnArtifact()
         {
-
             Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(5f);
             _value++;
         }
@@ -78,6 +77,7 @@ namespace PG
 
         public override void OnGetArtifact()
         {
+            base.OnGetArtifact();
             Enable();
         }
 
@@ -132,6 +132,8 @@ namespace PG
 
         public override void OnGetArtifact()
         {
+            base.OnGetArtifact();
+
             Enable();
         }
 
@@ -166,6 +168,7 @@ namespace PG
 
         public override void OnGetArtifact()
         {
+            base.OnGetArtifact();
             Enable();
         }
 

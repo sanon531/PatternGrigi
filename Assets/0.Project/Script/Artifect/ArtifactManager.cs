@@ -56,6 +56,7 @@ namespace PG.Battle
             LevelUpPanelScript.LevelUpPannelOff();
         }
 
+        //지금은 랜덤이지만. 일단 다음에는 일종의 
         void ArtifactSetRandomly() 
         {
             _showerArtifectList = MyRandom.PickRandoms(Global_CampaignData._obtainableArtifactIDList,4);
@@ -67,6 +68,8 @@ namespace PG.Battle
         //현재 가지고 있는 아티팩트를 전부 재 확인후 적용함,.
         void InitializeCurrentArtifact()
         {
+            //전판의 데이터를 전부 지우고 넣음.
+            DisableAllArtifact();
             if (Global_CampaignData._startArtifactList.Count != 0) 
             {
                 foreach (ArtifactID id in Global_CampaignData._startArtifactList) 
@@ -82,7 +85,7 @@ namespace PG.Battle
             //그리고 해당하는 아이템을 얻었을 경우 
             if (Global_CampaignData._currentArtifactDictionary.ContainsKey(id) == false)
             {
-                Debug.Log("Upgrade" + id.ToString());
+                //Debug.Log("Upgrade" + id.ToString());
                 _instance._showerArtifectList.Add(id);
                 Global_CampaignData._currentArtifactDictionary.Add(id, GlobalDataStorage.TotalArtifactClassDic[id]);
                 Global_CampaignData._currentArtifactDictionary[id].OnGetArtifact();
@@ -99,6 +102,15 @@ namespace PG.Battle
         }
 
 
+        //게임이 초기화 되면 기존의 모든 아티팩트 내부의 데이터들을 제거한다.
+        void DisableAllArtifact() 
+        {
+            foreach (KeyValuePair<ArtifactID, Artifact> keyValuePair in  Global_CampaignData._currentArtifactDictionary) 
+            {
+                keyValuePair.Value.DisposeArtifact();
+            }
+            Global_CampaignData._currentArtifactDictionary.Clear();
+        }
 
     }
 }

@@ -24,6 +24,8 @@ namespace PG.Battle
         Image _healthBar;
         [SerializeField]
         ParticleSystem _damageFX;
+        [SerializeField]
+        Transform _UIShowPos;
         // Start is called before the first frame update
         protected override void CallOnAwake()
         {
@@ -79,8 +81,7 @@ namespace PG.Battle
             _instance._damageFX.Play();
             //s_instance._healthBar.DoFadeHealth(s_instance._healthFadeTime);
             //DamageTextScript.Create(s_instance._thisSprite.transform.position, 0.5f, 0.3f, (int)_amount, Color.green);
-            DamageFXManager.ShowDamage(Player_Script.GetPlayerPosition(), 1f, Mathf.FloorToInt(_amount),
-                Color.green, _instance.transform, _instance.transform);
+            DamageFXManager.ShowDamage(_instance._UIShowPos.position, Mathf.FloorToInt(_amount).ToString(),Color.red);
 
 
             GlobalUIEventSystem.CallOnDamageUI();

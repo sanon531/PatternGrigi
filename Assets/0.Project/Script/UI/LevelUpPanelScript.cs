@@ -32,6 +32,8 @@ namespace PG.Battle
             _confirmedButton = GameObject.Find("LevelUpSelectionButton").GetComponent<Button>();
             _confirmedButton.onClick.AddListener(ConfirmButtonPressed);
             _confirmedButton.interactable = false;
+            _instance._levelTitle.enabled = false;
+
         }
         protected override void CallOnDestroy()
         {

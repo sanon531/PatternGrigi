@@ -27,10 +27,7 @@ namespace PG.Data
                 {DrawPatternPresetID.Thunder_Manimekhala,new List<int>(){1,3,4,6,7,5} },
                 {DrawPatternPresetID.LoveAndPeace,new List<int>(){4,2,5,7,3,0,4} },
                 {DrawPatternPresetID.Sandglass,new List<int>(){2,0,8,6,2} },
-
-
                 {DrawPatternPresetID.Empty_Breath,new List<int>(){4}},
-
             };
         public static Dictionary<DrawPatternPresetID, PresetPatternAction_Base> PatternWIthActionDic =
             new Dictionary<DrawPatternPresetID, PresetPatternAction_Base>()
@@ -43,6 +40,8 @@ namespace PG.Data
             };
 
         //아티팩트의 수치와 행동을 분리하여야 한다.그래야 나중에 텍스트 처리할때 편하다.
+        //그리고 이후에 테크 트리, 점진적인 레벨링 같은거 할때 다음과 같이 나올수가 있다면 좋을듯함.
+
         public static Dictionary<ArtifactID, ArtifactData> TotalArtifactTableDataDic =
             new Dictionary<ArtifactID, ArtifactData>()
             {
@@ -121,7 +120,6 @@ namespace PG.Data
             {
                 {ArtifactID.Thunder_Manimekhala, new Artifact_Thunder_Manimekhala()},
                 {ArtifactID.LoveAndPeace, new Artifact_LoveAndPeace()},
-
                 {ArtifactID.FragileRush, new Arfifact_FragileRush()},
                 {ArtifactID.BubbleGun, new Arfifact_BubbleGun()},
                 {ArtifactID.Equatore, new Arfifact_Equatore()},

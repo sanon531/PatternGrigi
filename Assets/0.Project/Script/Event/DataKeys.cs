@@ -123,4 +123,17 @@ namespace PG.Data
         Empty_Breath= 999 // 최초의 시작에 호출되는 코드
     }
 
+
+    public enum UITextID 
+    {
+    
+        Main_GameTitle = 0,
+        Main_GameStart = 1,
+
+
+
+        Battle_PatternDelay = 21,
+
+    }
+
 }

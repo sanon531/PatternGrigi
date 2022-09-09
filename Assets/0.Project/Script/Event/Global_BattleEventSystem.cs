@@ -151,7 +151,7 @@ namespace PG.Event
         private static void CallOffTotalPause() { _offTotalPause?.Invoke(); }
         #endregion
 
-        #region//차지 관련
+        #region//차지 및 패턴 관련
         
 
         public static event OnEvent _onChargeStart;
@@ -173,6 +173,7 @@ namespace PG.Event
 
         public static event OnEvent _onGameOver;
         public static void CallOnGameOver() { _onGameOver?.Invoke(); }
+
 
 
 

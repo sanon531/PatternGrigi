@@ -5,8 +5,9 @@ using PG.Data;
 using System;
 
 
-namespace PG 
-{   [Serializable]
+namespace PG
+{
+    [Serializable]
     public class Artifact : Affector
     {
 
@@ -21,7 +22,7 @@ namespace PG
 
         [SerializeField]
         protected int _value;
-        public virtual int Value{get { return _value; }protected set { _value = value; }}
+        public virtual int Value { get { return _value; } protected set { _value = value; } }
         private ArtifactFlag _flag;
         public ArtifactFlag Flag { get { return _flag; } }
 
@@ -49,18 +50,25 @@ namespace PG
         }
 
 
-        public virtual void OnGetArtifact() {
+        public virtual void OnGetArtifact()
+        {
             //이 함수는 유물을 직접 획득할때만 콜됨 (저장한거 로드할땐 콜 안됨)
+            _value++;
         }
-        public void ActiveArtifact() {
+        public void ActiveArtifact()
+        {
             //if (_flag.HasFlag(ArtifactFlag.Active)) { return; }
             Enable();
         }
-        public void DisposeArtifact() {
+        public void DisposeArtifact()
+        {
             //_flag |= ArtifactFlag.Inactive;
-            Disable();
+            for (int i = 0; i < _value; i++)
+                Disable();
+
+            _value = 0;
         }
-        public virtual void AddCountOnArtifact() 
+        public virtual void AddCountOnArtifact()
         {
             _value++;
         }

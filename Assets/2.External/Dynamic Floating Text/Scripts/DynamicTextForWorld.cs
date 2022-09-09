@@ -4,11 +4,11 @@ using UnityEngine;
 using TMPro;
 namespace PG.Battle
 {
-    public class DynamicTextForOneCanvas : MonoBehaviour
+    public class DynamicTextForWorld : MonoBehaviour
     {
 
         private DynamicTextData data;
-        private TextMeshProUGUI textObject;
+        private TextMeshPro textObject;
 
         private bool initialised = false; // set to true after Initialise() is run
         private bool[] entered; // array to track progress of all entries
@@ -23,8 +23,7 @@ namespace PG.Battle
         private float tExit = 0f;
 
         // value used to calculate while lerping
-        [SerializeField]
-        private Vector3 startPosition;
+        private Vector2 startPosition;
         private Vector2 startScale, startScaleZero;
         private Color startColour, startColourNoOpacity;
         // values used for bounce entries
@@ -91,7 +90,7 @@ namespace PG.Battle
                         if (data.enterType[i] == EnterType.Bounce)
                         {
                             tPosition += Time.deltaTime / data.enterDuration;
-                            Vector2 targetPosition = startPosition - new Vector3(direction, data.maxHeight,0);
+                            Vector2 targetPosition = startPosition - new Vector2(direction, data.maxHeight);
                             transform.position = Vector2.Lerp(startPosition, targetPosition, tPosition);
                         }
                     }
@@ -117,7 +116,7 @@ namespace PG.Battle
             // set the data object in this script to that which was passed
             data = _data;
             // change the placeholder text
-            textObject = transform.GetComponent<TextMeshProUGUI>();
+            textObject = transform.GetComponent<TextMeshPro>();
             textObject.text = _text;
 
             // set the font
@@ -136,8 +135,7 @@ namespace PG.Battle
             // assign start colour, scale and position
             startColour = textObject.color;
             startScale = textObject.transform.localScale;
-
-            startPosition = new Vector3(transform.position.x, transform.position.y, 0);
+            startPosition = transform.position;
 
             // choose a random direction, only used for Bounce entries
             direction = (Random.value - 0.5f) * data.maxDrift * 0.5f;
@@ -287,7 +285,7 @@ namespace PG.Battle
                     {
                         // lerp from start position to target position
                         tPosition += Time.deltaTime / data.enterDuration;
-                        Vector2 targetPosition = startPosition + new Vector3(0f, data.maxHeight,0);
+                        Vector2 targetPosition = startPosition + new Vector2(0f, data.maxHeight);
                         transform.position = Vector2.Lerp(startPosition, targetPosition, tPosition);
                         // if tPosition is 1, desired position must have been reached so mark entered as true for this entry
                         if (tPosition >= 1f)
@@ -301,7 +299,7 @@ namespace PG.Battle
                     if (data.enterType[i] == EnterType.Bounce)
                     {
                         tPosition += Time.deltaTime / data.enterDuration;
-                        Vector2 targetPosition = startPosition + new Vector3(direction, data.maxHeight,0);
+                        Vector2 targetPosition = startPosition + new Vector2(direction, data.maxHeight);
                         transform.position = Vector2.Lerp(startPosition, targetPosition, tPosition);
                         if (tPosition >= 1f)
                         {

@@ -14,22 +14,38 @@ namespace PG
         }
         public override void OnGetArtifact()
         {
+            base.OnGetArtifact();
             Enable();
         }
         protected override void Enable()
         {
             base.Enable();
             Global_CampaignData._currentChargePattern = DrawPatternPresetID.Thunder_Manimekhala;
-            Debug.Log("asdf");
+            Global_BattleEventSystem._onPatternSuccessed += CallRandomPatternSuccessed;
+            //Debug.Log("asdf");
         }
         protected override void Disable()
         {
             base.Disable();
+            Global_CampaignData._currentChargePattern = DrawPatternPresetID.Empty_Breath;
+            Global_BattleEventSystem._onPatternSuccessed -= CallRandomPatternSuccessed;
         }
         public override void AddCountOnArtifact()
         {
             _value++;
         }
+
+        void CallRandomPatternSuccessed(DrawPatternPresetID patternPreset) 
+        {
+            if (patternPreset == DrawPatternPresetID.Empty_Breath) 
+            {
+                Global_BattleEventSystem.CallOnCalcPlayerAttack(10f);
+                Global_BattleEventSystem.CallOnCalcPlayerAttack(10f);
+                Global_BattleEventSystem.CallOnCalcPlayerAttack(10f);
+                Global_BattleEventSystem.CallOnCalcPlayerAttack(10f);
+            }
+        }
+
     }
 
     public sealed class Artifact_LoveAndPeace : Artifact
@@ -39,13 +55,13 @@ namespace PG
         }
         public override void OnGetArtifact()
         {
+            base.OnGetArtifact();
             Enable();
         }
         protected override void Enable()
         {
             base.Enable();
             Global_CampaignData._currentChargePattern = DrawPatternPresetID.LoveAndPeace;
-            Debug.Log("asdf");
         }
         protected override void Disable()
         {

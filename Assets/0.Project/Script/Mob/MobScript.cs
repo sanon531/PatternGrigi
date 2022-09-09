@@ -174,7 +174,7 @@ namespace PG.Battle
         public void Damage(float val)
         {
             _healthSystem.Damage(val);
-            DamageFXManager.ShowDamage(transform.position, Mathf.Round(val).ToString());
+            DamageFXManager.ShowDamage(transform.position, Mathf.Round(val).ToString(),Color.white);
         }
 
         //Called on dead

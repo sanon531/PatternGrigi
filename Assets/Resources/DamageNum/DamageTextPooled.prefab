@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23756503081036264}
   - component: {fileID: 102939628241794194}
   m_Layer: 0
-  m_Name: Text3d
+  m_Name: DamageTextPooled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f84860f356fb1d841ba2946410d3b446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isPlaced: 0
   textMesh: {fileID: 102939628241794194}
   LifeTime: 1
   _fadeEase: 14
@@ -67,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b490161897973bb4ea0403ff4fedb45d, type: 3}
+  - {fileID: 2100000, guid: c117780957e7e644e9ac949f9537a99f, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,17 +98,17 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
-  m_Text: Hello world
+  m_Text: 10
   m_OffsetZ: 0
   m_CharacterSize: 0.1
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 0
+  m_FontSize: 100
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: b490161897973bb4ea0403ff4fedb45d, type: 3}
+  m_Font: {fileID: 12800000, guid: c117780957e7e644e9ac949f9537a99f, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
