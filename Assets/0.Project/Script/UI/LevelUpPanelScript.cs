@@ -49,12 +49,12 @@ namespace PG.Battle
 
             foreach (LevelupChooseButtonScript i in _instance._upgradePanelList)
             {
-                i.transform.DOScale(0.8f, 0.5f);
-                i.transform.DOShakeRotation(0.5f);
+                i.transform.DOScale(0.8f, 0.5f).SetUpdate(UpdateType.Late, true);
+                i.transform.DOShakeRotation(0.5f).SetUpdate(UpdateType.Late, true);
                 i.SetInterectiveButton(true);
             }
-            _instance._confirmedButton.transform.DOScale(0.8f, 0.5f);
-            _instance._confirmedButton.transform.DOShakeRotation(0.5f); ;
+            _instance._confirmedButton.transform.DOScale(0.8f, 0.5f).SetUpdate(UpdateType.Late,true);
+            _instance._confirmedButton.transform.DOShakeRotation(0.5f).SetUpdate(UpdateType.Late, true);
 
         }
 
@@ -64,10 +64,10 @@ namespace PG.Battle
             _instance._levelTitle.enabled = false;
             foreach (LevelupChooseButtonScript i in _instance._upgradePanelList)
             {
-                i.transform.DOScale(0, 0.5f);
-                i.SetInterectiveButton(false); ;
+                i.transform.DOScale(0, 0.5f).SetUpdate(UpdateType.Late, true);
+                i.SetInterectiveButton(false);
             }
-            _instance._confirmedButton.transform.DOScale(0f, 0.5f);
+            _instance._confirmedButton.transform.DOScale(0f, 0.5f).SetUpdate(UpdateType.Late, true);
         }
 
 

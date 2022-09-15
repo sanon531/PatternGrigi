@@ -2,15 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-namespace PG.Event
-{
-    public interface ISetNontotalPause
-    {
-        void SetNonTotalPauseOn();
-        void SetNonTotalPauseOff();
-    }
-
-}
 
 namespace PG.Data
 {

@@ -4,20 +4,16 @@ using UnityEngine;
 using PG.Event;
 namespace PG.Battle
 {
-    public class Obstacle : PoolableObject, ISetNontotalPause
+    public class Obstacle : PoolableObject
     {
 
         // Start is called before the first frame update
         private void Start()
         {
-            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
         }
 
         private void OnDestroy()
         {
-            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
         }
 
         [SerializeField]
@@ -26,7 +22,6 @@ namespace PG.Battle
         protected float _maxLifetime, _lifeTime, _activetime;
         [SerializeField]
         protected bool _isActived = false;
-        protected bool _isLevelUpPaused = false;
 
 
         [SerializeField]
@@ -57,7 +52,7 @@ namespace PG.Battle
         }
         protected virtual void CheckStatus() 
         {
-            if (!_isPlaced|| _isLevelUpPaused)
+            if (!_isPlaced)
                 return;
 
             _passedTime += Time.deltaTime;
@@ -83,14 +78,5 @@ namespace PG.Battle
                 Player_Script.Damage(_damageDeal);
         }
 
-        public void SetNonTotalPauseOn()
-        {
-            _isLevelUpPaused = true;
-        }
-
-        public void SetNonTotalPauseOff()
-        {
-            _isLevelUpPaused = false;
-        }
     }
 }

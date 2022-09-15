@@ -447,9 +447,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1364576309081082828, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: _isdebug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364576309081082828, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: jsontext
       value: 
       objectReference: {fileID: 4900000, guid: d690a8d7ba457e348803b471d70b26f9, type: 3}
+    - target: {fileID: 1364576309081082828, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: _currentLanguage
+      value: en
+      objectReference: {fileID: 0}
     - target: {fileID: 7435981629800215618, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -506,6 +514,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 464091426}
+    - target: {fileID: 7435981631448181675, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 55
+      objectReference: {fileID: 0}
     - target: {fileID: 7504855527261867977, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -516,7 +528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8964876256455990930, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00020486262
+      value: -0.000030979372
       objectReference: {fileID: 0}
     - target: {fileID: 9166785324373634168, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_AnchorMax.x

@@ -44,13 +44,9 @@ namespace PG.Battle
             _healthSystem = new HealthSystem(healthAmountMax);
             _healthSystem.SetHealth(startingHealthAmount);
             _healthSystem.OnDead += OnDead;
-            Global_BattleEventSystem._onNonTotalPause += SetOnNonTotalPaused;
-            Global_BattleEventSystem._offNonTotalPause += SetOffNonTotalPaused;
         }
         void OnDestroy()
         {
-            Global_BattleEventSystem._onNonTotalPause -= SetOnNonTotalPaused;
-            Global_BattleEventSystem._offNonTotalPause -= SetOffNonTotalPaused;
         }
         void Update()
         {

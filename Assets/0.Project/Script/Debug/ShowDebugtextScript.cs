@@ -22,14 +22,9 @@ namespace PG
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                Global_BattleEventSystem.CallNonTotalPause();
-                Debug.Log("non total Paused button");
-            }
             if (Input.GetKeyDown(KeyCode.P))
             {
-                Global_BattleEventSystem.CallTotalPause();
+                Global_BattleEventSystem.CallTotalPauseSwitch();
                 Debug.Log("Paused button");
             }
             if (Input.GetKeyDown(KeyCode.Y))

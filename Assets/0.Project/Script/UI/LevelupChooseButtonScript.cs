@@ -49,13 +49,13 @@ namespace PG.Battle
         public void SetActivateButton()
         {
             _selectedImage.enabled = true;
-            transform.DOScale(1, 0.25f);
-            transform.DOPunchRotation(new Vector3(0,0,10),0.25f);
+            transform.DOScale(1, 0.25f).SetUpdate(UpdateType.Late, true);
+            transform.DOPunchRotation(new Vector3(0,0,10),0.25f).SetUpdate(UpdateType.Late, true);
         }
         public void SetInactivateButton()
         {
             _selectedImage.enabled = false;
-            transform.DOScale(0.8f, 0.25f);
+            transform.DOScale(0.8f, 0.25f).SetUpdate(UpdateType.Late, true);
 
         }
 

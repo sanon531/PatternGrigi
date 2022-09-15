@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System;
 using PG.Data;
 namespace PG
 {
@@ -16,7 +14,7 @@ namespace PG
         [SerializeField]
         bool _isdebug;
         [SerializeField]
-        SystemLanguage _currentLanguage;
+        string _currentLanguage;
 
 
         protected override void CallOnAwake()
@@ -32,6 +30,10 @@ namespace PG
                 _lang = "kr";
             else
                 _lang = "en";
+
+            if (_isdebug)
+                _lang = _currentLanguage;
+
             //Debug.Log(_lang);
         }
         //이곳에서 아티팩트, 기타 텍스트들을 전부  관리함. 다른 로털라이제션 할데이터 있다면 여기서

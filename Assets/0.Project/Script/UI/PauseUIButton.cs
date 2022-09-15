@@ -20,7 +20,7 @@ namespace PG.Battle
                 Debug.LogError("UnmatchedCall");
                 return;
             }
-            Global_BattleEventSystem.CallTotalPause();
+            Global_BattleEventSystem.CallTotalPauseSwitch();
             if (_isPannelshow)
             {
                 _pausePannel.transform.position = new Vector3(10000,0,0);

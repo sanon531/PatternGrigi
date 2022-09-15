@@ -8,7 +8,7 @@ using PG.Data;
 
 namespace PG.Battle
 {
-    public class PatternManager : MonoSingleton<PatternManager>, ISetNontotalPause
+    public class PatternManager : MonoSingleton<PatternManager>
     {
         [SerializeField]
         bool _isDebug = true;
@@ -52,8 +52,6 @@ namespace PG.Battle
         }
         private void Update()
         {
-            if (_isPaused)
-                return;
             CheckIsCharge();
             CheckDelayData();
         }
@@ -358,8 +356,6 @@ namespace PG.Battle
 
         #region//charge
 
-        //일시정지용 코드임 ㅇㅅㅇ
-        bool _isPaused = false;
         [SerializeField]
         float _maxCharge = 100;
         [SerializeField]
@@ -375,15 +371,11 @@ namespace PG.Battle
         //시작시 , 해제시 이벤트 탈부착
         void StartChargeEvent()
         {
-            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
             Global_BattleEventSystem._onPatternSuccessed += CallPatternEvent;
 
         }
         void DeleteChargeEvent()
         {
-            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
             Global_BattleEventSystem._onPatternSuccessed -= CallPatternEvent;
 
         }
@@ -459,16 +451,6 @@ namespace PG.Battle
             GlobalDataStorage.PatternWIthActionDic[_patternPreset].StartPatternAction();
         }
 
-
-        public void SetNonTotalPauseOn()
-        {
-            _isPaused = true;
-        }
-
-        public void SetNonTotalPauseOff()
-        {
-            _isPaused = false;
-        }
 
 
         #endregion

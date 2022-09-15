@@ -9,7 +9,7 @@ using PG.Data;
 
 namespace PG.Battle 
 {
-    public class Player_Script : MonoSingleton<Player_Script>, IGetHealthSystem, ISetNontotalPause
+    public class Player_Script : MonoSingleton<Player_Script>, IGetHealthSystem
     {
         
 
@@ -33,15 +33,11 @@ namespace PG.Battle
             _healthSystem.SetHealth(startingHealthAmount);
             _healthSystem.OnDead += HealthSystem_OnDead;
             Health_Refresh();
-            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
             Global_BattleEventSystem._onPlayerSizeChanged += SetPlayerSizeByEvent;
             _isDead = false;
         }
         protected override void CallOnDestroy()
         {
-            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
             Global_BattleEventSystem._onPlayerSizeChanged -= SetPlayerSizeByEvent;
         }
         void Health_Refresh()

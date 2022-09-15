@@ -5,7 +5,7 @@ using PG.Event;
 
 namespace PG.Battle
 {
-    public class TouchFollowScript : MonoBehaviour, ISetNontotalPause
+    public class TouchFollowScript : MonoBehaviour
     {
 
         [SerializeField]
@@ -33,14 +33,10 @@ namespace PG.Battle
             _moveLUvec = _moveLU.position;
             _moveRDvec = _moveRD.position;
             _touchLUvec = _touchLU.position;
-            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
             _isCamOrthoGraph  = mainCam.orthographic;
         }
         private void OnDestroy()
         {
-            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
         }
 
 
@@ -182,8 +178,6 @@ namespace PG.Battle
         }
 
 
-        public void SetNonTotalPauseOn() { _isLevelUpPaused = true; }
-        public void SetNonTotalPauseOff() { _isLevelUpPaused = false; }
 
 
     }

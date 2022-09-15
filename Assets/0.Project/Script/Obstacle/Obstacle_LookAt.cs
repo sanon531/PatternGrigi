@@ -19,14 +19,10 @@ namespace PG.Battle
 
         private void Start()
         {
-            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
             playerTr = GameObject.FindGameObjectWithTag("Player").transform;
         }
         private void OnDestroy()
         {
-            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
         }
         protected override void FixedUpdate()
         {
