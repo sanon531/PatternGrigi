@@ -24,7 +24,7 @@ namespace PG.Battle
         public void InitialzeShowManager()
         {
             _settingGrid.cellSize = new Vector2(Screen.width * 0.15f, Screen.width * 0.15f);
-            Debug.Log(Screen.width * 0.15f);
+            //Debug.Log(Screen.width * 0.15f);
         }
 
         bool _activatedMajorDelayBar = true;

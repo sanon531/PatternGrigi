@@ -36,6 +36,8 @@ namespace PG.Battle
         bool _isNontotalPaused = false;
         float _actionTime, _maxActionTime;
         float _reachedDamage = 20;
+        [SerializeField]
+        int _lootExp = 10;
 
 
         #endregion
@@ -178,6 +180,7 @@ namespace PG.Battle
         {
             _isEnemyAlive = false;
             MobGenerator.DestroyMob(this);
+            EXPTokenManager.PlaceEXPToken(transform.position, _lootExp);
         }
 
 

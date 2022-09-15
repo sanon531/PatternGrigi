@@ -102,7 +102,7 @@ namespace PG
             _temptList = LoadItem(getPath("UI", _lang));
             foreach (JsonStructure json in _temptList)
             {
-                Debug.Log(json.key + json.value);
+                //Debug.Log(json.key + json.value);
                 _uiTextDic.Add((UITextID)Enum.Parse(typeof(UITextID), json.key), json.value);
             }
 

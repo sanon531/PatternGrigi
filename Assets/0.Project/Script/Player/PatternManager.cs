@@ -72,12 +72,10 @@ namespace PG.Battle
             Global_BattleEventSystem.CallOnCalcPlayerAttack(_resultDamage);
 
 
-            //이부분에서 경험치 관련 코드를 변동 해야함.
+            //이부분에서 경험치 관련 코드를 변동 해야함. 디버깅 시 빠르게 바뀌는경우 쓸꺼임.
             //
             if(_instance._isDebug)
                 Global_BattleEventSystem.CallOnGainEXP(_instance._gainEXP_byDebug);
-            else
-                Global_BattleEventSystem.CallOnGainEXP(Global_CampaignData._chargeEXPData.FinalValue);
 
             LineTracer._instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
             VibrationManager.CallVibration();
