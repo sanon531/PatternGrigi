@@ -13,6 +13,7 @@ namespace PG
 
         public override void OnGetArtifact()
         {
+            base.OnGetArtifact();
             Enable();
         }
 

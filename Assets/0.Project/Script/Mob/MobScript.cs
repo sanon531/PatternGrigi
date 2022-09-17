@@ -36,6 +36,8 @@ namespace PG.Battle
         bool _isNontotalPaused = false;
         float _actionTime, _maxActionTime;
         float _reachedDamage = 20;
+        [SerializeField]
+        int _lootExp = 10;
 
 
         #endregion
@@ -44,13 +46,9 @@ namespace PG.Battle
             _healthSystem = new HealthSystem(healthAmountMax);
             _healthSystem.SetHealth(startingHealthAmount);
             _healthSystem.OnDead += OnDead;
-            Global_BattleEventSystem._onNonTotalPause += SetOnNonTotalPaused;
-            Global_BattleEventSystem._offNonTotalPause += SetOffNonTotalPaused;
         }
         void OnDestroy()
         {
-            Global_BattleEventSystem._onNonTotalPause -= SetOnNonTotalPaused;
-            Global_BattleEventSystem._offNonTotalPause -= SetOffNonTotalPaused;
         }
         void Update()
         {
@@ -174,7 +172,7 @@ namespace PG.Battle
         public void Damage(float val)
         {
             _healthSystem.Damage(val);
-            DamageFXManager.ShowDamage(transform.position, Mathf.Round(val).ToString());
+            DamageFXManager.ShowDamage(transform.position, Mathf.Round(val).ToString(),Color.white);
         }
 
         //Called on dead
@@ -182,6 +180,7 @@ namespace PG.Battle
         {
             _isEnemyAlive = false;
             MobGenerator.DestroyMob(this);
+            EXPTokenManager.PlaceEXPToken(transform.position, _lootExp);
         }
 
 

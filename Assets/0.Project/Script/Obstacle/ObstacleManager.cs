@@ -7,7 +7,7 @@ using PG.Data;
 using PG.Event;
 namespace PG.Battle
 {
-    public class ObstacleManager : MonoSingleton<ObstacleManager>, ISetNontotalPause
+    public class ObstacleManager : MonoSingleton<ObstacleManager>
     {
         [SerializeField]
         ObstacleIDObjectDic _obstacleDic;
@@ -16,14 +16,10 @@ namespace PG.Battle
 
         protected override void CallOnAwake()
         {
-            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
             InitializeDictionary();
         }
         protected override void CallOnDestroy()
         {
-            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
         }
         public void InitializeDictionary()
         {
@@ -75,16 +71,6 @@ namespace PG.Battle
         }
 
 
-        bool _isLevelupPaused = false;
-        public void SetNonTotalPauseOn()
-        {
-            _isLevelupPaused = true;
-        }
-
-        public void SetNonTotalPauseOff()
-        {
-            _isLevelupPaused = false;
-        }
 
 
         #region

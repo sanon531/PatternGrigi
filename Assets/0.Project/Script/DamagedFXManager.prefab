@@ -26,7 +26,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5646449666596613627}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -88,5 +88,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc5c3bba908b444797650c7241a5bbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showPrefab: {fileID: 8388457754236965779, guid: 81a3af6b84bb7ee48b097514daea3c12, type: 3}
+  _showPrefab: {fileID: 100000, guid: 4a195324507cfd747a5896b0dc076f2d, type: 3}
   _damageFadeImage: {fileID: 5646449666596613629}
+  _canvasPrefab: {fileID: 100000, guid: 787ef8b616b8f8748b73f686b24dbb86, type: 3}
+  _canvasTransform: {fileID: 0}
+  _activatedFXList: []
+  _inactivatedFXList: []

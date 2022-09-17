@@ -12,7 +12,7 @@ using System;
 using Spine.Unity;
 namespace PG.Battle
 {
-    public class Enemy_Script : MonoSingleton<Enemy_Script>, IGetHealthSystem, ISetNontotalPause
+    public class Enemy_Script : MonoSingleton<Enemy_Script>, IGetHealthSystem
     {
 
         [SerializeField]
@@ -44,16 +44,12 @@ namespace PG.Battle
         }
         protected override void CallOnDestroy()
         {
-            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
             Global_BattleEventSystem._onChargeStart -= SetOnActionStunned;
             Global_BattleEventSystem._onChargeEnd -= SetOffActionStunned;
         }
 
         void OnStartEventCall() 
         {
-            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
             Global_BattleEventSystem._onChargeStart += SetOnActionStunned;
             Global_BattleEventSystem._onChargeEnd += SetOffActionStunned;
         }
@@ -304,8 +300,6 @@ namespace PG.Battle
             //Debug.Log(_amount+"+"+length);
             _amount *= length;
             //DamageTextScript.Create(_instance.transform.position, 2f, 0.3f, Mathf.FloorToInt(_amount), Color.red);
-            DamageFXManager.ShowDamage(Player_Script.GetPlayerPosition(), 1f, Mathf.FloorToInt(_amount), 
-                Color.red, _instance._enemyPositionByAnimation, _instance.transform);
             return _instance._isEnemyAlive;
         }
 

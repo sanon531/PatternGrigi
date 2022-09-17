@@ -9,8 +9,9 @@ namespace PG.Data
     [CreateAssetMenu(fileName = "Global_CampaignData", menuName = "PG/GlobalCampaignData")]
     public class CampaignData : ScriptableObject
     {
-        public ArtifactIDArtifactDic _currentArtifactDictionary =
-            new ArtifactIDArtifactDic();
+        //아이디만 저장해두면 나중에 시작할때
+        public List<ArtifactID> _startArtifactList  =
+            new List<ArtifactID>();
 
         public List<ArtifactID> _obtainableArtifactIDList = new List<ArtifactID>()
         {
@@ -38,7 +39,11 @@ namespace PG.Data
 
         public TimeWaveDic _waveDic = new TimeWaveDic();
 
+
+        public DrawPatternPresetID _currentChargePattern = DrawPatternPresetID.Empty_Breath;
+
         //거리에따른 배율임 
+
         public DataEntity _lengthMagnData = new DataEntity(DataEntity.Type.LengthMag, 1);
         public DataEntity _chargeGaugeData = new DataEntity(DataEntity.Type.ChargeGauge, 8);
         public DataEntity _chargeEXPData = new DataEntity(DataEntity.Type.ChargeEXP, 8);
@@ -47,6 +52,7 @@ namespace PG.Data
         public DataEntity _playerSize = new DataEntity(DataEntity.Type.PlayerSize, 1);
         public DataEntity _projectileSpeed = new DataEntity(DataEntity.Type.ProjectileSpeed, 5);
         public DataEntity _projectileTargetNum = new DataEntity(DataEntity.Type.ProjectileCount, 1);
+        public DataEntity _randomPatternNodeCount = new DataEntity(DataEntity.Type.RandomPatternCount, 3);
 
     }
 

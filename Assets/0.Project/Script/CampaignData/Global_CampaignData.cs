@@ -18,10 +18,14 @@ namespace PG.Data
         public bool masterKeyUsed { get; }
     }
 
+
+
     //인게임 내부에서 작동을 하는부분임.
     [System.Serializable]
-    public static class Global_CampaignData
+    public static class Global_CampaignData 
     {
+        public static List<ArtifactID> _startArtifactList =  new List<ArtifactID>();
+
         public static ArtifactIDArtifactDic _currentArtifactDictionary =
             new ArtifactIDArtifactDic();
 
@@ -35,7 +39,13 @@ namespace PG.Data
 
         public static List<ArtifactID> _obtainableArtifactIDList = new List<ArtifactID>();
 
+
+
+
         #region//플레이 데이터 관련
+
+        public static DrawPatternPresetID _currentChargePattern = DrawPatternPresetID.Empty_Breath;
+
         //거리에따른 배율임 
         public static DataEntity _lengthMagnData = new DataEntity(DataEntity.Type.LengthMag, 1);
         public static DataEntity _chargeGaugeData = new DataEntity(DataEntity.Type.ChargeGauge, 8);
@@ -44,6 +54,10 @@ namespace PG.Data
         public static DataEntity _playerSize = new DataEntity(DataEntity.Type.PlayerSize, 1);
         public static DataEntity _projectileSpeed = new DataEntity(DataEntity.Type.ProjectileSpeed, 5);
         public static DataEntity _projectileTargetNum = new DataEntity(DataEntity.Type.ProjectileCount, 1);
+        public static DataEntity _randomPatternNodeCount = new DataEntity(DataEntity.Type.RandomPatternCount,3);
+        //패턴 쿨타임 관련
+        public static DataEntity _coolTimeTokenCount = new DataEntity(DataEntity.Type.MaxCooltimeToken, 3);
+
 
         public static List<float> _waveTimeList = new List<float>();
         public static List<WaveClass> _waveClassList = new List<WaveClass>();
@@ -71,20 +85,19 @@ namespace PG.Data
         public static void SetCampaginInitialize(CampaignData data) 
         {
             ResetData();
-            if (data._currentArtifactDictionary.Count !=0)
-                _currentArtifactDictionary.CopyFrom(data._currentArtifactDictionary);
+            _startArtifactList = data._startArtifactList.ToList();
             //Debug.Log(data._charactorAttackDic.GetType());
             _charactorAttackDic.CopyFrom(data._charactorAttackDic);
             _obtainableArtifactIDList = data._obtainableArtifactIDList.ToList();
+            _currentChargePattern = data._currentChargePattern;
 
             _lengthMagnData = new DataEntity(data._lengthMagnData);
-            //Debug.Log(data._lengthMagnData.FinalValue);
             _chargeGaugeData = new DataEntity(data._chargeGaugeData);
             _chargeEXPData = new DataEntity(data._chargeEXPData);
             _playerSize = new DataEntity(data._playerSize);
             _projectileSpeed = new DataEntity(data._projectileSpeed);
             _projectileTargetNum = new DataEntity(data._projectileTargetNum);
-
+            _randomPatternNodeCount = new DataEntity(data._randomPatternNodeCount);
             _waveTimeList = new List<float>(data._waveDic.Keys);
             //켐페인데이터에 웨이브 시간 순서를 꼭 오름차순으로 입력 안해도 되도록 정렬+이에맞게 class리스트 만듦
             _waveTimeList.Sort();

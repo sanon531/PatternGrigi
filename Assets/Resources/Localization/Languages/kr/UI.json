@@ -1,0 +1,19 @@
+{
+  "Items": [
+    {
+      "key":"Main_GameTitle",
+      "value":"패턴 그리기"
+    },
+    {
+      "key":"Main_GameStart",
+      "value":"게임 시작"
+    }
+
+    ,{
+      "key":"Battle_PatternDelay",
+      "value":"패턴 생성 대기중"
+    }
+
+
+  ]
+}

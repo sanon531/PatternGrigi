@@ -1,6 +1,10 @@
 {
   "Items": [
     {
+      "key":"Thunder_Manimekhala",
+      "value":"차지 성공시 \n 모든 적에게 100 데미지 ."
+    },
+    {
       "key":"FragileRush",
       "value":"공격력 <sprite name=Increase> \n  방어력 <sprite name=Decrease>."
     },

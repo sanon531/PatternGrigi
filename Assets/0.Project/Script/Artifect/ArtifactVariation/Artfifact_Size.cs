@@ -14,6 +14,7 @@ namespace PG
 
         public override void OnGetArtifact()
         {
+            base.OnGetArtifact();
             Enable();
         }
 
@@ -59,6 +60,7 @@ namespace PG
 
         public override void OnGetArtifact()
         {
+            base.OnGetArtifact();
             Enable();
         }
 

@@ -1,0 +1,19 @@
+{
+  "Items": [
+    {
+      "key":"Main_GameTitle",
+      "value":"Draw Pattern"
+    },
+    {
+      "key":"Main_GameStart",
+      "value":"Game Start"
+    }
+
+    ,{
+      "key":"Battle_PatternDelay",
+      "value":"Waiting for Pattern Delay"
+    }
+
+
+  ]
+}

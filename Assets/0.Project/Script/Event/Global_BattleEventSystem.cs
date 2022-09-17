@@ -21,7 +21,7 @@ namespace PG.Event
     public delegate void OnEventWithString(string 수치값);
     public delegate void OnEventWithIntWithTarget(Data_Character 대상자, int 수치값);
     public delegate void OnEventWithFloatWithTarget(Data_Character 대상자, float 수치값);
-    public delegate void OnEventWithPattern(DrawPatternPreset 수치값);
+    public delegate void OnEventWithPattern(DrawPatternPresetID 수치값);
 
 
     public static class Global_BattleEventSystem
@@ -63,18 +63,19 @@ namespace PG.Event
 
 
         //레벨업 할 경우 콜함 
+        static bool _callLevelUP = false;
         public static event OnEvent _onLevelUpShow;
         public static event OnEvent _onLevelUpHide;
         public static void CallOnLevelUp()
         {
-            if (!_isNonTotalPaused)
-                CallNonTotalPause();
+            _callLevelUP = true;
+            CallTotalPauseNoMatterWhat();
             _onLevelUpShow?.Invoke();
         }
         public static void CallOffLevelUp()
         {
-            if (_isNonTotalPaused)
-                CallNonTotalPause();
+            _callLevelUP = false;
+            CallOffTotalPauseNoMatterWhat();
             _onLevelUpHide?.Invoke();
         }
 
@@ -90,26 +91,6 @@ namespace PG.Event
 
 
         #region//일시정지
-        public static bool _isNonTotalPaused = false;
-        public static void CallNonTotalPause()
-        {
-            if (_isNonTotalPaused)
-            {
-                _isNonTotalPaused = false;
-                CallOffNonTotalPause();
-            }
-            else
-            {
-                _isNonTotalPaused = true;
-                CallOnNontotalPause();
-            }
-
-
-        }
-        public static event OnEvent _onNonTotalPause;
-        private static void CallOnNontotalPause() { _onNonTotalPause?.Invoke(); }
-        public static event OnEvent _offNonTotalPause;
-        private static void CallOffNonTotalPause() { _offNonTotalPause?.Invoke(); }
 
         public static bool _isCutScenePaused = false;
         public static void CallCutScenePause()
@@ -121,7 +102,7 @@ namespace PG.Event
             }
             else
             {
-                _isNonTotalPaused = true;
+                _isCutScenePaused = true;
                 CallOnCutScenePause();
             }
 
@@ -132,8 +113,12 @@ namespace PG.Event
         public static event OnEvent _offCutScenePause;
         private static void CallOffCutScenePause() { _offCutScenePause?.Invoke(); }
         public static bool _isTotalPaused = false;
-        public static void CallTotalPause()
+        public static void CallTotalPauseSwitch()
         {
+            //레벨업,아이템 선택 중에는 작동 안하도록 만들기. 임시로 해둠
+            if (_callLevelUP)
+                return;
+
             if (_isTotalPaused)
             {
                 _isTotalPaused = false;
@@ -145,13 +130,27 @@ namespace PG.Event
                 CallOnTotalPause();
             }
         }
+        public static void CallTotalPauseNoMatterWhat() 
+        {
+            _isTotalPaused = true;
+            CallOnTotalPause();
+        }
+        public static void CallOffTotalPauseNoMatterWhat()
+        {
+            _isTotalPaused = false;
+            CallOffTotalPause();
+        }
+
+
         public static event OnEvent _onTotalPause;
         private static void CallOnTotalPause() { _onTotalPause?.Invoke(); }
         public static event OnEvent _offTotalPause;
         private static void CallOffTotalPause() { _offTotalPause?.Invoke(); }
         #endregion
 
-        #region//차지 관련
+        #region//차지 및 패턴 관련
+        
+
         public static event OnEvent _onChargeStart;
         public static void CallOnChargeStart() { _onChargeStart?.Invoke(); }
 
@@ -160,7 +159,7 @@ namespace PG.Event
 
         //패턴 성공시
         public static event OnEventWithPattern _onPatternSuccessed;
-        public static void CallOnPatternSuccessed(DrawPatternPreset patternPreset) { _onPatternSuccessed?.Invoke(patternPreset); }
+        public static void CallOnPatternSuccessed(DrawPatternPresetID patternPreset) { _onPatternSuccessed?.Invoke(patternPreset); }
 
 
         #endregion
@@ -171,6 +170,7 @@ namespace PG.Event
 
         public static event OnEvent _onGameOver;
         public static void CallOnGameOver() { _onGameOver?.Invoke(); }
+
 
 
 

@@ -38,9 +38,13 @@ public class TimeWaveDic : SerializableDictionary<float, WaveClass> { }
 public class MobIDSpawnDataDic : SerializableDictionary<CharacterID, MobSpawnData> { }
 [Serializable]
 public class ArtifactStringaDic : SerializableDictionary<ArtifactID, string> { }
+[Serializable]
+public class LaserIDObjectDic : SerializableDictionary<LaserKindID, GameObject> { }
+[Serializable]
+public class LaserIDObjectListDic : SerializableDictionary<LaserKindID, List<GameObject>> { }
 
 
-
+[Serializable]
 public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact> 
 {
     public override void CopyFrom(IDictionary<ArtifactID, Artifact> dict)

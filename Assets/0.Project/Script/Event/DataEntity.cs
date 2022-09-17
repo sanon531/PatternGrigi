@@ -51,9 +51,8 @@ namespace PG
                            //피해나 회복에따른 이벤트를 발생시키지 않는다.
             방어도직접대입 = 5,   //방어도 획득이나 소모가아님.
                            //대표적으로 턴 시작시 방어도 초기화될때 사용.
-
-            시작쿨타임 =6,
-            발언쿨타임 =7,
+            MaxCooltimeToken=6,
+            RandomPatternCount= 7,
 
             경험치 = 10,
 
@@ -67,7 +66,6 @@ namespace PG
             ProjectileSpeed = 64,
             LengthMag = 65, // 이동한 거리에따른 배율
             PlayerSize = 66, // 플레이어 사이즈 
-
         }
         public enum Property
         {

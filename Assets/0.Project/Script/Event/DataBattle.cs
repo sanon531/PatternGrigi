@@ -2,15 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-namespace PG.Event
-{
-    public interface ISetNontotalPause
-    {
-        void SetNonTotalPauseOn();
-        void SetNonTotalPauseOff();
-    }
-
-}
 
 namespace PG.Data
 {
@@ -21,31 +12,47 @@ namespace PG.Data
     //패턴과 관련한 정보들이 저장되어있는 구간.
     public static class GlobalDataStorage
     {
-        public static Dictionary<DrawPatternPreset, List<int>> PatternPresetDic =
-            new Dictionary<DrawPatternPreset, List<int>>()
+        public static Dictionary<DrawPatternPresetID, List<int>> PatternPresetDic =
+            new Dictionary<DrawPatternPresetID, List<int>>()
             {
-                {DrawPatternPreset.Default_Thunder,new List<int>(){1,3,4,6,7,5} },
-                {DrawPatternPreset.LoveAndPeace,new List<int>(){4,2,5,7,3,0,4} },
-                {DrawPatternPreset.Sandglass,new List<int>(){2,0,8,6,2} },
-
-
-                {DrawPatternPreset.Empty_Breath,new List<int>(){4}},
-
+                {DrawPatternPresetID.Thunder_Manimekhala,new List<int>(){1,3,4,6,7,5} },
+                {DrawPatternPresetID.LoveAndPeace,new List<int>(){4,2,5,7,3,0,4} },
+                {DrawPatternPresetID.Sandglass,new List<int>(){2,0,8,6,2} },
+                {DrawPatternPresetID.Empty_Breath,new List<int>(){4}},
             };
-        public static Dictionary<DrawPatternPreset, PresetPatternAction_Base> PatternWIthActionDic =
-            new Dictionary<DrawPatternPreset, PresetPatternAction_Base>()
+        public static Dictionary<DrawPatternPresetID, PresetPatternAction_Base> PatternWIthActionDic =
+            new Dictionary<DrawPatternPresetID, PresetPatternAction_Base>()
             {
-                {DrawPatternPreset.Default_Thunder,new PresetPattern_DefaultThunder()},
-                {DrawPatternPreset.LoveAndPeace,new PresetPattern_LoveAndPeace()},
-                {DrawPatternPreset.Sandglass,new PresetPattern_Sandglass() },
+                {DrawPatternPresetID.Thunder_Manimekhala,new PresetPattern_Thunder_Manimekhala()},
+                {DrawPatternPresetID.LoveAndPeace,new PresetPattern_LoveAndPeace()},
+                {DrawPatternPresetID.Sandglass,new PresetPattern_Sandglass() },
 
-                {DrawPatternPreset.Empty_Breath,new PresetPattern_EmptyBreath() }
+                {DrawPatternPresetID.Empty_Breath,new PresetPatternAction_Base() }
             };
 
         //아티팩트의 수치와 행동을 분리하여야 한다.그래야 나중에 텍스트 처리할때 편하다.
+        //그리고 이후에 테크 트리, 점진적인 레벨링 같은거 할때 다음과 같이 나올수가 있다면 좋을듯함.
+
         public static Dictionary<ArtifactID, ArtifactData> TotalArtifactTableDataDic =
             new Dictionary<ArtifactID, ArtifactData>()
             {
+                
+                #region//시작 유물.
+                {ArtifactID.Thunder_Manimekhala, new ArtifactData(
+                    ArtifactID.Thunder_Manimekhala,
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0)},
+                {ArtifactID.LoveAndPeace, new ArtifactData(
+                    ArtifactID.LoveAndPeace,
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0)},
+
+
+                #endregion
+
+
                 #region//임시라도 배정 완료
 
                 {ArtifactID.FragileRush, new ArtifactData(
@@ -102,6 +109,8 @@ namespace PG.Data
         public static Dictionary<ArtifactID, Artifact> TotalArtifactClassDic =
             new Dictionary<ArtifactID, Artifact>()
             {
+                {ArtifactID.Thunder_Manimekhala, new Artifact_Thunder_Manimekhala()},
+                {ArtifactID.LoveAndPeace, new Artifact_LoveAndPeace()},
                 {ArtifactID.FragileRush, new Arfifact_FragileRush()},
                 {ArtifactID.BubbleGun, new Arfifact_BubbleGun()},
                 {ArtifactID.Equatore, new Arfifact_Equatore()},
@@ -114,6 +123,15 @@ namespace PG.Data
 
             };
 
+        public static Dictionary<DrawPatternPresetID, LaserKindID> PatternWIthLaserDic =
+            new Dictionary<DrawPatternPresetID, LaserKindID>()
+            {
+                {DrawPatternPresetID.Thunder_Manimekhala,LaserKindID.Electric_lightening },
+                {DrawPatternPresetID.Empty_Breath,LaserKindID.Default_laser},
+                {DrawPatternPresetID.LoveAndPeace,LaserKindID.Love_Laser},
+                {DrawPatternPresetID.Sandglass,LaserKindID.Default_laser},
+
+            };
 
     }
 
@@ -162,6 +180,7 @@ namespace PG.Data
     {
         Default_laser= 0,
         Electric_lightening =1,
+        Love_Laser = 2,
 
     }
 

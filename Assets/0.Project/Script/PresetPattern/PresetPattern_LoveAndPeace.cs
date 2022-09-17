@@ -10,6 +10,8 @@ namespace PG
     {
         public override void StartPatternAction()
         {
+            base.StartPatternAction();
+
             Player_Script.Damage(-40f);
 
         }

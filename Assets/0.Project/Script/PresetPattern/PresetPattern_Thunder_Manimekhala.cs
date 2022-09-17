@@ -6,10 +6,12 @@ using PG.Event;
 
 namespace PG 
 {
-    public sealed class PresetPattern_DefaultThunder : PresetPatternAction_Base
+    public sealed class PresetPattern_Thunder_Manimekhala : PresetPatternAction_Base
     {
         public override void StartPatternAction()
         {
+            //베이스 패턴 꼭 넣어 주기.
+            base.StartPatternAction();
             var lists = MobGenerator.GetMobList();
             for (int i = lists.Count - 1; i >= 0; i--)
             {
@@ -18,14 +20,5 @@ namespace PG
         }
 
     }
-    public sealed class PresetPattern_EmptyBreath : PresetPatternAction_Base
-    {
-        public override void StartPatternAction()
-        {
-            Debug.Log("Start Game");
-        }
-
-    }
-
 
 }

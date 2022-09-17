@@ -9,7 +9,7 @@ using PG.Data;
 
 namespace PG.Battle 
 {
-    public class Player_Script : MonoSingleton<Player_Script>, IGetHealthSystem, ISetNontotalPause
+    public class Player_Script : MonoSingleton<Player_Script>, IGetHealthSystem
     {
         
 
@@ -24,6 +24,8 @@ namespace PG.Battle
         Image _healthBar;
         [SerializeField]
         ParticleSystem _damageFX;
+        [SerializeField]
+        Transform _UIShowPos;
         // Start is called before the first frame update
         protected override void CallOnAwake()
         {
@@ -31,15 +33,11 @@ namespace PG.Battle
             _healthSystem.SetHealth(startingHealthAmount);
             _healthSystem.OnDead += HealthSystem_OnDead;
             Health_Refresh();
-            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
             Global_BattleEventSystem._onPlayerSizeChanged += SetPlayerSizeByEvent;
             _isDead = false;
         }
         protected override void CallOnDestroy()
         {
-            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
             Global_BattleEventSystem._onPlayerSizeChanged -= SetPlayerSizeByEvent;
         }
         void Health_Refresh()
@@ -79,8 +77,7 @@ namespace PG.Battle
             _instance._damageFX.Play();
             //s_instance._healthBar.DoFadeHealth(s_instance._healthFadeTime);
             //DamageTextScript.Create(s_instance._thisSprite.transform.position, 0.5f, 0.3f, (int)_amount, Color.green);
-            DamageFXManager.ShowDamage(Player_Script.GetPlayerPosition(), 1f, Mathf.FloorToInt(_amount),
-                Color.green, _instance.transform, _instance.transform);
+            DamageFXManager.ShowDamage(_instance._UIShowPos.position, Mathf.FloorToInt(_amount).ToString(),Color.red);
 
 
             GlobalUIEventSystem.CallOnDamageUI();
@@ -105,7 +102,7 @@ namespace PG.Battle
 
         #endregion
 
-        public Player_Status _playerStatus = new Player_Status(Data.DrawPatternPreset.Default_Thunder);
+        public Player_Status _playerStatus = new Player_Status();
         #region //get
 
         //현재의 플레이어 스테이터스를 인식으로 받는다.
@@ -151,11 +148,9 @@ namespace PG.Battle
     {
         public DataEntity _damageData = new DataEntity(DataEntity.Type.Damage,10);
         public DataEntity _chargeData = new DataEntity(DataEntity.Type.ChargeGauge, 10);
-        public Data.DrawPatternPreset _currentChargePattern = Data.DrawPatternPreset.Default_Thunder;
 
-        public Player_Status(Data.DrawPatternPreset currentpattern) 
+        public Player_Status() 
         {
-            _currentChargePattern = currentpattern;
         }
 
     }

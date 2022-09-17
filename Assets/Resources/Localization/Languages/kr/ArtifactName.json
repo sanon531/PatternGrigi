@@ -1,6 +1,10 @@
 {
   "Items": [
     {
+      "key":"Thunder_Manimekhala",
+      "value":"마니메칼라의 가호."
+    },
+    {
       "key":"FragileRush",
       "value":"사상누각"
     },

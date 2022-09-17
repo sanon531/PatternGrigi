@@ -36,7 +36,7 @@ namespace PG.Battle
             SwitchEventCombat();
             _currentCampaignData = Resources.Load<CampaignData>("CampaignData/" + _currentCampaignName);
             Global_CampaignData.SetCampaginInitialize(_currentCampaignData);
-            Debug.Log(Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue);
+            //Debug.Log(Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue);
 
         }
 
@@ -57,7 +57,7 @@ namespace PG.Battle
         // 적의 스폰과 보스 스폰 은 그냥. 현재의 형태로 만들자.
         void Update()
         {
-            if (_isgameStarted && !_isNon_TotalPaused) 
+            if (_isgameStarted ) 
             {
                 _playTime += Time.deltaTime;
                 _timeShower.SetText(Mathf.Round(_playTime).ToString());
@@ -96,38 +96,24 @@ namespace PG.Battle
 
         #region//pauseset
         bool _isPauseSet = false;
-        bool _isNon_TotalPaused = false; 
         void SwitchEventPause() 
         {
             if (!_isPauseSet)
             {
                 Global_BattleEventSystem._onTotalPause += TotalPause;
                 Global_BattleEventSystem._offTotalPause += TotalUnpause;
-                Global_BattleEventSystem._onNonTotalPause += NonTotalPause;
-                Global_BattleEventSystem._offNonTotalPause += NonTotalUnpause;
-
                 _isPauseSet = true;
             }
             else 
             {
                 Global_BattleEventSystem._onTotalPause -= TotalPause;
                 Global_BattleEventSystem._offTotalPause -= TotalUnpause;
-                Global_BattleEventSystem._onNonTotalPause -= NonTotalPause;
-                Global_BattleEventSystem._offNonTotalPause -= NonTotalUnpause;
                 _isPauseSet = false;
             }
         }
 
 
 
-        void NonTotalPause() 
-        {
-            _isNon_TotalPaused = true;
-        }
-        void NonTotalUnpause()
-        {
-            _isNon_TotalPaused = false;
-        }
 
         void TotalPause() 
         {

@@ -10,6 +10,7 @@ namespace PG
     {
         public override void StartPatternAction()
         {
+            base.StartPatternAction();
             var lists = MobGenerator.GetMobList();
             for (int i = lists.Count - 1; i >= 0; i--)
             {

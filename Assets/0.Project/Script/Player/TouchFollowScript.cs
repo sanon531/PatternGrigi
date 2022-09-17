@@ -5,7 +5,7 @@ using PG.Event;
 
 namespace PG.Battle
 {
-    public class TouchFollowScript : MonoBehaviour, ISetNontotalPause
+    public class TouchFollowScript : MonoBehaviour
     {
 
         [SerializeField]
@@ -17,25 +17,26 @@ namespace PG.Battle
         float _moveSpeed = 10f;
 
         // Start is called before the first frame update
-
-
         [SerializeField]
         Transform _moveLU, _moveRD, _touchLU;
-
         Vector2 _moveLUvec, _moveRDvec, _touchLUvec;
+
+        [SerializeField]
+        bool _isCamOrthoGraph = false;
+
+        [SerializeField]
+        Camera mainCam;
+
         void Awake()
         {
             _thisRB = GetComponent<Rigidbody2D>();
             _moveLUvec = _moveLU.position;
             _moveRDvec = _moveRD.position;
             _touchLUvec = _touchLU.position;
-            Global_BattleEventSystem._onNonTotalPause += SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause += SetNonTotalPauseOff;
+            _isCamOrthoGraph  = mainCam.orthographic;
         }
         private void OnDestroy()
         {
-            Global_BattleEventSystem._onNonTotalPause -= SetNonTotalPauseOn;
-            Global_BattleEventSystem._offNonTotalPause -= SetNonTotalPauseOff;
         }
 
 
@@ -46,14 +47,11 @@ namespace PG.Battle
         void Update()
         {
             LineTracer._instance.SetDrawLineStart(transform.position);
-
-
             //클릭 담당 부분.
             if (Input.GetMouseButtonDown(0)) 
                 _isClicked = true;
             else if(Input.GetMouseButtonUp(0))
                 _isClicked = false;
-
 
             if (_isClicked)
                 CallClickProcess();
@@ -66,8 +64,20 @@ namespace PG.Battle
             if (Input.touchCount > 0)
             {
                 Touch _touch = Input.GetTouch(0);
-                _touchPosition = Camera.main.ScreenToWorldPoint(_touch.position);
-                SetPlayerPos(_touchPosition);
+                if (_isCamOrthoGraph)
+                {
+                    _touchPosition = mainCam.ScreenToWorldPoint(_touch.position);
+                    SetPlayerPos(_touchPosition);
+                }
+                else 
+                {
+                    Ray ray = mainCam.ScreenPointToRay(_touch.position); 
+                    if(Physics.Raycast(ray,out RaycastHit rayhit))
+                        _touchPosition = rayhit.point;
+
+                    SetPlayerPos(_touchPosition);
+                }
+
 
                 //ShowDebugtextScript.SetDebug(_touchPosition + " -> " + transform.position);
                 //ShowDebugtextScript.SetDebug2(_touchLUvec +","+ _moveRDvec + " , " + PositionCheck(_touchPosition));
@@ -88,9 +98,19 @@ namespace PG.Battle
 
         void CallClickProcess() 
         {
-            _touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            SetPlayerPos(_touchPosition);
+            if (_isCamOrthoGraph)
+            {
+                _touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                SetPlayerPos(_touchPosition);
+            }
+            else
+            {
+                Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit rayhit))
+                    _touchPosition = rayhit.point;
 
+                SetPlayerPos(_touchPosition);
+            }
 
         }
 
@@ -158,8 +178,6 @@ namespace PG.Battle
         }
 
 
-        public void SetNonTotalPauseOn() { _isLevelUpPaused = true; }
-        public void SetNonTotalPauseOff() { _isLevelUpPaused = false; }
 
 
     }
