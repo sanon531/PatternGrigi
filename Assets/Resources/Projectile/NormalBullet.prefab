@@ -28664,10 +28664,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4353725644589938612}
-  - component: {fileID: 4993172790501625161}
   - component: {fileID: 6817514856662169467}
   - component: {fileID: 5623361393577949031}
   - component: {fileID: 1634703765405443898}
+  - component: {fileID: 7195818512336800059}
   m_Layer: 0
   m_Name: NormalBullet
   m_TagString: Untagged
@@ -28691,28 +28691,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4993172790501625161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7694395298027797552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c247eb387f963d4fbb6a0bf17e469e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isPlaced: 0
-  _id: 0
-  _initialSpeed: 1
-  _direction: {x: 0, y: 0, z: 0}
-  _collider2D: {fileID: 5623361393577949031}
-  _rigidBody2D: {fileID: 1634703765405443898}
-  _projectileImage: {fileID: 6817514856662169467}
-  _ongoingFX: {fileID: 1370612967866819186}
-  _ongoingTrail: {fileID: 1370612967888124750}
-  _hitFX: {fileID: 167268430173530026}
 --- !u!212 &6817514856662169467
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28801,3 +28779,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7195818512336800059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7694395298027797552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8116f657e698484a99b180205673baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isPlaced: 0
+  _id: 0
+  _collider2D: {fileID: 5623361393577949031}
+  _rigidBody2D: {fileID: 1634703765405443898}
+  _projectileImage: {fileID: 6817514856662169467}
+  _ongoingFX: {fileID: 1370612967866819186}
+  _ongoingTrail: {fileID: 1370612967888124750}
+  _hitFX: {fileID: 167268430173530026}
+  _targetMob: {fileID: 0}
+  _initialSpeed: 1

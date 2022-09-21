@@ -190,18 +190,12 @@ namespace PG.Battle
         {
             _targetSprite.enabled = val;
         }
+        public Vector3 GetMobPosition() 
+        {
+            return transform.position;
+        }
 
         #region//paused
-
-        void SetOnNonTotalPaused()
-        {
-            _isNontotalPaused = true;
-        }
-        void SetOffNonTotalPaused()
-        {
-            _isNontotalPaused = false;
-
-        }
 
 
         #endregion

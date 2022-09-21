@@ -11,16 +11,11 @@ namespace PG.Battle
     public class Projectile_Script : PoolableObject
     {
         [SerializeField]
-        public ProjectileID _id = ProjectileID.NormalBullet;  
+        public ProjectileID _id = ProjectileID.NormalBullet;
 
-        [SerializeField]
-        protected float _initialSpeed = 1;
-        protected float _acceleration = 0 ;
         protected float _damage = 10f;
         protected float _lifeTime = 10f;
         protected Vector3 _movement;
-        [SerializeField]
-        protected Vector3 _direction;
         [SerializeField]
         protected Collider2D _collider2D;
         [SerializeField]
@@ -33,51 +28,28 @@ namespace PG.Battle
         TrailRenderer _ongoingTrail;
         [SerializeField]
         ParticleSystem _hitFX;
-
+        [SerializeField]
+        protected MobScript _targetMob;
 
 
         //°üÅë È½¼ö.
         protected int _pierceCount = 0;
         protected List<GameObject> _piercedList = new List<GameObject>();
-        public virtual void SetInitialProjectileData(Vector3 direction, float damage, float speed, float lifetime) 
+
+
+        public virtual void SetInitialProjectileData(MobScript _target, float damage, float lifetime) 
         {
             OnObjectEnabled();
             transform.position = Player_Script.GetPlayerPosition();
-            _direction = direction;
+            _targetMob = _target;
             _damage = damage;
-            _initialSpeed = speed;
             _lifeTime = lifetime;
 
         }
 
 
 
-        protected virtual void FixedUpdate()
-        {
-            if (_isPlaced) 
-            {
-                Movement();
-            }
 
-        }
-
-        public void Movement() 
-        {
-            if (_lifeTime > 0)
-            {
-                _lifeTime -= Time.deltaTime;
-                _movement = (_initialSpeed / 10) * Time.deltaTime * _direction;
-                if (_rigidBody2D != null)
-                {
-                    _rigidBody2D.MovePosition(this.transform.position + _movement);
-                }
-                _initialSpeed += _acceleration * Time.deltaTime;
-            }
-            else 
-            { 
-                OnObjectDisabled(); 
-            }
-        }
 
         protected override void OnObjectEnabled()
         {

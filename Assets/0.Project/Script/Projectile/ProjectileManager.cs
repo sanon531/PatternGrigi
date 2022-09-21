@@ -58,7 +58,8 @@ namespace PG.Battle
 
         //자동으로 
         List<int> _targetList = new List<int>();
-        List<Vector3> _targetTransforms = new List<Vector3>();
+        //지정된 몹 리스트.
+        List<MobScript> _targetedMobList = new List<MobScript>();
         //플레이어는 현재 공격할수있는 적에게 데미지를
         void SetProjectileToEnemy(float val) 
         {
@@ -69,12 +70,11 @@ namespace PG.Battle
             
             for (int i = _targetList.Count -1; i>=0;i-- ) 
             {
-                float _dividedDamage = val / _targetList.Count;
                 GameObject _obj = ShootProjectile();
                 Projectile_Script _tempt = _obj.GetComponent<Projectile_Script>();
-                Vector3 _direction = _targetTransforms[i] - Player_Script.GetPlayerPosition();
-                _direction = _direction.normalized;
-                _tempt.SetInitialProjectileData(_direction, _dividedDamage, Global_CampaignData._projectileSpeed.FinalValue, 10);
+                //Vector3 _direction = _targetTransforms[i] - Player_Script.GetPlayerPosition();
+                //_direction = _direction.normalized;
+                _tempt.SetInitialProjectileData(_targetedMobList[i], val, 10);
             }
 
         }
@@ -89,7 +89,7 @@ namespace PG.Battle
             }
             int maxTargetNum = 0;
             _targetList.Clear();
-            _targetTransforms.Clear();
+            _targetedMobList.Clear();
             //지금은 적의 스폰 순서 대로 대충 정하긴하지만. 
             //나중에는 몹제네레이터에서 몹들의 위치를 정해줌.
             for (int i = 0; i < _temptenemyList.Count; i++)
@@ -103,7 +103,7 @@ namespace PG.Battle
             // 타겟 되었다는거 표시하기 + 위치 표시 관련
             for (int i = 0; i < _temptenemyList.Count; i++) 
             {
-                _targetTransforms.Add(_temptenemyList[i].transform.position);
+                _targetedMobList.Add(_temptenemyList[i]);
 
                 if (_targetList.Contains(i))
                 {
