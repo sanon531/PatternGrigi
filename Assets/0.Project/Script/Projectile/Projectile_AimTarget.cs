@@ -6,10 +6,15 @@ namespace PG.Battle
 {
     public class Projectile_AimTarget : Projectile_Script
     {
+
+        [SerializeField]
+        TrailRenderer _ongoingTrail;
+
         [SerializeField]
         private float _initialSpeed = 1;
         private float _acceleration = 0;
         private Vector3 _direction = new Vector3();
+
         protected float InitialSpeed { get => _initialSpeed; set => _initialSpeed = value; }
         protected float Acceleration { get => _acceleration; set => _acceleration = value; }
 
@@ -20,22 +25,17 @@ namespace PG.Battle
         }
 
         // Update is called once per frame
-        void Update()
+        public override bool SetInitialProjectileData(MobScript target, float damage, float lifetime)
         {
-            if (_lifeTime <= 0)
-                OnObjectDisabled();
-        }
-        public override void SetInitialProjectileData(MobScript _target, float damage, float lifetime)
-        {
-            if (_target == null)
-                return;
+            if (!base.SetInitialProjectileData(target, damage, lifetime))
+                return false;
 
-            base.SetInitialProjectileData(_target, damage, lifetime);
-
-            _direction = _target.GetMobPosition() - Player_Script.GetPlayerPosition();
+            OnObjectEnabled();
+            _direction = target.GetMobPosition() - Player_Script.GetPlayerPosition();
             _direction = _direction.normalized;
             InitialSpeed = Data.Global_CampaignData._projectileSpeed.FinalValue;
             Movement();
+            return true;
         }
         void Movement()
         {
@@ -46,6 +46,19 @@ namespace PG.Battle
                 _rigidBody2D.velocity = _movement;
             }
             //InitialSpeed += Acceleration * Time.deltaTime;
+        }
+        protected override void OnObjectEnabled()
+        {
+            base.OnObjectEnabled();
+            _projectileImage.enabled = true;
+            _ongoingTrail.enabled = true;
+            _ongoingFX.Play();
+
+        }
+        protected override void OnObjectDisabled()
+        {
+            _projectileImage.enabled = false;
+            base.OnObjectDisabled();
         }
 
 

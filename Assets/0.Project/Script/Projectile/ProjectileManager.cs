@@ -11,14 +11,20 @@ namespace PG.Battle
     public class ProjectileManager : MonoSingleton<ProjectileManager>
     {
         //나중에 풀링하기 위해서 만듬 지금은 풀할 필요없다.
-        Dictionary<ProjectileID, GameObject> _projectileDictionary= new Dictionary<ProjectileID, GameObject>();
-        Dictionary<ProjectileID, List<GameObject>> _activateProjectileDictionary = new Dictionary<ProjectileID, List<GameObject>>() 
+        [SerializeField]
+        ProjectileIDObjectDic _projectileDictionary = new ProjectileIDObjectDic();
+        [SerializeField]
+        ProjectileIDObjectListDic _activateProjectileDictionary = new ProjectileIDObjectListDic() 
         {
-            {ProjectileID.NormalBullet ,new List<GameObject>(){ } }
+            {ProjectileID.NormalBullet ,new List<GameObject>(){ } },
+            {ProjectileID.LightningShot ,new List<GameObject>(){ } }
+
         };
-        Dictionary<ProjectileID, List<GameObject>> _deactivateProjectileDictionary = new Dictionary<ProjectileID, List<GameObject>>() 
+        [SerializeField]
+        ProjectileIDObjectListDic _deactivateProjectileDictionary = new ProjectileIDObjectListDic() 
         {
-            {ProjectileID.NormalBullet ,new List<GameObject>(){ } }
+            {ProjectileID.NormalBullet ,new List<GameObject>(){ } },
+            {ProjectileID.LightningShot ,new List<GameObject>(){ } }
         };
 
         [SerializeField]
@@ -38,14 +44,20 @@ namespace PG.Battle
         }
 
         // 리소스에서 로드하여 두가지 딕셔너리에 저장한다.
+        int _totalprojectileNum = 0;
         void InitiallzeProjectileDic() 
         {
             //먼저 몹 스폰 매니져에게서 적들의 데이터에 관한 값을 가져오게 됨.
             //적들의 데이터에 관한 것이면 적들의
+            GameObject _tempt;
+
             _projectileDictionary.Add(_currentProjectile, Resources.Load<GameObject>("Projectile/" + _currentProjectile));
-            for (int i = 0; i < 30; i++) 
+            for (int i = 0; i < 1; i++) 
             {
-                _deactivateProjectileDictionary[_currentProjectile].Add(Instantiate(_projectileDictionary[_currentProjectile], transform));
+                _tempt = Instantiate(_projectileDictionary[_currentProjectile], transform);
+                _tempt.name = _currentProjectile.ToString() + i.ToString();
+                _totalprojectileNum++;
+                _deactivateProjectileDictionary[_currentProjectile].Add(_tempt);
             }
         }
 
@@ -60,6 +72,14 @@ namespace PG.Battle
         List<int> _targetList = new List<int>();
         //지정된 몹 리스트.
         List<MobScript> _targetedMobList = new List<MobScript>();
+        [SerializeField]
+        ProjectileIDFloatDic _projectileLifeTimeDic = new ProjectileIDFloatDic()
+        {
+            { ProjectileID.NormalBullet,10f},
+            { ProjectileID.LightningShot,0.5f},
+
+        };
+
         //플레이어는 현재 공격할수있는 적에게 데미지를
         void SetProjectileToEnemy(float val) 
         {
@@ -67,14 +87,14 @@ namespace PG.Battle
             //Debug.Log(_dividedDamage);
 
             //지금은 그냥 instantiate를 하지만 나중에는 오브젝트 풀링이 가능하도록 만들것..
-            
+
             for (int i = _targetList.Count -1; i>=0;i-- ) 
             {
                 GameObject _obj = ShootProjectile();
                 Projectile_Script _tempt = _obj.GetComponent<Projectile_Script>();
                 //Vector3 _direction = _targetTransforms[i] - Player_Script.GetPlayerPosition();
                 //_direction = _direction.normalized;
-                _tempt.SetInitialProjectileData(_targetedMobList[i], val, 10);
+                _tempt.SetInitialProjectileData(_targetedMobList[i], val, _projectileLifeTimeDic[_currentProjectile]);
             }
 
         }
@@ -120,23 +140,39 @@ namespace PG.Battle
         //투사체를 쏜다면 앧티베이션에다가 놓고
         GameObject ShootProjectile() 
         {
-            if (_deactivateProjectileDictionary[_currentProjectile].Count == 0) 
+            GameObject _tempt;
+            if (_deactivateProjectileDictionary[_currentProjectile].Count <= 0)
             {
-                _deactivateProjectileDictionary[_currentProjectile].Add(Instantiate(_projectileDictionary[_currentProjectile], transform));
+                _tempt = Instantiate(_projectileDictionary[_currentProjectile], transform);
+                Debug.Log("build new " + _deactivateProjectileDictionary[_currentProjectile].Count.ToString());
             }
-            GameObject _tempt = _deactivateProjectileDictionary[_currentProjectile][0];
-            _deactivateProjectileDictionary[_currentProjectile].Remove(_tempt);
+            else 
+            {
+                _tempt = _deactivateProjectileDictionary[_currentProjectile][0];
+                _deactivateProjectileDictionary[_currentProjectile].Remove(_tempt);
+            }
             _activateProjectileDictionary[_currentProjectile].Add(_tempt);
             return _tempt;
         }
         public static void SetBackProjectile(GameObject projectile, ProjectileID id) 
         {
-            if (_instance._activateProjectileDictionary[id].Contains(projectile)) 
+            if (_instance._activateProjectileDictionary[id].Contains(projectile))
             {
                 _instance._activateProjectileDictionary[id].Remove(projectile);
-                _instance._deactivateProjectileDictionary[id].Add(projectile);
-                projectile.transform.position = _instance.transform.position;
+                //Debug.Log(" removed smoothly" + projectile.name);
             }
+            else 
+            {
+                string _aaa = " ss";
+                foreach(var a in _instance._activateProjectileDictionary[id])
+                {
+                    _aaa += a.ToString();
+                    _aaa += "\n";
+                }
+                Debug.Log(_aaa + " but no data" + projectile.name);
+            }
+            _instance._deactivateProjectileDictionary[id].Add(projectile);
+            projectile.transform.position = _instance.transform.position;
         }
 
 

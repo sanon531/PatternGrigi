@@ -68,7 +68,10 @@ namespace PG.Data
     public enum ProjectileID 
     {
         NormalBullet = 0,
-    
+        LightningShot = 1,
+        StraightKnife = 2,
+        SatiliteOrbit = 3,
+
     }
     public enum NodePlaceType
     {

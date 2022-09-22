@@ -11,9 +11,10 @@ namespace PG.Battle
     public class Projectile_Script : PoolableObject
     {
         [SerializeField]
-        public ProjectileID _id = ProjectileID.NormalBullet;
+        protected ProjectileID _id = ProjectileID.NormalBullet;
 
         protected float _damage = 10f;
+        [SerializeField]
         protected float _lifeTime = 10f;
         protected Vector3 _movement;
         [SerializeField]
@@ -23,11 +24,9 @@ namespace PG.Battle
         [SerializeField]
         protected SpriteRenderer _projectileImage;
         [SerializeField]
-        ParticleSystem _ongoingFX;
+        protected ParticleSystem _ongoingFX;
         [SerializeField]
-        TrailRenderer _ongoingTrail;
-        [SerializeField]
-        ParticleSystem _hitFX;
+        protected ParticleSystem _hitFX;
         [SerializeField]
         protected MobScript _targetMob;
 
@@ -37,34 +36,41 @@ namespace PG.Battle
         protected List<GameObject> _piercedList = new List<GameObject>();
 
 
-        public virtual void SetInitialProjectileData(MobScript _target, float damage, float lifetime) 
+        public virtual bool SetInitialProjectileData(MobScript _target, float damage, float lifetime)
         {
-            OnObjectEnabled();
+            if (_target == null)
+                return false;
+
             transform.position = Player_Script.GetPlayerPosition();
             _targetMob = _target;
             _damage = damage;
             _lifeTime = lifetime;
-
+            return true;
         }
 
-
+        protected void LateUpdate()
+        {
+            if (_isPlaced)
+            {
+                if (_lifeTime <= 0)
+                    OnObjectDisabled();
+                else
+                    _lifeTime -= Time.deltaTime;
+            }
+        }
 
 
 
         protected override void OnObjectEnabled()
         {
             base.OnObjectEnabled();
-            _projectileImage.enabled = true;
-            _ongoingTrail.enabled = true;
-            _ongoingFX.Play();
         }
 
         protected override void OnObjectDisabled()
         {
             base.OnObjectDisabled();
-            _projectileImage.enabled = false;
-            _ongoingTrail.enabled = false;
             _ongoingFX.Stop();
+            _hitFX.Stop();
             ProjectileManager.SetBackProjectile(gameObject,_id);
         }
 

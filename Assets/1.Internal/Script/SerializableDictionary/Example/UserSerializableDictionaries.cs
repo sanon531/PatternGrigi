@@ -43,6 +43,15 @@ public class LaserIDObjectDic : SerializableDictionary<LaserKindID, GameObject> 
 [Serializable]
 public class LaserIDObjectListDic : SerializableDictionary<LaserKindID, List<GameObject>> { }
 
+[Serializable]
+public class ProjectileIDObjectDic : SerializableDictionary<ProjectileID, GameObject> { }
+
+[Serializable]
+public class ProjectileIDObjectListDic : SerializableDictionary<ProjectileID, List<GameObject>> { }
+
+[Serializable]
+public class ProjectileIDFloatDic : SerializableDictionary<ProjectileID, float> { }
+
 
 [Serializable]
 public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact> 

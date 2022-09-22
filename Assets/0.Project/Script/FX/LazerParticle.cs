@@ -9,7 +9,6 @@ namespace PG.Battle
         public Vector3 _StartPos;
         public Vector3 _EndPos;
 
-
         void Start()
         {
             laserPS = GetComponent<ParticleSystem>();
@@ -21,9 +20,15 @@ namespace PG.Battle
             transform.position = _StartPos;
         }
 
+        bool _active = true;
+        public void SetActiveLazer(bool var) 
+        {
+            _active = var;
+        }
+
         void Update()
         {
-            if (laserPS != null && UpdateSaver == false)
+            if (_active && laserPS != null && UpdateSaver == false)
             {
                 laserMat.SetVector("_StartPoint", _StartPos);
 
