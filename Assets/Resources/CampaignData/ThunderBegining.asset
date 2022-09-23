@@ -61,6 +61,10 @@ MonoBehaviour:
         - "_\uC2A4\uD3F0\uC218": 5
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0.2
           "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 2
+          "_\uC18D\uB3C4": 5
+          "_\uCCB4\uB825": 5
+          "_\uACF5\uACA9\uB825": 0
+          "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
       "_\uC2A4\uD3F0\uD0C0\uC785": 0
     - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 3
       "_\uC801\uBC30\uCE58":
@@ -69,9 +73,17 @@ MonoBehaviour:
         - "_\uC2A4\uD3F0\uC218": 5
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
           "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 2
+          "_\uC18D\uB3C4": 0
+          "_\uCCB4\uB825": 0
+          "_\uACF5\uACA9\uB825": 0
+          "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
         - "_\uC2A4\uD3F0\uC218": 5
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
           "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 8
+          "_\uC18D\uB3C4": 0
+          "_\uCCB4\uB825": 0
+          "_\uACF5\uACA9\uB825": 0
+          "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
       "_\uC2A4\uD3F0\uD0C0\uC785": 0
     - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 10
       "_\uC801\uBC30\uCE58":
@@ -80,9 +92,17 @@ MonoBehaviour:
         - "_\uC2A4\uD3F0\uC218": 5
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
           "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 4
+          "_\uC18D\uB3C4": 0
+          "_\uCCB4\uB825": 0
+          "_\uACF5\uACA9\uB825": 0
+          "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
         - "_\uC2A4\uD3F0\uC218": 5
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
           "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 8
+          "_\uC18D\uB3C4": 0
+          "_\uCCB4\uB825": 0
+          "_\uACF5\uACA9\uB825": 0
+          "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
       "_\uC2A4\uD3F0\uD0C0\uC785": 0
     - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 10
       "_\uC801\uBC30\uCE58":
@@ -91,9 +111,17 @@ MonoBehaviour:
         - "_\uC2A4\uD3F0\uC218": 5
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
           "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 4
+          "_\uC18D\uB3C4": 0
+          "_\uCCB4\uB825": 0
+          "_\uACF5\uACA9\uB825": 0
+          "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
         - "_\uC2A4\uD3F0\uC218": 5
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
           "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 8
+          "_\uC18D\uB3C4": 0
+          "_\uCCB4\uB825": 0
+          "_\uACF5\uACA9\uB825": 0
+          "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
       "_\uC2A4\uD3F0\uD0C0\uC785": 0
   _currentChargePattern: 999
   _lengthMagnData:

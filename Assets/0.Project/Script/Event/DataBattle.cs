@@ -158,7 +158,7 @@ namespace PG.Data
         public float _lifeTime = 4;
         //발동전까지의 시간.
         public float _activeTime = 1;
-        public float _damageMag = 1;
+        //public float _damageMag = 1;
     }
 
 
@@ -198,7 +198,7 @@ namespace PG.Data
     public class MobActionData
     {
         public float _actionTime = 5;
-        public float _speed = 3;
+        //public float _speed = 3;
         public float _acceleration = 0;
 
         public List<Vector2> _placeList = new List<Vector2>();
@@ -208,9 +208,15 @@ namespace PG.Data
     [Serializable]
     public class MobSpawnData
     {
+        [Header("스폰")]
         public int _스폰수;
         public float _스폰대기시간;
         public float _리스폰딜레이;
+        [Header("설정")]
+        public float _속도;
+        public int _체력;
+        public float _공격력;
+        public Color _색깔;
     }
 
     //스폰하는 방식을 의미함
