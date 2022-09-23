@@ -42,7 +42,7 @@ namespace PG.Battle
             GameObject _temp = Instantiate(_instance._obstacleDic[data._thisID], _instance.transform);
             _temp.transform.position = pos;
             Obstacle _tempObstacle = _temp.GetComponent<Obstacle>();
-            _tempObstacle.SetSpawnData(data._lifeTime, data._activeTime, data._damageMag*damage);
+            _tempObstacle.SetSpawnData(data._lifeTime, data._activeTime, damage);
             _instance._activeObstacleList.Add(_tempObstacle);
 
         }

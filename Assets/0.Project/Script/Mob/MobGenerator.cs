@@ -72,13 +72,13 @@ namespace PG.Battle
         }
 
         //풀링으로 변경 예정
-        private void SpawnMob(CharacterID mobID)
+        private void SpawnMob(CharacterID mobID, MobSpawnData mobSpawnData)
         {
             Vector3 pos = new Vector3(UnityEngine.Random.Range(_SpawnRange_Left.position.x, _SpawnRange_Right.position.x),
                 _SpawnRange_Left.position.y, _SpawnRange_Left.position.z);
 
             MobScript temp = Instantiate(_mobDic[mobID], pos, _SpawnRange_Left.rotation).GetComponent<MobScript>();
-            //temp.SetInitializeMob(mobSpawnData._actionDic);
+            temp.SetInitializeMobSpawnData(mobSpawnData);
             _mobList.Add(temp);
             _aliveMobCount = _mobList.Count;
             _spawnMobCount++;
@@ -172,31 +172,33 @@ namespace PG.Battle
         {
             yield return new WaitForSeconds(mobSpawnData._스폰대기시간);
 
-            IEnumerator crtn = SpawnCoroutine(mobID, mobSpawnData._리스폰딜레이);
+            IEnumerator crtn = SpawnCoroutine(mobID, mobSpawnData);
             _spawnCrtnList.Add(crtn);
             StartCoroutine(crtn);
 
             //최소 마리수 맞출 때 쓸 fill코루틴도 만들어두기 
-            _fillSpawnCrtnList.Add(FillSpawnCoroutine(mobID, mobSpawnData._리스폰딜레이));
+            _fillSpawnCrtnList.Add(FillSpawnCoroutine(mobID, mobSpawnData));
         }
 
         
-        IEnumerator SpawnCoroutine(CharacterID mobID, float respawnDelay)
+        IEnumerator SpawnCoroutine(CharacterID mobID, MobSpawnData mobSpawnData)
         {
-            WaitForSeconds waitForSeconds = new WaitForSeconds(respawnDelay);
+            WaitForSeconds waitForSeconds = new WaitForSeconds(mobSpawnData._리스폰딜레이);
 
             while (true)
             {
-                SpawnMob(mobID);
+                SpawnMob(mobID, mobSpawnData);
                 yield return waitForSeconds;
             }
         }
 
-        IEnumerator FillSpawnCoroutine(CharacterID mobID, float respawnDelay)
+        IEnumerator FillSpawnCoroutine(CharacterID mobID, MobSpawnData mobSpawnData)
         {
+            float respawnDelay = mobSpawnData._리스폰딜레이;
+
             while (true)
             {
-                SpawnMob(mobID);
+                SpawnMob(mobID, mobSpawnData);
                 //속도 계속 바꿔줄거라 new로
                 yield return new WaitForSeconds(respawnDelay/_fillSpeed);
             }

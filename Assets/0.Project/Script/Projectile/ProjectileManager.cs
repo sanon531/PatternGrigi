@@ -52,7 +52,7 @@ namespace PG.Battle
             GameObject _tempt;
 
             _projectileDictionary.Add(_currentProjectile, Resources.Load<GameObject>("Projectile/" + _currentProjectile));
-            for (int i = 0; i < 1; i++) 
+            for (int i = 0; i < 10; i++) 
             {
                 _tempt = Instantiate(_projectileDictionary[_currentProjectile], transform);
                 _tempt.name = _currentProjectile.ToString() + i.ToString();
@@ -86,7 +86,6 @@ namespace PG.Battle
         void SetProjectileToEnemy(float val) 
         {
             TargetTheEnemy();
-            //Debug.Log(_dividedDamage);
 
             //지금은 그냥 instantiate를 하지만 나중에는 오브젝트 풀링이 가능하도록 만들것..
 
@@ -96,6 +95,8 @@ namespace PG.Battle
                 Projectile_Script _tempt = _obj.GetComponent<Projectile_Script>();
                 //Vector3 _direction = _targetTransforms[i] - Player_Script.GetPlayerPosition();
                 //_direction = _direction.normalized;
+                //적이 죽었을때 만약에 연속적으로 호출 할경우 시간 타이밍에 따른 에러가 생성된다 
+                Debug.Log(_projectileLifeTimeDic[_currentProjectile]);
                 _tempt.SetInitialProjectileData(_targetedMobList[i], val, _projectileLifeTimeDic[_currentProjectile]);
             }
 
@@ -146,7 +147,7 @@ namespace PG.Battle
             if (_deactivateProjectileDictionary[_currentProjectile].Count <= 0)
             {
                 _tempt = Instantiate(_projectileDictionary[_currentProjectile], transform);
-                //Debug.Log("build new " + _deactivateProjectileDictionary[_currentProjectile].Count.ToString());
+                Debug.Log("build new " + _deactivateProjectileDictionary[_currentProjectile].Count.ToString());
             }
             else 
             {
@@ -161,7 +162,12 @@ namespace PG.Battle
             if (_instance._activateProjectileDictionary[id].Contains(projectile))
             {
                 _instance._activateProjectileDictionary[id].Remove(projectile);
-                //Debug.Log(" removed smoothly" + projectile.name);
+                Debug.Log(" removed smoothly" + projectile.name);
+            }
+            else 
+            {
+                Debug.Log(" removed wierd");
+
             }
 
             _instance._deactivateProjectileDictionary[id].Add(projectile);

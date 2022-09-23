@@ -48,7 +48,7 @@ namespace PG.Battle
             return true;
         }
 
-        protected void LateUpdate()
+        protected virtual void LateUpdate()
         {
             if (_isPlaced)
             {

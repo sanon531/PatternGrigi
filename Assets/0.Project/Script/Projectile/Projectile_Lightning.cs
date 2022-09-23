@@ -21,6 +21,17 @@ namespace PG.Battle
             _thisRay.SetActiveLazer(false);
         }
 
+        protected override void LateUpdate()
+        {
+            if (_isPlaced)
+            {
+                if (_lifeTime <= 0)
+                    OnObjectDisabled();
+                else
+                    _lifeTime -= Time.deltaTime;
+            }
+        }
+
         // Update is called once per frame
         public override bool SetInitialProjectileData(MobScript target, float damage, float lifetime)
         {
@@ -44,13 +55,12 @@ namespace PG.Battle
 
         protected override void OnObjectDisabled()
         {
+            Debug.Log("What" + gameObject.name);
+
             _RayParticle.Stop();
-            _ongoingFX.Stop();
-            _hitFX.Stop();
             _thisRay.SetActiveLazer(false);
             base.OnObjectDisabled();
         }
-
 
 
     }
