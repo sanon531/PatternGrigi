@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace PG.Battle
 {
-    public class LazerParticle : Hovl_Laser2
+    public class LazerParticle : Hovl_Laser2 , Data.ILazerOnoff
     {
         [Header("Position")]
         public Vector3 _StartPos;
@@ -25,6 +25,12 @@ namespace PG.Battle
         {
             _active = var;
         }
+        public void SetLazerEachPos(Vector3 _start, Vector3 _end)
+        {
+            _StartPos = _start;
+            _EndPos = _end;
+        }
+
 
         void Update()
         {
@@ -67,5 +73,6 @@ namespace PG.Battle
                 laserMat.SetFloat("_Dissolve", dissovleTimer * 5);
             }
         }
+
     }
 }

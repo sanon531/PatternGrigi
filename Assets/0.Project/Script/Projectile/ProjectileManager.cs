@@ -77,6 +77,8 @@ namespace PG.Battle
         {
             { ProjectileID.NormalBullet,10f},
             { ProjectileID.LightningShot,0.5f},
+            { ProjectileID.StraightKnife,10f},
+            { ProjectileID.SatiliteOrbit,5f},
 
         };
 
@@ -144,7 +146,7 @@ namespace PG.Battle
             if (_deactivateProjectileDictionary[_currentProjectile].Count <= 0)
             {
                 _tempt = Instantiate(_projectileDictionary[_currentProjectile], transform);
-                Debug.Log("build new " + _deactivateProjectileDictionary[_currentProjectile].Count.ToString());
+                //Debug.Log("build new " + _deactivateProjectileDictionary[_currentProjectile].Count.ToString());
             }
             else 
             {
@@ -161,16 +163,7 @@ namespace PG.Battle
                 _instance._activateProjectileDictionary[id].Remove(projectile);
                 //Debug.Log(" removed smoothly" + projectile.name);
             }
-            else 
-            {
-                string _aaa = " ss";
-                foreach(var a in _instance._activateProjectileDictionary[id])
-                {
-                    _aaa += a.ToString();
-                    _aaa += "\n";
-                }
-                Debug.Log(_aaa + " but no data" + projectile.name);
-            }
+
             _instance._deactivateProjectileDictionary[id].Add(projectile);
             projectile.transform.position = _instance.transform.position;
         }

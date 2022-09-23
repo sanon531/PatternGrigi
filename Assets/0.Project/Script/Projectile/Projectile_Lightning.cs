@@ -8,7 +8,7 @@ namespace PG.Battle
     {
 
         [SerializeField]
-        LazerParticle _thisRay;
+        LazerLine _thisRay;
         [SerializeField]
         ParticleSystem _RayParticle;
 
@@ -27,8 +27,7 @@ namespace PG.Battle
             if (!base.SetInitialProjectileData(target, damage, lifetime))
                 return false;
             OnObjectEnabled();
-            _thisRay._EndPos = target.GetMobPosition();
-            _thisRay._StartPos = Player_Script.GetPlayerPosition();
+            _thisRay.SetLazerEachPos(Player_Script.GetPlayerPosition(), target.GetMobPosition());
             target.Damage(damage);
 
 

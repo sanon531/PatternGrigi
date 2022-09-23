@@ -8,7 +8,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace DigitalRuby.LightningBolt
+namespace PG.Battle
 {
     /// <summary>
     /// Types of animations for lightning bolts
