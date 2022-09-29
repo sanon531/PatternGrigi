@@ -69,8 +69,9 @@ namespace PG.Data
     {
         NormalBullet = 0,
         LightningShot = 1,
-        StraightKnife = 2,
-        SatiliteOrbit = 3,
+        StraightShot = 2,
+        TowerBullet = 3,
+        CuttingKnife = 4
 
     }
     public enum NodePlaceType
