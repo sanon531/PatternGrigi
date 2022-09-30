@@ -26,6 +26,9 @@ namespace PG.Battle
         ParticleSystem _damageFX;
         [SerializeField]
         Transform _UIShowPos;
+
+        public float _knockbackForce;
+
         // Start is called before the first frame update
         protected override void CallOnAwake()
         {

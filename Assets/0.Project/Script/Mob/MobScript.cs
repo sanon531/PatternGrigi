@@ -186,6 +186,7 @@ namespace PG.Battle
         {
             _healthSystem.Damage(val);
             DamageFXManager.ShowDamage(transform.position, Mathf.Round(val).ToString(),Color.white);
+            StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
         }
 
         //Called on dead
@@ -202,6 +203,21 @@ namespace PG.Battle
         public void SetTargetted(bool val) 
         {
             _targetSprite.enabled = val;
+        }
+
+        public IEnumerator Knockback(float duration, float power)
+        {
+            float timer = 0f;
+            int writeCall = 0;
+
+            while (timer <= duration)
+            {
+                timer += Time.deltaTime;
+                writeCall += 1;
+                _rigidBody2D.AddRelativeForce(new Vector3(0f, power, 0f));
+            }
+            Debug.Log(writeCall);
+            yield return 0;
         }
 
         #region//paused
