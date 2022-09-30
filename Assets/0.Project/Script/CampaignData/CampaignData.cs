@@ -50,6 +50,16 @@ namespace PG.Data
 
         //플레이어 사이즈
         public DataEntity _playerSize = new DataEntity(DataEntity.Type.PlayerSize, 1);
+
+        public ProjectileIDDataDic _projectileIDDataDic = new ProjectileIDDataDic() 
+        {
+            { ProjectileID.NormalBullet, new ProjectileData(0)},
+            { ProjectileID.StraightShot, new ProjectileData(0)},
+            { ProjectileID.TowerBullet, new ProjectileData(0)},
+            { ProjectileID.LightningShot, new ProjectileData(0)},
+            { ProjectileID.CuttingKnife, new ProjectileData(0)},
+        };
+
         public DataEntity _projectileSpeed = new DataEntity(DataEntity.Type.ProjectileSpeed, 5);
         public DataEntity _projectileTargetNum = new DataEntity(DataEntity.Type.ProjectileCount, 1);
         public DataEntity _randomPatternNodeCount = new DataEntity(DataEntity.Type.RandomPatternCount, 3);

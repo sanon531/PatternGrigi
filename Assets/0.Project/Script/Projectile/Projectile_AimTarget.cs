@@ -25,17 +25,21 @@ namespace PG.Battle
         }
 
         // Update is called once per frame
-        public override bool SetInitialProjectileData(MobScript target, float damage, float lifetime)
+        public override void SetInitialProjectileData(MobScript target, float damage, float lifetime)
         {
-            if (!base.SetInitialProjectileData(target, damage, lifetime))
-                return false;
+            base.SetInitialProjectileData(target, damage, lifetime);
+                
 
             OnObjectEnabled();
-            _direction = target.GetMobPosition() - Player_Script.GetPlayerPosition();
+
+            if (_targetMob != null)
+                _direction = target.GetMobPosition() - Player_Script.GetPlayerPosition();
+            else
+                _direction = Vector3.forward;
+
             _direction = _direction.normalized;
             InitialSpeed = Data.Global_CampaignData._projectileSpeed.FinalValue;
             Movement();
-            return true;
         }
         void Movement()
         {

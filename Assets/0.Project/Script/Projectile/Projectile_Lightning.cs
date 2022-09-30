@@ -33,16 +33,23 @@ namespace PG.Battle
         }
 
         // Update is called once per frame
-        public override bool SetInitialProjectileData(MobScript target, float damage, float lifetime)
+        public override void SetInitialProjectileData(MobScript target, float damage, float lifetime)
         {
-            if (!base.SetInitialProjectileData(target, damage, lifetime))
-                return false;
+            base.SetInitialProjectileData(target, damage, lifetime);
+
             OnObjectEnabled();
-            _thisRay.SetLazerEachPos(Player_Script.GetPlayerPosition(), target.GetMobPosition());
-            target.Damage(damage);
+            if (_targetMob != null)
+            {
+                _thisRay.SetLazerEachPos(Player_Script.GetPlayerPosition(), _targetMob.GetMobPosition());
+                _targetMob.Damage(damage);
+            }
+            else 
+            {
+                //나중에 번개가 그래도 나가도록 나와도 좋을것 같긴해도 뭐 일단은
+                OnObjectDisabled();
+            }
 
 
-            return true;
         }
 
         protected override void OnObjectEnabled()

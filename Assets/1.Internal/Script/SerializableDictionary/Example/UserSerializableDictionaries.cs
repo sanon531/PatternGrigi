@@ -53,6 +53,7 @@ public class ProjectileIDObjectListDic : SerializableDictionary<ProjectileID, Li
 public class ProjectileIDFloatDic : SerializableDictionary<ProjectileID, float> { }
 
 
+
 [Serializable]
 public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact> 
 {
@@ -79,6 +80,20 @@ public class CharactorIDDataEntityDic : SerializableDictionary<CharacterID, Data
         foreach (var kvp in dict)
         {
             Add(kvp.Key, new DataEntity(kvp.Value));
+        }
+    }
+
+}
+[Serializable]
+public class ProjectileIDDataDic : SerializableDictionary<ProjectileID, ProjectileData> 
+{
+    public void CopyFrom(ProjectileIDDataDic dict)
+    {
+
+        this.Clear();
+        foreach (var kvp in dict)
+        {
+            Add(kvp.Key, new ProjectileData(kvp.Value));
         }
     }
 

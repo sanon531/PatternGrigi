@@ -134,7 +134,53 @@ namespace PG.Data
             };
 
     }
+    public struct ProjectileData
+    {
+        public int _count;
+        public int _repeat;
+        public float _cooltime;
+        public ProjectileData(int count) 
+        {
+            _count = count;
+            _repeat = 0;
+            _cooltime = 0.5f;
+        }
+        public ProjectileData(int count, int repeat, float cooltime)
+        {
+            _count = count;
+            _repeat = repeat;
+            _cooltime = cooltime;
+        }
+        public ProjectileData(ProjectileData data)
+        {
+            this._count = data._count;
+            this._repeat = data._repeat;
+            this._cooltime = data._cooltime;
+        }
 
+        public void SetCount(int val)
+        {
+            this._count = val;
+        }
+        public void SetRepeat(int val)
+        {
+            this._repeat = val;
+        }
+        public void SetCoolTime(float val)
+        {
+            this._cooltime = val;
+        }
+
+        public void PlusCount(int val)
+        {
+            _count += val;
+        }
+        public void DecreaseCount()
+        {
+            _count--;
+        }
+
+    }
 
     //여기서 액션이란 적의 액션을 의미한다.
     [Serializable]

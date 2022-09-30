@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PG.Battle;
+using PG.Battle.FX;
 public class Spawner : MonoBehaviour
 {
 

@@ -24,6 +24,11 @@ namespace PG.Battle
         [SerializeField]
         List<MobScript> _temptenemyList = new List<MobScript>();
 
+        //큐 플로트 값으로 저장한다음에하나하나씩 팝한다. 숫자는 정해진 대로 나오고.
+        //만약 큐의 수가 일반 리스트 보다 작을 경우
+        Dictionary<ProjectileID, Queue<float>> _currentShotAmmoDic = new Dictionary<ProjectileID, Queue<float>>() { };
+        Dictionary<ProjectileID, Coroutine> _shotCoroutineDic = new Dictionary<ProjectileID, Coroutine>() {};
+
 
         protected override void CallOnAwake()
         {
@@ -45,6 +50,8 @@ namespace PG.Battle
 
             foreach (ProjectileID projectile in Enum.GetValues(typeof(ProjectileID))) 
             {
+                _currentShotAmmoDic.Add(projectile, new Queue<float>());
+                _shotCoroutineDic.Add(projectile, null);
                 _projectileDictionary.Add(projectile, Resources.Load<GameObject>("Projectile/" + projectile));
                 _activateProjectileDictionary.Add(projectile, new List<GameObject>() { });
                 _deactivateProjectileDictionary.Add(projectile, new List<GameObject>() { });
@@ -80,23 +87,65 @@ namespace PG.Battle
         };
 
         //플레이어는 현재 공격할수있는 적에게 데미지를
+
+        //일단 어찌 될지 모르니까 통합 하자.그게 유지보수에 훨씬 쉬울듯함
+        // 탄창이 1, 한번에 쏘는 갯수로 나뉜다
         void SetProjectileToEnemy(float val) 
+        {
+            foreach (ProjectileID projectile in Enum.GetValues(typeof(ProjectileID))) 
+            {
+                if (Global_CampaignData._projectileIDDataDic[projectile]._count <= 0)
+                    continue;
+                //총알 수를 큐에 넣어서 추가한다
+                for (int i = 0; i < Global_CampaignData._projectileIDDataDic[projectile]._count; i++)
+                    _currentShotAmmoDic[projectile].Enqueue(val);
+
+                if (_shotCoroutineDic[projectile] == null)
+                {
+                    Debug.Log("Start shot");
+                    _shotCoroutineDic[projectile] = StartCoroutine(ShotRoutine(projectile));
+                }
+                else
+                    Debug.Log("Already Exist");
+            }
+
+        }
+
+        //현재는 통합 형태지만 오브젝트 연사 정도도 이벤트로 조절 가능하게 만들 것이다.
+        //그냥 발사하는 놈들임 조준 은 안한다? 일단 조준하도록 구현 해볼까. 야호 포탑이 움직여도 재밌겠구만
+        float _temptDamage = 0;
+        IEnumerator ShotRoutine(ProjectileID id) 
+        {
+            //탄환이 0이 아닐때 까지 반복
+            while (_currentShotAmmoDic[id].Count> 0) 
+            {
+                _temptDamage = _currentShotAmmoDic[id].Dequeue();
+                //Shot
+                SetSpreadShotStyle(_temptDamage);
+                yield return new WaitForSeconds(Global_CampaignData._projectileIDDataDic[id]._cooltime);
+            }
+        }
+        //
+        void SetSpreadShotStyle(float val) 
         {
             TargetTheEnemy();
             //지금은 그냥 instantiate를 하지만 나중에는 오브젝트 풀링이 가능하도록 만들것..
 
-            for (int i = _targetList.Count -1; i>=0;i-- ) 
+            for (int i = _targetList.Count - 1; i >= 0; i--)
             {
                 GameObject _obj = ShootProjectile();
                 Projectile_Script _tempt = _obj.GetComponent<Projectile_Script>();
                 //Vector3 _direction = _targetTransforms[i] - Player_Script.GetPlayerPosition();
                 //_direction = _direction.normalized;
-                //적이 죽었을때 만약에 연속적으로 호출 할경우 시간 타이밍에 따른 에러가 생성된다 
+                //적이 죽었을때 만약에 연속적으로 호출 할경우에도 그냥 호출 한다. 
                 //Debug.Log(_projectileLifeTimeDic[_currentProjectile]);
                 _tempt.SetInitialProjectileData(_targetedMobList[i], val, _projectileLifeTimeDic[_currentProjectile]);
             }
 
+
         }
+
+
         public void TargetTheEnemy()
         {
             _temptenemyList = MobGenerator.GetMobList();

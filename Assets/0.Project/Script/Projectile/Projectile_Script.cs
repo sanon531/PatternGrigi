@@ -36,16 +36,17 @@ namespace PG.Battle
         protected List<GameObject> _piercedList = new List<GameObject>();
 
 
-        public virtual bool SetInitialProjectileData(MobScript _target, float damage, float lifetime)
+        public virtual void SetInitialProjectileData(MobScript _target, float damage, float lifetime)
         {
             if (_target == null)
-                return false;
+                _targetMob = null;
+            else
+                _targetMob = _target;
+
 
             transform.position = Player_Script.GetPlayerPosition();
-            _targetMob = _target;
             _damage = damage;
             _lifeTime = lifetime;
-            return true;
         }
 
         protected virtual void LateUpdate()

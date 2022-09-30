@@ -1,6 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
-namespace PG.Battle
+namespace PG.Battle.FX
 {
 
     [RequireComponent(typeof(TextMesh))]

@@ -22,6 +22,7 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(ProjectileIDObjectDic))]
 [CustomPropertyDrawer(typeof(ProjectileIDObjectListDic))]
 [CustomPropertyDrawer(typeof(ProjectileIDFloatDic))]
+[CustomPropertyDrawer(typeof(ProjectileIDDataDic))]
 
 public class AnySerializableDictionaryPropertyDrawer : SerializableDictionaryPropertyDrawer {}
 
