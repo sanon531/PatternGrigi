@@ -7,7 +7,7 @@ namespace PG
     {
         public virtual void StartPatternAction()
         {
-            Debug.Log("PatternSuccess");
+            //Debug.Log("PatternSuccess");
         }
 
     }

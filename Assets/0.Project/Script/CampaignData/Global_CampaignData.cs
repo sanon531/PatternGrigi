@@ -78,7 +78,7 @@ namespace PG.Data
             _currentArtifactDictionary.Clear();
             _charactorAttackDic.Clear();
             _obtainableArtifactIDList.Clear();
-
+            _projectileIDDataDic.Clear();
         }
 
         //이곳에서 최초의 스테이지 데이터를 수정한다.

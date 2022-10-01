@@ -62,6 +62,8 @@ namespace PG.Battle
         protected override void OnObjectDisabled()
         {
             _projectileImage.enabled = false;
+            _ongoingTrail.enabled = false;
+
             base.OnObjectDisabled();
         }
 

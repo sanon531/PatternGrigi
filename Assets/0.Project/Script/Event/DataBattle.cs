@@ -134,7 +134,8 @@ namespace PG.Data
             };
 
     }
-    public struct ProjectileData
+    [System.Serializable]
+    public class ProjectileData
     {
         public int _count;
         public int _repeat;
@@ -157,7 +158,6 @@ namespace PG.Data
             this._repeat = data._repeat;
             this._cooltime = data._cooltime;
         }
-
         public void SetCount(int val)
         {
             this._count = val;
@@ -171,9 +171,9 @@ namespace PG.Data
             this._cooltime = val;
         }
 
-        public void PlusCount(int val)
+        public void IncreaseCount(int val)
         {
-            _count += val;
+            this._count += val;
         }
         public void DecreaseCount()
         {

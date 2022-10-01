@@ -62,7 +62,7 @@ namespace PG.Battle
 
         protected override void OnObjectDisabled()
         {
-            Debug.Log("What" + gameObject.name);
+            //Debug.Log("What" + gameObject.name);
 
             _RayParticle.Stop();
             _thisRay.SetActiveLazer(false);

@@ -27,7 +27,7 @@ namespace PG.Battle
         //큐 플로트 값으로 저장한다음에하나하나씩 팝한다. 숫자는 정해진 대로 나오고.
         //만약 큐의 수가 일반 리스트 보다 작을 경우
         Dictionary<ProjectileID, Queue<float>> _currentShotAmmoDic = new Dictionary<ProjectileID, Queue<float>>() { };
-        Dictionary<ProjectileID, Coroutine> _shotCoroutineDic = new Dictionary<ProjectileID, Coroutine>() {};
+        Dictionary<ProjectileID, bool> _shotCoroutineDic = new Dictionary<ProjectileID, bool>() {};
 
 
         protected override void CallOnAwake()
@@ -51,7 +51,7 @@ namespace PG.Battle
             foreach (ProjectileID projectile in Enum.GetValues(typeof(ProjectileID))) 
             {
                 _currentShotAmmoDic.Add(projectile, new Queue<float>());
-                _shotCoroutineDic.Add(projectile, null);
+                _shotCoroutineDic.Add(projectile, false);
                 _projectileDictionary.Add(projectile, Resources.Load<GameObject>("Projectile/" + projectile));
                 _activateProjectileDictionary.Add(projectile, new List<GameObject>() { });
                 _deactivateProjectileDictionary.Add(projectile, new List<GameObject>() { });
@@ -94,19 +94,22 @@ namespace PG.Battle
         {
             foreach (ProjectileID projectile in Enum.GetValues(typeof(ProjectileID))) 
             {
+                //Debug.Log("projectile check_ : " +projectile  + Global_CampaignData._projectileIDDataDic[projectile]._count);
                 if (Global_CampaignData._projectileIDDataDic[projectile]._count <= 0)
                     continue;
                 //총알 수를 큐에 넣어서 추가한다
-                for (int i = 0; i < Global_CampaignData._projectileIDDataDic[projectile]._count; i++)
+                for (int i = 0; i < Global_CampaignData._projectileIDDataDic[projectile]._repeat; i++)
                     _currentShotAmmoDic[projectile].Enqueue(val);
 
-                if (_shotCoroutineDic[projectile] == null)
+                if (_shotCoroutineDic[projectile] == false)
                 {
-                    Debug.Log("Start shot");
-                    _shotCoroutineDic[projectile] = StartCoroutine(ShotRoutine(projectile));
+                    Debug.Log("Start shot"+ projectile);
+                    _shotCoroutineDic[projectile] = true;
+                    StartCoroutine(ShotRoutine(projectile));
                 }
-                else
-                    Debug.Log("Already Exist");
+                //산출량 이상한거 수정 해야함
+                    //Debug.Log("Already Exist");
+                //이미 나온게 아니라 이거 코루틴이 있을때 없을때 나누는게 낫겠다 어차피 중간에수정하는 코드도 없으니.
             }
 
         }
@@ -117,29 +120,38 @@ namespace PG.Battle
         IEnumerator ShotRoutine(ProjectileID id) 
         {
             //탄환이 0이 아닐때 까지 반복
-            while (_currentShotAmmoDic[id].Count> 0) 
+            while (true) 
             {
-                _temptDamage = _currentShotAmmoDic[id].Dequeue();
                 //Shot
-                SetSpreadShotStyle(_temptDamage);
-                yield return new WaitForSeconds(Global_CampaignData._projectileIDDataDic[id]._cooltime);
+                SetSpreadShotStyle(_temptDamage,id);
+                if(id == ProjectileID.StraightShot)
+                    Debug.Log(Global_CampaignData._projectileIDDataDic[id]._count + "shot ss" + Global_CampaignData._projectileIDDataDic[id]._cooltime);
+
+                if (_currentShotAmmoDic[id].Count > 0) 
+                {
+                    _temptDamage = _currentShotAmmoDic[id].Dequeue();
+                    yield return new WaitForSeconds(Global_CampaignData._projectileIDDataDic[id]._cooltime);
+                }
+                else
+                    break;
             }
+
+            _shotCoroutineDic[id] = false;
+            Debug.Log("routine finished");
+            yield return null;
+
         }
         //
-        void SetSpreadShotStyle(float val) 
+        void SetSpreadShotStyle(float val, ProjectileID id) 
         {
             TargetTheEnemy();
             //지금은 그냥 instantiate를 하지만 나중에는 오브젝트 풀링이 가능하도록 만들것..
 
             for (int i = _targetList.Count - 1; i >= 0; i--)
             {
-                GameObject _obj = ShootProjectile();
+                GameObject _obj = ShootProjectile(id);
                 Projectile_Script _tempt = _obj.GetComponent<Projectile_Script>();
-                //Vector3 _direction = _targetTransforms[i] - Player_Script.GetPlayerPosition();
-                //_direction = _direction.normalized;
-                //적이 죽었을때 만약에 연속적으로 호출 할경우에도 그냥 호출 한다. 
-                //Debug.Log(_projectileLifeTimeDic[_currentProjectile]);
-                _tempt.SetInitialProjectileData(_targetedMobList[i], val, _projectileLifeTimeDic[_currentProjectile]);
+                _tempt.SetInitialProjectileData(_targetedMobList[i], val, _projectileLifeTimeDic[id]);
             }
 
 
@@ -186,20 +198,20 @@ namespace PG.Battle
         }
 
         //투사체를 쏜다면 앧티베이션에다가 놓고
-        GameObject ShootProjectile() 
+        GameObject ShootProjectile(ProjectileID id) 
         {
             GameObject _tempt;
-            if (_deactivateProjectileDictionary[_currentProjectile].Count <= 0)
+            if (_deactivateProjectileDictionary[id].Count <= 0)
             {
-                _tempt = Instantiate(_projectileDictionary[_currentProjectile], transform);
-                Debug.Log("build new " + _deactivateProjectileDictionary[_currentProjectile].Count.ToString());
+                _tempt = Instantiate(_projectileDictionary[id], transform);
+                //Debug.Log("build new " + _deactivateProjectileDictionary[id].Count.ToString());
             }
             else 
             {
-                _tempt = _deactivateProjectileDictionary[_currentProjectile][0];
-                _deactivateProjectileDictionary[_currentProjectile].Remove(_tempt);
+                _tempt = _deactivateProjectileDictionary[id][0];
+                _deactivateProjectileDictionary[id].Remove(_tempt);
             }
-            _activateProjectileDictionary[_currentProjectile].Add(_tempt);
+            _activateProjectileDictionary[id].Add(_tempt);
             return _tempt;
         }
         public static void SetBackProjectile(GameObject projectile, ProjectileID id) 
@@ -207,11 +219,11 @@ namespace PG.Battle
             if (_instance._activateProjectileDictionary[id].Contains(projectile))
             {
                 _instance._activateProjectileDictionary[id].Remove(projectile);
-                Debug.Log(" removed smoothly" + projectile.name);
+                //Debug.Log(" removed smoothly" + projectile.name);
             }
             else 
             {
-                Debug.Log(" removed wierd");
+                //Debug.Log(" removed wierd");
 
             }
 

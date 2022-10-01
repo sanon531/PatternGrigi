@@ -93,6 +93,7 @@ public class ProjectileIDDataDic : SerializableDictionary<ProjectileID, Projecti
         this.Clear();
         foreach (var kvp in dict)
         {
+            Debug.Log(kvp.Key + "+"+ kvp.Value._count);
             Add(kvp.Key, new ProjectileData(kvp.Value));
         }
     }

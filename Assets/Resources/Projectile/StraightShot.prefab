@@ -4684,7 +4684,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 854ff48ec0d5fa548abcc21c5608735b, type: 2}
+  - {fileID: 2100000, guid: 2c4c8d762d1b1594ba58386c002f8817, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6003,7 +6003,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0, g: 0.41960785, b: 1, a: 0.52156866}
+        key0: {r: 1, g: 0, b: 0.13014984, a: 0.52156866}
         key1: {r: 0.4862745, g: 0.49019608, b: 0.5137255, a: 1}
         key2: {r: 0.4862745, g: 0.49019608, b: 0.5137255, a: 0}
         key3: {r: 1, g: 1, b: 0, a: 0}
@@ -14540,7 +14540,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.07450981, g: 0.46666667, b: 1, a: 0.37254903}
+      maxColor: {r: 1, g: 0.0745098, b: 0.12938868, a: 0.37254903}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -19147,7 +19147,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1370612967881046962}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &1370612967866783602
 ParticleSystem:
@@ -23860,12 +23860,12 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0.63529414, b: 1, a: 1}
-      key1: {r: 0, g: 0.5294118, b: 1, a: 1}
-      key2: {r: 0.105882354, g: 0.32156864, b: 1, a: 1}
-      key3: {r: 0, g: 0.16470589, b: 1, a: 1}
-      key4: {r: 0, g: 0.047058824, b: 1, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 1, g: 0, b: 0.16531086, a: 1}
+      key1: {r: 1, g: 0, b: 0.07291317, a: 1}
+      key2: {r: 1, g: 0.91110975, b: 0.10588235, a: 1}
+      key3: {r: 1, g: 0.77448, b: 0, a: 1}
+      key4: {r: 0, g: 0.047058824, b: 1, a: 1}
+      key5: {r: 0, g: 0.047058824, b: 1, a: 1}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
@@ -23873,20 +23873,20 @@ TrailRenderer:
       ctime2: 32768
       ctime3: 49151
       ctime4: 65535
-      ctime5: 0
+      ctime5: 65535
       ctime6: 0
       ctime7: 0
       atime0: 0
       atime1: 16384
-      atime2: 32768
-      atime3: 49151
-      atime4: 65535
-      atime5: 0
-      atime6: 0
+      atime2: 24479
+      atime3: 32768
+      atime4: 42020
+      atime5: 49151
+      atime6: 65535
       atime7: 0
       m_Mode: 0
       m_NumColorKeys: 5
-      m_NumAlphaKeys: 5
+      m_NumAlphaKeys: 7
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
@@ -23926,7 +23926,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1370612967880974774}
-  - {fileID: 1370612967881032472}
   - {fileID: 1370612967881042030}
   m_Father: {fileID: 4353725644589938612}
   m_RootOrder: 0
@@ -28516,7 +28515,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ea94bb26fad0ec74fbfdf2f5aa0d360c, type: 2}
+  - {fileID: 2100000, guid: 1d6c1e8ec84268749a41ba57e44bdffd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28562,99 +28561,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!1 &1370612967880716888
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1370612967881032472}
-  - component: {fileID: 1370612967891440648}
-  m_Layer: 0
-  m_Name: Point light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1370612967881032472
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1370612967880716888}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1370612967881046962}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!108 &1370612967891440648
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1370612967880716888}
-  m_Enabled: 1
-  serializedVersion: 10
-  m_Type: 2
-  m_Shape: 0
-  m_Color: {r: 0, g: 0.04827571, b: 1, a: 1}
-  m_Intensity: 2
-  m_Range: 7
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
 --- !u!1 &7694395298027797552
 GameObject:
   m_ObjectHideFlags: 0
@@ -28794,11 +28700,11 @@ MonoBehaviour:
   _isPlaced: 0
   _id: 0
   _lifeTime: 10
-  _collider2D: {fileID: 0}
-  _rigidBody2D: {fileID: 0}
-  _projectileImage: {fileID: 0}
-  _ongoingFX: {fileID: 0}
-  _hitFX: {fileID: 0}
+  _collider2D: {fileID: 5623361393577949031}
+  _rigidBody2D: {fileID: 1634703765405443898}
+  _projectileImage: {fileID: 6817514856662169467}
+  _ongoingFX: {fileID: 1370612967866819186}
+  _hitFX: {fileID: 167268430173530026}
   _targetMob: {fileID: 0}
-  _ongoingTrail: {fileID: 0}
+  _ongoingTrail: {fileID: 1370612967888124750}
   _initialSpeed: 1

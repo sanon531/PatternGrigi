@@ -32,13 +32,14 @@ namespace PG.Battle
             base.SetInitialProjectileData(target, damage, lifetime);
             OnObjectEnabled();
             InitialSpeed = Data.Global_CampaignData._projectileSpeed.FinalValue;
+            Debug.Log(_lifeTime);
             Movement();
         }
 
         void Movement()
         {
             _lifeTime -= Time.deltaTime;
-            _movement = InitialSpeed * 10 * Time.deltaTime * Vector3.forward;
+            _movement = InitialSpeed * 10 * Time.deltaTime * Vector3.up;
             if (_rigidBody2D != null)
             {
                 _rigidBody2D.velocity = _movement;
@@ -58,6 +59,8 @@ namespace PG.Battle
         protected override void OnObjectDisabled()
         {
             _projectileImage.enabled = false;
+            _ongoingTrail.enabled = false;
+
             base.OnObjectDisabled();
         }
     }
