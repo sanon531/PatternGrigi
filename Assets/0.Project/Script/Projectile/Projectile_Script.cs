@@ -36,7 +36,7 @@ namespace PG.Battle
         protected List<GameObject> _piercedList = new List<GameObject>();
 
 
-        public virtual void SetInitialProjectileData(MobScript _target, float damage, float lifetime)
+        public virtual void SetInitialProjectileData(MobScript _target, float damage, float lifetime,float spreadCount)
         {
             if (_target == null)
                 _targetMob = null;
@@ -44,7 +44,8 @@ namespace PG.Battle
                 _targetMob = _target;
 
 
-            transform.position = Player_Script.GetPlayerPosition();
+            transform.position = (Player_Script.GetPlayerPosition() + new Vector3(spreadCount,0,0));
+
             _damage = damage;
             _lifeTime = lifetime;
         }
@@ -72,6 +73,7 @@ namespace PG.Battle
             base.OnObjectDisabled();
             _ongoingFX.Stop();
             _hitFX.Stop();
+            _rigidBody2D.velocity = new Vector3();
             ProjectileManager.SetBackProjectile(gameObject,_id);
         }
 

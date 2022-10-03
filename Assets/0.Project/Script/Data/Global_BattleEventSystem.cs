@@ -8,20 +8,20 @@ namespace PG.Event
     public delegate void OnEvent();
 
     public delegate void OnCalcDataEntity(DataEntity entity);
-    public delegate void OnCalcData_Form1(Data_Character 대상, DataEntity 정보체);
-    public delegate void OnCalcData_Form_2(Data_Character 정보계산주체, Data_Character 부체, DataEntity 정보체);
+    public delegate void OnCalcData_Form1(Data_Character target, DataEntity dataEntity);
+    public delegate void OnCalcData_Form_2(Data_Character dataStarter, Data_Character dataTarget, DataEntity dataEntity);
 
 
-    public delegate void On배틀이벤트();
+    public delegate void OnBattleEvent();
 
-    public delegate void OnEventWithbool(bool 수치값);
-    public delegate void OnEventWithInt(int 수치값);
-    public delegate void OnEventWithFloat(float 수치값);
-    public delegate void OnEventWithFloatArray(float[] 수치값);
-    public delegate void OnEventWithString(string 수치값);
-    public delegate void OnEventWithIntWithTarget(Data_Character 대상자, int 수치값);
-    public delegate void OnEventWithFloatWithTarget(Data_Character 대상자, float 수치값);
-    public delegate void OnEventWithPattern(DrawPatternPresetID 수치값);
+    public delegate void OnEventWithbool(bool val);
+    public delegate void OnEventWithInt(int val);
+    public delegate void OnEventWithFloat(float val);
+    public delegate void OnEventWithFloatArray(float[] val);
+    public delegate void OnEventWithString(string val);
+    public delegate void OnEventWithIntWithTarget(Data_Character 대상자, int val);
+    public delegate void OnEventWithFloatWithTarget(Data_Character 대상자, float val);
+    public delegate void OnEventWithPattern(DrawPatternPresetID val);
 
 
     public static class Global_BattleEventSystem
@@ -189,22 +189,7 @@ namespace PG.Event
 
 
 
-        
-        //public static float CallOnCalcDamageByEntity(float val)
-        //{ _onCalcDamage?.Invoke(val); 
-        //}
-
-
-        /*
-        public static event OnCalcData_Form1 _onCalc데미지;
-        public static void CallOnCalc데미지(Data_Character 피해대상, DataEntity 계산정보체)
-        { _onCalc데미지?.Invoke(피해대상, 계산정보체); }
-        public static event OnCalcData_Form1 _onCalc방어도;
-        public static void CallOnCalc방어도(Data_Character 피해대상, DataEntity 계산정보체)
-        { _onCalc방어도?.Invoke(피해대상, 계산정보체); }
-
-        */
-
+     
 
 
 

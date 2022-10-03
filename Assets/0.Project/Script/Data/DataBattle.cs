@@ -146,6 +146,12 @@ namespace PG.Data
             _repeat = 0;
             _cooltime = 0.5f;
         }
+        public ProjectileData(int count, int repeat)
+        {
+            _count = count;
+            _repeat = repeat;
+            _cooltime = 0.5f;
+        }
         public ProjectileData(int count, int repeat, float cooltime)
         {
             _count = count;
@@ -179,7 +185,6 @@ namespace PG.Data
         {
             _count--;
         }
-
     }
 
     //여기서 액션이란 적의 액션을 의미한다.

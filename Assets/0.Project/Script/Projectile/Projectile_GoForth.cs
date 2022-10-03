@@ -27,9 +27,9 @@ namespace PG.Battle
             //if (_isPlaced) 
                 //_rigidBody2D.velocity = _movement * ( (1 - _lifeTime) + Acceleration * Time.deltaTime);
         }
-        public override void SetInitialProjectileData(MobScript target, float damage, float lifetime)
+        public override void SetInitialProjectileData(MobScript target, float damage, float lifetime, float spreadCount)
         {
-            base.SetInitialProjectileData(target, damage, lifetime);
+            base.SetInitialProjectileData(target, damage, lifetime, spreadCount);
             OnObjectEnabled();
             InitialSpeed = Data.Global_CampaignData._projectileSpeed.FinalValue;
             Debug.Log(_lifeTime);

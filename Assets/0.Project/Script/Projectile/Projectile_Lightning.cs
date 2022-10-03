@@ -33,14 +33,14 @@ namespace PG.Battle
         }
 
         // Update is called once per frame
-        public override void SetInitialProjectileData(MobScript target, float damage, float lifetime)
+        public override void SetInitialProjectileData(MobScript target, float damage, float lifetime, float spreadCount)
         {
-            base.SetInitialProjectileData(target, damage, lifetime);
+            base.SetInitialProjectileData(target, damage, lifetime, spreadCount);
 
             OnObjectEnabled();
             if (_targetMob != null)
             {
-                _thisRay.SetLazerEachPos(Player_Script.GetPlayerPosition(), _targetMob.GetMobPosition());
+                _thisRay.SetLazerEachPos(transform.position, _targetMob.GetMobPosition());
                 _targetMob.Damage(damage);
             }
             else 

@@ -25,17 +25,16 @@ namespace PG.Battle
         }
 
         // Update is called once per frame
-        public override void SetInitialProjectileData(MobScript target, float damage, float lifetime)
+        public override void SetInitialProjectileData(MobScript target, float damage, float lifetime, float spreadCount)
         {
-            base.SetInitialProjectileData(target, damage, lifetime);
-                
-
+            base.SetInitialProjectileData(target, damage, lifetime, spreadCount);
             OnObjectEnabled();
+            //Debug.Log("Pos"+ transform.position);
 
             if (_targetMob != null)
-                _direction = target.GetMobPosition() - Player_Script.GetPlayerPosition();
+                _direction = target.GetMobPosition() - transform.position;
             else
-                _direction = Vector3.forward;
+                _direction = Vector3.up;
 
             _direction = _direction.normalized;
             InitialSpeed = Data.Global_CampaignData._projectileSpeed.FinalValue;
@@ -61,9 +60,9 @@ namespace PG.Battle
         }
         protected override void OnObjectDisabled()
         {
+            _lifeTime = 0f;
             _projectileImage.enabled = false;
             _ongoingTrail.enabled = false;
-
             base.OnObjectDisabled();
         }
 
