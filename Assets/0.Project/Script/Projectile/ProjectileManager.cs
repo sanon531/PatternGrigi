@@ -15,12 +15,10 @@ namespace PG.Battle
         [SerializeField]
         ProjectileIDObjectDic _projectileDictionary = new ProjectileIDObjectDic();
         [SerializeField]
-        ProjectileIDObjectListDic _activateProjectileDictionary = new ProjectileIDObjectListDic() {};
+        ProjectileIDObjectListDic _totalProjectileDictionary = new ProjectileIDObjectListDic() {};
         [SerializeField]
         ProjectileIDObjectListDic _deactivateProjectileDictionary = new ProjectileIDObjectListDic() {};
 
-        [SerializeField]
-        ProjectileID _currentProjectile = ProjectileID.NormalBullet;
         [SerializeField]
         List<MobScript> _temptenemyList = new List<MobScript>();
 
@@ -53,13 +51,14 @@ namespace PG.Battle
                 _currentShotAmmoDic.Add(projectile, new Queue<float>());
                 _shotCoroutineDic.Add(projectile, false);
                 _projectileDictionary.Add(projectile, Resources.Load<GameObject>("Projectile/" + projectile));
-                _activateProjectileDictionary.Add(projectile, new List<GameObject>() { });
+                _totalProjectileDictionary.Add(projectile, new List<GameObject>() { });
                 _deactivateProjectileDictionary.Add(projectile, new List<GameObject>() { });
-                for (int i = 0; i < 40; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     _tempt = Instantiate(_projectileDictionary[projectile], transform);
                     _tempt.name = projectile.ToString() + i.ToString();
                     _totalprojectileNum++;
+                    _totalProjectileDictionary[projectile].Add(_tempt);
                     _deactivateProjectileDictionary[projectile].Add(_tempt);
                 }
             }
@@ -210,30 +209,19 @@ namespace PG.Battle
             if (_deactivateProjectileDictionary[id].Count <= 0)
             {
                 _tempt = Instantiate(_projectileDictionary[id], transform);
-                _tempt.name = id + (_deactivateProjectileDictionary[id].Count + _activateProjectileDictionary[id].Count + 1).ToString();
-                //Debug.Log("build new " + _deactivateProjectileDictionary[id].Count.ToString());
+                _tempt.name = id + (_totalProjectileDictionary[id].Count ).ToString();
+                _totalProjectileDictionary[id].Add(_tempt);
+                Debug.Log("build new " + _deactivateProjectileDictionary[id].Count.ToString());
             }
             else 
             {
                 _tempt = _deactivateProjectileDictionary[id][0];
                 _deactivateProjectileDictionary[id].Remove(_tempt);
             }
-            _activateProjectileDictionary[id].Add(_tempt);
             return _tempt;
         }
         public static void SetBackProjectile(GameObject projectile, ProjectileID id) 
         {
-            if (_instance._activateProjectileDictionary[id].Contains(projectile))
-            {
-                _instance._activateProjectileDictionary[id].Remove(projectile);
-                //Debug.Log(" removed smoothly" + projectile.name);
-            }
-            else 
-            {
-                //Debug.Log(" removed wierd");
-
-            }
-
             _instance._deactivateProjectileDictionary[id].Add(projectile);
             projectile.transform.position = _instance.transform.position;
         }

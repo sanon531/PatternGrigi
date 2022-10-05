@@ -64,6 +64,14 @@ namespace PG.Data
         AtomSetting = 61,
 
 
+        Upgrade_NormalShot = 100,
+        Upgrade_StraightShot = 101,
+        Upgrade_LightningShot = 102,
+        Upgrade_TowerShot = 103,
+        Upgrade_Knife = 104,
+
+
+
     }
     public enum ProjectileID 
     {

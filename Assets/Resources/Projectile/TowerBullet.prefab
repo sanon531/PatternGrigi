@@ -28704,14 +28704,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isPlaced: 0
-  _id: 0
+  _id: 3
+  _lifeTime: 10
   _collider2D: {fileID: 5623361393577949031}
   _rigidBody2D: {fileID: 1634703765405443898}
   _projectileImage: {fileID: 6817514856662169467}
   _ongoingFX: {fileID: 1370612967866819186}
-  _ongoingTrail: {fileID: 1370612967888124750}
   _hitFX: {fileID: 167268430173530026}
   _targetMob: {fileID: 0}
+  _ongoingTrail: {fileID: 1370612967888124750}
   _initialSpeed: 1
 --- !u!212 &6817514856662169467
 SpriteRenderer:

@@ -32,7 +32,7 @@ namespace PG.Battle
             base.SetInitialProjectileData(target, damage, lifetime, spreadCount);
             OnObjectEnabled();
             InitialSpeed = Data.Global_CampaignData._projectileSpeed.FinalValue;
-            Debug.Log(_lifeTime);
+            //Debug.Log(_lifeTime);
             Movement();
         }
 
