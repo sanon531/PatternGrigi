@@ -9,14 +9,10 @@ namespace PG.Battle
 
         [SerializeField]
         LazerLine _thisRay;
-        [SerializeField]
-        ParticleSystem _RayParticle;
 
         // Start is called before the first frame update
         void Start()
         {
-            _RayParticle.Stop();
-            _ongoingFX.Stop();
             _hitFX.Stop();
             _thisRay.SetActiveLazer(false);
         }
@@ -40,8 +36,16 @@ namespace PG.Battle
             OnObjectEnabled();
             if (_targetMob != null)
             {
-                _thisRay.SetLazerEachPos(transform.position, _targetMob.GetMobPosition());
-                _targetMob.Damage(damage);
+                if (_targetMob.GetMobPosition() != null)
+                {
+                    _thisRay.SetLazerEachPos(transform.position, _targetMob.GetMobPosition());
+                    _targetMob.Damage(damage);
+                }
+                else 
+                {
+                    OnObjectDisabled();
+
+                }
             }
             else 
             {
@@ -55,7 +59,6 @@ namespace PG.Battle
         protected override void OnObjectEnabled()
         {
             base.OnObjectEnabled();
-            _ongoingFX.Play();
             _hitFX.Play();
             _thisRay.SetActiveLazer(true);
         }
@@ -63,8 +66,6 @@ namespace PG.Battle
         protected override void OnObjectDisabled()
         {
             //Debug.Log("What" + gameObject.name);
-
-            _RayParticle.Stop();
             _thisRay.SetActiveLazer(false);
             base.OnObjectDisabled();
         }

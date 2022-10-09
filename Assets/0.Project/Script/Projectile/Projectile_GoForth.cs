@@ -6,8 +6,8 @@ namespace PG.Battle
 
     public class Projectile_GoForth : Projectile_Script
     {
-        [SerializeField]
-        TrailRenderer _ongoingTrail;
+        //[SerializeField]
+        //TrailRenderer _ongoingTrail;
 
         [SerializeField]
         private float _initialSpeed = 1;
@@ -52,14 +52,13 @@ namespace PG.Battle
         {
             base.OnObjectEnabled();
             _projectileImage.enabled = true;
-            _ongoingTrail.enabled = true;
-            _ongoingFX.Play();
+            //_ongoingTrail.enabled = true;
 
         }
         protected override void OnObjectDisabled()
         {
             _projectileImage.enabled = false;
-            _ongoingTrail.enabled = false;
+            //_ongoingTrail.enabled = false;
 
             base.OnObjectDisabled();
         }

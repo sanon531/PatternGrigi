@@ -7,8 +7,8 @@ namespace PG.Battle
     public class Projectile_AimTarget : Projectile_Script
     {
 
-        [SerializeField]
-        TrailRenderer _ongoingTrail;
+        //[SerializeField]
+        //TrailRenderer _ongoingTrail;
 
         [SerializeField]
         private float _initialSpeed = 1;
@@ -54,15 +54,14 @@ namespace PG.Battle
         {
             base.OnObjectEnabled();
             _projectileImage.enabled = true;
-            _ongoingTrail.enabled = true;
-            _ongoingFX.Play();
-
+            //_ongoingTrail.enabled = true;
+            
         }
         protected override void OnObjectDisabled()
         {
             _lifeTime = 0f;
             _projectileImage.enabled = false;
-            _ongoingTrail.enabled = false;
+            //_ongoingTrail.enabled = false;
             base.OnObjectDisabled();
         }
 

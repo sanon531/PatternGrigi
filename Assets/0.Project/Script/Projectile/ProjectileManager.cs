@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using UnityEngine;
+
 using PG.Data;
 using PG.Event;
 
@@ -220,13 +221,15 @@ namespace PG.Battle
             }
             return _tempt;
         }
+        #region // setback region
+
         public static void SetBackProjectile(GameObject projectile, ProjectileID id) 
         {
             _instance._deactivateProjectileDictionary[id].Add(projectile);
             projectile.transform.position = _instance.transform.position;
         }
 
-
+        #endregion
 
     }
 

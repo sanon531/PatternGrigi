@@ -58,7 +58,12 @@ namespace PG.Battle
             transform.DOScale(0.8f, 0.25f).SetUpdate(UpdateType.Late, true);
 
         }
-
+        IEnumerator CheckPress()
+        {
+            yield return new WaitForSeconds(1f);
+            // 여기서 관련한 정보가 보여진다.
+        
+        }
 
     }
 }

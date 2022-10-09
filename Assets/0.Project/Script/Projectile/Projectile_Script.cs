@@ -24,8 +24,6 @@ namespace PG.Battle
         [SerializeField]
         protected SpriteRenderer _projectileImage;
         [SerializeField]
-        protected ParticleSystem _ongoingFX;
-        [SerializeField]
         protected ParticleSystem _hitFX;
         [SerializeField]
         protected MobScript _targetMob;
@@ -71,7 +69,6 @@ namespace PG.Battle
         protected override void OnObjectDisabled()
         {
             base.OnObjectDisabled();
-            _ongoingFX.Stop();
             _hitFX.Stop();
             _rigidBody2D.velocity = new Vector3();
             ProjectileManager.SetBackProjectile(gameObject,_id);

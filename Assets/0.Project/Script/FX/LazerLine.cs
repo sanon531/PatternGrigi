@@ -11,13 +11,10 @@ namespace PG.Battle
         public Vector3 _StartPos;
         public Vector3 _EndPos;
 
-        [SerializeField]
-        LightningBoltScript _electric;
 
         void Start()
         {
             Laser = GetComponent<LineRenderer>();
-            _electric = GetComponent<LightningBoltScript>();
             Effects = GetComponentsInChildren<ParticleSystem>();
             Hit = HitEffect.GetComponentsInChildren<ParticleSystem>();
             transform.position = _StartPos;
@@ -36,8 +33,6 @@ namespace PG.Battle
         {
             _StartPos = _start;
             _EndPos = _end;
-            _electric.StartPosition = _StartPos;
-            _electric.EndPosition = _EndPos;
         }
 
         void Update()
@@ -57,8 +52,8 @@ namespace PG.Battle
                     if (!AllPs.isPlaying) AllPs.Play();
                 }
 
-                Length[0] = MainTextureLength * (Vector3.Distance(transform.position, _EndPos));
-                Length[2] = NoiseTextureLength * (Vector3.Distance(transform.position, _EndPos));
+                //Length[0] = MainTextureLength * (Vector3.Distance(transform.position, _EndPos));
+                //Length[2] = NoiseTextureLength * (Vector3.Distance(transform.position, _EndPos));
 
                 if (Laser.enabled == false && LaserSaver == false)
                 {

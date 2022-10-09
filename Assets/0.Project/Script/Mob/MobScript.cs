@@ -220,18 +220,12 @@ namespace PG.Battle
             yield return 0;
         }
 
-        #region//paused
 
-        void SetOnNonTotalPaused()
         public Vector3 GetMobPosition() 
         {
             return transform.position;
         }
 
-        #region//paused
-
-
-        #endregion
 
 
     }
