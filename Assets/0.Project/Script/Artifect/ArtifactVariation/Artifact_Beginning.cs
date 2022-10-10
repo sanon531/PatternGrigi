@@ -38,7 +38,7 @@ namespace PG
         }
         public override void AddCountOnArtifact()
         {
-            _value++;
+            _upgradeCount++;
         }
 
         void CallRandomPatternSuccessed(DrawPatternPresetID patternPreset) 
@@ -72,7 +72,7 @@ namespace PG
         }
         public override void AddCountOnArtifact()
         {
-            _value++;
+            _upgradeCount++;
         }
     }
 

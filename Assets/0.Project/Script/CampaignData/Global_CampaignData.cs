@@ -29,6 +29,7 @@ namespace PG.Data
         public static ArtifactIDArtifactDic _currentArtifactDictionary =
             new ArtifactIDArtifactDic();
 
+
         //public static Dictionary<ArtifactID, ArtifactData> _currentActivateDictionary =
         //new Dictionary<ArtifactID, ArtifactData>();
         public static Enemy_Script _currentEnemy;
@@ -39,7 +40,18 @@ namespace PG.Data
 
         public static List<ArtifactID> _obtainableArtifactIDList = new List<ArtifactID>();
 
-
+        public static string GetArtifactUpgradeCount(ArtifactID id) 
+        {
+            if (_currentArtifactDictionary.ContainsKey(id))
+            {
+                return "("+_currentArtifactDictionary[id].UpgradeCount.ToString()+
+                    "/"+ _currentArtifactDictionary[id].MaxUpgrade.ToString() +")";
+            }
+            else 
+            {
+                return "(0/" + GlobalDataStorage.TotalArtifactClassDic[id].MaxUpgrade.ToString() + ")";
+            }
+        }
 
 
         #region//플레이 데이터 관련

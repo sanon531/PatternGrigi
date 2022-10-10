@@ -47,10 +47,6 @@ namespace PG.Battle
                 HitEffect.transform.position = _EndPos;
                 HitEffect.transform.LookAt(_EndPos);
 
-                foreach (var AllPs in Effects)
-                {
-                    if (!AllPs.isPlaying) AllPs.Play();
-                }
 
                 //Length[0] = MainTextureLength * (Vector3.Distance(transform.position, _EndPos));
                 //Length[2] = NoiseTextureLength * (Vector3.Distance(transform.position, _EndPos));

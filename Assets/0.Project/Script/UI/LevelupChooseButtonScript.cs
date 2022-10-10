@@ -43,6 +43,8 @@ namespace PG.Battle
             _contentImage.sprite = Resources.Load<Sprite>("Artifact/" + id.ToString());
             //ArtifactData data= GlobalDataStorage.TotalArtifactTableDataDic[id];
             _title.text = GetLocalizedTextScript.GetArtifactDataFromJson(ArtifactJsonData.ArtifactName, id);
+
+            _title.text += " "+ Global_CampaignData.GetArtifactUpgradeCount(id);
             _content.text = GetLocalizedTextScript.GetArtifactDataFromJson(ArtifactJsonData.ArtifactEffect, id);
 
         }

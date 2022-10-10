@@ -30,6 +30,8 @@ namespace PG.Data
                 {DrawPatternPresetID.Empty_Breath,new PresetPatternAction_Base() }
             };
 
+        #region// 유물
+
         //아티팩트의 수치와 행동을 분리하여야 한다.그래야 나중에 텍스트 처리할때 편하다.
         //그리고 이후에 테크 트리, 점진적인 레벨링 같은거 할때 다음과 같이 나올수가 있다면 좋을듯함.
 
@@ -101,7 +103,28 @@ namespace PG.Data
                     (int)ArtifactRarity.Common,
                     true,
                     0)},
-               
+
+                #endregion
+
+
+                #region//업그레이드 유물들.
+                {ArtifactID.Upgrade_AimShot, new ArtifactData(
+                    ArtifactID.Upgrade_AimShot,
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0,5)},
+                {ArtifactID.Upgrade_StraightShot, new ArtifactData(
+                    ArtifactID.Upgrade_StraightShot,
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0,5)},
+                {ArtifactID.Upgrade_LightningShot, new ArtifactData(
+                    ArtifactID.Upgrade_LightningShot,
+                    (int)ArtifactRarity.Common,
+                    true,
+                    0,5)},
+
+
                 #endregion
 
             };
@@ -109,6 +132,8 @@ namespace PG.Data
         public static Dictionary<ArtifactID, Artifact> TotalArtifactClassDic =
             new Dictionary<ArtifactID, Artifact>()
             {
+
+                #region//10월 업데이트 이전의 유물들
                 {ArtifactID.Thunder_Manimekhala, new Artifact_Thunder_Manimekhala()},
                 {ArtifactID.LoveAndPeace, new Artifact_LoveAndPeace()},
                 {ArtifactID.FragileRush, new Arfifact_FragileRush()},
@@ -120,6 +145,11 @@ namespace PG.Data
                 {ArtifactID.BulletTeleportShooter, new Arfifact_BulletTeleportShooter()},
                 {ArtifactID.Pinocchio, new Arfifact_Pinnochio()},
                 {ArtifactID.AtomSetting, new Arfifact_AtomSetting()},
+                #endregion
+                {ArtifactID.Upgrade_AimShot, new Artifact_UpgradeAimShot()},
+                {ArtifactID.Upgrade_StraightShot, new Artifact_UpgradeStraightShot()},
+                {ArtifactID.Upgrade_LightningShot, new Artifact_UpgradeLightningShot()},
+
 
             };
 
@@ -134,6 +164,10 @@ namespace PG.Data
             };
 
     }
+
+
+
+    #endregion
     [System.Serializable]
     public class ProjectileData
     {

@@ -55,8 +55,7 @@ public class ProjectileIDFloatDic : SerializableDictionary<ProjectileID, float> 
 
 
 [Serializable]
-public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact> 
-{
+public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact> {
     public override void CopyFrom(IDictionary<ArtifactID, Artifact> dict)
     {
         this.Clear();
@@ -65,10 +64,23 @@ public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact>
             this[kvp.Key] = Artifact.Create(kvp.Key);
         }
     }
+}
 
 [Serializable]
-public class MobIDObjectDic : SerializableDictionary<CharacterID, GameObject> { }
+public class ArtifactIDVecotrInt2Dic : SerializableDictionary<ArtifactID, Vector2Int>
+{
+    public void CopyFrom(ArtifactIDVecotrInt2Dic dict)
+    {
+
+        this.Clear();
+        foreach (var kvp in dict)
+        {
+            Add(kvp.Key, new Vector2Int(kvp.Value.x, kvp.Value.y));
+        }
+    }
 }
+
+
 
 [Serializable]
 public class CharactorIDDataEntityDic : SerializableDictionary<CharacterID, DataEntity>

@@ -64,7 +64,7 @@ namespace PG.Data
         AtomSetting = 61,
 
 
-        Upgrade_NormalShot = 100,
+        Upgrade_AimShot = 100,
         Upgrade_StraightShot = 101,
         Upgrade_LightningShot = 102,
         Upgrade_TowerShot = 103,
