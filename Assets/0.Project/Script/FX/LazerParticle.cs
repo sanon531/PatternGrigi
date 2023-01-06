@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace PG.Battle
 {
     public class LazerParticle : Hovl_Laser2 , Data.ILazerOnoff

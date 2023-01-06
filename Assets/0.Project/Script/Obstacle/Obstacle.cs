@@ -4,7 +4,7 @@ using UnityEngine;
 using PG.Event;
 namespace PG.Battle
 {
-    public class Obstacle : PoolableObject
+    public class Obstacle : MonoBehaviour
     {
 
         // Start is called before the first frame update
@@ -31,12 +31,10 @@ namespace PG.Battle
 
         public virtual void SetSpawnData(float lifeTime, float activetimes,float damage)
         {
-            OnObjectEnabled();
             _maxLifetime = lifeTime;
             _lifeTime = _maxLifetime;
             _activetime = activetimes;
             _damageDeal = damage;
-            _isPlaced = true;
             _isActived = false;
         }
         protected virtual void SetActiveObstacle() 
@@ -52,9 +50,6 @@ namespace PG.Battle
         }
         protected virtual void CheckStatus() 
         {
-            if (!_isPlaced)
-                return;
-
             _passedTime += Time.deltaTime;
             if (_passedTime > _activetime && !_isActived)
             {

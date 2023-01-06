@@ -5,7 +5,7 @@ using System;
 using UnityEngine;
 namespace PG.Battle
 {
-    public class Hovl_Laser2 : PoolableObject
+    public class Hovl_Laser2 : MonoBehaviour
     {
         public float laserScale = 1;
         public Color laserColor = new Vector4(1, 1, 1, 1);

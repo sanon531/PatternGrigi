@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.Pool;
 using PG.Data;
 using PG.Battle;
 using PG;
@@ -47,7 +48,7 @@ public class LaserIDObjectListDic : SerializableDictionary<LaserKindID, List<Gam
 public class ProjectileIDObjectDic : SerializableDictionary<ProjectileID, GameObject> { }
 
 [Serializable]
-public class ProjectileIDObjectListDic : SerializableDictionary<ProjectileID, List<GameObject>> { }
+public class ProjectileIDObjectPoolDic : SerializableDictionary<ProjectileID, ProjectilePool<ProjectileScript>> { }
 
 [Serializable]
 public class ProjectileIDFloatDic : SerializableDictionary<ProjectileID, float> { }

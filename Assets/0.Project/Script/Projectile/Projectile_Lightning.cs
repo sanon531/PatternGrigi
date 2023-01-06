@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace PG.Battle 
 {
-    public class Projectile_Lightning : Projectile_Script
+    public class Projectile_Lightning : ProjectileScript
     {
 
         [SerializeField]
@@ -13,33 +14,21 @@ namespace PG.Battle
         // Start is called before the first frame update
         void Start()
         {
-            _hitFX.Stop();
+            hitFX.Stop();
             _thisRay.SetActiveLazer(false);
         }
-
-        protected override void LateUpdate()
-        {
-            if (_isPlaced)
-            {
-                if (_lifeTime <= 0)
-                    OnObjectDisabled();
-                else
-                    _lifeTime -= Time.deltaTime;
-            }
-        }
-
         // Update is called once per frame
-        public override void SetInitialProjectileData(MobScript target, float damage, float lifetime, float spreadCount)
+        /*public override void SetInitialProjectileData(MobScript target, IObjectPool<ProjectileScript> objectPool, float lifetime, float spreadCount, float f)
         {
-            base.SetInitialProjectileData(target, damage, lifetime, spreadCount);
+            base.SetInitialProjectileData(target, objectPool,damage, lifetime, spreadCount);
 
             OnObjectEnabled();
-            if (_targetMob != null)
+            if (targetMob != null)
             {
-                if (_targetMob.GetMobPosition() != null)
+                if (targetMob.GetMobPosition() != null)
                 {
-                    _thisRay.SetLazerEachPos(transform.position, _targetMob.GetMobPosition());
-                    _targetMob.Damage(damage);
+                    _thisRay.SetLazerEachPos(transform.position, targetMob.GetMobPosition());
+                    targetMob.Damage(damage);
                 }
                 else 
                 {
@@ -49,17 +38,16 @@ namespace PG.Battle
             }
             else 
             {
-                //³ªÁß¿¡ ¹ø°³°¡ ±×·¡µµ ³ª°¡µµ·Ï ³ª¿Íµµ ÁÁÀ»°Í °°±äÇØµµ ¹¹ ÀÏ´ÜÀº
+                //ë‚˜ì¤‘ì— ë²ˆê°œê°€ ê·¸ë˜ë„ ë‚˜ê°€ë„ë¡ ë‚˜ì™€ë„ ì¢‹ì„ê²ƒ ê°™ê¸´í•´ë„ ë­ ì¼ë‹¨ì€
                 OnObjectDisabled();
             }
 
 
         }
-
         protected override void OnObjectEnabled()
         {
             base.OnObjectEnabled();
-            _hitFX.Play();
+            hitFX.Play();
             _thisRay.SetActiveLazer(true);
         }
 
@@ -70,6 +58,7 @@ namespace PG.Battle
             base.OnObjectDisabled();
         }
 
+        */
 
     }
 

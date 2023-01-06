@@ -21,7 +21,7 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(LaserIDObjectDic))]
 [CustomPropertyDrawer(typeof(LaserIDObjectListDic))]
 [CustomPropertyDrawer(typeof(ProjectileIDObjectDic))]
-[CustomPropertyDrawer(typeof(ProjectileIDObjectListDic))]
+[CustomPropertyDrawer(typeof(ProjectileIDObjectPoolDic))]
 [CustomPropertyDrawer(typeof(ProjectileIDFloatDic))]
 [CustomPropertyDrawer(typeof(ProjectileIDDataDic))]
 

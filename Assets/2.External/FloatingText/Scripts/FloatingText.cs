@@ -4,7 +4,7 @@ namespace PG.Battle.FX
 {
 
     [RequireComponent(typeof(TextMesh))]
-    public class FloatingText : PoolableObject
+    public class FloatingText : MonoBehaviour
     {
         public TextMesh textMesh;
         public float LifeTime = 1;

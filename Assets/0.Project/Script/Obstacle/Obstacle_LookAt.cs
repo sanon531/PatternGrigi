@@ -8,7 +8,7 @@ namespace PG.Battle
     public class Obstacle_LookAt : Obstacle
     {
         private Transform playerTr;
-        private Vector2 forward = new Vector2(0, -1);   //spriteÀÇ ¹æÇâ¿¡ µû¶ó ´Þ¶óÁü
+        private Vector2 forward = new Vector2(0, -1);   //spriteï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¶ï¿½ï¿½ï¿½
 
         [SerializeField]
         private float rotateSpeed;
@@ -33,7 +33,7 @@ namespace PG.Battle
 
         private void LookPlayer()
         {
-            if (!_isPlaced || _isActived) return;
+            if (_isActived) return;
 
             Vector2 direction = new Vector2(
                      transform.position.x - playerTr.position.x,

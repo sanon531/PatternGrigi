@@ -6,27 +6,39 @@ using UnityEngine;
 
 using PG.Data;
 using PG.Event;
+using UnityEngine.Pool;
+using UnityEngine.Serialization;
 
 namespace PG.Battle 
 {
-    //¿ÀºêÁ§Æ® ¸Å´ÏÁ®´Â ÀÌÀÌ¿Ü¿¡µµ ±×Àú
+    //ì˜¤ë¸Œì íŠ¸ ë§¤ë‹ˆì ¸ëŠ” ì´ì´ì™¸ì—ë„ ê·¸ì €
     public class ProjectileManager : MonoSingleton<ProjectileManager>
     {
-        //³ªÁß¿¡ Ç®¸µÇÏ±â À§ÇØ¼­ ¸¸µë Áö±İÀº Ç®ÇÒ ÇÊ¿ä¾ø´Ù.
+        //ë‚˜ì¤‘ì— í’€ë§í•˜ê¸° ìœ„í•´ì„œ ë§Œë“¬ ì§€ê¸ˆì€ í’€í•  í•„ìš”ì—†ë‹¤.
         [SerializeField]
-        ProjectileIDObjectDic _projectileDictionary = new ProjectileIDObjectDic();
-        [SerializeField]
-        ProjectileIDObjectListDic _totalProjectileDictionary = new ProjectileIDObjectListDic() {};
-        [SerializeField]
-        ProjectileIDObjectListDic _deactivateProjectileDictionary = new ProjectileIDObjectListDic() {};
+        private ProjectileIDObjectDic projectileDictionary = new ProjectileIDObjectDic();
 
         [SerializeField]
-        List<MobScript> _temptenemyList = new List<MobScript>();
+        private Dictionary<ProjectileID, ProjectilePool<ProjectileScript>> _totalProjectileDictionary 
+            = new Dictionary<ProjectileID, ProjectilePool<ProjectileScript>>();
+        [SerializeField]
+        ProjectileIDFloatDic _projectileLifeTimeDic = new ProjectileIDFloatDic()
+        {
+            { ProjectileID.NormalBullet,10f},
+            { ProjectileID.LightningShot,0.5f},
+            { ProjectileID.StraightShot,10f},
+            { ProjectileID.TowerBullet,5f},
+            { ProjectileID.CuttingKnife,1f},
 
-        //Å¥ ÇÃ·ÎÆ® °ªÀ¸·Î ÀúÀåÇÑ´ÙÀ½¿¡ÇÏ³ªÇÏ³ª¾¿ ÆËÇÑ´Ù. ¼ıÀÚ´Â Á¤ÇØÁø ´ë·Î ³ª¿À°í.
-        //¸¸¾à Å¥ÀÇ ¼ö°¡ ÀÏ¹İ ¸®½ºÆ® º¸´Ù ÀÛÀ» °æ¿ì
-        Dictionary<ProjectileID, Queue<float>> _currentShotAmmoDic = new Dictionary<ProjectileID, Queue<float>>() { };
-        Dictionary<ProjectileID, bool> _shotCoroutineDic = new Dictionary<ProjectileID, bool>() {};
+        };
+
+        
+        //í í”Œë¡œíŠ¸ ê°’ìœ¼ë¡œ ì €ì¥í•œë‹¤ìŒì—í•˜ë‚˜í•˜ë‚˜ì”© íŒí•œë‹¤. ìˆ«ìëŠ” ì •í•´ì§„ ëŒ€ë¡œ ë‚˜ì˜¤ê³ .
+        //ë§Œì•½ íì˜ ìˆ˜ê°€ ì¼ë°˜ ë¦¬ìŠ¤íŠ¸ ë³´ë‹¤ ì‘ì„ ê²½ìš°
+        Dictionary<ProjectileID, Queue<float>> _currentShotAmmoDic 
+            = new Dictionary<ProjectileID, Queue<float>>() { };
+        //í•´ë‹¹ ì…‹ì´ í˜„ì¬ ì˜ëŠ” ìƒí™©ì¸ì§€ í™•ì¸, ë”œë ˆì´ì¸ì§€ í™•ì¸.
+        HashSet<ProjectileID> _keepShotSet = new HashSet<ProjectileID>(){};
 
 
         protected override void CallOnAwake()
@@ -39,57 +51,81 @@ namespace PG.Battle
             Global_BattleEventSystem._onCalcPlayerAttack -= SetProjectileToEnemy;
         }
 
-        // ¸®¼Ò½º¿¡¼­ ·ÎµåÇÏ¿© µÎ°¡Áö µñ¼Å³Ê¸®¿¡ ÀúÀåÇÑ´Ù.
+        // ë¦¬ì†ŒìŠ¤ì—ì„œ ë¡œë“œí•˜ì—¬ ë‘ê°€ì§€ ë”•ì…”ë„ˆë¦¬ì— ì €ì¥í•œë‹¤.
         int _totalprojectileNum = 0;
         void InitiallzeProjectileDic() 
         {
-            //¸ÕÀú ¸÷ ½ºÆù ¸Å´ÏÁ®¿¡°Ô¼­ ÀûµéÀÇ µ¥ÀÌÅÍ¿¡ °üÇÑ °ªÀ» °¡Á®¿À°Ô µÊ.
-            //ÀûµéÀÇ µ¥ÀÌÅÍ¿¡ °üÇÑ °ÍÀÌ¸é ÀûµéÀÇ
-            GameObject _tempt;
+            //ë¨¼ì € ëª¹ ìŠ¤í° ë§¤ë‹ˆì ¸ì—ê²Œì„œ ì ë“¤ì˜ ë°ì´í„°ì— ê´€í•œ ê°’ì„ ê°€ì ¸ì˜¤ê²Œ ë¨.
+            //ì ë“¤ì˜ ë°ì´í„°ì— ê´€í•œ ê²ƒì´ë©´ ì ë“¤ì˜
 
-            foreach (ProjectileID projectile in Enum.GetValues(typeof(ProjectileID))) 
+            foreach (ProjectileID id in Enum.GetValues(typeof(ProjectileID))) 
             {
-                _currentShotAmmoDic.Add(projectile, new Queue<float>());
-                _shotCoroutineDic.Add(projectile, false);
-                _projectileDictionary.Add(projectile, Resources.Load<GameObject>("Projectile/" + projectile));
-                _totalProjectileDictionary.Add(projectile, new List<GameObject>() { });
-                _deactivateProjectileDictionary.Add(projectile, new List<GameObject>() { });
-                for (int i = 0; i < 10; i++)
-                {
-                    _tempt = Instantiate(_projectileDictionary[projectile], transform);
-                    _tempt.name = projectile.ToString() + i.ToString();
-                    _totalprojectileNum++;
-                    _totalProjectileDictionary[projectile].Add(_tempt);
-                    _deactivateProjectileDictionary[projectile].Add(_tempt);
-                }
+                _currentShotAmmoDic.Add(id, new Queue<float>());
+                projectileDictionary.Add(id, Resources.Load<GameObject>("Projectile/" + id));
+                _totalProjectileDictionary.Add(id,
+                    new ProjectilePool<ProjectileScript>
+                    (
+                        CreateProjectile,
+                        OnGet,
+                        OnRelease,
+                        OnDestroy,
+                        true,
+                        (int)id,
+                        default
+                    )
+                );
+                for(int i = 0 ; i<10 ;i++)
+                    _totalProjectileDictionary[id].FillStack();
+                
             }
         }
 
+        #region ObjectPoolPlace
+        private ProjectileScript CreateProjectile(int id)
+        {
+            ProjectileID temptID = (ProjectileID)id;
+            ProjectileScript project = Instantiate(projectileDictionary[temptID], transform).GetComponent<ProjectileScript>();
+            project.SetInitialProjectileData(
+                _totalProjectileDictionary[temptID],
+                _projectileLifeTimeDic[temptID]);
+            return project;
+        }
+
+        private void OnGet(ProjectileScript projectileScript)
+        {
+            projectileScript.gameObject.SetActive(true);
+        }
+
+        private void OnRelease(ProjectileScript projectileScript)
+        {
+            projectileScript.gameObject.SetActive(false);
+        }
+
+        private void OnDestroy(ProjectileScript projectileScript)
+        {
+            Debug.Log("Too much Projectile");
+        }
+        
+
+        #endregion
+        
+        
+
         public static void AddProjectileDic(ProjectileID id)
         {
-            _instance._projectileDictionary.Add(id, Resources.Load<GameObject>("Projectile/" + id));
+            _instance.projectileDictionary.Add(id, Resources.Load<GameObject>("Projectile/" + id));
         }
 
 
-        //ÀÚµ¿À¸·Î 
+        //ìë™ìœ¼ë¡œ 
         List<int> _targetList = new List<int>();
-        //ÁöÁ¤µÈ ¸÷ ¸®½ºÆ®.
+        //ì§€ì •ëœ ëª¹ ë¦¬ìŠ¤íŠ¸.
         List<MobScript> _targetedMobList = new List<MobScript>();
-        [SerializeField]
-        ProjectileIDFloatDic _projectileLifeTimeDic = new ProjectileIDFloatDic()
-        {
-            { ProjectileID.NormalBullet,10f},
-            { ProjectileID.LightningShot,0.5f},
-            { ProjectileID.StraightShot,10f},
-            { ProjectileID.TowerBullet,5f},
-            { ProjectileID.CuttingKnife,1f},
 
-        };
+        //í”Œë ˆì´ì–´ëŠ” í˜„ì¬ ê³µê²©í• ìˆ˜ìˆëŠ” ì ì—ê²Œ ë°ë¯¸ì§€ë¥¼
 
-        //ÇÃ·¹ÀÌ¾î´Â ÇöÀç °ø°İÇÒ¼öÀÖ´Â Àû¿¡°Ô µ¥¹ÌÁö¸¦
-
-        //ÀÏ´Ü ¾îÂî µÉÁö ¸ğ¸£´Ï±î ÅëÇÕ ÇÏÀÚ.±×°Ô À¯Áöº¸¼ö¿¡ ÈÎ¾À ½¬¿ïµíÇÔ
-        // ÅºÃ¢ÀÌ 1, ÇÑ¹ø¿¡ ½î´Â °¹¼ö·Î ³ª´¶´Ù
+        //ì¼ë‹¨ ì–´ì°Œ ë ì§€ ëª¨ë¥´ë‹ˆê¹Œ í†µí•© í•˜ì.ê·¸ê²Œ ìœ ì§€ë³´ìˆ˜ì— í›¨ì”¬ ì‰¬ìš¸ë“¯í•¨
+        // íƒ„ì°½ì´ 1, í•œë²ˆì— ì˜ëŠ” ê°¯ìˆ˜ë¡œ ë‚˜ë‰œë‹¤
         void SetProjectileToEnemy(float val) 
         {
             foreach (ProjectileID id in Enum.GetValues(typeof(ProjectileID))) 
@@ -97,33 +133,44 @@ namespace PG.Battle
                 //Debug.Log("projectile check_ : " +projectile  + Global_CampaignData._projectileIDDataDic[projectile]._count);
                 if (Global_CampaignData._projectileIDDataDic[id]._repeat <= 0)
                     continue;
-                //ÃÑ¾Ë ¼ö¸¦ Å¥¿¡ ³Ö¾î¼­ Ãß°¡ÇÑ´Ù
+                //ì´ì•Œ ìˆ˜ë¥¼ íì— ë„£ì–´ì„œ ì¶”ê°€í•œë‹¤
                 for (int i = 0; i < Global_CampaignData._projectileIDDataDic[id]._repeat; i++)
                     _currentShotAmmoDic[id].Enqueue(val);
 
-                if (_shotCoroutineDic[id] == false)
-                {
-                    _shotCoroutineDic[id] = true;
-                    StartCoroutine(ShotRoutine(id));
-                }
-                //»êÃâ·® ÀÌ»óÇÑ°Å ¼öÁ¤ ÇØ¾ßÇÔ
-                    //Debug.Log("Already Exist");
-                //ÀÌ¹Ì ³ª¿Â°Ô ¾Æ´Ï¶ó ÀÌ°Å ÄÚ·çÆ¾ÀÌ ÀÖÀ»¶§ ¾øÀ»¶§ ³ª´©´Â°Ô ³´°Ú´Ù ¾îÂ÷ÇÇ Áß°£¿¡¼öÁ¤ÇÏ´Â ÄÚµåµµ ¾øÀ¸´Ï.
+                _keepShotSet.Add(id);
             }
 
         }
 
-        //ÇöÀç´Â ÅëÇÕ ÇüÅÂÁö¸¸ ¿ÀºêÁ§Æ® ¿¬»ç Á¤µµµµ ÀÌº¥Æ®·Î Á¶Àı °¡´ÉÇÏ°Ô ¸¸µé °ÍÀÌ´Ù.
-        //±×³É ¹ß»çÇÏ´Â ³ğµéÀÓ Á¶ÁØ Àº ¾ÈÇÑ´Ù? ÀÏ´Ü Á¶ÁØÇÏµµ·Ï ±¸Çö ÇØº¼±î. ¾ßÈ£ Æ÷Å¾ÀÌ ¿òÁ÷¿©µµ Àç¹Õ°Ú±¸¸¸
+        //ë°œì‚¬ ê´€ë ¨í•œ ë°ì´í„°ê°€ ìˆì„ ë•Œ ì•Œì•„ì„œ ì²˜ë¦¬ë¨
+        private void FixedUpdate()
+        {
+            //_currentShotAmmoDicì˜ ì •ë³´ë¥¼ ê¸°ë°˜ìœ¼ë¡œë‚¨ì€ í”„ë¡œì íƒ€ì¼ì„ ì„¸ê³  ë°œì‚¬í•œë‹¤.
+            //ê°ìì˜ ë°œì‚¬ íƒ€ì´ë¨¸ëŠ” ë‹¤ë¥´ë©°
+            foreach (var id in _keepShotSet)
+            {
+                _temptDamage = _currentShotAmmoDic[id].Dequeue();
+                SetSpreadShotStyle(_temptDamage, id);
+            }
+        }
+
+        //í˜„ì¬ ë¦¬í„´ ìƒíƒœ ì¸¡ì •í•˜ëŠ” ë¡œê·¸
+        void LogCurrentDic()
+        {
+            
+            
+        }
+
+
+        //í˜„ì¬ëŠ” í†µí•© í˜•íƒœì§€ë§Œ ì˜¤ë¸Œì íŠ¸ ì—°ì‚¬ ì •ë„ë„ ì´ë²¤íŠ¸ë¡œ ì¡°ì ˆ ê°€ëŠ¥í•˜ê²Œ ë§Œë“¤ ê²ƒì´ë‹¤.
+        //ê·¸ëƒ¥ ë°œì‚¬í•˜ëŠ” ë†ˆë“¤ì„ ì¡°ì¤€ ì€ ì•ˆí•œë‹¤? ì¼ë‹¨ ì¡°ì¤€í•˜ë„ë¡ êµ¬í˜„ í•´ë³¼ê¹Œ. ì•¼í˜¸ í¬íƒ‘ì´ ì›€ì§ì—¬ë„ ì¬ë°Œê² êµ¬ë§Œ
         float _temptDamage = 0;
+
         IEnumerator ShotRoutine(ProjectileID id) 
         {
-            //ÅºÈ¯ÀÌ 0ÀÌ ¾Æ´Ò¶§ ±îÁö ¹İº¹
+            //íƒ„í™˜ì´ 0ì´ ì•„ë‹ë•Œ ê¹Œì§€ ë°˜ë³µ
             while (true) 
             {
-                //Shot
-                //if(id == ProjectileID.StraightShot)
-                //Debug.Log(Global_CampaignData._projectileIDDataDic[id]._count + "shot ss" + Global_CampaignData._projectileIDDataDic[id]._cooltime);
                 _temptDamage = _currentShotAmmoDic[id].Dequeue();
                 SetSpreadShotStyle(_temptDamage, id);
 
@@ -135,7 +182,7 @@ namespace PG.Battle
                     break;
             }
 
-            _shotCoroutineDic[id] = false;
+            //_shotCoroutineDic[id] = false;
             //Debug.Log("routine finished");
             yield return null;
 
@@ -144,7 +191,7 @@ namespace PG.Battle
         void SetSpreadShotStyle(float val, ProjectileID id) 
         {
             TargetTheEnemy();
-            //Áö±İÀº ±×³É instantiate¸¦ ÇÏÁö¸¸ ³ªÁß¿¡´Â ¿ÀºêÁ§Æ® Ç®¸µÀÌ °¡´ÉÇÏµµ·Ï ¸¸µé°Í..
+            //ì§€ê¸ˆì€ ê·¸ëƒ¥ instantiateë¥¼ í•˜ì§€ë§Œ ë‚˜ì¤‘ì—ëŠ” ì˜¤ë¸Œì íŠ¸ í’€ë§ì´ ê°€ëŠ¥í•˜ë„ë¡ ë§Œë“¤ê²ƒ..
             int _spreadcount = Global_CampaignData._projectileIDDataDic[id]._count;
 
 
@@ -152,9 +199,9 @@ namespace PG.Battle
             {
                 for (int i = _targetList.Count - 1; i >= 0 && _spreadcount > 0; i--)
                 {
-                    GameObject _obj = ShootProjectile(id);
-                    Projectile_Script _tempt = _obj.GetComponent<Projectile_Script>();
-                    _tempt.SetInitialProjectileData(_targetedMobList[i], val, _projectileLifeTimeDic[id], 0.25f * (i - _spreadcount));
+                    ProjectileScript _tempt = _totalProjectileDictionary[id].PickUp();
+                    _tempt.SetFrequentProjectileData(_targetedMobList[i], val, 
+                        0.25f * (i - _spreadcount));
                     //Debug.Log("ss" + _spreadcount);
                     _spreadcount--;
                 }
@@ -163,6 +210,9 @@ namespace PG.Battle
 
         }
 
+
+   
+        private List<MobScript> _temptenemyList;
 
         public void TargetTheEnemy()
         {
@@ -176,17 +226,17 @@ namespace PG.Battle
             int maxTargetNum = 0;
             _targetList.Clear();
             _targetedMobList.Clear();
-            //Áö±İÀº ÀûÀÇ ½ºÆù ¼ø¼­ ´ë·Î ´ëÃæ Á¤ÇÏ±äÇÏÁö¸¸. 
-            //³ªÁß¿¡´Â ¸÷Á¦³×·¹ÀÌÅÍ¿¡¼­ ¸÷µéÀÇ À§Ä¡¸¦ Á¤ÇØÁÜ.
+            //ì§€ê¸ˆì€ ì ì˜ ìŠ¤í° ìˆœì„œ ëŒ€ë¡œ ëŒ€ì¶© ì •í•˜ê¸´í•˜ì§€ë§Œ. 
+            //ë‚˜ì¤‘ì—ëŠ” ëª¹ì œë„¤ë ˆì´í„°ì—ì„œ ëª¹ë“¤ì˜ ìœ„ì¹˜ë¥¼ ì •í•´ì¤Œ.
             for (int i = 0; i < _temptenemyList.Count; i++)
             {
-                //¸÷¿¡µµ Å¸°Ù Ç¥½ÃÇÔ.
+                //ëª¹ì—ë„ íƒ€ê²Ÿ í‘œì‹œí•¨.
                 _targetList.Add(i);
                 maxTargetNum++;
                 if (maxTargetNum >= Global_CampaignData._projectileTargetNum.FinalValue)
                     break;
             }
-            // Å¸°Ù µÇ¾ú´Ù´Â°Å Ç¥½ÃÇÏ±â + À§Ä¡ Ç¥½Ã °ü·Ã
+            // íƒ€ê²Ÿ ë˜ì—ˆë‹¤ëŠ”ê±° í‘œì‹œí•˜ê¸° + ìœ„ì¹˜ í‘œì‹œ ê´€ë ¨
             for (int i = 0; i < _temptenemyList.Count; i++) 
             {
                 _targetedMobList.Add(_temptenemyList[i]);
@@ -203,34 +253,7 @@ namespace PG.Battle
 
         }
 
-        //Åõ»çÃ¼¸¦ ½ğ´Ù¸é àÆ¼º£ÀÌ¼Ç¿¡´Ù°¡ ³õ°í
-        GameObject ShootProjectile(ProjectileID id) 
-        {
-            GameObject _tempt;
-            if (_deactivateProjectileDictionary[id].Count <= 0)
-            {
-                _tempt = Instantiate(_projectileDictionary[id], transform);
-                _tempt.name = id + (_totalProjectileDictionary[id].Count ).ToString();
-                _totalProjectileDictionary[id].Add(_tempt);
-                Debug.Log("build new " + _deactivateProjectileDictionary[id].Count.ToString());
-            }
-            else 
-            {
-                _tempt = _deactivateProjectileDictionary[id][0];
-                _deactivateProjectileDictionary[id].Remove(_tempt);
-            }
-            return _tempt;
-        }
-        #region // setback region
-
-        public static void SetBackProjectile(GameObject projectile, ProjectileID id) 
-        {
-            _instance._deactivateProjectileDictionary[id].Add(projectile);
-            projectile.transform.position = _instance.transform.position;
-        }
-
-        #endregion
-
+     
     }
 
 }
