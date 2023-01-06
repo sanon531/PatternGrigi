@@ -21,8 +21,14 @@ namespace PG
         {
             base.Enable();
             Global_CampaignData._currentChargePattern = DrawPatternPresetID.Thunder_Manimekhala;
+            //1회마다 1회씩 나가도록.
+            //Global_CampaignData._projectileIDDataDic[ProjectileID.LightningShot].IncreaseCount(1);
+            //Global_CampaignData._projectileIDDataDic[ProjectileID.NormalBullet].IncreaseCount(1);
+            //Global_CampaignData._projectileIDDataDic[ProjectileID.StraightShot].IncreaseCount(1);
+            //Global_CampaignData._projectileIDDataDic[ProjectileID.StraightShot].SetRepeat(3);
+
             Global_BattleEventSystem._onPatternSuccessed += CallRandomPatternSuccessed;
-            //Debug.Log("asdf");
+            //Debug.Log("asdf"+ Global_CampaignData._projectileIDDataDic[ProjectileID.LightningShot]._count);
         }
         protected override void Disable()
         {
@@ -32,16 +38,13 @@ namespace PG
         }
         public override void AddCountOnArtifact()
         {
-            _value++;
+            _upgradeCount++;
         }
 
         void CallRandomPatternSuccessed(DrawPatternPresetID patternPreset) 
         {
             if (patternPreset == DrawPatternPresetID.Empty_Breath) 
             {
-                Global_BattleEventSystem.CallOnCalcPlayerAttack(10f);
-                Global_BattleEventSystem.CallOnCalcPlayerAttack(10f);
-                Global_BattleEventSystem.CallOnCalcPlayerAttack(10f);
                 Global_BattleEventSystem.CallOnCalcPlayerAttack(10f);
             }
         }
@@ -69,7 +72,7 @@ namespace PG
         }
         public override void AddCountOnArtifact()
         {
-            _value++;
+            _upgradeCount++;
         }
     }
 

@@ -17,12 +17,22 @@ namespace PG
         public ArtifacProperty Properties { get { return _properties; } }
         protected readonly ArtifactRarity _rarity;
         public ArtifactRarity Rarity { get { return _rarity; } }
-        protected readonly ArtifactID _artifactID;
-        public ArtifactID _ArtifactID { get { return _artifactID; } }
+        protected readonly ArtifactID thisID;
+        public ArtifactID ThisID { get { return thisID; } }
 
         [SerializeField]
-        protected int _value;
-        public virtual int Value { get { return _value; } protected set { _value = value; } }
+        protected int maxUpgrade = 5;
+        public int MaxUpgrade { get => maxUpgrade; set => maxUpgrade = value; }
+
+        [SerializeField]
+        protected int _upgradeCount;
+        public virtual int UpgradeCount { get { return _upgradeCount; } protected set 
+            { 
+                if(value <= maxUpgrade)
+                _upgradeCount = value; 
+            } 
+        
+        }
         private ArtifactFlag _flag;
         public ArtifactFlag Flag { get { return _flag; } }
 
@@ -36,15 +46,16 @@ namespace PG
 
 
 
+
         #endregion
 
         private Artifact() { }
         protected Artifact(ArtifactID artifactID)
         {
-            _artifactID = artifactID;
+            thisID = artifactID;
             ArtifactData data = GlobalDataStorage.TotalArtifactTableDataDic[artifactID];
             _rarity = (ArtifactRarity)data.Rarity;
-            _value = data.Value;
+            _upgradeCount = data.UpgradeCount;
 
             _flag = ArtifactFlag.Inactive;
         }
@@ -53,7 +64,7 @@ namespace PG
         public virtual void OnGetArtifact()
         {
             //이 함수는 유물을 직접 획득할때만 콜됨 (저장한거 로드할땐 콜 안됨)
-            _value++;
+            _upgradeCount++;
         }
         public void ActiveArtifact()
         {
@@ -63,14 +74,14 @@ namespace PG
         public void DisposeArtifact()
         {
             //_flag |= ArtifactFlag.Inactive;
-            for (int i = 0; i < _value; i++)
+            for (int i = 0; i < _upgradeCount; i++)
                 Disable();
 
-            _value = 0;
+            _upgradeCount = 0;
         }
         public virtual void AddCountOnArtifact()
         {
-            _value++;
+            _upgradeCount++;
         }
 
 

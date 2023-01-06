@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.Pool;
 using PG.Data;
 using PG.Battle;
 using PG;
@@ -43,10 +44,19 @@ public class LaserIDObjectDic : SerializableDictionary<LaserKindID, GameObject> 
 [Serializable]
 public class LaserIDObjectListDic : SerializableDictionary<LaserKindID, List<GameObject>> { }
 
+[Serializable]
+public class ProjectileIDObjectDic : SerializableDictionary<ProjectileID, GameObject> { }
 
 [Serializable]
-public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact> 
-{
+public class ProjectileIDObjectPoolDic : SerializableDictionary<ProjectileID, ProjectilePool<ProjectileScript>> { }
+
+[Serializable]
+public class ProjectileIDFloatDic : SerializableDictionary<ProjectileID, float> { }
+
+
+
+[Serializable]
+public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact> {
     public override void CopyFrom(IDictionary<ArtifactID, Artifact> dict)
     {
         this.Clear();
@@ -55,10 +65,23 @@ public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact>
             this[kvp.Key] = Artifact.Create(kvp.Key);
         }
     }
+}
 
 [Serializable]
-public class MobIDObjectDic : SerializableDictionary<CharacterID, GameObject> { }
+public class ArtifactIDVecotrInt2Dic : SerializableDictionary<ArtifactID, Vector2Int>
+{
+    public void CopyFrom(ArtifactIDVecotrInt2Dic dict)
+    {
+
+        this.Clear();
+        foreach (var kvp in dict)
+        {
+            Add(kvp.Key, new Vector2Int(kvp.Value.x, kvp.Value.y));
+        }
+    }
 }
+
+
 
 [Serializable]
 public class CharactorIDDataEntityDic : SerializableDictionary<CharacterID, DataEntity>
@@ -70,6 +93,21 @@ public class CharactorIDDataEntityDic : SerializableDictionary<CharacterID, Data
         foreach (var kvp in dict)
         {
             Add(kvp.Key, new DataEntity(kvp.Value));
+        }
+    }
+
+}
+[Serializable]
+public class ProjectileIDDataDic : SerializableDictionary<ProjectileID, ProjectileData> 
+{
+    public void CopyFrom(ProjectileIDDataDic dict)
+    {
+
+        this.Clear();
+        foreach (var kvp in dict)
+        {
+            //Debug.Log(kvp.Key + "+"+ kvp.Value._count);
+            Add(kvp.Key, new ProjectileData(kvp.Value));
         }
     }
 

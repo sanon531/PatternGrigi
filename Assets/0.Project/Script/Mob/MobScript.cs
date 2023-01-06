@@ -7,7 +7,7 @@ using PG.Event;
 
 namespace PG.Battle
 {
-    public class MobScript : PoolableObject
+    public class MobScript : MonoBehaviour
     {
         #region//variables
         [Header("Health")]
@@ -100,7 +100,6 @@ namespace PG.Battle
             _color = mobSpawnData._색깔;
 
             _currentActionOrder = 0;
-            _isPlaced = true;
         }
 
         //set은 단 한번 이뤄지며 동시에 계속되는 반복방식은 move 로 바꾼다.
@@ -220,20 +219,12 @@ namespace PG.Battle
             yield return 0;
         }
 
-        #region//paused
 
-        void SetOnNonTotalPaused()
+        public Vector3 GetMobPosition() 
         {
-            _isNontotalPaused = true;
-        }
-        void SetOffNonTotalPaused()
-        {
-            _isNontotalPaused = false;
-
+            return transform.position;
         }
 
-
-        #endregion
 
 
     }

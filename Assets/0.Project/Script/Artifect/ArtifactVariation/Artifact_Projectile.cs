@@ -34,7 +34,7 @@ namespace PG
         }
         public override void AddCountOnArtifact()
         {
-            _value++;
+            _upgradeCount++;
             Global_CampaignData._projectileSpeed.Add배수(2);
             Global_CampaignData._projectileTargetNum.Add배수(2);
         }

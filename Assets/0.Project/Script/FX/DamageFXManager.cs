@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using PG.Event;
+using PG.Battle.FX;
 namespace PG.Battle
 {
     public class DamageFXManager : MonoSingleton<DamageFXManager>

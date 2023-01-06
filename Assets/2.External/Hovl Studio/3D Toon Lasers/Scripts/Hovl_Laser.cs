@@ -7,7 +7,7 @@ namespace PG.Battle
 {
 
 
-    public class Hovl_Laser : PoolableObject
+    public class Hovl_Laser : MonoBehaviour
     {
         //public int damageOverTime = 30;
 

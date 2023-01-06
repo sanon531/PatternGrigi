@@ -43,6 +43,8 @@ namespace PG.Battle
             _contentImage.sprite = Resources.Load<Sprite>("Artifact/" + id.ToString());
             //ArtifactData data= GlobalDataStorage.TotalArtifactTableDataDic[id];
             _title.text = GetLocalizedTextScript.GetArtifactDataFromJson(ArtifactJsonData.ArtifactName, id);
+
+            _title.text += " "+ Global_CampaignData.GetArtifactUpgradeCount(id);
             _content.text = GetLocalizedTextScript.GetArtifactDataFromJson(ArtifactJsonData.ArtifactEffect, id);
 
         }
@@ -58,7 +60,12 @@ namespace PG.Battle
             transform.DOScale(0.8f, 0.25f).SetUpdate(UpdateType.Late, true);
 
         }
-
+        IEnumerator CheckPress()
+        {
+            yield return new WaitForSeconds(1f);
+            // 여기서 관련한 정보가 보여진다.
+        
+        }
 
     }
 }

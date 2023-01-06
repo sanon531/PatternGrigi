@@ -11,6 +11,7 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(EnemyActionDataDic))]
 [CustomPropertyDrawer(typeof(QuaternionMyClassDictionary))]
 [CustomPropertyDrawer(typeof(ArtifactIDArtifactDic))]
+[CustomPropertyDrawer(typeof(ArtifactIDVecotrInt2Dic))]
 [CustomPropertyDrawer(typeof(CharactorIDDataEntityDic))]
 [CustomPropertyDrawer(typeof(MobIDObjectDic))]
 [CustomPropertyDrawer(typeof(MobActionDataDic))]
@@ -18,6 +19,11 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(TimeWaveDic))]
 [CustomPropertyDrawer(typeof(MobIDSpawnDataDic))]
 [CustomPropertyDrawer(typeof(LaserIDObjectDic))]
+[CustomPropertyDrawer(typeof(LaserIDObjectListDic))]
+[CustomPropertyDrawer(typeof(ProjectileIDObjectDic))]
+[CustomPropertyDrawer(typeof(ProjectileIDObjectPoolDic))]
+[CustomPropertyDrawer(typeof(ProjectileIDFloatDic))]
+[CustomPropertyDrawer(typeof(ProjectileIDDataDic))]
 
 public class AnySerializableDictionaryPropertyDrawer : SerializableDictionaryPropertyDrawer {}
 

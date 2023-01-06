@@ -34,7 +34,7 @@ namespace PG
         {
 
             Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(5f);
-            _value++;
+            _upgradeCount++;
         }
     }
     public sealed class Arfifact_Equatore : Artifact
@@ -64,7 +64,7 @@ namespace PG
         public override void AddCountOnArtifact()
         {
             Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(5f);
-            _value++;
+            _upgradeCount++;
         }
 
     }
@@ -108,7 +108,7 @@ namespace PG
         public override void AddCountOnArtifact()
         {
             Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(10f);
-            _value++;
+            _upgradeCount++;
             for (int i = 0; i < Global_CampaignData._charactorAttackDic.Count; i++)
             {
                 if (Global_CampaignData._charactorAttackDic.ElementAt(i).Key != CharacterID.Player)
@@ -154,7 +154,7 @@ namespace PG
         }
         public override void AddCountOnArtifact()
         {
-            _value++;
+            _upgradeCount++;
             Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(-5f);
             Global_CampaignData._lengthMagnData.Add증가량(0.75f);
         }
@@ -188,7 +188,7 @@ namespace PG
         }
         public override void AddCountOnArtifact()
         {
-            _value++;
+            _upgradeCount++;
             Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(5f);
             Global_CampaignData._lengthMagnData.Add증가량(-0.2f);
         }

@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace PG.Battle
 {
-    public class LazerParticle : Hovl_Laser2
+    public class LazerParticle : Hovl_Laser2 , Data.ILazerOnoff
     {
         [Header("Position")]
         public Vector3 _StartPos;
         public Vector3 _EndPos;
-
 
         void Start()
         {
@@ -21,9 +21,21 @@ namespace PG.Battle
             transform.position = _StartPos;
         }
 
+        bool _active = true;
+        public void SetActiveLazer(bool var) 
+        {
+            _active = var;
+        }
+        public void SetLazerEachPos(Vector3 _start, Vector3 _end)
+        {
+            _StartPos = _start;
+            _EndPos = _end;
+        }
+
+
         void Update()
         {
-            if (laserPS != null && UpdateSaver == false)
+            if (_active && laserPS != null && UpdateSaver == false)
             {
                 laserMat.SetVector("_StartPoint", _StartPos);
 
@@ -62,5 +74,6 @@ namespace PG.Battle
                 laserMat.SetFloat("_Dissolve", dissovleTimer * 5);
             }
         }
+
     }
 }

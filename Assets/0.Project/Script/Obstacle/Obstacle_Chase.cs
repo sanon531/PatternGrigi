@@ -28,8 +28,6 @@ namespace PG.Battle {
 
         private void ChasePlayer()
         {
-            if (!_isPlaced) return;
-
             transform.position = Vector2.MoveTowards(transform.position, playerTr.position, chaseSpeed * Time.deltaTime);
         }
 

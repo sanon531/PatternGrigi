@@ -33,7 +33,7 @@ namespace PG
         }
         public override void AddCountOnArtifact()
         {
-            _value++;
+            _upgradeCount++;
             Global_BattleEventSystem.CallOnNodeSetWeight(_addWeight);
 
         }
@@ -65,7 +65,7 @@ namespace PG
         }
         public override void AddCountOnArtifact()
         {
-            _value++;
+            _upgradeCount++;
             Global_BattleEventSystem.CallOnNodeSetWeight(_addWeight);
 
         }

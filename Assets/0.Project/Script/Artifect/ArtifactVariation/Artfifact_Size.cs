@@ -44,7 +44,7 @@ namespace PG
             Global_CampaignData._playerSize.Add증가량(0.5f);
             Global_BattleEventSystem.CallOnSizeChanged();
 
-            _value++;
+            _upgradeCount++;
             //Debug.Log("Fragile_Rush LEL");
         }
 
@@ -84,7 +84,7 @@ namespace PG
         {
             Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(5f);
             Global_CampaignData._playerSize.Add증가량(-0.5f);
-            _value++;
+            _upgradeCount++;
             Global_BattleEventSystem.CallOnSizeChanged();
             //Debug.Log("Fragile_Rush LEL");
         }

@@ -29,6 +29,7 @@ namespace PG.Data
         public static ArtifactIDArtifactDic _currentArtifactDictionary =
             new ArtifactIDArtifactDic();
 
+
         //public static Dictionary<ArtifactID, ArtifactData> _currentActivateDictionary =
         //new Dictionary<ArtifactID, ArtifactData>();
         public static Enemy_Script _currentEnemy;
@@ -39,7 +40,18 @@ namespace PG.Data
 
         public static List<ArtifactID> _obtainableArtifactIDList = new List<ArtifactID>();
 
-
+        public static string GetArtifactUpgradeCount(ArtifactID id) 
+        {
+            if (_currentArtifactDictionary.ContainsKey(id))
+            {
+                return "("+_currentArtifactDictionary[id].UpgradeCount.ToString()+
+                    "/"+ _currentArtifactDictionary[id].MaxUpgrade.ToString() +")";
+            }
+            else 
+            {
+                return "(0/" + GlobalDataStorage.TotalArtifactClassDic[id].MaxUpgrade.ToString() + ")";
+            }
+        }
 
 
         #region//플레이 데이터 관련
@@ -58,7 +70,7 @@ namespace PG.Data
         //패턴 쿨타임 관련
         public static DataEntity _coolTimeTokenCount = new DataEntity(DataEntity.Type.MaxCooltimeToken, 3);
 
-
+        public static ProjectileIDDataDic _projectileIDDataDic = new ProjectileIDDataDic(){};
         public static List<float> _waveTimeList = new List<float>();
         public static List<WaveClass> _waveClassList = new List<WaveClass>();
 
@@ -78,7 +90,7 @@ namespace PG.Data
             _currentArtifactDictionary.Clear();
             _charactorAttackDic.Clear();
             _obtainableArtifactIDList.Clear();
-
+            _projectileIDDataDic.Clear();
         }
 
         //이곳에서 최초의 스테이지 데이터를 수정한다.
@@ -97,6 +109,9 @@ namespace PG.Data
             _playerSize = new DataEntity(data._playerSize);
             _projectileSpeed = new DataEntity(data._projectileSpeed);
             _projectileTargetNum = new DataEntity(data._projectileTargetNum);
+
+            _projectileIDDataDic.CopyFrom(data._projectileIDDataDic);
+
             _randomPatternNodeCount = new DataEntity(data._randomPatternNodeCount);
             _waveTimeList = new List<float>(data._waveDic.Keys);
             //켐페인데이터에 웨이브 시간 순서를 꼭 오름차순으로 입력 안해도 되도록 정렬+이에맞게 class리스트 만듦
