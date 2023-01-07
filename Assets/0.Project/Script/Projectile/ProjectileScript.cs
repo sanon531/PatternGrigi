@@ -13,11 +13,12 @@ namespace PG.Battle
     public abstract class ProjectileScript : MonoBehaviour
     {
         [FormerlySerializedAs("_id")] [SerializeField]
-        protected ProjectileID id = ProjectileID.NormalBullet;
+        public ProjectileID id = ProjectileID.NormalBullet;
 
         protected float Damage = 10f;
 
-        [FormerlySerializedAs("_lifeTime")] [SerializeField]
+        [SerializeField]
+        protected float CurrentlifeTime = 10f;
         protected float lifeTime = 10f;
 
         protected Vector3 Movement;
@@ -60,9 +61,11 @@ namespace PG.Battle
             IstargetMobNotNull = false;
             ProjectilePool = objectPool;
             lifeTime = lifetime;
+            CurrentlifeTime = lifeTime;
         }
         public virtual void SetFrequentProjectileData(MobScript target, float damage, float spreadCount)
         {
+            CurrentlifeTime = lifeTime;
             targetMob = target;
             IstargetMobNotNull = targetMob != null;
             Damage = damage;
@@ -71,11 +74,12 @@ namespace PG.Battle
 
         protected virtual void LateUpdate()
         {
-            if (lifeTime <= 0)
+            if (CurrentlifeTime <= 0)
                 ProjectilePool.SetBack(this);
             else
-                lifeTime -= Time.deltaTime;
+                CurrentlifeTime -= Time.deltaTime;
         }
+        
 
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {

@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 using System.Linq;
 using PG.Event;
 using PG.Data;
+using Random = UnityEngine.Random;
 
 namespace PG.Battle
 {
@@ -74,8 +76,6 @@ namespace PG.Battle
 
             //이부분에서 경험치 관련 코드를 변동 해야함. 디버깅 시 빠르게 바뀌는경우 쓸꺼임.
             //
-            if(_instance._isDebug)
-                Global_BattleEventSystem.CallOnGainEXP(_instance._gainEXP_byDebug);
 
             LineTracer._instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
             VibrationManager.CallVibration();
@@ -202,7 +202,7 @@ namespace PG.Battle
                         _temptid = ReachTriggeredNode_Far(_temptid);
                         break;
                     default:
-                        Debug.LogError("CheckNodeOnDamage Error: no id");
+                        throw new ArgumentException("No More ProperNode : Pattern No ID");
                         break;
                 }
                 _presetNodes.Add(_temptid);
@@ -278,7 +278,8 @@ namespace PG.Battle
             if (_inactivatedNode.Contains(reachedNode))
                 _inactivatedNode.Remove(reachedNode);
             else
-                Debug.Log("No More ProperNode : Random");
+                throw new ArgumentException("No More ProperNode : random");
+            
             //추후 여러개의 도달점을 가져야할때를 위해서 무작위로 한다.
             int i = _inactivatedNode.Count;
             int _deleteTarget = _inactivatedNode[Random.Range(0, i)];
@@ -291,7 +292,7 @@ namespace PG.Battle
             if (_inactivatedNode.Contains(reachedNode))
                 _inactivatedNode.Remove(reachedNode);
             else
-                Debug.Log("No More ProperNode : Close");
+                throw new ArgumentException("No More ProperNode : close");
 
             int[] _targetArr = (int[])_IDWithCloseDic[reachedNode].Clone();
             int _deleteTarget = _targetArr.PickRandom();
@@ -304,7 +305,7 @@ namespace PG.Battle
             if (_inactivatedNode.Contains(reachedNode))
                 _inactivatedNode.Remove(reachedNode);
             else
-                Debug.Log("No More ProperNode : Far");
+                throw new ArgumentException("No More ProperNode : far");
 
             int[] _targetArr = (int[])_IDWithFarDic[reachedNode].Clone();
             int _deleteTarget = _targetArr.PickRandom();

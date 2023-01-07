@@ -159,15 +159,15 @@ MonoBehaviour:
       _repeat: 1
       _cooltime: 0.5
     - _count: 1
-      _repeat: 1
-      _cooltime: 0.5
-    - _count: 4
-      _repeat: 1
-      _cooltime: 0.5
-    - _count: 0
       _repeat: 0
       _cooltime: 0.5
-    - _count: 0
+    - _count: 1
+      _repeat: 0
+      _cooltime: 0.5
+    - _count: 1
+      _repeat: 0
+      _cooltime: 0.5
+    - _count: 1
       _repeat: 0
       _cooltime: 0.5
   _projectileSpeed:

@@ -193,7 +193,11 @@ namespace PG.Battle
         {
             _isEnemyAlive = false;
             MobGenerator.DestroyMob(this);
-            EXPTokenManager.PlaceEXPToken(transform.position, _lootExp);
+            
+            //트위닝 이슈로 삭제함. 즉발 식으로 대체함. 추후 다른 식으로 구현 할것
+            //EXPTokenManager.PlaceEXPToken(transform.position, _lootExp);
+            Global_BattleEventSystem.CallOnGainEXP(_lootExp);
+
         }
 
 

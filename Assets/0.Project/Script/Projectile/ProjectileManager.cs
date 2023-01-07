@@ -18,13 +18,15 @@ namespace PG.Battle
         [SerializeField]
         private ProjectileIDObjectDic projectileDictionary = new ProjectileIDObjectDic();
 
-        [SerializeField]
         private Dictionary<ProjectileID, ProjectilePool<ProjectileScript>> _totalProjectileDictionary 
             = new Dictionary<ProjectileID, ProjectilePool<ProjectileScript>>();
+
+        [SerializeField] private ProjectileIDintDic trackerIDintDic = new ProjectileIDintDic();
+            
         [SerializeField]
         ProjectileIDFloatDic _projectileLifeTimeDic = new ProjectileIDFloatDic()
         {
-            { ProjectileID.NormalBullet,10f},
+            { ProjectileID.NormalBullet,5f},
             { ProjectileID.LightningShot,0.5f},
             { ProjectileID.StraightShot,10f},
             { ProjectileID.TowerBullet,5f},
@@ -58,20 +60,21 @@ namespace PG.Battle
             //먼저 몹 스폰 매니져에게서 적들의 데이터에 관한 값을 가져오게 됨.
             //적들의 데이터에 관한 것이면 적들의
 
-            foreach (ProjectileID id in Enum.GetValues(typeof(ProjectileID))) 
+            foreach (ProjectileID id in Enum.GetValues(typeof(ProjectileID)))
             {
                 _currentShotAmmoDic.Add(id, new Queue<float>());
                 projectileDictionary.Add(id, Resources.Load<GameObject>("Projectile/" + id));
+                trackerIDintDic.Add(id,0);
                 _totalProjectileDictionary.Add(id,
                     new ProjectilePool<ProjectileScript>
                     (
                         CreateProjectile,
                         OnGet,
                         OnRelease,
-                        OnDestroy,
+                        null,
                         true,
-                        (int)id,
-                        default
+                        id :(int)id,
+                        10000
                     )
                 );
                 for(int i = 0 ; i<10 ;i++)
@@ -83,28 +86,32 @@ namespace PG.Battle
         #region ObjectPoolPlace
         private ProjectileScript CreateProjectile(int id)
         {
+            //print("create"+id);
             ProjectileID temptID = (ProjectileID)id;
             ProjectileScript project = Instantiate(projectileDictionary[temptID], transform).GetComponent<ProjectileScript>();
             project.SetInitialProjectileData(
                 _totalProjectileDictionary[temptID],
                 _projectileLifeTimeDic[temptID]);
+
             return project;
         }
 
         private void OnGet(ProjectileScript projectileScript)
         {
             projectileScript.gameObject.SetActive(true);
+            //print("pick"+nameof(projectileScript));
+            trackerIDintDic[projectileScript.id]--;
+            
         }
 
         private void OnRelease(ProjectileScript projectileScript)
         {
             projectileScript.gameObject.SetActive(false);
+            //print("release"+nameof(projectileScript));
+            trackerIDintDic[projectileScript.id]++;
         }
 
-        private void OnDestroy(ProjectileScript projectileScript)
-        {
-            Debug.Log("Too much Projectile");
-        }
+       
         
 
         #endregion
@@ -130,29 +137,29 @@ namespace PG.Battle
         {
             foreach (ProjectileID id in Enum.GetValues(typeof(ProjectileID))) 
             {
-                //Debug.Log("projectile check_ : " +projectile  + Global_CampaignData._projectileIDDataDic[projectile]._count);
-                if (Global_CampaignData._projectileIDDataDic[id]._repeat <= 0)
+                
+                /*    Debug.Log("projectile check_ count: " +id  + 
+                           Global_CampaignData._projectileIDDataDic[id]._count
+                           +"projectile check_ repeat: "+Global_CampaignData._projectileIDDataDic[id]._repeat);}
+                */
+                if (Global_CampaignData._projectileIDDataDic[id]._repeat <= 0||
+                    Global_CampaignData._projectileIDDataDic[id]._count<= 0)
                     continue;
                 //총알 수를 큐에 넣어서 추가한다
                 for (int i = 0; i < Global_CampaignData._projectileIDDataDic[id]._repeat; i++)
                     _currentShotAmmoDic[id].Enqueue(val);
 
-                _keepShotSet.Add(id);
+                //간단히
+                if (!_keepShotSet.Contains(id))
+                {
+                    _keepShotSet.Add(id);
+                    StartCoroutine(ShotRoutine(id));
+                }
             }
 
         }
 
         //발사 관련한 데이터가 있을 때 알아서 처리됨
-        private void FixedUpdate()
-        {
-            //_currentShotAmmoDic의 정보를 기반으로남은 프로젝타일을 세고 발사한다.
-            //각자의 발사 타이머는 다르며
-            foreach (var id in _keepShotSet)
-            {
-                _temptDamage = _currentShotAmmoDic[id].Dequeue();
-                SetSpreadShotStyle(_temptDamage, id);
-            }
-        }
 
         //현재 리턴 상태 측정하는 로그
         void LogCurrentDic()
@@ -171,6 +178,8 @@ namespace PG.Battle
             //탄환이 0이 아닐때 까지 반복
             while (true) 
             {
+                //yield return new WaitForEndOfFrame();
+                print("Pew Pew"+id);
                 _temptDamage = _currentShotAmmoDic[id].Dequeue();
                 SetSpreadShotStyle(_temptDamage, id);
 
@@ -183,18 +192,18 @@ namespace PG.Battle
             }
 
             //_shotCoroutineDic[id] = false;
+            _keepShotSet.Remove(id);
             //Debug.Log("routine finished");
             yield return null;
 
         }
         //
+        // ReSharper disable Unity.PerformanceAnalysis
         void SetSpreadShotStyle(float val, ProjectileID id) 
         {
             TargetTheEnemy();
             //지금은 그냥 instantiate를 하지만 나중에는 오브젝트 풀링이 가능하도록 만들것..
             int _spreadcount = Global_CampaignData._projectileIDDataDic[id]._count;
-
-
             while (_spreadcount > 0) 
             {
                 for (int i = _targetList.Count - 1; i >= 0 && _spreadcount > 0; i--)

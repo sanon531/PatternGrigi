@@ -36,7 +36,7 @@ namespace PG.Battle
 
         new void Movement()
         {
-            lifeTime -= Time.deltaTime;
+            CurrentlifeTime -= Time.deltaTime;
             base.Movement = InitialSpeed*10 * Time.deltaTime * _direction;
             if (IsrigidBody2DNotNull)
             {

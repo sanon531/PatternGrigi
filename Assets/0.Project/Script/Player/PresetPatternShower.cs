@@ -6,8 +6,8 @@ namespace PG.Battle
 {
     public class PresetPatternShower : MonoSingleton<PresetPatternShower>
     {
-        //¿å½ÉÀÌ Á» ÀÖ¾î¼­ ÀÚµ¿È­ ÇÏ¿©¼­ ³ªÁß¿¡ ³»ºÎÀÇ ¿ÀºêÁ§Æ®¿¡ 
-        // ÀÏ´Ü d
+        //ìš•ì‹¬ì´ ì¢€ ìˆì–´ì„œ ìë™í™” í•˜ì—¬ì„œ ë‚˜ì¤‘ì— ë‚´ë¶€ì˜ ì˜¤ë¸Œì íŠ¸ì— 
+        // ì¼ë‹¨ d
         
         [SerializeField]
         GameObject _LazerPrefab;
@@ -24,7 +24,7 @@ namespace PG.Battle
 
         private void Start()
         {
-            //³ëµå 9°³ À§Ä¡¸¦ ¸®½ºÆ®¿¡ ÀúÀå
+            //ë…¸ë“œ 9ê°œ ìœ„ì¹˜ë¥¼ ë¦¬ìŠ¤íŠ¸ì— ì €ì¥
             foreach (PatternNodeScript node in PatternManager._instance._patternNodes)
             {
                 _nodes.Add(node.transform);
@@ -37,7 +37,7 @@ namespace PG.Battle
 
             GameObject temp;
 
-            //ÆĞÅÏÀÇ ³ëµå¹øÈ£¸¦ ¹Ş¾Æ¼­ ÇØ´çÇÏ´Â ·¹ÀÌÀú ¸¸µé°í ¸®½ºÆ®¿¡ Ãß°¡
+            //íŒ¨í„´ì˜ ë…¸ë“œë²ˆí˜¸ë¥¼ ë°›ì•„ì„œ í•´ë‹¹í•˜ëŠ” ë ˆì´ì € ë§Œë“¤ê³  ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
             for (int i=0; i < presetNodes.Count-1; i++)
             {
                 temp = Instantiate(_instance._laserIDDic[laserKindID], _instance.transform) ;

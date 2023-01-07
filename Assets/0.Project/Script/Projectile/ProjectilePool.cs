@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Pool;
 
 namespace PG.Battle
@@ -39,6 +40,7 @@ namespace PG.Battle
       this.m_CreateFunc = createFunc;
       this.m_MaxSize = maxSize;
       this.m_ActionOnGet = actionOnGet;
+      this.m_id = id;
       this.m_ActionOnRelease = actionOnRelease;
       this.m_ActionOnDestroy = actionOnDestroy;
       this.m_CollectionCheck = collectionCheck;
