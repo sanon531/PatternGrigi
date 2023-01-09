@@ -56,7 +56,7 @@ MonoBehaviour:
     m_values:
     - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 0
       "_\uC801\uBC30\uCE58":
-        m_keys: 15000000
+        m_keys: 16000000
         m_values:
         - "_\uC2A4\uD3F0\uC218": 5
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0.2
@@ -159,10 +159,10 @@ MonoBehaviour:
       _repeat: 1
       _cooltime: 0.5
     - _count: 1
-      _repeat: 0
+      _repeat: 1
       _cooltime: 0.5
     - _count: 1
-      _repeat: 0
+      _repeat: 1
       _cooltime: 0.5
     - _count: 1
       _repeat: 0

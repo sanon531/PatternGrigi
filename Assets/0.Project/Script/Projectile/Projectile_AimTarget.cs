@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,18 +31,19 @@ namespace PG.Battle
 
             _direction = _direction.normalized;
             InitialSpeed = Data.Global_CampaignData._projectileSpeed.FinalValue;
-            Movement();
+            DoMove();
         }
         
 
-        new void Movement()
+        void DoMove()
         {
-            CurrentlifeTime -= Time.deltaTime;
-            base.Movement = InitialSpeed*10 * Time.deltaTime * _direction;
+            velocity = InitialSpeed * _direction*3;
             if (IsrigidBody2DNotNull)
             {
-                rigidBody2D.velocity = base.Movement;
-            }
+                rigidBody2D.velocity = velocity;
+            }else
+                throw new ArgumentException("no rigidbody val");
+
             //InitialSpeed += Acceleration * Time.deltaTime;
         }
 

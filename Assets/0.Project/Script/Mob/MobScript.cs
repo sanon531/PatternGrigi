@@ -219,7 +219,7 @@ namespace PG.Battle
                 writeCall += 1;
                 _rigidBody2D.AddRelativeForce(new Vector3(0f, power, 0f));
             }
-            Debug.Log(writeCall);
+            //Debug.Log(writeCall);
             yield return 0;
         }
 

@@ -127,6 +127,7 @@ namespace PG.Battle
         //자동으로 
         List<int> _targetList = new List<int>();
         //지정된 몹 리스트.
+        [SerializeField]
         List<MobScript> _targetedMobList = new List<MobScript>();
 
         //플레이어는 현재 공격할수있는 적에게 데미지를
@@ -178,8 +179,8 @@ namespace PG.Battle
             //탄환이 0이 아닐때 까지 반복
             while (true) 
             {
-                //yield return new WaitForEndOfFrame();
-                print("Pew Pew"+id);
+                yield return new WaitForEndOfFrame();
+                //print("Pew Pew"+id);
                 _temptDamage = _currentShotAmmoDic[id].Dequeue();
                 SetSpreadShotStyle(_temptDamage, id);
 
@@ -201,10 +202,12 @@ namespace PG.Battle
         // ReSharper disable Unity.PerformanceAnalysis
         void SetSpreadShotStyle(float val, ProjectileID id) 
         {
-            TargetTheEnemy();
             //지금은 그냥 instantiate를 하지만 나중에는 오브젝트 풀링이 가능하도록 만들것..
+            TargetTheEnemy();
             int _spreadcount = Global_CampaignData._projectileIDDataDic[id]._count;
-            while (_spreadcount > 0) 
+
+            //print("Enemy count" + _targetedMobList.Count);
+            while (_spreadcount > 0)
             {
                 for (int i = _targetList.Count - 1; i >= 0 && _spreadcount > 0; i--)
                 {
@@ -220,19 +223,20 @@ namespace PG.Battle
         }
 
 
-   
+        [SerializeField]
         private List<MobScript> _temptenemyList;
 
         public void TargetTheEnemy()
         {
             _temptenemyList = MobGenerator.GetMobList();
 
-            if (_temptenemyList.Count == 0)
+
+            if (_temptenemyList.Count <= 0)
             {
-                //Debug.Log("no Enemy");
                 return;
             }
-            int maxTargetNum = 0;
+            int maxTargetNum;
+            maxTargetNum = 0;
             _targetList.Clear();
             _targetedMobList.Clear();
             //지금은 적의 스폰 순서 대로 대충 정하긴하지만. 
