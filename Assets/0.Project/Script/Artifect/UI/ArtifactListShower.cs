@@ -6,8 +6,8 @@ using PG.Event;
 namespace PG.Battle
 {
 
-    //¾ÆÆ¼ÆÑÆ®¿¡ »ç¿ëµÇ´Â ¸®½ºÆ®¿¡ °üÇÑ µ¥ÀÌÅÍ ±»ÀÌ ³ª´« ÀÌÀ¯´Â ÀÌÁ¦
-    //UI¹èÁ¤À» Äµ¹ö½º ÂÊ¿¡´Ù°¡ ÇØ³õ¾Ò±â ¶§¹®
+    //ì•„í‹°íŒ©íŠ¸ì— ì‚¬ìš©ë˜ëŠ” ë¦¬ìŠ¤íŠ¸ì— ê´€í•œ ë°ì´í„° êµ³ì´ ë‚˜ëˆˆ ì´ìœ ëŠ” ì´ì œ
+    //UIë°°ì •ì„ ìº”ë²„ìŠ¤ ìª½ì—ë‹¤ê°€ í•´ë†“ì•˜ê¸° ë•Œë¬¸
     public class ArtifactListShower : MonoSingleton<ArtifactListShower>
     {
         [SerializeField]
@@ -31,10 +31,10 @@ namespace PG.Battle
 
 
 
-        //ÀÌ°÷¿¡¼­ »õ·Î ÀÌ¹ÌÁö¸¦ ¿Ã¸°´Ù.
+        //ì´ê³³ì—ì„œ ìƒˆë¡œ ì´ë¯¸ì§€ë¥¼ ì˜¬ë¦°ë‹¤.
         public static void SetNewCaseOnList(ArtifactID id) 
         {
-            //»õ·Î¿î µ¥ÀÌÅÍ¸¦ ³õ´Â°Í.
+            //ìƒˆë¡œìš´ ë°ì´í„°ë¥¼ ë†“ëŠ”ê²ƒ.
             ArtifactShowCase _temptObj = Instantiate( _instance._prefabCase, _instance._placeTransform).GetComponent<ArtifactShowCase>();
             _instance._caseList.Add(_temptObj.gameObject);
             _instance._currentDic.Add(id, _temptObj);

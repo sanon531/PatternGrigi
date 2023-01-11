@@ -49,7 +49,7 @@ namespace PG.Data
             }
             else 
             {
-                return "(0/" + GlobalDataStorage.TotalArtifactClassDic[id].MaxUpgrade.ToString() + ")";
+                return "(0/" + ArtifactManager.s_artifactData.idArtifactDataDic[id].MaxUpgrade.ToString() + ")";
             }
         }
 

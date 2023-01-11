@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.Linq;
 using PG.Event;
 using PG.Data;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace PG.Battle
@@ -21,7 +22,6 @@ namespace PG.Battle
 
         [SerializeField]
         List<int> _defaultNode = new List<int>(9) { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-
 
         //1-4로 들어가는 것이 최초의 공격이 될것.
         [SerializeField]
@@ -121,6 +121,9 @@ namespace PG.Battle
         {
             SetGaugeChange();
             _lastNode = nodeID;
+            if (_isDebug)
+                Global_BattleEventSystem.CallOnGainEXP(_gainEXP_byDebug);
+
             //아직 패턴 수가 안끝남이면
             //Debug.Log(_currentPresetNodeNumber + ":" + _presetNodes.Count);
             if (_currentPresetNodeNumber != 0)
@@ -223,7 +226,8 @@ namespace PG.Battle
         int _coolTimeToken = 0;
         int _maxCoolTimeToken = 0;
         float _currentDelayPercent = 0;
-        float _increaseAmount = 0.2f;
+        [FormerlySerializedAs("_increaseAmount")] [SerializeField]
+        float TokenIncreaseAmount = 0.2f;
         void StartDelayData() 
         {
             _delayingManager = GameObject.Find("PatternDelayingShowManager").GetComponent<PatternDelayingShowManager>();
@@ -240,7 +244,7 @@ namespace PG.Battle
             if (_maxCoolTimeToken <= _coolTimeToken)
                 return;
 
-            _currentDelayPercent += Time.deltaTime * _increaseAmount;
+            _currentDelayPercent += Time.deltaTime * TokenIncreaseAmount;
 
             if (_currentDelayPercent > 1) 
             {

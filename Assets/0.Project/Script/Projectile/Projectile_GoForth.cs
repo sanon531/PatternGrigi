@@ -54,7 +54,7 @@ namespace PG.Battle
             if (IsrigidBody2DNotNull)
             {
                 rigidBody2D.velocity = InitialSpeed  * Vector3.up;;
-                print(rigidBody2D.velocity);
+                //print(rigidBody2D.velocity);
             }
             //InitialSpeed += Acceleration * Time.deltaTime;
         }

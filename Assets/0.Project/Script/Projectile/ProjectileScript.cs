@@ -18,7 +18,7 @@ namespace PG.Battle
 
         protected float Damage = 10f;
 
-        [FormerlySerializedAs("CurrentlifeTime")] [SerializeField]
+        [SerializeField]
         protected float CurrentLifeTime = 10f;
         protected float MaxLifeTime = 10f;
 

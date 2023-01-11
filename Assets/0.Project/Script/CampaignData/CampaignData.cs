@@ -5,11 +5,11 @@ using PG.Battle;
 using System.Linq;
 namespace PG.Data
 {
-    //±×³É ÇØ´çÇÏ´Â¹öÀüÀ» ¿©·¯°³ ¸¸µé¾îµÑ¼öÀÖÀ¸¸é ÁÁÀ»°Í °°¾Æ¼­ ±×·³
+    //ê·¸ëƒ¥ í•´ë‹¹í•˜ëŠ”ë²„ì „ì„ ì—¬ëŸ¬ê°œ ë§Œë“¤ì–´ë‘˜ìˆ˜ìˆìœ¼ë©´ ì¢‹ì„ê²ƒ ê°™ì•„ì„œ ê·¸ëŸ¼
     [CreateAssetMenu(fileName = "Global_CampaignData", menuName = "PG/GlobalCampaignData")]
     public class CampaignData : ScriptableObject
     {
-        //¾ÆÀÌµğ¸¸ ÀúÀåÇØµÎ¸é ³ªÁß¿¡ ½ÃÀÛÇÒ¶§
+        //ì•„ì´ë””ë§Œ ì €ì¥í•´ë‘ë©´ ë‚˜ì¤‘ì— ì‹œì‘í• ë•Œ
         public List<ArtifactID> _startArtifactList  =
             new List<ArtifactID>();
 
@@ -25,8 +25,8 @@ namespace PG.Data
 
         };
 
-        //ÀûµéÀÇ µ¥ÀÌÅÍ¸¦ ¸ÕÀú ¸ÅÄ¡ ÇÏ´Â ºÎºĞ. ÇÑ¹ö³ß °­ÇÑ °ø°İ µµ °ø°İÀÌÁö¸¸ ¾Æ¹«Æ°.
-        //°ªÀº ¾ğÁ¦µç ¼öÁ¤ÀÌ °¡´É.
+        //ì ë“¤ì˜ ë°ì´í„°ë¥¼ ë¨¼ì € ë§¤ì¹˜ í•˜ëŠ” ë¶€ë¶„. í•œë²„ë„¹ ê°•í•œ ê³µê²© ë„ ê³µê²©ì´ì§€ë§Œ ì•„ë¬´íŠ¼.
+        //ê°’ì€ ì–¸ì œë“  ìˆ˜ì •ì´ ê°€ëŠ¥.
         public CharactorIDDataEntityDic _charactorAttackDic =
            new CharactorIDDataEntityDic()
            {
@@ -42,13 +42,13 @@ namespace PG.Data
 
         public DrawPatternPresetID _currentChargePattern = DrawPatternPresetID.Empty_Breath;
 
-        //°Å¸®¿¡µû¸¥ ¹èÀ²ÀÓ 
+        //ê±°ë¦¬ì—ë”°ë¥¸ ë°°ìœ¨ì„ 
 
         public DataEntity _lengthMagnData = new DataEntity(DataEntity.Type.LengthMag, 1);
         public DataEntity _chargeGaugeData = new DataEntity(DataEntity.Type.ChargeGauge, 8);
         public DataEntity _chargeEXPData = new DataEntity(DataEntity.Type.ChargeEXP, 8);
 
-        //ÇÃ·¹ÀÌ¾î »çÀÌÁî
+        //í”Œë ˆì´ì–´ ì‚¬ì´ì¦ˆ
         public DataEntity _playerSize = new DataEntity(DataEntity.Type.PlayerSize, 1);
 
         public ProjectileIDDataDic _projectileIDDataDic = new ProjectileIDDataDic() 

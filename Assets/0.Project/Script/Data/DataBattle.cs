@@ -6,10 +6,10 @@ using System;
 namespace PG.Data
 {
     /// <summary>
-    /// ¹è°æ È­¸éÀÇ ÀÌ¹ÌÁö¿¡´ëÇÑ ¼³Á¤
+    /// ë°°ê²½ í™”ë©´ì˜ ì´ë¯¸ì§€ì—ëŒ€í•œ ì„¤ì •
     /// </summary>
 
-    //ÆĞÅÏ°ú °ü·ÃÇÑ Á¤º¸µéÀÌ ÀúÀåµÇ¾îÀÖ´Â ±¸°£.
+    //íŒ¨í„´ê³¼ ê´€ë ¨í•œ ì •ë³´ë“¤ì´ ì €ì¥ë˜ì–´ìˆëŠ” êµ¬ê°„.
     public static class GlobalDataStorage
     {
         public static Dictionary<DrawPatternPresetID, List<int>> PatternPresetDic =
@@ -30,121 +30,27 @@ namespace PG.Data
                 {DrawPatternPresetID.Empty_Breath,new PresetPatternAction_Base() }
             };
 
-        #region// À¯¹°
+        #region// ìœ ë¬¼
 
-        //¾ÆÆ¼ÆÑÆ®ÀÇ ¼öÄ¡¿Í Çàµ¿À» ºĞ¸®ÇÏ¿©¾ß ÇÑ´Ù.±×·¡¾ß ³ªÁß¿¡ ÅØ½ºÆ® Ã³¸®ÇÒ¶§ ÆíÇÏ´Ù.
-        //±×¸®°í ÀÌÈÄ¿¡ Å×Å© Æ®¸®, Á¡ÁøÀûÀÎ ·¹º§¸µ °°Àº°Å ÇÒ¶§ ´ÙÀ½°ú °°ÀÌ ³ª¿Ã¼ö°¡ ÀÖ´Ù¸é ÁÁÀ»µíÇÔ.
-
-        public static Dictionary<ArtifactID, ArtifactData> TotalArtifactTableDataDic =
-            new Dictionary<ArtifactID, ArtifactData>()
-            {
-                
-                #region//½ÃÀÛ À¯¹°.
-                {ArtifactID.Thunder_Manimekhala, new ArtifactData(
-                    ArtifactID.Thunder_Manimekhala,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-                {ArtifactID.LoveAndPeace, new ArtifactData(
-                    ArtifactID.LoveAndPeace,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-
-
-                #endregion
-
-
-                #region//ÀÓ½Ã¶óµµ ¹èÁ¤ ¿Ï·á
-
-                {ArtifactID.FragileRush, new ArtifactData(
-                    ArtifactID.FragileRush,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-                {ArtifactID.Equatore, new ArtifactData(
-                    ArtifactID.Equatore,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-                {ArtifactID.BubbleGun, new ArtifactData(
-                    ArtifactID.BubbleGun,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-                {ArtifactID.QuickSlice, new ArtifactData(
-                    ArtifactID.QuickSlice,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-                {ArtifactID.BulletTeleportShooter, new ArtifactData(
-                    ArtifactID.BulletTeleportShooter,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-               
-                {ArtifactID.PadThai, new ArtifactData(
-                    ArtifactID.PadThai,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-                {ArtifactID.SesameOil, new ArtifactData(
-                    ArtifactID.SesameOil,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-                {ArtifactID.Pinocchio, new ArtifactData(
-                    ArtifactID.Pinocchio,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-                {ArtifactID.AtomSetting, new ArtifactData(
-                    ArtifactID.AtomSetting,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-
-                #endregion
-
-
-                #region//¾÷±×·¹ÀÌµå À¯¹°µé.
-                {ArtifactID.Upgrade_AimShot, new ArtifactData(
-                    ArtifactID.Upgrade_AimShot,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0,5)},
-                {ArtifactID.Upgrade_StraightShot, new ArtifactData(
-                    ArtifactID.Upgrade_StraightShot,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0,5)},
-                {ArtifactID.Upgrade_LightningShot, new ArtifactData(
-                    ArtifactID.Upgrade_LightningShot,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0,5)},
-
-
-                #endregion
-
-            };
+        //ì•„í‹°íŒ©íŠ¸ì˜ ìˆ˜ì¹˜ì™€ í–‰ë™ì„ ë¶„ë¦¬í•˜ì—¬ì•¼ í•œë‹¤.ê·¸ë˜ì•¼ ë‚˜ì¤‘ì— í…ìŠ¤íŠ¸ ì²˜ë¦¬í• ë•Œ í¸í•˜ë‹¤.
+        //ê·¸ë¦¬ê³  ì´í›„ì— í…Œí¬ íŠ¸ë¦¬, ì ì§„ì ì¸ ë ˆë²¨ë§ ê°™ì€ê±° í• ë•Œ ë‹¤ìŒê³¼ ê°™ì´ ë‚˜ì˜¬ìˆ˜ê°€ ìˆë‹¤ë©´ ì¢‹ì„ë“¯í•¨.
 
         public static Dictionary<ArtifactID, Artifact> TotalArtifactClassDic =
             new Dictionary<ArtifactID, Artifact>()
             {
 
-                #region//10¿ù ¾÷µ¥ÀÌÆ® ÀÌÀüÀÇ À¯¹°µé
+                #region//10ì›” ì—…ë°ì´íŠ¸ ì´ì „ì˜ ìœ ë¬¼ë“¤
                 {ArtifactID.Thunder_Manimekhala, new Artifact_Thunder_Manimekhala()},
                 {ArtifactID.LoveAndPeace, new Artifact_LoveAndPeace()},
-                {ArtifactID.FragileRush, new Arfifact_FragileRush()},
-                {ArtifactID.BubbleGun, new Arfifact_BubbleGun()},
-                {ArtifactID.Equatore, new Arfifact_Equatore()},
-                {ArtifactID.QuickSlice, new Arfifact_QuickSlice()},
-                {ArtifactID.PadThai, new Arfifact_PadThai()},
-                {ArtifactID.SesameOil, new Arfifact_SesameOil()},
-                {ArtifactID.BulletTeleportShooter, new Arfifact_BulletTeleportShooter()},
-                {ArtifactID.Pinocchio, new Arfifact_Pinnochio()},
-                {ArtifactID.AtomSetting, new Arfifact_AtomSetting()},
+                {ArtifactID.FragileRush, new Artifact_FragileRush()},
+                {ArtifactID.BubbleGun, new Artifact_BubbleGun()},
+                {ArtifactID.Equatore, new Artifact_Equatore()},
+                {ArtifactID.QuickSlice, new Artifact_QuickSlice()},
+                {ArtifactID.PadThai, new Artifact_PadThai()},
+                {ArtifactID.SesameOil, new Artifact_SesameOil()},
+                {ArtifactID.BulletTeleportShooter, new Artifact_BulletTeleportShooter()},
+                {ArtifactID.Pinocchio, new Artifact_Pinnochio()},
+                {ArtifactID.AtomSetting, new Artifact_AtomSetting()},
                 #endregion
                 {ArtifactID.Upgrade_AimShot, new Artifact_UpgradeAimShot()},
                 {ArtifactID.Upgrade_StraightShot, new Artifact_UpgradeStraightShot()},
@@ -221,14 +127,14 @@ namespace PG.Data
         }
     }
 
-    //¿©±â¼­ ¾×¼ÇÀÌ¶õ ÀûÀÇ ¾×¼ÇÀ» ÀÇ¹ÌÇÑ´Ù.
+    //ì—¬ê¸°ì„œ ì•¡ì…˜ì´ë€ ì ì˜ ì•¡ì…˜ì„ ì˜ë¯¸í•œë‹¤.
     [Serializable]
     public class EnemyActionData
     {
         public EnemyActionID _action = EnemyActionID.BasicAttack_1;
         public float _actionTime = 5;
         public SpawnType _spawnType = SpawnType.SetAtOnce_WithSame;
-        // gradually ¿¡¼­¸¸ ¾²ÀÓ.
+        // gradually ì—ì„œë§Œ ì“°ì„.
         public float _placeTimeGradual = 0.5f;
         public List<Vector2> _placeList = new List<Vector2>();
         public List<SpawnData> _spawnDataList = new List<SpawnData>();
@@ -238,17 +144,17 @@ namespace PG.Data
     [Serializable]
     public class SpawnData
     {
-        //ÆÄ±«µÇ´Â ½Ã°£ ¶Ç´Â ÀÛµ¿ÀÌ Á¤ÁöÇÏ´Â ½Ã°£.
+        //íŒŒê´´ë˜ëŠ” ì‹œê°„ ë˜ëŠ” ì‘ë™ì´ ì •ì§€í•˜ëŠ” ì‹œê°„.
         public ObstacleID _thisID;
         public float _lifeTime = 4;
-        //¹ßµ¿Àü±îÁöÀÇ ½Ã°£.
+        //ë°œë™ì „ê¹Œì§€ì˜ ì‹œê°„.
         public float _activeTime = 1;
         //public float _damageMag = 1;
     }
 
 
 
-    //Àû ÆĞÅÏÀº ¸¹¾Æ¾ß 4°³°í  Áß°£ ÀÌ»óÀÇ Àû¿¡°Ô´Â ÇÊ»ì±â 1°³ Á¤µµ ÀÖ´Ù°í º¸¸é µÉµíÇÔ
+    //ì  íŒ¨í„´ì€ ë§ì•„ì•¼ 4ê°œê³   ì¤‘ê°„ ì´ìƒì˜ ì ì—ê²ŒëŠ” í•„ì‚´ê¸° 1ê°œ ì •ë„ ìˆë‹¤ê³  ë³´ë©´ ë ë“¯í•¨
     public enum EnemyActionID
     {
         Wait = 0,
@@ -293,20 +199,20 @@ namespace PG.Data
     [Serializable]
     public class MobSpawnData
     {
-        [Header("½ºÆù")]
-        public int _½ºÆù¼ö;
-        public float _½ºÆù´ë±â½Ã°£;
-        public float _¸®½ºÆùµô·¹ÀÌ;
-        [Header("¼³Á¤")]
-        public float _¼Óµµ;
-        public int _Ã¼·Â;
-        public float _°ø°İ·Â;
-        public Color _»ö±ò;
+        [Header("ìŠ¤í°")]
+        public int _ìŠ¤í°ìˆ˜;
+        public float _ìŠ¤í°ëŒ€ê¸°ì‹œê°„;
+        public float _ë¦¬ìŠ¤í°ë”œë ˆì´;
+        [Header("ì„¤ì •")]
+        public float _ì†ë„;
+        public int _ì²´ë ¥;
+        public float _ê³µê²©ë ¥;
+        public Color _ìƒ‰ê¹”;
     }
 
-    //½ºÆùÇÏ´Â ¹æ½ÄÀ» ÀÇ¹ÌÇÔ
-    //ÇÑ¹ø¿¡ °°Àº°Å ¼ÒÈ¯ÇÏ´Â°¡
-    //±×·± ·ù¸¦ Á¤ÇÏ´Â °÷
+    //ìŠ¤í°í•˜ëŠ” ë°©ì‹ì„ ì˜ë¯¸í•¨
+    //í•œë²ˆì— ê°™ì€ê±° ì†Œí™˜í•˜ëŠ”ê°€
+    //ê·¸ëŸ° ë¥˜ë¥¼ ì •í•˜ëŠ” ê³³
     public enum SpawnType
     {
         SetAtOnce_WithSame = 0,
@@ -339,20 +245,20 @@ namespace PG.Data
     [System.Serializable]
     public class StageInfo
     {
-        //±×³É ½ºÅ×ÀÌÁö µ¥ÀÌÅÍ
+        //ê·¸ëƒ¥ ìŠ¤í…Œì´ì§€ ë°ì´í„°
         public string _stageName = "Sample_Map";
         public StageKind _stageKind = StageKind.Earth_Fighter;
 
-        // float array´Â ¼øÂ÷ÀûÀ¸·Î, ÇÑ ¹èÆ² ´çÀÇ ½Ã°£ ÄğÅ¸ÀÓ°£ÀÇ °ü°èÀÓ 
-        //±×¸®°í ¾ÆÁ÷Àº ±×³É ´ë°­ ³õÀº °Å°í ´ëºÎºĞÀÇ ³»¿ëµéÀº ¾ÆÀÌÅÛ ¾ò¾î°¡¸é¼­ ¹Ù²ã°¥°Í.
+        // float arrayëŠ” ìˆœì°¨ì ìœ¼ë¡œ, í•œ ë°°í‹€ ë‹¹ì˜ ì‹œê°„ ì¿¨íƒ€ì„ê°„ì˜ ê´€ê³„ì„ 
+        //ê·¸ë¦¬ê³  ì•„ì§ì€ ê·¸ëƒ¥ ëŒ€ê°• ë†“ì€ ê±°ê³  ëŒ€ë¶€ë¶„ì˜ ë‚´ìš©ë“¤ì€ ì•„ì´í…œ ì–»ì–´ê°€ë©´ì„œ ë°”ê¿”ê°ˆê²ƒ.
         public StageInfo(StageKind _argname)
         {
             _stageKind = _argname;
         }
     }
 
-    // ½ºÅ×ÀÌÁöÀÇ ÀûÀº Å¥¿¡ µû¶ó¼­ ³ª¿Ã °ÍÀÌ¸ç
-    // ½½·¹ÀÌ´õ ½ºÆÄÀÌ¾î Ã³·³ Á¤ÇØÁø ÀûµéÀÌ ³ª¿Â´Ù. 
+    // ìŠ¤í…Œì´ì§€ì˜ ì ì€ íì— ë”°ë¼ì„œ ë‚˜ì˜¬ ê²ƒì´ë©°
+    // ìŠ¬ë ˆì´ë” ìŠ¤íŒŒì´ì–´ ì²˜ëŸ¼ ì •í•´ì§„ ì ë“¤ì´ ë‚˜ì˜¨ë‹¤. 
     // 
     public static class StageDataPool
     {

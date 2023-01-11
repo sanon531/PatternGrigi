@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,10 @@ namespace PG.Battle
         public static List<ArtifactID> rareArtifactPool { get { return new List<ArtifactID>(_rareArtifactPool); } }
         private static List<ArtifactID> _uniqueArtifactPool = new List<ArtifactID>();
         public static List<ArtifactID> uniqueArtifactPool { get { return new List<ArtifactID>(_uniqueArtifactPool); } }
+        
+        public static ArtifactScriptableData s_artifactData;
+        [SerializeField]
+        private ArtifactScriptableData artifactData;
 
         [SerializeField]
         bool _isTestSet = true;
@@ -33,7 +38,7 @@ namespace PG.Battle
             Global_BattleEventSystem._onBattleBegin += InitializeCurrentArtifact;
             Global_BattleEventSystem._onLevelUpShow += SetLevelUpOn;
             Global_BattleEventSystem._onLevelUpHide += SetLevelUpOff;
-
+            s_artifactData = artifactData;
         }
         protected override void CallOnDestroy()
         {
@@ -87,7 +92,8 @@ namespace PG.Battle
             {
                 //Debug.Log("Upgrade" + id.ToString());
                 _instance._showerArtifectList.Add(id);
-                Global_CampaignData._currentArtifactDictionary.Add(id, GlobalDataStorage.TotalArtifactClassDic[id]);
+                Global_CampaignData._currentArtifactDictionary.Add(id, 
+                    Artifact.Create(id,ArtifactManager.s_artifactData.idArtifactDataDic[id]));
                 Global_CampaignData._currentArtifactDictionary[id].OnGetArtifact();
                 //캔버스의 분리를 위해 남겨둠.
                 ArtifactListShower.SetNewCaseOnList(id);
@@ -100,6 +106,8 @@ namespace PG.Battle
                 ArtifactListShower.SetNumberOnCase(id, Global_CampaignData._currentArtifactDictionary[id].UpgradeCount);
             }
         }
+
+        private 
 
 
         //게임이 초기화 되면 기존의 모든 아티팩트 내부의 데이터들을 제거한다.

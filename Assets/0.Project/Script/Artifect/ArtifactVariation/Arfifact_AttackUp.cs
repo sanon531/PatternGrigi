@@ -22,24 +22,24 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
-            //°£´ÜÈ÷ Ä®Å© µ¥¹ÌÁö¸¦ ÀüºÎ ½ÇÇàÇÔ
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(5f);
+            //ê°„ë‹¨íˆ ì¹¼í¬ ë°ë¯¸ì§€ë¥¼ ì „ë¶€ ì‹¤í–‰í•¨
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(5f);
         }
         protected override void Disable()
         {
             base.Disable();
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(-5f);
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(-5f);
         }
         public override void AddCountOnArtifact()
         {
+            base.AddCountOnArtifact();   
 
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(5f);
-            _upgradeCount++;
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(5f);
         }
     }
-    public sealed class Arfifact_Equatore : Artifact
+    public sealed class Artifact_Equatore : Artifact
     {
-        public Arfifact_Equatore() : base(ArtifactID.Equatore)
+        public Artifact_Equatore() : base(ArtifactID.Equatore)
         {
         }
         public override void OnGetArtifact()
@@ -51,27 +51,27 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
-            //°£´ÜÈ÷ Ä®Å© µ¥¹ÌÁö¸¦ ÀüºÎ ½ÇÇàÇÔ
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(5f);
+            //ê°„ë‹¨íˆ ì¹¼í¬ ë°ë¯¸ì§€ë¥¼ ì „ë¶€ ì‹¤í–‰í•¨
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(5f);
 
 
         }
         protected override void Disable()
         {
             base.Disable();
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(-5f);
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(-5f);
         }
         public override void AddCountOnArtifact()
         {
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(5f);
-            _upgradeCount++;
+            base.AddCountOnArtifact();   
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(5f);
         }
 
     }
-    // ÇØ´ç ¾ÆÆ¼ÆåÆ®´Â Àû°ú ÇÃ·¹ÀÌ¾îÀÇ °ø°İ·ÂÀ» µÑ´Ù ¿Ã·ÁÁÖ´Â °Å
-    public sealed class Arfifact_FragileRush : Artifact
+    // í•´ë‹¹ ì•„í‹°í™íŠ¸ëŠ” ì ê³¼ í”Œë ˆì´ì–´ì˜ ê³µê²©ë ¥ì„ ë‘˜ë‹¤ ì˜¬ë ¤ì£¼ëŠ” ê±°
+    public sealed class Artifact_FragileRush : Artifact
     {
-        public Arfifact_FragileRush() : base(ArtifactID.FragileRush)
+        public Artifact_FragileRush() : base(ArtifactID.FragileRush)
         {
         }
 
@@ -84,13 +84,13 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
-            //°£´ÜÈ÷ Ä®Å© µ¥¹ÌÁö¸¦ ÀüºÎ ½ÇÇàÇÔ
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(10f);
+            //ê°„ë‹¨íˆ ì¹¼í¬ ë°ë¯¸ì§€ë¥¼ ì „ë¶€ ì‹¤í–‰í•¨
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(10f);
             //Debug.Log("Fragile_Rush LEL");
             for (int i = 0; i < Global_CampaignData._charactorAttackDic.Count; i++)
             {
                 if(Global_CampaignData._charactorAttackDic.ElementAt(i).Key != CharacterID.Player)
-                    Global_CampaignData._charactorAttackDic.ElementAt(i).Value.AddÁõ°¡·®(10f);
+                    Global_CampaignData._charactorAttackDic.ElementAt(i).Value.Addì¦ê°€ëŸ‰(10f);
             }
 
 
@@ -98,21 +98,21 @@ namespace PG
         protected override void Disable()
         {
             base.Disable();
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(-10f);
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(-10f);
             for (int i = 0; i < Global_CampaignData._charactorAttackDic.Count; i++)
             {
                 if (Global_CampaignData._charactorAttackDic.ElementAt(i).Key != CharacterID.Player)
-                    Global_CampaignData._charactorAttackDic.ElementAt(i).Value.AddÁõ°¡·®(-10f);
+                    Global_CampaignData._charactorAttackDic.ElementAt(i).Value.Addì¦ê°€ëŸ‰(-10f);
             }
         }
         public override void AddCountOnArtifact()
         {
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(10f);
-            _upgradeCount++;
+            base.AddCountOnArtifact();   
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(10f);
             for (int i = 0; i < Global_CampaignData._charactorAttackDic.Count; i++)
             {
                 if (Global_CampaignData._charactorAttackDic.ElementAt(i).Key != CharacterID.Player)
-                    Global_CampaignData._charactorAttackDic.ElementAt(i).Value.AddÁõ°¡·®(10f);
+                    Global_CampaignData._charactorAttackDic.ElementAt(i).Value.Addì¦ê°€ëŸ‰(10f);
             }
             //Debug.Log("Fragile_Rush LEL");
         }
@@ -123,10 +123,10 @@ namespace PG
 
 
 
-    //°Å¸®¿¡µû¶ó ±× ±æÀÌÀÇ ¹èÀ²ÀÌ Áõ°¡ÇÏ³ª ±âº» µ¥¹ÌÁö°¡ °¨¼ÒÇÔ.
-    public sealed class Arfifact_BubbleGun : Artifact
+    //ê±°ë¦¬ì—ë”°ë¼ ê·¸ ê¸¸ì´ì˜ ë°°ìœ¨ì´ ì¦ê°€í•˜ë‚˜ ê¸°ë³¸ ë°ë¯¸ì§€ê°€ ê°ì†Œí•¨.
+    public sealed class Artifact_BubbleGun : Artifact
     {
-        public Arfifact_BubbleGun() : base(ArtifactID.BubbleGun)
+        public Artifact_BubbleGun() : base(ArtifactID.BubbleGun)
         {
         }
 
@@ -140,29 +140,29 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
-            //°£´ÜÈ÷ Ä®Å© µ¥¹ÌÁö¸¦ ÀüºÎ ½ÇÇàÇÔ
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(-5f);
-            Global_CampaignData._lengthMagnData.AddÁõ°¡·®(0.75f);
+            //ê°„ë‹¨íˆ ì¹¼í¬ ë°ë¯¸ì§€ë¥¼ ì „ë¶€ ì‹¤í–‰í•¨
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(-5f);
+            Global_CampaignData._lengthMagnData.Addì¦ê°€ëŸ‰(0.75f);
 
         }
         protected override void Disable()
         {
             base.Disable();
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(5f);
-            Global_CampaignData._lengthMagnData.AddÁõ°¡·®(-0.75f);
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(5f);
+            Global_CampaignData._lengthMagnData.Addì¦ê°€ëŸ‰(-0.75f);
 
         }
         public override void AddCountOnArtifact()
         {
-            _upgradeCount++;
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(-5f);
-            Global_CampaignData._lengthMagnData.AddÁõ°¡·®(0.75f);
+            base.AddCountOnArtifact();   
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(-5f);
+            Global_CampaignData._lengthMagnData.Addì¦ê°€ëŸ‰(0.75f);
         }
 
     }
-    public sealed class Arfifact_QuickSlice : Artifact
+    public sealed class Artifact_QuickSlice : Artifact
     {
-        public Arfifact_QuickSlice() : base(ArtifactID.QuickSlice)
+        public Artifact_QuickSlice() : base(ArtifactID.QuickSlice)
         {
         }
 
@@ -175,22 +175,22 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
-            //°£´ÜÈ÷ Ä®Å© µ¥¹ÌÁö¸¦ ÀüºÎ ½ÇÇàÇÔ
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(5f);
-            Global_CampaignData._lengthMagnData.AddÁõ°¡·®(-0.2f);
+            //ê°„ë‹¨íˆ ì¹¼í¬ ë°ë¯¸ì§€ë¥¼ ì „ë¶€ ì‹¤í–‰í•¨
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(5f);
+            Global_CampaignData._lengthMagnData.Addì¦ê°€ëŸ‰(-0.2f);
         }
         protected override void Disable()
         {
             base.Disable();
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(-5f);
-            Global_CampaignData._lengthMagnData.AddÁõ°¡·®(0.2f);
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(-5f);
+            Global_CampaignData._lengthMagnData.Addì¦ê°€ëŸ‰(0.2f);
 
         }
         public override void AddCountOnArtifact()
         {
-            _upgradeCount++;
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(5f);
-            Global_CampaignData._lengthMagnData.AddÁõ°¡·®(-0.2f);
+            base.AddCountOnArtifact();   
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(5f);
+            Global_CampaignData._lengthMagnData.Addì¦ê°€ëŸ‰(-0.2f);
         }
 
     }

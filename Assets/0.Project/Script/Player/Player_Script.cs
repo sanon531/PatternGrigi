@@ -136,7 +136,7 @@ namespace PG.Battle
 
         public void SetPlayerSizeByEvent() 
         {
-            Debug.Log(Global_CampaignData._playerSize.FinalValue);
+            //Debug.Log(Global_CampaignData._playerSize.FinalValue);
             //현재의 플레이어의 사이즈를 잘 조절 하여서 만든다.
             transform.localScale = (Global_CampaignData._playerSize.FinalValue * new Vector3(1, 1, 1));
         }

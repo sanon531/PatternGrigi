@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb0b2ca909a209340afe36adeafe0b8e, type: 3}
-  m_Name: ThunderBegining
+  m_Name: PracticeForKeepInstantiate
   m_EditorClassIdentifier: 
   _startArtifactList: 00000000
   _obtainableArtifactIDList: 0a0000000b00000014000000150000003300000034000000

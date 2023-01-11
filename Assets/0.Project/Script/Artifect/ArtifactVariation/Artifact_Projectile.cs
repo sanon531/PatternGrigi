@@ -5,9 +5,9 @@ using PG.Event;
 using PG.Data;
 namespace PG
 {
-    public sealed class Arfifact_BulletTeleportShooter : Artifact
+    public sealed class Artifact_BulletTeleportShooter : Artifact
     {
-        public Arfifact_BulletTeleportShooter() : base(ArtifactID.BulletTeleportShooter)
+        public Artifact_BulletTeleportShooter() : base(ArtifactID.BulletTeleportShooter)
         {
         }
 
@@ -20,8 +20,8 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
-            Global_CampaignData._projectileSpeed.Add¹è¼ö(2);
-            Global_CampaignData._projectileTargetNum.Add¹è¼ö(2);
+            Global_CampaignData._projectileSpeed.Addë°°ìˆ˜(2);
+            Global_CampaignData._projectileTargetNum.Addë°°ìˆ˜(2);
         }
 
 
@@ -29,14 +29,14 @@ namespace PG
         protected override void Disable()
         {
             base.Disable();
-            Global_CampaignData._projectileSpeed.Add¹è¼ö(2);
-            Global_CampaignData._projectileTargetNum.Add¹è¼ö(2);
+            Global_CampaignData._projectileSpeed.Addë°°ìˆ˜(2);
+            Global_CampaignData._projectileTargetNum.Addë°°ìˆ˜(2);
         }
         public override void AddCountOnArtifact()
         {
-            _upgradeCount++;
-            Global_CampaignData._projectileSpeed.Add¹è¼ö(2);
-            Global_CampaignData._projectileTargetNum.Add¹è¼ö(2);
+            base.AddCountOnArtifact();   
+            Global_CampaignData._projectileSpeed.Addë°°ìˆ˜(2);
+            Global_CampaignData._projectileTargetNum.Addë°°ìˆ˜(2);
         }
 
 

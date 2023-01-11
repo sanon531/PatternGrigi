@@ -6,9 +6,9 @@ using PG.Data;
 
 namespace PG 
 {
-    public sealed class Arfifact_Pinnochio : Artifact 
+    public sealed class Artifact_Pinnochio : Artifact 
     {
-        public Arfifact_Pinnochio() : base(ArtifactID.Pinocchio)
+        public Artifact_Pinnochio() : base(ArtifactID.Pinocchio)
         {
 
         }
@@ -33,15 +33,15 @@ namespace PG
         }
         public override void AddCountOnArtifact()
         {
-            _upgradeCount++;
+            base.AddCountOnArtifact();   
             Global_BattleEventSystem.CallOnNodeSetWeight(_addWeight);
 
         }
 
     }
-    public sealed class Arfifact_AtomSetting : Artifact
+    public sealed class Artifact_AtomSetting : Artifact
     {
-        public Arfifact_AtomSetting() : base(ArtifactID.AtomSetting)
+        public Artifact_AtomSetting() : base(ArtifactID.AtomSetting)
         {
 
         }
@@ -65,7 +65,7 @@ namespace PG
         }
         public override void AddCountOnArtifact()
         {
-            _upgradeCount++;
+            base.AddCountOnArtifact();   
             Global_BattleEventSystem.CallOnNodeSetWeight(_addWeight);
 
         }

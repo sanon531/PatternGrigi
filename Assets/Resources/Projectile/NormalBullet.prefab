@@ -14203,8 +14203,8 @@ MonoBehaviour:
   rigidBody2D: {fileID: 1634703765405443898}
   projectileImage: {fileID: 6817514856662169467}
   targetMob: {fileID: 0}
-  initialSpeed: 1
-  acceleration: 0
+  initialSpeed: 4
+  acceleration: 4
 --- !u!212 &6817514856662169467
 SpriteRenderer:
   m_ObjectHideFlags: 0
