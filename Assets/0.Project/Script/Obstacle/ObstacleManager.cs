@@ -14,6 +14,9 @@ namespace PG.Battle
         [SerializeField]
         List<Obstacle> _activeObstacleList = new List<Obstacle>();
 
+        private static Dictionary<ObstacleID, ProjectilePool<Obstacle>> _totalObstacleDictionary 
+            = new Dictionary<ObstacleID, ProjectilePool<Obstacle>>();
+
         protected override void CallOnAwake()
         {
             InitializeDictionary();
@@ -23,28 +26,36 @@ namespace PG.Battle
         }
         public void InitializeDictionary()
         {
-            _obstacleDic.Clear();
-            List<ObstacleID> obstacleIDs = Enum.GetValues(typeof(ObstacleID)).Cast<ObstacleID>().ToList();
-
-            foreach (ObstacleID id in obstacleIDs)
+            foreach (ObstacleID id in Enum.GetValues(typeof(ObstacleID)))
             {
-                GameObject _tempfromobject = Resources.Load<GameObject>("Obstacle/" + id.ToString());
-                if (_tempfromobject == null)
+                //_obstacleDic.Add(id, Resources.Load<GameObject>("Obstacle/" + id));
+                if (_obstacleDic[id] != null)
                 {
-                    Debug.LogError("Obstacle is not in resource" + id.ToString());
+                    _totalObstacleDictionary.Add(id,
+                        new ProjectilePool<Obstacle>
+                        (
+                            CreateObstacle,
+                            null,
+                            OnRelease,
+                            null,
+                            true,
+                            id :(int)id,
+                            10000
+                        )
+                    );
+                    for(int i = 0; i<10 ;i++)
+                        _totalObstacleDictionary[id].FillStack();
                 }
-                _obstacleDic.Add(id, _tempfromobject);
             }
         }
 
         public static void SetObstacle(SpawnData data, Vector2 pos,float damage)
         {
-            GameObject _temp = Instantiate(_instance._obstacleDic[data._thisID], _instance.transform);
-            _temp.transform.position = pos;
-            Obstacle _tempObstacle = _temp.GetComponent<Obstacle>();
-            _tempObstacle.SetSpawnData(data._lifeTime, data._activeTime, damage);
-            _instance._activeObstacleList.Add(_tempObstacle);
-
+            Obstacle temp = _totalObstacleDictionary[data._thisID].PickUp();
+            temp.transform.position = pos;
+            temp.SetSpawnData(data._lifeTime, data._activeTime, damage, data._thisID);
+            _instance._activeObstacleList.Add(temp);
+            temp.gameObject.SetActive(true);
         }
 
         public static void DeleteObstacleOnList(Obstacle obstacle)
@@ -52,8 +63,9 @@ namespace PG.Battle
             if (_instance._activeObstacleList.Contains(obstacle))
             {
                 _instance._activeObstacleList.Remove(obstacle);
-                Destroy(obstacle.gameObject);
+                //Destroy(obstacle.gameObject);
             }
+            _totalObstacleDictionary[obstacle._id].SetBack(obstacle);
         }
         public static void DeleteObstacleOnListAll()
         {
@@ -62,16 +74,26 @@ namespace PG.Battle
                 obs.SetLifeTime(0);
             }
 
+            foreach (ObstacleID id in Enum.GetValues(typeof(ObstacleID)))
+            {
+                _totalObstacleDictionary[id].Clear();
+            }
         }
 
-
-        void Update()
+        private Obstacle CreateObstacle(int id)
         {
-
+            ObstacleID tempID = (ObstacleID)id;
+            Obstacle obstacle = Instantiate(_obstacleDic[tempID], transform).GetComponent<Obstacle>();
+            obstacle.gameObject.SetActive(false);
+            
+            return obstacle;
         }
 
-
-
+        private void OnRelease(Obstacle obstacle)
+        {
+            obstacle.gameObject.SetActive(false);
+        }
+        
 
         #region
 

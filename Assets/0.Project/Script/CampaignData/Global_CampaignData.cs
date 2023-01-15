@@ -20,7 +20,7 @@ namespace PG.Data
 
 
 
-    //ÀÎ°ÔÀÓ ³»ºÎ¿¡¼­ ÀÛµ¿À» ÇÏ´ÂºÎºĞÀÓ.
+    //ì¸ê²Œì„ ë‚´ë¶€ì—ì„œ ì‘ë™ì„ í•˜ëŠ”ë¶€ë¶„ì„.
     [System.Serializable]
     public static class Global_CampaignData 
     {
@@ -34,8 +34,8 @@ namespace PG.Data
         //new Dictionary<ArtifactID, ArtifactData>();
         public static Enemy_Script _currentEnemy;
 
-        //ÀûµéÀÇ µ¥ÀÌÅÍ¸¦ ¸ÕÀú ¸ÅÄ¡ ÇÏ´Â ºÎºĞ. ÇÑ¹ø¿¡ °­ÇÑ °ø°İ µµ °ø°İÀÌÁö¸¸ ¾Æ¹«Æ°.
-        //°ªÀº ¾ğÁ¦µç ¼öÁ¤ÀÌ °¡´É.
+        //ì ë“¤ì˜ ë°ì´í„°ë¥¼ ë¨¼ì € ë§¤ì¹˜ í•˜ëŠ” ë¶€ë¶„. í•œë²ˆì— ê°•í•œ ê³µê²© ë„ ê³µê²©ì´ì§€ë§Œ ì•„ë¬´íŠ¼.
+        //ê°’ì€ ì–¸ì œë“  ìˆ˜ì •ì´ ê°€ëŠ¥.
         public static CharactorIDDataEntityDic _charactorAttackDic =new CharactorIDDataEntityDic();
 
         public static List<ArtifactID> _obtainableArtifactIDList = new List<ArtifactID>();
@@ -54,20 +54,20 @@ namespace PG.Data
         }
 
 
-        #region//ÇÃ·¹ÀÌ µ¥ÀÌÅÍ °ü·Ã
+        #region//í”Œë ˆì´ ë°ì´í„° ê´€ë ¨
 
         public static DrawPatternPresetID _currentChargePattern = DrawPatternPresetID.Empty_Breath;
 
-        //°Å¸®¿¡µû¸¥ ¹èÀ²ÀÓ 
+        //ê±°ë¦¬ì—ë”°ë¥¸ ë°°ìœ¨ì„ 
         public static DataEntity _lengthMagnData = new DataEntity(DataEntity.Type.LengthMag, 1);
         public static DataEntity _chargeGaugeData = new DataEntity(DataEntity.Type.ChargeGauge, 8);
         public static DataEntity _chargeEXPData = new DataEntity(DataEntity.Type.ChargeEXP, 8);
-        //ÇÃ·¹ÀÌ¾î »çÀÌÁî
+        //í”Œë ˆì´ì–´ ì‚¬ì´ì¦ˆ
         public static DataEntity _playerSize = new DataEntity(DataEntity.Type.PlayerSize, 1);
         public static DataEntity _projectileSpeed = new DataEntity(DataEntity.Type.ProjectileSpeed, 5);
         public static DataEntity _projectileTargetNum = new DataEntity(DataEntity.Type.ProjectileCount, 1);
         public static DataEntity _randomPatternNodeCount = new DataEntity(DataEntity.Type.RandomPatternCount,3);
-        //ÆĞÅÏ ÄğÅ¸ÀÓ °ü·Ã
+        //íŒ¨í„´ ì¿¨íƒ€ì„ ê´€ë ¨
         public static DataEntity _coolTimeTokenCount = new DataEntity(DataEntity.Type.MaxCooltimeToken, 3);
 
         public static ProjectileIDDataDic _projectileIDDataDic = new ProjectileIDDataDic(){};
@@ -82,9 +82,9 @@ namespace PG.Data
 
         #endregion
 
-        #region//ÃÊ±âÈ­ °ü·Ã
+        #region//ì´ˆê¸°í™” ê´€ë ¨
 
-        //¿ÏÀüÈ÷ °ÔÀÓÀÌ Á¾·á µÇ¾úÀ» ¶§ È°¿ëÇÑ´Ù.µ¥ÀÌÅÍ¸¦ ¸®¼ÂÇÏ´Â°æ¿ì¿¡ È°¿ëÇÑ´Ù.
+        //ì™„ì „íˆ ê²Œì„ì´ ì¢…ë£Œ ë˜ì—ˆì„ ë•Œ í™œìš©í•œë‹¤.ë°ì´í„°ë¥¼ ë¦¬ì…‹í•˜ëŠ”ê²½ìš°ì— í™œìš©í•œë‹¤.
         public static void ResetData() 
         {
             _currentArtifactDictionary.Clear();
@@ -93,7 +93,7 @@ namespace PG.Data
             _projectileIDDataDic.Clear();
         }
 
-        //ÀÌ°÷¿¡¼­ ÃÖÃÊÀÇ ½ºÅ×ÀÌÁö µ¥ÀÌÅÍ¸¦ ¼öÁ¤ÇÑ´Ù.
+        //ì´ê³³ì—ì„œ ìµœì´ˆì˜ ìŠ¤í…Œì´ì§€ ë°ì´í„°ë¥¼ ìˆ˜ì •í•œë‹¤.
         public static void SetCampaginInitialize(CampaignData data) 
         {
             ResetData();
@@ -114,14 +114,14 @@ namespace PG.Data
 
             _randomPatternNodeCount = new DataEntity(data._randomPatternNodeCount);
             _waveTimeList = new List<float>(data._waveDic.Keys);
-            //ÄÍÆäÀÎµ¥ÀÌÅÍ¿¡ ¿şÀÌºê ½Ã°£ ¼ø¼­¸¦ ²À ¿À¸§Â÷¼øÀ¸·Î ÀÔ·Â ¾ÈÇØµµ µÇµµ·Ï Á¤·Ä+ÀÌ¿¡¸Â°Ô class¸®½ºÆ® ¸¸µê
+            //ì¼í˜ì¸ë°ì´í„°ì— ì›¨ì´ë¸Œ ì‹œê°„ ìˆœì„œë¥¼ ê¼­ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì…ë ¥ ì•ˆí•´ë„ ë˜ë„ë¡ ì •ë ¬+ì´ì—ë§ê²Œ classë¦¬ìŠ¤íŠ¸ ë§Œë“¦
             _waveTimeList.Sort();
             foreach (float key in _waveTimeList)
             {
                 _waveClassList.Add(data._waveDic[key]);
                 //Debug.Log(key);
             }
-            //±»ÀÌ ±×·²ÇÊ¿ä¾øÀ¸¸é ÀÌ°Å _waveClassList = new List<WaveClass>(data._waveDic.Values);
+            //êµ³ì´ ê·¸ëŸ´í•„ìš”ì—†ìœ¼ë©´ ì´ê±° _waveClassList = new List<WaveClass>(data._waveDic.Values);
         }
         #endregion
     }

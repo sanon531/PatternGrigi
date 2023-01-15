@@ -7,17 +7,18 @@ using UnityEngine.Serialization;
 
 namespace PG.Battle
 {
-    //Åõ»çÃ¼´Â triggerÇüÅÂ·Î ÇÏ¸ç ¸÷Àº ¹İ´ë·Î Æ®¸®°Å°¡ ¾ø´ÂÃ¤·Î ¼³°èÇÑ´Ù. 
-    //¸ÂÀ¸¸é ºñÈ°¼ºÈ­ µÇ°í
-    //projectile Àº ÇÃ·¹ÀÌ¾î¸¸ È°¿ëÇÏ´Â°ÍÀ¸·Î ÇÑ´Ù.
+    //íˆ¬ì‚¬ì²´ëŠ” triggerí˜•íƒœë¡œ í•˜ë©° ëª¹ì€ ë°˜ëŒ€ë¡œ íŠ¸ë¦¬ê±°ê°€ ì—†ëŠ”ì±„ë¡œ ì„¤ê³„í•œë‹¤. 
+    //ë§ìœ¼ë©´ ë¹„í™œì„±í™” ë˜ê³ 
+    //projectile ì€ í”Œë ˆì´ì–´ë§Œ í™œìš©í•˜ëŠ”ê²ƒìœ¼ë¡œ í•œë‹¤.
     public abstract class ProjectileScript : MonoBehaviour
     {
         [FormerlySerializedAs("_id")] [SerializeField]
-        protected ProjectileID id = ProjectileID.NormalBullet;
+        public ProjectileID id = ProjectileID.NormalBullet;
 
         protected float Damage = 10f;
 
-        [FormerlySerializedAs("_lifeTime")] [SerializeField]
+        [SerializeField]
+        protected float CurrentlifeTime = 10f;
         protected float lifeTime = 10f;
 
         protected Vector3 Movement;
@@ -43,7 +44,7 @@ namespace PG.Battle
 
         protected IObjectPoolSW<ProjectileScript> ProjectilePool;
 
-        //°üÅë È½¼ö.
+        //ê´€í†µ íšŸìˆ˜.
         protected int PierceCount = 0;
         protected List<GameObject> PiercedList = new List<GameObject>();
 
@@ -60,9 +61,11 @@ namespace PG.Battle
             IstargetMobNotNull = false;
             ProjectilePool = objectPool;
             lifeTime = lifetime;
+            CurrentlifeTime = lifeTime;
         }
         public virtual void SetFrequentProjectileData(MobScript target, float damage, float spreadCount)
         {
+            CurrentlifeTime = lifeTime;
             targetMob = target;
             IstargetMobNotNull = targetMob != null;
             Damage = damage;
@@ -71,17 +74,18 @@ namespace PG.Battle
 
         protected virtual void LateUpdate()
         {
-            if (lifeTime <= 0)
+            if (CurrentlifeTime <= 0)
                 ProjectilePool.SetBack(this);
             else
-                lifeTime -= Time.deltaTime;
+                CurrentlifeTime -= Time.deltaTime;
         }
+        
 
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Enemy") && !PiercedList.Contains(collision.gameObject))
             {
-                // ÀÌ°÷¿¡¼­ Àû¿¡ ´ëÇÑ µ¥¹ÌÁö¸¦ Ã³¸®ÇÏ´Â ÄÚµå¸¦ Â§´Ù.
+                // ì´ê³³ì—ì„œ ì ì— ëŒ€í•œ ë°ë¯¸ì§€ë¥¼ ì²˜ë¦¬í•˜ëŠ” ì½”ë“œë¥¼ ì§ ë‹¤.
                 hitFX.Play();
                 collision.GetComponent<MobScript>().Damage(Damage);
                 if (PierceCount <= 0)

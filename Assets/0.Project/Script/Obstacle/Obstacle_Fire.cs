@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PG.Data;
 using UnityEngine;
 using PG.Event;
 
@@ -26,9 +27,9 @@ namespace PG.Battle
         }
 
 
-        public override void SetSpawnData(float lifeTime, float activetimes,float damage)
+        public override void SetSpawnData(float lifeTime, float activetimes,float damage,ObstacleID id)
         {
-            base.SetSpawnData(lifeTime, activetimes, damage);
+            base.SetSpawnData(lifeTime, activetimes, damage, id);
             _Animator.SetBool("isActive",false);
             _spawnedParticle.Play();
 

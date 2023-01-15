@@ -45,7 +45,7 @@ namespace PG.Battle
         }
         void Health_Refresh()
         {
-            //´ÜÀ§´Â 20¿¡ 1Ä­ÀÓ.
+            //ë‹¨ìœ„ëŠ” 20ì— 1ì¹¸ì„.
             float currentProperty = currentHealth / healthAmountMax;
             _healthBar.DOFillAmount(currentProperty,0.5f);
 
@@ -108,7 +108,7 @@ namespace PG.Battle
         public Player_Status _playerStatus = new Player_Status();
         #region //get
 
-        //ÇöÀçÀÇ ÇÃ·¹ÀÌ¾î ½ºÅ×ÀÌÅÍ½º¸¦ ÀÎ½ÄÀ¸·Î ¹Ş´Â´Ù.
+        //í˜„ì¬ì˜ í”Œë ˆì´ì–´ ìŠ¤í…Œì´í„°ìŠ¤ë¥¼ ì¸ì‹ìœ¼ë¡œ ë°›ëŠ”ë‹¤.
         public static Player_Status GetPlayerStatus() 
         {
             return _instance._playerStatus;
@@ -119,7 +119,7 @@ namespace PG.Battle
         }
 
         #endregion
-        #region//ÀÏ½ÃÁ¤Áö½Ã Á¤ÁöÇÒ Çàµ¿µé
+        #region//ì¼ì‹œì •ì§€ì‹œ ì •ì§€í•  í–‰ë™ë“¤
 
         bool _isLevelupPaused = false;
         public void SetNonTotalPauseOn()
@@ -137,7 +137,7 @@ namespace PG.Battle
         public void SetPlayerSizeByEvent() 
         {
             Debug.Log(Global_CampaignData._playerSize.FinalValue);
-            //ÇöÀçÀÇ ÇÃ·¹ÀÌ¾îÀÇ »çÀÌÁî¸¦ Àß Á¶Àı ÇÏ¿©¼­ ¸¸µç´Ù.
+            //í˜„ì¬ì˜ í”Œë ˆì´ì–´ì˜ ì‚¬ì´ì¦ˆë¥¼ ì˜ ì¡°ì ˆ í•˜ì—¬ì„œ ë§Œë“ ë‹¤.
             transform.localScale = (Global_CampaignData._playerSize.FinalValue * new Vector3(1, 1, 1));
         }
 
@@ -145,7 +145,7 @@ namespace PG.Battle
     }
 
 
-    //¾ÕÀ¸·Î ÇÃ·¹ÀÌ¾îÀÇ °ø°İ ¹èÀ²°ú °ü·ÃµÈ µ¥ÀÌÅÍ¸¦ ´ã´Ü ÇÏ´Â ºÎºĞ.
+    //ì•ìœ¼ë¡œ í”Œë ˆì´ì–´ì˜ ê³µê²© ë°°ìœ¨ê³¼ ê´€ë ¨ëœ ë°ì´í„°ë¥¼ ë‹´ë‹¨ í•˜ëŠ” ë¶€ë¶„.
     [System.Serializable]
     public class Player_Status 
     {

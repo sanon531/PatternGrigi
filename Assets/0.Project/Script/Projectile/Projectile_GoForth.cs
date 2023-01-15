@@ -44,9 +44,9 @@ namespace PG.Battle
             Movement();
         }
 
-        new void Movement()
+        void Movement()
         {
-            lifeTime -= Time.deltaTime;
+            CurrentlifeTime -= Time.deltaTime;
             base.Movement = InitialSpeed * 10 * Time.deltaTime * Vector3.up;
             if (IsrigidBody2DNotNull)
             {

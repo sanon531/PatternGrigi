@@ -23,6 +23,7 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(ProjectileIDObjectDic))]
 [CustomPropertyDrawer(typeof(ProjectileIDObjectPoolDic))]
 [CustomPropertyDrawer(typeof(ProjectileIDFloatDic))]
+[CustomPropertyDrawer(typeof(ProjectileIDintDic))]
 [CustomPropertyDrawer(typeof(ProjectileIDDataDic))]
 
 public class AnySerializableDictionaryPropertyDrawer : SerializableDictionaryPropertyDrawer {}

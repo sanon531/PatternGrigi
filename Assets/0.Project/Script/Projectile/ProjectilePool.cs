@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Pool;
 
 namespace PG.Battle
@@ -38,6 +39,7 @@ namespace PG.Battle
       this.m_Stack = new Stack<T>(0);
       this.m_CreateFunc = createFunc;
       this.m_MaxSize = maxSize;
+      this.m_id = id;
       this.m_ActionOnGet = actionOnGet;
       this.m_ActionOnRelease = actionOnRelease;
       this.m_ActionOnDestroy = actionOnDestroy;
@@ -52,6 +54,7 @@ namespace PG.Battle
       {
         obj = this.m_CreateFunc(m_id);
         ++this.CountAll;
+        this.m_Stack.Push(obj);
       }else
         throw new ArgumentException("Even though it reached Max Size it Try to fill");
 

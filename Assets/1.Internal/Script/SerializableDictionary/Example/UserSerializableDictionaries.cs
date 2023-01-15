@@ -52,6 +52,8 @@ public class ProjectileIDObjectPoolDic : SerializableDictionary<ProjectileID, Pr
 
 [Serializable]
 public class ProjectileIDFloatDic : SerializableDictionary<ProjectileID, float> { }
+[Serializable]
+public class ProjectileIDintDic : SerializableDictionary<ProjectileID, int> { }
 
 
 

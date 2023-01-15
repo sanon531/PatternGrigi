@@ -6,7 +6,7 @@ namespace PG.Battle
 {
     public class PatternNodeScript : MonoBehaviour
     {
-        //µµ´ŞÀÌ °¡´ÉÇÑ »óÈ²ÀÏ ¶§
+        //ë„ë‹¬ì´ ê°€ëŠ¥í•œ ìƒí™©ì¼ ë•Œ
         [SerializeField]
         int _nodeId;
 

@@ -1,19 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using PG.Data;
 using UnityEngine;
 using PG.Event;
 namespace PG.Battle
 {
     public class Obstacle : MonoBehaviour
     {
-
-        // Start is called before the first frame update
-        private void Start()
+        private void OnEnable()
         {
-        }
-
-        private void OnDestroy()
-        {
+            //life start
+            _passedTime = 0f;
+            _isActived = false;
         }
 
         [SerializeField]
@@ -23,30 +22,36 @@ namespace PG.Battle
         [SerializeField]
         protected bool _isActived = false;
 
+        public ObstacleID _id;
 
         [SerializeField]
         protected float _damageDeal = 8f;
         [SerializeField]
         protected Collider2D _thisCollider;
 
-        public virtual void SetSpawnData(float lifeTime, float activetimes,float damage)
+        public virtual void SetSpawnData(float lifeTime, float activetimes,float damage, ObstacleID id)
         {
             _maxLifetime = lifeTime;
             _lifeTime = _maxLifetime;
             _activetime = activetimes;
             _damageDeal = damage;
             _isActived = false;
+            _id = id;
+            
+            Debug.Log(lifeTime);
         }
         protected virtual void SetActiveObstacle() 
         {
             _thisCollider.enabled = true;
             _isActived = true;
         }
-
-        // Update is called once per frame
+        
         protected virtual void FixedUpdate()
         {
-            CheckStatus();
+            if (enabled)
+            {
+                CheckStatus();
+            }
         }
         protected virtual void CheckStatus() 
         {
