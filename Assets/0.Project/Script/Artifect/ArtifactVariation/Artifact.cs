@@ -82,7 +82,7 @@ namespace PG
 
         #endregion
 
-        protected Artifact(ArtifactID artifactID)
+        public Artifact(ArtifactID artifactID)
         {
             thisID = artifactID;
         }

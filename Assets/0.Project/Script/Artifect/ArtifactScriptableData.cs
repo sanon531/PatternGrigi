@@ -7,11 +7,10 @@ using UnityEngine;
 
 namespace PG.Data
 {    
-    [CreateAssetMenu(fileName = "Global_CampaignData", menuName = "PG/ArtifactScriptableData")]
+    [CreateAssetMenu(fileName = "Global_ArtifactScriptableData", menuName = "PG/ArtifactScriptableData")]
     public class ArtifactScriptableData : ScriptableObject
     {
         [SerializeField] public ArtifactIDArtifactDataDic idArtifactDataDic;
-        [SerializeField] public ArtifactIDRequisiteDic idMixtureArtifactDic;
 
         private void Reset()
         {
@@ -19,7 +18,6 @@ namespace PG.Data
                 {
                     idArtifactDataDic.Add(id,new ArtifactData(id,0,false,0,5));
                 }
-        idMixtureArtifactDic = new ArtifactIDRequisiteDic();
         }
     }
     

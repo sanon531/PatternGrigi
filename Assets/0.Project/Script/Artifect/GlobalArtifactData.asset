@@ -13,119 +13,113 @@ MonoBehaviour:
   m_Name: GlobalArtifactData
   m_EditorClassIdentifier: 
   idArtifactDataDic:
-    m_keys: 00000000010000000a0000000b00000014000000150000002a00000033000000340000003c0000003d0000006400000065000000660000006700000068000000
+    m_keys: 00000000010000000a0000000b00000014000000150000002a00000033000000340000003c0000003d0000006400000065000000660000006700000068000000e703000050000000
     m_values:
     - id: 0
-      prerequisite: 
       rarity: 0
       buyprice: 100
       maxUpgrade: 5
       upgradecount: 0
       isonoff: 0
     - id: 1
-      prerequisite: 
       rarity: 0
       buyprice: 100
       maxUpgrade: 5
       upgradecount: 0
       isonoff: 0
     - id: 10
-      prerequisite: 
       rarity: 0
       buyprice: 100
       maxUpgrade: 5
       upgradecount: 0
       isonoff: 0
     - id: 11
-      prerequisite: 
       rarity: 0
       buyprice: 100
       maxUpgrade: 5
       upgradecount: 0
       isonoff: 0
     - id: 20
-      prerequisite: 
       rarity: 0
       buyprice: 100
       maxUpgrade: 5
       upgradecount: 0
       isonoff: 0
     - id: 21
-      prerequisite: 
       rarity: 0
       buyprice: 100
       maxUpgrade: 5
       upgradecount: 0
       isonoff: 0
     - id: 42
-      prerequisite: 
       rarity: 0
       buyprice: 100
       maxUpgrade: 5
       upgradecount: 0
       isonoff: 0
     - id: 51
-      prerequisite: 
       rarity: 0
       buyprice: 100
-      maxUpgrade: 5
+      maxUpgrade: 0
       upgradecount: 0
       isonoff: 0
     - id: 52
-      prerequisite: 
       rarity: 0
       buyprice: 100
-      maxUpgrade: 5
+      maxUpgrade: 0
       upgradecount: 0
       isonoff: 0
     - id: 60
-      prerequisite: 
       rarity: 0
       buyprice: 100
       maxUpgrade: 5
       upgradecount: 0
       isonoff: 0
     - id: 61
-      prerequisite: 
       rarity: 0
       buyprice: 100
       maxUpgrade: 5
       upgradecount: 0
       isonoff: 0
     - id: 100
-      prerequisite: 
       rarity: 0
       buyprice: 100
       maxUpgrade: 5
       upgradecount: 0
       isonoff: 0
     - id: 101
-      prerequisite: 
       rarity: 0
       buyprice: 100
       maxUpgrade: 5
       upgradecount: 0
       isonoff: 0
     - id: 102
-      prerequisite: 
       rarity: 0
       buyprice: 100
       maxUpgrade: 5
       upgradecount: 0
       isonoff: 0
     - id: 103
-      prerequisite: 
       rarity: 0
       buyprice: 100
       maxUpgrade: 5
       upgradecount: 0
       isonoff: 0
     - id: 104
-      prerequisite: 
       rarity: 0
       buyprice: 100
       maxUpgrade: 5
       upgradecount: 0
       isonoff: 0
-  idMixtureArtifactDic:
-    m_keys: 3c000000
+    - id: 999
+      rarity: 0
+      buyprice: 100
+      maxUpgrade: 5
+      upgradecount: 0
+      isonoff: 0
+    - id: 80
+      rarity: 0
+      buyprice: 0
+      maxUpgrade: 0
+      upgradecount: 0
+      isonoff: 0

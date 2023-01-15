@@ -63,6 +63,8 @@ namespace PG.Data
         Pinocchio = 60 ,
         AtomSetting = 61,
 
+        
+        Mix_PadSesame = 80 ,
 
         Upgrade_AimShot = 100,
         Upgrade_StraightShot = 101,

@@ -43,6 +43,10 @@
     {
       "key":"Default_HealthUp",
       "value":"체력 10을 회복합니다."
+    },
+    {
+      "key":"Mix_PadSesame",
+      "value":"합체 기술 예시."
     }
   ]
 }

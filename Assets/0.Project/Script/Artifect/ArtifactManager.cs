@@ -24,8 +24,12 @@ namespace PG.Battle
         public static List<ArtifactID> uniqueArtifactPool { get { return new List<ArtifactID>(_uniqueArtifactPool); } }
         
         public static ArtifactScriptableData s_artifactData;
+        public static ArtifactMixtureData s_artifactMixData;
+
         [SerializeField]
         private ArtifactScriptableData artifactData;
+        [SerializeField]
+        private ArtifactMixtureData artifactMixData;
 
         
         [SerializeField]
@@ -34,6 +38,7 @@ namespace PG.Battle
         List<ArtifactID> _showerArtifectList = new List<ArtifactID>() { };
 
         private HashSet<ArtifactID> completedIDset;
+        private HashSet<ArtifactID> completeRequirementSet;
 
 
         //획득 가능한 아티팩트들의 리스트 여기서 
@@ -42,7 +47,7 @@ namespace PG.Battle
             Global_BattleEventSystem._onBattleBegin += InitializeCurrentArtifact;
             Global_BattleEventSystem._onLevelUpShow += SetLevelUpOn;
             Global_BattleEventSystem._onLevelUpHide += SetLevelUpOff;
-            s_artifactData = artifactData;
+            
         }
         protected override void CallOnDestroy()
         {
@@ -69,6 +74,13 @@ namespace PG.Battle
         void ArtifactSetRandomly() 
         {
             _showerArtifectList.Clear();
+            string str = "";
+            foreach (var a in Global_CampaignData._obtainableArtifactIDList)
+            {
+                str += a;
+            }
+
+            print(str);
             
             if(Global_CampaignData._obtainableArtifactIDList.Count>4)
                 _showerArtifectList = MyRandom.PickRandoms(Global_CampaignData._obtainableArtifactIDList,4);
@@ -93,6 +105,21 @@ namespace PG.Battle
         {
             //전판의 데이터를 전부 지우고 넣음.
             DisableAllArtifact();
+            if (artifactData == null || artifactMixData == null)
+                throw new Exception(" ArtifactData isn't set");
+            s_artifactData = artifactData;
+            s_artifactMixData = artifactMixData;
+            completedIDset = new HashSet<ArtifactID>();
+            completeRequirementSet = new HashSet<ArtifactID>();
+            foreach (var pair in artifactMixData.mixDic)
+            {
+                foreach (var id in pair.Value)
+                {
+                    completeRequirementSet.Add(id);
+                }
+            }
+
+
             if (Global_CampaignData._startArtifactList.Count != 0) 
             {
                 foreach (ArtifactID id in Global_CampaignData._startArtifactList) 
@@ -101,6 +128,8 @@ namespace PG.Battle
                 }
             }
         }
+        
+        
         //유물 획득하는
         public static void AddArtifactToPlayer_tempUse(ArtifactID id)
         {
@@ -114,6 +143,7 @@ namespace PG.Battle
                     Artifact.Create(id,ArtifactManager.s_artifactData.idArtifactDataDic[id]));
                 Global_CampaignData._currentArtifactDictionary[id].OnGetArtifact();
                 //캔버스의 분리를 위해 남겨둠.
+                //여기부분 수정해서 성능을 향상 시켜 보자.
                 ArtifactListShower.SetNewCaseOnList(id);
                 //또한 지금은 선택을 하고나면 기존의 데이터 셋에서 지워야함.
             }
@@ -129,11 +159,29 @@ namespace PG.Battle
         public static void RemoveArtifactOnPlayer(ArtifactID id)
         {
             Global_CampaignData._obtainableArtifactIDList.Remove(id);
+            _instance.completedIDset.Add(id);
             _instance.SearchArtifactMixtureAndSet(id);
         }
 
+        private bool _addable = true;
         private void SearchArtifactMixtureAndSet(ArtifactID id)
         {
+            if (completeRequirementSet.Contains(id))
+            {
+                foreach (var pair in artifactMixData.mixDic)
+                {
+                    _addable = true;
+                    foreach(var pairId in pair.Value)
+                    {
+                        if (!completedIDset.Contains(pairId))
+                            _addable = false;
+                    }
+                    if (_addable)
+                    {
+                        Global_CampaignData._obtainableArtifactIDList.Add(pair.Key);
+                    }
+                }
+            }
         }
 
         private void DebugArtifactlist()
