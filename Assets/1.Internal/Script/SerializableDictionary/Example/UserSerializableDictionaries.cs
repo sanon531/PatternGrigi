@@ -63,6 +63,8 @@ public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact>
 [Serializable]
 public class ArtifactIDArtifactDataDic: SerializableDictionary<ArtifactID, ArtifactData> { }
 
+[Serializable]
+public class ArtifactIDRequisiteDic: SerializableDictionary<ArtifactID, List<ArtifactID>> { }
 
 [Serializable]
 public class ArtifactIDVecotrInt2Dic : SerializableDictionary<ArtifactID, Vector2Int>

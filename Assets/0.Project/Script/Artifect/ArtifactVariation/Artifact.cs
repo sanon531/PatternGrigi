@@ -25,15 +25,16 @@ namespace PG
         public ArtifactRarity Rarity
         {
             get { return _rarity; }
+            set { _rarity = value; }
         }
 
         protected readonly ArtifactID thisID;
-
         public ArtifactID ThisID
         {
             get { return thisID; }
         }
 
+       
         [SerializeField] protected int maxUpgrade;
 
         public int MaxUpgrade
@@ -88,7 +89,7 @@ namespace PG
 
         public void SetData(ArtifactData data)
         {
-            _rarity = (ArtifactRarity)data.Rarity;
+            Rarity = (ArtifactRarity)data.Rarity;
             UpgradeCount = data.UpgradeCount;
             MaxUpgrade = data.MaxUpgrade;
             _flag = ArtifactFlag.Inactive;
@@ -129,7 +130,7 @@ namespace PG
             if (alreadyCompleted)
                 return;
             alreadyCompleted = true;
-            Global_CampaignData._obtainableArtifactIDList.Remove(thisID);
+            Battle.ArtifactManager.RemoveArtifactOnPlayer(thisID);
         }
 
 
@@ -152,7 +153,7 @@ namespace PG
                 return temp;
             }
 
-            Debug.LogError("No Artifact" + "PG.Artifact_" + id.ToString());
+            throw new ArgumentException("No Artifact" + "PG.Artifact_" + id.ToString());
             return null;
         }
         

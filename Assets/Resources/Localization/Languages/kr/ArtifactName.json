@@ -39,8 +39,11 @@
     {
       "key":"AtomSetting",
       "value":"원자상태"
+    },
+    {
+      "key":"Default_HealthUp",
+      "value":"반복 회복"
     }
-
 
   ]
 }

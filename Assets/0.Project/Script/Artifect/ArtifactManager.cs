@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using PG.Event;
 using PG.Data;
@@ -26,10 +27,13 @@ namespace PG.Battle
         [SerializeField]
         private ArtifactScriptableData artifactData;
 
+        
         [SerializeField]
         bool _isTestSet = true;
         [SerializeField]
         List<ArtifactID> _showerArtifectList = new List<ArtifactID>() { };
+
+        private HashSet<ArtifactID> completedIDset;
 
 
         //획득 가능한 아티팩트들의 리스트 여기서 
@@ -64,7 +68,21 @@ namespace PG.Battle
         //지금은 랜덤이지만. 일단 다음에는 일종의 
         void ArtifactSetRandomly() 
         {
-            _showerArtifectList = MyRandom.PickRandoms(Global_CampaignData._obtainableArtifactIDList,4);
+            _showerArtifectList.Clear();
+            
+            if(Global_CampaignData._obtainableArtifactIDList.Count>4)
+                _showerArtifectList = MyRandom.PickRandoms(Global_CampaignData._obtainableArtifactIDList,4);
+            else
+            {
+                foreach (var id in Global_CampaignData._obtainableArtifactIDList)
+                {
+                    _showerArtifectList.Add(id);
+                }
+            }
+
+            if (_showerArtifectList.Count == 0)
+                _showerArtifectList.Add(ArtifactID.Default_HealthUp);
+
             LevelUpPanelScript.SetRandomItemOnPannel(_showerArtifectList);
         }
 
@@ -107,7 +125,29 @@ namespace PG.Battle
             }
         }
 
-        private 
+
+        public static void RemoveArtifactOnPlayer(ArtifactID id)
+        {
+            Global_CampaignData._obtainableArtifactIDList.Remove(id);
+            _instance.SearchArtifactMixtureAndSet(id);
+        }
+
+        private void SearchArtifactMixtureAndSet(ArtifactID id)
+        {
+        }
+
+        private void DebugArtifactlist()
+        {
+            string str = "";
+            foreach (var iD in Global_CampaignData._obtainableArtifactIDList)
+            {
+                str += iD;
+                str += "\n";
+            }
+
+            Debug.Log(str);
+
+        }
 
 
         //게임이 초기화 되면 기존의 모든 아티팩트 내부의 데이터들을 제거한다.

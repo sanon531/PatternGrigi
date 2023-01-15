@@ -69,9 +69,8 @@ namespace PG.Data
         Upgrade_LightningShot = 102,
         Upgrade_TowerShot = 103,
         Upgrade_Knife = 104,
-
-
-
+        
+        Default_HealthUp = 999,
     }
     public enum ProjectileID 
     {

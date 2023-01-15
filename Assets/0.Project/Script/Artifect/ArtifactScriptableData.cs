@@ -11,12 +11,15 @@ namespace PG.Data
     public class ArtifactScriptableData : ScriptableObject
     {
         [SerializeField] public ArtifactIDArtifactDataDic idArtifactDataDic;
+        [SerializeField] public ArtifactIDRequisiteDic idMixtureArtifactDic;
+
         private void Reset()
         {
-            foreach (ArtifactID id in Enum.GetValues(typeof(ArtifactID)))
-            {
-                idArtifactDataDic.Add(id,new ArtifactData(id,0,false,0,5));
-            }
+            foreach (ArtifactID id in Enum.GetValues(typeof(ArtifactID))) 
+                {
+                    idArtifactDataDic.Add(id,new ArtifactData(id,0,false,0,5));
+                }
+        idMixtureArtifactDic = new ArtifactIDRequisiteDic();
         }
     }
     

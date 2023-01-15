@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ThunderBegining
   m_EditorClassIdentifier: 
   _startArtifactList: 00000000
-  _obtainableArtifactIDList: 0a0000000b00000014000000150000003300000034000000
+  _obtainableArtifactIDList: 34000000
   _charactorAttackDic:
     m_keys: 0100000002000000030000001500000016000000
     m_values:

@@ -41,17 +41,15 @@ namespace PG.Battle
         }
 
 
-        //ø©±‚º≠
+        //Ïó¨Í∏∞ÏÑú
         public static void LevelUpPannelOn()
         {
             _instance._panelBG.enabled = true;
             _instance._levelTitle.enabled = true;
 
-            foreach (LevelupChooseButtonScript i in _instance._upgradePanelList)
+            foreach (LevelupChooseButtonScript script in _instance._upgradePanelList)
             {
-                i.transform.DOScale(0.8f, 0.5f).SetUpdate(UpdateType.Late, true);
-                i.transform.DOShakeRotation(0.5f).SetUpdate(UpdateType.Late, true);
-                i.SetInterectiveButton(true);
+                script.ButtonCallOnOff(true);
             }
             _instance._confirmedButton.transform.DOScale(0.8f, 0.5f).SetUpdate(UpdateType.Late,true);
             _instance._confirmedButton.transform.DOShakeRotation(0.5f).SetUpdate(UpdateType.Late, true);
@@ -62,34 +60,47 @@ namespace PG.Battle
         {
             _instance._panelBG.enabled = false;
             _instance._levelTitle.enabled = false;
-            foreach (LevelupChooseButtonScript i in _instance._upgradePanelList)
+            foreach (LevelupChooseButtonScript script in _instance._upgradePanelList)
             {
-                i.transform.DOScale(0, 0.5f).SetUpdate(UpdateType.Late, true);
-                i.SetInterectiveButton(false);
+                script.ButtonCallOnOff(false);
             }
             _instance._confirmedButton.transform.DOScale(0f, 0.5f).SetUpdate(UpdateType.Late, true);
         }
 
 
-        //ªı ∑£¥˝ æ∆¿Ã≈€µÈ¿Ã √¢¿∏∑Œ ø√∂Ûø¿µµ∑œ ∏∏µÈ±‚.
+        //ÏÉà ÎûúÎç§ ÏïÑÏù¥ÌÖúÎì§Ïù¥ Ï∞ΩÏúºÎ°ú Ïò¨ÎùºÏò§ÎèÑÎ°ù ÎßåÎì§Í∏∞.
         public static void SetRandomItemOnPannel(List<ArtifactID> artifactIDs)
         {
             _instance._upgradeDataList = artifactIDs.ToList();
+
+            //ÏÑ†ÌÉùÏùÑ Ìï†Í≤ΩÏö∞ ÎèôÏãúÏóê ÏÑ†ÌÉùÍ≥º
+            //
             int i = 0;
-            //¡ˆ±›¿∫ ±◊≥… πËƒ°¿œª” ≥™¡ﬂø°¥¬ »Æ∑¸ø°µ˚∏• π´¿€¿ß∑Œ ∏∏µÈ¿⁄.
             foreach (LevelupChooseButtonScript script in _instance._upgradePanelList)
             {
-                script.SetTextAndImageOnButton(artifactIDs[i]);
+
+                if (artifactIDs.Count() > i)
+                {                
+                    script.SetTextAndImageOnButton(artifactIDs[i]);
+                }
+                else
+                {
+                    if (i == 0)
+                        script.SetTextAndImageOnButton(ArtifactID.Default_HealthUp);
+                    else
+                        script.SetDeactivateOnButton();
+                }
                 i++;
             }
         }
 
 
-        //-1 ¿Ã∏È æ∆øπ º±≈√¿Ã æ»µ»∞≈¿”
+        //-1 Ïù¥Î©¥ ÏïÑÏòà ÏÑ†ÌÉùÏù¥ ÏïàÎêúÍ±∞ÏûÑ
         [SerializeField]
         Button _confirmedButton;
+        [SerializeField]
         int _choosedButtonNum = -1;
-        //º±≈√¿ª 
+        //ÏÑ†ÌÉùÏùÑ 
         public static void GetButtonPressed(int buttonNum)
         {
             _instance._choosedButtonNum = buttonNum;
@@ -106,7 +117,7 @@ namespace PG.Battle
 
         void ConfirmButtonPressed()
         {
-            if (_choosedButtonNum != -1)
+            if (_choosedButtonNum > -1)
             {
                 _instance._confirmedButton.interactable = false;
                 ArtifactManager.AddArtifactToPlayer_tempUse(_instance._upgradeDataList[_choosedButtonNum]);

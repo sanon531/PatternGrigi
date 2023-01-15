@@ -7,7 +7,7 @@ using PG.Data;
 using DG.Tweening;
 namespace PG.Battle
 {
-    //·¹º§¾÷, ¾ÆÀÌÅÛ ¾ò¾úÀ»¶§ ³ª¿À´Â Ã¢.
+    //ë ˆë²¨ì—…, ì•„ì´í…œ ì–»ì—ˆì„ë•Œ ë‚˜ì˜¤ëŠ” ì°½.
     public class LevelupChooseButtonScript : MonoBehaviour
     {
         [SerializeField]
@@ -22,13 +22,34 @@ namespace PG.Battle
         Image _selectedImage;
 
         Button _button;
+        private bool isDisplayable = false;
         private void Start()
         {
             _button = GetComponent<Button>();
             _button.onClick.AddListener(CallButton);
         }
 
-        public void SetInterectiveButton(bool val)
+        /// <summary>
+        /// ë²„íŠ¼ í‚¤ê³  ë„ëŠ” ê²ƒë§Œ ë‹´ë‹¹.
+        /// </summary>
+        /// <param name="val"></param>
+        public void ButtonCallOnOff(bool val)
+        {
+            if (val)
+            {
+                transform.DOScale(0.8f, 0.5f).SetUpdate(UpdateType.Late, true);
+                transform.DOShakeRotation(0.5f).SetUpdate(UpdateType.Late, true);
+                SetInterectiveButton(isDisplayable);
+            }
+            else
+            {
+                transform.DOScale(0, 0.5f).SetUpdate(UpdateType.Late, true);
+                SetInterectiveButton(isDisplayable);
+            }
+        }
+
+
+        void SetInterectiveButton(bool val)
         {
             _button.interactable = val;
         }
@@ -46,8 +67,18 @@ namespace PG.Battle
 
             _title.text += " "+ Global_CampaignData.GetArtifactUpgradeCount(id);
             _content.text = GetLocalizedTextScript.GetArtifactDataFromJson(ArtifactJsonData.ArtifactEffect, id);
+            isDisplayable = true;
 
         }
+
+        public void SetDeactivateOnButton()
+        {
+            _contentImage.sprite = null;
+            _title.text = ".";
+            _content.text = ".";
+            isDisplayable = false;
+        }
+
         public void SetActivateButton()
         {
             _selectedImage.enabled = true;
@@ -63,7 +94,7 @@ namespace PG.Battle
         IEnumerator CheckPress()
         {
             yield return new WaitForSeconds(1f);
-            // ¿©±â¼­ °ü·ÃÇÑ Á¤º¸°¡ º¸¿©Áø´Ù.
+            // ì—¬ê¸°ì„œ ê´€ë ¨í•œ ì •ë³´ê°€ ë³´ì—¬ì§„ë‹¤.
         
         }
 

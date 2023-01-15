@@ -1,5 +1,7 @@
 using UnityEngine;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.Serialization;
 
 
@@ -9,14 +11,10 @@ namespace PG.Data
     public class ArtifactData
     {
 
-        [SerializeField]
-        string key;
-        public string Key { get { return key; } set { this.key = value; } }
-
-
-
-
-
+        [FormerlySerializedAs("key")] [SerializeField]
+        ArtifactID id;
+        public ArtifactID ID { get { return id; } set { this.id = value; } }
+        
         [SerializeField]
         int rarity;
         public int Rarity { get { return rarity; } set { this.rarity = value; } }
@@ -49,7 +47,7 @@ namespace PG.Data
 
         public ArtifactData(ArtifactID id)
         {
-            this.key = id.ToString();
+            this.id = id;
             this.rarity = (int)ArtifactRarity.Common;
             this.isonoff = true;
             this.upgradecount = 0;
@@ -59,7 +57,7 @@ namespace PG.Data
 
         public ArtifactData(ArtifactID id, int rarity, bool isonoff, int value)
         {
-            this.key = id.ToString();
+            this.id = id;
             this.rarity = rarity;
             this.isonoff = isonoff;
             this.upgradecount = value;
@@ -67,7 +65,7 @@ namespace PG.Data
 
         public ArtifactData(ArtifactID id, int rarity, bool isonoff, int value, int maxUpgrade)
         {
-            this.key = id.ToString();
+            this.id = id;
             this.rarity = rarity;
             this.isonoff = isonoff;
             this.upgradecount = value;
