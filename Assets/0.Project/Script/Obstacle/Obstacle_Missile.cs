@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PG.Data;
 using UnityEngine;
 using PG.Event;
 
@@ -20,25 +21,30 @@ namespace PG.Battle
         private ParticleSystem _flameParticle;
         [SerializeField]
         private SpriteRenderer _thisSpriteRd;
-
-        private void Start()
-        {
-        }
-        private void OnDestroy()
-        {
-        }
+        
         protected override void FixedUpdate()
         {
-            CheckStatus();
-            MoveObstacle();
+            base.FixedUpdate();
+            if (_isActived)
+            {
+                MoveObstacle();
+            }
         }
 
+        public override void SetSpawnData(float lifeTime, float activetimes,float damage, ObstacleID id)
+        {
+            base.SetSpawnData(lifeTime, activetimes, damage, id);
+            _flameParticle.Stop();
+            _thisSpriteRd.enabled = false;
+            Range.SetActive(true);
+        }
+        
         protected override void SetActiveObstacle()
         {
             _flameParticle.Play();
             base.SetActiveObstacle();
             _thisSpriteRd.enabled = true;
-            Destroy(Range);
+            Range.SetActive(false);
         }
 
 

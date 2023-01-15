@@ -148,22 +148,26 @@ MonoBehaviour:
     m_values:
     - _actionTime: 1
       _acceleration: 0
-      _placeList: []
-      _spawnDataList: []
+      _mobAttackDataList: []
     - _actionTime: 2
       _acceleration: 0
-      _placeList: []
-      _spawnDataList: []
+      _mobAttackDataList: []
     - _actionTime: 2
       _acceleration: 0
-      _placeList: []
-      _spawnDataList:
-      - _thisID: 4
-        _lifeTime: 3
-        _activeTime: 1
-      - _thisID: 0
-        _lifeTime: 0
-        _activeTime: 0
+      _mobAttackDataList:
+      - _mobPosSpawn: 1
+        _spawnPosList: []
+        _spawnData:
+          _thisID: 4
+          _lifeTime: 8
+          _activeTime: 1
+      - _mobPosSpawn: 0
+        _spawnPosList:
+        - {x: -1.75, y: 0}
+        _spawnData:
+          _thisID: 0
+          _lifeTime: 2
+          _activeTime: 1
   _targetSprite: {fileID: 7985014142344966281}
 --- !u!61 &8705626116279157195
 BoxCollider2D:

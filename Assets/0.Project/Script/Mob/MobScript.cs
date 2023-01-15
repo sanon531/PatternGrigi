@@ -120,23 +120,22 @@ namespace PG.Battle
                     //_initialSpeed = _mobActionDic[MobActionID.Move]._speed;
                     break;
                 case MobActionID.Attack:
-                    //만약 위치가 설정이 안된
-                    //경우 몹 위치에서 발사함.
-                    if (_currentActionData._placeList.Count > 0)
+                    foreach (MobAttackData data in _currentActionData._mobAttackDataList)
                     {
-                        for (int i = 0; i < _currentActionData._spawnDataList.Count; i++)
+                        if (data._mobPosSpawn)
                         {
-                            ObstacleManager.SetObstacle(_currentActionData._spawnDataList[i],_currentActionData._placeList[i],
-                                            Global_CampaignData._charactorAttackDic[_currentCharactor].FinalValue * _extraDamage);
+                            ObstacleManager.SetObstacle(data._spawnData,gameObject.transform.position, 
+                                Global_CampaignData._charactorAttackDic[_currentCharactor].FinalValue * _extraDamage);
                         }
-                    }
-                    else 
-                    {
-                        for (int i = 0; i < _currentActionData._spawnDataList.Count; i++)
+                        else
                         {
-                            ObstacleManager.SetObstacle(_currentActionData._spawnDataList[i],gameObject.transform.position, 
-                                           Global_CampaignData._charactorAttackDic[_currentCharactor].FinalValue * _extraDamage);
+                            foreach (Vector2 pos in data._spawnPosList)
+                            {
+                                ObstacleManager.SetObstacle(data._spawnData,pos,
+                                    Global_CampaignData._charactorAttackDic[_currentCharactor].FinalValue * _extraDamage);
+                            }
                         }
+
                     }
 
                     break;

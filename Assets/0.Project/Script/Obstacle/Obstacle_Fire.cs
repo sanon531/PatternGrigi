@@ -18,35 +18,19 @@ namespace PG.Battle
         [SerializeField]
         ParticleSystem _activeParticle;
 
-        // Start is called before the first frame update
-        private void Start()
-        {
-        }
-        private void OnDestroy()
-        {
-        }
-
 
         public override void SetSpawnData(float lifeTime, float activetimes,float damage,ObstacleID id)
         {
             base.SetSpawnData(lifeTime, activetimes, damage, id);
             _Animator.SetBool("isActive",false);
             _spawnedParticle.Play();
-
         }
         protected override void SetActiveObstacle()
         {
-            _thisCollider.enabled = true;
+            base.SetActiveObstacle();
             _activeParticle.Play();
             _Animator.SetBool("isActive", true);
         }
-
-        protected override void FixedUpdate()
-        {
-            CheckStatus();
-        }
-
-
-
+        
     }
 }
