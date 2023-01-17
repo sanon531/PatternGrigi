@@ -37,8 +37,6 @@ namespace PG.Battle
             _damageDeal = damage;
             _isActived = false;
             _id = id;
-            
-            Debug.Log(lifeTime);
         }
         protected virtual void SetActiveObstacle() 
         {

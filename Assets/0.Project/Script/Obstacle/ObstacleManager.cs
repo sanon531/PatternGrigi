@@ -14,8 +14,8 @@ namespace PG.Battle
         [SerializeField]
         List<Obstacle> _activeObstacleList = new List<Obstacle>();
 
-        private static Dictionary<ObstacleID, ProjectilePool<Obstacle>> _totalObstacleDictionary 
-            = new Dictionary<ObstacleID, ProjectilePool<Obstacle>>();
+        private static Dictionary<ObstacleID, IObjectPoolSW<Obstacle>> _totalObstacleDictionary 
+            = new Dictionary<ObstacleID, IObjectPoolSW<Obstacle>>();
 
         protected override void CallOnAwake()
         {
@@ -69,14 +69,11 @@ namespace PG.Battle
         }
         public static void DeleteObstacleOnListAll()
         {
+            //pool clear가 아니고 모든 obstacle을 풀로 반납하는거
             foreach (Obstacle obs in _instance._activeObstacleList) 
             {
                 obs.SetLifeTime(0);
-            }
-
-            foreach (ObstacleID id in Enum.GetValues(typeof(ObstacleID)))
-            {
-                _totalObstacleDictionary[id].Clear();
+                _totalObstacleDictionary[obs._id].SetBack(obs);
             }
         }
 

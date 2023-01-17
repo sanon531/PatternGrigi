@@ -86,7 +86,7 @@ namespace PG.Battle
         #region ObjectPoolPlace
         private ProjectileScript CreateProjectile(int id)
         {
-            print("create"+id);
+            //print("create"+id);
             ProjectileID temptID = (ProjectileID)id;
             ProjectileScript project = Instantiate(projectileDictionary[temptID], transform).GetComponent<ProjectileScript>();
             project.SetInitialProjectileData(

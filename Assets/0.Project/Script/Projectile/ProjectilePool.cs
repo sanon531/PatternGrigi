@@ -8,17 +8,17 @@ namespace PG.Battle
 
   public class ProjectilePool<T> : IObjectPoolSW<T> where T : class
   {
-    internal readonly Stack<T> m_Stack;
+    protected readonly Stack<T> m_Stack;
     private readonly Func<int,T> m_CreateFunc;
     private readonly Action<T> m_ActionOnGet;
     private readonly Action<T> m_ActionOnRelease;
-    private readonly Action<T> m_ActionOnDestroy;
+    protected readonly Action<T> m_ActionOnDestroy;
     private readonly int m_MaxSize;
     private readonly int m_id;
    
     internal bool m_CollectionCheck;
 
-    public int CountAll { get; private set; }
+    protected int CountAll { get; set; }
 
     public int CountLeft => this.CountAll - this.CountInactive;
     public int CountInactive => this.m_Stack.Count;
