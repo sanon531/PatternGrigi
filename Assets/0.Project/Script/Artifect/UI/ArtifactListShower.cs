@@ -38,6 +38,7 @@ namespace PG.Battle
             ArtifactShowCase _temptObj = Instantiate( _instance._prefabCase, _instance._placeTransform).GetComponent<ArtifactShowCase>();
             _instance._caseList.Add(_temptObj.gameObject);
             _instance._currentDic.Add(id, _temptObj);
+            Debug.Log(id);
             _temptObj.SetDataOnCase(id);
         }
 
