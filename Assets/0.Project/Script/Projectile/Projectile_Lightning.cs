@@ -9,13 +9,13 @@ namespace PG.Battle
     {
 
         [SerializeField]
-        LazerLine _thisRay;
+        LaserLine _thisRay;
 
         // Start is called before the first frame update
         void Start()
         {
             hitFX.Stop();
-            _thisRay.SetActiveLazer(false);
+            _thisRay.SetActiveLaser(false);
         }
         // Update is called once per frame
         /*public override void SetInitialProjectileData(MobScript target, IObjectPool<ProjectileScript> objectPool, float lifetime, float spreadCount, float f)

@@ -52,6 +52,8 @@ namespace PG.Battle
         private static Dictionary<CharacterID, ProjectilePool<MobScript>> _totalMobDictionary
             = new Dictionary<CharacterID, ProjectilePool<MobScript>>();
         
+        private static readonly int _poolInitialSpawnNum = 20;
+        
         private void NextWave()
         {
             //이전 웨이브 코루틴들 정리 + 변수 초기화
@@ -239,7 +241,7 @@ namespace PG.Battle
                     )
                 );
                         
-                for (int i = 0; i<20 ;i++)
+                for (int i = 0; i<_poolInitialSpawnNum ;i++)
                     _totalMobDictionary[id].FillStack();
             }
         }

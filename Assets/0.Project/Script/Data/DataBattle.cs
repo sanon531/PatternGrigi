@@ -386,8 +386,8 @@ namespace PG.Data
     [SerializeField]
     public interface ILazerOnoff
     {
-        public void SetActiveLazer(bool var);
-        public void SetLazerEachPos(Vector3 _start, Vector3 _end);
+        public void SetActiveLaser(bool var);
+        public void SetLaserEachPos(Vector3 _start, Vector3 _end);
     }
 
 }

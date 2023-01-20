@@ -15,14 +15,14 @@ namespace PG.Battle
         [SerializeField]
         bool _isDebug = true;
 
-
+        
         [SerializeField]
         public List<PatternNodeScript> _patternNodes = new List<PatternNodeScript>();
-
+        
         [SerializeField]
         List<int> _defaultNode = new List<int>(9) { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-
-
+        
+        
         //1-4로 들어가는 것이 최초의 공격이 될것.
         [SerializeField]
         int _lastNode = 1;
@@ -30,22 +30,22 @@ namespace PG.Battle
         List<int> _inactivatedNode;
         [SerializeField]
         float _gainEXP_byDebug = 10;
-
+        
         [SerializeField]
         ParticleSystem _signParticle;
-
+        
         // Start is called before the first frame update
-
+        
         protected override void CallOnAwake()
         {
             _inactivatedNode = _defaultNode.ToList();
             StartChargeEvent();
             StartNodeEvent();
             StartDelayData();
-
+        
         }
         // Update is called once per frame
-
+        
         protected override void CallOnDestroy()
         {
             // Update is called once per frame
@@ -57,8 +57,8 @@ namespace PG.Battle
             CheckIsCharge();
             CheckDelayData();
         }
-
-
+        
+        
         //데미지가 산출 되었을때의 정보
         public static void DamageCallWhenNodeReach(int nodeID)
         {
@@ -80,12 +80,11 @@ namespace PG.Battle
             LineTracer._instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
             VibrationManager.CallVibration();
         }
-
-
-
+        
+        
+        
         #region//nodereach
-
-
+        
         void StartNodeEvent()
         {
             Global_BattleEventSystem._onBattleBegin += StartTriggerNode;
@@ -172,7 +171,6 @@ namespace PG.Battle
             _presetNodes = GlobalDataStorage.PatternPresetDic[drawPattern].ToList();
             //Debug.Log(_presetNodes.Count);
             PresetPatternShower.SetPresetPatternList(_presetNodes, GlobalDataStorage.PatternWIthLaserDic[drawPattern]);
-            PresetPatternShower.ShowPresetPatternAll();
             //presetDataDic 은 새로운 딕셔너리로 키값으로EPresetOfDrawPattern를 받는다.
             SetNodeToNextReach(_presetNodes[_currentPresetNodeNumber]);
         }
@@ -211,11 +209,11 @@ namespace PG.Battle
             //기존의 노드들을 그냥 랜덤으로 놓는 부분들을 만든다.
             PresetPatternShower.SetPresetPatternList(_presetNodes, LaserKindID.Default_laser);
             SetNodeToNextReach(_presetNodes[_currentPresetNodeNumber]);
-
+        
             //Debug.Log(_presetNodes[_currentPresetNodeNumber]);
-
+        
         }
-
+        
         #region // delayed
         [SerializeField]
         PatternDelayingShowManager _delayingManager;
@@ -228,24 +226,24 @@ namespace PG.Battle
         {
             _delayingManager = GameObject.Find("PatternDelayingShowManager").GetComponent<PatternDelayingShowManager>();
             _delayingManager.InitialzeShowManager();
-
+        
             _maxCoolTimeToken = Mathf.RoundToInt(Global_CampaignData._coolTimeTokenCount.FinalValue);
             _coolTimeToken = _maxCoolTimeToken;
             _currentDelayPercent = 0;
             _delayingManager.SetValueofDelay(_currentDelayPercent, _coolTimeToken);
-
+        
         }
         void CheckDelayData() 
         {
             if (_maxCoolTimeToken <= _coolTimeToken)
                 return;
-
+        
             _currentDelayPercent += Time.deltaTime * _increaseAmount;
-
+        
             if (_currentDelayPercent > 1) 
             {
                 _currentDelayPercent = 0;
-
+        
                 if (_isPatternDelayed)
                 {
                     SetRandomPattern(_lastNode);

@@ -19,7 +19,6 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(TimeWaveDic))]
 [CustomPropertyDrawer(typeof(MobIDSpawnDataDic))]
 [CustomPropertyDrawer(typeof(LaserIDObjectDic))]
-[CustomPropertyDrawer(typeof(LaserIDObjectListDic))]
 [CustomPropertyDrawer(typeof(ProjectileIDObjectDic))]
 [CustomPropertyDrawer(typeof(ProjectileIDObjectPoolDic))]
 [CustomPropertyDrawer(typeof(ProjectileIDFloatDic))]

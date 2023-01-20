@@ -13,10 +13,12 @@ namespace PG.Battle
         ObstacleIDObjectDic _obstacleDic;
         [SerializeField]
         List<Obstacle> _activeObstacleList = new List<Obstacle>();
-
+        
         private static Dictionary<ObstacleID, IObjectPoolSW<Obstacle>> _totalObstacleDictionary 
             = new Dictionary<ObstacleID, IObjectPoolSW<Obstacle>>();
-
+        
+        private static readonly int _poolInitialSpawnNum = 10;
+        
         protected override void CallOnAwake()
         {
             InitializeDictionary();
@@ -43,12 +45,12 @@ namespace PG.Battle
                             10000
                         )
                     );
-                    for(int i = 0; i<10 ;i++)
+                    for(int i = 0; i<_poolInitialSpawnNum ;i++)
                         _totalObstacleDictionary[id].FillStack();
                 }
             }
         }
-
+        
         public static void SetObstacle(SpawnData data, Vector2 pos,float damage)
         {
             Obstacle temp = _totalObstacleDictionary[data._thisID].PickUp();
@@ -57,7 +59,7 @@ namespace PG.Battle
             _instance._activeObstacleList.Add(temp);
             temp.gameObject.SetActive(true);
         }
-
+        
         public static void DeleteObstacleOnList(Obstacle obstacle)
         {
             if (_instance._activeObstacleList.Contains(obstacle))

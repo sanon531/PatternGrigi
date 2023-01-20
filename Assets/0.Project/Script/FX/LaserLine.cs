@@ -5,7 +5,7 @@ using UnityEngine;
 namespace PG.Battle 
 {
 
-    public class LazerLine : Hovl_Laser, Data.ILazerOnoff
+    public class LaserLine : Hovl_Laser, Data.ILazerOnoff
     {
         [Header("Position")]
         public Vector3 _StartPos;
@@ -21,7 +21,7 @@ namespace PG.Battle
 
         }
         bool _active = true;
-        public void SetActiveLazer(bool var)
+        public void SetActiveLaser(bool var)
         {
             _active = var;
             if(Laser ==null)
@@ -29,7 +29,7 @@ namespace PG.Battle
             Laser.enabled = var;
         }
 
-        public void SetLazerEachPos(Vector3 _start, Vector3 _end)
+        public void SetLaserEachPos(Vector3 _start, Vector3 _end)
         {
             _StartPos = _start;
             _EndPos = _end;
