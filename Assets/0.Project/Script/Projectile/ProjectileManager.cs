@@ -60,12 +60,13 @@ namespace PG.Battle
             //먼저 몹 스폰 매니져에게서 적들의 데이터에 관한 값을 가져오게 됨.
             //적들의 데이터에 관한 것이면 적들의
 
-            foreach (ProjectileID id in Enum.GetValues(typeof(ProjectileID)))
+            print(Global_CampaignData._projectileIDDataDic.Count());
+            foreach (var data in Global_CampaignData._projectileIDDataDic)
             {
-                _currentShotAmmoDic.Add(id, new Queue<float>());
-                projectileDictionary.Add(id, Resources.Load<GameObject>("Projectile/" + id));
-                trackerIDintDic.Add(id,0);
-                _totalProjectileDictionary.Add(id,
+                _currentShotAmmoDic.Add(data.Key, new Queue<float>());
+                projectileDictionary.Add(data.Key, Resources.Load<GameObject>("Projectile/" + data.Key));
+                trackerIDintDic.Add(data.Key,0);
+                _totalProjectileDictionary.Add(data.Key,
                     new ProjectilePool<ProjectileScript>
                     (
                         CreateProjectile,
@@ -73,17 +74,19 @@ namespace PG.Battle
                         OnRelease,
                         null,
                         true,
-                        id :(int)id,
+                        id :(int)data.Key,
                         10000
                     )
                 );
                 for(int i = 0 ; i<10 ;i++)
-                    _totalProjectileDictionary[id].FillStack();
+                    _totalProjectileDictionary[data.Key].FillStack();
                 
             }
         }
 
         #region ObjectPoolPlace
+
+        private List<Transform> projectileTransforms = new List<Transform>();
         private ProjectileScript CreateProjectile(int id)
         {
             //print("create"+id);
@@ -101,19 +104,17 @@ namespace PG.Battle
         {
             projectileScript.gameObject.SetActive(true);
             //print("pick"+nameof(projectileScript));
+            projectileTransforms.Add(projectileScript.transform);
             trackerIDintDic[projectileScript.id]--;
             
         }
-
         private void OnRelease(ProjectileScript projectileScript)
         {
             projectileScript.gameObject.SetActive(false);
             //print("release"+nameof(projectileScript));
+            projectileTransforms.Remove(projectileScript.transform);
             trackerIDintDic[projectileScript.id]++;
         }
-
-       
-        
 
         #endregion
         
@@ -137,25 +138,25 @@ namespace PG.Battle
         // 탄창이 1, 한번에 쏘는 갯수로 나뉜다
         void SetProjectileToEnemy(float val) 
         {
-            foreach (ProjectileID id in Enum.GetValues(typeof(ProjectileID))) 
+            foreach (var pair in Global_CampaignData._projectileIDDataDic) 
             {
                 
-                /*    Debug.Log("projectile check_ count: " +id  + 
-                           Global_CampaignData._projectileIDDataDic[id]._count
-                           +"projectile check_ repeat: "+Global_CampaignData._projectileIDDataDic[id]._repeat);}
-                */
-                if (Global_CampaignData._projectileIDDataDic[id]._repeat <= 0||
-                    Global_CampaignData._projectileIDDataDic[id]._count<= 0)
+                 Debug.Log("projectile check_ count: " +pair.Key + 
+                           pair.Value._count
+                           +"projectile check_ repeat: "+pair.Value._repeat);
+                
+                if (pair.Value._repeat <= 0||
+                    pair.Value._count<= 0)
                     continue;
                 //총알 수를 큐에 넣어서 추가한다
-                for (int i = 0; i < Global_CampaignData._projectileIDDataDic[id]._repeat; i++)
-                    _currentShotAmmoDic[id].Enqueue(val);
+                for (int i = 0; i < pair.Value._repeat; i++)
+                    _currentShotAmmoDic[pair.Key].Enqueue(val);
 
                 //간단히
-                if (!_keepShotSet.Contains(id))
+                if (!_keepShotSet.Contains(pair.Key))
                 {
-                    _keepShotSet.Add(id);
-                    StartCoroutine(ShotRoutine(id));
+                    _keepShotSet.Add(pair.Key);
+                    StartCoroutine(ShotRoutine(pair.Key));
                 }
             }
 

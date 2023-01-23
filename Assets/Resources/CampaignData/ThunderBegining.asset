@@ -146,22 +146,10 @@ MonoBehaviour:
     "_\uCD94\uAC00\uB7C9": 0
     type: 66
   _projectileIDDataDic:
-    m_keys: 0000000001000000020000000300000004000000
+    m_keys: 00000000
     m_values:
     - _count: 0
       _repeat: 1
-      _cooltime: 0.5
-    - _count: 0
-      _repeat: 1
-      _cooltime: 0.5
-    - _count: 10
-      _repeat: 5
-      _cooltime: 0.5
-    - _count: 1
-      _repeat: 0
-      _cooltime: 0.5
-    - _count: 1
-      _repeat: 0
       _cooltime: 0.5
   _projectileSpeed:
     "_\uAE30\uBCF8\uAC12": 1
