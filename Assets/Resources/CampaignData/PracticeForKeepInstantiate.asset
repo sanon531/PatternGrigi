@@ -148,19 +148,19 @@ MonoBehaviour:
   _projectileIDDataDic:
     m_keys: 0000000001000000020000000300000004000000
     m_values:
-    - _count: 1
-      _repeat: 1
-      _cooltime: 0.5
     - _count: 0
       _repeat: 1
       _cooltime: 0.5
     - _count: 0
       _repeat: 1
       _cooltime: 0.5
-    - _count: 1
+    - _count: 0
+      _repeat: 1
+      _cooltime: 0.5
+    - _count: 0
       _repeat: 0
       _cooltime: 0.5
-    - _count: 1
+    - _count: 0
       _repeat: 0
       _cooltime: 0.5
   _projectileSpeed:

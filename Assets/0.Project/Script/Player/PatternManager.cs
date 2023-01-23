@@ -59,27 +59,57 @@ namespace PG.Battle
         }
 
 
-        //데미지가 산출 되었을때의 정보
+        //데미지가 산출 되었을때의 메소드
         public static void DamageCallWhenNodeReach(int nodeID)
         {
             //먼저 게이지를 채우고 만약 게이지가 다찼을경우 주어진 노드가 나오도록함. 
             //_instance.SetGaugeChange();
             //일단 차지는 잠시 없애고하자. 그게 정신 건강에 좋다 
             //길이 계산한다음에 초기화 해줘야함 아래 두줄 순서 바꾸지 마셈
-            float _length =
+            float length =
                 _instance.GetNodePositionByID(_instance._lastNode, nodeID) *
                 Global_CampaignData._lengthMagnData.FinalValue;
+            // 노드 지나는 와중의 데미지를 0으로 만듦
+            _instance.CalcDamageOnPattern(_instance._lastNode,nodeID);
+            //
+            
             _instance.CheckNodeOnDamage(nodeID);
-            float _resultDamage = _length * Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue;
-            Global_BattleEventSystem.CallOnCalcPlayerAttack(_resultDamage);
+            float resultDamage = length * Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue;
+            Global_BattleEventSystem.CallOnCalcPlayerAttack(resultDamage);
 
 
             //이부분에서 경험치 관련 코드를 변동 해야함. 디버깅 시 빠르게 바뀌는경우 쓸꺼임.
             //
-
             LineTracer._instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
             VibrationManager.CallVibration();
         }
+
+        void CalcDamageOnPattern(int lastNode, int currentNode)
+        {
+            Vector2 lastPos = _patternNodes[lastNode].transform.position;
+            Vector2 currentPos = _patternNodes[currentNode].transform.position;
+            Vector2 dir = currentPos - lastPos;
+            float range = Vector2.Distance(currentPos,lastPos);
+            dir = dir.normalized;
+            
+            //layer 분할로 좀더 개선을 해봐야함.
+
+            //
+            RaycastHit2D[] hits=new RaycastHit2D[30];
+            var count= Physics2D.RaycastNonAlloc(lastPos,dir,hits,range);
+
+            for (int i =0 ; i<count;i++)
+            {
+                if (hits[i].transform.CompareTag("Enemy"))
+                {
+                    //수치는 변동 시키기 
+                    hits[i].transform.GetComponent<MobScript>().Damage(10);
+                }
+            }
+
+
+        }
+
 
 
 
@@ -341,14 +371,14 @@ namespace PG.Battle
                 _inactivatedNode.Remove(i);
             }
             else
-                Debug.LogError("Wrong node Error: Already Exist");
+                throw new Exception("Wrong node Error: Already Exist");
         }
         void SetNodeToNextReach(int i)
         {
             //Debug.Log("input " + i );
             _signParticle.Play();
-            Vector3 _targetpos = new Vector3((_IDDic[i].x - 1) * 1.75f, (-_IDDic[i].y) * 1.75f, 0);
-            _signParticle.gameObject.transform.position = _targetpos;
+            Vector3 targetpos = new Vector3((_IDDic[i].x - 1) * 1.75f, (-_IDDic[i].y) * 1.75f, 0);
+            _signParticle.gameObject.transform.position = targetpos;
             _patternNodes[i].SetIsReachable(true);
             _inactivatedNode.Remove(i);
         }
