@@ -14947,6 +14947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7c107ae524aed749b3de3034023eb9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isPlaced: 0
   laserScale: 1
   laserColor: {r: 0.5411765, g: 0.75039625, b: 1, a: 1}
   HitEffect: {fileID: 0}
@@ -34312,6 +34313,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Node_0
       objectReference: {fileID: 0}
+    - target: {fileID: 4991278360167196549, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
+      propertyPath: _swipeAudio
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5112914471575574955, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -34476,6 +34481,10 @@ PrefabInstance:
       propertyPath: _nodeId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4991278360167196549, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
+      propertyPath: _swipeAudio
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5112914471575574955, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -34552,6 +34561,10 @@ PrefabInstance:
     - target: {fileID: 4991278360167196549, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
       propertyPath: _nodeId
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991278360167196549, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
+      propertyPath: _swipeAudio
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5112914471575574955, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
       propertyPath: m_RootOrder
@@ -34630,6 +34643,10 @@ PrefabInstance:
       propertyPath: _nodeId
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4991278360167196549, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
+      propertyPath: _swipeAudio
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5112914471575574955, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -34706,6 +34723,10 @@ PrefabInstance:
     - target: {fileID: 4991278360167196549, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
       propertyPath: _nodeId
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991278360167196549, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
+      propertyPath: _swipeAudio
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5112914471575574955, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
       propertyPath: m_RootOrder
@@ -34784,6 +34805,10 @@ PrefabInstance:
       propertyPath: _nodeId
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4991278360167196549, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
+      propertyPath: _swipeAudio
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5112914471575574955, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -34861,6 +34886,10 @@ PrefabInstance:
       propertyPath: _nodeId
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4991278360167196549, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
+      propertyPath: _swipeAudio
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5112914471575574955, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -34937,6 +34966,10 @@ PrefabInstance:
     - target: {fileID: 4991278360167196549, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
       propertyPath: _nodeId
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991278360167196549, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
+      propertyPath: _swipeAudio
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5112914471575574955, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
       propertyPath: m_RootOrder
@@ -35185,6 +35218,10 @@ PrefabInstance:
     - target: {fileID: 4991278360167196549, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
       propertyPath: _nodeId
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991278360167196549, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
+      propertyPath: _swipeAudio
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5112914471575574955, guid: d76808d88cf8e2d48959c08f17d46916, type: 3}
       propertyPath: m_RootOrder

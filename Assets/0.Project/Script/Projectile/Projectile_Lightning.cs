@@ -10,7 +10,7 @@ namespace PG.Battle
     {
 
         [SerializeField]
-        LazerLine _thisRay;
+        LaserLine _thisRay;
 
         // Start is called before the first frame update
         void Start()

@@ -7,9 +7,9 @@ using UnityEngine.Serialization;
 
 namespace PG.Battle
 {
-    //Åõ»çÃ¼´Â triggerÇüÅÂ·Î ÇÏ¸ç ¸÷Àº ¹İ´ë·Î Æ®¸®°Å°¡ ¾ø´ÂÃ¤·Î ¼³°èÇÑ´Ù. 
-    //¸ÂÀ¸¸é ºñÈ°¼ºÈ­ µÇ°í
-    //projectile Àº ÇÃ·¹ÀÌ¾î¸¸ È°¿ëÇÏ´Â°ÍÀ¸·Î ÇÑ´Ù.
+    //íˆ¬ì‚¬ì²´ëŠ” triggerí˜•íƒœë¡œ í•˜ë©° ëª¹ì€ ë°˜ëŒ€ë¡œ íŠ¸ë¦¬ê±°ê°€ ì—†ëŠ”ì±„ë¡œ ì„¤ê³„í•œë‹¤. 
+    //ë§ìœ¼ë©´ ë¹„í™œì„±í™” ë˜ê³ 
+    //projectile ì€ í”Œë ˆì´ì–´ë§Œ í™œìš©í•˜ëŠ”ê²ƒìœ¼ë¡œ í•œë‹¤.
     public abstract class ProjectileScript : MonoBehaviour
     {
         #region variables
@@ -34,7 +34,7 @@ namespace PG.Battle
         protected SpriteRenderer projectileImage;
 
         
-        //°üÅë È½¼ö.
+        //ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½.
         protected int PierceCount = 0;
         protected List<GameObject> PiercedList = new List<GameObject>();
         #endregion
@@ -60,7 +60,7 @@ namespace PG.Battle
 
         protected bool IsActive = true;
         /// <summary>
-        /// ¹ß»ç ÇÒ¶§¸¶´Ù ÀÛµ¿ÇÏ´Â ½ºÅ©¸³Æ®.
+        /// ï¿½ß»ï¿½ ï¿½Ò¶ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ûµï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®.
         /// </summary>
         public virtual void SetFrequentProjectileData(MobScript target, float damage, float spreadCount)
         {
@@ -87,7 +87,6 @@ namespace PG.Battle
                 return;
             if (collision.CompareTag("Enemy") && !PiercedList.Contains(collision.gameObject))
             {
-                // ÀÌ°÷¿¡¼­ Àû¿¡ ´ëÇÑ µ¥¹ÌÁö¸¦ Ã³¸®ÇÏ´Â ÄÚµå¸¦ Â§´Ù.
                 collision.GetComponent<MobScript>().Damage(Damage);
                 PierceCount--;
                 if (PierceCount <= 0)

@@ -12,13 +12,13 @@ namespace PG.Battle
     private readonly Func<int,T> m_CreateFunc;
     private readonly Action<T> m_ActionOnGet;
     private readonly Action<T> m_ActionOnRelease;
-    private readonly Action<T> m_ActionOnDestroy;
+    protected readonly Action<T> m_ActionOnDestroy;
     private readonly int m_MaxSize;
     private readonly int m_id;
    
     internal bool m_CollectionCheck;
 
-    public int CountAll { get; private set; }
+    protected int CountAll { get; set; }
 
     public int CountLeft => this.CountAll - this.CountInactive;
     public int CountInactive => this.m_Queue.Count;
@@ -39,6 +39,7 @@ namespace PG.Battle
       this.m_Queue = new Queue<T>(0);
       this.m_CreateFunc = createFunc;
       this.m_MaxSize = maxSize;
+      this.m_id = id;
       this.m_ActionOnGet = actionOnGet;
       this.m_id = id;
       this.m_ActionOnRelease = actionOnRelease;
@@ -54,6 +55,7 @@ namespace PG.Battle
       {
         obj = this.m_CreateFunc(m_id);
         ++this.CountAll;
+        this.m_Queue.Enqueue(obj);
       }else
         throw new ArgumentException("Even though it reached Max Size it Try to fill");
 

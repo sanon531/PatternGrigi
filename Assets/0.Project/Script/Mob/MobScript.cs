@@ -30,8 +30,8 @@ namespace PG.Battle
         protected Rigidbody2D _rigidBody2D;
 
         [Header("Current Status")]
-        CharacterID _currentCharactor = CharacterID.Slime;
-        bool _isEnemyAlive = true;
+        CharacterID _charactorID;
+        bool _isEnemyAlive = false;
         bool _isStunned = false;
         bool _isNontotalPaused = false;
         float _actionTime, _maxActionTime;
@@ -42,15 +42,12 @@ namespace PG.Battle
         private float _extraDamage = 1;
         private float _loadedSpeed = 0;
         private Color _color;
-
+        
         #endregion
         void Start()
         {
-            _healthSystem = new HealthSystem(healthAmountMax);
-            _healthSystem.SetHealth(startingHealthAmount);
-            _healthSystem.OnDead += OnDead;
         }
-        void OnDestroy()
+        void OnEnable()
         {
         }
         void Update()
@@ -70,7 +67,10 @@ namespace PG.Battle
                 {
                     SetNextAction();
                 }
-
+            }
+            else
+            {
+                
             }
         }
 
@@ -85,8 +85,8 @@ namespace PG.Battle
         [SerializeField]
         MobActionDataDic _mobActionDic = new MobActionDataDic();
 
-        //몹을 스폰 할때 초기 데이터들을 넣어주는 코드. 같은 몬스터라도 레벨에 따른 유동적인 강화, 이미지 변화를 위해 짜게됨
-        public void SetInitializeMobSpawnData(MobSpawnData mobSpawnData)
+        //몹을 스폰 할때 초기 데이터들을 넣어주는 코드
+        public void SetInitializeMobSpawnData(CharacterID mobID, MobSpawnData mobSpawnData)
         {
             healthAmountMax = mobSpawnData._체력;
             startingHealthAmount = mobSpawnData._체력;
@@ -94,12 +94,20 @@ namespace PG.Battle
 
             _healthSystem = new HealthSystem(healthAmountMax);
             _healthSystem.SetHealth(startingHealthAmount);
+            _healthSystem.OnDead += OnDead;
 
+            _charactorID = mobID;
+            
             _loadedSpeed = mobSpawnData._속도;
             _extraDamage = mobSpawnData._공격력;
             _color = mobSpawnData._색깔;
 
+            _isEnemyAlive = true;
+            _isStunned = false;
+            _actionTime = 0;
             _currentActionOrder = 0;
+
+            SetTargetted(false);
         }
 
         //set은 단 한번 이뤄지며 동시에 계속되는 반복방식은 move 로 바꾼다.
@@ -120,23 +128,22 @@ namespace PG.Battle
                     //_initialSpeed = _mobActionDic[MobActionID.Move]._speed;
                     break;
                 case MobActionID.Attack:
-                    //만약 위치가 설정이 안된
-                    //경우 몹 위치에서 발사함.
-                    if (_currentActionData._placeList.Count > 0)
+                    foreach (MobAttackData data in _currentActionData._mobAttackDataList)
                     {
-                        for (int i = 0; i < _currentActionData._spawnDataList.Count; i++)
+                        if (data._mobPosSpawn)
                         {
-                            ObstacleManager.SetObstacle(_currentActionData._spawnDataList[i],_currentActionData._placeList[i],
-                                            Global_CampaignData._charactorAttackDic[_currentCharactor].FinalValue * _extraDamage);
+                            ObstacleManager.SetObstacle(data._spawnData,gameObject.transform.position, 
+                                Global_CampaignData._charactorAttackDic[_charactorID].FinalValue * _extraDamage);
                         }
-                    }
-                    else 
-                    {
-                        for (int i = 0; i < _currentActionData._spawnDataList.Count; i++)
+                        else
                         {
-                            ObstacleManager.SetObstacle(_currentActionData._spawnDataList[i],gameObject.transform.position, 
-                                           Global_CampaignData._charactorAttackDic[_currentCharactor].FinalValue * _extraDamage);
+                            foreach (Vector2 pos in data._spawnPosList)
+                            {
+                                ObstacleManager.SetObstacle(data._spawnData,pos,
+                                    Global_CampaignData._charactorAttackDic[_charactorID].FinalValue * _extraDamage);
+                            }
                         }
+
                     }
 
                     break;
@@ -173,26 +180,32 @@ namespace PG.Battle
 
             if (transform.position.y <= MobGenerator.GetDeadLine())
             {
-                MobGenerator.DestroyMob(this);
+                StopAllCoroutines();
+                MobGenerator.RemoveMob(_charactorID, this);
                 Player_Script.Damage(_reachedDamage);
             }
 
 
         }
 
-
+        
         public void Damage(float val)
         {
             _healthSystem.Damage(val);
+            currentHealth = _healthSystem.GetHealth();
             DamageFXManager.ShowDamage(transform.position, Mathf.Round(val).ToString(),Color.white);
-            StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
+            if (_isEnemyAlive)
+            {
+                StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
+            }
         }
 
         //Called on dead
         private void OnDead(object sender, System.EventArgs e)
         {
+            StopAllCoroutines();
             _isEnemyAlive = false;
-            MobGenerator.DestroyMob(this);
+            MobGenerator.RemoveMob(_charactorID, this);
             
             //트위닝 이슈로 삭제함. 즉발 식으로 대체함. 추후 다른 식으로 구현 할것
             //EXPTokenManager.PlaceEXPToken(transform.position, _lootExp);
@@ -208,19 +221,19 @@ namespace PG.Battle
             _targetSprite.enabled = val;
         }
 
-        public IEnumerator Knockback(float duration, float power)
+        private IEnumerator Knockback(float duration, float power)
         {
+            _isStunned = true;
             float timer = 0f;
-            int writeCall = 0;
 
             while (timer <= duration)
             {
                 timer += Time.deltaTime;
-                writeCall += 1;
-                _rigidBody2D.AddRelativeForce(new Vector3(0f, power, 0f));
+                
+                _rigidBody2D.AddForce(new Vector3(0f, power, 0f));
             }
-            //Debug.Log(writeCall);
-            yield return 0;
+            _isStunned = false;
+            yield return null;
         }
 
 

@@ -239,6 +239,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07bae58a0eafeee4aad83f97ccbfed48, type: 3}
+--- !u!198 &3204250677853060458 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5779250013178037872, guid: 07bae58a0eafeee4aad83f97ccbfed48, type: 3}
+  m_PrefabInstance: {fileID: 8954225092260952858}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3204250677866960488 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5779250013159484786, guid: 07bae58a0eafeee4aad83f97ccbfed48, type: 3}

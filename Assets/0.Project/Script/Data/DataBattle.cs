@@ -191,11 +191,17 @@ namespace PG.Data
         public float _actionTime = 5;
         //public float _speed = 3;
         public float _acceleration = 0;
-
-        public List<Vector2> _placeList = new List<Vector2>();
-        public List<SpawnData> _spawnDataList = new List<SpawnData>();
-
+        public List<MobAttackData> _mobAttackDataList;
     }
+
+    [Serializable]
+    public class MobAttackData
+    {
+        public bool _mobPosSpawn = false;
+        public List<Vector2> _spawnPosList = new List<Vector2>();
+        public SpawnData _spawnData = new SpawnData();
+    }
+    
     [Serializable]
     public class MobSpawnData
     {
@@ -286,8 +292,8 @@ namespace PG.Data
     [SerializeField]
     public interface ILazerOnoff
     {
-        public void SetActiveLazer(bool var);
-        public void SetLazerEachPos(Vector3 _start, Vector3 _end);
+        public void SetActiveLaser(bool var);
+        public void SetLaserEachPos(Vector3 _start, Vector3 _end);
     }
 
 }

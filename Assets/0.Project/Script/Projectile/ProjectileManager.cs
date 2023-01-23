@@ -92,7 +92,8 @@ namespace PG.Battle
             project.SetInitialProjectileData(
                 _totalProjectileDictionary[temptID],
                 _projectileLifeTimeDic[temptID]);
-
+            
+            project.gameObject.SetActive(false);
             return project;
         }
 
@@ -179,8 +180,8 @@ namespace PG.Battle
             //탄환이 0이 아닐때 까지 반복
             while (true) 
             {
-                yield return new WaitForEndOfFrame();
-                //print("Pew Pew"+id);
+                //yield return new WaitForEndOfFrame();
+                print("Pew Pew"+id);
                 _temptDamage = _currentShotAmmoDic[id].Dequeue();
                 SetSpreadShotStyle(_temptDamage, id);
 
@@ -205,9 +206,7 @@ namespace PG.Battle
             //지금은 그냥 instantiate를 하지만 나중에는 오브젝트 풀링이 가능하도록 만들것..
             TargetTheEnemy();
             int _spreadcount = Global_CampaignData._projectileIDDataDic[id]._count;
-
-            //print("Enemy count" + _targetedMobList.Count);
-            while (_spreadcount > 0)
+            while (_spreadcount > 0) 
             {
                 for (int i = _targetList.Count - 1; i >= 0 && _spreadcount > 0; i--)
                 {

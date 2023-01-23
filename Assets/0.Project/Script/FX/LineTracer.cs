@@ -22,7 +22,7 @@ namespace PG.Battle
 
 
 
-        //¿©±â ³»ºÎ¿¡¼­ ÇöÀç ¹èÀ²¿¡´ëÇÑÁ¤º¸¸¦ ±×³É ÆĞÅÏ ¸Å´ÏÁ®¿¡¼­ ´ã´çÇÔ. 
+        //ì—¬ê¸° ë‚´ë¶€ì—ì„œ í˜„ì¬ ë°°ìœ¨ì—ëŒ€í•œì •ë³´ë¥¼ ê·¸ëƒ¥ íŒ¨í„´ ë§¤ë‹ˆì ¸ì—ì„œ ë‹´ë‹¹í•¨. 
         public void SetDrawLineStart(Vector2 startPos)
         {
             _linerenderer.SetPosition(1, startPos);

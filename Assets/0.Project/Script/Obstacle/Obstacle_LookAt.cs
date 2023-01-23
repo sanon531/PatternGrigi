@@ -26,9 +26,12 @@ namespace PG.Battle
         }
         protected override void FixedUpdate()
         {
-            CheckStatus();
-            LookPlayer();
-            Shoot();
+            base.FixedUpdate();
+            if (_isActived)
+            {
+                LookPlayer();
+                Shoot();
+            }
         }
 
         private void LookPlayer()

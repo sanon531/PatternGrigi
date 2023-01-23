@@ -21,7 +21,8 @@ namespace PG.Battle
         float _delayedTime =2.5f;
         [SerializeField]
         string _currentCampaignName;
-        CampaignData _currentCampaignData;
+
+        private CampaignData _currentCampaignData;
 
         // Start is called before the first frame update
         protected override void CallOnAwake()

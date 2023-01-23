@@ -22,7 +22,10 @@ namespace PG.Battle {
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            ChasePlayer();
+            if (_isActived)
+            {
+                ChasePlayer();
+            }
         }
 
 

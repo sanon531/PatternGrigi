@@ -49,6 +49,11 @@ namespace PG.Battle
         private List<float> _waveTimeList;
         private List<WaveClass> _waveClassList;
 
+        private static Dictionary<CharacterID, ProjectilePool<MobScript>> _totalMobDictionary
+            = new Dictionary<CharacterID, ProjectilePool<MobScript>>();
+        
+        private static readonly int _poolInitialSpawnNum = 20;
+        
         private void NextWave()
         {
             //이전 웨이브 코루틴들 정리 + 변수 초기화
@@ -62,6 +67,9 @@ namespace PG.Battle
             //다음 웨이브 데이터
             _currentMobSpawnDataDic = _waveClassList[_currentWaveOrder].GetSpawnDataDic();
             _currentMinMobNum = _waveClassList[_currentWaveOrder].GetMinMobNum();
+            
+            //몹 오브젝트 풀 세팅
+            SettingNowPools();
 
             //스폰시작
             foreach (CharacterID charID in _currentMobSpawnDataDic.Keys)
@@ -71,25 +79,25 @@ namespace PG.Battle
             _currentWaveOrder++;
         }
 
-        //풀링으로 변경 예정
-        private void SpawnMob(CharacterID mobID, MobSpawnData mobSpawnData)
-        {
-            Vector3 pos = new Vector3(UnityEngine.Random.Range(_SpawnRange_Left.position.x, _SpawnRange_Right.position.x),
-                _SpawnRange_Left.position.y, _SpawnRange_Left.position.z);
-
-            MobScript temp = Instantiate(_mobDic[mobID], pos, _SpawnRange_Left.rotation).GetComponent<MobScript>();
-            temp.SetInitializeMobSpawnData(mobSpawnData);
-            _mobList.Add(temp);
-            _aliveMobCount = _mobList.Count;
-            _spawnMobCount++;
-        }
-
         private void StartSpawnMob(CharacterID mobID, MobSpawnData mobSpawnData)
         {
             StartCoroutine(WaitCoroutine(mobID, mobSpawnData));
         }
-
-#endregion
+        
+        private void SpawnMob(CharacterID mobID, MobSpawnData mobSpawnData)
+        {
+            Vector3 pos = new Vector3(UnityEngine.Random.Range(_SpawnRange_Left.position.x, _SpawnRange_Right.position.x),
+                _SpawnRange_Left.position.y, _SpawnRange_Left.position.z);
+            
+            MobScript temp = _totalMobDictionary[mobID].PickUp();
+            temp.transform.position = pos;
+            
+            temp.SetInitializeMobSpawnData(mobID, mobSpawnData);
+            _mobList.Add(temp);
+            _aliveMobCount = _mobList.Count;
+            _spawnMobCount++;
+        }
+        #endregion
 
 
 
@@ -206,16 +214,81 @@ namespace PG.Battle
 
 #endregion
 
+#region//Polling
 
+        private void SettingNowPools()
+        {
+            //이전에 만들어둔 pool이 남아있는 경우
+            foreach (ProjectilePool<MobScript> pool in _totalMobDictionary.Values)
+            {
+                pool.Clear();
+            }
+            
+            _totalMobDictionary.Clear();
+                    
+            foreach (CharacterID id in _currentMobSpawnDataDic.Keys)
+            {
+                _totalMobDictionary.Add(id,
+                    new ProjectilePool<MobScript>
+                    (
+                        CreateMob,
+                        OnGet,
+                        OnRelease,
+                        OnDestroyMob,
+                        true,
+                        id :(int)id,
+                        10000
+                    )
+                );
+                        
+                for (int i = 0; i<_poolInitialSpawnNum ;i++)
+                    _totalMobDictionary[id].FillStack();
+            }
+        }
+
+        private MobScript CreateMob(int id)
+        {
+            CharacterID mobID = (CharacterID)id;
+            MobScript mob = Instantiate(_mobDic[mobID], transform).GetComponent<MobScript>();
+            mob.gameObject.SetActive(false);
+                    
+            return mob;
+        }
+                
+        private void OnGet(MobScript mob)
+        {
+            mob.gameObject.SetActive(true);
+        }
+        
+        private void OnRelease(MobScript mob)
+        {
+            mob.gameObject.SetActive(false);
+        }
+
+        private void OnDestroyMob(MobScript mob)
+        {
+            Destroy(mob.gameObject);
+        }
+        
+#endregion
 
 #region//Others
 
-        //삭제는 나중에 사용할 때에 맞게 수정해야 할 듯
-        public static void DestroyMob(MobScript target)
+        public static void RemoveMob(CharacterID mobID, MobScript target)
         {
+            if (_totalMobDictionary.ContainsKey(mobID))
+            {
+                _totalMobDictionary[mobID].SetBack(target);
+            }
+            else
+            {
+                //웨이브가 넘어가서 풀이 사라진 경우는 그냥 파괴
+                Destroy(target.gameObject);
+            }
+            
             _instance._mobList.Remove(target);
             _instance._aliveMobCount--;
-            Destroy(target.gameObject);
+            
         }
 
         //현재 몹들의 위치 순으로 리스트 정렬하고 리턴
@@ -229,7 +302,7 @@ namespace PG.Battle
         {
             return _instance._DamageLine.position.y;
         }
-
+ 
 #endregion
     }
 }
