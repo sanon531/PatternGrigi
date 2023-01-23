@@ -1,9 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEngine.UI;
 using System.Linq;
+using PG.Battle.FX;
 using PG.Event;
 using PG.Data;
 using UnityEngine.Serialization;
@@ -33,7 +32,6 @@ namespace PG.Battle
 
         [SerializeField]
         ParticleSystem _signParticle;
-
         // Start is called before the first frame update
 
         protected override void CallOnAwake()
@@ -69,13 +67,13 @@ namespace PG.Battle
             float length =
                 _instance.GetNodePositionByID(_instance._lastNode, nodeID) *
                 Global_CampaignData._lengthMagnData.FinalValue;
-            // 노드 지나는 와중의 데미지를 0으로 만듦
-            _instance.CalcDamageOnPattern(_instance._lastNode,nodeID);
-            //
-            
-            _instance.CheckNodeOnDamage(nodeID);
             float resultDamage = length * Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue;
+            // 노드 지나는 와중의 데미지를 0으로 만듦
+            _instance.CalcDamageOnSlash(_instance._lastNode,nodeID,resultDamage);
+            //
             Global_BattleEventSystem.CallOnCalcPlayerAttack(resultDamage);
+
+            _instance.CheckNodeOnDamage(nodeID);
 
 
             //이부분에서 경험치 관련 코드를 변동 해야함. 디버깅 시 빠르게 바뀌는경우 쓸꺼임.
@@ -84,17 +82,17 @@ namespace PG.Battle
             VibrationManager.CallVibration();
         }
 
-        void CalcDamageOnPattern(int lastNode, int currentNode)
+        void CalcDamageOnSlash(int lastNode, int currentNode,float damage)
         {
             Vector2 lastPos = _patternNodes[lastNode].transform.position;
             Vector2 currentPos = _patternNodes[currentNode].transform.position;
             Vector2 dir = currentPos - lastPos;
             float range = Vector2.Distance(currentPos,lastPos);
             dir = dir.normalized;
-            
+            FXCallManager.PlaySlashFX(lastPos,currentPos);
             //layer 분할로 좀더 개선을 해봐야함.
 
-            //
+            //앞으로 할것 레이어 분할 + 
             RaycastHit2D[] hits=new RaycastHit2D[30];
             var count= Physics2D.RaycastNonAlloc(lastPos,dir,hits,range);
 
@@ -103,17 +101,15 @@ namespace PG.Battle
                 if (hits[i].transform.CompareTag("Enemy"))
                 {
                     //수치는 변동 시키기 
-                    hits[i].transform.GetComponent<MobScript>().Damage(10);
+                    hits[i].transform.GetComponent<MobScript>().Damage(damage);
                 }
             }
-
-
         }
 
 
 
 
-        #region//nodereach
+        #region nodereach
 
 
         void StartNodeEvent()
@@ -221,7 +217,6 @@ namespace PG.Battle
             for (int i = 0; i < Global_CampaignData._randomPatternNodeCount.FinalValue; i++)
             {
                 currentPlace = nodePlaceTypes.PickRandomWeighted(_weightRandom);
-
                 //Debug.Log(currentPlace +"sdfa");
                 switch (currentPlace)
                 {
@@ -305,14 +300,23 @@ namespace PG.Battle
         }
 
         //노드를 랜덤으로 배치하는 메소드 id는 겹치지않도록 하는것 
+        void CheckReach(int reachedNode)
+        {
+            string str = "";
+            foreach (var a in _inactivatedNode)
+                str += a;
+            
+            Debug.Log("contain : "+_inactivatedNode.Contains(reachedNode)+"reached : " + reachedNode+"left : " + str);
+        }
+
         public int ReachTriggeredNode_Random(int reachedNode)
         {
-            //Debug.Log("reached : " + reachedNode);
+            //CheckReach(reachedNode);
             //기존의 도달한 위치는 사용불가로 만들어야한다.
             if (_inactivatedNode.Contains(reachedNode))
                 _inactivatedNode.Remove(reachedNode);
-            else
-                throw new ArgumentException("No More ProperNode : random");
+            //else
+                //print("No More ProperNode : random when it reached " +reachedNode );
             
             //추후 여러개의 도달점을 가져야할때를 위해서 무작위로 한다.
             int i = _inactivatedNode.Count;
@@ -323,10 +327,11 @@ namespace PG.Battle
         }
         public int ReachTriggeredNode_Close(int reachedNode)
         {
+            //CheckReach(reachedNode);
+            
             if (_inactivatedNode.Contains(reachedNode))
                 _inactivatedNode.Remove(reachedNode);
-            else
-                throw new ArgumentException("No More ProperNode : close");
+            
 
             int[] _targetArr = (int[])_IDWithCloseDic[reachedNode].Clone();
             int _deleteTarget = _targetArr.PickRandom();
@@ -336,10 +341,10 @@ namespace PG.Battle
         }
         public int ReachTriggeredNode_Far(int reachedNode)
         {
+            //CheckReach(reachedNode);
+
             if (_inactivatedNode.Contains(reachedNode))
                 _inactivatedNode.Remove(reachedNode);
-            else
-                throw new ArgumentException("No More ProperNode : far");
 
             int[] _targetArr = (int[])_IDWithFarDic[reachedNode].Clone();
             int _deleteTarget = _targetArr.PickRandom();

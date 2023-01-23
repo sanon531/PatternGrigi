@@ -25,7 +25,7 @@ namespace PG.Battle
         public void SetDataOnCase(ArtifactID id)
         {
             _artifactImage.sprite = ArtifactManager.GetSpriteFromImage(id);
-            Debug.Log(_artifactImage.sprite);
+            //Debug.Log(_artifactImage.sprite);
         }
 
 

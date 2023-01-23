@@ -37,7 +37,7 @@ namespace PG.Battle
         {
             base.SetInitialProjectileData(objectPool, lifetime);
             InitialSpeed = Data.Global_CampaignData._projectileSpeed.FinalValue;
-            //Debug.Log(_lifeTime);
+            //Debug.Log(InitialSpeed);
             DoMove();
         }
 
