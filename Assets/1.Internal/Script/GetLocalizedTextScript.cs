@@ -36,7 +36,7 @@ namespace PG
 
             //Debug.Log(_lang);
         }
-        //ÀÌ°÷¿¡¼­ ¾ÆÆ¼ÆÑÆ®, ±âÅ¸ ÅØ½ºÆ®µéÀ» ÀüºÎ  °ü¸®ÇÔ. ´Ù¸¥ ·ÎÅĞ¶óÀÌÁ¦¼Ç ÇÒµ¥ÀÌÅÍ ÀÖ´Ù¸é ¿©±â¼­
+        //ì´ê³³ì—ì„œ ì•„í‹°íŒ©íŠ¸, ê¸°íƒ€ í…ìŠ¤íŠ¸ë“¤ì„ ì „ë¶€  ê´€ë¦¬í•¨. ë‹¤ë¥¸ ë¡œí„¸ë¼ì´ì œì…˜ í• ë°ì´í„° ìˆë‹¤ë©´ ì—¬ê¸°ì„œ
         private void SetAllTextByLanguage()
         {
             SetArtifactDataFromJson();
@@ -128,13 +128,13 @@ namespace PG
                         _returnval = _instance._artifactDevCommentDic[targetid];
                         break;
                     default:
-                        Debug.LogError("GetArtifact data type Error");
+                        throw new ArgumentException ("GetArtifact data type Error");
                         break;
                 }
             }
             catch (Exception e) 
             {
-                Debug.Log("Data NONO"+ jsonData.ToString()+" + " + targetid.ToString());
+                throw new ArgumentException("Data NONO"+ jsonData.ToString()+" + " + targetid.ToString());
             }
 
             return _returnval;

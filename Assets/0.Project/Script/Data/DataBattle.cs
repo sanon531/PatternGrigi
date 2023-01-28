@@ -35,100 +35,6 @@ namespace PG.Data
         //아티팩트의 수치와 행동을 분리하여야 한다.그래야 나중에 텍스트 처리할때 편하다.
         //그리고 이후에 테크 트리, 점진적인 레벨링 같은거 할때 다음과 같이 나올수가 있다면 좋을듯함.
 
-        public static Dictionary<ArtifactID, ArtifactData> TotalArtifactTableDataDic =
-            new Dictionary<ArtifactID, ArtifactData>()
-            {
-                
-                #region//시작 유물.
-                {ArtifactID.Thunder_Manimekhala, new ArtifactData(
-                    ArtifactID.Thunder_Manimekhala,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-                {ArtifactID.LoveAndPeace, new ArtifactData(
-                    ArtifactID.LoveAndPeace,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-
-
-                #endregion
-
-
-                #region//임시라도 배정 완료
-
-                {ArtifactID.FragileRush, new ArtifactData(
-                    ArtifactID.FragileRush,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-                {ArtifactID.Equatore, new ArtifactData(
-                    ArtifactID.Equatore,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-                {ArtifactID.BubbleGun, new ArtifactData(
-                    ArtifactID.BubbleGun,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-                {ArtifactID.QuickSlice, new ArtifactData(
-                    ArtifactID.QuickSlice,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-                {ArtifactID.BulletTeleportShooter, new ArtifactData(
-                    ArtifactID.BulletTeleportShooter,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-               
-                {ArtifactID.PadThai, new ArtifactData(
-                    ArtifactID.PadThai,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-                {ArtifactID.SesameOil, new ArtifactData(
-                    ArtifactID.SesameOil,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-                {ArtifactID.Pinocchio, new ArtifactData(
-                    ArtifactID.Pinocchio,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-                {ArtifactID.AtomSetting, new ArtifactData(
-                    ArtifactID.AtomSetting,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0)},
-
-                #endregion
-
-
-                #region//업그레이드 유물들.
-                {ArtifactID.Upgrade_AimShot, new ArtifactData(
-                    ArtifactID.Upgrade_AimShot,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0,5)},
-                {ArtifactID.Upgrade_StraightShot, new ArtifactData(
-                    ArtifactID.Upgrade_StraightShot,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0,5)},
-                {ArtifactID.Upgrade_LightningShot, new ArtifactData(
-                    ArtifactID.Upgrade_LightningShot,
-                    (int)ArtifactRarity.Common,
-                    true,
-                    0,5)},
-
-
-                #endregion
-
-            };
-
         public static Dictionary<ArtifactID, Artifact> TotalArtifactClassDic =
             new Dictionary<ArtifactID, Artifact>()
             {
@@ -136,15 +42,15 @@ namespace PG.Data
                 #region//10월 업데이트 이전의 유물들
                 {ArtifactID.Thunder_Manimekhala, new Artifact_Thunder_Manimekhala()},
                 {ArtifactID.LoveAndPeace, new Artifact_LoveAndPeace()},
-                {ArtifactID.FragileRush, new Arfifact_FragileRush()},
-                {ArtifactID.BubbleGun, new Arfifact_BubbleGun()},
-                {ArtifactID.Equatore, new Arfifact_Equatore()},
-                {ArtifactID.QuickSlice, new Arfifact_QuickSlice()},
-                {ArtifactID.PadThai, new Arfifact_PadThai()},
-                {ArtifactID.SesameOil, new Arfifact_SesameOil()},
-                {ArtifactID.BulletTeleportShooter, new Arfifact_BulletTeleportShooter()},
-                {ArtifactID.Pinocchio, new Arfifact_Pinnochio()},
-                {ArtifactID.AtomSetting, new Arfifact_AtomSetting()},
+                {ArtifactID.FragileRush, new Artifact_FragileRush()},
+                {ArtifactID.BubbleGun, new Artifact_BubbleGun()},
+                {ArtifactID.Equatore, new Artifact_Equatore()},
+                {ArtifactID.QuickSlice, new Artifact_QuickSlice()},
+                {ArtifactID.PadThai, new Artifact_PadThai()},
+                {ArtifactID.SesameOil, new Artifact_SesameOil()},
+                {ArtifactID.BulletTeleportShooter, new Artifact_BulletTeleportShooter()},
+                {ArtifactID.Pinocchio, new Artifact_Pinnochio()},
+                {ArtifactID.AtomSetting, new Artifact_AtomSetting()},
                 #endregion
                 {ArtifactID.Upgrade_AimShot, new Artifact_UpgradeAimShot()},
                 {ArtifactID.Upgrade_StraightShot, new Artifact_UpgradeStraightShot()},

@@ -9548,10 +9548,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 2
-  CurrentlifeTime: 10
+  CurrentLifeTime: 1
   collider2D: {fileID: 5623361393577949031}
   rigidBody2D: {fileID: 1634703765405443898}
   projectileImage: {fileID: 6817514856662169467}
-  hitFX: {fileID: 167268430173530026}
   targetMob: {fileID: 0}
-  _initialSpeed: 1
+  initialSpeed: 1

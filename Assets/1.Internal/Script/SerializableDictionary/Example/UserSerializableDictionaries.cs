@@ -56,16 +56,13 @@ public class ProjectileIDintDic : SerializableDictionary<ProjectileID, int> { }
 
 
 [Serializable]
-public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact> {
-    public override void CopyFrom(IDictionary<ArtifactID, Artifact> dict)
-    {
-        this.Clear();
-        foreach (var kvp in dict)
-        {
-            this[kvp.Key] = Artifact.Create(kvp.Key);
-        }
-    }
-}
+public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact> { }
+
+[Serializable]
+public class ArtifactIDArtifactDataDic: SerializableDictionary<ArtifactID, ArtifactData> { }
+
+[Serializable]
+public class ArtifactIDListDic: SerializableDictionary<ArtifactID, List<ArtifactID>> { }
 
 [Serializable]
 public class ArtifactIDVecotrInt2Dic : SerializableDictionary<ArtifactID, Vector2Int>

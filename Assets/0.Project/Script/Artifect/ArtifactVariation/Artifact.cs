@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PG.Data;
 using System;
+using System.Reflection;
 
 
 namespace PG
@@ -10,67 +11,104 @@ namespace PG
     [Serializable]
     public class Artifact : Affector
     {
+        #region //ë³€ìˆ˜
 
-        #region//º¯¼ö
-        [SerializeField]
-        protected ArtifacProperty _properties;
-        public ArtifacProperty Properties { get { return _properties; } }
-        protected readonly ArtifactRarity _rarity;
-        public ArtifactRarity Rarity { get { return _rarity; } }
-        protected readonly ArtifactID thisID;
-        public ArtifactID ThisID { get { return thisID; } }
+        [SerializeField] protected ArtifacProperty _properties;
 
-        [SerializeField]
-        protected int maxUpgrade = 5;
-        public int MaxUpgrade { get => maxUpgrade; set => maxUpgrade = value; }
-
-        [SerializeField]
-        protected int _upgradeCount;
-        public virtual int UpgradeCount { get { return _upgradeCount; } protected set 
-            { 
-                if(value <= maxUpgrade)
-                _upgradeCount = value; 
-            } 
-        
+        public ArtifacProperty Properties
+        {
+            get { return _properties; }
         }
+
+        protected ArtifactRarity _rarity;
+
+        public ArtifactRarity Rarity
+        {
+            get { return _rarity; }
+            set { _rarity = value; }
+        }
+
+        protected readonly ArtifactID thisID;
+        public ArtifactID ThisID
+        {
+            get { return thisID; }
+        }
+
+       
+        [SerializeField] protected int maxUpgrade;
+
+        public int MaxUpgrade
+        {
+            get => maxUpgrade;
+            set => maxUpgrade = value;
+        }
+
+        [SerializeField] protected int _upgradeCount;
+
+        public virtual int UpgradeCount
+        {
+            get { return _upgradeCount; }
+            set
+            {
+                if (value <= maxUpgrade)
+                    _upgradeCount = value;
+                else
+                    CompleteArtifact();
+            }
+        }
+
         private ArtifactFlag _flag;
-        public ArtifactFlag Flag { get { return _flag; } }
 
-        [SerializeField]
-        string _devcomment;
-        public string Devcomment { get { return _devcomment; } set { this._devcomment = value; } }
+        public ArtifactFlag Flag
+        {
+            get { return _flag; }
+        }
 
-        [SerializeField]
-        string _devcomment2;
-        public string Devcomment2 { get { return _devcomment2; } set { this._devcomment2 = value; } }
+        [SerializeField] string _devcomment;
 
+        public string Devcomment
+        {
+            get { return _devcomment; }
+            set { this._devcomment = value; }
+        }
 
+        [SerializeField] string _devcomment2;
 
+        public string Devcomment2
+        {
+            get { return _devcomment2; }
+            set { this._devcomment2 = value; }
+        }
 
         #endregion
 
-        private Artifact() { }
-        protected Artifact(ArtifactID artifactID)
+        public Artifact(ArtifactID artifactID)
         {
             thisID = artifactID;
-            ArtifactData data = GlobalDataStorage.TotalArtifactTableDataDic[artifactID];
-            _rarity = (ArtifactRarity)data.Rarity;
-            _upgradeCount = data.UpgradeCount;
+        }
 
+        public void SetData(ArtifactData data)
+        {
+            Rarity = (ArtifactRarity)data.Rarity;
+            UpgradeCount = data.UpgradeCount;
+            MaxUpgrade = data.MaxUpgrade;
             _flag = ArtifactFlag.Inactive;
+
         }
 
 
         public virtual void OnGetArtifact()
         {
-            //ÀÌ ÇÔ¼ö´Â À¯¹°À» Á÷Á¢ È¹µæÇÒ¶§¸¸ ÄÝµÊ (ÀúÀåÇÑ°Å ·ÎµåÇÒ¶© ÄÝ ¾ÈµÊ)
-            _upgradeCount++;
+            //ì´ í•¨ìˆ˜ëŠ” ìœ ë¬¼ì„ ì§ì ‘ íšë“í• ë•Œë§Œ ì½œë¨ (ì €ìž¥í•œê±° ë¡œë“œí• ë• ì½œ ì•ˆë¨)
+            UpgradeCount++;
         }
+
         public void ActiveArtifact()
         {
             //if (_flag.HasFlag(ArtifactFlag.Active)) { return; }
             Enable();
         }
+
         public void DisposeArtifact()
         {
             //_flag |= ArtifactFlag.Inactive;
@@ -79,30 +117,47 @@ namespace PG
 
             _upgradeCount = 0;
         }
+
         public virtual void AddCountOnArtifact()
         {
-            _upgradeCount++;
+            UpgradeCount++;
         }
 
+        protected bool alreadyCompleted = false;
 
-
-        public static Artifact Create(ArtifactID id)
+        public virtual void CompleteArtifact()
         {
-            Artifact result;
-            try
-            {
-                string typeName = "Artifact_" + id;
-                Debug.Log("Create Artifact : " + typeName);
-                result = new Artifact(id);
-            }
-            catch (Exception e)
-            {
-                Debug.LogException(e);
-                throw new System.Exception("Á¤ÀÇµÈ À¯¹°À» Ã£À» ¼ö ¾øÀ½. ID : " + id);
-            }
-            return result;
-
+            if (alreadyCompleted)
+                return;
+            alreadyCompleted = true;
+            Battle.ArtifactManager.RemoveArtifactOnPlayer(thisID);
         }
-    }
 
+
+        public static Artifact Create(ArtifactID id,ArtifactData data)
+        {
+            Artifact temp;
+            var type = Type.GetType("PG.Artifact_" + id.ToString());
+            if (type != null)
+            {
+                temp = (Artifact)Activator.CreateInstance(type);
+                temp.SetData(data);
+                return temp;
+            }
+
+            type = Assembly.GetExecutingAssembly().GetType("PG.Artifact_" + id.ToString());
+            if (type != null)
+            {
+                temp = (Artifact)Activator.CreateInstance(type);
+                temp.SetData(data);
+                return temp;
+            }
+
+            throw new ArgumentException("No Artifact" + "PG.Artifact_" + id.ToString());
+            return null;
+        }
+        
+        
+        
+    }
 }

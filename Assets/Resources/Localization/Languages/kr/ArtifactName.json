@@ -39,8 +39,15 @@
     {
       "key":"AtomSetting",
       "value":"원자상태"
+    },
+    {
+      "key":"Default_HealthUp",
+      "value":"반복 회복"
+    },
+    {
+      "key":"Mix_PadSesame",
+      "value":"K-비빔밥"
     }
-
 
   ]
 }

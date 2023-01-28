@@ -21,7 +21,7 @@ namespace PG
         {
             base.Enable();
             Global_CampaignData._currentChargePattern = DrawPatternPresetID.Thunder_Manimekhala;
-            //1È¸¸¶´Ù 1È¸¾¿ ³ª°¡µµ·Ï.
+            //1íšŒë§ˆë‹¤ 1íšŒì”© ë‚˜ê°€ë„ë¡.
             //Global_CampaignData._projectileIDDataDic[ProjectileID.LightningShot].IncreaseCount(1);
             //Global_CampaignData._projectileIDDataDic[ProjectileID.NormalBullet].IncreaseCount(1);
             //Global_CampaignData._projectileIDDataDic[ProjectileID.StraightShot].IncreaseCount(1);
@@ -38,7 +38,7 @@ namespace PG
         }
         public override void AddCountOnArtifact()
         {
-            _upgradeCount++;
+            base.AddCountOnArtifact();   
         }
 
         void CallRandomPatternSuccessed(DrawPatternPresetID patternPreset) 
@@ -72,7 +72,7 @@ namespace PG
         }
         public override void AddCountOnArtifact()
         {
-            _upgradeCount++;
+            base.AddCountOnArtifact();   
         }
     }
 

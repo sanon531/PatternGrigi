@@ -39,7 +39,14 @@
     {
       "key":"AtomSetting",
       "value":"근거리 에 노드가 배치될 확률이 크게 올라갑니다"
+    },
+    {
+      "key":"Default_HealthUp",
+      "value":"체력 10을 회복합니다."
+    },
+    {
+      "key":"Mix_PadSesame",
+      "value":"합체 기술 예시."
     }
-
- ]
+  ]
 }

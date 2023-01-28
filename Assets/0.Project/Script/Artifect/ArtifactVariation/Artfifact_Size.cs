@@ -6,9 +6,9 @@ using PG.Event;
 using PG.Data;
 namespace PG
 {
-    public sealed class Arfifact_PadThai : Artifact
+    public sealed class Artifact_PadThai : Artifact
     {
-        public Arfifact_PadThai() : base(ArtifactID.PadThai)
+        public Artifact_PadThai() : base(ArtifactID.PadThai)
         {
         }
 
@@ -21,9 +21,9 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
-            //°£´ÜÈ÷ Ä®Å© µ¥¹ÌÁö¸¦ ÀüºÎ ½ÇÇàÇÔ
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(10f);
-            Global_CampaignData._playerSize.AddÁõ°¡·®(0.5f);
+            //ê°„ë‹¨íˆ ì¹¼í¬ ë°ë¯¸ì§€ë¥¼ ì „ë¶€ ì‹¤í–‰í•¨
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(10f);
+            Global_CampaignData._playerSize.Addì¦ê°€ëŸ‰(0.5f);
             //Debug.Log("Fragile_Rush LEL");
             Global_BattleEventSystem.CallOnSizeChanged();
         }
@@ -33,18 +33,18 @@ namespace PG
         protected override void Disable()
         {
             base.Disable();
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(-10f);
-            Global_CampaignData._playerSize.AddÁõ°¡·®(-0.5f);
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(-10f);
+            Global_CampaignData._playerSize.Addì¦ê°€ëŸ‰(-0.5f);
             Global_BattleEventSystem.CallOnSizeChanged();
 
         }
         public override void AddCountOnArtifact()
         {
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(10f);
-            Global_CampaignData._playerSize.AddÁõ°¡·®(0.5f);
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(10f);
+            Global_CampaignData._playerSize.Addì¦ê°€ëŸ‰(0.5f);
             Global_BattleEventSystem.CallOnSizeChanged();
 
-            _upgradeCount++;
+            base.AddCountOnArtifact();   
             //Debug.Log("Fragile_Rush LEL");
         }
 
@@ -52,9 +52,9 @@ namespace PG
     }
 
 
-    public sealed class Arfifact_SesameOil : Artifact
+    public sealed class Artifact_SesameOil : Artifact
     {
-        public Arfifact_SesameOil() : base(ArtifactID.SesameOil)
+        public Artifact_SesameOil() : base(ArtifactID.SesameOil)
         {
         }
 
@@ -67,24 +67,24 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
-            //°£´ÜÈ÷ Ä®Å© µ¥¹ÌÁö¸¦ ÀüºÎ ½ÇÇàÇÔ
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(-5f);
-            Global_CampaignData._playerSize.AddÁõ°¡·®(-0.5f);
+            //ê°„ë‹¨íˆ ì¹¼í¬ ë°ë¯¸ì§€ë¥¼ ì „ë¶€ ì‹¤í–‰í•¨
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(-5f);
+            Global_CampaignData._playerSize.Addì¦ê°€ëŸ‰(-0.5f);
             Global_BattleEventSystem.CallOnSizeChanged();
             //Debug.Log("Fragile_Rush LEL");
         }
         protected override void Disable()
         {
             base.Disable();
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(5f);
-            Global_CampaignData._playerSize.AddÁõ°¡·®(0.5f);
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(5f);
+            Global_CampaignData._playerSize.Addì¦ê°€ëŸ‰(0.5f);
             Global_BattleEventSystem.CallOnSizeChanged();
         }
         public override void AddCountOnArtifact()
         {
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].AddÁõ°¡·®(5f);
-            Global_CampaignData._playerSize.AddÁõ°¡·®(-0.5f);
-            _upgradeCount++;
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Addì¦ê°€ëŸ‰(5f);
+            Global_CampaignData._playerSize.Addì¦ê°€ëŸ‰(-0.5f);
+            base.AddCountOnArtifact();   
             Global_BattleEventSystem.CallOnSizeChanged();
             //Debug.Log("Fragile_Rush LEL");
         }

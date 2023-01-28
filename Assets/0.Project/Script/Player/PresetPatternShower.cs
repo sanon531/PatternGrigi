@@ -10,7 +10,11 @@ namespace PG.Battle
     public class PresetPatternShower : MonoSingleton<PresetPatternShower>
     {
         //욕심이 좀 있어서 자동화 하여서 나중에 내부의 오브젝트에 
-
+        // 일단 d
+        
+        [SerializeField]
+        GameObject _LazerPrefab;
+        
         List<Transform> _nodes = new List<Transform>();
         List<GameObject> _listOfShow;
 
@@ -74,7 +78,7 @@ namespace PG.Battle
             _instance._listOfShow = new List<GameObject>();
             
             GameObject temp;
-            
+
             //패턴의 노드번호를 받아서 해당하는 레이저 만들고 리스트에 추가
             for (int i=0; i < presetNodes.Count-1; i++)
             {

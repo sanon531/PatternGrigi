@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1957572138121176029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3227732010758811398}
+  m_Layer: 0
+  m_Name: PatternSlashSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3227732010758811398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957572138121176029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8593451072201227061}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8593350279780083473
 GameObject:
   m_ObjectHideFlags: 0
@@ -9980,6 +10011,7 @@ Transform:
   - {fileID: 8593451071875595715}
   - {fileID: 8593451071610136874}
   - {fileID: 953350187050590711}
+  - {fileID: 3227732010758811398}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10009,15 +10041,16 @@ MonoBehaviour:
   _defaultNode: 000000000100000002000000030000000400000005000000060000000700000008000000
   _lastNode: 1
   _inactivatedNode: 
-  _gainEXP_byDebug: 1
+  _gainEXP_byDebug: 0
   _signParticle: {fileID: 310357986028030318}
   _presetNodes: 
   _currentPresetNodeNumber: 0
   _delayingManager: {fileID: 0}
-  _maxCharge: 100
+  TokenIncreaseAmount: 0.4
+  _maxCharge: 20
   _currentCharge: 0
   _chargeAmount_forDebug: 1
-  _chargeReduction: 10
+  _chargeReduction: 5
   _isChargeStart: 0
 --- !u!1 &8594085808198761163
 GameObject:

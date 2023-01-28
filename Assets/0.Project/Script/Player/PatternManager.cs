@@ -1,11 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEngine.UI;
 using System.Linq;
+using PG.Battle.FX;
 using PG.Event;
 using PG.Data;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace PG.Battle
@@ -21,9 +21,7 @@ namespace PG.Battle
         
         [SerializeField]
         List<int> _defaultNode = new List<int>(9) { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        
-        
-        //1-4·Î µé¾î°¡´Â °ÍÀÌ ÃÖÃÊÀÇ °ø°ÝÀÌ µÉ°Í.
+
         [SerializeField]
         int _lastNode = 1;
         [SerializeField]
@@ -33,7 +31,6 @@ namespace PG.Battle
         
         [SerializeField]
         ParticleSystem _signParticle;
-        
         // Start is called before the first frame update
         
         protected override void CallOnAwake()
@@ -57,34 +54,63 @@ namespace PG.Battle
             CheckIsCharge();
             CheckDelayData();
         }
-        
-        
-        //µ¥¹ÌÁö°¡ »êÃâ µÇ¾úÀ»¶§ÀÇ Á¤º¸
+
+
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
         public static void DamageCallWhenNodeReach(int nodeID)
         {
-            //¸ÕÀú °ÔÀÌÁö¸¦ Ã¤¿ì°í ¸¸¾à °ÔÀÌÁö°¡ ´ÙÃ¡À»°æ¿ì ÁÖ¾îÁø ³ëµå°¡ ³ª¿Àµµ·ÏÇÔ. 
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¡ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ ï¿½ï¿½å°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. 
             //_instance.SetGaugeChange();
-            //ÀÏ´Ü Â÷Áö´Â Àá½Ã ¾ø¾Ö°íÇÏÀÚ. ±×°Ô Á¤½Å °Ç°­¿¡ ÁÁ´Ù 
-            //±æÀÌ °è»êÇÑ´ÙÀ½¿¡ ÃÊ±âÈ­ ÇØÁà¾ßÇÔ ¾Æ·¡ µÎÁÙ ¼ø¼­ ¹Ù²ÙÁö ¸¶¼À
-            float _length =
+            //ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½×°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            float length =
                 _instance.GetNodePositionByID(_instance._lastNode, nodeID) *
                 Global_CampaignData._lengthMagnData.FinalValue;
-            _instance.CheckNodeOnDamage(nodeID);
-            float _resultDamage = _length * Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue;
-            Global_BattleEventSystem.CallOnCalcPlayerAttack(_resultDamage);
-
-
-            //ÀÌºÎºÐ¿¡¼­ °æÇèÄ¡ °ü·Ã ÄÚµå¸¦ º¯µ¿ ÇØ¾ßÇÔ. µð¹ö±ë ½Ã ºü¸£°Ô ¹Ù²î´Â°æ¿ì ¾µ²¨ÀÓ.
+            float resultDamage = length * Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue;
+            // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            _instance.CalcDamageOnSlash(_instance._lastNode,nodeID,resultDamage);
             //
+            Global_BattleEventSystem.CallOnCalcPlayerAttack(resultDamage);
 
+            _instance.CheckNodeOnDamage(nodeID);
+
+
+            //ï¿½ÌºÎºÐ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµå¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½Â°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+            //
             LineTracer._instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
             VibrationManager.CallVibration();
         }
-        
-        
-        
-        #region//nodereach
-        
+
+        void CalcDamageOnSlash(int lastNode, int currentNode,float damage)
+        {
+            Vector2 lastPos = _patternNodes[lastNode].transform.position;
+            Vector2 currentPos = _patternNodes[currentNode].transform.position;
+            Vector2 dir = currentPos - lastPos;
+            float range = Vector2.Distance(currentPos,lastPos);
+            dir = dir.normalized;
+            FXCallManager.PlaySlashFX(lastPos,currentPos);
+            //layer ï¿½ï¿½ï¿½Ò·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½ï¿½ï¿½ï¿½ï¿½.
+
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ + 
+            RaycastHit2D[] hits=new RaycastHit2D[30];
+            var count= Physics2D.RaycastNonAlloc(lastPos,dir,hits,range);
+
+            for (int i =0 ; i<count;i++)
+            {
+                if (hits[i].transform.CompareTag("Enemy"))
+                {
+                    //ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å°ï¿½ï¿½ 
+                    hits[i].transform.GetComponent<MobScript>().Damage(damage);
+                }
+            }
+        }
+
+
+
+
+        #region nodereach
+
+
         void StartNodeEvent()
         {
             Global_BattleEventSystem._onBattleBegin += StartTriggerNode;
@@ -95,7 +121,7 @@ namespace PG.Battle
             Global_BattleEventSystem._onNodeSetWeight -= SetNodeWeightby;
             Global_BattleEventSystem._onBattleBegin -= StartTriggerNode;
         }
-        //ÀüÅõ°¡ ½ÃÀÛµÉ ¶§ »ç¿ëÇÏ´Â ÄÚµå
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ûµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Úµï¿½
         void StartTriggerNode()
         {
             SetPresetPattern(DrawPatternPresetID.Empty_Breath);
@@ -103,8 +129,8 @@ namespace PG.Battle
 
 
 
-        //Áö±ÝÀÌ ·£´ý ³ëµå¸¦ ¼±ÅÃÇÏ´Â »óÈ²ÀÎ°¡ ¾Æ´Ñ°¡¸¦ Á¤ÇÏ´Â ºÎºÐ.
-        //Â÷Áö´Â ÇöÀç ÆÐÅÏÀÌ ·£´ý ÆÐÅÏÀ¸·Î µÇ¾ú´Â°¡¸¦ º¸ÀÌ´Â ºÎºÐ.
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½È²ï¿½Î°ï¿½ ï¿½Æ´Ñ°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Îºï¿½.
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½Â°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Îºï¿½.
         bool _IsChargeReady = false;
         [SerializeField]
         List<int> _presetNodes = new List<int>();
@@ -112,15 +138,18 @@ namespace PG.Battle
         int _currentPresetNodeNumber = 0;
         DrawPatternPresetID _currentPattern;
 
-        //µ¥¹ÌÁö°¡ °¡ÇØÁ³À»¶§ ´ÙÀ½ ³ëµå¸¦ °áÁ¤ÇÏ´Â ¸Þ¼Òµå
-        //Ã³À½¿¡´Â ¹«Á¶°Ç ·£´ý¸¸.
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½
+        //Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
         float[] _weightRandom = new float[3] { 1.0f, 0f, 0f };
         NodePlaceType[] nodePlaceTypes = new NodePlaceType[3] { NodePlaceType.Random, NodePlaceType.Close, NodePlaceType.Far };
         void CheckNodeOnDamage(int nodeID)
         {
             SetGaugeChange();
             _lastNode = nodeID;
-            //¾ÆÁ÷ ÆÐÅÏ ¼ö°¡ ¾È³¡³²ÀÌ¸é
+            if (_isDebug)
+                Global_BattleEventSystem.CallOnGainEXP(_gainEXP_byDebug);
+
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È³ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½
             //Debug.Log(_currentPresetNodeNumber + ":" + _presetNodes.Count);
             if (_currentPresetNodeNumber != 0)
                 PresetPatternShower.HidePresetPatternByID(_currentPresetNodeNumber - 1);
@@ -132,7 +161,7 @@ namespace PG.Battle
             }
             else
             {
-                //½ºÅ³¼º°ø½Ã ·£´ýÇÏ´Â °ø°ÝÀÌ ³ª°¨.
+                //ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
                 //Debug.Log("call by end Pattern"+ _currentPattern);
 
                 if (_IsChargeReady)
@@ -157,13 +186,13 @@ namespace PG.Battle
                 }
 
                 //ShowDebugtextScript.SetDebug("Pattern Success!");
-                //ÀÏ´Ü Â÷Áö °ø°Ý ³¡³ª¸é ¹Ù·Î ÆÐÅÏ ¼º°ø ÇÏµµ·Ï ÇÔ
+                //ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½
             }
-            //Ã³À½ÀÇ °ø°ÝÀº ¹«½ÃÇÑ´Ù.
-            //°ÔÀÌÁö´Â µ¥¹ÌÁö µô¸µ¶§ ²ËÂù´ÙÀ½ ´Ù¸¥ ÆÐÅÏÀÌ ³²´Â°Ô ¾øÀ» ¶§ ¹ßµ¿ÇÏµµ·Ï ÇÔ
+            //Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ßµï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½
         }
 
-        // ÆÐÅÏ ¼¼ÆÃÀ» ÇÏ´Â°÷ 
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´Â°ï¿½ 
         void SetPresetPattern(DrawPatternPresetID drawPattern)
         {
             _currentPresetNodeNumber = 0;
@@ -171,7 +200,7 @@ namespace PG.Battle
             _presetNodes = GlobalDataStorage.PatternPresetDic[drawPattern].ToList();
             //Debug.Log(_presetNodes.Count);
             PresetPatternShower.SetPresetPatternList(_presetNodes, GlobalDataStorage.PatternWIthLaserDic[drawPattern]);
-            //presetDataDic Àº »õ·Î¿î µñ¼Å³Ê¸®·Î Å°°ªÀ¸·ÎEPresetOfDrawPattern¸¦ ¹Þ´Â´Ù.
+            //presetDataDic ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½Å³Ê¸ï¿½ï¿½ï¿½ Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½EPresetOfDrawPatternï¿½ï¿½ ï¿½Þ´Â´ï¿½.
             SetNodeToNextReach(_presetNodes[_currentPresetNodeNumber]);
         }
         void SetRandomPattern(int nodeID)
@@ -186,7 +215,6 @@ namespace PG.Battle
             for (int i = 0; i < Global_CampaignData._randomPatternNodeCount.FinalValue; i++)
             {
                 currentPlace = nodePlaceTypes.PickRandomWeighted(_weightRandom);
-
                 //Debug.Log(currentPlace +"sdfa");
                 switch (currentPlace)
                 {
@@ -206,7 +234,7 @@ namespace PG.Battle
                 _presetNodes.Add(_temptid);
             }
 
-            //±âÁ¸ÀÇ ³ëµåµéÀ» ±×³É ·£´ýÀ¸·Î ³õ´Â ºÎºÐµéÀ» ¸¸µç´Ù.
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ÎºÐµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
             PresetPatternShower.SetPresetPatternList(_presetNodes, LaserKindID.Default_laser);
             SetNodeToNextReach(_presetNodes[_currentPresetNodeNumber]);
         
@@ -221,7 +249,8 @@ namespace PG.Battle
         int _coolTimeToken = 0;
         int _maxCoolTimeToken = 0;
         float _currentDelayPercent = 0;
-        float _increaseAmount = 0.2f;
+        [FormerlySerializedAs("_increaseAmount")] [SerializeField]
+        float TokenIncreaseAmount = 0.2f;
         void StartDelayData() 
         {
             _delayingManager = GameObject.Find("PatternDelayingShowManager").GetComponent<PatternDelayingShowManager>();
@@ -237,9 +266,9 @@ namespace PG.Battle
         {
             if (_maxCoolTimeToken <= _coolTimeToken)
                 return;
-        
-            _currentDelayPercent += Time.deltaTime * _increaseAmount;
-        
+
+            _currentDelayPercent += Time.deltaTime * TokenIncreaseAmount;
+
             if (_currentDelayPercent > 1) 
             {
                 _currentDelayPercent = 0;
@@ -259,7 +288,7 @@ namespace PG.Battle
         #endregion
 
 
-        #region//¹«°Ô
+        #region//ï¿½ï¿½ï¿½ï¿½
         void SetNodeWeightby(float[] weight)
         {
             _weightRandom[0] += weight[0];
@@ -268,17 +297,26 @@ namespace PG.Battle
 
         }
 
-        //³ëµå¸¦ ·£´ýÀ¸·Î ¹èÄ¡ÇÏ´Â ¸Þ¼Òµå id´Â °ãÄ¡Áö¾Êµµ·Ï ÇÏ´Â°Í 
+        //ï¿½ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½ idï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ ï¿½Ï´Â°ï¿½ 
+        void CheckReach(int reachedNode)
+        {
+            string str = "";
+            foreach (var a in _inactivatedNode)
+                str += a;
+            
+            Debug.Log("contain : "+_inactivatedNode.Contains(reachedNode)+"reached : " + reachedNode+"left : " + str);
+        }
+
         public int ReachTriggeredNode_Random(int reachedNode)
         {
-            //Debug.Log("reached : " + reachedNode);
-            //±âÁ¸ÀÇ µµ´ÞÇÑ À§Ä¡´Â »ç¿ëºÒ°¡·Î ¸¸µé¾î¾ßÇÑ´Ù.
+            //CheckReach(reachedNode);
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½Ò°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
             if (_inactivatedNode.Contains(reachedNode))
                 _inactivatedNode.Remove(reachedNode);
-            else
-                throw new ArgumentException("No More ProperNode : random");
+            //else
+                //print("No More ProperNode : random when it reached " +reachedNode );
             
-            //ÃßÈÄ ¿©·¯°³ÀÇ µµ´ÞÁ¡À» °¡Á®¾ßÇÒ¶§¸¦ À§ÇØ¼­ ¹«ÀÛÀ§·Î ÇÑ´Ù.
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
             int i = _inactivatedNode.Count;
             int _deleteTarget = _inactivatedNode[Random.Range(0, i)];
             //Debug.Log(i + "set" + _deleteTarget);
@@ -287,10 +325,11 @@ namespace PG.Battle
         }
         public int ReachTriggeredNode_Close(int reachedNode)
         {
+            //CheckReach(reachedNode);
+            
             if (_inactivatedNode.Contains(reachedNode))
                 _inactivatedNode.Remove(reachedNode);
-            else
-                throw new ArgumentException("No More ProperNode : close");
+            
 
             int[] _targetArr = (int[])_IDWithCloseDic[reachedNode].Clone();
             int _deleteTarget = _targetArr.PickRandom();
@@ -300,10 +339,10 @@ namespace PG.Battle
         }
         public int ReachTriggeredNode_Far(int reachedNode)
         {
+            //CheckReach(reachedNode);
+
             if (_inactivatedNode.Contains(reachedNode))
                 _inactivatedNode.Remove(reachedNode);
-            else
-                throw new ArgumentException("No More ProperNode : far");
 
             int[] _targetArr = (int[])_IDWithFarDic[reachedNode].Clone();
             int _deleteTarget = _targetArr.PickRandom();
@@ -314,7 +353,7 @@ namespace PG.Battle
         }
 
         #endregion
-        //ÇöÀç ³ëµå°¡ ¹¹µçÁö ÀÏ´Ü ¾ø¾Ö°í º¸´Â°Å. 
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½Â°ï¿½. 
         void ResetAllNode()
         {
             _inactivatedNode = _defaultNode.ToList();
@@ -335,14 +374,14 @@ namespace PG.Battle
                 _inactivatedNode.Remove(i);
             }
             else
-                Debug.LogError("Wrong node Error: Already Exist");
+                throw new Exception("Wrong node Error: Already Exist");
         }
         void SetNodeToNextReach(int i)
         {
             //Debug.Log("input " + i );
             _signParticle.Play();
-            Vector3 _targetpos = new Vector3((_IDDic[i].x - 1) * 1.75f, (-_IDDic[i].y) * 1.75f, 0);
-            _signParticle.gameObject.transform.position = _targetpos;
+            Vector3 targetpos = new Vector3((_IDDic[i].x - 1) * 1.75f, (-_IDDic[i].y) * 1.75f, 0);
+            _signParticle.gameObject.transform.position = targetpos;
             _patternNodes[i].SetIsReachable(true);
             _inactivatedNode.Remove(i);
         }
@@ -365,7 +404,7 @@ namespace PG.Battle
         [SerializeField]
         bool _isChargeStart = false;
 
-        //½ÃÀÛ½Ã , ÇØÁ¦½Ã ÀÌº¥Æ® Å»ºÎÂø
+        //ï¿½ï¿½ï¿½Û½ï¿½ , ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® Å»ï¿½ï¿½ï¿½ï¿½
         void StartChargeEvent()
         {
             Global_BattleEventSystem._onPatternSuccessed += CallPatternEvent;
@@ -379,22 +418,22 @@ namespace PG.Battle
 
         void CheckIsCharge()
         {
-            // ¸¸¾à ÀÏ½ÃÁ¤Áö »óÅÂ¸é ±×³É ³Ñ±è
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½×³ï¿½ ï¿½Ñ±ï¿½
 
             if (_isChargeStart)
             {
                 //ShowDebugtextScript.SetDebug(_currentCharge.ToString());
-                //Â÷Áö ½Ã°£Àº °£´Ù
+                //ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 if (_currentCharge > 0)
                 {
                     _currentCharge -= Time.deltaTime * _chargeReduction;
                     ChargeGaugeUIScript.SetChargeGauge(_currentCharge / _maxCharge);
                 }
-                //½Ã°£ ÃÊ°ú ½Ã½ÇÆÐ Ã³¸®. ÀÌÀü¿¡ 
+                //ï¿½Ã°ï¿½ ï¿½Ê°ï¿½ ï¿½Ã½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
                 else
                 {
-                    //ÀÏ´ÜÀº ¹¹°¡ µÇ¾úµç ÆÐÅÏÀÌ ³¡ÀÌ³ª¸é Â÷Áöµµ ³¡³ªµµ·Ï ¼³°èÇÔ,
-                    //Â÷Áö ÀÌ¾î°¡¸é¼­ ¹¹ ÇÏ´Â°Å´Â ³ªÁß¿¡ »ý°¢ÇØº¸µµ·Ï ÇÔ.
+                    //ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,
+                    //ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¾î°¡ï¿½é¼­ ï¿½ï¿½ ï¿½Ï´Â°Å´ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Øºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.
                     Global_BattleEventSystem.CallOnChargeEnd();
                     _currentCharge = 0;
                     EndChargeSequence();
@@ -420,24 +459,24 @@ namespace PG.Battle
             if (_currentCharge >= _maxCharge )
             {
                 _IsChargeReady = true;
-                //ÀÌ·¸°Ô ¼¼ÆÃÀÌ µÇ¸é µ¥¹ÌÁö °è»ê ½Ã¿¡ Â÷Áö ¿©ºÎ·Î °áÁ¤µÊ.
+                //ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ã¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
             }
             ChargeGaugeUIScript.SetChargeGauge(_currentCharge / _maxCharge);
         }
 
-        //Â÷Áö ½ÃÀÛ, Â÷Áö´Â ÀÏÁ¾ÀÇ º°µµÀÇ½Ã½ºÅÛÀÌ¸ç ÀÖÀ» ¼öµµ ¾øÀ» ¼öµµ ÀÖ°Ô ÇÏÀÚ.
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç½Ã½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½.
         void StartChargeSequence()
         {
             Global_BattleEventSystem.CallOnChargeStart();
             ChargeGaugeUIScript.StartChargeSkill();
             CameraShaker.ShakeCamera(3f, 0.5f);
-            //ÇÃ·¹ÀÌ¾î¿¡°Ô ÆÐÅÏÀ» ¹Þ¾Æ¿Â´Ù.
+            //ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿Â´ï¿½.
             SetPresetPattern(Global_CampaignData._currentChargePattern);
             _isChargeStart = true;
             _IsChargeReady = false;
         }
 
-        //Â÷Áö°¡ Á¾·á µÇ¾úÀ» ¶§ »ç¿ëµÊ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         void EndChargeSequence()
         {
             ChargeGaugeUIScript.EndChargeSkill();
@@ -480,7 +519,7 @@ namespace PG.Battle
             {3,new int[3]{2,5,8} },{4,new int[4]{0,2,6,7} },{5,new int[3]{0,3,6} },
             {6,new int[3]{1,2,5} },{7,new int[3]{0,1,2} },{8,new int[3]{0,1,3} }
         };
-        //°Å¸® Àç´Â ºÎºÐ
+        //ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ ï¿½Îºï¿½
         float GetNodePositionByID(int startID, int endID)
         {
             float _xval = Mathf.Pow(_IDDic[startID].x - _IDDic[endID].x, 2);

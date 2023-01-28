@@ -59,7 +59,7 @@ namespace PG.Battle
         bool _isStunned = false;
 
         float _actionTime, _maxActionTime;
-        //ÄÚ·çÆ¾³»¿¡¼­ ½Ã°£Â÷·Î ¹ß»ıÇÏ´Â ¿À·ùÁ¦¾î¸¦ À§ÇÔ.
+        //ì½”ë£¨í‹´ë‚´ì—ì„œ ì‹œê°„ì°¨ë¡œ ë°œìƒí•˜ëŠ” ì˜¤ë¥˜ì œì–´ë¥¼ ìœ„í•¨.
         [SerializeField]
         float _enemyroutineTime;
         private void Update()
@@ -70,7 +70,7 @@ namespace PG.Battle
             {
                 _enemyroutineTime += Time.deltaTime;
 
-                //¸¸¾à ½ºÅÏÀÎ »óÅÂ¸é ÀÛµ¿À» ¸ØÃßµµ·Ï ¸¸µç´Ù.
+                //ë§Œì•½ ìŠ¤í„´ì¸ ìƒíƒœë©´ ì‘ë™ì„ ë©ˆì¶”ë„ë¡ ë§Œë“ ë‹¤.
                 if (_isStunned)
                     return;
 
@@ -109,8 +109,8 @@ namespace PG.Battle
             _actionTime = _maxActionTime;
             CurrentActionScript.SetTextOnCurrentScript(_currentAction.ToString(), 1f);
             //ShowDebugtextScript.SetDebug(_tempAction.ToString());
-            //¿©±â¼­ ¾×¼ÇÀÇ Ã³¸®°¡ ÁøÇàÀÌ µÇ°í ¾×¼ÇÀºÁÖ¾îÁø ¸®½ºÆ®¿¡ µû¶ó °áÁ¤ µÈ´Ù°í ÇÏÀÚ.
-            //³ªÁß¿¡ ÄÚ·çÆ¾À¸·Î Äµ½½µµ µÇ°í ¸· ±×·² ²¨Áö¸¸ Áö±İÀº °£´ÜÇÑ Çü¼º¸¸
+            //ì—¬ê¸°ì„œ ì•¡ì…˜ì˜ ì²˜ë¦¬ê°€ ì§„í–‰ì´ ë˜ê³  ì•¡ì…˜ì€ì£¼ì–´ì§„ ë¦¬ìŠ¤íŠ¸ì— ë”°ë¼ ê²°ì • ëœë‹¤ê³  í•˜ì.
+            //ë‚˜ì¤‘ì— ì½”ë£¨í‹´ìœ¼ë¡œ ìº”ìŠ¬ë„ ë˜ê³  ë§‰ ê·¸ëŸ´ êº¼ì§€ë§Œ ì§€ê¸ˆì€ ê°„ë‹¨í•œ í˜•ì„±ë§Œ
             if(_currentAction!= EnemyActionID.Wait ) 
             {
                 int i = 0;
@@ -118,7 +118,7 @@ namespace PG.Battle
                 switch (_temptdata._spawnType)
                 {
                     case SpawnType.SetAtOnce_WithSame:
-                        //1ÀÌ»óÀÇ °ªÀÌ ÀÖÀ»¶§ ¹º°¡ Àß¸øµÇ¾ú´Ù°í ¾Ë¸².
+                        //1ì´ìƒì˜ ê°’ì´ ìˆì„ë•Œ ë­”ê°€ ì˜ëª»ë˜ì—ˆë‹¤ê³  ì•Œë¦¼.
                         if (_temptdata._spawnDataList.Count > 1)
                             Debug.LogError("Error:ItPlaced more than one");
                         foreach (Vector2 v in _temptdata._placeList)
@@ -131,7 +131,7 @@ namespace PG.Battle
                         break;
                     case SpawnType.SetGradually_WithSame:
                         
-                        //1ÀÌ»óÀÇ °ªÀÌ ÀÖÀ»¶§ ¹º°¡ Àß¸øµÇ¾ú´Ù°í ¾Ë¸².
+                        //1ì´ìƒì˜ ê°’ì´ ìˆì„ë•Œ ë­”ê°€ ì˜ëª»ë˜ì—ˆë‹¤ê³  ì•Œë¦¼.
                         if (_temptdata._spawnDataList.Count > 1)
                             Debug.LogError("Error:ItPlaced more than one");
 
@@ -175,7 +175,7 @@ namespace PG.Battle
                     case SpawnType.SetPresettime_WithSame:
                         if (_temptdata._spawnDataList.Count > 1)
                             Debug.LogError("Error:ItPlaced more than one");
-                        //¹èÄ¡´Â ±×³É °£°İ ÀÔ·Â ÇÏ¼À.
+                        //ë°°ì¹˜ëŠ” ê·¸ëƒ¥ ê°„ê²© ì…ë ¥ í•˜ì…ˆ.
                         foreach (Vector2 v in _temptdata._placeList)
                         {
                             _tempIEnum = SetObstacleRoutine(_temptdata._spawnDataList[0], v, _temptdata._placetimeList.GetRange(0,i).Sum());
@@ -189,7 +189,7 @@ namespace PG.Battle
                         StartCoroutine(_tempIEnum);
                         break;
                     case SpawnType.SetPresettime_WithDifference:
-                        //¹èÄ¡´Â ±×³É °£°İ ÀÔ·Â ÇÏ¼À.
+                        //ë°°ì¹˜ëŠ” ê·¸ëƒ¥ ê°„ê²© ì…ë ¥ í•˜ì…ˆ.
                         foreach (Vector2 v in _temptdata._placeList)
                         {
                             _tempIEnum = SetObstacleRoutine(_temptdata._spawnDataList[i], v, _temptdata._placetimeList.GetRange(0, i).Sum());
@@ -217,11 +217,11 @@ namespace PG.Battle
             _currentActionOrder =
                 (_currentActionOrder < _enemyActionList.Count) ? _currentActionOrder : 0;
 
-            //¾Ö´Ï¸ŞÀÌ¼Ç Æ²±â.
+            //ì• ë‹ˆë©”ì´ì…˜ í‹€ê¸°.
             StartAnimationByCurrentAction();
         }
 
-        //ºĞ¸íÈ÷ ¹ö±× ÀÖÀ»²¨ÀÓ. Áö¿ü´Âµ¥µµ 
+        //ë¶„ëª…íˆ ë²„ê·¸ ìˆì„êº¼ì„. ì§€ì› ëŠ”ë°ë„ 
         void SetOnActionStunned() 
         {
             _isStunned = true;
@@ -254,7 +254,7 @@ namespace PG.Battle
         IEnumerator RemoveAllRoutine(float waitTime)
         {
             float _deadLine = _enemyroutineTime + waitTime;
-            //¿©±â ¿ÖÀÌ°Ô ¸Â´Â°ÇÁö ¸ğ¸£°ÚÀ½.
+            //ì—¬ê¸° ì™œì´ê²Œ ë§ëŠ”ê±´ì§€ ëª¨ë¥´ê² ìŒ.
             yield return new WaitWhile(() => (_deadLine > _enemyroutineTime));
             while (_deadLine > _enemyroutineTime)
                 yield return new WaitWhile(() => (_deadLine > _enemyroutineTime));
@@ -270,7 +270,7 @@ namespace PG.Battle
             for (int i = _routineList.Count -1; i>=0; i--) 
             {
                 StopCoroutine(_routineList[i]);
-                //¾Æ ½ºÅ¸Æ® ÇÏ¸é¼­ ÀüÃ¼ °­Á¦ ½ÃÀÛÀÌ µÇ¾î¼­ ¹ß»ıÇÏ´Â ¹®Á¦ÀÎµí.
+                //ì•„ ìŠ¤íƒ€íŠ¸ í•˜ë©´ì„œ ì „ì²´ ê°•ì œ ì‹œì‘ì´ ë˜ì–´ì„œ ë°œìƒí•˜ëŠ” ë¬¸ì œì¸ë“¯.
             }
         }
 
@@ -286,7 +286,7 @@ namespace PG.Battle
             }
 
         }
-        //¾×¼ÇÀ» ÀÏ½ÃÁ¤ÁöÇØ¾ßÇÏ´Â »óÈ²¿¡¼­ È°¿ëÇÔ.
+        //ì•¡ì…˜ì„ ì¼ì‹œì •ì§€í•´ì•¼í•˜ëŠ” ìƒí™©ì—ì„œ í™œìš©í•¨.
 
         #endregion
         #region //Damage related
@@ -303,7 +303,7 @@ namespace PG.Battle
             return _instance._isEnemyAlive;
         }
 
-        //µ¥¹ÌÁö ÀÌÆåÆ®.
+        //ë°ë¯¸ì§€ ì´í™íŠ¸.
         void RandomDamageFX() 
         {
             int _randomIndex = UnityEngine.Random.Range(0, _damageFXLists.Count);

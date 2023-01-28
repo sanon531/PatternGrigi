@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PG.Data;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -14,51 +15,50 @@ namespace PG.Battle
         // Start is called before the first frame update
         void Start()
         {
-            hitFX.Stop();
-            _thisRay.SetActiveLaser(false);
+            //hitFX.Stop();
+            //_thisRay.SetActiveLazer(false);
+            id = ProjectileID.LightningShot;
+            IsActive = false;
         }
         // Update is called once per frame
-        /*public override void SetInitialProjectileData(MobScript target, IObjectPool<ProjectileScript> objectPool, float lifetime, float spreadCount, float f)
+        public override void SetInitialProjectileData(IObjectPoolSW<ProjectileScript> objectPool, float lifetime)
         {
-            base.SetInitialProjectileData(target, objectPool,damage, lifetime, spreadCount);
+            base.SetInitialProjectileData(objectPool, lifetime);
 
-            OnObjectEnabled();
-            if (targetMob != null)
+        }
+        protected override void LateUpdate()
+        {
+            if (CurrentLifeTime <= 0 || !IsActive)
             {
-                if (targetMob.GetMobPosition() != null)
-                {
-                    _thisRay.SetLazerEachPos(transform.position, targetMob.GetMobPosition());
-                    targetMob.Damage(damage);
-                }
-                else 
-                {
-                    OnObjectDisabled();
-
-                }
+                //hitFX.Stop();
+                ProjectilePool.SetBack(this);
             }
-            else 
-            {
-                //나중에 번개가 그래도 나가도록 나와도 좋을것 같긴해도 뭐 일단은
-                OnObjectDisabled();
+            else
+                CurrentLifeTime -= Time.deltaTime;
+        }
+
+        public override void SetFrequentProjectileData(MobScript target, float damage, float spreadCount)
+        {
+            base.SetFrequentProjectileData(target, damage, spreadCount);
+            IstargetMobNotNull = targetMob != null;
+            //hitFX.Play();
+
+            _thisRay._StartPos = transform.position;
+            if (IstargetMobNotNull)
+            {            
+                _thisRay._EndPos = targetMob.GetMobPosition();
+                target.Damage(damage);
+            }
+            else
+            {                
+                _thisRay._EndPos = _thisRay._StartPos;
             }
 
-
-        }
-        protected override void OnObjectEnabled()
-        {
-            base.OnObjectEnabled();
-            hitFX.Play();
-            _thisRay.SetActiveLazer(true);
         }
 
-        protected override void OnObjectDisabled()
-        {
-            //Debug.Log("What" + gameObject.name);
-            _thisRay.SetActiveLazer(false);
-            base.OnObjectDisabled();
-        }
 
-        */
+
+
 
     }
 

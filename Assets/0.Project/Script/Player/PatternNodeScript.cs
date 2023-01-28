@@ -29,7 +29,7 @@ namespace PG.Battle
         private void OnTriggerEnter2D(Collider2D collision)
         {
             //ShowDebugtextScript.SetDebug(name + "Player in _11" + collision.transform.tag);
-            if (collision.transform.tag == "Player")
+            if (collision.transform.CompareTag("Player"))
             {
                 if (_isReachable)
                 {
@@ -45,7 +45,7 @@ namespace PG.Battle
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            if (collision.transform.tag == "Player")
+            if (collision.transform.CompareTag("Player"))
             {
                 if (_isReachable)
                 {

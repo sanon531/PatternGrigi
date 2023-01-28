@@ -11,6 +11,8 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(EnemyActionDataDic))]
 [CustomPropertyDrawer(typeof(QuaternionMyClassDictionary))]
 [CustomPropertyDrawer(typeof(ArtifactIDArtifactDic))]
+[CustomPropertyDrawer(typeof(ArtifactIDArtifactDataDic))]
+[CustomPropertyDrawer(typeof(ArtifactIDListDic))]
 [CustomPropertyDrawer(typeof(ArtifactIDVecotrInt2Dic))]
 [CustomPropertyDrawer(typeof(CharactorIDDataEntityDic))]
 [CustomPropertyDrawer(typeof(MobIDObjectDic))]

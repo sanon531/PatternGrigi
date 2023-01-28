@@ -1,5 +1,8 @@
 using UnityEngine;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 
 namespace PG.Data
@@ -8,14 +11,10 @@ namespace PG.Data
     public class ArtifactData
     {
 
-        [SerializeField]
-        string key;
-        public string Key { get { return key; } set { this.key = value; } }
-
-
-
-
-
+        [FormerlySerializedAs("key")] [SerializeField]
+        ArtifactID id;
+        public ArtifactID ID { get { return id; } set { this.id = value; } }
+        
         [SerializeField]
         int rarity;
         public int Rarity { get { return rarity; } set { this.rarity = value; } }
@@ -24,19 +23,17 @@ namespace PG.Data
         [SerializeField]
         int buyprice = 100;
         public int Buyprice { get { return buyprice; } set { this.buyprice = value; } }
-
-
         [SerializeField]
-        int upgradeMaxCount;
-        public int UpgradeMaxCount { get { return upgradeMaxCount; } set { this.upgradeMaxCount = value; } }
+        int maxUpgrade;
+        public int MaxUpgrade { get { return maxUpgrade; } set { this.maxUpgrade = value; } }
         [SerializeField]
         int upgradecount;
         public int UpgradeCount { get { return upgradecount; } set
             {
-                if (value <= upgradeMaxCount)
+                if (value <= maxUpgrade)
                     this.upgradecount = value;
                 else
-                    this.upgradecount = upgradeMaxCount;
+                    this.upgradecount = maxUpgrade;
             }
         }
 
@@ -50,17 +47,17 @@ namespace PG.Data
 
         public ArtifactData(ArtifactID id)
         {
-            this.key = id.ToString();
+            this.id = id;
             this.rarity = (int)ArtifactRarity.Common;
             this.isonoff = true;
             this.upgradecount = 0;
-            this.upgradeMaxCount = 5;
+            this.maxUpgrade = 5;
         }
 
 
         public ArtifactData(ArtifactID id, int rarity, bool isonoff, int value)
         {
-            this.key = id.ToString();
+            this.id = id;
             this.rarity = rarity;
             this.isonoff = isonoff;
             this.upgradecount = value;
@@ -68,11 +65,11 @@ namespace PG.Data
 
         public ArtifactData(ArtifactID id, int rarity, bool isonoff, int value, int maxUpgrade)
         {
-            this.key = id.ToString();
+            this.id = id;
             this.rarity = rarity;
             this.isonoff = isonoff;
             this.upgradecount = value;
-            this.upgradeMaxCount = maxUpgrade;
+            this.maxUpgrade = maxUpgrade;
         }
 
 

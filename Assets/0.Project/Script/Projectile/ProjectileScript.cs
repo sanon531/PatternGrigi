@@ -12,16 +12,17 @@ namespace PG.Battle
     //projectile 은 플레이어만 활용하는것으로 한다.
     public abstract class ProjectileScript : MonoBehaviour
     {
-        [FormerlySerializedAs("_id")] [SerializeField]
+        #region variables
+        [SerializeField]
         public ProjectileID id = ProjectileID.NormalBullet;
 
         protected float Damage = 10f;
 
         [SerializeField]
-        protected float CurrentlifeTime = 10f;
-        protected float lifeTime = 10f;
+        protected float CurrentLifeTime = 10f;
+        protected float MaxLifeTime = 10f;
 
-        protected Vector3 Movement;
+        protected Vector3 velocity;
 
         [SerializeField]
         protected Collider2D collider2D;
@@ -29,68 +30,67 @@ namespace PG.Battle
          [SerializeField]
         protected Rigidbody2D rigidBody2D;
 
-        [FormerlySerializedAs("_projectileImage")] [SerializeField]
+        [SerializeField]
         protected SpriteRenderer projectileImage;
 
-        [FormerlySerializedAs("_hitFX")] [SerializeField]
-        protected ParticleSystem hitFX;
+        
+        //���� Ƚ��.
+        protected int PierceCount = 0;
+        protected List<GameObject> PiercedList = new List<GameObject>();
+        #endregion
 
-        [FormerlySerializedAs("_targetMob")] [SerializeField]
+        [SerializeField]
         protected MobScript targetMob;
 
         protected bool IsrigidBody2DNotNull = false;
         protected bool IstargetMobNotNull = false;
 
-
         protected IObjectPoolSW<ProjectileScript> ProjectilePool;
-
-        //관통 횟수.
-        protected int PierceCount = 0;
-        protected List<GameObject> PiercedList = new List<GameObject>();
-
-        public void Start()
-        {
-            IstargetMobNotNull = targetMob != null;
-            IsrigidBody2DNotNull = rigidBody2D != null;
-        }
-
 
         public virtual void SetInitialProjectileData(IObjectPoolSW<ProjectileScript> objectPool,
             float lifetime)
         {
-            IstargetMobNotNull = false;
+            IsrigidBody2DNotNull = rigidBody2D != null;
+            IstargetMobNotNull = targetMob != null;
             ProjectilePool = objectPool;
-            lifeTime = lifetime;
-            CurrentlifeTime = lifeTime;
+            MaxLifeTime = lifetime;
+            CurrentLifeTime = MaxLifeTime;
         }
+        
+
+        protected bool IsActive = true;
+        /// <summary>
+        /// �߻� �Ҷ����� �۵��ϴ� ��ũ��Ʈ.
+        /// </summary>
         public virtual void SetFrequentProjectileData(MobScript target, float damage, float spreadCount)
         {
-            CurrentlifeTime = lifeTime;
-            targetMob = target;
+            IsActive = true;
+            PierceCount = 0;
+            CurrentLifeTime = MaxLifeTime;
             IstargetMobNotNull = targetMob != null;
+            targetMob = target;
             Damage = damage;
             transform.position = (Player_Script.GetPlayerPosition() + new Vector3(spreadCount, 0, 0));
         }
 
         protected virtual void LateUpdate()
         {
-            if (CurrentlifeTime <= 0)
+            if (CurrentLifeTime <= 0 || !IsActive )
                 ProjectilePool.SetBack(this);
             else
-                CurrentlifeTime -= Time.deltaTime;
+                CurrentLifeTime -= Time.deltaTime;
         }
         
-
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
+            if (!IsActive)
+                return;
             if (collision.CompareTag("Enemy") && !PiercedList.Contains(collision.gameObject))
             {
-                // 이곳에서 적에 대한 데미지를 처리하는 코드를 짠다.
-                hitFX.Play();
                 collision.GetComponent<MobScript>().Damage(Damage);
-                if (PierceCount <= 0)
-                    ProjectilePool.SetBack(this);
                 PierceCount--;
+                if (PierceCount <= 0)
+                    IsActive=false;
             }
         }
     }

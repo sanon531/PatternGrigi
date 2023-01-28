@@ -76,7 +76,7 @@ namespace PG
         }
         public override void AddCountOnArtifact()
         {
-            UpgradeCount++;
+            base.AddCountOnArtifact();   
             //Debug.Log("Fragile_Rush LEL");
         }
 
@@ -104,7 +104,7 @@ namespace PG
         }
         public override void AddCountOnArtifact()
         {
-            UpgradeCount++;
+            base.AddCountOnArtifact();   
             //Debug.Log("Fragile_Rush LEL");
         }
 

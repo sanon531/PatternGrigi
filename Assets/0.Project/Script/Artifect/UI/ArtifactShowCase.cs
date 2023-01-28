@@ -19,13 +19,13 @@ namespace PG.Battle
         }
         public void SetDataOnCase(ArtifactID id,int val) 
         {
-            _artifactImage.sprite = Resources.Load<Sprite>("Artifact/" + id.ToString());
+            _artifactImage.sprite = ArtifactManager.GetSpriteFromImage(id);
             _CurrentCount.SetText(val.ToString());
         }
         public void SetDataOnCase(ArtifactID id)
         {
-            _artifactImage.sprite = Resources.Load<Sprite>("Artifact/" + id.ToString());
-            //Debug.Log(Resources.Load<Sprite>("Effect/Artifact/" + id.ToString()));
+            _artifactImage.sprite = ArtifactManager.GetSpriteFromImage(id);
+            //Debug.Log(_artifactImage.sprite);
         }
 
 

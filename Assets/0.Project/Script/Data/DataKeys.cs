@@ -63,15 +63,16 @@ namespace PG.Data
         Pinocchio = 60 ,
         AtomSetting = 61,
 
+        
+        Mix_PadSesame = 80 ,
 
         Upgrade_AimShot = 100,
         Upgrade_StraightShot = 101,
         Upgrade_LightningShot = 102,
         Upgrade_TowerShot = 103,
         Upgrade_Knife = 104,
-
-
-
+        
+        Default_HealthUp = 999,
     }
     public enum ProjectileID 
     {
