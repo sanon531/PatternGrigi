@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.877591, y: -2.1577406, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,6 +45,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -122,12 +124,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82432ecf05e2ced4aa0e8a7b09c8464b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isPlaced: 0
   _passedTime: 0
   _maxLifetime: 3
   _lifeTime: 3
   _activetime: 1
   _isActived: 0
+  _id: 10
   _damageDeal: 8
   _thisCollider: {fileID: 8078943542995106493}
   rotateSpeed: 10

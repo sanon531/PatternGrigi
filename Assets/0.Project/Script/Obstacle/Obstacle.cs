@@ -60,7 +60,7 @@ namespace PG.Battle
             }
             else if (_passedTime > _lifeTime)
             {
-                ObstacleManager.DeleteObstacleOnList(this);
+                Delete();
             }
         }
 
@@ -69,11 +69,21 @@ namespace PG.Battle
             _lifeTime = time;
         }
 
+        protected void Delete()
+        {
+            ObstacleManager.DeleteObstacleOnList(this);
+        }
+        
+        protected virtual void HitPlayer()
+        {
+            Player_Script.Damage(_damageDeal);
+        }
+        
         // 이부분 개선 할꺼임.
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.tag == "Player")
-                Player_Script.Damage(_damageDeal);
+                HitPlayer();
         }
 
     }

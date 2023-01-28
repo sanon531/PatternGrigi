@@ -56,6 +56,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2261599503248962957, guid: 7d536e2abc6c0f448ae89bc9afe3d8be, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261599503248962957, guid: 7d536e2abc6c0f448ae89bc9afe3d8be, type: 3}
       propertyPath: m_SortingLayer
       value: 3
       objectReference: {fileID: 0}
@@ -90,6 +94,10 @@ PrefabInstance:
     - target: {fileID: 4495562504512305306, guid: 7d536e2abc6c0f448ae89bc9afe3d8be, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8133792909156711639, guid: 7d536e2abc6c0f448ae89bc9afe3d8be, type: 3}
+      propertyPath: _id
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8133792909156711639, guid: 7d536e2abc6c0f448ae89bc9afe3d8be, type: 3}
       propertyPath: moveDirection.x

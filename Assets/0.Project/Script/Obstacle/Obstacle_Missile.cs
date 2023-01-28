@@ -36,7 +36,11 @@ namespace PG.Battle
             base.SetSpawnData(lifeTime, activetimes, damage, id);
             _flameParticle.Stop();
             _thisSpriteRd.enabled = false;
-            Range.SetActive(true);
+
+            if (Range != null)
+            {
+                Range.SetActive(true);
+            }
         }
         
         protected override void SetActiveObstacle()
@@ -44,9 +48,17 @@ namespace PG.Battle
             _flameParticle.Play();
             base.SetActiveObstacle();
             _thisSpriteRd.enabled = true;
-            Range.SetActive(false);
+            if (Range != null)
+            {
+                Range.SetActive(false);
+            }
         }
 
+        protected override void HitPlayer()
+        {
+            base.HitPlayer();
+            Delete();
+        }
 
         private void MoveObstacle()
         {

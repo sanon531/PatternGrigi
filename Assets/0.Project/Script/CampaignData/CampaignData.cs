@@ -35,6 +35,7 @@ namespace PG.Data
                 { CharacterID.Enemy_WindShooter,new DataEntity(DataEntity.Type.Damage,16)},
                 { CharacterID.Slime,new DataEntity(DataEntity.Type.Damage,8)},
                 { CharacterID.Tempt_Mob,new DataEntity(DataEntity.Type.Damage,8)},
+                { CharacterID.Tempt_Mob2,new DataEntity(DataEntity.Type.Damage,8)},
            };
 
         public TimeWaveDic _waveDic = new TimeWaveDic();

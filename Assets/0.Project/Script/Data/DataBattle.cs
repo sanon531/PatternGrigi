@@ -150,6 +150,8 @@ namespace PG.Data
         //발동전까지의 시간.
         public float _activeTime = 1;
         //public float _damageMag = 1;
+        
+        
     }
 
 
@@ -237,7 +239,7 @@ namespace PG.Data
         LongThinFire_Horizontal = 2,
         ThinLaser = 3,
         Chase_Obstacle = 4,
-        Flack = 5,
+        Missile = 5,
         MovingLeafRightToleft = 6,
         MovingLeafLeftToRight = 7,
         MovingLeafUpToDown = 8,
