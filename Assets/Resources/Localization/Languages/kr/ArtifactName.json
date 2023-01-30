@@ -5,6 +5,15 @@
       "value":"마니메칼라의 가호."
     },
     {
+      "key":"Thunder_Colorant",
+      "value":"번개 색료"
+    },
+    {
+      "key":"Decalcomanie",
+      "value":"투사체 + 1"
+    },
+
+    {
       "key":"FragileRush",
       "value":"사상누각"
     },

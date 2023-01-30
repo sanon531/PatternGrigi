@@ -52,6 +52,10 @@ namespace PG.Data
         BubbleGun = 20,// 길어질때의 배율 추가.
         BulletTeleportShooter = 21,
 
+        Thunder_Colorant =30,
+        Decalcomanie  =31,
+        Magic_Lenz = 32,
+
         //단거리세트
         QuickSlice = 42,
 

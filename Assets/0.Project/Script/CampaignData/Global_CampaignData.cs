@@ -54,7 +54,7 @@ namespace PG.Data
         }
 
 
-        #region//플레이 데이터 관련
+        #region 플레이 데이터 관련
 
         public static DrawPatternPresetID _currentChargePattern = DrawPatternPresetID.Empty_Breath;
 
@@ -66,6 +66,7 @@ namespace PG.Data
         public static DataEntity _playerSize = new DataEntity(DataEntity.Type.PlayerSize, 1);
         public static DataEntity _projectileSpeed = new DataEntity(DataEntity.Type.ProjectileSpeed, 1);
         public static DataEntity _projectileTargetNum = new DataEntity(DataEntity.Type.ProjectileCount, 1);
+        public static DataEntity _projectilePierce = new DataEntity(DataEntity.Type.ProjectilePierce, 1);
         public static DataEntity _randomPatternNodeCount = new DataEntity(DataEntity.Type.RandomPatternCount,3);
         //패턴 쿨타임 관련
         public static DataEntity _coolTimeTokenCount = new DataEntity(DataEntity.Type.MaxCooltimeToken, 3);
@@ -76,8 +77,11 @@ namespace PG.Data
 
         #endregion;
 
-        #region
+        #region InPlayData
 
+
+        public static List<Transform> _activatedProjectileList = new List<Transform>();
+        public static DataEntity _thunderCount = new DataEntity(DataEntity.Type.None, 2);
 
 
         #endregion
@@ -109,9 +113,8 @@ namespace PG.Data
             _playerSize = new DataEntity(data._playerSize);
             _projectileSpeed = new DataEntity(data._projectileSpeed);
             _projectileTargetNum = new DataEntity(data._projectileTargetNum);
-
             _projectileIDDataDic.CopyFrom(data._projectileIDDataDic);
-
+            
             _randomPatternNodeCount = new DataEntity(data._randomPatternNodeCount);
             _waveTimeList = new List<float>(data._waveDic.Keys);
             //켐페인데이터에 웨이브 시간 순서를 꼭 오름차순으로 입력 안해도 되도록 정렬+이에맞게 class리스트 만듦

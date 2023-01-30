@@ -5,6 +5,14 @@
       "value":"차지 성공시 \n 모든 적에게 100 데미지 ."
     },
     {
+      "key":"Thunder_Colorant",
+      "value":"프로젝 타일간 번개 형성"
+    },
+    {
+      "key":"Decalcomanie",
+      "value":"데깔코마니"
+    },
+    {
       "key":"FragileRush",
       "value":"공격력 <sprite name=Increase> \n  방어력 <sprite name=Decrease>."
     },

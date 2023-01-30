@@ -37,9 +37,9 @@ namespace PG.Battle
                 CurrentLifeTime -= Time.deltaTime;
         }
 
-        public override void SetFrequentProjectileData(MobScript target, float damage, float spreadCount)
+        public override void SetFrequentProjectileData(MobScript target, float damage, Vector3 projectilePlace)
         {
-            base.SetFrequentProjectileData(target, damage, spreadCount);
+            base.SetFrequentProjectileData(target, damage, projectilePlace);
             IstargetMobNotNull = targetMob != null;
             //hitFX.Play();
 

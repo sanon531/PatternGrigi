@@ -145,7 +145,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 8ff052c5929948b4d92cd19990b9d096, type: 3}
     - {fileID: 2800000, guid: 69ac54c6811587f4dbecfe091335e653, type: 3}
     - {fileID: 2800000, guid: 67c5143ce14b6824d942ec275388b2e5, type: 3}
-    - {fileID: 2800000, guid: 66fc57ce217751f4f866b3f957aa1774, type: 3}
+    - {fileID: 2800000, guid: 33b234549546a264ea8afb65e523e3bd, type: 3}
     - {fileID: 2800000, guid: 78e19673bd849324cad9bae8683bc6c8, type: 3}
     - {fileID: 2800000, guid: b778917bf0fa00844b8095d439fd8151, type: 3}
     - {fileID: 2800000, guid: 32238058e0dc9b94dbdc3184ae22f366, type: 3}
@@ -193,6 +193,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 309e2a04ce306854abb25d9349b4277e, type: 3}
   - {fileID: 21300000, guid: 8c342b148c67bdb49acca609910b5850, type: 3}
   - {fileID: 21300000, guid: 59877324142a9d942ac5c3ad874c9be2, type: 3}
+  - {fileID: 21300000, guid: 33b234549546a264ea8afb65e523e3bd, type: 3}
   - {fileID: 21300000, guid: 7ee69a54c9c18db4dae5afc67b8082e5, type: 3}
   - {fileID: 21300000, guid: 7293ad54a1073304fb16aba3b79e25bf, type: 3}
   - {fileID: 21300000, guid: 99d25574e688560428d0c6fd16769efc, type: 3}
@@ -267,7 +268,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: de977c2e78cdebd45b9375a5a8b71606, type: 3}
   - {fileID: 21300000, guid: 6006058e990f7074fbc786f7750890e3, type: 3}
   - {fileID: 21300000, guid: fcb65b8e0c6c338418da0d160f016fe2, type: 3}
-  - {fileID: 21300000, guid: 66fc57ce217751f4f866b3f957aa1774, type: 3}
   - {fileID: 21300000, guid: 08c114fea8262ef44a2e5b64ede44f1e, type: 3}
   - {fileID: 21300000, guid: 922145fe1426e5f488a5a37e3ba1ed78, type: 3}
   - {fileID: 21300000, guid: 4b3d042f5c58dfa45b64cde4ac9b0243, type: 3}
@@ -308,6 +308,7 @@ SpriteAtlas:
   - SpellBook01_71
   - SpellBook01_84
   - SpellBook01_49
+  - Thunder_Colorant
   - SpellBook01_68
   - SpellBook01_45
   - SpellBook01_78
@@ -355,7 +356,7 @@ SpriteAtlas:
   - SpellBook01_89
   - Pinocchio
   - SpellBook01_08
-  - SpellBook01_81
+  - Decalcomanie
   - SpellBook01_27
   - SpellBook01_05
   - SpellBook01_56
@@ -372,7 +373,7 @@ SpriteAtlas:
   - SpellBook01_72
   - SpellBook01_75
   - SpellBook01_65
-  - SpellBook01_25
+  - sss
   - SpellBook01_77
   - SpellBook01_62
   - SpellBook01_17
@@ -382,7 +383,6 @@ SpriteAtlas:
   - SpellBook01_24
   - SpellBook01_35
   - SpellBook01_20
-  - SpellBook01_102
   - SpellBook01_19
   - SpellBook01_06
   - SpellBook01_23

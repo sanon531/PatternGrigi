@@ -188,15 +188,17 @@ namespace PG.Battle
 
         }
 
-        
+
+        private Coroutine knockback;
         public void Damage(float val)
         {
-            _healthSystem.Damage(val);
-            currentHealth = _healthSystem.GetHealth();
-            DamageFXManager.ShowDamage(transform.position, Mathf.Round(val).ToString(),Color.white);
             if (_isEnemyAlive)
             {
-                StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
+                _healthSystem.Damage(val);
+                currentHealth = _healthSystem.GetHealth();
+                DamageFXManager.ShowDamage(transform.position, Mathf.Round(val).ToString(),Color.white);
+                if(knockback is null )
+                    knockback = StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
             }
         }
 

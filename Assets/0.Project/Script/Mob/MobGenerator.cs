@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using PG.Event;
 using PG.Data;
@@ -9,7 +10,7 @@ namespace PG.Battle
 {
     public class MobGenerator : MonoSingleton<MobGenerator>
     {
-        //¸÷À» »ı¼º, ÀúÀå, »èÁ¦
+        //ëª¹ì„ ìƒì„±, ì €ì¥, ì‚­ì œ
         [SerializeField]
         private Transform _SpawnRange_Left;
         [SerializeField]
@@ -30,10 +31,8 @@ namespace PG.Battle
 
         void Update()
         {
-            if (BattleSceneManager._instance.GetPlayTime() > _waveTimeList[_currentWaveOrder])
-            {
+            if (BattleSceneManager._instance.GetPlayTime() > _waveTimeList[_currentWaveOrder]) 
                 NextWave();
-            }
 
             if (_spawnMobCount >= _currentMinMobNum)
             {
@@ -56,7 +55,7 @@ namespace PG.Battle
         
         private void NextWave()
         {
-            //ÀÌÀü ¿şÀÌºê ÄÚ·çÆ¾µé Á¤¸® + º¯¼ö ÃÊ±âÈ­
+            //ì´ì „ ì›¨ì´ë¸Œ ì½”ë£¨í‹´ë“¤ ì •ë¦¬ + ë³€ìˆ˜ ì´ˆê¸°í™”
             StopAllCoroutines(); 
             _spawnCrtnList = new List<IEnumerator>();
             _fillSpawnCrtnList = new List<IEnumerator>();
@@ -64,14 +63,14 @@ namespace PG.Battle
             _fillSpeed = 2f;
             _isFilling = false;
 
-            //´ÙÀ½ ¿şÀÌºê µ¥ÀÌÅÍ
+            //ë‹¤ìŒ ì›¨ì´ë¸Œ ë°ì´í„°
             _currentMobSpawnDataDic = _waveClassList[_currentWaveOrder].GetSpawnDataDic();
             _currentMinMobNum = _waveClassList[_currentWaveOrder].GetMinMobNum();
             
-            //¸÷ ¿ÀºêÁ§Æ® Ç® ¼¼ÆÃ
+            //ëª¹ ì˜¤ë¸Œì íŠ¸ í’€ ì„¸íŒ…
             SettingNowPools();
 
-            //½ºÆù½ÃÀÛ
+            //ìŠ¤í°ì‹œì‘
             foreach (CharacterID charID in _currentMobSpawnDataDic.Keys)
             {
                 StartSpawnMob(charID, _currentMobSpawnDataDic[charID]);
@@ -116,7 +115,7 @@ namespace PG.Battle
         private List<IEnumerator> _spawnCrtnList;
         private List<IEnumerator> _fillSpawnCrtnList;
 
-        private void FillMobs() //ÃÖ¼Ò ¸¶¸®¼ö Ã¤¿ì´Â ÇÔ¼ö
+        private void FillMobs() //ìµœì†Œ ë§ˆë¦¬ìˆ˜ ì±„ìš°ëŠ” í•¨ìˆ˜
         {
             if (_aliveMobCount < _currentMinMobNum)
             {
@@ -125,12 +124,12 @@ namespace PG.Battle
                 {
                     _isFilling = true;
 
-                    //ÀÏ¹İ½ºÆùÇÏ´ø°Å ¸ØÃß°í
+                    //ì¼ë°˜ìŠ¤í°í•˜ë˜ê±° ë©ˆì¶”ê³ 
                     foreach (IEnumerator crtn in _spawnCrtnList)
                     {
                         StopCoroutine(crtn);
                     }
-                    //Fill½ºÆùÀ¸·Î ÀüÈ¯
+                    //FillìŠ¤í°ìœ¼ë¡œ ì „í™˜
                     foreach (IEnumerator crtn in _fillSpawnCrtnList)
                     {
                         StartCoroutine(crtn);
@@ -138,8 +137,8 @@ namespace PG.Battle
                 }
                 else
                 {
-                    //¿©±â·Î µé¾î¿À¸é °è¼Ó Ã¤¿ì°í ÀÖ´Âµ¥ ¼Óµµ°¡ ¸øµû¶ó°£´Ù´Â ¶æ
-                    //-> Ã¤¿ì´Â ¼Óµµ Á¡Á¡ up½ÃÅ´
+                    //ì—¬ê¸°ë¡œ ë“¤ì–´ì˜¤ë©´ ê³„ì† ì±„ìš°ê³  ìˆëŠ”ë° ì†ë„ê°€ ëª»ë”°ë¼ê°„ë‹¤ëŠ” ëœ»
+                    //-> ì±„ìš°ëŠ” ì†ë„ ì ì  upì‹œí‚´
                     _fillSpeed += 0.01f;
                 }
 
@@ -160,8 +159,8 @@ namespace PG.Battle
                 }
                 else
                 {
-                    //¿©±â·Î µé¾î¿À¸é ¸÷À» Àß ¸øÀâ°í ÀÖ´Ù´Â ¶æ
-                    //-> Ã¤¿ì´Â ¼Óµµ down ½ÃÅ´ (ÃÖ¼Ò 2¹è, upº¸´Ü ´À¸®°Ô)
+                    //ì—¬ê¸°ë¡œ ë“¤ì–´ì˜¤ë©´ ëª¹ì„ ì˜ ëª»ì¡ê³  ìˆë‹¤ëŠ” ëœ»
+                    //-> ì±„ìš°ëŠ” ì†ë„ down ì‹œí‚´ (ìµœì†Œ 2ë°°, upë³´ë‹¨ ëŠë¦¬ê²Œ)
                     if(_fillSpeed > 2)
                     {
                         _fillSpeed -= 0.003f;
@@ -178,20 +177,20 @@ namespace PG.Battle
 
         IEnumerator WaitCoroutine(CharacterID mobID, MobSpawnData mobSpawnData)
         {
-            yield return new WaitForSeconds(mobSpawnData._½ºÆù´ë±â½Ã°£);
+            yield return new WaitForSeconds(mobSpawnData._ìŠ¤í°ëŒ€ê¸°ì‹œê°„);
 
             IEnumerator crtn = SpawnCoroutine(mobID, mobSpawnData);
             _spawnCrtnList.Add(crtn);
             StartCoroutine(crtn);
 
-            //ÃÖ¼Ò ¸¶¸®¼ö ¸ÂÃâ ¶§ ¾µ fillÄÚ·çÆ¾µµ ¸¸µé¾îµÎ±â 
+            //ìµœì†Œ ë§ˆë¦¬ìˆ˜ ë§ì¶œ ë•Œ ì“¸ fillì½”ë£¨í‹´ë„ ë§Œë“¤ì–´ë‘ê¸° 
             _fillSpawnCrtnList.Add(FillSpawnCoroutine(mobID, mobSpawnData));
         }
 
         
         IEnumerator SpawnCoroutine(CharacterID mobID, MobSpawnData mobSpawnData)
         {
-            WaitForSeconds waitForSeconds = new WaitForSeconds(mobSpawnData._¸®½ºÆùµô·¹ÀÌ);
+            WaitForSeconds waitForSeconds = new WaitForSeconds(mobSpawnData._ë¦¬ìŠ¤í°ë”œë ˆì´);
 
             while (true)
             {
@@ -202,12 +201,12 @@ namespace PG.Battle
 
         IEnumerator FillSpawnCoroutine(CharacterID mobID, MobSpawnData mobSpawnData)
         {
-            float respawnDelay = mobSpawnData._¸®½ºÆùµô·¹ÀÌ;
+            float respawnDelay = mobSpawnData._ë¦¬ìŠ¤í°ë”œë ˆì´;
 
             while (true)
             {
                 SpawnMob(mobID, mobSpawnData);
-                //¼Óµµ °è¼Ó ¹Ù²ãÁÙ°Å¶ó new·Î
+                //ì†ë„ ê³„ì† ë°”ê¿”ì¤„ê±°ë¼ newë¡œ
                 yield return new WaitForSeconds(respawnDelay/_fillSpeed);
             }
         }
@@ -218,7 +217,7 @@ namespace PG.Battle
 
         private void SettingNowPools()
         {
-            //ÀÌÀü¿¡ ¸¸µé¾îµĞ poolÀÌ ³²¾ÆÀÖ´Â °æ¿ì
+            //ì´ì „ì— ë§Œë“¤ì–´ë‘” poolì´ ë‚¨ì•„ìˆëŠ” ê²½ìš°
             foreach (ProjectilePool<MobScript> pool in _totalMobDictionary.Values)
             {
                 pool.Clear();
@@ -282,7 +281,7 @@ namespace PG.Battle
             }
             else
             {
-                //¿şÀÌºê°¡ ³Ñ¾î°¡¼­ Ç®ÀÌ »ç¶óÁø °æ¿ì´Â ±×³É ÆÄ±«
+                //ì›¨ì´ë¸Œê°€ ë„˜ì–´ê°€ì„œ í’€ì´ ì‚¬ë¼ì§„ ê²½ìš°ëŠ” ê·¸ëƒ¥ íŒŒê´´
                 Destroy(target.gameObject);
             }
             
@@ -291,7 +290,7 @@ namespace PG.Battle
             
         }
 
-        //ÇöÀç ¸÷µéÀÇ À§Ä¡ ¼øÀ¸·Î ¸®½ºÆ® Á¤·ÄÇÏ°í ¸®ÅÏ
+        //í˜„ì¬ ëª¹ë“¤ì˜ ìœ„ì¹˜ ìˆœìœ¼ë¡œ ë¦¬ìŠ¤íŠ¸ ì •ë ¬í•˜ê³  ë¦¬í„´
         public static List<MobScript> GetMobList()
         {
             _instance._mobList.Sort((mobA, mobB) => mobA.transform.position.y.CompareTo(mobB.transform.position.y));
