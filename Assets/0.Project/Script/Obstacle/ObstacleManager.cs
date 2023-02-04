@@ -71,7 +71,7 @@ namespace PG.Battle
         }
         public static void DeleteObstacleOnListAll()
         {
-            //pool clear°¡ ¾Æ´Ï°í ¸ğµç obstacleÀ» Ç®·Î ¹İ³³ÇÏ´Â°Å
+            //pool clearê°€ ì•„ë‹ˆê³  ëª¨ë“  obstacleì„ í’€ë¡œ ë°˜ë‚©í•˜ëŠ”ê±°
             foreach (Obstacle obs in _instance._activeObstacleList) 
             {
                 obs.SetLifeTime(0);

@@ -2,6 +2,7 @@ using PG.Event;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 namespace PG.Battle
@@ -9,21 +10,26 @@ namespace PG.Battle
     public class OptionSystem : MonoBehaviour
     {
         [SerializeField]
-        GameObject _pausePannel;
+        private GameObject _pausePannel;
         [SerializeField]
-        GameObject _pauseButton;
+        private GameObject _pauseButton;
         [SerializeField]
-        Slider _backgroundSoundSlider;
+        private Slider _backgroundSoundSlider;
         [SerializeField]
-        Slider _effectSoundSlider;
+        private Slider _effectSoundSlider;
 
-
+        [SerializeField] 
+        private AudioMixer _audioMixer;
+        
         bool _isPannelshow = false;
 
         private void Start()
         {
-            _backgroundSoundSlider.value = AudioManager._instance.GetBackgroundVolume();
-            _effectSoundSlider.value = AudioManager._instance.GetEffectVolume();
+            _audioMixer.GetFloat("MusicVolume",out float bgmVol);
+            _backgroundSoundSlider.value = Mathf.Pow(10, (bgmVol/20));
+            
+            _audioMixer.GetFloat("MusicVolume",out float effectVol);
+            _effectSoundSlider.value = Mathf.Pow(10, (effectVol/20));
         }
 
         public void CallPausePanel()
@@ -62,21 +68,12 @@ namespace PG.Battle
 
         public void SetBackgroundVolume(float volume)
         {
-            AudioManager._instance.ChangeBackgroundVolume(volume);
+            //-80~0 -> 0.0001~1
+            _audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
         }
         public void SetEffectVolume(float volume)
         {
-            AudioManager._instance.ChangeEffectVolume(volume);
+            _audioMixer.SetFloat("EffectVolume", Mathf.Log10(volume) * 20);
         }
-
-        public void MuteBackgroundSound(bool value)
-        {
-            AudioManager._instance.MuteBackgroundVolume(value);
-        }
-        public void MuteEffectSound(bool value)
-        {
-            AudioManager._instance.MuteEffectVolume(value);
-        }
-
     }
 }

@@ -25,8 +25,8 @@ namespace PG.Data
 
 
         Slime = 21,
-        Tempt_Mob = 22
-
+        Tempt_Mob = 22,
+        Tempt_Mob2 = 23,
 
     }
     public enum EffectID
