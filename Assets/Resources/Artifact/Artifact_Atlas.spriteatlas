@@ -158,6 +158,8 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 9900775f0e31f794ea2d891619e8b6ab, type: 3}
     - {fileID: 2800000, guid: 21d1b422c1ae9964e8dceb2441772f11, type: 3}
     - {fileID: 2800000, guid: 9798c223645b6714b9f761b90ecb67e1, type: 3}
+    - {fileID: 2800000, guid: bd39e71e40bed11409b011e31dae443e, type: 3}
+    - {fileID: 2800000, guid: bd39e71e40bed11409b011e31dae443e, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -377,8 +379,8 @@ SpriteAtlas:
   - SpellBook01_77
   - SpellBook01_62
   - SpellBook01_17
-  - SpellBook01_90
-  - SpellBook01_03
+  - Magic_Lenz
+  - Example_A
   - SpellBook01_95
   - SpellBook01_24
   - SpellBook01_35

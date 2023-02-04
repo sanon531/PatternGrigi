@@ -31,13 +31,13 @@ namespace PG.Data
     }
     public enum EffectID
     {
-        공격력 = 0,
-        방어력 = 1,
+        Attack = 0,
+        Defend = 1,
     }
     public enum ArtifactID
     {
-        //최초의 기본 유물 동남아 설화인 마하니파타 자카타를 모티브로 하였으며
-        //번개 공격을기본적으로 주게 됨.
+        //
+        //
         Thunder_Manimekhala = 0,
         LoveAndPeace = 1,
 
@@ -55,7 +55,6 @@ namespace PG.Data
         Thunder_Colorant =30,
         Decalcomanie  =31,
         Magic_Lenz = 32,
-
         //단거리세트
         QuickSlice = 42,
 
@@ -69,6 +68,8 @@ namespace PG.Data
 
         
         Mix_PadSesame = 80 ,
+        
+        Example_A = 81,
 
         Upgrade_AimShot = 100,
         Upgrade_StraightShot = 101,

@@ -74,7 +74,7 @@ namespace PG.Data
         public static ProjectileIDDataDic _projectileIDDataDic = new ProjectileIDDataDic(){};
         public static List<float> _waveTimeList = new List<float>();
         public static List<WaveClass> _waveClassList = new List<WaveClass>();
-
+        public static int _Example_A_Token = 0;
         #endregion;
 
         #region InPlayData

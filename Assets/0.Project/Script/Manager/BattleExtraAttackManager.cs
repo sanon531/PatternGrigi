@@ -54,7 +54,7 @@ namespace PG.Battle
         {
             while (_thunderCalled)
             {
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForFixedUpdate();
                 ThunderCalc();
             }
 
