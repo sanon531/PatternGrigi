@@ -92,6 +92,7 @@ namespace PG.Battle
     {
       if (this.m_CollectionCheck && this.m_Queue.Count > 0 && this.m_Queue.Contains(element))
         throw new InvalidOperationException("Trying to release an object that has already been released to the pool.");
+      
       Action<T> actionOnRelease = this.m_ActionOnRelease;
       if (actionOnRelease != null)
         actionOnRelease(element);

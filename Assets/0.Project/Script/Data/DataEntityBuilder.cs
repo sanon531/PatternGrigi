@@ -6,21 +6,21 @@ namespace PG
 {
     public partial class DataEntity
     {
-        public DataEntity(Type type, int ±âº»°ª)
+        public DataEntity(Type type, int ê¸°ë³¸ê°’)
         {
             this.type = type;
-            _±âº»°ª = ±âº»°ª;
+            _ê¸°ë³¸ê°’ = ê¸°ë³¸ê°’;
         }
-        public DataEntity(Type type, float ±âº»°ª)
+        public DataEntity(Type type, float ê¸°ë³¸ê°’)
         {
             this.type = type;
-            _±âº»°ª = ±âº»°ª;
+            _ê¸°ë³¸ê°’ = ê¸°ë³¸ê°’;
         }
 
-        private DataEntity(Type type, int ±âº»°ª, Property properties)
+        private DataEntity(Type type, int ê¸°ë³¸ê°’, Property properties)
         {
             this.type = type;
-            _±âº»°ª = ±âº»°ª;
+            _ê¸°ë³¸ê°’ = ê¸°ë³¸ê°’;
             this.properties = properties;
         }
 
@@ -28,19 +28,19 @@ namespace PG
         {
             type = data.type;
             properties = data.properties;
-            _±âº»°ª = data._±âº»°ª;
-            _¹è¼ö = data._¹è¼ö;
-            _Áõ°¡·® = data._Áõ°¡·®;
-            _Áõ°¡·®¹è¼ö = data._Áõ°¡·®¹è¼ö;
-            _Ãß°¡·®= data._Ãß°¡·®;
+            _ê¸°ë³¸ê°’ = data._ê¸°ë³¸ê°’;
+            _ë°°ìˆ˜ = data._ë°°ìˆ˜;
+            _ì¦ê°€ëŸ‰ = data._ì¦ê°€ëŸ‰;
+            _ì¦ê°€ëŸ‰ë°°ìˆ˜ = data._ì¦ê°€ëŸ‰ë°°ìˆ˜;
+            _ì¶”ê°€ëŸ‰= data._ì¶”ê°€ëŸ‰;
 
         }
 
 
 
-        public static DataEntity OriginalData(int ±âº»°ª)
+        public static DataEntity OriginalData(int ê¸°ë³¸ê°’)
         {
-            return new DataEntity(Type.None, ±âº»°ª);
+            return new DataEntity(Type.None, ê¸°ë³¸ê°’);
         }
 
 

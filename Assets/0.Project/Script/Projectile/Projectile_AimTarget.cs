@@ -20,13 +20,14 @@ namespace PG.Battle
         protected float Acceleration { get => acceleration; set => acceleration = value; }
 
         // Start is called before the first frame update
-        public override void SetFrequentProjectileData(MobScript target, float damage, float spreadCount)
+        public override void SetFrequentProjectileData(MobScript target, float damage,Vector3 projectilePlace)
         {
-            base.SetFrequentProjectileData(target, damage, spreadCount);
+            base.SetFrequentProjectileData(target, damage, projectilePlace);
             
-            if (IstargetMobNotNull)
+            
+            if (target is not null)
                 _direction = target.GetMobPosition() - transform.position;
-            else
+            else 
                 _direction = Vector3.up;
 
             _direction = _direction.normalized;

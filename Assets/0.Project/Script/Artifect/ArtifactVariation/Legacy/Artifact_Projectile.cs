@@ -1,26 +1,18 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using PG.Battle;
 using UnityEngine;
 using PG.Event;
 using PG.Data;
-
 namespace PG
 {
-    public class Artifact_Default_HealthUp : Artifact
+    public sealed class Artifact_BulletTeleportShooter : Artifact
     {
-        //무한으로 업그레이드 되도록 디자인함.
-        public override int UpgradeCount
+        public Artifact_BulletTeleportShooter() : base(ArtifactID.BulletTeleportShooter)
         {
-            get => _upgradeCount;
-            set => _upgradeCount = value;
         }
 
-        
-        public Artifact_Default_HealthUp() : base(ArtifactID.Default_HealthUp)
-        {
-        }
-        
         public override void OnGetArtifact()
         {
             base.OnGetArtifact();
@@ -30,7 +22,8 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
-            Player_Script.Damage(-10);
+            Global_CampaignData._projectileSpeed.Add배수(2);
+            Global_CampaignData._projectileTargetNum.Add배수(2);
         }
 
 
@@ -38,14 +31,18 @@ namespace PG
         protected override void Disable()
         {
             base.Disable();
-
+            Global_CampaignData._projectileSpeed.Add배수(2);
+            Global_CampaignData._projectileTargetNum.Add배수(2);
         }
         public override void AddCountOnArtifact()
         {
-            Player_Script.Damage(-10);
             base.AddCountOnArtifact();   
-            //Debug.Log("Fragile_Rush LEL");
+            Global_CampaignData._projectileSpeed.Add배수(2);
+            Global_CampaignData._projectileTargetNum.Add배수(2);
         }
-        
+
+
     }
+
+
 }

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0b2ca909a209340afe36adeafe0b8e, type: 3}
   m_Name: ThunderBegining
   m_EditorClassIdentifier: 
-  _startArtifactList: 00000000
-  _obtainableArtifactIDList: 33000000340000003d0000002a000000
+  _startArtifactList: 1e00000000000000
+  _obtainableArtifactIDList: 3d0000002a00000020000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000150000001600000017000000
     m_values:
@@ -62,7 +62,7 @@ MonoBehaviour:
     m_values:
     - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 0
       "_\uC801\uBC30\uCE58":
-        m_keys: 17000000
+        m_keys: 15000000
         m_values:
         - "_\uC2A4\uD3F0\uC218": 2
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0.2
@@ -154,7 +154,7 @@ MonoBehaviour:
   _projectileIDDataDic:
     m_keys: 00000000
     m_values:
-    - _count: 0
+    - _count: 1
       _repeat: 1
       _cooltime: 0.5
   _projectileSpeed:

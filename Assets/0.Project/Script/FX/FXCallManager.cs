@@ -19,7 +19,7 @@ namespace PG.Battle
             {
                 GameObject tempt = Instantiate(
                     Resources.Load<GameObject>("Effect/PatternFX/" + val.ToString()),
-                    _waitingTransform.position, Quaternion.identity, transform);
+                    _waitingTransform.position, Quaternion.identity, _waitingTransform);
                 _patternPrefabDic.Add(val, tempt.GetComponent<ParticleSystem>());
                 tempt.GetComponent<ParticleSystem>().Play();
             }
@@ -93,8 +93,7 @@ namespace PG.Battle
 
         private ParticleSystem CreateSlash()
         {
-            ParticleSystem particle = Instantiate(slashParticle, transform).GetComponent<ParticleSystem>();
-            
+            ParticleSystem particle = Instantiate(slashParticle, _waitingTransform).GetComponent<ParticleSystem>();
             return particle;
         }
 

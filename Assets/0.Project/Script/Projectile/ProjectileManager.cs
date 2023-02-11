@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using System.Linq;
 using UnityEngine;
 
 using PG.Data;
 using PG.Event;
-using UnityEngine.Pool;
 using UnityEngine.Serialization;
 
 namespace PG.Battle 
@@ -24,7 +22,7 @@ namespace PG.Battle
         [SerializeField] private ProjectileIDintDic trackerIDintDic = new ProjectileIDintDic();
             
         [SerializeField]
-        ProjectileIDFloatDic _projectileLifeTimeDic = new ProjectileIDFloatDic()
+        ProjectileIDFloatDic projectileLifeTimeDic = new ProjectileIDFloatDic()
         {
             { ProjectileID.NormalBullet,5f},
             { ProjectileID.LightningShot,0.5f},
@@ -86,7 +84,6 @@ namespace PG.Battle
 
         #region ObjectPoolPlace
 
-        private List<Transform> projectileTransforms = new List<Transform>();
         private ProjectileScript CreateProjectile(int id)
         {
             //print("create"+id);
@@ -94,7 +91,7 @@ namespace PG.Battle
             ProjectileScript project = Instantiate(projectileDictionary[temptID], transform).GetComponent<ProjectileScript>();
             project.SetInitialProjectileData(
                 _totalProjectileDictionary[temptID],
-                _projectileLifeTimeDic[temptID]);
+                projectileLifeTimeDic[temptID]);
             
             project.gameObject.SetActive(false);
             return project;
@@ -104,7 +101,7 @@ namespace PG.Battle
         {
             projectileScript.gameObject.SetActive(true);
             //print("pick"+nameof(projectileScript));
-            projectileTransforms.Add(projectileScript.transform);
+            Global_CampaignData._activatedProjectileList.Add(projectileScript.transform);
             trackerIDintDic[projectileScript.id]--;
             
         }
@@ -112,7 +109,7 @@ namespace PG.Battle
         {
             projectileScript.gameObject.SetActive(false);
             //print("release"+nameof(projectileScript));
-            projectileTransforms.Remove(projectileScript.transform);
+            Global_CampaignData._activatedProjectileList.Remove(projectileScript.transform);
             trackerIDintDic[projectileScript.id]++;
         }
 
@@ -141,9 +138,7 @@ namespace PG.Battle
             foreach (var pair in Global_CampaignData._projectileIDDataDic) 
             {
                 
-                 Debug.Log("projectile check_ count: " +pair.Key + 
-                           pair.Value._count
-                           +"projectile check_ repeat: "+pair.Value._repeat);
+                 //Debug.Log("projectile check_ count: " +pair.Key + pair.Value._count+"projectile check_ repeat: "+pair.Value._repeat);
                 
                 if (pair.Value._repeat <= 0||
                     pair.Value._count<= 0)
@@ -182,10 +177,10 @@ namespace PG.Battle
             while (true) 
             {
                 //yield return new WaitForEndOfFrame();
-                print("Pew Pew"+id);
+                //print("Pew Pew"+id);
                 _temptDamage = _currentShotAmmoDic[id].Dequeue();
                 SetSpreadShotStyle(_temptDamage, id);
-
+                print("Pew Pew"+_currentShotAmmoDic[id].Count);
                 if (_currentShotAmmoDic[id].Count > 0) 
                 {
                     yield return new WaitForSeconds(Global_CampaignData._projectileIDDataDic[id]._cooltime);
@@ -207,19 +202,48 @@ namespace PG.Battle
             //지금은 그냥 instantiate를 하지만 나중에는 오브젝트 풀링이 가능하도록 만들것..
             TargetTheEnemy();
             int _spreadcount = Global_CampaignData._projectileIDDataDic[id]._count;
+
+            int sqrtCeil = Mathf.CeilToInt(Mathf.Sqrt(_spreadcount+1));
+
+            
+            //발사에 관하여서 그냥 발사하는 시스템으로 만들어야한다.
             while (_spreadcount > 0) 
             {
-                for (int i = _targetList.Count - 1; i >= 0 && _spreadcount > 0; i--)
+                if (_targetedMobList.Count > 0)
+                {
+                    for (int i = 0; i <_targetedMobList.Count ; i++)
+                    {
+                        ProjectileScript _tempt = _totalProjectileDictionary[id].PickUp();
+                        _tempt.SetFrequentProjectileData(_targetedMobList[i] , val, 
+                            GetPosBySpread(_spreadcount,sqrtCeil)
+                        );
+                        _spreadcount--;
+                    }
+                }
+                else
                 {
                     ProjectileScript _tempt = _totalProjectileDictionary[id].PickUp();
-                    _tempt.SetFrequentProjectileData(_targetedMobList[i], val, 
-                        0.25f * (i - _spreadcount));
-                    //Debug.Log("ss" + _spreadcount);
+                    _tempt.SetFrequentProjectileData(null, val, 
+                        GetPosBySpread(_spreadcount+1,sqrtCeil)
+                    );
+                    //Debug.Log("ss" + GetPosBySpread(i,sqrtCeil));
                     _spreadcount--;
                 }
+
             }
 
 
+        }
+
+        Vector2 GetPosBySpread(int thisCount, int sqrtCeil)
+        {
+            float x = (thisCount-1) % sqrtCeil  - (sqrtCeil-1)/2;
+            float y = (thisCount-1) / sqrtCeil - (sqrtCeil-1)/2;
+            print("thisCount : "+thisCount + "sqrtCeil : "+sqrtCeil +" x : " +x+" y : "+y);
+            x *= 1.5f;
+            y *= 1.5f;
+            
+            return new Vector2(x, y);
         }
 
 
@@ -229,18 +253,17 @@ namespace PG.Battle
         public void TargetTheEnemy()
         {
             _temptenemyList = MobGenerator.GetMobList();
-
-
-            if (_temptenemyList.Count <= 0)
-            {
-                return;
-            }
             int maxTargetNum;
             maxTargetNum = 0;
             _targetList.Clear();
             _targetedMobList.Clear();
+            if (_temptenemyList.Count <= 0)
+                return ;
+            
             //지금은 적의 스폰 순서 대로 대충 정하긴하지만. 
             //나중에는 몹제네레이터에서 몹들의 위치를 정해줌.
+            //만약 리스트에 없으면 어케함.
+            //적이 없을 경우 그냥.
             for (int i = 0; i < _temptenemyList.Count; i++)
             {
                 //몹에도 타겟 표시함.
@@ -253,15 +276,6 @@ namespace PG.Battle
             for (int i = 0; i < _temptenemyList.Count; i++) 
             {
                 _targetedMobList.Add(_temptenemyList[i]);
-
-                if (_targetList.Contains(i))
-                {
-                    _temptenemyList[i].SetTargetted(true);
-                }
-                else 
-                {
-                    _temptenemyList[i].SetTargetted(false);
-                }
             }
 
         }

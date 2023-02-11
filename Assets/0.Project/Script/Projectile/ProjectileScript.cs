@@ -1,9 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using PG.Data;
-using UnityEngine.Serialization;
 
 namespace PG.Battle
 {
@@ -59,18 +57,16 @@ namespace PG.Battle
         
 
         protected bool IsActive = true;
-        /// <summary>
-        /// �߻� �Ҷ����� �۵��ϴ� ��ũ��Ʈ.
-        /// </summary>
-        public virtual void SetFrequentProjectileData(MobScript target, float damage, float spreadCount)
+        public virtual void SetFrequentProjectileData([CanBeNull] MobScript target, float damage,Vector3 projectilePlace)
         {
             IsActive = true;
             PierceCount = 0;
             CurrentLifeTime = MaxLifeTime;
-            IstargetMobNotNull = targetMob != null;
+            IstargetMobNotNull = targetMob is null;
             targetMob = target;
             Damage = damage;
-            transform.position = (Player_Script.GetPlayerPosition() + new Vector3(spreadCount, 0, 0));
+            PierceCount = (int)Global_CampaignData._projectilePierce.FinalValue;
+            transform.position = (Player_Script.GetPlayerPosition() + projectilePlace);
         }
 
         protected virtual void LateUpdate()
@@ -88,9 +84,14 @@ namespace PG.Battle
             if (collision.CompareTag("Enemy") && !PiercedList.Contains(collision.gameObject))
             {
                 collision.GetComponent<MobScript>().Damage(Damage);
+                PiercedList.Add(gameObject);
                 PierceCount--;
                 if (PierceCount <= 0)
                     IsActive=false;
+            }
+            if (collision.CompareTag($"Boundary"))
+            {
+                IsActive=false;
             }
         }
     }

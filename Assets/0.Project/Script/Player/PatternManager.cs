@@ -56,27 +56,18 @@ namespace PG.Battle
         }
 
 
-        //�������� ���� �Ǿ������� �޼ҵ�
         public static void DamageCallWhenNodeReach(int nodeID)
         {
-            //���� �������� ä��� ���� �������� ��á����� �־��� ��尡 ����������. 
-            //_instance.SetGaugeChange();
-            //�ϴ� ������ ��� ���ְ�����. �װ� ���� �ǰ��� ���� 
-            //���� ����Ѵ����� �ʱ�ȭ ������� �Ʒ� ���� ���� �ٲ��� ����
             float length =
                 _instance.GetNodePositionByID(_instance._lastNode, nodeID) *
                 Global_CampaignData._lengthMagnData.FinalValue;
             float resultDamage = length * Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue;
-            // ��� ������ ������ �������� 0���� ����
             _instance.CalcDamageOnSlash(_instance._lastNode,nodeID,resultDamage);
-            //
             Global_BattleEventSystem.CallOnCalcPlayerAttack(resultDamage);
 
             _instance.CheckNodeOnDamage(nodeID);
 
 
-            //�̺κп��� ����ġ ���� �ڵ带 ���� �ؾ���. ����� �� ������ �ٲ�°�� ������.
-            //
             LineTracer._instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
             VibrationManager.CallVibration();
         }
@@ -89,9 +80,6 @@ namespace PG.Battle
             float range = Vector2.Distance(currentPos,lastPos);
             dir = dir.normalized;
             FXCallManager.PlaySlashFX(lastPos,currentPos);
-            //layer ���ҷ� ���� ������ �غ�����.
-
-            //������ �Ұ� ���̾� ���� + 
             RaycastHit2D[] hits=new RaycastHit2D[30];
             var count= Physics2D.RaycastNonAlloc(lastPos,dir,hits,range);
 

@@ -1,5 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using Mono.Collections.Generic;
+
 namespace PG.Battle.FX
 {
 
@@ -23,14 +26,19 @@ namespace PG.Battle.FX
                 textMesh.text = text;
             Vector3 _targetPos = new Vector2(Random.value, Random.value);
             _targetPos = transform.position + _targetPos.normalized;
-            transform.DOJump(_targetPos, 1f, 1, LifeTime);
+            //transform.DOJump(_targetPos, 1f, 1, LifeTime);
             if (textMesh)
                 textMesh.color = color;
-            DOTween.ToAlpha(() => textMesh.color, x => textMesh.color = x, 0, LifeTime).
-                SetEase(_fadeEase).OnComplete(()=>DamageFXManager.FinishFX(gameObject));
-
+            StartCoroutine(DelayedFinish());
+            //DOTween.ToAlpha(() => textMesh.color, x => textMesh.color = x, 0, LifeTime).
+            //SetEase(_fadeEase).OnComplete(()=>DamageFXManager.FinishFX(gameObject));
         }
 
+        IEnumerator DelayedFinish()
+        {
+            yield return new WaitForSeconds(LifeTime);
+            DamageFXManager.FinishFX(gameObject);
+        }
 
     }
 }

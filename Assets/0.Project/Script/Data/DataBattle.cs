@@ -35,29 +35,7 @@ namespace PG.Data
         //아티팩트의 수치와 행동을 분리하여야 한다.그래야 나중에 텍스트 처리할때 편하다.
         //그리고 이후에 테크 트리, 점진적인 레벨링 같은거 할때 다음과 같이 나올수가 있다면 좋을듯함.
 
-        public static Dictionary<ArtifactID, Artifact> TotalArtifactClassDic =
-            new Dictionary<ArtifactID, Artifact>()
-            {
-
-                #region//10월 업데이트 이전의 유물들
-                {ArtifactID.Thunder_Manimekhala, new Artifact_Thunder_Manimekhala()},
-                {ArtifactID.LoveAndPeace, new Artifact_LoveAndPeace()},
-                {ArtifactID.FragileRush, new Artifact_FragileRush()},
-                {ArtifactID.BubbleGun, new Artifact_BubbleGun()},
-                {ArtifactID.Equatore, new Artifact_Equatore()},
-                {ArtifactID.QuickSlice, new Artifact_QuickSlice()},
-                {ArtifactID.PadThai, new Artifact_PadThai()},
-                {ArtifactID.SesameOil, new Artifact_SesameOil()},
-                {ArtifactID.BulletTeleportShooter, new Artifact_BulletTeleportShooter()},
-                {ArtifactID.Pinocchio, new Artifact_Pinnochio()},
-                {ArtifactID.AtomSetting, new Artifact_AtomSetting()},
-                #endregion
-                {ArtifactID.Upgrade_AimShot, new Artifact_UpgradeAimShot()},
-                {ArtifactID.Upgrade_StraightShot, new Artifact_UpgradeStraightShot()},
-                {ArtifactID.Upgrade_LightningShot, new Artifact_UpgradeLightningShot()},
-
-
-            };
+       
 
         public static Dictionary<DrawPatternPresetID, LaserKindID> PatternWIthLaserDic =
             new Dictionary<DrawPatternPresetID, LaserKindID>()

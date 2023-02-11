@@ -7,30 +7,30 @@ namespace PG
     [System.Serializable]
     public partial class DataEntity
     {
-        public void ResetAdd() { _Áõ°¡·® = 0; }
-        public void AddÁõ°¡·®(float amount) { _Áõ°¡·® += amount; }
-        public void AddÁõ°¡·®¹è¼ö(float amount) { _Áõ°¡·®¹è¼ö *= amount; }
-        public void Add¹è¼ö(float amount) { _¹è¼ö *= amount; }
-        public void AddÃß°¡·®(int amount) { _Ãß°¡·® += amount; }
+        public void ResetAdd() { _ì¦ê°€ëŸ‰ = 0; }
+        public void Addì¦ê°€ëŸ‰(float amount) { _ì¦ê°€ëŸ‰ += amount; }
+        public void Addì¦ê°€ëŸ‰ë°°ìˆ˜(float amount) { _ì¦ê°€ëŸ‰ë°°ìˆ˜ *= amount; }
+        public void Addë°°ìˆ˜(float amount) { _ë°°ìˆ˜ *= amount; }
+        public void Addì¶”ê°€ëŸ‰(int amount) { _ì¶”ê°€ëŸ‰ += amount; }
 
         [SerializeField]
-        private float _±âº»°ª = 0;
+        private float _ê¸°ë³¸ê°’ = 0;
         [SerializeField]
-        private float _Áõ°¡·® = 0;
+        private float _ì¦ê°€ëŸ‰ = 0;
         [SerializeField]
-        private float _Áõ°¡·®¹è¼ö = 1f;  //Áõ°¡·®¿¡¸¸ °öÇÑ´Ù. (°ø°Ý·Â °è¼ö µî¿¡ »ç¿ë)
+        private float _ì¦ê°€ëŸ‰ë°°ìˆ˜ = 1f;  //ì¦ê°€ëŸ‰ì—ë§Œ ê³±í•œë‹¤. (ê³µê²©ë ¥ ê³„ìˆ˜ ë“±ì— ì‚¬ìš©)
         [SerializeField]
-        private float _¹è¼ö = 1f;        //±âº»°ª¿¡ Áõ°¡·®ÀÌ ´õÇØÁø °ª¿¡ °öÇÑ´Ù.
+        private float _ë°°ìˆ˜ = 1f;        //ê¸°ë³¸ê°’ì— ì¦ê°€ëŸ‰ì´ ë”í•´ì§„ ê°’ì— ê³±í•œë‹¤.
         [SerializeField]
-        private float _Ãß°¡·® = 0;         //³ª¸ÓÁö °è»êÀÌ ´Ù ¿Ï·á µÈ ÈÄ, °ªÀ» Ãß°¡ÇÑ´Ù.
+        private float _ì¶”ê°€ëŸ‰ = 0;         //ë‚˜ë¨¸ì§€ ê³„ì‚°ì´ ë‹¤ ì™„ë£Œ ëœ í›„, ê°’ì„ ì¶”ê°€í•œë‹¤.
         public float FinalValue { get {
-                //Debug.Log("±âº»°ª: " + _±âº»°ª + ", Áõ°¡·®" + _Áõ°¡·® +", Áõ°¡·® ¹è¼ö"+ _Áõ°¡·®¹è¼ö + ", Ãß°¡·® "+ _Ãß°¡·®+" , ¹è¼ö" +_¹è¼ö);
-                //Debug.Log(" a"+(float)((_±âº»°ª + _Áõ°¡·® * _Áõ°¡·®¹è¼ö) * _¹è¼ö));
-                return (float)((_±âº»°ª + _Áõ°¡·® * _Áõ°¡·®¹è¼ö) * _¹è¼ö + _Ãß°¡·®); 
+                //Debug.Log("ê¸°ë³¸ê°’: " + _ê¸°ë³¸ê°’ + ", ì¦ê°€ëŸ‰" + _ì¦ê°€ëŸ‰ +", ì¦ê°€ëŸ‰ ë°°ìˆ˜"+ _ì¦ê°€ëŸ‰ë°°ìˆ˜ + ", ì¶”ê°€ëŸ‰ "+ _ì¶”ê°€ëŸ‰+" , ë°°ìˆ˜" +_ë°°ìˆ˜);
+                //Debug.Log(" a"+(float)((_ê¸°ë³¸ê°’ + _ì¦ê°€ëŸ‰ * _ì¦ê°€ëŸ‰ë°°ìˆ˜) * _ë°°ìˆ˜));
+                return (float)((_ê¸°ë³¸ê°’ + _ì¦ê°€ëŸ‰ * _ì¦ê°€ëŸ‰ë°°ìˆ˜) * _ë°°ìˆ˜ + _ì¶”ê°€ëŸ‰); 
             
             } }
-        public int BaseValue { get { return (int)_±âº»°ª; } }
-        public void PrintCurrent() { Debug.Log("±âº»°ª: " + _±âº»°ª + ", Áõ°¡·®" + _Áõ°¡·® + ", Áõ°¡·® ¹è¼ö" + _Áõ°¡·®¹è¼ö + ", Ãß°¡·® " + _Ãß°¡·® + " , ¹è¼ö" + _¹è¼ö); }
+        public int BaseValue { get { return (int)_ê¸°ë³¸ê°’; } }
+        public void PrintCurrent() { Debug.Log("ê¸°ë³¸ê°’: " + _ê¸°ë³¸ê°’ + ", ì¦ê°€ëŸ‰" + _ì¦ê°€ëŸ‰ + ", ì¦ê°€ëŸ‰ ë°°ìˆ˜" + _ì¦ê°€ëŸ‰ë°°ìˆ˜ + ", ì¶”ê°€ëŸ‰ " + _ì¶”ê°€ëŸ‰ + " , ë°°ìˆ˜" + _ë°°ìˆ˜); }
         public Property properties { get; private set; }
 
         public void AddProperty(Property property){ properties |= property;}
@@ -47,44 +47,45 @@ namespace PG
             Damage = 1,
             ChargeGauge = 2,
             ChargeEXP = 3,
-            »ý¸í·ÂÁ÷Á¢´ëÀÔ = 4,   //ÇÇÇØ³ª È¸º¹ÀÌ ¾Æ´Ñ »ý¸í·ÂÀ» NÀ¸·Î ¸¸µì´Ï´Ù µîÀÇ È¿°ú.
-                           //ÇÇÇØ³ª È¸º¹¿¡µû¸¥ ÀÌº¥Æ®¸¦ ¹ß»ý½ÃÅ°Áö ¾Ê´Â´Ù.
-            ¹æ¾îµµÁ÷Á¢´ëÀÔ = 5,   //¹æ¾îµµ È¹µæÀÌ³ª ¼Ò¸ð°¡¾Æ´Ô.
-                           //´ëÇ¥ÀûÀ¸·Î ÅÏ ½ÃÀÛ½Ã ¹æ¾îµµ ÃÊ±âÈ­µÉ¶§ »ç¿ë.
+            ìƒëª…ë ¥ì§ì ‘ëŒ€ìž… = 4,   //í”¼í•´ë‚˜ íšŒë³µì´ ì•„ë‹Œ ìƒëª…ë ¥ì„ Nìœ¼ë¡œ ë§Œë“­ë‹ˆë‹¤ ë“±ì˜ íš¨ê³¼.
+                           //í”¼í•´ë‚˜ íšŒë³µì—ë”°ë¥¸ ì´ë²¤íŠ¸ë¥¼ ë°œìƒì‹œí‚¤ì§€ ì•ŠëŠ”ë‹¤.
+            ë°©ì–´ë„ì§ì ‘ëŒ€ìž… = 5,   //ë°©ì–´ë„ íšë“ì´ë‚˜ ì†Œëª¨ê°€ì•„ë‹˜.
+                           //ëŒ€í‘œì ìœ¼ë¡œ í„´ ì‹œìž‘ì‹œ ë°©ì–´ë„ ì´ˆê¸°í™”ë ë•Œ ì‚¬ìš©.
             MaxCooltimeToken=6,
             RandomPatternCount= 7,
 
-            °æÇèÄ¡ = 10,
+            ê²½í—˜ì¹˜ = 10,
 
-            È¿°úºÎ¿© = 11,
-            È¿°úÈ¸¼ö = 12,
-            È¿°úÁ¦°Å = 13,
+            íš¨ê³¼ë¶€ì—¬ = 11,
+            íš¨ê³¼íšŒìˆ˜ = 12,
+            íš¨ê³¼ì œê±° = 13,
 
 
-            À¯¹°¼öÄ¡º¯µ¿ = 100,
+            ìœ ë¬¼ìˆ˜ì¹˜ë³€ë™ = 100,
+            ProjectilePierce = 62,
             ProjectileCount = 63,
             ProjectileSpeed = 64,
-            LengthMag = 65, // ÀÌµ¿ÇÑ °Å¸®¿¡µû¸¥ ¹èÀ²
-            PlayerSize = 66, // ÇÃ·¹ÀÌ¾î »çÀÌÁî 
+            LengthMag = 65, // ì´ë™í•œ ê±°ë¦¬ì—ë”°ë¥¸ ë°°ìœ¨
+            PlayerSize = 66, // í”Œë ˆì´ì–´ ì‚¬ì´ì¦ˆ 
         }
         public enum Property
         {
             None = 0,
-            ¹æ¾îµµ¹«½Ã = 1, //ÇÇÇØ·®ÀÏ¶§¸¸ »ç¿ë
-            °íÁ¤¼öÄ¡ = 2,   //´Ù¸¥È¿°ú·ÎºÎÅÍ Áõ°¨µÇ´Â ¿µÇâÀ» ¹ÞÁö¾ÊÀ½
-                        //¿£ÅÍÆ¼ »ý¼º½Ã¿Í, ½ÇÁ¦Àû¿ëÀÇ ¼öÄ¡°¡ Ç×»ó µ¿ÀÏ (¹«ÀûµîÀÇ ¿¹¿Ü»óÈ²¿£ µ¥¹ÌÁö°¡ 0À¸·Î¹Ù²ñ)
-            Å©¸®Æ¼ÄÃ = 4,
-            ¹Ý°Ý¹«½Ã = 8,
+            ë°©ì–´ë„ë¬´ì‹œ = 1, //í”¼í•´ëŸ‰ì¼ë•Œë§Œ ì‚¬ìš©
+            ê³ ì •ìˆ˜ì¹˜ = 2,   //ë‹¤ë¥¸íš¨ê³¼ë¡œë¶€í„° ì¦ê°ë˜ëŠ” ì˜í–¥ì„ ë°›ì§€ì•ŠìŒ
+                        //ì—”í„°í‹° ìƒì„±ì‹œì™€, ì‹¤ì œì ìš©ì˜ ìˆ˜ì¹˜ê°€ í•­ìƒ ë™ì¼ (ë¬´ì ë“±ì˜ ì˜ˆì™¸ìƒí™©ì—” ë°ë¯¸ì§€ê°€ 0ìœ¼ë¡œë°”ë€œ)
+            í¬ë¦¬í‹°ì»¬ = 4,
+            ë°˜ê²©ë¬´ì‹œ = 8,
 
-            //->°íÀ¯ÇÃ·¡±×
-            ³«ÀÎµ¥¹ÌÁö = 16,
+            //->ê³ ìœ í”Œëž˜ê·¸
+            ë‚™ì¸ë°ë¯¸ì§€ = 16,
 
 
-            È¿°ú¸é¿ªµÊ = 32, //¸é¿ª ÅØ½ºÆ® ¶ç¿ì±â À§ÇÔ
+            íš¨ê³¼ë©´ì—­ë¨ = 32, //ë©´ì—­ í…ìŠ¤íŠ¸ ë„ìš°ê¸° ìœ„í•¨
 
-            Ãæ°ÝÆÄÁÖÃ¼ = 64, //Ãæ°ÝÆÄ È¿°ú ¶ç¿ì±â À§ÇÔ
+            ì¶©ê²©íŒŒì£¼ì²´ = 64, //ì¶©ê²©íŒŒ íš¨ê³¼ ë„ìš°ê¸° ìœ„í•¨
 
-            ¿¬Âü°íÁ¤°¨¼Ò = 128, //¾ÆÅ©·Î¹èÆ½·ù¿¡ ¿µÇâ ¹ÞÁö ¾Ê´Â °íÁ¤ ¿¬Âü °¨¼ÒÀÇ °æ¿ì »ç¿ë
+            ì—°ì°¸ê³ ì •ê°ì†Œ = 128, //ì•„í¬ë¡œë°°í‹±ë¥˜ì— ì˜í–¥ ë°›ì§€ ì•ŠëŠ” ê³ ì • ì—°ì°¸ ê°ì†Œì˜ ê²½ìš° ì‚¬ìš©
         }
 
     
