@@ -180,7 +180,7 @@ namespace PG.Battle
                 //print("Pew Pew"+id);
                 _temptDamage = _currentShotAmmoDic[id].Dequeue();
                 SetSpreadShotStyle(_temptDamage, id);
-
+                print("Pew Pew"+_currentShotAmmoDic[id].Count);
                 if (_currentShotAmmoDic[id].Count > 0) 
                 {
                     yield return new WaitForSeconds(Global_CampaignData._projectileIDDataDic[id]._cooltime);
@@ -203,7 +203,7 @@ namespace PG.Battle
             TargetTheEnemy();
             int _spreadcount = Global_CampaignData._projectileIDDataDic[id]._count;
 
-            int sqrtCeil = Mathf.CeilToInt(Mathf.Sqrt(_spreadcount));
+            int sqrtCeil = Mathf.CeilToInt(Mathf.Sqrt(_spreadcount+1));
 
             
             //발사에 관하여서 그냥 발사하는 시스템으로 만들어야한다.
@@ -224,7 +224,7 @@ namespace PG.Battle
                 {
                     ProjectileScript _tempt = _totalProjectileDictionary[id].PickUp();
                     _tempt.SetFrequentProjectileData(null, val, 
-                        GetPosBySpread(_spreadcount,sqrtCeil)
+                        GetPosBySpread(_spreadcount+1,sqrtCeil)
                     );
                     //Debug.Log("ss" + GetPosBySpread(i,sqrtCeil));
                     _spreadcount--;
@@ -239,7 +239,7 @@ namespace PG.Battle
         {
             float x = (thisCount-1) % sqrtCeil  - (sqrtCeil-1)/2;
             float y = (thisCount-1) / sqrtCeil - (sqrtCeil-1)/2;
-            //print("thisCount : "+thisCount + "sqrtCeil : "+sqrtCeil +" x : " +x+" y : "+y);
+            print("thisCount : "+thisCount + "sqrtCeil : "+sqrtCeil +" x : " +x+" y : "+y);
             x *= 1.5f;
             y *= 1.5f;
             

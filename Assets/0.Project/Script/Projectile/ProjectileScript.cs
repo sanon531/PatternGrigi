@@ -89,6 +89,10 @@ namespace PG.Battle
                 if (PierceCount <= 0)
                     IsActive=false;
             }
+            if (collision.CompareTag($"Boundary"))
+            {
+                IsActive=false;
+            }
         }
     }
 }
