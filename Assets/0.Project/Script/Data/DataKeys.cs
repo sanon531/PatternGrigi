@@ -77,6 +77,12 @@ namespace PG.Data
         Upgrade_TowerShot = 103,
         Upgrade_Knife = 104,
         
+        //영감 빌드
+        Spread_Inspiration = 120,
+        SenseOfCreativity = 121,
+        AncestralBrushstroke = 122,
+        
+        
         Default_HealthUp = 999,
     }
     public enum ProjectileID 

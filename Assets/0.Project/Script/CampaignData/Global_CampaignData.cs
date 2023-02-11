@@ -82,6 +82,7 @@ namespace PG.Data
 
         public static List<Transform> _activatedProjectileList = new List<Transform>();
         public static DataEntity _thunderCount = new DataEntity(DataEntity.Type.None, 2);
+        public static DataEntity _inspirationNodeCount = new DataEntity(DataEntity.Type.None, 2);
 
 
         #endregion

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using PG.Data;
+using PG.Event;
 using UnityEditor;
 using UnityEngine;
 
@@ -119,5 +120,61 @@ namespace PG.Battle
 
         #endregion
       
+        
+        
+        #region inspiration
+
+        [SerializeField] private SpriteRenderer GaugeSpr;
+        private float nowNodeCnt = 0;
+
+        public static void EnableInspiration()
+        {
+            _instance.GaugeSpr.color = new Color(1f, 1f, 1f, _instance.nowNodeCnt / Global_CampaignData._inspirationNodeCount.FinalValue);
+            
+            Global_BattleEventSystem._onCalcPlayerAttack += _instance.OnPassingNode;
+        }
+
+        public static void DisableInspiration()
+        {
+            _instance.GaugeSpr.color = new Color(1f,1f,1f,0f);
+            
+            Global_BattleEventSystem._onCalcPlayerAttack -= _instance.OnPassingNode;
+        }
+        
+        private void OnPassingNode(float damage)
+        {
+            nowNodeCnt++;
+            GaugeSpr.color = new Color(1f,1f,1f,nowNodeCnt / Global_CampaignData._inspirationNodeCount.FinalValue);
+
+            //full charging
+            if (nowNodeCnt >= Global_CampaignData._inspirationNodeCount.FinalValue)
+            {
+                InspirationAttack();
+                
+                //magic circle animation
+                GaugeSpr.GetComponent<Animator>().enabled = true;
+            }
+        }
+
+        public static void OnCircleAnimationEnd()
+        {
+            _instance.nowNodeCnt = 0;
+            _instance.GaugeSpr.color = new Color(1f,1f,1f,0f);
+            _instance.GaugeSpr.GetComponent<Animator>().enabled = false;
+        }
+        
+        private void InspirationAttack()
+        {
+            float basicDamage = Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue
+                                * 0.5f * Global_CampaignData._inspirationNodeCount.FinalValue;
+            //Damage Upgrade
+            float finalDamage = basicDamage * (1.0f + 0.2f *
+                (Global_CampaignData._currentArtifactDictionary[ArtifactID.Spread_Inspiration].UpgradeCount - 1));
+            
+            
+        }
+
+
+        #endregion
     }
 }

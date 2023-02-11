@@ -63,6 +63,18 @@
     {
       "key":"Mix_PadSesame",
       "value":"K-비빔밥"
+    },
+    {
+      "key":"Spread_Inspiration",
+      "value":"영감 발산"
+    },
+    {
+      "key":"SenseOfCreativity",
+      "value":"창의의 감각"
+    },
+    {
+      "key":"AncestralBrushstroke",
+      "value":"선조의 붓놀림"
     }
 
   ]

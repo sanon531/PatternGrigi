@@ -24,7 +24,8 @@ namespace PG.Battle
         {
             base.SetFrequentProjectileData(target, damage, projectilePlace);
             
-            
+            if (target is not null)                 
+                _direction = target.GetMobPosition() - transform.position;
             if (target is not null)
                 _direction = target.GetMobPosition() - transform.position;
             else 

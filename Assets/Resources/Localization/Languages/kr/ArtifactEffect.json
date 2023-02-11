@@ -63,6 +63,18 @@
     {
       "key":"Mix_PadSesame",
       "value":"합체 기술 예시."
+    },
+    {
+      "key":"Spread_Inspiration",
+      "value":"패턴을 완료하면 발산 피해를 입힙니다. 피해는 패턴 중 지나간 노드 수에 비례"
+    },
+    {
+      "key":"SenseOfCreativity",
+      "value":"패턴 중 지나야 할 노드 수가 1 증가합니다."
+    },
+    {
+      "key":"AncestralBrushstroke",
+      "value":"노드를 지날 때마다 스택이 쌓여 기본 데미지를 증가시킵니다. 스택 당 10%. 패턴이 완료되면 스택 초기화"
     }
   ]
 }
