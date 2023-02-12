@@ -150,7 +150,7 @@ MonoBehaviour:
     - id: 121
       rarity: 0
       buyprice: 100
-      maxUpgrade: 5
+      maxUpgrade: 4
       upgradecount: 0
       isonoff: 0
     - id: 122

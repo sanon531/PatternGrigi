@@ -79,6 +79,10 @@ namespace PG.Event
             _onLevelUpHide?.Invoke();
         }
 
+        public static event OnEventWithInt _onWaveChange;
+        public static void CallOnWaveChange(int nowWaveOrder) { _onWaveChange?.Invoke(nowWaveOrder); }
+        
+        
         #region//Combat
         public static event OnEvent _onPlayerSizeChanged;
         public static void CallOnSizeChanged() 
