@@ -202,13 +202,16 @@ namespace PG.Battle
             //지금은 그냥 instantiate를 하지만 나중에는 오브젝트 풀링이 가능하도록 만들것..
             TargetTheEnemy();
             int _spreadcount = Global_CampaignData._projectileIDDataDic[id]._count;
-
+            print(_spreadcount);
             int sqrtCeil = Mathf.CeilToInt(Mathf.Sqrt(_spreadcount+1));
 
             
             //발사에 관하여서 그냥 발사하는 시스템으로 만들어야한다.
-            while (_spreadcount > 0) 
+            while (true) 
             {
+                if(_spreadcount <= 0)
+                    break;
+                
                 if (_targetedMobList.Count > 0)
                 {
                     for (int i = 0; i <_targetedMobList.Count ; i++)
@@ -218,6 +221,8 @@ namespace PG.Battle
                             GetPosBySpread(_spreadcount,sqrtCeil)
                         );
                         _spreadcount--;
+                        if(_spreadcount <= 0)
+                            break;
                     }
                 }
                 else
@@ -239,7 +244,7 @@ namespace PG.Battle
         {
             float x = (thisCount-1) % sqrtCeil  - (sqrtCeil-1)/2;
             float y = (thisCount-1) / sqrtCeil - (sqrtCeil-1)/2;
-            print("thisCount : "+thisCount + "sqrtCeil : "+sqrtCeil +" x : " +x+" y : "+y);
+            //print("thisCount : "+thisCount + "sqrtCeil : "+sqrtCeil +" x : " +x+" y : "+y);
             x *= 1.5f;
             y *= 1.5f;
             

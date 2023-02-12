@@ -29,6 +29,11 @@ namespace PG.Battle
             Laser.enabled = var;
         }
 
+        public bool GetActiveLaser()
+        {
+            return _active;
+        }
+
         public void SetLaserEachPos(Vector3 _start, Vector3 _end)
         {
             _StartPos = _start;

@@ -19,10 +19,6 @@ namespace PG.Data
         int rarity;
         public int Rarity { get { return rarity; } set { this.rarity = value; } }
 
-
-        [SerializeField]
-        int buyprice = 100;
-        public int Buyprice { get { return buyprice; } set { this.buyprice = value; } }
         [SerializeField]
         int maxUpgrade;
         public int MaxUpgrade { get { return maxUpgrade; } set { this.maxUpgrade = value; } }

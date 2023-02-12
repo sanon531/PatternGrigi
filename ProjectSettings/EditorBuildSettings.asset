@@ -14,11 +14,14 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/2.External/NiceVibrations/Demos/NiceVibrationsDemo.unity
     guid: a40d966b5d8df3140955c23cdc4994c8
-  - enabled: 1
+  - enabled: 0
     path: Assets/0.Project/Scenes/Play_Scene_Defence.unity
     guid: 40e9649b21859754a9428b8f2eb0cea4
   - enabled: 0
     path: Assets/0.Project/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/0.Project/Scenes/Play_Scene_Defence_SW.unity
+    guid: 58c424ea5b4c8cc4d8b33011c0c176ee
   m_configObjects:
     com.unity.localization.settings: {fileID: 11400000, guid: 4442c3224da626b458fbe47d8c298f55, type: 2}

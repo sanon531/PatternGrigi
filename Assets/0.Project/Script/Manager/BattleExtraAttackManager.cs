@@ -7,11 +7,9 @@ using UnityEngine;
 
 namespace PG.Battle
 {
-    
     // 전투도중의 특수 효과들을 저장해두는
     public class BattleExtraAttackManager : MonoSingleton<BattleExtraAttackManager>
     {
-
         private void Update()
         {
         }
@@ -24,26 +22,27 @@ namespace PG.Battle
 
 
         #region thunder
-  
+
         private bool _thunderCalled = true;
         [SerializeField] private GameObject thunderPrefab;
         private List<LaserLine> _thunderLines = new List<LaserLine>();
-        
-        private  void StartLaser()
+
+        private void StartLaser()
         {
             for (int i = 0; i < 10; i++)
             {
-                _thunderLines.Add(Instantiate(thunderPrefab,transform).GetComponent<LaserLine>());
+                _thunderLines.Add(Instantiate(thunderPrefab, transform).GetComponent<LaserLine>());
                 _thunderLines[i]._StartPos = transform.position;
                 _thunderLines[i]._EndPos = transform.position;
-                
             }
         }
+
         public static void StartThunderCall()
         {
             _instance._thunderCalled = true;
             _instance.StartCoroutine(_instance.ThunderCallCoroutine());
         }
+
         public static void StopThunderCall()
         {
             _instance._thunderCalled = false;
@@ -54,12 +53,14 @@ namespace PG.Battle
         {
             while (_thunderCalled)
             {
-                yield return new WaitForFixedUpdate();
+                yield return new WaitForEndOfFrame();
                 ThunderCalc();
             }
 
             yield return null;
         }
+
+        private float damageInterval;
 
         void ThunderCalc()
         {
@@ -69,42 +70,49 @@ namespace PG.Battle
             int currentListCount = 1;
             int listCount = Global_CampaignData._activatedProjectileList.Count;
             int connectionCount = Mathf.RoundToInt(Global_CampaignData._thunderCount.FinalValue);
-
-
-
+            
+            
+            
             while (true)
             {
-                //print("currentListCount>= listCount : " + (currentListCount >= listCount) +
-                      //"\n connectionCount > 0:" + (connectionCount > 0));
-                if(currentListCount>=listCount)
-                    return;
-                if(connectionCount <= 0)
-                    return;
+                //print("currentListCount>= listCount : " + (currentListCount >= listCount) +"\n connectionCount > 0:" + (connectionCount > 0));
+                if (currentListCount >= listCount || connectionCount <= 0)
+                {
+                    break;
+                }
 
                 //print("Start  " + transformList[currentListCount - 1].position
-                                //+ "\n end " + transformList[currentListCount].position);
-                CalcDamageByThunder(currentListCount-1,transformList[currentListCount-1].position, 
+                //+ "\n end " + transformList[currentListCount].position);
+                CalcDamageByThunder(currentListCount - 1, transformList[currentListCount - 1].position,
                     transformList[currentListCount].position,
-                    Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue/2);
+                    Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue / 2);
                 currentListCount++;
                 connectionCount--;
             }
 
+            for (int i = currentListCount; i < _thunderLines.Count; i++)
+            {
+                var laser = _thunderLines[i];
+                if(laser.GetActiveLaser())
+                    laser.SetActiveLaser(false);
+            }
+
         }
-        void CalcDamageByThunder(int num,Vector2 lastPos, Vector2 currentPos,float damage)
+
+        void CalcDamageByThunder(int num, Vector2 lastPos, Vector2 currentPos, float damage)
         {
             Vector2 dir = currentPos - lastPos;
-            float range = Vector2.Distance(currentPos,lastPos);
+            float range = Vector2.Distance(currentPos, lastPos);
             dir = dir.normalized;
-            RaycastHit2D[] hits=new RaycastHit2D[30];
-            var count= Physics2D.RaycastNonAlloc(lastPos,dir,hits,range);
+            RaycastHit2D[] hits = new RaycastHit2D[30];
+            var count = Physics2D.RaycastNonAlloc(lastPos, dir, hits, range);
 
             var laser = _thunderLines[num];
             laser.SetActiveLaser(true);
             laser._StartPos = lastPos;
             laser._EndPos = currentPos;
-            
-            for (int i =0 ; i<count;i++)
+
+            for (int i = 0; i < count; i++)
             {
                 if (hits[i].transform.CompareTag("Enemy"))
                 {
@@ -113,11 +121,6 @@ namespace PG.Battle
             }
         }
 
-        
-        
-        
-
         #endregion
-      
     }
 }

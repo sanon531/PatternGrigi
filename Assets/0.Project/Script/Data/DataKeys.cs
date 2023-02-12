@@ -55,6 +55,7 @@ namespace PG.Data
         Thunder_Colorant =30,
         Decalcomanie  =31,
         Magic_Lenz = 32,
+        Cubism =33,
         //단거리세트
         QuickSlice = 42,
 

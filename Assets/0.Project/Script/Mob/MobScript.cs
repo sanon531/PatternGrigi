@@ -197,8 +197,10 @@ namespace PG.Battle
                 _healthSystem.Damage(val);
                 currentHealth = _healthSystem.GetHealth();
                 DamageFXManager.ShowDamage(transform.position, Mathf.Round(val).ToString(),Color.white);
-                if(knockback is null )
-                    knockback = StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
+                print(gameObject.name + " : " + _healthSystem.GetHealth());
+                currentHealth = _healthSystem.GetHealth();
+                //if(knockback is null )
+                //knockback = StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
             }
         }
 
