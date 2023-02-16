@@ -23,6 +23,17 @@ namespace PG.Battle
         private List<MobScript> _mobList;
 
 
+        protected override void CallOnAwake()
+        {
+            base.CallOnAwake();
+        }
+
+        protected override void CallOnDestroy()
+        {
+            base.CallOnDestroy();
+        }
+
+
         void Start()
         {
             _waveTimeList = Global_CampaignData._waveTimeList;
@@ -41,7 +52,7 @@ namespace PG.Battle
         }
 
 
-#region//Wave,Spawn
+        #region Wave,Spawn
 
         private MobIDSpawnDataDic _currentMobSpawnDataDic;
         private int _currentWaveOrder = 0;
@@ -55,6 +66,8 @@ namespace PG.Battle
         
         private void NextWave()
         {
+            Global_BattleEventSystem.CallOnWaveChange(_currentWaveOrder);
+            
             //이전 웨이브 코루틴들 정리 + 변수 초기화
             StopAllCoroutines(); 
             _spawnCrtnList = new List<IEnumerator>();

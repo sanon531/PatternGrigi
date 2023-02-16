@@ -180,7 +180,7 @@ namespace PG.Battle
                 //print("Pew Pew"+id);
                 _temptDamage = _currentShotAmmoDic[id].Dequeue();
                 SetSpreadShotStyle(_temptDamage, id);
-                print("Pew Pew"+_currentShotAmmoDic[id].Count);
+                //print("Pew Pew"+_currentShotAmmoDic[id].Count);
                 if (_currentShotAmmoDic[id].Count > 0) 
                 {
                     yield return new WaitForSeconds(Global_CampaignData._projectileIDDataDic[id]._cooltime);

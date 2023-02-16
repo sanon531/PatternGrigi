@@ -158,8 +158,9 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 9900775f0e31f794ea2d891619e8b6ab, type: 3}
     - {fileID: 2800000, guid: 21d1b422c1ae9964e8dceb2441772f11, type: 3}
     - {fileID: 2800000, guid: 9798c223645b6714b9f761b90ecb67e1, type: 3}
-    - {fileID: 2800000, guid: bd39e71e40bed11409b011e31dae443e, type: 3}
-    - {fileID: 2800000, guid: bd39e71e40bed11409b011e31dae443e, type: 3}
+    - {fileID: 2800000, guid: 5bea89ae58af0a144897ad91bd2a353e, type: 3}
+    - {fileID: 2800000, guid: 0fa9e2df37576844fbb11f07f88ac0e0, type: 3}
+    - {fileID: 2800000, guid: 75fc51c62551ae14ebca706e46727794, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -210,6 +211,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 8ff052c5929948b4d92cd19990b9d096, type: 3}
   - {fileID: 21300000, guid: ff7e1446c6430654e8c2c5c05bfb078d, type: 3}
   - {fileID: 21300000, guid: 203c2466bfd613749a41670632ec9150, type: 3}
+  - {fileID: 21300000, guid: 75fc51c62551ae14ebca706e46727794, type: 3}
   - {fileID: 21300000, guid: 69ac54c6811587f4dbecfe091335e653, type: 3}
   - {fileID: 21300000, guid: 8e5ec0d67b10a194b922c7f838512e2a, type: 3}
   - {fileID: 21300000, guid: 10b6c1d67d6b765489e4f6a84acb6d80, type: 3}
@@ -270,6 +272,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: de977c2e78cdebd45b9375a5a8b71606, type: 3}
   - {fileID: 21300000, guid: 6006058e990f7074fbc786f7750890e3, type: 3}
   - {fileID: 21300000, guid: fcb65b8e0c6c338418da0d160f016fe2, type: 3}
+  - {fileID: 21300000, guid: 5bea89ae58af0a144897ad91bd2a353e, type: 3}
   - {fileID: 21300000, guid: 08c114fea8262ef44a2e5b64ede44f1e, type: 3}
   - {fileID: 21300000, guid: 922145fe1426e5f488a5a37e3ba1ed78, type: 3}
   - {fileID: 21300000, guid: 4b3d042f5c58dfa45b64cde4ac9b0243, type: 3}
@@ -278,6 +281,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 010aba7fcd4dce44a89c02c14d5baadd, type: 3}
   - {fileID: 21300000, guid: b9ea549f88be80b489a1975a7e251bb3, type: 3}
   - {fileID: 21300000, guid: f7c0cacfc1c011e41ad9e263365e6214, type: 3}
+  - {fileID: 21300000, guid: 0fa9e2df37576844fbb11f07f88ac0e0, type: 3}
   - {fileID: 21300000, guid: 653914dff8b960e4aa41263d675ad616, type: 3}
   m_PackedSpriteNamesToIndex:
   - SpellBook01_58
@@ -325,6 +329,7 @@ SpriteAtlas:
   - SpellBook01_99
   - Mix_PadSesame
   - Cubism
+  - AncestralBrushstroke
   - SpellBook01_100
   - SpellBook01_88
   - SpellBook01_37
@@ -385,6 +390,7 @@ SpriteAtlas:
   - SpellBook01_24
   - SpellBook01_35
   - SpellBook01_20
+  - Spread_Inspiration
   - SpellBook01_19
   - SpellBook01_06
   - SpellBook01_23
@@ -393,6 +399,7 @@ SpriteAtlas:
   - SpellBook01_92
   - SpellBook01_41
   - SpellBook01_40
+  - SenseOfCreativity
   - SpellBook01_22
   m_RenderDataMap: {}
   m_Tag: Artifact_Atlas
