@@ -35,6 +35,7 @@ namespace PG
             base.Disable();
             Global_CampaignData._currentChargePattern = DrawPatternPresetID.Empty_Breath;
             Global_BattleEventSystem._onPatternSuccessed -= CallRandomPatternSuccessed;
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].
         }
         public override void AddCountOnArtifact()
         {

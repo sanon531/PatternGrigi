@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace PG.Battle
 {
-    // 전투도중의 특수 효과들을 저장해두는
+    // Storing Special Battle Attack on Game. 
     public class BattleExtraAttackManager : MonoSingleton<BattleExtraAttackManager>
     {
         private void Update()
@@ -29,7 +29,7 @@ namespace PG.Battle
 
         private void StartLaser()
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 40; i++)
             {
                 _thunderLines.Add(Instantiate(thunderPrefab, transform).GetComponent<LaserLine>());
                 _thunderLines[i]._StartPos = transform.position;
@@ -67,16 +67,43 @@ namespace PG.Battle
             if (_thunderCalled == false)
                 return;
             var transformList = Global_CampaignData._activatedProjectileList;
-            int currentListCount = 1;
-            int listCount = Global_CampaignData._activatedProjectileList.Count;
-            int connectionCount = Mathf.RoundToInt(Global_CampaignData._thunderCount.FinalValue);
-            
-            
-            
+            int transformListCount = Global_CampaignData._activatedProjectileList.Count;
+            int currentTransformListCount = 1;
+            int connectionCountMax = Mathf.RoundToInt(Global_CampaignData._thunderCount.FinalValue);
+            int currentConnectionCount = 0;
+
             while (true)
             {
-                //print("currentListCount>= listCount : " + (currentListCount >= listCount) +"\n connectionCount > 0:" + (connectionCount > 0));
-                if (currentListCount >= listCount || connectionCount <= 0)
+                if(transformListCount <= currentTransformListCount)
+                    break;
+
+                while (true)
+                {
+                    if(transformListCount <= currentTransformListCount)
+                        break;
+                    if(connectionCountMax<=currentConnectionCount)
+                        break;
+                    CalcDamageByThunder(currentTransformListCount - 1, transformList[currentTransformListCount - 1].position,
+                        transformList[currentTransformListCount].position,
+                        Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue / 2);
+                    currentConnectionCount++;
+                    currentTransformListCount++;
+                }
+                currentTransformListCount++;
+                currentConnectionCount = 0 ;
+            }
+            for (int i = currentTransformListCount; i < _thunderLines.Count; i++)
+            {
+                var laser = _thunderLines[i];
+                if(laser.GetActiveLaser())
+                    laser.SetActiveLaser(false);
+            }
+
+            /*
+            while (true)
+            {
+                //print("currentListCount>= transformListCount : " + (currentListCount >= transformListCount) +"\n connectionCount > 0:" + (connectionCount > 0));
+                if (currentListCount >= transformListCount || connectionCount <= 0)
                 {
                     break;
                 }
@@ -96,7 +123,7 @@ namespace PG.Battle
                 if(laser.GetActiveLaser())
                     laser.SetActiveLaser(false);
             }
-
+            */
         }
 
         void CalcDamageByThunder(int num, Vector2 lastPos, Vector2 currentPos, float damage)

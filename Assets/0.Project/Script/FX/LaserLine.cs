@@ -24,7 +24,7 @@ namespace PG.Battle
         public void SetActiveLaser(bool var)
         {
             _active = var;
-            if(Laser ==null)
+            if(Laser is null)
                 Laser = GetComponent<LineRenderer>();
             Laser.enabled = var;
         }
@@ -45,7 +45,7 @@ namespace PG.Battle
             Laser.material.SetTextureScale("_MainTex", new Vector2(Length[0], Length[1]));
             Laser.material.SetTextureScale("_Noise", new Vector2(Length[2], Length[3]));
 
-            if (_active && Laser != null && UpdateSaver == false)
+            if (_active && Laser is not null && UpdateSaver == false)
             {
                 Laser.SetPosition(0, _StartPos);
                 Laser.SetPosition(1, _EndPos);

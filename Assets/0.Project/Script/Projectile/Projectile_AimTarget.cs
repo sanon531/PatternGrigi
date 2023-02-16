@@ -24,9 +24,9 @@ namespace PG.Battle
         public override void SetFrequentProjectileData(MobScript target, float damage,Vector3 projectilePlace)
         {
             base.SetFrequentProjectileData(target, damage, projectilePlace);
-            if (target is not null)
-                _direction = target.GetMobPosition() - transform.position;
-            else 
+            //if (target is not null)
+                //_direction = target.GetMobPosition() - transform.position;
+            //else 
                 _direction = Vector3.up;
             _direction = _direction.normalized;
             InitialSpeed = Data.Global_CampaignData._projectileSpeed.FinalValue;
