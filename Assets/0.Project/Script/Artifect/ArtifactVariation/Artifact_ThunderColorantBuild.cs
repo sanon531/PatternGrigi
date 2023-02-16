@@ -107,13 +107,42 @@ namespace PG
             base.AddCountOnArtifact();
             Global_CampaignData._projectilePierce.Add증가량(1);
         }
-
-
-            
-            
-            
     }    
-    
+    public sealed class Artifact_Cubism  : Artifact
+    {
+        public Artifact_Cubism() : base(ArtifactID.Cubism)
+        {
+        }
+
+        public override void OnGetArtifact()
+        {
+            base.OnGetArtifact();
+            Global_CampaignData._isReflectable = true;
+            MaxUpgrade = 1;
+            CompleteArtifact();
+        }
+
+        protected override void Enable()
+        {
+            base.Enable();
+        }
+
+
+
+        protected override void Disable()
+        {
+            base.Disable();
+        }
+
+        public override void AddCountOnArtifact()
+        {
+            base.AddCountOnArtifact();
+        }
+
+
+
+    }
+
     
     
     

@@ -91,8 +91,23 @@ namespace PG.Battle
             }
             if (collision.CompareTag($"Boundary"))
             {
-                IsActive=false;
+                OnTriggerBoundary();
             }
+            if (collision.CompareTag($"Boundary_Side"))
+            {
+                OnTriggerBoundary_Side();
+            }
+
         }
+
+        protected virtual void OnTriggerBoundary()
+        {
+            IsActive = false;
+        }
+        protected virtual void OnTriggerBoundary_Side()
+        {
+            IsActive = false;
+        }
+
     }
 }

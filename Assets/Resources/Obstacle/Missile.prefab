@@ -100,7 +100,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -154,7 +154,7 @@ MonoBehaviour:
   _activetime: 1.5
   _isActived: 0
   _id: 5
-  _damageDeal: 8
+  _damageDeal: 0
   _thisCollider: {fileID: 2261599503248962956}
   Range: {fileID: 0}
   moveDirection: {x: 0, y: -1}

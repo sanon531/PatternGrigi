@@ -155,7 +155,10 @@ namespace PG.Battle
         
                 public static void RemoveArtifactOnPlayer(ArtifactID id)
                 {
-                    Global_CampaignData._obtainableArtifactIDList.Remove(id);
+                    while (Global_CampaignData._obtainableArtifactIDList.Contains(id))
+                    {
+                        Global_CampaignData._obtainableArtifactIDList.Remove(id);
+                    }
                     _instance.completedIDset.Add(id);
                     _instance.SearchArtifactMixtureAndSet(id);
                 }

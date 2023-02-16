@@ -162,6 +162,14 @@ namespace PG.Event
         public static void CallOnChargeEnd() { _onChargeEnd?.Invoke(); }
 
         //패턴 성공시
+
+        public static event OnEventWithFloat _onPatternFilled;
+
+        public static void CallOnPatternFilled(float _val)
+        {
+            _onPatternFilled?.Invoke(_val);
+        }
+
         public static event OnEventWithPattern _onPatternSuccessed;
         public static void CallOnPatternSuccessed(DrawPatternPresetID patternPreset) { _onPatternSuccessed?.Invoke(patternPreset); }
 

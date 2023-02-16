@@ -104,21 +104,21 @@ MonoBehaviour:
   healthAmountMax: 75
   startingHealthAmount: 75
   currentHealth: 75
-  _initialSpeed: 8
+  _initialSpeed: 12
   _acceleration: 8
   _movement: {x: 0, y: 0, z: 0}
   _collider2D: {fileID: 8705626116279157195}
   _rigidBody2D: {fileID: 3312845963341462587}
   _lootExp: 10
   _currentAction: 0
-  _mobActionIDList: 0000000001000000
+  _mobActionIDList: 0100000000000000
   _mobActionDic:
     m_keys: 0000000001000000
     m_values:
-    - _actionTime: 2
+    - _actionTime: 1
       _acceleration: 0
       _mobAttackDataList: []
-    - _actionTime: 2
+    - _actionTime: 5
       _acceleration: 0
       _mobAttackDataList: []
   _targetSprite: {fileID: 2454311993190355032}

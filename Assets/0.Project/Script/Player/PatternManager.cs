@@ -126,8 +126,7 @@ namespace PG.Battle
         int _currentPresetNodeNumber = 0;
         DrawPatternPresetID _currentPattern;
 
-        //�������� ���������� ���� ��带 �����ϴ� �޼ҵ�
-        //ó������ ������ ������.
+
         float[] _weightRandom = new float[3] { 1.0f, 0f, 0f };
         NodePlaceType[] nodePlaceTypes = new NodePlaceType[3] { NodePlaceType.Random, NodePlaceType.Close, NodePlaceType.Far };
         void CheckNodeOnDamage(int nodeID)
@@ -146,6 +145,7 @@ namespace PG.Battle
             {
                 ResetAllNode();
                 SetNodeToNextReach(_presetNodes[_currentPresetNodeNumber]);
+                Global_BattleEventSystem.CallOnPatternFilled((float)_currentPresetNodeNumber/_presetNodes.Count);
             }
             else
             {
