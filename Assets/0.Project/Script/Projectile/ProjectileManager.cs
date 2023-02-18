@@ -202,7 +202,6 @@ namespace PG.Battle
             //지금은 그냥 instantiate를 하지만 나중에는 오브젝트 풀링이 가능하도록 만들것..
             TargetTheEnemy();
             int _spreadcount = Global_CampaignData._projectileIDDataDic[id]._count;
-            print(_spreadcount);
             int sqrtCeil = Mathf.CeilToInt(Mathf.Sqrt(_spreadcount+1));
 
             

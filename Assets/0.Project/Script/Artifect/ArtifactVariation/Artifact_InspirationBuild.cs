@@ -54,7 +54,7 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
-            Global_CampaignData._inspirationNodeCount.Add증가량(1);
+            Global_CampaignData._randomPatternNodeCount.Add증가량(1);
         }
 
         protected override void Disable()
@@ -65,7 +65,7 @@ namespace PG
         public override void AddCountOnArtifact()
         {
             base.AddCountOnArtifact();
-            Global_CampaignData._inspirationNodeCount.Add증가량(1);
+            Global_CampaignData._randomPatternNodeCount.Add증가량(1);
         }
     }
     

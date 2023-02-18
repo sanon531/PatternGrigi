@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,13 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _obstacleDic:
-    m_keys: 0000000001000000020000000300000004000000060000000700000008000000090000000a000000
+    m_keys: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a000000
     m_values:
     - {fileID: 5778512831870487334, guid: 29024fbc6f928f347b94d7e35f95f2ab, type: 3}
     - {fileID: 4432974786175182039, guid: 7eb81342b9786fd4cbc27dfbd61598f7, type: 3}
     - {fileID: 6326945806580564852, guid: 089151b2460fd934db5a50ec2cef24f2, type: 3}
     - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 2567862837426869114, guid: de432e3cf78979045a46dbe12af6f296, type: 3}
+    - {fileID: 2261599503248962953, guid: 4c52d5238aa65034e90ae64b9d454f2c, type: 3}
     - {fileID: 7806306849940182991, guid: 52d3a3a7fd4206e45908fa5865efe81e, type: 3}
     - {fileID: 7806306849940182991, guid: 333eed0fb2503d746b6c276b9b09fcf2, type: 3}
     - {fileID: 7806306849940182991, guid: fa8addf5aa461a54586ca7c7cfb2961a, type: 3}

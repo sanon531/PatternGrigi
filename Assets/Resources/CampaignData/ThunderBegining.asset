@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0b2ca909a209340afe36adeafe0b8e, type: 3}
   m_Name: ThunderBegining
   m_EditorClassIdentifier: 
-  _startArtifactList: 1e000000
-  _obtainableArtifactIDList: 21000000200000001e0000001f000000
+  _startArtifactList: 
+  _obtainableArtifactIDList: 78000000790000007a000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000150000001600000017000000
     m_values:
