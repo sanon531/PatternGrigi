@@ -22,8 +22,8 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
-            Global_CampaignData._projectileSpeed.Add배수(2);
-            Global_CampaignData._projectileTargetNum.Add배수(2);
+            Global_CampaignData._projectileSpeed.Mult배수(2);
+            Global_CampaignData._projectileTargetNum.Mult배수(2);
         }
 
 
@@ -31,14 +31,14 @@ namespace PG
         protected override void Disable()
         {
             base.Disable();
-            Global_CampaignData._projectileSpeed.Add배수(2);
-            Global_CampaignData._projectileTargetNum.Add배수(2);
+            Global_CampaignData._projectileSpeed.Mult배수(2);
+            Global_CampaignData._projectileTargetNum.Mult배수(2);
         }
         public override void AddCountOnArtifact()
         {
             base.AddCountOnArtifact();   
-            Global_CampaignData._projectileSpeed.Add배수(2);
-            Global_CampaignData._projectileTargetNum.Add배수(2);
+            Global_CampaignData._projectileSpeed.Mult배수(2);
+            Global_CampaignData._projectileTargetNum.Mult배수(2);
         }
 
 

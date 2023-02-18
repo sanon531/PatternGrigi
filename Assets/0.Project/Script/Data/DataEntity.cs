@@ -10,7 +10,8 @@ namespace PG
         public void ResetAdd() { _증가량 = 0; }
         public void Add증가량(float amount) { _증가량 += amount; }
         public void Add증가량배수(float amount) { _증가량배수 *= amount; }
-        public void Add배수(float amount) { _배수 *= amount; }
+        public void Mult배수(float amount) { _배수 *= amount; }
+        public void Add배수(float amount) { _배수 += amount; }
         public void Add추가량(int amount) { _추가량 += amount; }
 
         [SerializeField]
@@ -20,7 +21,7 @@ namespace PG
         [SerializeField]
         private float _증가량배수 = 1f;  //증가량에만 곱한다. (공격력 계수 등에 사용)
         [SerializeField]
-        private float _배수 = 1f;        //기본값에 증가량이 더해진 값에 곱한다.
+        public float _배수 = 1f;        //기본값에 증가량이 더해진 값에 곱한다.
         [SerializeField]
         private float _추가량 = 0;         //나머지 계산이 다 완료 된 후, 값을 추가한다.
         public float FinalValue { get {
