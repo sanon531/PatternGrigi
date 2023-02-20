@@ -64,7 +64,7 @@ MonoBehaviour:
       "_\uC801\uBC30\uCE58":
         m_keys: 1500000017000000
         m_values:
-        - "_\uC2A4\uD3F0\uC218": 20
+        - "_\uC2A4\uD3F0\uC218": 50
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0.1
           "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 2
           "_\uC18D\uB3C4": 20
@@ -102,7 +102,7 @@ MonoBehaviour:
       "_\uC801\uBC30\uCE58":
         m_keys: 15000000
         m_values:
-        - "_\uC2A4\uD3F0\uC218": 5
+        - "_\uC2A4\uD3F0\uC218": 50
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
           "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 4
           "_\uC18D\uB3C4": 0

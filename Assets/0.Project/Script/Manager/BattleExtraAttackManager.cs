@@ -199,6 +199,14 @@ namespace PG.Battle
         [SerializeField] private ParticleSystem GaugeParticle;
         [SerializeField] private ParticleSystem EmitParticle;
         
+        
+        //나중에 업그레이드 인스펙터로 뺄 항목
+        private float emitDamagePercent = 120; //120%
+        private float stackDamagePercent = 10; //10%
+
+        public static void AddEmitDamagePercent(float value) { _instance.emitDamagePercent += value;}
+        public static void AddStackDamagePercent(float value) { _instance.stackDamagePercent += value;}
+        
         public static void EnableInspiration()
         {
             _instance.GaugeParticle.startColor= new Color(1f,1f,1f,0f);
@@ -218,14 +226,15 @@ namespace PG.Battle
         
         private void OnPassingNode(float fillRate)
         {
-            GaugeParticle.startColor= new Color(1f,1f,1f,fillRate * 0.7f);
-            float s = 4.0f * fillRate + 1.0f;
+            GaugeParticle.startColor= new Color(1f,1f,1f,fillRate);
+            float s = 100.0f * fillRate;
             GaugeParticle.transform.localScale = new Vector3(s,s,s);
         }
 
         private void OnPatternSuccess(DrawPatternPresetID patternPreset)
         {
             GaugeParticle.startColor = new Color(1f,1f,1f,0f);
+            GaugeParticle.transform.localScale = new Vector3(100.0f,100.0f,100.0f);
             
             if (patternPreset == DrawPatternPresetID.Empty_Breath)
             {
@@ -236,14 +245,15 @@ namespace PG.Battle
         
         private void InspirationAttack()
         {
-            float basicDamage = Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue
-                                * 0.5f * Global_CampaignData._randomPatternNodeCount.FinalValue;
-            //Damage Upgrade
-            float finalDamage = basicDamage * (1.0f + 0.2f *
-                Global_CampaignData._currentArtifactDictionary[ArtifactID.Spread_Inspiration].ArtifactLevel);
+            float basicDamage = Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue;
+            float nodeCount = Global_CampaignData._randomPatternNodeCount.FinalValue;
+
+            float finalDamage = basicDamage * (1 + nodeCount * (stackDamagePercent / 100)) *
+                                (nodeCount * (1 + emitDamagePercent / 100));
 
             List<MobScript> mobList = EmitParticle.GetComponentInChildren<InspirationCircleTrigger>().InRangeMobList;
-
+            
+            
             //중간에 삭제 가능성 있기 때문에 foreach는 불가능
             for (int i = 0; i < mobList.Count; i++)
             {
