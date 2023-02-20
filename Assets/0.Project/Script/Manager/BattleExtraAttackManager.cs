@@ -240,7 +240,7 @@ namespace PG.Battle
                                 * 0.5f * Global_CampaignData._randomPatternNodeCount.FinalValue;
             //Damage Upgrade
             float finalDamage = basicDamage * (1.0f + 0.2f *
-                Global_CampaignData._currentArtifactDictionary[ArtifactID.Spread_Inspiration].UpgradeCount);
+                Global_CampaignData._currentArtifactDictionary[ArtifactID.Spread_Inspiration].ArtifactLevel);
 
             List<MobScript> mobList = EmitParticle.GetComponentInChildren<InspirationCircleTrigger>().InRangeMobList;
 

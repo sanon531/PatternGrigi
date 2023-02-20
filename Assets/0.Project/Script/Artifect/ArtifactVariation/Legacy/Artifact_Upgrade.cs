@@ -29,7 +29,7 @@ namespace PG
         public override void AddCountOnArtifact()
         {
 
-            switch (UpgradeCount) 
+            switch (ArtifactLevel) 
             {
                 case 0:
                     break;
@@ -42,13 +42,13 @@ namespace PG
                 case 4:
                     break;
                 default:
-                    UpgradeCount = MaxUpgrade;
+                    ArtifactLevel = MaxLevel;
                     break;
             }
 
 
 
-            UpgradeCount++;
+            ArtifactLevel++;
         }
 
     }
@@ -67,7 +67,7 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
-            UpgradeCount++;
+            ArtifactLevel++;
         }
         protected override void Disable()
         {
@@ -95,7 +95,7 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
-            UpgradeCount++;
+            ArtifactLevel++;
         }
         protected override void Disable()
         {

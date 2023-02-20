@@ -92,8 +92,6 @@ namespace PG
                 if(Global_CampaignData._charactorAttackDic.ElementAt(i).Key != CharacterID.Player)
                     Global_CampaignData._charactorAttackDic.ElementAt(i).Value.Add증가량(10f);
             }
-
-
         }
         protected override void Disable()
         {

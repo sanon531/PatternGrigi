@@ -17,160 +17,162 @@ MonoBehaviour:
     m_values:
     - id: 0
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 1
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 10
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 6
       upgradecount: 0
-      UpgradeValueList:
-      - 1.2
-      - 1.2
+      arfifactLevelValueList:
+      - 0
       - 1
+      - 2
+      - 3
+      - 4
       isonoff: 0
     - id: 11
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 20
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 21
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 30
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 31
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 32
       rarity: 0
-      maxUpgrade: 0
+      maxLevel: 0
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 33
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 42
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 51
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 52
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 60
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 61
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 80
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 81
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 100
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 101
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 102
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 103
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 104
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 120
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 121
       rarity: 0
-      maxUpgrade: 4
+      maxLevel: 4
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 122
       rarity: 0
-      maxUpgrade: 1
+      maxLevel: 1
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0
     - id: 999
       rarity: 0
-      maxUpgrade: 5
+      maxLevel: 5
       upgradecount: 0
-      UpgradeValueList: []
+      arfifactLevelValueList: []
       isonoff: 0

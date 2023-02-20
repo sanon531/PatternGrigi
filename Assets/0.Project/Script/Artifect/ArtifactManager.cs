@@ -148,7 +148,7 @@ namespace PG.Battle
                     {
                         Global_CampaignData._currentArtifactDictionary[id].AddCountOnArtifact();
                         //캔버스의 분이를 위해 남겨둠.
-                        ArtifactListShower.SetNumberOnCase(id, Global_CampaignData._currentArtifactDictionary[id].UpgradeCount);
+                        ArtifactListShower.SetNumberOnCase(id, Global_CampaignData._currentArtifactDictionary[id].ArtifactLevel);
                     }
                 }
         

@@ -118,7 +118,7 @@ namespace PG
         {
             base.OnGetArtifact();
             Global_CampaignData._isReflectable = true;
-            MaxUpgrade = 1;
+            MaxLevel = 1;
             CompleteArtifact();
         }
 

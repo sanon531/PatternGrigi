@@ -10,10 +10,10 @@ namespace PG
     public class Artifact_Default_HealthUp : Artifact
     {
         //무한으로 업그레이드 되도록 디자인함.
-        public override int UpgradeCount
+        public override int ArtifactLevel
         {
-            get => _upgradeCount;
-            set => _upgradeCount = value;
+            get => _artifactLevel;
+            set => _artifactLevel = value;
         }
 
         
@@ -52,10 +52,10 @@ namespace PG
     
     public class Artifact_Example_A : Artifact
     {
-        public override int UpgradeCount
+        public override int ArtifactLevel
         {
-            get => _upgradeCount;
-            set => _upgradeCount = value;
+            get => _artifactLevel;
+            set => _artifactLevel = value;
         }
         public Artifact_Example_A() : base(ArtifactID.Example_A)
         {
