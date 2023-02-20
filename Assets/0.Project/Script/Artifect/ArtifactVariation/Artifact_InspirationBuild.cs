@@ -35,7 +35,8 @@ namespace PG
         public override void AddCountOnArtifact()
         {
             base.AddCountOnArtifact();
-            
+            BattleExtraAttackManager.AddEmitDamagePercent(20);
+            BattleExtraAttackManager.AddStackDamagePercent(4);
         }
     }
     
