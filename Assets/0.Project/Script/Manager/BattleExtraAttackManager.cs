@@ -5,6 +5,7 @@ using PG.Data;
 using PG.Event;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace PG.Battle
 {
@@ -27,78 +28,70 @@ namespace PG.Battle
         private bool _thunderCalled = true;
         [SerializeField] private GameObject thunderPrefab;
         private List<LaserLine> _thunderLines = new List<LaserLine>();
-
         private void StartLaser()
         {
-            for (int i = 0; i < 40; i++)
-            {
-                _thunderLines.Add(Instantiate(thunderPrefab, transform).GetComponent<LaserLine>());
-                _thunderLines[i]._StartPos = transform.position;
-                _thunderLines[i]._EndPos = transform.position;
-            }
         }
 
         public static void StartThunderCall()
         {
-            _instance._thunderCalled = true;
-            _instance.StartCoroutine(_instance.ThunderCallCoroutine());
+            _instance.StartThunder_Private();
         }
 
+        void StartThunder_Private()
+        {
+            _thunderCalled = true;
+            StartCoroutine(_instance.ThunderDamageCoroutine());
+            StartCoroutine(_instance.ThunderLaserCoroutine());
+            _damageLastTime = Time.time;
+            _thunderLines.Add(Instantiate(thunderPrefab,transform).GetComponent<LaserLine>());
+        }
+
+        
         public static void StopThunderCall()
         {
             _instance._thunderCalled = false;
         }
 
-
-        private IEnumerator ThunderCallCoroutine()
+        
+        private IEnumerator ThunderDamageCoroutine()
         {
             while (_thunderCalled)
             {
-                yield return new WaitForEndOfFrame();
-                ThunderCalc();
+                yield return new WaitForSeconds(0.1f);
+                ThunderDamageCalc();
             }
 
             yield return null;
         }
 
-        private float damageInterval;
+        //레이져에서 받은 데이터를 기반으로
+        private IEnumerator ThunderLaserCoroutine()
+        {
+            while (_thunderCalled)
+            {
+                yield return new WaitForFixedUpdate();
+                ThunderLaserCalc();
+            }
 
-        void ThunderCalc()
+            yield return null;
+        }
+        
+        private float _damageLastTime = 0;
+        public int a = 0;
+        private List<List<Vector3>> _currentLaserPositionList = new List<List<Vector3>>();
+        //레이져의  
+        void ThunderDamageCalc()
         {
             if (_thunderCalled == false)
                 return;
-            var transformList = Global_CampaignData._activatedProjectileList;
-            int transformListCount = Global_CampaignData._activatedProjectileList.Count;
-            int currentTransformListCount = 1;
-            int connectionCountMax = Mathf.RoundToInt(Global_CampaignData._thunderCount.FinalValue);
-            int currentConnectionCount = 0;
-
-            while (true)
+            a = _currentLaserPositionList.Count;
+            foreach (var posPair in _currentLaserPositionList)
             {
-                if(transformListCount <= currentTransformListCount)
-                    break;
-
-                while (true)
-                {
-                    if(transformListCount <= currentTransformListCount)
-                        break;
-                    if(connectionCountMax<=currentConnectionCount)
-                        break;
-                    CalcDamageByThunder(currentTransformListCount - 1, transformList[currentTransformListCount - 1].position,
-                        transformList[currentTransformListCount].position,
-                        Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue / 2);
-                    currentConnectionCount++;
-                    currentTransformListCount++;
-                }
-                currentTransformListCount++;
-                currentConnectionCount = 0 ;
+                CalcDamageByThunder(posPair[0],
+                    posPair[1],
+                    Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue / 2);
             }
-            for (int i = currentTransformListCount; i < _thunderLines.Count; i++)
-            {
-                var laser = _thunderLines[i];
-                if(laser.GetActiveLaser())
-                    laser.SetActiveLaser(false);
-            }
+            
 
             /*
             while (true)
@@ -127,18 +120,13 @@ namespace PG.Battle
             */
         }
 
-        void CalcDamageByThunder(int num, Vector2 lastPos, Vector2 currentPos, float damage)
+        void CalcDamageByThunder(Vector2 lastPos, Vector2 currentPos, float damage)
         {
             Vector2 dir = currentPos - lastPos;
             float range = Vector2.Distance(currentPos, lastPos);
             dir = dir.normalized;
             RaycastHit2D[] hits = new RaycastHit2D[30];
             var count = Physics2D.RaycastNonAlloc(lastPos, dir, hits, range);
-
-            var laser = _thunderLines[num];
-            laser.SetActiveLaser(true);
-            laser._StartPos = lastPos;
-            laser._EndPos = currentPos;
 
             for (int i = 0; i < count; i++)
             {
@@ -149,8 +137,61 @@ namespace PG.Battle
             }
         }
 
+
+        private int _lastMaxLaserCount = 0;
+        void ThunderLaserCalc()
+        {
+            //current
+            var transformList = Global_CampaignData._activatedProjectileList;
+            int transformListCount = Global_CampaignData._activatedProjectileList.Count;
+            int currentTransformListCount = 1;
+            int connectionCountMax = Mathf.RoundToInt(Global_CampaignData._thunderCount.FinalValue);
+            int currentConnectionCount = 1;
+            _currentLaserPositionList.Clear();
+            while (true)
+            {
+                if(transformListCount <= currentTransformListCount)
+                    break;
+                while (true)
+                {
+                    if(transformListCount <= currentTransformListCount)
+                        break;
+                    if(connectionCountMax <= currentConnectionCount)
+                        break;
+
+                    if (_thunderLines.Count <= currentTransformListCount + 1)
+                    {
+                        _thunderLines.Add(Instantiate(thunderPrefab,transform).GetComponent<LaserLine>());
+                        break;
+                    }
+                    
+                    var laser = _thunderLines[currentTransformListCount];
+                    laser.SetActiveLaser(true);
+                    laser._StartPos = transformList[currentTransformListCount-1].position;
+                    laser._EndPos = transformList[currentTransformListCount].position;
+
+                    _currentLaserPositionList.Add(new List<Vector3>(){
+                        transformList[currentTransformListCount-1].position
+                        ,transformList[currentTransformListCount].position});
+                    
+                    
+                    currentConnectionCount++;
+                    currentTransformListCount++;
+                }
+                currentTransformListCount++;
+                currentConnectionCount = 0 ;
+            }
+
+            if (_lastMaxLaserCount > currentTransformListCount)
+            {
+                print(_lastMaxLaserCount + "+" + currentTransformListCount);
+                for (int i = currentTransformListCount; i < _lastMaxLaserCount; i++)
+                    _thunderLines[i].SetActiveLaser(false);
+            }
+            _lastMaxLaserCount = currentTransformListCount;
+        }
+
         #endregion
-      
         
         
         #region inspiration

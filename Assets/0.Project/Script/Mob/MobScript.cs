@@ -197,6 +197,7 @@ namespace PG.Battle
                 _healthSystem.Damage(val);
                 currentHealth = _healthSystem.GetHealth();
                 DamageFXManager.ShowDamage(transform.position, Mathf.Round(val).ToString(),Color.white);
+                ShowDebugtextScript.ShowCurrentAccumulateDamage(Mathf.RoundToInt(val));
                 //print(gameObject.name + " : " + _healthSystem.GetHealth());
                 currentHealth = _healthSystem.GetHealth();
                 //if(knockback is null )

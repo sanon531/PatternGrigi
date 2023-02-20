@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,14 +19,13 @@ namespace PG.Battle
             Effects = GetComponentsInChildren<ParticleSystem>();
             Hit = HitEffect.GetComponentsInChildren<ParticleSystem>();
             transform.position = _StartPos;
-
         }
+
+
         bool _active = true;
         public void SetActiveLaser(bool var)
         {
             _active = var;
-            if(Laser is null)
-                Laser = GetComponent<LineRenderer>();
             Laser.enabled = var;
         }
 

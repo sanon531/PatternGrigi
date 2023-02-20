@@ -35,7 +35,6 @@ namespace PG.Battle
             _lifeTime = _maxLifetime;
             _activetime = activetimes;
             _damageDeal = damage;
-            print(_damageDeal);
 
             _isActived = false;
             _id = id;
