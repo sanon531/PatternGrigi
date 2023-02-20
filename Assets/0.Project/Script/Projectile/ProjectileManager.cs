@@ -99,17 +99,17 @@ namespace PG.Battle
 
         private void OnGet(ProjectileScript projectileScript)
         {
+            Global_CampaignData._activatedProjectileList.Add(projectileScript.transform);
             projectileScript.gameObject.SetActive(true);
             //print("pick"+nameof(projectileScript));
-            Global_CampaignData._activatedProjectileList.Add(projectileScript.transform);
             trackerIDintDic[projectileScript.id]--;
             
         }
         private void OnRelease(ProjectileScript projectileScript)
         {
+            Global_CampaignData._activatedProjectileList.Remove(projectileScript.transform);
             projectileScript.gameObject.SetActive(false);
             //print("release"+nameof(projectileScript));
-            Global_CampaignData._activatedProjectileList.Remove(projectileScript.transform);
             trackerIDintDic[projectileScript.id]++;
         }
 

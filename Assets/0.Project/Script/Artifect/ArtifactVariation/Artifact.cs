@@ -4,6 +4,7 @@ using UnityEngine;
 using PG.Data;
 using System;
 using System.Reflection;
+using UnityEngine.Serialization;
 
 
 namespace PG
@@ -35,23 +36,24 @@ namespace PG
         }
 
        
-        [SerializeField] protected int maxUpgrade;
+        [FormerlySerializedAs("maxUpgrade")] [SerializeField] protected int maxLevel;
 
-        public int MaxUpgrade
+        public int MaxLevel
         {
-            get => maxUpgrade;
-            set => maxUpgrade = value;
+            get => maxLevel;
+            set => maxLevel = value;
         }
 
-        [SerializeField] protected int _upgradeCount;
+        [FormerlySerializedAs("_upgradeCount")] 
+        [SerializeField] protected int _artifactLevel;
 
-        public virtual int UpgradeCount
+        public virtual int ArtifactLevel
         {
-            get { return _upgradeCount; }
+            get { return _artifactLevel; }
             set
             {
-                if (value <= maxUpgrade)
-                    _upgradeCount = value;
+                if (value <= maxLevel)
+                    _artifactLevel = value;
                 else
                     CompleteArtifact();
             }
@@ -80,27 +82,34 @@ namespace PG
             set { this._devcomment2 = value; }
         }
 
+        
+        
+        [FormerlySerializedAs("UpgradeValueList")] [SerializeField]
+        protected List<float> ArfifactLevelValueList;
+
         #endregion
 
         public Artifact(ArtifactID artifactID)
         {
             thisID = artifactID;
         }
+        
+        
 
         public void SetData(ArtifactData data)
         {
             Rarity = (ArtifactRarity)data.Rarity;
-            UpgradeCount = data.UpgradeCount;
-            MaxUpgrade = data.MaxUpgrade;
+            ArtifactLevel = data.ArtifactLevel;
+            MaxLevel = data.MaxLevel;
             _flag = ArtifactFlag.Inactive;
-
+            ArfifactLevelValueList = data.ArfifactLevelValueList;
         }
 
 
         public virtual void OnGetArtifact()
         {
             //이 함수는 유물을 직접 획득할때만 콜됨 (저장한거 로드할땐 콜 안됨)
-            UpgradeCount++;
+            ArtifactLevel++;
         }
 
         public void ActiveArtifact()
@@ -112,15 +121,15 @@ namespace PG
         public void DisposeArtifact()
         {
             //_flag |= ArtifactFlag.Inactive;
-            for (int i = 0; i < _upgradeCount; i++)
+            for (int i = 0; i < _artifactLevel; i++)
                 Disable();
 
-            _upgradeCount = 0;
+            _artifactLevel = 0;
         }
 
         public virtual void AddCountOnArtifact()
         {
-            UpgradeCount++;
+            ArtifactLevel++;
         }
 
         protected bool alreadyCompleted = false;

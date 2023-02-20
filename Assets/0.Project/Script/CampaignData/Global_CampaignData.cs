@@ -44,12 +44,12 @@ namespace PG.Data
         {
             if (_currentArtifactDictionary.ContainsKey(id))
             {
-                return "("+_currentArtifactDictionary[id].UpgradeCount.ToString()+
-                    "/"+ _currentArtifactDictionary[id].MaxUpgrade.ToString() +")";
+                return "("+_currentArtifactDictionary[id].ArtifactLevel.ToString()+
+                    "/"+ _currentArtifactDictionary[id].MaxLevel.ToString() +")";
             }
             else 
             {
-                return "(0/" + ArtifactManager.s_artifactData.idArtifactDataDic[id].MaxUpgrade.ToString() + ")";
+                return "(0/" + ArtifactManager.s_artifactData.idArtifactDataDic[id].MaxLevel.ToString() + ")";
             }
         }
 

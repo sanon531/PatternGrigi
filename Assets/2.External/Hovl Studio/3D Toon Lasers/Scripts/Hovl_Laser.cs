@@ -18,6 +18,7 @@ namespace PG.Battle
         public bool useLaserRotation = false;
 
         public float MaxLength;
+        [SerializeField]
         protected LineRenderer Laser;
 
         public float MainTextureLength = 1f;

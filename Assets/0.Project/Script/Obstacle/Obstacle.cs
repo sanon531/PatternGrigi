@@ -35,6 +35,7 @@ namespace PG.Battle
             _lifeTime = _maxLifetime;
             _activetime = activetimes;
             _damageDeal = damage;
+
             _isActived = false;
             _id = id;
         }
@@ -79,7 +80,7 @@ namespace PG.Battle
             Player_Script.Damage(_damageDeal);
         }
         
-        // ÀÌºÎºÐ °³¼± ÇÒ²¨ÀÓ.
+        // ï¿½ÌºÎºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò²ï¿½ï¿½ï¿½.
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.tag == "Player")

@@ -174,13 +174,9 @@ namespace PG.Battle
                 }
 
                 //ShowDebugtextScript.SetDebug("Pattern Success!");
-                //�ϴ� ���� ���� ������ �ٷ� ���� ���� �ϵ��� ��
             }
-            //ó���� ������ �����Ѵ�.
-            //�������� ������ ������ �������� �ٸ� ������ ���°� ���� �� �ߵ��ϵ��� ��
         }
 
-        // ���� ������ �ϴ°� 
         void SetPresetPattern(DrawPatternPresetID drawPattern)
         {
             _currentPresetNodeNumber = 0;

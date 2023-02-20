@@ -102,7 +102,7 @@ namespace PG.Battle
                 {
                     //전판의 데이터를 전부 지우고 넣음.
                     DisableAllArtifact();
-                    if (artifactData == null || artifactMixData == null)
+                    if (artifactData is null || artifactMixData is null)
                         throw new Exception(" ArtifactData isn't set");
                     s_artifactData = artifactData;
                     s_artifactMixData = artifactMixData;
@@ -148,7 +148,7 @@ namespace PG.Battle
                     {
                         Global_CampaignData._currentArtifactDictionary[id].AddCountOnArtifact();
                         //캔버스의 분이를 위해 남겨둠.
-                        ArtifactListShower.SetNumberOnCase(id, Global_CampaignData._currentArtifactDictionary[id].UpgradeCount);
+                        ArtifactListShower.SetNumberOnCase(id, Global_CampaignData._currentArtifactDictionary[id].ArtifactLevel);
                     }
                 }
         

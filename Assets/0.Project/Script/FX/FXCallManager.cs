@@ -24,13 +24,13 @@ namespace PG.Battle
                 tempt.GetComponent<ParticleSystem>().Play();
             }
 
-            _slashContainer = new SlashPool<ParticleSystem>(
+            _normalObjectContainer = new NormalObjectPool<ParticleSystem>(
                 CreateSlash,
                 OnGetSlash,
                 OnReleaseSlash
             );
             for(int i = 0 ; i<5 ;i++)
-                _slashContainer.FillStack();
+                _normalObjectContainer.FillStack();
 
         }
         protected override void CallOnDestroy()
@@ -64,11 +64,11 @@ namespace PG.Battle
         #region patternSlash
 
         [SerializeField] private GameObject slashParticle;
-        private SlashPool<ParticleSystem> _slashContainer;
+        private NormalObjectPool<ParticleSystem> _normalObjectContainer;
 
         public static void PlaySlashFX(Vector2 origin,Vector2 end)
         {
-            ParticleSystem target = _instance._slashContainer.PickUp();
+            ParticleSystem target = _instance._normalObjectContainer.PickUp();
             Vector2 pos = origin + end;
             pos /= 2;
             target.transform.position = pos;
@@ -86,7 +86,7 @@ namespace PG.Battle
         IEnumerator  SlashAutoReturner(ParticleSystem target)
         {
             yield return new WaitForSeconds(1f);
-            _slashContainer.SetBack(target);
+            _normalObjectContainer.SetBack(target);
         }
 
 

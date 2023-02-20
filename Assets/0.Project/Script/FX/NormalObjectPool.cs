@@ -5,7 +5,7 @@ using PG.Battle;
 using UnityEngine;
 
 
-  public class SlashPool<T> : IObjectPoolSW<T> where T : class
+  public class NormalObjectPool<T> : IObjectPoolSW<T> where T : class
   {
     internal readonly Queue<T> m_Queue;
     private readonly Func<T> m_CreateFunc;
@@ -21,7 +21,7 @@ using UnityEngine;
     public int CountLeft => this.CountAll - this.CountInactive;
     public int CountInactive => this.m_Queue.Count;
 
-    public SlashPool(
+    public NormalObjectPool(
       Func<T> createFunc,
       Action<T> actionOnGet = null,
       Action<T> actionOnRelease = null,

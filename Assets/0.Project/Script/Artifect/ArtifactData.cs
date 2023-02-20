@@ -19,17 +19,23 @@ namespace PG.Data
         int rarity;
         public int Rarity { get { return rarity; } set { this.rarity = value; } }
 
-        [SerializeField]
-        int maxUpgrade;
-        public int MaxUpgrade { get { return maxUpgrade; } set { this.maxUpgrade = value; } }
+        [FormerlySerializedAs("maxUpgrade")] [SerializeField]
+        int maxLevel;
+        public int MaxLevel { get { return maxLevel; } set { this.maxLevel = value; } }
         [SerializeField]
         int upgradecount;
-        public int UpgradeCount { get { return upgradecount; } set
+        
+        [FormerlySerializedAs("upgradeValueList")] [SerializeField]
+        List<float> arfifactLevelValueList;
+
+        public List<float>  ArfifactLevelValueList { get { return arfifactLevelValueList; } set { this.arfifactLevelValueList = value; } }
+
+        public int ArtifactLevel { get { return upgradecount; } set
             {
-                if (value <= maxUpgrade)
+                if (value <= maxLevel)
                     this.upgradecount = value;
                 else
-                    this.upgradecount = maxUpgrade;
+                    this.upgradecount = maxLevel;
             }
         }
 
@@ -47,7 +53,7 @@ namespace PG.Data
             this.rarity = (int)ArtifactRarity.Common;
             this.isonoff = true;
             this.upgradecount = 0;
-            this.maxUpgrade = 5;
+            this.maxLevel = 5;
         }
 
 
@@ -59,13 +65,13 @@ namespace PG.Data
             this.upgradecount = value;
         }
 
-        public ArtifactData(ArtifactID id, int rarity, bool isonoff, int value, int maxUpgrade)
+        public ArtifactData(ArtifactID id, int rarity, bool isonoff, int value, int maxLevel)
         {
             this.id = id;
             this.rarity = rarity;
             this.isonoff = isonoff;
             this.upgradecount = value;
-            this.maxUpgrade = maxUpgrade;
+            this.maxLevel = maxLevel;
         }
 
 
