@@ -80,12 +80,19 @@ namespace PG
             set { this._devcomment2 = value; }
         }
 
+        
+        
+        [SerializeField]
+        List<float> UpgradeValueList;
+
         #endregion
 
         public Artifact(ArtifactID artifactID)
         {
             thisID = artifactID;
         }
+        
+        
 
         public void SetData(ArtifactData data)
         {
@@ -93,7 +100,7 @@ namespace PG
             UpgradeCount = data.UpgradeCount;
             MaxUpgrade = data.MaxUpgrade;
             _flag = ArtifactFlag.Inactive;
-
+            UpgradeValueList = data.UpgradeValueList;
         }
 
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ThunderBegining
   m_EditorClassIdentifier: 
   _startArtifactList: 
-  _obtainableArtifactIDList: 1e000000200000001f000000
+  _obtainableArtifactIDList: 780000007a0000001e0000001f000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000150000001600000017000000
     m_values:
@@ -67,7 +67,7 @@ MonoBehaviour:
         - "_\uC2A4\uD3F0\uC218": 20
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0.1
           "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 2
-          "_\uC18D\uB3C4": 10
+          "_\uC18D\uB3C4": 20
           "_\uCCB4\uB825": 20
           "_\uACF5\uACA9\uB825": 0
           "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}

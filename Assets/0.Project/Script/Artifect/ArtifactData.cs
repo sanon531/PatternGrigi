@@ -26,8 +26,10 @@ namespace PG.Data
         int upgradecount;
         
         [SerializeField]
-        List<float> UpgradeValueList;
-        
+        List<float> upgradeValueList;
+
+        public List<float>  UpgradeValueList { get { return upgradeValueList; } set { this.upgradeValueList = value; } }
+
         public int UpgradeCount { get { return upgradecount; } set
             {
                 if (value <= maxUpgrade)

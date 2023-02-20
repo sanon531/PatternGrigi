@@ -31,7 +31,10 @@ MonoBehaviour:
       rarity: 0
       maxUpgrade: 5
       upgradecount: 0
-      UpgradeValueList: []
+      UpgradeValueList:
+      - 1.2
+      - 1.2
+      - 1
       isonoff: 0
     - id: 11
       rarity: 0
@@ -65,7 +68,7 @@ MonoBehaviour:
       isonoff: 0
     - id: 32
       rarity: 0
-      maxUpgrade: 5
+      maxUpgrade: 0
       upgradecount: 0
       UpgradeValueList: []
       isonoff: 0
