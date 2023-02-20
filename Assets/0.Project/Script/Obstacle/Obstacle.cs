@@ -80,7 +80,7 @@ namespace PG.Battle
             Player_Script.Damage(_damageDeal);
         }
         
-        // ÀÌºÎºÐ °³¼± ÇÒ²¨ÀÓ.
+        // ï¿½ÌºÎºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò²ï¿½ï¿½ï¿½.
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.tag == "Player")

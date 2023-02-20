@@ -24,6 +24,10 @@ namespace PG.Data
         public int MaxUpgrade { get { return maxUpgrade; } set { this.maxUpgrade = value; } }
         [SerializeField]
         int upgradecount;
+        
+        [SerializeField]
+        List<float> UpgradeValueList;
+        
         public int UpgradeCount { get { return upgradecount; } set
             {
                 if (value <= maxUpgrade)

@@ -5,7 +5,7 @@ using PG.Data;
 using PG.Event;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Pool;
+using UnityEngine.Serialization;
 
 namespace PG.Battle
 {
@@ -196,54 +196,59 @@ namespace PG.Battle
         
         #region inspiration
 
-        [SerializeField] private SpriteRenderer GaugeSpr;
-        private float nowNodeCnt = 0;
-
+        [SerializeField] private ParticleSystem GaugeParticle;
+        [SerializeField] private ParticleSystem EmitParticle;
+        
         public static void EnableInspiration()
         {
-            _instance.GaugeSpr.color = new Color(1f, 1f, 1f, _instance.nowNodeCnt / Global_CampaignData._inspirationNodeCount.FinalValue);
-            
-            Global_BattleEventSystem._onCalcPlayerAttack += _instance.OnPassingNode;
+            _instance.GaugeParticle.startColor= new Color(1f,1f,1f,0f);
+            _instance.GaugeParticle.Play();
+
+            Global_BattleEventSystem._onPatternFilled += _instance.OnPassingNode;
+            Global_BattleEventSystem._onPatternSuccessed += _instance.OnPatternSuccess;
         }
 
         public static void DisableInspiration()
         {
-            _instance.GaugeSpr.color = new Color(1f,1f,1f,0f);
+            _instance.GaugeParticle.Stop();
+            _instance.EmitParticle.Stop();
             
-            Global_BattleEventSystem._onCalcPlayerAttack -= _instance.OnPassingNode;
+            Global_BattleEventSystem._onPatternFilled -= _instance.OnPassingNode;
         }
         
-        private void OnPassingNode(float damage)
+        private void OnPassingNode(float fillRate)
         {
-            nowNodeCnt++;
-            GaugeSpr.color = new Color(1f,1f,1f,nowNodeCnt / Global_CampaignData._inspirationNodeCount.FinalValue);
-
-            //full charging
-            if (nowNodeCnt >= Global_CampaignData._inspirationNodeCount.FinalValue)
-            {
-                InspirationAttack();
-                
-                //magic circle animation
-                GaugeSpr.GetComponent<Animator>().enabled = true;
-            }
+            GaugeParticle.startColor= new Color(1f,1f,1f,fillRate * 0.7f);
+            float s = 4.0f * fillRate + 1.0f;
+            GaugeParticle.transform.localScale = new Vector3(s,s,s);
         }
 
-        public static void OnCircleAnimationEnd()
+        private void OnPatternSuccess(DrawPatternPresetID patternPreset)
         {
-            _instance.nowNodeCnt = 0;
-            _instance.GaugeSpr.color = new Color(1f,1f,1f,0f);
-            _instance.GaugeSpr.GetComponent<Animator>().enabled = false;
+            GaugeParticle.startColor = new Color(1f,1f,1f,0f);
+            
+            if (patternPreset == DrawPatternPresetID.Empty_Breath)
+            {
+                InspirationAttack();
+                _instance.EmitParticle.Play();
+            }
         }
         
         private void InspirationAttack()
         {
             float basicDamage = Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue
-                                * 0.5f * Global_CampaignData._inspirationNodeCount.FinalValue;
+                                * 0.5f * Global_CampaignData._randomPatternNodeCount.FinalValue;
             //Damage Upgrade
             float finalDamage = basicDamage * (1.0f + 0.2f *
-                (Global_CampaignData._currentArtifactDictionary[ArtifactID.Spread_Inspiration].UpgradeCount - 1));
-            
-            
+                Global_CampaignData._currentArtifactDictionary[ArtifactID.Spread_Inspiration].UpgradeCount);
+
+            List<MobScript> mobList = EmitParticle.GetComponentInChildren<InspirationCircleTrigger>().InRangeMobList;
+
+            //중간에 삭제 가능성 있기 때문에 foreach는 불가능
+            for (int i = 0; i < mobList.Count; i++)
+            {
+                mobList[i].Damage(finalDamage);
+            }
         }
 
 

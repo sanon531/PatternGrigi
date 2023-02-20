@@ -2,11 +2,13 @@
 <project version="4">
   <component name="Encoding" addBOMForNewFiles="with BOM under Windows, with no BOM otherwise">
     <file url="file://$PROJECT_DIR$/Assets/0.Project/Script/Artifect/ArtifactManager.cs" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/Assets/0.Project/Script/Artifect/UI/InspirationGaugeSetting.cs" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/Assets/0.Project/Script/FX/DamageFXManager.cs" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/Assets/0.Project/Script/FX/FXCallManager.cs" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/Assets/0.Project/Script/Manager/BattleSceneManager.cs" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/Assets/0.Project/Script/Mob/MobGenerator.cs" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/Assets/0.Project/Script/Obstacle/Obstacle.cs" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/Assets/0.Project/Script/Player/PatternDelayingShowManager.cs" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/Assets/0.Project/Script/Player/PatternManager.cs" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/Assets/0.Project/Script/Player/PatternNodeScript.cs" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/Assets/0.Project/Script/Player/Player_Script.cs" charset="x-windows-949" />

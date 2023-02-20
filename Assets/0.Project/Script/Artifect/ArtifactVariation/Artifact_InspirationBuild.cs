@@ -54,7 +54,7 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
-            Global_CampaignData._inspirationNodeCount.Add증가량(1);
+            Global_CampaignData._randomPatternNodeCount.Add증가량(1);
         }
 
         protected override void Disable()
@@ -65,12 +65,16 @@ namespace PG
         public override void AddCountOnArtifact()
         {
             base.AddCountOnArtifact();
-            Global_CampaignData._inspirationNodeCount.Add증가량(1);
+            Global_CampaignData._randomPatternNodeCount.Add증가량(1);
         }
     }
     
     public sealed class Artifact_AncestralBrushstroke : Artifact
     {
+
+        private int nowStack = 0;
+        private int maxStack = 3;
+
         public Artifact_AncestralBrushstroke() : base(ArtifactID.AncestralBrushstroke)
         {
         }
@@ -84,19 +88,46 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
+            nowStack = 0;
+            Global_BattleEventSystem._onPatternFilled += OnPassingNode;
+            Global_BattleEventSystem._onPatternSuccessed += OnPatternSuccess;
         }
         
         protected override void Disable()
         {
             base.Disable();
-            
+            Global_BattleEventSystem._onPatternFilled -= OnPassingNode;
+            Global_BattleEventSystem._onPatternSuccessed -= OnPatternSuccess;
         }
         
         public override void AddCountOnArtifact()
         {
             base.AddCountOnArtifact();
-            
+            maxStack++;
         }
+
+        private void OnPassingNode(float fillRate)
+        {
+            if (nowStack < maxStack)
+            {
+                nowStack++;
+                Global_CampaignData._charactorAttackDic[CharacterID.Player].Add배수(0.1f);
+            }
+            Debug.Log("현재 배수"+ Global_CampaignData._charactorAttackDic[CharacterID.Player]._배수);
+        }
+        
+        private void OnPatternSuccess(DrawPatternPresetID patternPreset)
+        {
+            if (nowStack < maxStack)
+            {
+                nowStack++;
+                Global_CampaignData._charactorAttackDic[CharacterID.Player].Add배수(0.1f);
+            }
+            
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add배수(-0.1f * nowStack);
+            nowStack = 0;
+        }
+        
     }
     
     
