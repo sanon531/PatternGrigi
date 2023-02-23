@@ -37,7 +37,7 @@ namespace PG.Battle
         {
             if (val)
             {
-                transform.DOScale(0.8f, 0.5f).SetUpdate(UpdateType.Late, true);
+                transform.DOScale(1f, 0.5f).SetUpdate(UpdateType.Late, true);
                 transform.DOShakeRotation(0.5f).SetUpdate(UpdateType.Late, true);
                 SetInterectiveButton(isDisplayable);
             }

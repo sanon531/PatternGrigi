@@ -27,8 +27,8 @@ namespace PG.Battle
         // Start is called before the first frame update
         protected override void CallOnAwake()
         {
-            _gridlayout.cellSize = new Vector2(Screen.height * 0.2f, Screen.width * 0.45f);
-            _gridlayout.spacing = new Vector2(Screen.height * 0.05f, Screen.width * 0.05f);
+            _gridlayout.cellSize = new Vector2(Screen.width*0.8f ,Screen.height * 0.3f );
+            _gridlayout.spacing = new Vector2(0, Screen.height * 0.05f);
             _confirmedButton = GameObject.Find("LevelUpSelectionButton").GetComponent<Button>();
             _confirmedButton.onClick.AddListener(ConfirmButtonPressed);
             _confirmedButton.interactable = false;
@@ -51,7 +51,7 @@ namespace PG.Battle
             {
                 script.ButtonCallOnOff(true);
             }
-            _instance._confirmedButton.transform.DOScale(0.8f, 0.5f).SetUpdate(UpdateType.Late,true);
+            _instance._confirmedButton.transform.DOScale(1f, 0.5f).SetUpdate(UpdateType.Late,true);
             _instance._confirmedButton.transform.DOShakeRotation(0.5f).SetUpdate(UpdateType.Late, true);
 
         }
