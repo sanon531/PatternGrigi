@@ -75,6 +75,8 @@ namespace PG.Data
         public static List<float> _waveTimeList = new List<float>();
         public static List<WaveClass> _waveClassList = new List<WaveClass>();
         public static int _Example_A_Token = 0;
+        public static int _totalMaxArtifactNumber = 4;
+
         #endregion;
 
         #region InPlayData

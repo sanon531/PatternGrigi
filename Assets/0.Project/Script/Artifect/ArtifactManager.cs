@@ -92,7 +92,7 @@ namespace PG.Battle
             LevelUpPanelScript.LevelUpPannelOff();
         }
 
-        //지금은 랜덤이지만. 일단 다음에는 일종의 
+        //Not only random increase percentage to get artifact gto already.
         void ArtifactSetRandomly()
         {
             _showerArtifectList.Clear();

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using PG.Data;
 using PG.Event;
+using UnityEngine.UI;
+
 namespace PG.Battle
 {
 
@@ -18,6 +20,7 @@ namespace PG.Battle
 
         [SerializeField]
         Transform _placeTransform;
+        
 
         protected override void CallOnAwake()
         {
@@ -38,7 +41,7 @@ namespace PG.Battle
             ArtifactShowCase _temptObj = Instantiate( _instance._prefabCase, _instance._placeTransform).GetComponent<ArtifactShowCase>();
             _instance._caseList.Add(_temptObj.gameObject);
             _instance._currentDic.Add(id, _temptObj);
-            Debug.Log(id);
+            //Debug.Log(id);
             _temptObj.SetDataOnCase(id);
         }
 
@@ -54,6 +57,9 @@ namespace PG.Battle
             {
                 Destroy(_caseList[i]);
             }
+
+            var width = _placeTransform.GetComponent<RectTransform>().rect.width;
+            _placeTransform.GetComponent<GridLayoutGroup>().cellSize = new Vector3(width,width);
         }
 
     }
