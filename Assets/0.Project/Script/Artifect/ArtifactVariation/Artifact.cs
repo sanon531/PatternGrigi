@@ -86,6 +86,8 @@ namespace PG
         
         [FormerlySerializedAs("UpgradeValueList")] [SerializeField]
         protected List<float> ArfifactLevelValueList;
+        [FormerlySerializedAs("UpgradeValueList")] [SerializeField]
+        protected List<float> ArfifactLevelValueList2;
 
         #endregion
 
@@ -103,6 +105,7 @@ namespace PG
             MaxLevel = data.MaxLevel;
             _flag = ArtifactFlag.Inactive;
             ArfifactLevelValueList = data.ArfifactLevelValueList;
+            ArfifactLevelValueList2 = data.ArfifactLevelValueList2;
         }
 
 
