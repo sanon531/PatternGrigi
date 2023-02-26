@@ -35,8 +35,8 @@ namespace PG
         public override void AddCountOnArtifact()
         {
             base.AddCountOnArtifact();
-            BattleExtraAttackManager.AddEmitDamagePercent(20);
-            BattleExtraAttackManager.AddStackDamagePercent(4);
+            BattleExtraAttackManager.SetEmitDamagePercent(ArfifactLevelValueList[(ArtifactLevel-1)*2]);
+            BattleExtraAttackManager.SetStackDamagePercent(ArfifactLevelValueList[(ArtifactLevel-1)*2+1]);
         }
     }
     
@@ -55,7 +55,7 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
-            Global_CampaignData._randomPatternNodeCount.Add증가량(1);
+            Global_CampaignData._randomPatternNodeCount.Set증가량(ArfifactLevelValueList[ArtifactLevel - 1]);
         }
 
         protected override void Disable()
@@ -66,7 +66,7 @@ namespace PG
         public override void AddCountOnArtifact()
         {
             base.AddCountOnArtifact();
-            Global_CampaignData._randomPatternNodeCount.Add증가량(1);
+            Global_CampaignData._randomPatternNodeCount.Set증가량(ArfifactLevelValueList[ArtifactLevel - 1]);
         }
     }
     
@@ -74,7 +74,7 @@ namespace PG
     {
 
         private int nowStack = 0;
-        private int maxStack = 3;
+        private int maxStack = 0;
 
         public Artifact_AncestralBrushstroke() : base(ArtifactID.AncestralBrushstroke)
         {
@@ -90,6 +90,7 @@ namespace PG
         {
             base.Enable();
             nowStack = 0;
+            maxStack = (int)ArfifactLevelValueList[ArtifactLevel - 1];
             Global_BattleEventSystem._onPatternFilled += OnPassingNode;
             Global_BattleEventSystem._onPatternSuccessed += OnPatternSuccess;
         }
@@ -104,7 +105,7 @@ namespace PG
         public override void AddCountOnArtifact()
         {
             base.AddCountOnArtifact();
-            maxStack++;
+            maxStack = (int)ArfifactLevelValueList[ArtifactLevel - 1];
         }
 
         private void OnPassingNode(float fillRate)

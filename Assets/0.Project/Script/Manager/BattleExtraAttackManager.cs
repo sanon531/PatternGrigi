@@ -204,8 +204,8 @@ namespace PG.Battle
         private float emitDamagePercent = 120; //120%
         private float stackDamagePercent = 10; //10%
 
-        public static void AddEmitDamagePercent(float value) { _instance.emitDamagePercent += value;}
-        public static void AddStackDamagePercent(float value) { _instance.stackDamagePercent += value;}
+        public static void SetEmitDamagePercent(float value) { _instance.emitDamagePercent = value;}
+        public static void SetStackDamagePercent(float value) { _instance.stackDamagePercent = value;}
         
         public static void EnableInspiration()
         {
