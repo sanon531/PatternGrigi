@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BalanceTest
   m_EditorClassIdentifier: 
   _startArtifactList: 
-  _obtainableArtifactIDList: 780000007a0000001e0000001f000000
+  _obtainableArtifactIDList: 7a000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000150000001600000017000000
     m_values:
@@ -62,22 +62,29 @@ MonoBehaviour:
     m_values:
     - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 0
       "_\uC801\uBC30\uCE58":
-        m_keys: 1500000017000000
+        m_keys: 150000001700000018000000
         m_values:
-        - "_\uC2A4\uD3F0\uC218": 50
-          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0.1
-          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 2
-          "_\uC18D\uB3C4": 20
+        - "_\uC2A4\uD3F0\uC218": 10
+          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 100
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 1
+          "_\uC18D\uB3C4": 10
           "_\uCCB4\uB825": 20
           "_\uACF5\uACA9\uB825": 0
-          "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
+          "_\uC0C9\uAE54": {r: 1, g: 1, b: 1, a: 1}
         - "_\uC2A4\uD3F0\uC218": 1
-          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0.2
+          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
           "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 60
           "_\uC18D\uB3C4": 10
           "_\uCCB4\uB825": 50
-          "_\uACF5\uACA9\uB825": 50
+          "_\uACF5\uACA9\uB825": 10
           "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
+        - "_\uC2A4\uD3F0\uC218": 10
+          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 100
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 1
+          "_\uC18D\uB3C4": 60
+          "_\uCCB4\uB825": 10
+          "_\uACF5\uACA9\uB825": 0
+          "_\uC0C9\uAE54": {r: 1, g: 0, b: 0, a: 1}
       "_\uC2A4\uD3F0\uD0C0\uC785": 0
     - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 3
       "_\uC801\uBC30\uCE58":
@@ -98,7 +105,7 @@ MonoBehaviour:
           "_\uACF5\uACA9\uB825": 0
           "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
       "_\uC2A4\uD3F0\uD0C0\uC785": 0
-    - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 10
+    - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 0
       "_\uC801\uBC30\uCE58":
         m_keys: 15000000
         m_values:

@@ -14,34 +14,7 @@ namespace PG.Battle
     {
         #region VARIABLE
 
-        private static List<ArtifactID> _commonArtifactPool = new List<ArtifactID>();
-
-        public static List<ArtifactID> commonArtifactPool
-        {
-            get { return new List<ArtifactID>(_commonArtifactPool); }
-        }
-
-        private static List<ArtifactID> _uncommonArtifactPool = new List<ArtifactID>();
-
-        public static List<ArtifactID> uncommonArtifactPool
-        {
-            get { return new List<ArtifactID>(_uncommonArtifactPool); }
-        }
-
-        private static List<ArtifactID> _rareArtifactPool = new List<ArtifactID>();
-
-        public static List<ArtifactID> rareArtifactPool
-        {
-            get { return new List<ArtifactID>(_rareArtifactPool); }
-        }
-
-        private static List<ArtifactID> _uniqueArtifactPool = new List<ArtifactID>();
-
-        public static List<ArtifactID> uniqueArtifactPool
-        {
-            get { return new List<ArtifactID>(_uniqueArtifactPool); }
-        }
-
+     
         public static ArtifactScriptableData s_artifactData;
         public static ArtifactMixtureData s_artifactMixData;
 
@@ -98,7 +71,7 @@ namespace PG.Battle
             _showerArtifectList.Clear();
 
             if (Global_CampaignData._obtainableArtifactIDList.Count > 2)
-                _showerArtifectList = MyRandom.PickRandoms(Global_CampaignData._obtainableArtifactIDList, 4);
+                _showerArtifectList = MyRandom.PickRandoms(Global_CampaignData._obtainableArtifactIDList, 2);
             else
             {
                 foreach (var id in Global_CampaignData._obtainableArtifactIDList)
