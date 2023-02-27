@@ -16,7 +16,7 @@ namespace PG.Data
         {
             foreach (ArtifactID id in Enum.GetValues(typeof(ArtifactID))) 
                 {
-                    idArtifactDataDic.Add(id,new ArtifactData(id,0,false,0,3));
+                    idArtifactDataDic.Add(id,new ArtifactData(id,0,false,0,0));
                 }
         }
     }

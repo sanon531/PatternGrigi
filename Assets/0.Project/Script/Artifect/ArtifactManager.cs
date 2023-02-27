@@ -14,7 +14,6 @@ namespace PG.Battle
     {
         #region VARIABLE
 
-     
         public static ArtifactScriptableData s_artifactData;
         public static ArtifactMixtureData s_artifactMixData;
 
@@ -25,6 +24,7 @@ namespace PG.Battle
         [SerializeField] bool _isTestSet = true;
         [SerializeField] List<ArtifactID> _showerArtifectList = new List<ArtifactID>() { };
 
+        private HashSet<ArtifactID> upgradableIDset;
         private HashSet<ArtifactID> completedIDset;
         private HashSet<ArtifactID> completeRequirementSet;
 
@@ -69,16 +69,29 @@ namespace PG.Battle
         void ArtifactSetRandomly()
         {
             _showerArtifectList.Clear();
+            bool canGetNew = Global_CampaignData._currentArtifactDictionary.Count <
+                             Global_CampaignData._totalMaxArtifactNumber;
 
-            if (Global_CampaignData._obtainableArtifactIDList.Count > 2)
-                _showerArtifectList = MyRandom.PickRandoms(Global_CampaignData._obtainableArtifactIDList, 2);
-            else
+
+            //만약 획득한 아이템이 있고 획득한 아이템이 업그레이드가 가능하다면 해당 요소 우선적으로 얻을수있게 만든다
+            if (upgradableIDset.Count > 0)
             {
-                foreach (var id in Global_CampaignData._obtainableArtifactIDList)
+                if (canGetNew)
                 {
-                    _showerArtifectList.Add(id);
+                    _showerArtifectList.Add(MyRandom.PickRandom(Global_CampaignData._obtainableArtifactIDList));
+                    _showerArtifectList.Add(MyRandom.PickRandom(upgradableIDset));
+                }
+                else
+                {
+                    _showerArtifectList = MyRandom.PickRandoms(upgradableIDset, upgradableIDset.Count);
                 }
             }
+            //만약 획득한 아이템이 없을 경우 무작위로 선택해서 준다.
+            else if (canGetNew)
+            {
+                _showerArtifectList = MyRandom.PickRandoms(Global_CampaignData._obtainableArtifactIDList, 2);
+            }
+
 
             if (_showerArtifectList.Count == 0)
                 _showerArtifectList.Add(ArtifactID.Default_HealthUp);
@@ -96,6 +109,7 @@ namespace PG.Battle
                 throw new Exception(" ArtifactData isn't set");
             s_artifactData = artifactData;
             s_artifactMixData = artifactMixData;
+            upgradableIDset = new HashSet<ArtifactID>();
             completedIDset = new HashSet<ArtifactID>();
             completeRequirementSet = new HashSet<ArtifactID>();
             foreach (var pair in artifactMixData.mixDic)
@@ -126,6 +140,7 @@ namespace PG.Battle
             {
                 //Debug.Log("Upgrade" + id.ToString());
                 _instance._showerArtifectList.Add(id);
+                _instance.upgradableIDset.Add(id);
                 Global_CampaignData._currentArtifactDictionary.Add(id,
                     Artifact.Create(id, ArtifactManager.s_artifactData.idArtifactDataDic[id]));
                 Global_CampaignData._currentArtifactDictionary[id].OnGetArtifact();
@@ -152,6 +167,7 @@ namespace PG.Battle
             }
 
             _instance.completedIDset.Add(id);
+            _instance.upgradableIDset.Remove(id);
             _instance.SearchArtifactMixtureAndSet(id);
         }
 

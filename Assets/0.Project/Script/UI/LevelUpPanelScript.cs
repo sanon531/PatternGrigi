@@ -123,9 +123,9 @@ namespace PG.Battle
                 ArtifactManager.AddArtifactToPlayer_tempUse(_instance._upgradeDataList[_choosedButtonNum]);
                 _choosedButtonNum = -1;
                 Global_BattleEventSystem.CallOffLevelUp();
-                for (int i = 0; i < _instance._upgradePanelList.Count; i++)
+                foreach (var t in _instance._upgradePanelList)
                 {
-                    _instance._upgradePanelList[i].SetInactivateButton();
+                    t.SetInactivateButton();
                 }
 
             }
