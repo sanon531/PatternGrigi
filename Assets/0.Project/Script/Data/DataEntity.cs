@@ -10,6 +10,7 @@ namespace PG
         public void ResetAdd() { _증가량 = 0; }
         public void Add증가량(float amount) { _증가량 += amount; }
         public void Add증가량배수(float amount) { _증가량배수 *= amount; }
+        public void Set증가량(float amount) { _증가량 = amount; }
         public void Mult배수(float amount) { _배수 *= amount; }
         public void Add배수(float amount) { _배수 += amount; }
         public void Add추가량(int amount) { _추가량 += amount; }
@@ -30,7 +31,10 @@ namespace PG
                 return (float)((_기본값 + _증가량 * _증가량배수) * _배수 + _추가량); 
             
             } }
-        public int BaseValue { get { return (int)_기본값; } }
+        public int BaseValue {
+            get { return (int)_기본값; }
+            set { _기본값 = value; }
+        }
         public void PrintCurrent() { Debug.Log("기본값: " + _기본값 + ", 증가량" + _증가량 + ", 증가량 배수" + _증가량배수 + ", 추가량 " + _추가량 + " , 배수" + _배수); }
         public Property properties { get; private set; }
 

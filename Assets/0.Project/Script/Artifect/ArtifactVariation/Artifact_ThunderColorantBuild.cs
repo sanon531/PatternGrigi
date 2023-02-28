@@ -22,6 +22,7 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
+            Global_CampaignData._thunderCount.BaseValue = (int)ArfifactLevelValueList[ArtifactLevel - 1];
             BattleExtraAttackManager.StartThunderCall();
         }
 
@@ -36,8 +37,8 @@ namespace PG
         public override void AddCountOnArtifact()
         {
             base.AddCountOnArtifact();   
-            Global_CampaignData._thunderCount.Add증가량(1);
-            
+            //Global_CampaignData._thunderCount.Add증가량(1);
+            Global_CampaignData._thunderCount.BaseValue = (int)ArfifactLevelValueList[ArtifactLevel - 1];
         }
     }
     public sealed class Artifact_Decalcomanie : Artifact
@@ -55,7 +56,7 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
-            Global_CampaignData._projectileIDDataDic[ProjectileID.NormalBullet]._count++;
+            Global_CampaignData._projectileIDDataDic[ProjectileID.NormalBullet]._count += (int)ArfifactLevelValueList[ArtifactLevel - 1];
         }
 
 
@@ -68,7 +69,8 @@ namespace PG
         public override void AddCountOnArtifact()
         {
             base.AddCountOnArtifact();
-            Global_CampaignData._projectileIDDataDic[ProjectileID.NormalBullet]._count++;
+            //Global_CampaignData._projectileIDDataDic[ProjectileID.NormalBullet]._count++;
+            Global_CampaignData._projectileIDDataDic[ProjectileID.NormalBullet]._count += (int)ArfifactLevelValueList[ArtifactLevel - 1];
         }
 
 
@@ -92,7 +94,7 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
-            Global_CampaignData._projectilePierce.Add증가량(1);
+            Global_CampaignData._projectilePierce.Add증가량((int)ArfifactLevelValueList[ArtifactLevel - 1]);
         }
 
 
@@ -105,7 +107,7 @@ namespace PG
         public override void AddCountOnArtifact()
         {
             base.AddCountOnArtifact();
-            Global_CampaignData._projectilePierce.Add증가량(1);
+            Global_CampaignData._projectilePierce.Add증가량((int)ArfifactLevelValueList[ArtifactLevel - 1]);
         }
     }    
     public sealed class Artifact_Cubism  : Artifact
