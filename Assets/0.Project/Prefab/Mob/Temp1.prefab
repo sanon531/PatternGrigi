@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7758941939469476091}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &689142036305607989
 SpriteRenderer:
@@ -117,6 +117,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4600765322358417809}
+  - {fileID: 1204344217340099944}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -210,7 +211,7 @@ MonoBehaviour:
           _thisID: 5
           _lifeTime: 5
           _activeTime: 1
-  _targetSprite: {fileID: 689142036305607989}
+  _spriteRenderer: {fileID: 2421605308108931356}
 --- !u!61 &3616840655836730660
 BoxCollider2D:
   m_ObjectHideFlags: 0

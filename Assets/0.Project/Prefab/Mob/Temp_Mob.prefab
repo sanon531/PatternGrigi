@@ -168,7 +168,7 @@ MonoBehaviour:
           _thisID: 0
           _lifeTime: 2
           _activeTime: 1
-  _targetSprite: {fileID: 7985014142344966281}
+  _spriteRenderer: {fileID: 2098171875678984507}
 --- !u!61 &8705626116279157195
 BoxCollider2D:
   m_ObjectHideFlags: 0
