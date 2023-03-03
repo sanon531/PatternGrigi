@@ -65,8 +65,8 @@ MonoBehaviour:
         m_keys: 150000001700000018000000
         m_values:
         - "_\uC2A4\uD3F0\uC218": 10
-          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 100
-          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 1
+          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0.5
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 0.5
           "_\uC18D\uB3C4": 10
           "_\uCCB4\uB825": 20
           "_\uACF5\uACA9\uB825": 0

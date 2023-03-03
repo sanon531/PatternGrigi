@@ -248,7 +248,7 @@ namespace PG.Battle
                         CreateMob,
                         OnGet,
                         OnRelease,
-                        OnDestroyMob,
+                        null,
                         true,
                         id :(int)id,
                         10000

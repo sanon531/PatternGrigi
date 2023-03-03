@@ -30,7 +30,7 @@ namespace PG.Battle
         float _gainEXP_byDebug = 10;
         
         [SerializeField]
-        ParticleSystem _signParticle;
+        SpriteRenderer _signSprite;
         // Start is called before the first frame update
         
         protected override void CallOnAwake()
@@ -316,9 +316,9 @@ namespace PG.Battle
             //Debug.Log("input " + i );
             if (_inactivatedNode.Contains(i))
             {
-                _signParticle.Play();
+                _signSprite.enabled = true;
                 Vector3 _targetpos = new Vector3((_IDDic[i].x - 1) * 1.75f, (-_IDDic[i].y) * 1.75f, 0);
-                _signParticle.gameObject.transform.position = _targetpos;
+                _signSprite.gameObject.transform.position = _targetpos;
                 _patternNodes[i].SetIsReachable(true);
                 _inactivatedNode.Remove(i);
             }
@@ -328,10 +328,10 @@ namespace PG.Battle
         void SetNodeToNextReach(int i)
         {
             //Debug.Log("input " + i );
-            _signParticle.Play();
+            _signSprite.enabled = true;
             //Vector3 targetpos = new Vector3((_IDDic[i].x - 1) * 1.75f, (-_IDDic[i].y) * 1.75f, 0);
             Vector3 targetpos = _patternNodes[i].transform.position;
-            _signParticle.gameObject.transform.position = targetpos;
+            _signSprite.gameObject.transform.position = targetpos;
             _patternNodes[i].SetIsReachable(true);
             _inactivatedNode.Remove(i);
         }
