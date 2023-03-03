@@ -563,7 +563,7 @@ PrefabInstance:
       objectReference: {fileID: 464091426}
     - target: {fileID: 7435981631448181669, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_SortingOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7435981631448181675, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_BlockingMask.m_Bits
