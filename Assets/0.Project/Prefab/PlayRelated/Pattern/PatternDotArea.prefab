@@ -1,5 +1,136 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1870109392451046013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1866431681669478533}
+  - component: {fileID: 1754957925201959387}
+  m_Layer: 0
+  m_Name: LaserDefault
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1866431681669478533
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870109392451046013}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8593451071875595715}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!120 &1754957925201959387
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870109392451046013}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 4294967295
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: d2095a492c785e142a24e1bc3ff4b951, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -1
+  m_Positions:
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 0.75
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 0, b: 0, a: 1}
+      key1: {r: 1, g: 0, b: 0, a: 1}
+      key2: {r: 1, g: 1, b: 1, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 65535
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 64957
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    shadowBias: 0
+    generateLightingData: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
 --- !u!1 &1957572138121176029
 GameObject:
   m_ObjectHideFlags: 0
@@ -9950,6 +10081,7 @@ Transform:
   - {fileID: 8593451072103949146}
   - {fileID: 8593451072548091956}
   - {fileID: 8596355345518658257}
+  - {fileID: 1866431681669478533}
   m_Father: {fileID: 8593451072201227061}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9965,7 +10097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c25c0b694a9ed42b138f551c1d6884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _linerenderer: {fileID: 8593451072109611944}
+  _linerenderer: {fileID: 1754957925201959387}
   _lineStart: {fileID: 0}
   _lineEnd: {fileID: 0}
   _textForShowRatio: {fileID: 8593451071610136875}
@@ -10045,7 +10177,6 @@ MonoBehaviour:
   _signParticle: {fileID: 310357986028030318}
   _presetNodes: 
   _currentPresetNodeNumber: 0
-  _delayingManager: {fileID: 0}
   TokenIncreaseAmount: 0.4
   _maxCharge: 20
   _currentCharge: 0
@@ -35115,6 +35246,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ModularBeam
       objectReference: {fileID: 0}
+    - target: {fileID: 151576, guid: 1a3975c1ae347dd409485e15e13edf87, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 491814, guid: 1a3975c1ae347dd409485e15e13edf87, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -35264,11 +35399,6 @@ PrefabInstance:
 --- !u!4 &8593451072103949146 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 491814, guid: 1a3975c1ae347dd409485e15e13edf87, type: 3}
-  m_PrefabInstance: {fileID: 8593451072103850620}
-  m_PrefabAsset: {fileID: 0}
---- !u!120 &8593451072109611944 stripped
-LineRenderer:
-  m_CorrespondingSourceObject: {fileID: 12069332, guid: 1a3975c1ae347dd409485e15e13edf87, type: 3}
   m_PrefabInstance: {fileID: 8593451072103850620}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8593451072390149113

@@ -55,6 +55,7 @@ namespace PG.Battle
             else 
             {
                 _fxtext = _instance._inactivatedFXList[0];
+                _fxtext.SetActive(true);
                 _instance._inactivatedFXList.Remove(_fxtext);
                 _instance._activatedFXList.Add(_fxtext);
             }
@@ -70,6 +71,7 @@ namespace PG.Battle
                 _instance._activatedFXList.Remove(obj);
                 _instance._inactivatedFXList.Add(obj);
                 obj.transform.position = _instance.transform.position;
+                obj.SetActive(false);
             }
 
         }

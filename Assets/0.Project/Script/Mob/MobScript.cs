@@ -85,13 +85,16 @@ namespace PG.Battle
         [SerializeField]
         MobActionDataDic _mobActionDic = new MobActionDataDic();
 
+        [SerializeField]
+        private SpriteRenderer _spriteRenderer;
+        
         //몹을 스폰 할때 초기 데이터들을 넣어주는 코드
-        public void SetInitializeMobSpawnData(CharacterID mobID, MobSpawnData mobSpawnData)
+        public void SetInitializeMobSpawnData(CharacterID mobID, MobSpawnData mobSpawnData,int sortingOrder)
         {
             healthAmountMax = mobSpawnData._체력;
             startingHealthAmount = mobSpawnData._체력;
             currentHealth = mobSpawnData._체력;
-
+            _spriteRenderer.sortingOrder = sortingOrder;
             _healthSystem = new HealthSystem(healthAmountMax);
             _healthSystem.SetHealth(startingHealthAmount);
             _healthSystem.OnDead += OnDead;
@@ -107,7 +110,7 @@ namespace PG.Battle
             _actionTime = 0;
             _currentActionOrder = 0;
 
-            SetTargetted(false);
+            //SetTargetted(false);
         }
 
         //set은 단 한번 이뤄지며 동시에 계속되는 반복방식은 move 로 바꾼다.
@@ -218,13 +221,6 @@ namespace PG.Battle
 
         }
 
-
-        [SerializeField]
-        SpriteRenderer _targetSprite;
-        public void SetTargetted(bool val) 
-        {
-            _targetSprite.enabled = val;
-        }
 
         private IEnumerator Knockback(float duration, float power)
         {

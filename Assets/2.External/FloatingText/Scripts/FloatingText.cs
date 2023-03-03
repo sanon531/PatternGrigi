@@ -10,6 +10,7 @@ namespace PG.Battle.FX
     public class FloatingText : MonoBehaviour
     {
         public TextMesh textMesh;
+        MeshRenderer _meshRenderer;
         public float LifeTime = 1;
 
         [SerializeField]
@@ -17,18 +18,19 @@ namespace PG.Battle.FX
         private void Awake()
         {
             textMesh = this.GetComponent<TextMesh>();
+            _meshRenderer = GetComponent<MeshRenderer>();
+            _meshRenderer.sortingLayerName = "BattleUI";
+            _meshRenderer.sortingOrder = 1;
         }
 
 
         public void SetText(string text, Color color)
         {
-            if (textMesh)
-                textMesh.text = text;
+            textMesh.text = text;
             Vector3 _targetPos = new Vector2(Random.value, Random.value);
             _targetPos = transform.position + _targetPos.normalized;
             //transform.DOJump(_targetPos, 1f, 1, LifeTime);
-            if (textMesh)
-                textMesh.color = color;
+            textMesh.color = color;
             StartCoroutine(DelayedFinish());
             //DOTween.ToAlpha(() => textMesh.color, x => textMesh.color = x, 0, LifeTime).
             //SetEase(_fadeEase).OnComplete(()=>DamageFXManager.FinishFX(gameObject));

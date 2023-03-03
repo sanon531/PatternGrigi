@@ -63,13 +63,14 @@ namespace PG.Battle
             = new Dictionary<CharacterID, ProjectilePool<MobScript>>();
         
         private static readonly int _poolInitialSpawnNum = 20;
-        
+        private int _sortingOrder = 0;
         private void NextWave()
         {
             Global_BattleEventSystem.CallOnWaveChange(_currentWaveOrder);
             
             //이전 웨이브 코루틴들 정리 + 변수 초기화
-            StopAllCoroutines(); 
+            StopAllCoroutines();
+            _sortingOrder = 0;
             _spawnCrtnList = new List<IEnumerator>();
             _fillSpawnCrtnList = new List<IEnumerator>();
             _spawnMobCount = 0;
@@ -98,13 +99,14 @@ namespace PG.Battle
         
         private void SpawnMob(CharacterID mobID, MobSpawnData mobSpawnData)
         {
+            _sortingOrder++;
             Vector3 pos = new Vector3(UnityEngine.Random.Range(_SpawnRange_Left.position.x, _SpawnRange_Right.position.x),
                 _SpawnRange_Left.position.y, _SpawnRange_Left.position.z);
             
             MobScript temp = _totalMobDictionary[mobID].PickUp();
             temp.transform.position = pos;
             
-            temp.SetInitializeMobSpawnData(mobID, mobSpawnData);
+            temp.SetInitializeMobSpawnData(mobID, mobSpawnData,_sortingOrder);
             _mobList.Add(temp);
             _aliveMobCount = _mobList.Count;
             _spawnMobCount++;
@@ -246,7 +248,7 @@ namespace PG.Battle
                         CreateMob,
                         OnGet,
                         OnRelease,
-                        OnDestroyMob,
+                        null,
                         true,
                         id :(int)id,
                         10000

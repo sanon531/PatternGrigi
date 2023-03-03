@@ -35,8 +35,8 @@ namespace PG
         public override void AddCountOnArtifact()
         {
             base.AddCountOnArtifact();
-            BattleExtraAttackManager.SetEmitDamagePercent(ArfifactLevelValueList[(ArtifactLevel-1)*2]);
-            BattleExtraAttackManager.SetStackDamagePercent(ArfifactLevelValueList[(ArtifactLevel-1)*2+1]);
+            BattleExtraAttackManager.SetEmitDamagePercent(ArfifactLevelValueList[ArtifactLevel-1]);
+            BattleExtraAttackManager.SetStackDamagePercent(ArfifactLevelValueList2[ArtifactLevel-1]);
         }
     }
     

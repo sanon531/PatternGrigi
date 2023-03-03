@@ -44,12 +44,12 @@ namespace PG.Data
         {
             if (_currentArtifactDictionary.ContainsKey(id))
             {
-                return "("+_currentArtifactDictionary[id].ArtifactLevel.ToString()+
-                    "/"+ _currentArtifactDictionary[id].MaxLevel.ToString() +")";
+                return "("+(_currentArtifactDictionary[id].ArtifactLevel+1).ToString()+
+                    "/"+ (_currentArtifactDictionary[id].MaxLevel +1).ToString() +")";
             }
             else 
             {
-                return "(0/" + ArtifactManager.s_artifactData.idArtifactDataDic[id].MaxLevel.ToString() + ")";
+                return "(1/" + (ArtifactManager.s_artifactData.idArtifactDataDic[id].MaxLevel+1).ToString() + ")";
             }
         }
 
@@ -75,6 +75,8 @@ namespace PG.Data
         public static List<float> _waveTimeList = new List<float>();
         public static List<WaveClass> _waveClassList = new List<WaveClass>();
         public static int _Example_A_Token = 0;
+        public static int _totalMaxArtifactNumber = 4;
+
         #endregion;
 
         #region InPlayData

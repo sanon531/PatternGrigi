@@ -30,7 +30,7 @@ namespace PG.Battle
         float _gainEXP_byDebug = 10;
         
         [SerializeField]
-        ParticleSystem _signParticle;
+        SpriteRenderer _signSprite;
         // Start is called before the first frame update
         
         protected override void CallOnAwake()
@@ -52,7 +52,6 @@ namespace PG.Battle
         private void Update()
         {
             CheckIsCharge();
-            CheckDelayData();
         }
 
 
@@ -159,18 +158,7 @@ namespace PG.Battle
                 else 
                 {
                     Global_BattleEventSystem.CallOnPatternSuccessed(_currentPattern);
-
-                    if (_coolTimeToken > 0) 
-                    {
-                        SetRandomPattern(_lastNode);
-                        _coolTimeToken--;
-                    }
-                    else
-                    {
-                        _isPatternDelayed = true;
-                    }
-
-
+                    SetRandomPattern(_lastNode);
                 }
 
                 //ShowDebugtextScript.SetDebug("Pattern Success!");
@@ -227,8 +215,8 @@ namespace PG.Battle
         }
         
         #region // delayed
-        [SerializeField]
-        PatternDelayingShowManager _delayingManager;
+        //[SerializeField]
+        //PatternDelayingShowManager _delayingManager;
         bool _isPatternDelayed = false;
         int _coolTimeToken = 0;
         int _maxCoolTimeToken = 0;
@@ -237,37 +225,14 @@ namespace PG.Battle
         float TokenIncreaseAmount = 0.2f;
         void StartDelayData() 
         {
-            _delayingManager = GameObject.Find("PatternDelayingShowManager").GetComponent<PatternDelayingShowManager>();
-            _delayingManager.InitialzeShowManager();
+            //_delayingManager = GameObject.Find("PatternDelayingShowManager").GetComponent<PatternDelayingShowManager>();
+            //_delayingManager.InitialzeShowManager();
         
             _maxCoolTimeToken = Mathf.RoundToInt(Global_CampaignData._coolTimeTokenCount.FinalValue);
             _coolTimeToken = _maxCoolTimeToken;
             _currentDelayPercent = 0;
-            _delayingManager.SetValueofDelay(_currentDelayPercent, _coolTimeToken);
+            //_delayingManager.SetValueofDelay(_currentDelayPercent, _coolTimeToken);
         
-        }
-        void CheckDelayData() 
-        {
-            if (_maxCoolTimeToken <= _coolTimeToken)
-                return;
-
-            _currentDelayPercent += Time.deltaTime * TokenIncreaseAmount;
-
-            if (_currentDelayPercent > 1) 
-            {
-                _currentDelayPercent = 0;
-        
-                if (_isPatternDelayed)
-                {
-                    SetRandomPattern(_lastNode);
-                    _isPatternDelayed = false;
-                }
-                else 
-                {
-                    _coolTimeToken++;
-                }
-            }
-            _delayingManager.SetValueofDelay(_currentDelayPercent, _coolTimeToken);
         }
         #endregion
 
@@ -351,9 +316,9 @@ namespace PG.Battle
             //Debug.Log("input " + i );
             if (_inactivatedNode.Contains(i))
             {
-                _signParticle.Play();
+                _signSprite.enabled = true;
                 Vector3 _targetpos = new Vector3((_IDDic[i].x - 1) * 1.75f, (-_IDDic[i].y) * 1.75f, 0);
-                _signParticle.gameObject.transform.position = _targetpos;
+                _signSprite.gameObject.transform.position = _targetpos;
                 _patternNodes[i].SetIsReachable(true);
                 _inactivatedNode.Remove(i);
             }
@@ -363,10 +328,10 @@ namespace PG.Battle
         void SetNodeToNextReach(int i)
         {
             //Debug.Log("input " + i );
-            _signParticle.Play();
+            _signSprite.enabled = true;
             //Vector3 targetpos = new Vector3((_IDDic[i].x - 1) * 1.75f, (-_IDDic[i].y) * 1.75f, 0);
             Vector3 targetpos = _patternNodes[i].transform.position;
-            _signParticle.gameObject.transform.position = targetpos;
+            _signSprite.gameObject.transform.position = targetpos;
             _patternNodes[i].SetIsReachable(true);
             _inactivatedNode.Remove(i);
         }

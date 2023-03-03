@@ -16,7 +16,9 @@ namespace PG.Data
         {
             foreach (ArtifactID id in Enum.GetValues(typeof(ArtifactID))) 
                 {
-                    idArtifactDataDic.Add(id,new ArtifactData(id,0,false,0,5));
+                    idArtifactDataDic.Add(id,new ArtifactData(id,0,false,0,4));
+                    idArtifactDataDic[id].ArfifactLevelValueList = new List<float>() { 1, 1, 1, 1 };
+                    idArtifactDataDic[id].ArfifactLevelValueList2 = new List<float>() { 1, 1, 1, 1 };
                 }
         }
     }

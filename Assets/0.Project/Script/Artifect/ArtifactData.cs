@@ -27,8 +27,11 @@ namespace PG.Data
         
         [FormerlySerializedAs("upgradeValueList")] [SerializeField]
         List<float> arfifactLevelValueList;
+        [FormerlySerializedAs("upgradeValueList")] [SerializeField]
+        List<float> arfifactLevelValueList2;
 
         public List<float>  ArfifactLevelValueList { get { return arfifactLevelValueList; } set { this.arfifactLevelValueList = value; } }
+        public List<float>  ArfifactLevelValueList2 { get { return arfifactLevelValueList2; } set { this.arfifactLevelValueList2 = value; } }
 
         public int ArtifactLevel { get { return upgradecount; } set
             {
