@@ -212,6 +212,9 @@ namespace PG.Battle
             _instance.GaugeParticle.startColor= new Color(1f,1f,1f,0f);
             _instance.GaugeParticle.Play();
 
+            _instance.GaugeParticle.transform.position = PatternManager._instance._patternNodes[4].transform.position;
+            _instance.EmitParticle.transform.position = PatternManager._instance._patternNodes[4].transform.position;
+
             Global_BattleEventSystem._onPatternFilled += _instance.OnPassingNode;
             Global_BattleEventSystem._onPatternSuccessed += _instance.OnPatternSuccess;
         }
