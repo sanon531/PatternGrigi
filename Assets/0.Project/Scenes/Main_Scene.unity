@@ -561,6 +561,14 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: b1753d2c18efec648a10388d302f3aba, type: 3}
+    - target: {fileID: 7435981631350546505, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7435981631350546505, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 7ef34f26b8117334c8ecd9c27a45e2c6, type: 2}
     - target: {fileID: 7435981631448181669, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_Camera
       value: 
