@@ -7,15 +7,10 @@ namespace PG
 {
     public class MainSceneManager : MonoSingleton<MainSceneManager>
     {
-
-        [SerializeField]
-        string _targetScene = "Play_Scene";
-
         [SerializeField]
         TextMeshProUGUI _titleText;
         [SerializeField]
         TextMeshProUGUI _gameStartText;
-
 
         protected override void CallOnAwake()
         {
@@ -35,19 +30,28 @@ namespace PG
         {
             if (!_pressedStart) 
             {
-                GlobalUIEventSystem.CallTotalFade();
-                Debug.Log("pressed");
                 _pressedStart = true;
-                StartCoroutine(DelayedChangeScene());
+                if (!SceneMoveManager._instance.showTutorial)
+                {
+                    GlobalUIEventSystem.CallTotalFade();
+                    StartCoroutine(DelayedChangeScene("Tutorial_Scene"));
+                    SceneMoveManager._instance.showTutorial = true;
+                }
+                else
+                {
+                    GlobalUIEventSystem.CallTotalFade();
+                    StartCoroutine(DelayedChangeScene(SceneMoveManager._instance.targetPlayScene));
+                }
             }
         }
-        IEnumerator DelayedChangeScene() 
+
+        IEnumerator DelayedChangeScene(string targetScene) 
         {
             yield return new WaitForSecondsRealtime(1.25f);
-            SceneMoveManager.MoveSceneByCall(_targetScene);
-            Debug.Log("called");
-
+            SceneMoveManager.MoveSceneByCall(targetScene);
+            _pressedStart = false;
         }
+
     }
 
 }

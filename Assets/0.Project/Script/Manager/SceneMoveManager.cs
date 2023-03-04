@@ -6,13 +6,10 @@ using UnityEngine.SceneManagement;
 
 namespace PG 
 {
-    public class SceneMoveManager : MonoBehaviour
+    public class SceneMoveManager : MonoSingleton<SceneMoveManager>
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
+        public bool showTutorial = false;
+        public string targetPlayScene;
 
         public static void MoveSceneByCall(string name) 
         {

@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 755426965837110308}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.757}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4798,9 +4798,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -4187025
+  m_SortingLayer: 2
+  m_SortingOrder: 5
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -9494,9 +9494,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -4187025
+  m_SortingLayer: 2
+  m_SortingOrder: 5
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -14445,9 +14445,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -4187025
+  m_SortingLayer: 2
+  m_SortingOrder: 5
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -14504,7 +14504,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1876602279892757997}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19298,9 +19298,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -4187025
+  m_SortingLayer: 2
+  m_SortingOrder: 5
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -24149,9 +24149,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -4187025
+  m_SortingLayer: 2
+  m_SortingOrder: 5
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -24289,5 +24289,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thunderPrefab: {fileID: 2838782074425872178, guid: 74db41f12fb07a44c9732c4839f70ea2, type: 3}
+  a: 0
   GaugeParticle: {fileID: 755426965851686212}
   EmitParticle: {fileID: 1876602279874638987}

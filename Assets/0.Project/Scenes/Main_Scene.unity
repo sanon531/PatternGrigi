@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 487865821}
   - component: {fileID: 487865820}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MainCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -461,6 +461,50 @@ PrefabInstance:
       propertyPath: _currentLanguage
       value: en
       objectReference: {fileID: 0}
+    - target: {fileID: 3256262460429473201, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3256262460429473201, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3256262460429473201, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3964088236052736133, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: targetPlayScene
+      value: Play_Scene_Defence_SW
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610075778637031555, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610075778637031555, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610075778637031555, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4854423643222069641, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4854423643222069641, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5928297809686023169, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5928297809686023169, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7435981629800215618, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -517,6 +561,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 464091426}
+    - target: {fileID: 7435981631448181669, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7435981631448181675, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_BlockingMask.m_Bits
       value: 55
@@ -1220,6 +1268,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cdf234d2ae41284dbb610f4f85f7bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetScene: Play_Scene_Defence_SW
   _titleText: {fileID: 1689655322}
   _gameStartText: {fileID: 1373868002}
