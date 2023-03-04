@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PG.Battle;
 using UnityEngine;
 
 using UnityEngine.SceneManagement;
@@ -14,6 +15,11 @@ namespace PG
         public static void MoveSceneByCall(string name) 
         {
             SceneManager.LoadScene(name);
+            if(name != "Main_Scene")
+                OptionSystem.SetGotoPlayScene();
+            else
+                OptionSystem.SetGotoMainMenu();
+
         }
 
     }

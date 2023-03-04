@@ -474,6 +474,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3964088236052736133, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: showTutorial
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3964088236052736133, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: targetPlayScene
       value: Play_Scene_Defence_SW
       objectReference: {fileID: 0}
@@ -575,6 +579,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7504855527261867977, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8527445291965459474, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8964876256455990930, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
