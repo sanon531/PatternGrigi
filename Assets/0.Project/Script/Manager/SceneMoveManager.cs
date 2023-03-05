@@ -15,11 +15,14 @@ namespace PG
         public static void MoveSceneByCall(string name) 
         {
             SceneManager.LoadScene(name);
-            if(name != "Main_Scene")
+            if (name != "Main_Scene")
+            {
                 OptionSystem.SetGotoPlayScene();
+            }
             else
+            {
                 OptionSystem.SetGotoMainMenu();
-
+            }
         }
 
     }

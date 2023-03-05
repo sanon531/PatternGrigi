@@ -2113,6 +2113,9 @@ MonoBehaviour:
   - {fileID: 7435981630995282319}
   _effectSoundList:
   - {fileID: 0}
+  _bgmList:
+  - {fileID: 8300000, guid: b1753d2c18efec648a10388d302f3aba, type: 3}
+  - {fileID: 8300000, guid: f83859ec2c093b244b8225fe4cfe78f1, type: 3}
 --- !u!1 &7435981630995282317
 GameObject:
   m_ObjectHideFlags: 0

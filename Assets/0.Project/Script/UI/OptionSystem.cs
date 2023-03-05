@@ -81,6 +81,7 @@ namespace PG.Battle
             Global_BattleEventSystem.CallOnTouchMain();
             GlobalUIEventSystem.CallTotalFade();
             StartCoroutine(DelayedToMenu());
+            AudioManager.ChangeBackgroundMusicOnSceneChange(0);
         }
 
         public void SetBackgroundVolume(float volume)

@@ -557,6 +557,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObjectNotDestroyed_SceneChange
       objectReference: {fileID: 0}
+    - target: {fileID: 7435981630513660541, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: _bgmList.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 06b5474a5f700ce4ea9816b48cea613e, type: 3}
     - target: {fileID: 7435981631267499054, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_audioClip
       value: 

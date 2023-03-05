@@ -57,6 +57,7 @@ namespace PG.Battle
             {
                 GlobalUIEventSystem.CallTotalFade();
                 StartCoroutine(DelayedMove(gameObject.scene.name));
+                AudioManager.ChangeBackgroundMusicOnSceneChange(1);
                 _isBackScene = true;
             }
         }
@@ -68,6 +69,8 @@ namespace PG.Battle
             {
                 GlobalUIEventSystem.CallTotalFade();
                 StartCoroutine(DelayedMove("Main_Scene"));
+                AudioManager.ChangeBackgroundMusicOnSceneChange(0);
+
                 _isBackScene = true;
             }
         }

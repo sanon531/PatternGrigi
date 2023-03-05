@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 namespace PG
 {
@@ -13,6 +14,8 @@ namespace PG
         List<AudioSource> _audioList = new List<AudioSource>();
         [SerializeField]
         List<AudioSource> _effectSoundList = new List<AudioSource>();
+
+        [SerializeField] private List<AudioClip> _bgmList = new List<AudioClip>();
 
         // Start is called before the first frame update
         void Start()
@@ -36,6 +39,21 @@ namespace PG
                 return 0;
             }
         }
+        
+        public static void ChangeBackgroundMusicOnSceneChange(int target)
+        {
+            _instance._backgroundmusic.DOFade(0, 1f);
+            _instance.StartCoroutine(_instance.DelayedChange(target));
+        }
+
+        IEnumerator DelayedChange(int target)
+        {
+            yield return new WaitForSeconds(1f);
+            _backgroundmusic.clip = _bgmList[target];
+            _backgroundmusic.DOFade(1, 0.5f);
+            _backgroundmusic.Play();
+        }
+
 
         public void ChangeBackgroundVolume(float value) 
         {
