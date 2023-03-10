@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using PG.Event;
 using TMPro;
 using DG.Tweening;
+using PG.Data;
 
 public class EXPbarUIScript : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class EXPbarUIScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _maxEXP = 100f;
+        _maxEXP = Global_CampaignData._initialmaxEXP;
         Global_BattleEventSystem._onGainEXP += SetCurrentEXP;
     }
     private void OnDestroy()
@@ -57,7 +58,7 @@ public class EXPbarUIScript : MonoBehaviour
     void SetLevelUp() 
     {
         Global_BattleEventSystem.CallOnLevelUp();
-        SetFullEXP(_maxEXP * 1.2f); 
+        SetFullEXP(_maxEXP * ((100+Global_CampaignData._increasePersentage)/100)); 
     }
 
 }
