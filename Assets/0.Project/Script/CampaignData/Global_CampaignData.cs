@@ -85,8 +85,7 @@ namespace PG.Data
         public static List<Transform> _activatedProjectileList = new List<Transform>();
         public static DataEntity _thunderCount = new DataEntity(DataEntity.Type.None, 2);
         public static bool _isReflectable = false;
-        public static int _initialmaxEXP = 100;
-        public static float _increasePersentage = 10;
+        public static List<float> _levelMaxEXPList = new List<float>();
         public static float _killGetEXP = 1;
         #endregion
 
@@ -128,8 +127,7 @@ namespace PG.Data
                 _waveClassList.Add(data._waveDic[key]);
                 //Debug.Log(key);
             }
-            _initialmaxEXP = data._initialmaxEXP;
-            _increasePersentage =data._increasePersentage;
+            _levelMaxEXPList = data._levelMaxEXPList;
             _killGetEXP = data._killGetEXP;
             //굳이 그럴필요없으면 이거 _waveClassList = new List<WaveClass>(data._waveDic.Values);
         }

@@ -64,8 +64,7 @@ namespace PG.Data
         public DataEntity _projectileSpeed = new DataEntity(DataEntity.Type.ProjectileSpeed, 5);
         public DataEntity _projectileTargetNum = new DataEntity(DataEntity.Type.ProjectileCount, 1);
         public DataEntity _randomPatternNodeCount = new DataEntity(DataEntity.Type.RandomPatternCount, 3);
-        public int _initialmaxEXP = 100;
-        public float _increasePersentage = 10;
+        public List<float> _levelMaxEXPList = new List<float>(){100};
         public float _killGetEXP = 1;
 
     }

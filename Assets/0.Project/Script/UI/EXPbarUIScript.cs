@@ -23,7 +23,7 @@ public class EXPbarUIScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _maxEXP = Global_CampaignData._initialmaxEXP;
+        _maxEXP = Global_CampaignData._levelMaxEXPList[_plaverLevel-1];
         Global_BattleEventSystem._onGainEXP += SetCurrentEXP;
     }
     private void OnDestroy()
@@ -55,10 +55,18 @@ public class EXPbarUIScript : MonoBehaviour
         _bar.DOFillAmount(_currentEXP / _maxEXP,0.5f);
 
     }
-    void SetLevelUp() 
+    void SetLevelUp()
     {
+        print(Global_CampaignData._levelMaxEXPList.Count +","+ _plaverLevel);
+        if (Global_CampaignData._levelMaxEXPList.Count > (_plaverLevel+1 ))
+        {
+            SetFullEXP(Global_CampaignData._levelMaxEXPList[_plaverLevel-1]); 
+        }
+        else
+        {
+            SetFullEXP(Global_CampaignData._levelMaxEXPList[Global_CampaignData._levelMaxEXPList.Count-1]); 
+        }
         Global_BattleEventSystem.CallOnLevelUp();
-        SetFullEXP(_maxEXP * ((100+Global_CampaignData._increasePersentage)/100)); 
     }
 
 }
