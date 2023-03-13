@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: BalanceTest
   m_EditorClassIdentifier: 
   _startArtifactList: 
-  _obtainableArtifactIDList: 7a00000000000000
+  _obtainableArtifactIDList: 1e000000200000001f00000000000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000150000001600000017000000
     m_values:
-    - "_\uAE30\uBCF8\uAC12": 3
+    - "_\uAE30\uBCF8\uAC12": 1
       "_\uC99D\uAC00\uB7C9": 0
       "_\uC99D\uAC00\uB7C9\uBC30\uC218": 1
       "_\uBC30\uC218": 1

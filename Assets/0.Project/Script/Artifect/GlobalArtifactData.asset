@@ -115,10 +115,10 @@ MonoBehaviour:
       - 1
       - 1
       arfifactLevelValueList2:
-      - 1
-      - 1
-      - 1
-      - 1
+      - 5
+      - 5
+      - 5
+      - 5
       isonoff: 0
     - id: 31
       rarity: 0

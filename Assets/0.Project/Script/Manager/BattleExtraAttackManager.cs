@@ -52,12 +52,17 @@ namespace PG.Battle
             _instance._thunderCalled = false;
         }
 
-        
+        public static void SetThunderAttackTerm(float term)
+        {
+            _instance.thunderDamageTerm = term;
+        }
+
+        private float thunderDamageTerm = 0.5f;
         private IEnumerator ThunderDamageCoroutine()
         {
             while (_thunderCalled)
             {
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(thunderDamageTerm);
                 ThunderDamageCalc();
             }
 
@@ -146,11 +151,14 @@ namespace PG.Battle
             int transformListCount = Global_CampaignData._activatedProjectileList.Count;
             int currentTransformListCount = 1;
             int connectionCountMax = Mathf.RoundToInt(Global_CampaignData._thunderCount.FinalValue);
-            int currentConnectionCount = 1;
+            int currentConnectionCount = 0;
+            int iterateCount = 1;
             _currentLaserPositionList.Clear();
             while (true)
             {
                 if(transformListCount <= currentTransformListCount)
+                    break;
+                if(iterateCount<=0)
                     break;
                 while (true)
                 {
@@ -180,6 +188,7 @@ namespace PG.Battle
                 }
                 currentTransformListCount++;
                 currentConnectionCount = 0 ;
+                iterateCount--;
             }
 
             if (_lastMaxLaserCount > currentTransformListCount)

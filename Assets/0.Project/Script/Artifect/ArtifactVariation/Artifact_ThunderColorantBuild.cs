@@ -23,6 +23,7 @@ namespace PG
         {
             base.Enable();
             Global_CampaignData._thunderCount.BaseValue = (int)ArfifactLevelValueList[ArtifactLevel - 1];
+            BattleExtraAttackManager.SetThunderAttackTerm(ArfifactLevelValueList2[ArtifactLevel - 1]);
             BattleExtraAttackManager.StartThunderCall();
         }
 
@@ -39,6 +40,7 @@ namespace PG
             base.AddCountOnArtifact();   
             //Global_CampaignData._thunderCount.Add증가량(1);
             Global_CampaignData._thunderCount.BaseValue = (int)ArfifactLevelValueList[ArtifactLevel - 1];
+            BattleExtraAttackManager.SetThunderAttackTerm(ArfifactLevelValueList2[ArtifactLevel - 1]);
         }
     }
     public sealed class Artifact_Decalcomanie : Artifact
