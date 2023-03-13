@@ -24,11 +24,11 @@ namespace PG
         void PublicFadeIn() 
         {
             _FadeInImage.enabled = true;
-            _FadeInImage.DOFade(1f, 1f);
+            _FadeInImage.material.DOFloat(0, "_FadeAmount", 1f);
         }
         void PublicFadeOut() 
         {
-            _FadeInImage.DOFade(0, 1f);
+            _FadeInImage.material.DOFloat(1, "_FadeAmount", 1f);
             StartCoroutine(LateTurnOff());
         }
 

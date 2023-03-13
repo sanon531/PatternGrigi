@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PG.Battle;
 using UnityEngine;
 using PG.Event;
 using TMPro;
@@ -47,8 +48,10 @@ namespace PG
 
         IEnumerator DelayedChangeScene(string targetScene) 
         {
+            AudioManager.ChangeBackgroundMusicOnSceneChange(1);
             yield return new WaitForSecondsRealtime(1.25f);
             SceneMoveManager.MoveSceneByCall(targetScene);
+            OptionSystem.SetGotoPlayScene();
             _pressedStart = false;
         }
 

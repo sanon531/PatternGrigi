@@ -161,6 +161,8 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 5bea89ae58af0a144897ad91bd2a353e, type: 3}
     - {fileID: 2800000, guid: 0fa9e2df37576844fbb11f07f88ac0e0, type: 3}
     - {fileID: 2800000, guid: 75fc51c62551ae14ebca706e46727794, type: 3}
+    - {fileID: 2800000, guid: 80a9ed0a6d43ff44499cfc07c5e4923f, type: 3}
+    - {fileID: 2800000, guid: 3177c9f7a816e684583d5b892e3275c5, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -219,6 +221,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e9d11947d5fa76c4d9c8023d46367665, type: 3}
   - {fileID: 21300000, guid: 0bd74877be3fbb94d9cc3e458da22564, type: 3}
   - {fileID: 21300000, guid: 7f22dce749ba90540adbf3fc0b690b6c, type: 3}
+  - {fileID: 21300000, guid: 3177c9f7a816e684583d5b892e3275c5, type: 3}
   - {fileID: 21300000, guid: b7f7ea48d35b6af45b61e7a3717948a1, type: 3}
   - {fileID: 21300000, guid: 32238058e0dc9b94dbdc3184ae22f366, type: 3}
   - {fileID: 21300000, guid: caa0be581db18ac4184b7c1929851f30, type: 3}
@@ -230,6 +233,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 18ffe9a9857363b4e864177a0c20e711, type: 3}
   - {fileID: 21300000, guid: c51188b9dbd5f36409edc1ca02a9c43c, type: 3}
   - {fileID: 21300000, guid: 35ca90e9263ff5c4782eef88b21963c7, type: 3}
+  - {fileID: 21300000, guid: 80a9ed0a6d43ff44499cfc07c5e4923f, type: 3}
   - {fileID: 21300000, guid: a71f3c1a71d8abf49895129add40ef1b, type: 3}
   - {fileID: 21300000, guid: 55687b2a28180a2479cb32692dd0df47, type: 3}
   - {fileID: 21300000, guid: a87d5a4a645a32c4b9c6be0470dc480c, type: 3}
@@ -337,6 +341,7 @@ SpriteAtlas:
   - SpellBook01_18
   - SpellBook01_42
   - SpellBook01_73
+  - Golem2
   - SpellBook01_09
   - QuickSlice
   - SpellBook01_36
@@ -348,6 +353,7 @@ SpriteAtlas:
   - SpellBook01_46
   - SpellBook01_14
   - SpellBook01_50
+  - Golem1
   - SpellBook01_39
   - SpellBook01_31
   - SpellBook01_44

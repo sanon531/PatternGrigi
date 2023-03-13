@@ -78,8 +78,12 @@ namespace PG.Battle
             {
                 if (canGetNew)
                 {
-                    _showerArtifectList.Add(MyRandom.PickRandom(Global_CampaignData._obtainableArtifactIDList));
-                    _showerArtifectList.Add(MyRandom.PickRandom(upgradableIDset));
+                    var artifacts = Global_CampaignData._obtainableArtifactIDList.ToList();
+                    var firstartifact = MyRandom.PickRandom(upgradableIDset);
+                    artifacts.Remove(firstartifact);
+                    _showerArtifectList.Add(firstartifact);
+                    if(artifacts.Count>0)
+                        _showerArtifectList.Add(MyRandom.PickRandom(artifacts));
                 }
                 else
                 {

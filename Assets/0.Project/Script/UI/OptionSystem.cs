@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace PG.Battle
 {
-    public class OptionSystem : MonoBehaviour
+    public class OptionSystem :MonoSingleton<OptionSystem>
     {
         [SerializeField]
         private GameObject _pausePannel;
@@ -17,12 +17,14 @@ namespace PG.Battle
         private Slider _backgroundSoundSlider;
         [SerializeField]
         private Slider _effectSoundSlider;
+        [SerializeField]
+        private Button _gotoMenuButton;
 
         [SerializeField] 
         private AudioMixer _audioMixer;
         
         bool _isPannelshow = false;
-
+        private bool _isInMainMenu = true;
         private void Start()
         {
             _audioMixer.GetFloat("MusicVolume",out float bgmVol);
@@ -57,13 +59,29 @@ namespace PG.Battle
 
         }
 
+        public static void SetGotoPlayScene()
+        {
+            _instance._isInMainMenu = false;
+            _instance._gotoMenuButton.interactable = true;
+        }
+        public static void SetGotoMainMenu()
+        {
+            _instance._isInMainMenu = true;
+            _instance._gotoMenuButton.interactable = false;
+        }
+
         public void GotoMainMenu()
         {
+            if (_isInMainMenu)
+                return;
+            _isInMainMenu = true;
             //화면 끄고
             CallPausePanel();
             //메인으로 이동
             Global_BattleEventSystem.CallOnTouchMain();
-            SceneMoveManager.MoveSceneByCall("Main_Scene");
+            GlobalUIEventSystem.CallTotalFade();
+            StartCoroutine(DelayedToMenu());
+            AudioManager.ChangeBackgroundMusicOnSceneChange(0);
         }
 
         public void SetBackgroundVolume(float volume)
@@ -75,5 +93,13 @@ namespace PG.Battle
         {
             _audioMixer.SetFloat("EffectVolume", Mathf.Log10(volume) * 20);
         }
+        
+        IEnumerator DelayedToMenu() 
+        {
+            yield return new WaitForSecondsRealtime(1.25f);
+            SceneMoveManager.MoveSceneByCall("Main_Scene");
+        }
+
+        
     }
 }

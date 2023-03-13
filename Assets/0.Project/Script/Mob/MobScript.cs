@@ -36,8 +36,7 @@ namespace PG.Battle
         bool _isNontotalPaused = false;
         float _actionTime, _maxActionTime;
         float _reachedDamage = 20;
-        [SerializeField]
-        int _lootExp = 10;
+        float _lootExp = 1;
 
         private float _extraDamage = 1;
         private float _loadedSpeed = 0;
@@ -109,6 +108,7 @@ namespace PG.Battle
             _isStunned = false;
             _actionTime = 0;
             _currentActionOrder = 0;
+            _lootExp = Global_CampaignData._killGetEXP;
 
             //SetTargetted(false);
         }
