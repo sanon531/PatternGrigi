@@ -1,9 +1,9 @@
+using PG.Data;
+using PG.Event;
+using PG.HealthSystemCM;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PG.HealthSystemCM;
-using PG.Data;
-using PG.Event;
 
 namespace PG.Battle
 {
@@ -103,6 +103,8 @@ namespace PG.Battle
             _loadedSpeed = mobSpawnData._속도;
             _extraDamage = mobSpawnData._공격력;
             _color = mobSpawnData._색깔;
+
+            gameObject.GetComponent<SpriteRenderer>().color = _color;
 
             _isEnemyAlive = true;
             _isStunned = false;
