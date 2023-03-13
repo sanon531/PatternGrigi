@@ -57,7 +57,7 @@ public class EXPbarUIScript : MonoBehaviour
     }
     void SetLevelUp()
     {
-        print(Global_CampaignData._levelMaxEXPList.Count +","+ _plaverLevel);
+       //print(Global_CampaignData._levelMaxEXPList.Count +","+ _plaverLevel);
         if (Global_CampaignData._levelMaxEXPList.Count > (_plaverLevel+1 ))
         {
             SetFullEXP(Global_CampaignData._levelMaxEXPList[_plaverLevel-1]); 

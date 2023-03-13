@@ -153,6 +153,8 @@ namespace PG.Battle
             int connectionCountMax = Mathf.RoundToInt(Global_CampaignData._thunderCount.FinalValue);
             int currentConnectionCount = 0;
             int iterateCount = 1;
+            //Debug.Log("+"+(int)connectionCountMax);
+
             _currentLaserPositionList.Clear();
             while (true)
             {
@@ -193,7 +195,7 @@ namespace PG.Battle
 
             if (_lastMaxLaserCount > currentTransformListCount)
             {
-                print(_lastMaxLaserCount + "+" + currentTransformListCount);
+                //print(_lastMaxLaserCount + "+" + currentTransformListCount);
                 for (int i = currentTransformListCount; i < _lastMaxLaserCount; i++)
                     _thunderLines[i].SetActiveLaser(false);
             }
