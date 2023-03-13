@@ -108,7 +108,6 @@ MonoBehaviour:
   _movement: {x: 0, y: 0, z: 0}
   _collider2D: {fileID: 8705626116279157195}
   _rigidBody2D: {fileID: 3312845963341462587}
-  _lootExp: 10
   _currentAction: 0
   _mobActionIDList: 0100000000000000
   _mobActionDic:
@@ -158,7 +157,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 3.01}
+    oldSize: {x: 2.6666667, y: 2.0066667}
     newSize: {x: 5, y: 5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

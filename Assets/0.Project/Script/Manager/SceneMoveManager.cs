@@ -9,7 +9,6 @@ namespace PG
 {
     public class SceneMoveManager : MonoSingleton<SceneMoveManager>
     {
-        public bool showTutorial = false;
         public string targetPlayScene;
 
         public static void MoveSceneByCall(string name) 
