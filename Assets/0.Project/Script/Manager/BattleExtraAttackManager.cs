@@ -94,7 +94,8 @@ namespace PG.Battle
             {
                 CalcDamageByThunder(posPair[0],
                     posPair[1],
-                    Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue / 2);
+                    Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue * 0.1f);
+                print(Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue * 0.1f);
             }
             
 

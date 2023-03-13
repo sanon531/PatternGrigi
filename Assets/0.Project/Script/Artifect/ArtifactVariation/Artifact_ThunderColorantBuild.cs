@@ -41,7 +41,6 @@ namespace PG
             base.AddCountOnArtifact();   
             //Global_CampaignData._thunderCount.Add증가량(1);
             Global_CampaignData._thunderCount.BaseValue = (int)ArfifactLevelValueList[ArtifactLevel - 1];
-            Debug.Log("+"+(int)ArfifactLevelValueList[ArtifactLevel - 1]);
             BattleExtraAttackManager.SetThunderAttackTerm(ArfifactLevelValueList2[ArtifactLevel - 1]);
         }
     }
