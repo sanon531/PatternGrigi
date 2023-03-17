@@ -90,6 +90,13 @@ namespace PG.Event
             _onPlayerSizeChanged?.Invoke();
         }
 
+        
+        public static event OnEventWithFloat _onMobDamaged;
+        public static void CallOnMobDamaged(float val) 
+        {
+            _onMobDamaged?.Invoke(val);
+        }
+
         #endregion
 
 

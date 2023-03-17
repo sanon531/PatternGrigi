@@ -205,6 +205,7 @@ namespace PG.Battle
                 ShowDebugtextScript.ShowCurrentAccumulateDamage(Mathf.RoundToInt(val));
                 //print(gameObject.name + " : " + _healthSystem.GetHealth());
                 currentHealth = _healthSystem.GetHealth();
+                Global_BattleEventSystem.CallOnMobDamaged(val);
                 //if(knockback is null )
                 //knockback = StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
             }

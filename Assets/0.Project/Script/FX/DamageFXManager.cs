@@ -60,7 +60,9 @@ namespace PG.Battle
                 _instance._activatedFXList.Add(_fxtext);
             }
             _fxtext.transform.position = position;
-            _fxtext.GetComponent<FloatingText>().SetText(text, color);
+            if(text != "0")
+                _fxtext.GetComponent<FloatingText>().SetText(text, color);
+
         }
 
 

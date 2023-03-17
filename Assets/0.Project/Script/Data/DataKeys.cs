@@ -85,6 +85,11 @@ namespace PG.Data
         AncestralBrushstroke = 122,
         
         
+        
+        Red_Flavor= 132,
+        
+        
+        
         Default_HealthUp = 999,
     }
     public enum ProjectileID 

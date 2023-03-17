@@ -20,7 +20,7 @@ namespace PG.Battle.FX
             textMesh = this.GetComponent<TextMesh>();
             _meshRenderer = GetComponent<MeshRenderer>();
             _meshRenderer.sortingLayerName = "BattleUI";
-            _meshRenderer.sortingOrder = 1;
+            _meshRenderer.sortingOrder = 11;
         }
 
 

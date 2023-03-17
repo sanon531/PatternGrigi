@@ -25,6 +25,9 @@ namespace PG.Battle
         [SerializeField]
         ParticleSystem _damageFX;
         [SerializeField]
+        ParticleSystem _healFX;
+
+        [SerializeField]
         Transform _UIShowPos;
 
         public float _knockbackForce;
@@ -66,20 +69,23 @@ namespace PG.Battle
             */
 
         }
-        #region//damage related
+        #region damage related
 
         public static void Damage(float _amount)
         {
             if (_instance._isDead)
                 return;
 
+            if (_amount < 0)
+            {
+                Heal(-_amount);
+                return;
+            }
             CameraShaker.ShakeCamera(0.5f, 1);
             _instance._healthSystem.Damage(_amount);
             _instance.currentHealth -= _amount;
             _instance.Health_Refresh();
             _instance._damageFX.Play();
-            //s_instance._healthBar.DoFadeHealth(s_instance._healthFadeTime);
-            //DamageTextScript.Create(s_instance._thisSprite.transform.position, 0.5f, 0.3f, (int)_amount, Color.green);
             DamageFXManager.ShowDamage(_instance._UIShowPos.position, Mathf.FloorToInt(_amount).ToString(),Color.red);
 
 
@@ -88,6 +94,19 @@ namespace PG.Battle
 
         }
 
+        public static void Heal(float _amount)
+        {
+            if (_instance._isDead)
+                return;
+            _instance._healthSystem.Damage(_amount);
+            _instance.currentHealth += _amount;
+            _instance.Health_Refresh();
+            _instance._healFX.Play();
+                
+            DamageFXManager.ShowDamage(_instance._UIShowPos.position, Mathf.FloorToInt(_amount).ToString(),Color.green);
+        }
+
+        
         [SerializeField]
         float _healthFadeTime = 1f;
         private void HealthSystem_OnDead(object sender, System.EventArgs e)
@@ -106,7 +125,7 @@ namespace PG.Battle
         #endregion
 
         public Player_Status _playerStatus = new Player_Status();
-        #region //get
+        #region get
 
         //현재의 플레이어 스테이터스를 인식으로 받는다.
         public static Player_Status GetPlayerStatus() 
@@ -119,7 +138,7 @@ namespace PG.Battle
         }
 
         #endregion
-        #region//일시정지시 정지할 행동들
+        #region PauseAction
 
         bool _isLevelupPaused = false;
         public void SetNonTotalPauseOn()
