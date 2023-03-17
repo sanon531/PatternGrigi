@@ -24,13 +24,20 @@ namespace PG.Battle
                 tempt.GetComponent<ParticleSystem>().Play();
             }
 
-            _normalObjectContainer = new NormalObjectPool<ParticleSystem>(
+            _slashFXContainer = new NormalObjectPool<ParticleSystem>(
                 CreateSlash,
                 OnGetSlash,
                 OnReleaseSlash
             );
+            _deadFXContainer = new NormalObjectPool<ParticleSystem>(
+                CreateDeadParticle,
+                OnGetDead,
+                OnReleaseDead
+            );
             for(int i = 0 ; i<5 ;i++)
-                _normalObjectContainer.FillStack();
+                _slashFXContainer.FillStack();
+            for(int i = 0 ; i<5 ;i++)
+                _deadFXContainer.FillStack();
 
         }
         protected override void CallOnDestroy()
@@ -64,11 +71,13 @@ namespace PG.Battle
         #region patternSlash
 
         [SerializeField] private GameObject slashParticle;
-        private NormalObjectPool<ParticleSystem> _normalObjectContainer;
+        [SerializeField] private GameObject deadParticle;
+        private NormalObjectPool<ParticleSystem> _slashFXContainer;
+        private NormalObjectPool<ParticleSystem> _deadFXContainer;
 
         public static void PlaySlashFX(Vector2 origin,Vector2 end)
         {
-            ParticleSystem target = _instance._normalObjectContainer.PickUp();
+            ParticleSystem target = _instance._slashFXContainer.PickUp();
             Vector2 pos = origin + end;
             pos /= 2;
             target.transform.position = pos;
@@ -78,15 +87,34 @@ namespace PG.Battle
             _instance.PlaySlash(target);
         }
 
+        public static void PlayDeadFX(Vector2 origin)
+        {
+            ParticleSystem target = _instance._deadFXContainer.PickUp();
+            target.transform.position = origin;
+            _instance.PlayDead(target);
+        }
+
         void PlaySlash(ParticleSystem target )
         {
             target.Play();
             StartCoroutine(SlashAutoReturner(target));
         }
+        
+        
         IEnumerator  SlashAutoReturner(ParticleSystem target)
         {
             yield return new WaitForSeconds(1f);
-            _normalObjectContainer.SetBack(target);
+            _slashFXContainer.SetBack(target);
+        }
+        void PlayDead(ParticleSystem target )
+        {
+            target.Play();
+            StartCoroutine(DeadAutoReturner(target));
+        }
+        IEnumerator DeadAutoReturner(ParticleSystem target)
+        {
+            yield return new WaitForSeconds(1f);
+            _deadFXContainer.SetBack(target);
         }
 
 
@@ -106,6 +134,20 @@ namespace PG.Battle
             particle.gameObject.SetActive(false);
         }
 
+        private ParticleSystem CreateDeadParticle()
+        {
+            ParticleSystem particle = Instantiate(deadParticle, _waitingTransform).GetComponent<ParticleSystem>();
+            return particle;
+        }
+
+        private void OnGetDead(ParticleSystem particle)
+        {
+            particle.gameObject.SetActive(true);
+        }    
+        private void OnReleaseDead(ParticleSystem particle)
+        {
+            particle.gameObject.SetActive(false);
+        }
 
 
         #endregion

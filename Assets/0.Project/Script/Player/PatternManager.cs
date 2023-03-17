@@ -63,10 +63,8 @@ namespace PG.Battle
             float resultDamage = length * Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue;
             _instance.CalcDamageOnSlash(_instance._lastNode,nodeID,resultDamage);
             Global_BattleEventSystem.CallOnCalcPlayerAttack(resultDamage);
-
             _instance.CheckNodeOnDamage(nodeID);
-
-
+            print("ss");
             LineTracer._instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
             VibrationManager.CallVibration();
         }
@@ -115,9 +113,6 @@ namespace PG.Battle
         }
 
 
-
-        //������ ���� ��带 �����ϴ� ��Ȳ�ΰ� �ƴѰ��� ���ϴ� �κ�.
-        //������ ���� ������ ���� �������� �Ǿ��°��� ���̴� �κ�.
         bool _IsChargeReady = false;
         [SerializeField]
         List<int> _presetNodes = new List<int>();
@@ -135,7 +130,6 @@ namespace PG.Battle
             if (_isDebug)
                 Global_BattleEventSystem.CallOnGainEXP(_gainEXP_byDebug);
 
-            //���� ���� ���� �ȳ����̸�
             //Debug.Log(_currentPresetNodeNumber + ":" + _presetNodes.Count);
             if (_currentPresetNodeNumber != 0)
                 PresetPatternShower.HidePresetPatternByID(_currentPresetNodeNumber - 1);
@@ -148,7 +142,6 @@ namespace PG.Battle
             }
             else
             {
-                //��ų������ �����ϴ� ������ ����.
                 //Debug.Log("call by end Pattern"+ _currentPattern);
 
                 if (_IsChargeReady)
@@ -170,9 +163,7 @@ namespace PG.Battle
             _currentPresetNodeNumber = 0;
             _currentPattern = drawPattern;
             _presetNodes = GlobalDataStorage.PatternPresetDic[drawPattern].ToList();
-            //Debug.Log(_presetNodes.Count);
             PresetPatternShower.SetPresetPatternList(_presetNodes, GlobalDataStorage.PatternWIthLaserDic[drawPattern]);
-            //presetDataDic �� ���ο� ��ųʸ��� Ű������EPresetOfDrawPattern�� �޴´�.
             SetNodeToNextReach(_presetNodes[_currentPresetNodeNumber]);
         }
         void SetRandomPattern(int nodeID)
@@ -409,24 +400,19 @@ namespace PG.Battle
             if (_currentCharge >= _maxCharge )
             {
                 _IsChargeReady = true;
-                //�̷��� ������ �Ǹ� ������ ��� �ÿ� ���� ���η� ������.
             }
             ChargeGaugeUIScript.SetChargeGauge(_currentCharge / _maxCharge);
         }
 
-        //���� ����, ������ ������ �����ǽý����̸� ���� ���� ���� ���� �ְ� ����.
         void StartChargeSequence()
         {
             Global_BattleEventSystem.CallOnChargeStart();
             ChargeGaugeUIScript.StartChargeSkill();
             CameraShaker.ShakeCamera(3f, 0.5f);
-            //�÷��̾�� ������ �޾ƿ´�.
             SetPresetPattern(Global_CampaignData._currentChargePattern);
             _isChargeStart = true;
             _IsChargeReady = false;
         }
-
-        //������ ���� �Ǿ��� �� ����
         void EndChargeSequence()
         {
             ChargeGaugeUIScript.EndChargeSkill();

@@ -360,6 +360,7 @@ MonoBehaviour:
   _patternTransform: {fileID: 23443378}
   _waitingTransform: {fileID: 1305664007}
   slashParticle: {fileID: 7295740269783819018, guid: 6cac93468514b8e4fb682ef759dfe76c, type: 3}
+  deadParticle: {fileID: 9089024531793297505, guid: e639a765f1c7d6e4589e86cea5f65643, type: 3}
 --- !u!4 &42253765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 958028663227182528, guid: 4e086d78d4475714f992d451d7548256, type: 3}
@@ -2502,7 +2503,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6747084384509434428, guid: db9e308f0655995499c3d83a1da27798, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.48
+      value: 2.09
       objectReference: {fileID: 0}
     - target: {fileID: 6747084384509434428, guid: db9e308f0655995499c3d83a1da27798, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2510,7 +2511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6747084384727533547, guid: db9e308f0655995499c3d83a1da27798, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.57
+      value: -2.15
       objectReference: {fileID: 0}
     - target: {fileID: 6747084384727533547, guid: db9e308f0655995499c3d83a1da27798, type: 3}
       propertyPath: m_LocalPosition.y

@@ -51,6 +51,8 @@ namespace PG.Battle
             {
                 script.ButtonCallOnOff(true);
             }
+
+            _instance._confirmedButton.transform.rotation = new Quaternion(0, 0, 0, 0);
             _instance._confirmedButton.transform.DOScale(1f, 0.5f).SetUpdate(UpdateType.Late,true);
             _instance._confirmedButton.transform.DOShakeRotation(0.5f).SetUpdate(UpdateType.Late, true);
 
