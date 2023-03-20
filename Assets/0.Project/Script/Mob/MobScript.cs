@@ -28,6 +28,9 @@ namespace PG.Battle
         protected Collider2D _collider2D;
         [SerializeField]
         protected Rigidbody2D _rigidBody2D;
+        [SerializeField]
+        protected AudioSource thisAudioSource ;
+
 
         [Header("Current Status")]
         CharacterID _charactorID;
@@ -208,6 +211,7 @@ namespace PG.Battle
                 Global_BattleEventSystem.CallOnMobDamaged(val);
                 //if(knockback is null )
                 //knockback = StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
+                thisAudioSource.Play();
             }
         }
 

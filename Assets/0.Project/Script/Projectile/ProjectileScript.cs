@@ -42,12 +42,9 @@ namespace PG.Battle
 
         protected bool IsrigidBody2DNotNull = false;
         protected bool IstargetMobNotNull = false;
-        protected bool IsHitAudioNotNull = false;
 
         protected IObjectPoolSW<ProjectileScript> ProjectilePool;
 
-        [SerializeField]
-        protected AudioSource thisAudioSource ;
         
         
         public virtual void SetInitialProjectileData(IObjectPoolSW<ProjectileScript> objectPool,
@@ -55,7 +52,6 @@ namespace PG.Battle
         {
             IsrigidBody2DNotNull = rigidBody2D is not null;
             IstargetMobNotNull = targetMob  is not null;
-            IsHitAudioNotNull = thisAudioSource is not null;
             ProjectilePool = objectPool;
             MaxLifeTime = lifetime;
             CurrentLifeTime = MaxLifeTime;
@@ -92,8 +88,6 @@ namespace PG.Battle
                 collision.GetComponent<MobScript>().Damage(Damage);
                 PiercedList.Add(gameObject);
                 PierceCount--;
-                if(IsHitAudioNotNull)
-                    thisAudioSource.Play();
                 
                 if (PierceCount <= 0)
                     IsActive=false;
