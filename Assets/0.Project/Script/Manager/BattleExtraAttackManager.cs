@@ -52,12 +52,17 @@ namespace PG.Battle
             _instance._thunderCalled = false;
         }
 
-        
+        public static void SetThunderAttackTerm(float term)
+        {
+            _instance.thunderDamageTerm = term;
+        }
+
+        private float thunderDamageTerm = 0.5f;
         private IEnumerator ThunderDamageCoroutine()
         {
             while (_thunderCalled)
             {
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(thunderDamageTerm);
                 ThunderDamageCalc();
             }
 
@@ -89,7 +94,8 @@ namespace PG.Battle
             {
                 CalcDamageByThunder(posPair[0],
                     posPair[1],
-                    Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue / 2);
+                    Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue * 0.1f);
+                print(Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue * 0.1f);
             }
             
 
@@ -146,11 +152,16 @@ namespace PG.Battle
             int transformListCount = Global_CampaignData._activatedProjectileList.Count;
             int currentTransformListCount = 1;
             int connectionCountMax = Mathf.RoundToInt(Global_CampaignData._thunderCount.FinalValue);
-            int currentConnectionCount = 1;
+            int currentConnectionCount = 0;
+            int iterateCount = 1;
+            //Debug.Log("+"+(int)connectionCountMax);
+
             _currentLaserPositionList.Clear();
             while (true)
             {
                 if(transformListCount <= currentTransformListCount)
+                    break;
+                if(iterateCount<=0)
                     break;
                 while (true)
                 {
@@ -180,11 +191,12 @@ namespace PG.Battle
                 }
                 currentTransformListCount++;
                 currentConnectionCount = 0 ;
+                iterateCount--;
             }
 
             if (_lastMaxLaserCount > currentTransformListCount)
             {
-                print(_lastMaxLaserCount + "+" + currentTransformListCount);
+                //print(_lastMaxLaserCount + "+" + currentTransformListCount);
                 for (int i = currentTransformListCount; i < _lastMaxLaserCount; i++)
                     _thunderLines[i].SetActiveLaser(false);
             }

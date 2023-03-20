@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cefa246ec3004447a6fa8e1606092a2, type: 3}
-  m_Name: GlobalArtifactData
+  m_Name: Example_GlobalArtifactData
   m_EditorClassIdentifier: 
   idArtifactDataDic:
-    m_keys: 00000000010000000a0000000b00000014000000150000001e0000001f00000020000000210000002a00000033000000340000003c0000003d0000005000000051000000640000006500000066000000670000006800000078000000790000007a000000e7030000
+    m_keys: 00000000010000000a0000000b00000014000000150000001e0000001f00000020000000210000002a00000033000000340000003c0000003d0000005000000051000000640000006500000066000000670000006800000078000000790000007a000000e703000084000000
     m_values:
     - id: 0
       rarity: 0
@@ -111,14 +111,14 @@ MonoBehaviour:
       upgradecount: 0
       arfifactLevelValueList:
       - 1
-      - 1
-      - 1
-      - 1
+      - 2
+      - 3
+      - 4
       arfifactLevelValueList2:
-      - 1
-      - 1
-      - 1
-      - 1
+      - 5
+      - 5
+      - 5
+      - 5
       isonoff: 0
     - id: 31
       rarity: 0
@@ -404,4 +404,16 @@ MonoBehaviour:
       - 1
       - 1
       - 1
+      isonoff: 0
+    - id: 132
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 0.01
+      - 0.02
+      - 0.03
+      - 0.04
+      - 0.05
+      arfifactLevelValueList2: []
       isonoff: 0

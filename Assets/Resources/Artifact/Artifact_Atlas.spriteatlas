@@ -138,10 +138,10 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 010aba7fcd4dce44a89c02c14d5baadd, type: 3}
     - {fileID: 2800000, guid: 3376636503a30684c9ef31d2fe4c4534, type: 3}
     - {fileID: 2800000, guid: 7c7b481b5a27b3442a51856daa6b56bc, type: 3}
-    - {fileID: 2800000, guid: 0aba532eeca7c6546a2dac7c7e35881b, type: 3}
-    - {fileID: 2800000, guid: 266444193baba7d42944c1f164bb97c5, type: 3}
+    - {fileID: 2800000, guid: 497f35906e684b0459b62e395f9be765, type: 3}
+    - {fileID: 2800000, guid: e86bc2e0c5e01014e852efc18115c1c9, type: 3}
     - {fileID: 2800000, guid: 2c0cb0b5e09eb6c41a1e0d15c211790b, type: 3}
-    - {fileID: 2800000, guid: 20a86111e489616409d174f3224a11a1, type: 3}
+    - {fileID: 2800000, guid: bcfea362b8e875e4aaec8d9bd37a9efc, type: 3}
     - {fileID: 2800000, guid: 8ff052c5929948b4d92cd19990b9d096, type: 3}
     - {fileID: 2800000, guid: 69ac54c6811587f4dbecfe091335e653, type: 3}
     - {fileID: 2800000, guid: 67c5143ce14b6824d942ec275388b2e5, type: 3}
@@ -175,7 +175,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 3962e6c0dc70e5f478ba9f547897a4c9, type: 3}
   - {fileID: 21300000, guid: ac81d0d0a7e3ff34ba9e85e382700f68, type: 3}
   - {fileID: 21300000, guid: ec82e3d025721b64c99dd0e77f271f48, type: 3}
-  - {fileID: 21300000, guid: 20a86111e489616409d174f3224a11a1, type: 3}
   - {fileID: 21300000, guid: c95b88219da105245b5867fe0e6d3bb5, type: 3}
   - {fileID: 21300000, guid: b85659313a5765e4c82d69b0aafaff09, type: 3}
   - {fileID: 21300000, guid: 82c5508160c724e43aeb64036d2dd857, type: 3}
@@ -185,6 +184,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e7828fb165243ae4fb10578e4192607b, type: 3}
   - {fileID: 21300000, guid: 21d1b422c1ae9964e8dceb2441772f11, type: 3}
   - {fileID: 21300000, guid: 4a0a34521689e2f4e9aeda1f8a74be31, type: 3}
+  - {fileID: 21300000, guid: bcfea362b8e875e4aaec8d9bd37a9efc, type: 3}
   - {fileID: 21300000, guid: c763d77218c728a49a8a865d5b8dcf41, type: 3}
   - {fileID: 21300000, guid: 2e6a959235cf487438286a1471ba0ddb, type: 3}
   - {fileID: 21300000, guid: f18b39a29ab88ed489fefb3246f3cd3f, type: 3}
@@ -228,7 +228,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c91024b8f032bce48a8de81a5631009f, type: 3}
   - {fileID: 21300000, guid: 2ee50de88e870f442b0c8e34fe3c7079, type: 3}
   - {fileID: 21300000, guid: 00ac0ff8dd1401949b827d1fd64a21fc, type: 3}
-  - {fileID: 21300000, guid: 266444193baba7d42944c1f164bb97c5, type: 3}
   - {fileID: 21300000, guid: 5985be49b106efc47a04900f3c370895, type: 3}
   - {fileID: 21300000, guid: 18ffe9a9857363b4e864177a0c20e711, type: 3}
   - {fileID: 21300000, guid: c51188b9dbd5f36409edc1ca02a9c43c, type: 3}
@@ -272,7 +271,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e925dfbda8c8f1b4fa9ad13fb269789f, type: 3}
   - {fileID: 21300000, guid: 684ed6ddd84fd8a438b7bb3276c8330d, type: 3}
   - {fileID: 21300000, guid: bd39e71e40bed11409b011e31dae443e, type: 3}
-  - {fileID: 21300000, guid: 0aba532eeca7c6546a2dac7c7e35881b, type: 3}
   - {fileID: 21300000, guid: de977c2e78cdebd45b9375a5a8b71606, type: 3}
   - {fileID: 21300000, guid: 6006058e990f7074fbc786f7750890e3, type: 3}
   - {fileID: 21300000, guid: fcb65b8e0c6c338418da0d160f016fe2, type: 3}
@@ -295,7 +293,6 @@ SpriteAtlas:
   - SpellBook01_12
   - SpellBook01_83
   - SpellBook01_74
-  - SpellBook01_98
   - SpellBook01_48
   - SpellBook01_69
   - FragileRush
@@ -305,6 +302,7 @@ SpriteAtlas:
   - SpellBook01_33
   - SesameOil
   - Default_HealthUp
+  - CircleForAura
   - SpellBook01_01
   - Equatore
   - Thunder_Core
@@ -348,7 +346,6 @@ SpriteAtlas:
   - SpellBook01_26
   - SpellBook01_07
   - SpellBook01_02
-  - SpellBook01_96
   - SpellBook01_57
   - SpellBook01_46
   - SpellBook01_14
@@ -361,7 +358,7 @@ SpriteAtlas:
   - SpellBook01_38
   - SpellBook01_15
   - SpellBook01_53
-  - SpellBook01_80
+  - Red_Flavor
   - SpellBook01_30
   - BulletTeleportShooter
   - SpellBook01_94
@@ -392,7 +389,6 @@ SpriteAtlas:
   - SpellBook01_17
   - Magic_Lenz
   - Example_A
-  - SpellBook01_95
   - SpellBook01_24
   - SpellBook01_35
   - SpellBook01_20

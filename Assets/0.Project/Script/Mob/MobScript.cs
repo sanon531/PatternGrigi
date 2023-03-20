@@ -205,6 +205,7 @@ namespace PG.Battle
                 ShowDebugtextScript.ShowCurrentAccumulateDamage(Mathf.RoundToInt(val));
                 //print(gameObject.name + " : " + _healthSystem.GetHealth());
                 currentHealth = _healthSystem.GetHealth();
+                Global_BattleEventSystem.CallOnMobDamaged(val);
                 //if(knockback is null )
                 //knockback = StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
             }
@@ -220,7 +221,7 @@ namespace PG.Battle
             //트위닝 이슈로 삭제함. 즉발 식으로 대체함. 추후 다른 식으로 구현 할것
             //EXPTokenManager.PlaceEXPToken(transform.position, _lootExp);
             Global_BattleEventSystem.CallOnGainEXP(_lootExp);
-
+            FXCallManager.PlayDeadFX(transform.position);
         }
 
 
