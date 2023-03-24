@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 using PG.Data;
@@ -31,6 +33,7 @@ namespace PG.Battle
         [SerializeField]
         protected SpriteRenderer projectileImage;
 
+        [SerializeField] protected Color originalColor;
         
         //���� Ƚ��.
         protected int PierceCount = 0;
@@ -69,6 +72,23 @@ namespace PG.Battle
             Damage = damage;
             PierceCount = (int)Global_CampaignData._projectilePierce.FinalValue;
             transform.position = (Player_Script.GetPlayerPosition() + projectilePlace);
+            projectileImage.color = GetCurrentColor();
+        }
+
+        private Color GetCurrentColor()
+        {
+            if (Global_CampaignData._CurrentBulletDeBuffs.Count==0)
+                return originalColor;
+            
+            var eMobDebuff = Global_CampaignData._CurrentBulletDeBuffs.Min();
+            switch (eMobDebuff)
+            {
+                case EMobDebuff.Slow:
+                    return Color.green;
+                default:
+                    return originalColor;
+            }
+            
         }
 
         protected virtual void LateUpdate()
@@ -85,7 +105,12 @@ namespace PG.Battle
                 return;
             if (collision.CompareTag("Enemy") && !PiercedList.Contains(collision.gameObject))
             {
-                collision.GetComponent<MobScript>().Damage(Damage);
+                var mob = collision.GetComponent<MobScript>();
+                mob.Damage(Damage);
+                foreach (var debuff in Global_CampaignData._CurrentBulletDeBuffs)
+                {
+                    mob.SetDebuff(debuff);
+                }
                 PiercedList.Add(gameObject);
                 PierceCount--;
                 

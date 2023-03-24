@@ -28,13 +28,12 @@ namespace PG.Battle
             //if (target is not null)
                 //_direction = target.GetMobPosition() - transform.position;
             //else
-            
-
             //Improvising that projecilePlace To Shoot Way
             _direction = projectilePlace;
             _direction = _direction.normalized;
             print(_direction);
             InitialSpeed = Data.Global_CampaignData._projectileSpeed.FinalValue;
+            
             DoMove();
         }
         

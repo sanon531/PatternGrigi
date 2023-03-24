@@ -9,6 +9,10 @@
       "value":"프로젝 타일간 번개 형성"
     },
     {
+      "key":"Slime_Blob",
+      "value":"투사체 적 피격시 슬로우 효과 및 강화 "
+    },
+    {
       "key":"Red_Flavor",
       "value":"흡혈 효과 생성 및 강화"
     },

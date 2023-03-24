@@ -57,6 +57,7 @@ namespace PG.Data
         Decalcomanie  =31,
         Magic_Lenz = 32,
         Cubism =33,
+        Slime_Blob = 34,
         //단거리세트
         QuickSlice = 42,
 
@@ -160,11 +161,14 @@ namespace PG.Data
     
         Main_GameTitle = 0,
         Main_GameStart = 1,
-
-
-
         Battle_PatternDelay = 21,
 
+    }
+    
+    public enum EMobDebuff{
+        
+        Slow =2,
+        
     }
 
 }

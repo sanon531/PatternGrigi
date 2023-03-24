@@ -29,10 +29,10 @@ namespace PG.Battle
         void Start()
         {
 
-            float left = luTransform.position.x;
+            float left = luTransform.position.x*0.8f;
             float up = luTransform.position.y;
             float right = rdTransform.position.x;
-            float down = rdTransform.position.y;
+            float down = rdTransform.position.y*0.8f;
             leftSide.position = new Vector2(left , (up + down)/2);
             rightSide.position = new Vector2(right , (up + down)/2);
             upperSide.position = new Vector2(0 , up);

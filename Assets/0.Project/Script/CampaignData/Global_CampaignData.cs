@@ -76,7 +76,6 @@ namespace PG.Data
         public static List<WaveClass> _waveClassList = new List<WaveClass>();
         public static int _Example_A_Token = 0;
         public static int _totalMaxArtifactNumber = 5;
-
         #endregion;
 
         #region InPlayData
@@ -87,6 +86,10 @@ namespace PG.Data
         public static bool _isReflectable = false;
         public static List<float> _levelMaxEXPList = new List<float>();
         public static float _killGetEXP = 1;
+        public static HashSet<EMobDebuff> _CurrentBulletDeBuffs = new HashSet<EMobDebuff>();
+        public static float _slowAmount = 0.5f;
+        public static float _slowTime = 1f;
+        
         #endregion
 
         #region//초기화 관련
