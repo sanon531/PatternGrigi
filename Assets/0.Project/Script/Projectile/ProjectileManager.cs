@@ -53,6 +53,7 @@ namespace PG.Battle
 
         // 리소스에서 로드하여 두가지 딕셔너리에 저장한다.
         int _totalprojectileNum = 0;
+        [SerializeField] private float spreadAngle = 45f;
         void InitiallzeProjectileDic() 
         {
             //먼저 몹 스폰 매니져에게서 적들의 데이터에 관한 값을 가져오게 됨.
@@ -202,6 +203,7 @@ namespace PG.Battle
             //지금은 그냥 instantiate를 하지만 나중에는 오브젝트 풀링이 가능하도록 만들것..
             TargetTheEnemy();
             int _spreadcount = Global_CampaignData._projectileIDDataDic[id]._count;
+            int totalSpreadCount = Global_CampaignData._projectileIDDataDic[id]._count; 
             int sqrtCeil = Mathf.CeilToInt(Mathf.Sqrt(_spreadcount+1));
 
             
@@ -211,6 +213,15 @@ namespace PG.Battle
                 if(_spreadcount <= 0)
                     break;
                 
+                ProjectileScript _tempt = _totalProjectileDictionary[id].PickUp();
+                _tempt.SetFrequentProjectileData(null, val, 
+                    GetPosBySpread(_spreadcount-1,totalSpreadCount)
+                );
+                //Debug.Log("ss" + GetPosBySpread(i,sqrtCeil));
+                _spreadcount--;
+
+                
+                /*
                 if (_targetedMobList.Count > 0)
                 {
                     for (int i = 0; i <_targetedMobList.Count ; i++)
@@ -226,20 +237,28 @@ namespace PG.Battle
                 }
                 else
                 {
-                    ProjectileScript _tempt = _totalProjectileDictionary[id].PickUp();
-                    _tempt.SetFrequentProjectileData(null, val, 
-                        GetPosBySpread(_spreadcount+1,sqrtCeil)
-                    );
-                    //Debug.Log("ss" + GetPosBySpread(i,sqrtCeil));
-                    _spreadcount--;
-                }
+                }*/
 
             }
 
 
         }
 
-        Vector2 GetPosBySpread(int thisCount, int sqrtCeil)
+        public Vector3 targetAxis = Vector3.up;
+        Vector2 GetPosBySpread(int thisCount, int totalSpreadCount)
+        {
+            if(totalSpreadCount == 1)
+                return new Vector3(0,1,0);
+            
+            float angleStep = spreadAngle / (totalSpreadCount-1);
+            
+            float currentAngle = (-spreadAngle/2f) + (thisCount * angleStep);
+            Quaternion rotation = Quaternion.AngleAxis(currentAngle, targetAxis);
+            Vector3 direction = rotation * transform.up;
+            print(thisCount+"+"+currentAngle+"+"+direction+"  "+totalSpreadCount);
+            return direction;
+        }
+        Vector2 GetDirectionBySpread(int thisCount, int sqrtCeil)
         {
             float x = (thisCount-1) % sqrtCeil  - (sqrtCeil-1)/2;
             float y = (thisCount-1) / sqrtCeil - (sqrtCeil-1)/2;

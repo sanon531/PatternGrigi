@@ -1355,7 +1355,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1440953586}
-  m_PlaneDistance: 4
+  m_PlaneDistance: 3.34
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -1363,7 +1363,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: -4187025
-  m_SortingOrder: 10
+  m_SortingOrder: 12
   m_TargetDisplay: 0
 --- !u!224 &437061470
 RectTransform:
@@ -6040,7 +6040,9 @@ MonoBehaviour:
     - 10
     - 5
     - 1
+  spreadAngle: 45
   _targetedMobList: []
+  targetAxis: {x: 0, y: 0, z: 1}
   _temptenemyList: []
 --- !u!1 &1895526044
 GameObject:

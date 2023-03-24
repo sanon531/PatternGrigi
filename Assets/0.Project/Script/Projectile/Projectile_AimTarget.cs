@@ -23,12 +23,17 @@ namespace PG.Battle
         // Start is called before the first frame update
         public override void SetFrequentProjectileData(MobScript target, float damage,Vector3 projectilePlace)
         {
+
             base.SetFrequentProjectileData(target, damage, projectilePlace);
             //if (target is not null)
                 //_direction = target.GetMobPosition() - transform.position;
-            //else 
-                _direction = Vector3.up;
+            //else
+            
+
+            //Improvising that projecilePlace To Shoot Way
+            _direction = projectilePlace;
             _direction = _direction.normalized;
+            print(_direction);
             InitialSpeed = Data.Global_CampaignData._projectileSpeed.FinalValue;
             DoMove();
         }
