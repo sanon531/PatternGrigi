@@ -132,6 +132,40 @@ namespace PG
         
     }
  
-    
+    public sealed class Artifact_LightWeightBrush : Artifact
+    {
+        public Artifact_LightWeightBrush() : base(ArtifactID.LightWeightBrush)
+        {
+        }
+        
+        public override void OnGetArtifact()
+        {
+            base.OnGetArtifact();
+            Enable();
+        }
+
+        protected override void Enable()
+        {
+            base.Enable();
+            Global_CampaignData._playerSpeed = ArfifactLevelValueList[ArtifactLevel - 1];
+            Global_CampaignData._playerTeleport = ArfifactLevelValueList2[ArtifactLevel - 1];
+            Player_Script.SetThisSpeed();
+            
+        }
+
+        protected override void Disable()
+        {
+            base.Disable();
+        }
+        
+        public override void AddCountOnArtifact()
+        {
+            base.AddCountOnArtifact();
+            Global_CampaignData._playerSpeed = ArfifactLevelValueList[ArtifactLevel - 1];
+            Global_CampaignData._playerTeleport = ArfifactLevelValueList2[ArtifactLevel - 1];
+            Player_Script.SetThisSpeed();
+        }
+    }
+
     
 }

@@ -89,9 +89,6 @@ namespace PG.Battle
             {
 
             }
-
-
-
         }
 
         bool _isClicked = false;
@@ -114,11 +111,20 @@ namespace PG.Battle
 
         }
 
-
+        
 
         bool _isLevelUpPaused = false;
         float _direction_x = 0;
         float _direction_y = 0;
+[SerializeField]
+        private float _teleportLength = 0.5f;
+
+        public void SetSpeedAndTeleport(float speed,float teleport)
+        {
+            _moveSpeed = speed;
+            _teleportLength = teleport;
+
+        }
         //터치 상한선과 작동 상한선 두가지로 나누자.
         void SetPlayerPos(Vector3 targetPos)
         {
@@ -135,7 +141,7 @@ namespace PG.Battle
 
             if (PositionCheckX(targetPos))
             {
-                if (_direction.magnitude < 0.5f)
+                if (_direction.magnitude < _teleportLength)
                 {
                     transform.position = targetPos;
                 }
@@ -147,7 +153,7 @@ namespace PG.Battle
 
             if (PositionCheckY(targetPos)) 
             {
-                if (_direction.magnitude < 0.5f)
+                if (_direction.magnitude < _teleportLength)
                 {
                     transform.position = targetPos;
                 }

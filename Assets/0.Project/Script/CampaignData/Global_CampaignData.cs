@@ -63,11 +63,15 @@ namespace PG.Data
         public static DataEntity _chargeGaugeData = new DataEntity(DataEntity.Type.ChargeGauge, 8);
         public static DataEntity _chargeEXPData = new DataEntity(DataEntity.Type.ChargeEXP, 8);
         //플레이어 사이즈
+        public static float _playerHealth = 100;
         public static DataEntity _playerSize = new DataEntity(DataEntity.Type.PlayerSize, 1);
+        public static float _playerSpeed = 30;
+        public static float _playerTeleport =  0.6f;
         public static DataEntity _projectileSpeed = new DataEntity(DataEntity.Type.ProjectileSpeed, 1);
         public static DataEntity _projectileTargetNum = new DataEntity(DataEntity.Type.ProjectileCount, 1);
         public static DataEntity _projectilePierce = new DataEntity(DataEntity.Type.ProjectilePierce, 1);
         public static DataEntity _randomPatternNodeCount = new DataEntity(DataEntity.Type.RandomPatternCount,3);
+        
         //패턴 쿨타임 관련
         public static DataEntity _coolTimeTokenCount = new DataEntity(DataEntity.Type.MaxCooltimeToken, 3);
 
@@ -117,6 +121,9 @@ namespace PG.Data
             _chargeGaugeData = new DataEntity(data._chargeGaugeData);
             _chargeEXPData = new DataEntity(data._chargeEXPData);
             _playerSize = new DataEntity(data._playerSize);
+            _playerHealth = data._playerHealth;
+            _playerSpeed = data._playerSpeed;
+            _playerTeleport = data._playerTeleport;
             _projectileSpeed = new DataEntity(data._projectileSpeed);
             _projectileTargetNum = new DataEntity(data._projectileTargetNum);
             _projectileIDDataDic.CopyFrom(data._projectileIDDataDic);

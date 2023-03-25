@@ -5,6 +5,7 @@ using UnityEngine;
 
 using PG.Event;
 using System.Linq;
+using PG.Battle;
 
 namespace PG
 {
@@ -37,9 +38,9 @@ namespace PG
             Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(5f);
         }
     }
-    public sealed class Artifact_Equatore : Artifact
+    public sealed class Artifact_MuscleGodBlessing : Artifact
     {
-        public Artifact_Equatore() : base(ArtifactID.Equatore)
+        public Artifact_MuscleGodBlessing() : base(ArtifactID.MuscleGodBlessing)
         {
         }
         public override void OnGetArtifact()
@@ -52,22 +53,53 @@ namespace PG
         {
             base.Enable();
             //간단히 칼크 데미지를 전부 실행함
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(5f);
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add배수(0.1f);
 
 
         }
         protected override void Disable()
         {
             base.Disable();
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(-5f);
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add배수(-0.1f);
         }
         public override void AddCountOnArtifact()
         {
             base.AddCountOnArtifact();   
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add증가량(5f);
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add배수(0.1f);
         }
 
     }
+    public sealed class Artifact_UpgradedBrush : Artifact
+    {
+        public Artifact_UpgradedBrush() : base(ArtifactID.UpgradedBrush)
+        {
+        }
+        public override void OnGetArtifact()
+        {
+            base.OnGetArtifact();
+            Enable();
+        }
+
+        protected override void Enable()
+        {
+            base.Enable();
+            //간단히 칼크 데미지를 전부 실행함
+            Player_Script.SetPlayerHP(ArfifactLevelValueList[ArtifactLevel - 1]);
+        }
+        protected override void Disable()
+        {
+            base.Disable();
+            //Player_Script.SetPlayerHP(ArfifactLevelValueList[ArtifactLevel - 1]);
+        }
+        public override void AddCountOnArtifact()
+        {
+            base.AddCountOnArtifact();   
+            Player_Script.SetPlayerHP(ArfifactLevelValueList[ArtifactLevel - 1]);
+        }
+
+    }
+    
+    
     // 해당 아티펙트는 적과 플레이어의 공격력을 둘다 올려주는 거
     public sealed class Artifact_FragileRush : Artifact
     {

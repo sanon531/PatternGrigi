@@ -59,7 +59,7 @@ namespace PG
             MaxCooltimeToken=6,
             RandomPatternCount= 7,
 
-            경험치 = 10,
+            PlayerSpeed = 10,
 
             효과부여 = 11,
             효과회수 = 12,

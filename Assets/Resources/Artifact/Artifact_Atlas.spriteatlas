@@ -335,7 +335,7 @@ SpriteAtlas:
   - SpellBook01_100
   - SpellBook01_88
   - SpellBook01_37
-  - SpellBook01_13
+  - LightWeightBrush
   - SpellBook01_18
   - SpellBook01_42
   - SpellBook01_73
@@ -377,7 +377,7 @@ SpriteAtlas:
   - SpellBook01_66
   - SpellBook01_67
   - SpellBook01_70
-  - SpellBook01_76
+  - MuscleGodBlessing
   - SpellBook01_79
   - SpellBook01_59
   - SpellBook01_72
@@ -400,7 +400,7 @@ SpriteAtlas:
   - Iceberg
   - SpellBook01_92
   - SpellBook01_41
-  - SpellBook01_40
+  - UpgradedBrush
   - SenseOfCreativity
   - SpellBook01_22
   m_RenderDataMap: {}

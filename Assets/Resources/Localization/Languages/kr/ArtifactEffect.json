@@ -5,6 +5,16 @@
       "value":"차지 성공시 \n 모든 적에게 100 데미지 ."
     },
     {
+      "key":"UpgradedBrush",
+      "value":"최대 체력 증가"
+    },
+
+    {
+      "key":"LightWeightBrush",
+      "value":"이동 속도 <sprite name=Increase_Little>"
+    },
+
+    {
       "key":"Thunder_Colorant",
       "value":"프로젝 타일간 번개 형성"
     },
@@ -37,8 +47,8 @@
       "value":"공격력 <sprite name=Increase> \n  방어력 <sprite name=Decrease>."
     },
     {
-      "key":"Equatore",
-      "value":"공격력 <sprite name=Increase_Little>"
+      "key":"MuscleGodBlessing",
+      "value":"공격력 10% <sprite name=Increase_Little>"
     },
     {
       "key":"BubbleGun",

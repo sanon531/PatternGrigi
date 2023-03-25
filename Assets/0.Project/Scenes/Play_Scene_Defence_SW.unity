@@ -12649,7 +12649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _touchPosition: {x: 0, y: 0, z: 0}
   _thisRB: {fileID: 7285439374565309612}
-  _moveSpeed: 15
+  _moveSpeed: 30
   _moveLU: {fileID: 666974441}
   _moveRD: {fileID: 1741874107}
   _touchLU: {fileID: 1890677295}
