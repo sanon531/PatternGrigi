@@ -43,11 +43,14 @@ namespace PG.Data
         LoveAndPeace = 1,
 
 
+        UpgradedBrush=9,
+        
+        
         //유리대포처럼 적 공격 업 + 내 공격 업.
         FragileRush = 10,
 
-        //적도 - 약간공격력을 상승 시킴.
-        Equatore =11,
+        //근육신의 축복 - 약간공격력을 상승 시킴.
+        MuscleGodBlessing =11,
 
         //장거리세트
         BubbleGun = 20,// 길어질때의 배율 추가.
@@ -57,6 +60,7 @@ namespace PG.Data
         Decalcomanie  =31,
         Magic_Lenz = 32,
         Cubism =33,
+        Slime_Blob = 34,
         //단거리세트
         QuickSlice = 42,
 
@@ -83,8 +87,8 @@ namespace PG.Data
         Spread_Inspiration = 120,
         SenseOfCreativity = 121,
         AncestralBrushstroke = 122,
-        
-        
+       
+        LightWeightBrush = 123,
         
         Red_Flavor= 132,
         
@@ -160,11 +164,14 @@ namespace PG.Data
     
         Main_GameTitle = 0,
         Main_GameStart = 1,
-
-
-
         Battle_PatternDelay = 21,
 
+    }
+    
+    public enum EMobDebuff{
+        
+        Slow =2,
+        
     }
 
 }

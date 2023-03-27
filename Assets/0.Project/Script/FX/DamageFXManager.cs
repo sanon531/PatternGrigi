@@ -46,7 +46,13 @@ namespace PG.Battle
         //오브젝트 풀링 적용하기
         public static void ShowDamage(Vector2 position, string text, Color color)
         {
+            if (text == "0")
+            {
+                text = ".";
+            }
+
             GameObject _fxtext;
+
             if (_instance._inactivatedFXList.Count == 0)
             {
                 _fxtext = Instantiate(_instance._FXPrefab, _instance.transform);
@@ -60,8 +66,7 @@ namespace PG.Battle
                 _instance._activatedFXList.Add(_fxtext);
             }
             _fxtext.transform.position = position;
-            if(text != "0")
-                _fxtext.GetComponent<FloatingText>().SetText(text, color);
+            _fxtext.GetComponent<FloatingText>().SetText(text, color);
 
         }
 

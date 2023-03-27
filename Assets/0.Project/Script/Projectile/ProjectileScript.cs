@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 using PG.Data;
@@ -31,6 +33,7 @@ namespace PG.Battle
         [SerializeField]
         protected SpriteRenderer projectileImage;
 
+        [SerializeField] protected Color originalColor;
         
         //���� Ƚ��.
         protected int PierceCount = 0;
@@ -42,12 +45,9 @@ namespace PG.Battle
 
         protected bool IsrigidBody2DNotNull = false;
         protected bool IstargetMobNotNull = false;
-        protected bool IsHitAudioNotNull = false;
 
         protected IObjectPoolSW<ProjectileScript> ProjectilePool;
 
-        [SerializeField]
-        protected AudioSource thisAudioSource ;
         
         
         public virtual void SetInitialProjectileData(IObjectPoolSW<ProjectileScript> objectPool,
@@ -55,7 +55,6 @@ namespace PG.Battle
         {
             IsrigidBody2DNotNull = rigidBody2D is not null;
             IstargetMobNotNull = targetMob  is not null;
-            IsHitAudioNotNull = thisAudioSource is not null;
             ProjectilePool = objectPool;
             MaxLifeTime = lifetime;
             CurrentLifeTime = MaxLifeTime;
@@ -73,6 +72,23 @@ namespace PG.Battle
             Damage = damage;
             PierceCount = (int)Global_CampaignData._projectilePierce.FinalValue;
             transform.position = (Player_Script.GetPlayerPosition() + projectilePlace);
+            projectileImage.color = GetCurrentColor();
+        }
+
+        private Color GetCurrentColor()
+        {
+            if (Global_CampaignData._CurrentBulletDeBuffs.Count==0)
+                return originalColor;
+            
+            var eMobDebuff = Global_CampaignData._CurrentBulletDeBuffs.Min();
+            switch (eMobDebuff)
+            {
+                case EMobDebuff.Slow:
+                    return Color.green;
+                default:
+                    return originalColor;
+            }
+            
         }
 
         protected virtual void LateUpdate()
@@ -89,11 +105,14 @@ namespace PG.Battle
                 return;
             if (collision.CompareTag("Enemy") && !PiercedList.Contains(collision.gameObject))
             {
-                collision.GetComponent<MobScript>().Damage(Damage);
+                var mob = collision.GetComponent<MobScript>();
+                mob.Damage(Damage);
+                foreach (var debuff in Global_CampaignData._CurrentBulletDeBuffs)
+                {
+                    mob.SetDebuff(debuff);
+                }
                 PiercedList.Add(gameObject);
                 PierceCount--;
-                if(IsHitAudioNotNull)
-                    thisAudioSource.Play();
                 
                 if (PierceCount <= 0)
                     IsActive=false;

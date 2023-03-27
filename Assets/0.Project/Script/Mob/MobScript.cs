@@ -1,3 +1,4 @@
+using System;
 using PG.Data;
 using PG.Event;
 using PG.HealthSystemCM;
@@ -28,6 +29,9 @@ namespace PG.Battle
         protected Collider2D _collider2D;
         [SerializeField]
         protected Rigidbody2D _rigidBody2D;
+        [SerializeField]
+        protected AudioSource thisAudioSource ;
+
 
         [Header("Current Status")]
         CharacterID _charactorID;
@@ -66,11 +70,11 @@ namespace PG.Battle
                 {
                     SetNextAction();
                 }
+                if(_slowTimer>0)
+                    TickSlow();
             }
-            else
-            {
-                
-            }
+            
+            
         }
 
         [Header("Action")]
@@ -86,7 +90,8 @@ namespace PG.Battle
 
         [SerializeField]
         private SpriteRenderer _spriteRenderer;
-        
+
+        private Color _originalColor;
         //몹을 스폰 할때 초기 데이터들을 넣어주는 코드
         public void SetInitializeMobSpawnData(CharacterID mobID, MobSpawnData mobSpawnData,int sortingOrder)
         {
@@ -104,8 +109,8 @@ namespace PG.Battle
             _extraDamage = mobSpawnData._공격력;
             _color = mobSpawnData._색깔;
 
-            gameObject.GetComponent<SpriteRenderer>().color = _color;
-
+            _spriteRenderer.color = _color;
+            _originalColor = _color;
             _isEnemyAlive = true;
             _isStunned = false;
             _actionTime = 0;
@@ -179,7 +184,7 @@ namespace PG.Battle
             {
                 //무조건 아래로 내려가기 때문.
                 _movement = (-1)*(_initialSpeed / 10) * Time.deltaTime * Vector3.up;
-                _rigidBody2D.MovePosition(transform.position + _movement);
+                _rigidBody2D.MovePosition(transform.position + _movement*_slowRatio);
                 //_initialSpeed += _acceleration * Time.deltaTime;
             }
 
@@ -208,6 +213,7 @@ namespace PG.Battle
                 Global_BattleEventSystem.CallOnMobDamaged(val);
                 //if(knockback is null )
                 //knockback = StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
+                thisAudioSource.Play();
             }
         }
 
@@ -224,6 +230,35 @@ namespace PG.Battle
             FXCallManager.PlayDeadFX(transform.position);
         }
 
+        private float _slowTimer = 0f;
+        private float _slowRatio = 1f;
+        
+        public void SetDebuff(EMobDebuff debuff)
+        {
+            switch (debuff)
+            {
+                case EMobDebuff.Slow:
+                    _slowTimer = Global_CampaignData._slowTime;
+                    _slowRatio = Global_CampaignData._slowAmount;
+                    _spriteRenderer.color = Color.green;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(debuff), debuff, null);
+            }
+            
+        }
+
+        
+        private void TickSlow()
+        {
+            _slowTimer -= Time.deltaTime;
+            if (_slowTimer <= 0)
+            {
+                _slowRatio = 1;
+                _slowTimer = 0;
+                _spriteRenderer.color = _originalColor;
+            }
+        }
 
         private IEnumerator Knockback(float duration, float power)
         {
@@ -245,9 +280,7 @@ namespace PG.Battle
         {
             return transform.position;
         }
-
-
-
+        
     }
 
 }

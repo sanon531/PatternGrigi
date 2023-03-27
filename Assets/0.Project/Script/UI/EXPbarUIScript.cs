@@ -5,9 +5,10 @@ using UnityEngine.UI;
 using PG.Event;
 using TMPro;
 using DG.Tweening;
+using PG;
 using PG.Data;
 
-public class EXPbarUIScript : MonoBehaviour
+public class EXPbarUIScript : MonoSingleton<EXPbarUIScript>
 {
 
     [SerializeField]
@@ -49,13 +50,25 @@ public class EXPbarUIScript : MonoBehaviour
         _currentEXP += val;
         if (_currentEXP >= _maxEXP) 
         {
-            _currentEXP -= _maxEXP;
-            SetLevelUp();
-        }
-        _bar.DOFillAmount(_currentEXP / _maxEXP,0.5f);
+            Global_BattleEventSystem.CallOnLevelUp();
+        }else
+            _bar.DOFillAmount(_currentEXP / _maxEXP,0.5f);
 
     }
-    void SetLevelUp()
+
+    public static void SetLevelUp()
+    {
+        _instance.SetLevelUp_private();
+    }
+
+    public static void ResetLevelUp()
+    {
+        _instance._currentEXP = _instance._maxEXP*0.8f;
+        _instance._bar.DOFillAmount(0.8f,0.5f);
+
+    }
+
+    void SetLevelUp_private()
     {
        //print(Global_CampaignData._levelMaxEXPList.Count +","+ _plaverLevel);
         if (Global_CampaignData._levelMaxEXPList.Count > (_plaverLevel+1 ))
@@ -66,7 +79,8 @@ public class EXPbarUIScript : MonoBehaviour
         {
             SetFullEXP(Global_CampaignData._levelMaxEXPList[Global_CampaignData._levelMaxEXPList.Count-1]); 
         }
-        Global_BattleEventSystem.CallOnLevelUp();
+        _bar.DOFillAmount(0,0.5f);
+
     }
 
 }

@@ -40,7 +40,9 @@ namespace PG.Battle
             _healthSystem.OnDead += HealthSystem_OnDead;
             Health_Refresh();
             Global_BattleEventSystem._onPlayerSizeChanged += SetPlayerSizeByEvent;
+            _touchFollowScript = GetComponent<TouchFollowScript>();
             _isDead = false;
+            SetPlayerHP(Global_CampaignData._playerHealth);
         }
         protected override void CallOnDestroy()
         {
@@ -136,6 +138,25 @@ namespace PG.Battle
         {
             return _instance.transform.position;
         }
+
+
+        private TouchFollowScript _touchFollowScript;
+        public static void SetThisSpeed()
+        {
+            _instance._touchFollowScript.SetSpeedAndTeleport(
+                Global_CampaignData._playerSpeed,
+                Global_CampaignData._playerTeleport
+                );
+        }
+        
+        public static void SetPlayerHP(float MaxHealth)
+        {
+            _instance.GetHealthSystem().SetHealthMax(MaxHealth,true);
+            _instance.healthAmountMax = MaxHealth;
+            _instance.currentHealth= MaxHealth;
+        }
+
+
 
         #endregion
         #region PauseAction

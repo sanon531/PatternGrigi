@@ -63,11 +63,15 @@ namespace PG.Data
         public static DataEntity _chargeGaugeData = new DataEntity(DataEntity.Type.ChargeGauge, 8);
         public static DataEntity _chargeEXPData = new DataEntity(DataEntity.Type.ChargeEXP, 8);
         //플레이어 사이즈
+        public static float _playerHealth = 100;
         public static DataEntity _playerSize = new DataEntity(DataEntity.Type.PlayerSize, 1);
+        public static float _playerSpeed = 30;
+        public static float _playerTeleport =  0.6f;
         public static DataEntity _projectileSpeed = new DataEntity(DataEntity.Type.ProjectileSpeed, 1);
         public static DataEntity _projectileTargetNum = new DataEntity(DataEntity.Type.ProjectileCount, 1);
         public static DataEntity _projectilePierce = new DataEntity(DataEntity.Type.ProjectilePierce, 1);
         public static DataEntity _randomPatternNodeCount = new DataEntity(DataEntity.Type.RandomPatternCount,3);
+        
         //패턴 쿨타임 관련
         public static DataEntity _coolTimeTokenCount = new DataEntity(DataEntity.Type.MaxCooltimeToken, 3);
 
@@ -75,8 +79,7 @@ namespace PG.Data
         public static List<float> _waveTimeList = new List<float>();
         public static List<WaveClass> _waveClassList = new List<WaveClass>();
         public static int _Example_A_Token = 0;
-        public static int _totalMaxArtifactNumber = 4;
-
+        public static int _totalMaxArtifactNumber = 5;
         #endregion;
 
         #region InPlayData
@@ -87,6 +90,10 @@ namespace PG.Data
         public static bool _isReflectable = false;
         public static List<float> _levelMaxEXPList = new List<float>();
         public static float _killGetEXP = 1;
+        public static HashSet<EMobDebuff> _CurrentBulletDeBuffs = new HashSet<EMobDebuff>();
+        public static float _slowAmount = 0.5f;
+        public static float _slowTime = 1f;
+        
         #endregion
 
         #region//초기화 관련
@@ -114,6 +121,9 @@ namespace PG.Data
             _chargeGaugeData = new DataEntity(data._chargeGaugeData);
             _chargeEXPData = new DataEntity(data._chargeEXPData);
             _playerSize = new DataEntity(data._playerSize);
+            _playerHealth = data._playerHealth;
+            _playerSpeed = data._playerSpeed;
+            _playerTeleport = data._playerTeleport;
             _projectileSpeed = new DataEntity(data._projectileSpeed);
             _projectileTargetNum = new DataEntity(data._projectileTargetNum);
             _projectileIDDataDic.CopyFrom(data._projectileIDDataDic);

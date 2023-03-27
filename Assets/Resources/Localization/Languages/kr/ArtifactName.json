@@ -5,6 +5,14 @@
       "value":"마니메칼라의 가호."
     },
     {
+      "key":"LightWeightBrush",
+      "value":"경량 붓"
+    },
+    {
+      "key":"Slime_Blob",
+      "value":"슬라임 토사물"
+    },
+    {
       "key":"Red_Flavor",
       "value":"빨간맛"
     },
@@ -33,9 +41,14 @@
       "key":"FragileRush",
       "value":"사상누각"
     },
+    
     {
-      "key":"Equatore",
-      "value":"적도"
+      "key":"MuscleGodBlessing",
+      "value":"근육 신의 축복"
+    },
+    {
+      "key":"UpgradedBrush",
+      "value":"강화 붓"
     },
     {
       "key":"BubbleGun",

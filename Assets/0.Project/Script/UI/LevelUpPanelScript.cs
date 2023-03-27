@@ -32,6 +32,10 @@ namespace PG.Battle
             _confirmedButton = GameObject.Find("LevelUpSelectionButton").GetComponent<Button>();
             _confirmedButton.onClick.AddListener(ConfirmButtonPressed);
             _confirmedButton.interactable = false;
+            _resetButton = GameObject.Find("LevelUpRefreshButton").GetComponent<Button>();
+            _resetButton.onClick.AddListener(RecallButtonPressed);
+            _resetButton.interactable = false;
+
             _instance._levelTitle.enabled = false;
 
         }
@@ -55,6 +59,11 @@ namespace PG.Battle
             _instance._confirmedButton.transform.rotation = new Quaternion(0, 0, 0, 0);
             _instance._confirmedButton.transform.DOScale(1f, 0.5f).SetUpdate(UpdateType.Late,true);
             _instance._confirmedButton.transform.DOShakeRotation(0.5f).SetUpdate(UpdateType.Late, true);
+            
+            _instance._resetButton.transform.rotation = new Quaternion(0, 0, 0, 0);
+            _instance._resetButton.transform.DOScale(1f, 0.5f).SetUpdate(UpdateType.Late,true);
+            _instance._resetButton.transform.DOShakeRotation(0.5f).SetUpdate(UpdateType.Late, true);
+            _instance._resetButton.interactable = true;
 
         }
 
@@ -67,6 +76,8 @@ namespace PG.Battle
                 script.ButtonCallOnOff(false);
             }
             _instance._confirmedButton.transform.DOScale(0f, 0.5f).SetUpdate(UpdateType.Late, true);
+            _instance._resetButton.transform.DOScale(0f, 0.5f).SetUpdate(UpdateType.Late, true);;
+
         }
 
 
@@ -101,6 +112,8 @@ namespace PG.Battle
         [SerializeField]
         Button _confirmedButton;
         [SerializeField]
+        Button _resetButton;
+        [SerializeField]
         int _choosedButtonNum = -1;
         //선택을 
         public static void GetButtonPressed(int buttonNum)
@@ -122,8 +135,11 @@ namespace PG.Battle
             if (_choosedButtonNum > -1)
             {
                 _instance._confirmedButton.interactable = false;
+                _instance._resetButton.interactable = false;
+
                 ArtifactManager.AddArtifactToPlayer_tempUse(_instance._upgradeDataList[_choosedButtonNum]);
                 _choosedButtonNum = -1;
+                EXPbarUIScript.SetLevelUp();
                 Global_BattleEventSystem.CallOffLevelUp();
                 foreach (var t in _instance._upgradePanelList)
                 {
@@ -137,6 +153,18 @@ namespace PG.Battle
             }
 
 
+        }
+        void RecallButtonPressed()
+        {
+            _instance._confirmedButton.interactable = false;
+            _instance._resetButton.interactable = false;
+            _choosedButtonNum = -1;
+            EXPbarUIScript.ResetLevelUp();
+            Global_BattleEventSystem.CallOffLevelUp();
+            foreach (var t in _instance._upgradePanelList)
+            {
+                t.SetInactivateButton();
+            }
         }
 
 

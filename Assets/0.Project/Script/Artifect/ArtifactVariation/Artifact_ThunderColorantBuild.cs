@@ -148,7 +148,39 @@ namespace PG
 
     }
 
-    
+    public sealed class Artifact_Slime_Blob : Artifact
+    {
+        public Artifact_Slime_Blob() : base(ArtifactID.Slime_Blob)
+        {
+        }
+        public override void OnGetArtifact()
+        {
+            base.OnGetArtifact();
+            Enable();
+        }
+
+        protected override void Enable()
+        {
+            base.Enable();
+            Global_CampaignData._CurrentBulletDeBuffs.Add(EMobDebuff.Slow);
+            Global_CampaignData._slowAmount = ((int)ArfifactLevelValueList[ArtifactLevel - 1]);
+            Global_CampaignData._slowTime = ((int)ArfifactLevelValueList2[ArtifactLevel - 1]);
+
+        }
+
+        protected override void Disable()
+        {
+            base.Disable();
+            Global_CampaignData._CurrentBulletDeBuffs.Remove(EMobDebuff.Slow);
+        }
+        public override void AddCountOnArtifact()
+        {
+            base.AddCountOnArtifact();   
+            Global_CampaignData._slowAmount = ((int)ArfifactLevelValueList[ArtifactLevel - 1]);
+            Global_CampaignData._slowTime = ((int)ArfifactLevelValueList2[ArtifactLevel - 1]);
+        }
+    }
+
     
     
 }

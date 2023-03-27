@@ -37,6 +37,7 @@ namespace PG.Battle
         {
             if (val)
             {
+                transform.rotation = Quaternion.identity;
                 transform.DOScale(1f, 0.5f).SetUpdate(UpdateType.Late, true);
                 transform.DOShakeRotation(0.5f).SetUpdate(UpdateType.Late, true);
                 SetInterectiveButton(isDisplayable);
