@@ -32,11 +32,10 @@ namespace PG
             if (!_pressedStart) 
             {
                 _pressedStart = true;
-                if (!SaveDataManager._instance.saveData.ShowTutorial)
+                if (SaveDataManager._instance.saveData.ShowTutorial)
                 {
                     GlobalUIEventSystem.CallTotalFade();
                     StartCoroutine(DelayedChangeScene("Tutorial_Scene"));
-                    SaveDataManager._instance.saveData.ShowTutorial = true;
                 }
                 else
                 {

@@ -19,6 +19,9 @@ namespace PG.Battle
         private Slider _effectSoundSlider;
         [SerializeField]
         private Button _gotoMenuButton;
+        [SerializeField]
+        private Toggle _tutorialToggle;
+
 
         [SerializeField] 
         private AudioMixer _audioMixer;
@@ -54,6 +57,7 @@ namespace PG.Battle
                 int i_height = Screen.height;
                 _pausePannel.transform.position = new Vector3(i_width / 2, i_height / 2, 0);
                 _isPannelshow = true;
+                _tutorialToggle.isOn = SaveDataManager._instance.saveData.ShowTutorial;
                 _pauseButton.SetActive(false);
             }
 
@@ -98,6 +102,11 @@ namespace PG.Battle
         {
             yield return new WaitForSecondsRealtime(1.25f);
             SceneMoveManager.MoveSceneByCall("Main_Scene");
+        }
+
+        public void OnClickedTutorialToggle()
+        {
+            SaveDataManager._instance.saveData.ShowTutorial = _tutorialToggle.isOn;
         }
 
         

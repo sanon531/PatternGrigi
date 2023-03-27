@@ -11,6 +11,8 @@ namespace PG.Data
     {
         [SerializeField]
         private bool showTutorial = false;
+        [SerializeField]
+        private bool firstPlay = true;
 
         public bool ShowTutorial
         {
@@ -22,6 +24,21 @@ namespace PG.Data
                 {
                     //자동 저장
                     showTutorial = value;
+                    SaveDataManager._instance.SaveData();
+                }
+            }
+        }
+
+        public bool FirstPlay
+        {
+            get { return firstPlay; }
+            set
+            {
+                //값이 바뀌면
+                if (firstPlay != value)
+                {
+                    //자동 저장
+                    firstPlay = value;
                     SaveDataManager._instance.SaveData();
                 }
             }
