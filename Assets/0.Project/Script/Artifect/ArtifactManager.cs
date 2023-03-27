@@ -72,7 +72,11 @@ namespace PG.Battle
             bool canGetNew = Global_CampaignData._currentArtifactDictionary.Count <
                              Global_CampaignData._totalMaxArtifactNumber;
 
+            var artifacts = Global_CampaignData._obtainableArtifactIDList.ToList();
+            if(canGetNew)
+                _showerArtifectList = MyRandom.PickRandoms(artifacts, 2);
 
+            /*
             //만약 획득한 아이템이 있고 획득한 아이템이 업그레이드가 가능하다면 해당 요소 우선적으로 얻을수있게 만든다
             if (upgradableIDset.Count > 0)
             {
@@ -96,7 +100,7 @@ namespace PG.Battle
                 _showerArtifectList = MyRandom.PickRandoms(Global_CampaignData._obtainableArtifactIDList, 2);
             }
 
-
+            */
             if (_showerArtifectList.Count == 0)
                 _showerArtifectList.Add(ArtifactID.Default_HealthUp);
 
