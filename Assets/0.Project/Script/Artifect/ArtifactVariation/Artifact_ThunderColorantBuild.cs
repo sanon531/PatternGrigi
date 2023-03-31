@@ -162,6 +162,7 @@ namespace PG
         protected override void Enable()
         {
             base.Enable();
+            Debug.Log("E");
             Global_CampaignData._CurrentBulletDeBuffs.Add(EMobDebuff.Slow);
             Global_CampaignData._slowAmount = ((int)ArfifactLevelValueList[ArtifactLevel - 1]);
             Global_CampaignData._slowTime = ((int)ArfifactLevelValueList2[ArtifactLevel - 1]);
@@ -171,6 +172,7 @@ namespace PG
         protected override void Disable()
         {
             base.Disable();
+            Debug.Log("D");
             Global_CampaignData._CurrentBulletDeBuffs.Remove(EMobDebuff.Slow);
         }
         public override void AddCountOnArtifact()

@@ -36,6 +36,7 @@ namespace PG.Battle
         //획득 가능한 아티팩트들의 리스트 여기서 
         protected override void CallOnAwake()
         {
+            print("called artifact");
             LoadImageBeforePlaying();
             Global_BattleEventSystem._onBattleBegin += InitializeCurrentArtifact;
             Global_BattleEventSystem._onLevelUpShow += SetLevelUpOn;
@@ -44,6 +45,8 @@ namespace PG.Battle
 
         protected override void CallOnDestroy()
         {
+            print("destroy artifact");
+            DisableAllArtifact();
             Global_BattleEventSystem._onBattleBegin -= InitializeCurrentArtifact;
             Global_BattleEventSystem._onLevelUpShow -= SetLevelUpOn;
             Global_BattleEventSystem._onLevelUpHide -= SetLevelUpOff;

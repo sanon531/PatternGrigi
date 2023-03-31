@@ -108,7 +108,13 @@ namespace PG.Battle
             DamageFXManager.ShowDamage(_instance._UIShowPos.position, Mathf.FloorToInt(_amount).ToString(),Color.green);
         }
 
-        
+
+        public static void InstantKill()
+        {
+            float KillDamage = _instance.currentHealth * 2;
+            Damage(KillDamage);
+        }
+
         [SerializeField]
         float _healthFadeTime = 1f;
         private void HealthSystem_OnDead(object sender, System.EventArgs e)

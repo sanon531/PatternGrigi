@@ -213,6 +213,8 @@ namespace PG.Battle
                 //print(gameObject.name + " : " + _healthSystem.GetHealth());
                 currentHealth = _healthSystem.GetHealth();
                 Global_BattleEventSystem.CallOnMobDamaged(val);
+                if (!gameObject.activeSelf)
+                    return;
 
                 StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
                 thisAudioSource.Play();

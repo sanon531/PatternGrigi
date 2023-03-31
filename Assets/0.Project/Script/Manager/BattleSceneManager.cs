@@ -43,6 +43,7 @@ namespace PG.Battle
 
         protected override void CallOnDestroy()
         {
+            //print("ssdd");
             SwitchEventPause();
             SwitchEventCombat();
         }

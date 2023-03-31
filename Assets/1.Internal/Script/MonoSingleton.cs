@@ -10,7 +10,7 @@ namespace PG
         {
             if (_instance != null && _instance != this)
             {
-                Debug.Log("one more current Status");
+                //Debug.Log("one more current Status");
                 Destroy(this.gameObject);
                 return;
             }
