@@ -90,6 +90,7 @@ namespace PG.Battle
 
         [SerializeField]
         private SpriteRenderer _spriteRenderer;
+        private SpriteRenderer _bodySpriteRenderer;
 
         private Color _originalColor;
         //몹을 스폰 할때 초기 데이터들을 넣어주는 코드
@@ -117,6 +118,7 @@ namespace PG.Battle
             _currentActionOrder = 0;
             _lootExp = Global_CampaignData._killGetEXP;
 
+            _bodySpriteRenderer = GetComponent<SpriteRenderer>();
             //SetTargetted(false);
         }
 
@@ -211,9 +213,10 @@ namespace PG.Battle
                 //print(gameObject.name + " : " + _healthSystem.GetHealth());
                 currentHealth = _healthSystem.GetHealth();
                 Global_BattleEventSystem.CallOnMobDamaged(val);
-                //if(knockback is null )
-                //knockback = StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
+
+                StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
                 thisAudioSource.Play();
+                StartCoroutine(HitEffect());
             }
         }
 
@@ -269,12 +272,20 @@ namespace PG.Battle
             {
                 timer += Time.deltaTime;
                 
-                _rigidBody2D.AddForce(new Vector3(0f, power, 0f));
+                _rigidBody2D.AddForce(new Vector2(0f, power));
             }
             _isStunned = false;
+            _rigidBody2D.velocity = Vector2.zero;
             yield return null;
         }
 
+
+        public IEnumerator HitEffect()
+        {
+            _bodySpriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.2f);
+            _bodySpriteRenderer.color = Color.white;
+        }
 
         public Vector3 GetMobPosition() 
         {
