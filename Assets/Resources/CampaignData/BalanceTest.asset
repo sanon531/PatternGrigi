@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BalanceTest
   m_EditorClassIdentifier: 
   _startArtifactList: 
-  _obtainableArtifactIDList: 7b0000002200000084000000210000001f000000
+  _obtainableArtifactIDList: 0b0000000900000000000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000150000001600000017000000
     m_values:
@@ -67,7 +67,7 @@ MonoBehaviour:
         - "_\uC2A4\uD3F0\uC218": 10
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0.5
           "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 0.5
-          "_\uC18D\uB3C4": 10
+          "_\uC18D\uB3C4": 30
           "_\uCCB4\uB825": 20
           "_\uACF5\uACA9\uB825": 0
           "_\uC0C9\uAE54": {r: 1, g: 0, b: 0, a: 1}
@@ -174,6 +174,7 @@ MonoBehaviour:
       _cooltime: 0.5
   _playerSpeed: 30
   _playerTeleport: 0.6
+  _playerCollisionDamage: 5
   _projectileSpeed:
     "_\uAE30\uBCF8\uAC12": 1
     "_\uC99D\uAC00\uB7C9": 0

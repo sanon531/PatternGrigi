@@ -53,6 +53,12 @@ TagManager:
   - name: BattleUI
     uniqueID: 4290780271
     locked: 0
+  - name: Enemy
+    uniqueID: 2219064611
+    locked: 0
+  - name: BattleUpperUI
+    uniqueID: 3821759623
+    locked: 0
   - name: BattleFX
     uniqueID: 1663292755
     locked: 0

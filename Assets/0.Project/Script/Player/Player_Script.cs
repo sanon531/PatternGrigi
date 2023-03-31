@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,6 +32,7 @@ namespace PG.Battle
         Transform _UIShowPos;
 
         public float _knockbackForce;
+        private float _colisionDamage = 0;
 
         // Start is called before the first frame update
         protected override void CallOnAwake()
@@ -44,6 +46,12 @@ namespace PG.Battle
             _isDead = false;
             SetPlayerHP(Global_CampaignData._playerHealth);
         }
+
+        private void Start()
+        {
+            _colisionDamage = Global_CampaignData._playerCollisionDamage;
+        }
+
         protected override void CallOnDestroy()
         {
             Global_BattleEventSystem._onPlayerSizeChanged -= SetPlayerSizeByEvent;
@@ -53,24 +61,16 @@ namespace PG.Battle
             //단위는 20에 1칸임.
             float currentProperty = currentHealth / healthAmountMax;
             _healthBar.DOFillAmount(currentProperty,0.5f);
+        }
+        
 
+        public void SetPlayerSizeByEvent() 
+        {
+            //Debug.Log(Global_CampaignData._playerSize.FinalValue);
+            transform.localScale = (Global_CampaignData._playerSize.FinalValue * new Vector3(1, 1, 1));
         }
 
-        // Update is called once per frame
-        void Update()
-        {/*
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                _healthBar.AddRemoveSegments(1f);
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                _healthBar.AddRemoveSegments(-1f);
-            }
-
-            */
-
-        }
+ 
         #region damage related
 
         public static void Damage(float _amount)
@@ -126,9 +126,8 @@ namespace PG.Battle
 
         #endregion
 
-        public Player_Status _playerStatus = new Player_Status();
         #region get
-
+        public Player_Status _playerStatus = new Player_Status();
         //현재의 플레이어 스테이터스를 인식으로 받는다.
         public static Player_Status GetPlayerStatus() 
         {
@@ -159,6 +158,7 @@ namespace PG.Battle
 
 
         #endregion
+        
         #region PauseAction
 
         bool _isLevelupPaused = false;
@@ -174,14 +174,14 @@ namespace PG.Battle
         #endregion
 
 
-        public void SetPlayerSizeByEvent() 
+        void OnTriggerEnter2D(Collider2D col)
         {
-            //Debug.Log(Global_CampaignData._playerSize.FinalValue);
-            //������ �÷��̾��� ����� �� ���� �Ͽ��� �����.
-            transform.localScale = (Global_CampaignData._playerSize.FinalValue * new Vector3(1, 1, 1));
+            if (col.transform.CompareTag("Enemy"))
+            {
+                var mob = col.transform.GetComponent<MobScript>();
+                mob.Damage(_colisionDamage);
+            }
         }
-
-
     }
 
 
