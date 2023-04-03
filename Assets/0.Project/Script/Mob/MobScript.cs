@@ -231,6 +231,7 @@ namespace PG.Battle
             
             //트위닝 이슈로 삭제함. 즉발 식으로 대체함. 추후 다른 식으로 구현 할것
             //EXPTokenManager.PlaceEXPToken(transform.position, _lootExp);
+            print(_lootExp);
             Global_BattleEventSystem.CallOnGainEXP(_lootExp);
             FXCallManager.PlayDeadFX(transform.position);
         }

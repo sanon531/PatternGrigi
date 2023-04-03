@@ -228,7 +228,7 @@ namespace PG.Battle
         #endregion
 
 
-        #region//����
+        #region nodeweight
         void SetNodeWeightby(float[] weight)
         {
             _weightRandom[0] += weight[0];
@@ -293,7 +293,6 @@ namespace PG.Battle
         }
 
         #endregion
-        //���� ��尡 ������ �ϴ� ���ְ� ���°�. 
         void ResetAllNode()
         {
             _inactivatedNode = _defaultNode.ToList();
@@ -345,7 +344,6 @@ namespace PG.Battle
         [SerializeField]
         bool _isChargeStart = false;
 
-        //���۽� , ������ �̺�Ʈ Ż����
         void StartChargeEvent()
         {
             Global_BattleEventSystem._onPatternSuccessed += CallPatternEvent;
