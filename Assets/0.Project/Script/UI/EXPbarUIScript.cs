@@ -48,7 +48,7 @@ public class EXPbarUIScript : MonoSingleton<EXPbarUIScript>
     void SetCurrentEXP(float val)
     {
         _currentEXP += val;
-        print("get :" + val +","+ +_currentEXP +_maxEXP);
+        //print("get :" + val +","+ +_currentEXP +_maxEXP);
         if (_currentEXP >= _maxEXP) 
         {
             Global_BattleEventSystem.CallOnLevelUp();

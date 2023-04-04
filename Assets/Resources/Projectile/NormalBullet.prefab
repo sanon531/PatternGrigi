@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5623361393577949031}
   - component: {fileID: 1634703765405443898}
   - component: {fileID: 4548957978361995648}
+  - component: {fileID: 6129546062019699773}
   m_Layer: 0
   m_Name: NormalBullet
   m_TagString: Untagged
@@ -98,7 +99,7 @@ SpriteRenderer:
   m_SortingLayerID: -2075902685
   m_SortingLayer: 3
   m_SortingOrder: 13
-  m_Sprite: {fileID: 2208703988740019828, guid: f653c07884248e044991f67abc03de13, type: 3}
+  m_Sprite: {fileID: 4385501425044414559, guid: f653c07884248e044991f67abc03de13, type: 3}
   m_Color: {r: 0.8632076, g: 0.945283, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 1
@@ -305,3 +306,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &6129546062019699773
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7694395298027797552}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8b47127bf06e28f40845a9989d154509, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
