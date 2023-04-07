@@ -278,5 +278,28 @@ namespace PG.Battle
 
 
         #endregion
+        
+        
+        
+        
+        
+        #region Blockade
+
+
+        [SerializeField] private GameObject blockadeObject;
+        
+        public static void PlaceBlockade()
+        {
+            _instance.blockadeObject.SetActive(true);
+        }
+        
+        
+        
+
+
+        #endregion
+        
+        
+        
     }
 }

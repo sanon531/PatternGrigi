@@ -78,7 +78,8 @@ namespace PG.Battle
             var artifacts = Global_CampaignData._obtainableArtifactIDList.ToList();
             if(canGetNew)
                 _showerArtifectList = MyRandom.PickRandoms(artifacts, 2);
-
+            print(_showerArtifectList[0] + ":" + _showerArtifectList[1]);
+            
             /*
             //만약 획득한 아이템이 있고 획득한 아이템이 업그레이드가 가능하다면 해당 요소 우선적으로 얻을수있게 만든다
             if (upgradableIDset.Count > 0)
