@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BalanceTest
   m_EditorClassIdentifier: 
   _startArtifactList: 
-  _obtainableArtifactIDList: 5100000009000000220000007a000000
+  _obtainableArtifactIDList: 78000000790000007a000000840000000b00000009000000220000001f000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000150000001600000017000000
     m_values:
@@ -419,6 +419,7 @@ MonoBehaviour:
     "_\uBC30\uC218": 1
     "_\uCD94\uAC00\uB7C9": 0
     type: 7
+  _totalMaxArtifactNumber: 8
   _levelMaxEXPList:
   - 7
   - 8

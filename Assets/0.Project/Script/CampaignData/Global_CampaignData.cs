@@ -130,7 +130,7 @@ namespace PG.Data
             _projectileSpeed = new DataEntity(data._projectileSpeed);
             _projectileTargetNum = new DataEntity(data._projectileTargetNum);
             _projectileIDDataDic.CopyFrom(data._projectileIDDataDic);
-            
+            _totalMaxArtifactNumber = data._totalMaxArtifactNumber;
             _randomPatternNodeCount = new DataEntity(data._randomPatternNodeCount);
             _waveTimeList = new List<float>(data._waveDic.Keys);
             //켐페인데이터에 웨이브 시간 순서를 꼭 오름차순으로 입력 안해도 되도록 정렬+이에맞게 class리스트 만듦

@@ -64,7 +64,7 @@ namespace PG.Battle
             _instance.CalcDamageOnSlash(_instance._lastNode,nodeID,resultDamage);
             Global_BattleEventSystem.CallOnCalcPlayerAttack(resultDamage);
             _instance.CheckNodeOnDamage(nodeID);
-            print("ss");
+            //print("ss");
             LineTracer._instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
             VibrationManager.CallVibration();
         }

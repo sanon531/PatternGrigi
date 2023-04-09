@@ -36,7 +36,7 @@ namespace PG.Battle
         //획득 가능한 아티팩트들의 리스트 여기서 
         protected override void CallOnAwake()
         {
-            print("called artifact");
+            //print("called artifact");
             LoadImageBeforePlaying();
             Global_BattleEventSystem._onBattleBegin += InitializeCurrentArtifact;
             Global_BattleEventSystem._onLevelUpShow += SetLevelUpOn;
@@ -45,7 +45,7 @@ namespace PG.Battle
 
         protected override void CallOnDestroy()
         {
-            print("destroy artifact");
+            //print("destroy artifact");
             DisableAllArtifact();
             Global_BattleEventSystem._onBattleBegin -= InitializeCurrentArtifact;
             Global_BattleEventSystem._onLevelUpShow -= SetLevelUpOn;
@@ -69,16 +69,34 @@ namespace PG.Battle
         }
 
         //Not only random increase percentage to get artifact gto already.
+        private bool _isRemovedUnnecessaryOnce = false;
         void ArtifactSetRandomly()
         {
             _showerArtifectList.Clear();
-            bool canGetNew = Global_CampaignData._currentArtifactDictionary.Count <
+            bool canGetNew = Global_CampaignData._currentArtifactDictionary.Count <=
                              Global_CampaignData._totalMaxArtifactNumber;
 
+            print(canGetNew + "sd" + _isRemovedUnnecessaryOnce);
+            if (!canGetNew && !_isRemovedUnnecessaryOnce)
+            {
+                List<ArtifactID> tempt = Global_CampaignData._obtainableArtifactIDList.ConvertAll(s => s);
+                
+                foreach (var id in Global_CampaignData._obtainableArtifactIDList)
+                {
+                    if (!Global_CampaignData._currentArtifactDictionary.ContainsKey(id))
+                        tempt.Remove(id);
+                }
+
+                Global_CampaignData._obtainableArtifactIDList = tempt;
+                
+                _isRemovedUnnecessaryOnce = true;
+            }
             var artifacts = Global_CampaignData._obtainableArtifactIDList.ToList();
-            if(canGetNew)
-                _showerArtifectList = MyRandom.PickRandoms(artifacts, 2);
-            print(_showerArtifectList[0] + ":" + _showerArtifectList[1]);
+            _showerArtifectList = MyRandom.PickRandoms(artifacts, Mathf.Clamp(artifacts.Count,0,2));
+
+
+
+            //print(_showerArtifectList[0] + ":" + _showerArtifectList[1]);
             
             /*
             //만약 획득한 아이템이 있고 획득한 아이템이 업그레이드가 가능하다면 해당 요소 우선적으로 얻을수있게 만든다
