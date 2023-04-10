@@ -21,14 +21,30 @@ namespace PG.Battle
 
         [SerializeField]
         Transform _placeTransform;
+        [SerializeField]
+        Transform _placeCaseTransform_2;
         
-
+    
         protected override void CallOnAwake()
         {
             RefreshCase();
             Global_BattleEventSystem._onBattleBegin += RefreshCase;
             _placeTransform.GetComponent<GridLayoutGroup>().spacing = new Vector2(Screen.width *0.76f, 0);
+            _placeCaseTransform_2.GetComponent<GridLayoutGroup>().spacing = new Vector2(Screen.width *0.76f, 0);
+            var width = _placeCaseTransform_2.GetComponent<RectTransform>().rect.width*0.12f;
+            _placeCaseTransform_2.GetComponent<GridLayoutGroup>().cellSize = new Vector3(width, width);
+           
         }
+
+        [SerializeField] private GameObject caseObject;
+        private void Start()
+        {
+            for (int i =0;i< Global_CampaignData._totalMaxArtifactNumber;i++)
+            {
+                Instantiate(caseObject, _placeCaseTransform_2);
+            }
+        }
+
         protected override void CallOnDestroy()
         {
             Global_BattleEventSystem._onBattleBegin -= RefreshCase;
