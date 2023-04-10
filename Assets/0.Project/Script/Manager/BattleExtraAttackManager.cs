@@ -237,6 +237,7 @@ namespace PG.Battle
             _instance.EmitParticle.Stop();
             
             Global_BattleEventSystem._onPatternFilled -= _instance.OnPassingNode;
+            Global_BattleEventSystem._onPatternSuccessed -= _instance.OnPatternSuccess;
         }
         
         private void OnPassingNode(float fillRate)

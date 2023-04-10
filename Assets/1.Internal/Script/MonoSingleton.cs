@@ -4,20 +4,22 @@ namespace PG
 {
     public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
     {
+        private static bool _isPlacedOnce = false;
         public static T _instance { get; private set; }
 
         private void Awake()
         {
-            if (_instance != null && _instance != this)
+            if (_isPlacedOnce && _instance != this)
             {
                 //Debug.Log("one more current Status");
                 Destroy(this.gameObject);
                 return;
             }
-            else if (_instance == null)
+            else if (!_isPlacedOnce)
             {
                 //Debug.Log("Set this");
                 _instance = this as T;
+                _isPlacedOnce = true;
                 CallOnAwake();
             }
             else 
@@ -33,8 +35,12 @@ namespace PG
 
         private void OnDestroy() 
         {
-            if(_instance ==this )
+            if (_instance == this)
+            {
                 _instance = null;
+                _isPlacedOnce = false;
+            }
+
             CallOnDestroy();
         }
 

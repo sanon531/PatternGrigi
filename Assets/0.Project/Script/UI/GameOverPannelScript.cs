@@ -61,8 +61,8 @@ namespace PG.Battle
         {
             if (!_isBackScene) 
             {
-                GlobalUIEventSystem.CallTotalFade();
-                
+                //GlobalUIEventSystem.CallTotalFade();
+                MultiSceneUIScript.PublicFadeIn();
                 StartCoroutine(DelayedMove(gameObject.scene.name));
                 AudioManager.ChangeBackgroundMusicOnSceneChange(1);
                 _isBackScene = true;
@@ -74,7 +74,8 @@ namespace PG.Battle
         {
             if (!_isBackScene)
             {
-                GlobalUIEventSystem.CallTotalFade();
+                //GlobalUIEventSystem.CallTotalFade();
+                MultiSceneUIScript.PublicFadeIn();
                 StartCoroutine(DelayedMove("Main_Scene"));
                 AudioManager.ChangeBackgroundMusicOnSceneChange(0);
 
