@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7694395298027797552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -54,7 +54,7 @@ MonoBehaviour:
   collider2D: {fileID: 5623361393577949031}
   rigidBody2D: {fileID: 1634703765405443898}
   projectileImage: {fileID: 6817514856662169467}
-  originalColor: {r: 0, g: 0.9301295, b: 1, a: 1}
+  originalColor: {r: 0.759434, g: 1, b: 0.9814974, a: 1}
   targetMob: {fileID: 0}
   initialSpeed: 4
   acceleration: 4
