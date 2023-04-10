@@ -9,13 +9,13 @@ namespace PG
 
         private void Awake()
         {
-            if (_isPlacedOnce && _instance != this)
+            if (_isPlacedOnce && _instance!=null && _instance != this)
             {
                 //Debug.Log("one more current Status");
                 Destroy(this.gameObject);
                 return;
             }
-            else if (!_isPlacedOnce)
+            else if (!_isPlacedOnce || _instance == null)
             {
                 //Debug.Log("Set this");
                 _instance = this as T;
@@ -41,6 +41,7 @@ namespace PG
                 _isPlacedOnce = false;
             }
 
+            print("Boom" + name);
             CallOnDestroy();
         }
 

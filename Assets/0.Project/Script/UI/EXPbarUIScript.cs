@@ -20,7 +20,9 @@ public class EXPbarUIScript : MonoSingleton<EXPbarUIScript>
     int _plaverLevel = 1;
     [SerializeField]
     TextMeshProUGUI _levelShow;
-
+    
+    
+    
     // Start is called before the first frame update
     void Start()
     {
