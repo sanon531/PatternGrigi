@@ -114,8 +114,7 @@ namespace PG.Battle
         
 
         bool _isLevelUpPaused = false;
-        float _direction_x = 0;
-        float _direction_y = 0;
+
 [SerializeField]
         private float _teleportLength = 0.5f;
 
@@ -135,11 +134,10 @@ namespace PG.Battle
 
             _thisRB.velocity = Vector2.zero;
             targetPos.z = 0;
-            _direction_x = 0;
-            _direction_y = 0;
+
             _direction = targetPos - transform.position;
 
-            if (PositionCheckX(targetPos))
+/*            if (PositionCheckX(targetPos))
             {
                 if (_direction.magnitude < _teleportLength)
                 {
@@ -147,7 +145,7 @@ namespace PG.Battle
                 }
                 else
                 {
-                    _direction_x = _direction.normalized.x;
+                    _direction.x = _direction.normalized.x;
                 }
             } 
 
@@ -159,10 +157,10 @@ namespace PG.Battle
                 }
                 else
                 {
-                    _direction_y = _direction.normalized.y;
+                    _direction.y = _direction.normalized.y;
                 }
-            }
-            _thisRB.velocity = new Vector2(_direction.x, _direction.y) * _moveSpeed;
+            }*/
+            transform.Translate(_direction * Time.deltaTime * _moveSpeed);
             Vector3 _curTF = transform.position;
             _curTF.x = Mathf.Clamp(_curTF.x, _moveLUvec.x, _moveRDvec.x);
             _curTF.y = Mathf.Clamp(_curTF.y, _moveRDvec.y, _moveLUvec.y);
