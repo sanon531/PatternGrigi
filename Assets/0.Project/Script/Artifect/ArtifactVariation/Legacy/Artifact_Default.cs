@@ -52,11 +52,6 @@ namespace PG
     
     public class Artifact_Example_A : Artifact
     {
-        public override int ArtifactLevel
-        {
-            get => _artifactLevel;
-            set => _artifactLevel = value;
-        }
         public Artifact_Example_A() : base(ArtifactID.Example_A)
         {
         }
@@ -64,6 +59,7 @@ namespace PG
         public override void OnGetArtifact()
         {
             base.OnGetArtifact();
+            BattleExtraAttackManager.PlaceBlockade();
             Enable();
         }
 
@@ -75,7 +71,8 @@ namespace PG
         public override void AddCountOnArtifact()
         {
             base.AddCountOnArtifact();   
-            //Debug.Log("Fragile_Rush LEL");
+            BattleExtraAttackManager.PlaceBlockade();
+            //Debug.Log("LEL"+ maxLevel+" s " + _artifactLevel);
         }
         
     }

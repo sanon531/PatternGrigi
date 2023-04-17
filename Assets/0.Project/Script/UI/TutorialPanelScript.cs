@@ -13,9 +13,8 @@ namespace PG
 
         private void Awake()
         {
-            if (GlobalUIEventSystem._isTotalFade)
-                GlobalUIEventSystem.CallTotalFade();
-
+            MultiSceneUIScript.PublicFadeOut();
+            
             for(int i = 0; i < Pages.transform.childCount; i++)
             {
                 Rect page = Pages.transform.GetChild(i).GetComponent<RectTransform>().rect;
@@ -37,7 +36,7 @@ namespace PG
             if (!_pressedStart)
             {
                 _pressedStart = true;
-                GlobalUIEventSystem.CallTotalFade();
+                MultiSceneUIScript.PublicFadeIn();
                 StartCoroutine(DelayedChangeScene(SceneMoveManager._instance.targetPlayScene));
             }
         }
@@ -46,7 +45,7 @@ namespace PG
         {
             yield return new WaitForSecondsRealtime(1.25f);
             SceneMoveManager.MoveSceneByCall(targetScene);
-            //Ã¹ ÇÃ·¹ÀÌ ÀÏ¶§¸¸ ÀÚµ¿À¸·Î ²¨ÁÖ±â
+            //ì²« í”Œë ˆì´ ì¼ë•Œë§Œ ìë™ìœ¼ë¡œ êº¼ì£¼ê¸°
             if (SaveDataManager._instance.saveData.FirstPlay)
             {
                 SaveDataManager._instance.saveData.ShowTutorial = false;

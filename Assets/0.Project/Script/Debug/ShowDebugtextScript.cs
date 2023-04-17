@@ -25,8 +25,7 @@ namespace PG
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 //Global_BattleEventSystem.CallTotalPauseSwitch();
-                Debug.Log("Paused button");
-                if (isHide)
+                Debug.Log("Paused button"); if (isHide)
                 {
                     isHide = false;
                     thisImage.localPosition = new Vector2();

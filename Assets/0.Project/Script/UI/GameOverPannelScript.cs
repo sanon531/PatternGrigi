@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,8 +16,6 @@ namespace PG.Battle
         [SerializeField]
         TextMeshProUGUI _gameOverText;
         [SerializeField]
-        TextAnimatorPlayer _gameOverTextPlayer;
-        [SerializeField]
         GameObject _buttonSet;
         // Start is called before the first frame update
         void Start()
@@ -27,6 +26,14 @@ namespace PG.Battle
             _buttonSet.SetActive(false);
             _isBackScene = false;
         }
+
+
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.Q))
+                Player_Script.InstantKill();
+        }
+
         private void OnDestroy()
         {
             Global_BattleEventSystem._onGameOver -= StartGameOverScene;
@@ -37,7 +44,6 @@ namespace PG.Battle
         {
             _backGround.enabled = true;
             _gameOverText.enabled = true;
-            _gameOverTextPlayer.ShowText("게임오버");
             _backGround.DOFade(1f, 1f);
             StartCoroutine(Delayed());
         }
@@ -55,7 +61,8 @@ namespace PG.Battle
         {
             if (!_isBackScene) 
             {
-                GlobalUIEventSystem.CallTotalFade();
+                //GlobalUIEventSystem.CallTotalFade();
+                MultiSceneUIScript.PublicFadeIn();
                 StartCoroutine(DelayedMove(gameObject.scene.name));
                 AudioManager.ChangeBackgroundMusicOnSceneChange(1);
                 _isBackScene = true;
@@ -67,7 +74,8 @@ namespace PG.Battle
         {
             if (!_isBackScene)
             {
-                GlobalUIEventSystem.CallTotalFade();
+                //GlobalUIEventSystem.CallTotalFade();
+                MultiSceneUIScript.PublicFadeIn();
                 StartCoroutine(DelayedMove("Main_Scene"));
                 AudioManager.ChangeBackgroundMusicOnSceneChange(0);
 

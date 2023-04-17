@@ -10,12 +10,6 @@
     "m_KnownPackagesForSerialization": [
         {
             "deviceId": "R3CM811LP2A",
-            "name": "com.sec.android.app.launcher",
-            "processId": 2106,
-            "exited": false
-        },
-        {
-            "deviceId": "R3CM811LP2A",
             "name": "com.DefaultCompany.PatternGrigi",
             "processId": 22542,
             "exited": true
@@ -36,6 +30,12 @@
             "deviceId": "R3CM811LP2A",
             "name": "com.DefaultCompany.PatternGrigi",
             "processId": 11351,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CM811LP2A",
+            "name": "com.TeamPG.PatternGrigi_PrototypeVer",
+            "processId": 19855,
             "exited": false
         }
     ],

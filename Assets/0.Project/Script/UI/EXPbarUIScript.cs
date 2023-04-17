@@ -20,7 +20,9 @@ public class EXPbarUIScript : MonoSingleton<EXPbarUIScript>
     int _plaverLevel = 1;
     [SerializeField]
     TextMeshProUGUI _levelShow;
-
+    
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -45,12 +47,14 @@ public class EXPbarUIScript : MonoSingleton<EXPbarUIScript>
         _plaverLevel++;
         _levelShow.text = "Lv." + _plaverLevel.ToString();
     }
-    void SetCurrentEXP(float val) 
+    void SetCurrentEXP(float val)
     {
         _currentEXP += val;
+        //print("get :" + val +","+ +_currentEXP +_maxEXP);
         if (_currentEXP >= _maxEXP) 
         {
             Global_BattleEventSystem.CallOnLevelUp();
+            _currentEXP = 0;
         }else
             _bar.DOFillAmount(_currentEXP / _maxEXP,0.5f);
 

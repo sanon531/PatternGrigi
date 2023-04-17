@@ -20,29 +20,28 @@ namespace PG.Battle
         [SerializeField]
         float _delayedTime =2.5f;
         [SerializeField]
-        string _currentCampaignName;
-
         private CampaignData _currentCampaignData;
+
+        [SerializeField] private TextMeshProUGUI _DebugCurrentText;
 
         // Start is called before the first frame update
         protected override void CallOnAwake()
         {
-            if (GlobalUIEventSystem._isTotalFade) 
-                GlobalUIEventSystem.CallTotalFade();
+            MultiSceneUIScript.PublicFadeOut();
             //Debug.Log("Call Awake");
             _isgameStarted = false;
             _playTime = 0f;
             StartCoroutine(DelayedStart(_delayedTime));
             SwitchEventPause();
             SwitchEventCombat();
-            _currentCampaignData = Resources.Load<CampaignData>("CampaignData/" + _currentCampaignName);
             Global_CampaignData.SetCampaginInitialize(_currentCampaignData);
             //Debug.Log(Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue);
-
+            _DebugCurrentText.text = _currentCampaignData.name;
         }
 
         protected override void CallOnDestroy()
         {
+            //print("ssdd");
             SwitchEventPause();
             SwitchEventCombat();
         }
@@ -52,6 +51,7 @@ namespace PG.Battle
         {
             yield return new WaitForSeconds(delayedTime);
             Global_BattleEventSystem.CallOnBattleBegin();
+            AudioManager.ChangeBackgroundMusicOnSceneChange(1);
             _isgameStarted = true;
         }
 

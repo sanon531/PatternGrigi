@@ -10,31 +10,22 @@ namespace PG.Battle
 {
     public class MobScript : MonoBehaviour
     {
-        #region//variables
-        [Header("Health")]
-        [SerializeField]
-        private float healthAmountMax;
-        [SerializeField]
-        private float startingHealthAmount;
-        [SerializeField]
-        private float currentHealth;
+        #region //variables
+
+        [Header("Health")] [SerializeField] private float healthAmountMax;
+        [SerializeField] private float startingHealthAmount;
+        [SerializeField] private float currentHealth;
         private HealthSystem _healthSystem;
 
-        [Header("Move Stat")]
-        public float _initialSpeed =1;
+        [Header("Move Stat")] public float _initialSpeed = 1;
         public float _acceleration = 1;
-        [SerializeField]
-        private Vector3 _movement;
-        [SerializeField]
-        protected Collider2D _collider2D;
-        [SerializeField]
-        protected Rigidbody2D _rigidBody2D;
-        [SerializeField]
-        protected AudioSource thisAudioSource ;
+        [SerializeField] private Vector3 _movement;
+        [SerializeField] protected Collider2D _collider2D;
+        [SerializeField] protected Rigidbody2D _rigidBody2D;
+        [SerializeField] protected AudioSource thisAudioSource;
 
 
-        [Header("Current Status")]
-        CharacterID _charactorID;
+        [Header("Current Status")] CharacterID _charactorID;
         bool _isEnemyAlive = false;
         bool _isStunned = false;
         bool _isNontotalPaused = false;
@@ -45,15 +36,19 @@ namespace PG.Battle
         private float _extraDamage = 1;
         private float _loadedSpeed = 0;
         private Color _color;
-        
+
         #endregion
+
         void Start()
         {
+            _isRigidBody2DNotNull = _rigidBody2D != null;
         }
+
         void OnEnable()
         {
         }
-        void Update()
+
+        void FixedUpdate()
         {
             if (_isNontotalPaused)
                 return;
@@ -70,31 +65,26 @@ namespace PG.Battle
                 {
                     SetNextAction();
                 }
-                if(_slowTimer>0)
+
+                if (_slowTimer > 0)
                     TickSlow();
             }
-            
-            
         }
 
-        [Header("Action")]
-        [SerializeField]
-        private MobActionID _currentAction;
+        [Header("Action")] [SerializeField] private MobActionID _currentAction;
         private int _currentActionOrder = 0;
         private MobActionData _currentActionData;
 
-        [SerializeField]
-        private List<MobActionID> _mobActionIDList = new List<MobActionID>();
-        [SerializeField]
-        MobActionDataDic _mobActionDic = new MobActionDataDic();
+        [SerializeField] private List<MobActionID> _mobActionIDList = new List<MobActionID>();
+        [SerializeField] MobActionDataDic _mobActionDic = new MobActionDataDic();
 
-        [SerializeField]
-        private SpriteRenderer _spriteRenderer;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
         private SpriteRenderer _bodySpriteRenderer;
 
         private Color _originalColor;
+
         //몹을 스폰 할때 초기 데이터들을 넣어주는 코드
-        public void SetInitializeMobSpawnData(CharacterID mobID, MobSpawnData mobSpawnData,int sortingOrder)
+        public void SetInitializeMobSpawnData(CharacterID mobID, MobSpawnData mobSpawnData, int sortingOrder)
         {
             healthAmountMax = mobSpawnData._체력;
             startingHealthAmount = mobSpawnData._체력;
@@ -105,7 +95,7 @@ namespace PG.Battle
             _healthSystem.OnDead += OnDead;
 
             _charactorID = mobID;
-            
+
             _loadedSpeed = mobSpawnData._속도;
             _extraDamage = mobSpawnData._공격력;
             _color = mobSpawnData._색깔;
@@ -135,7 +125,7 @@ namespace PG.Battle
             {
                 case MobActionID.Wait:
                     break;
-                case MobActionID.Move://1회만 호출 되는 곳으로 속력과 이동을 설정해줌. 
+                case MobActionID.Move: //1회만 호출 되는 곳으로 속력과 이동을 설정해줌. 
                     if (_loadedSpeed != 0) _initialSpeed = _loadedSpeed;
                     //_initialSpeed = _mobActionDic[MobActionID.Move]._speed;
                     break;
@@ -144,18 +134,17 @@ namespace PG.Battle
                     {
                         if (data._mobPosSpawn)
                         {
-                            ObstacleManager.SetObstacle(data._spawnData,gameObject.transform.position, 
+                            ObstacleManager.SetObstacle(data._spawnData, gameObject.transform.position,
                                 Global_CampaignData._charactorAttackDic[_charactorID].FinalValue * _extraDamage);
                         }
                         else
                         {
                             foreach (Vector2 pos in data._spawnPosList)
                             {
-                                ObstacleManager.SetObstacle(data._spawnData,pos,
+                                ObstacleManager.SetObstacle(data._spawnData, pos,
                                     Global_CampaignData._charactorAttackDic[_charactorID].FinalValue * _extraDamage);
                             }
                         }
-
                     }
 
                     break;
@@ -173,20 +162,22 @@ namespace PG.Battle
             }
         }
 
+        #region Movement&Damage
+
+        private Vector3 _towardDirrection = Vector3.up;
         void CalcMovement()
         {
-            if (_currentAction != MobActionID.Move) 
+            if (_currentAction != MobActionID.Move)
             {
                 _rigidBody2D.MovePosition(transform.position);
                 return;
             }
 
-
-            if (_rigidBody2D != null)
+            if (_isRigidBody2DNotNull)
             {
-                //무조건 아래로 내려가기 때문.
-                _movement = (-1)*(_initialSpeed / 10) * Time.deltaTime * Vector3.up;
-                _rigidBody2D.MovePosition(transform.position + _movement*_slowRatio);
+                //막히지 않을 경우 아래 막힐경우 양옆으로 이동한다.
+                _movement = (-1) * (_initialSpeed / 50) * Time.deltaTime * _towardDirrection;
+                _rigidBody2D.MovePosition(transform.position + _movement * _slowRatio);
                 //_initialSpeed += _acceleration * Time.deltaTime;
             }
 
@@ -196,23 +187,24 @@ namespace PG.Battle
                 MobGenerator.RemoveMob(_charactorID, this);
                 Player_Script.Damage(_reachedDamage);
             }
-
-
         }
 
 
         private Coroutine knockback;
+
         public void Damage(float val)
         {
             if (_isEnemyAlive)
             {
                 _healthSystem.Damage(val);
                 currentHealth = _healthSystem.GetHealth();
-                DamageFXManager.ShowDamage(transform.position, Mathf.Round(val).ToString(),Color.white);
+                DamageFXManager.ShowDamage(transform.position, Mathf.Round(val).ToString(), Color.white);
                 ShowDebugtextScript.ShowCurrentAccumulateDamage(Mathf.RoundToInt(val));
                 //print(gameObject.name + " : " + _healthSystem.GetHealth());
                 currentHealth = _healthSystem.GetHealth();
                 Global_BattleEventSystem.CallOnMobDamaged(val);
+                if (!gameObject.activeSelf)
+                    return;
 
                 StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
                 thisAudioSource.Play();
@@ -226,16 +218,18 @@ namespace PG.Battle
             StopAllCoroutines();
             _isEnemyAlive = false;
             MobGenerator.RemoveMob(_charactorID, this);
-            
+
             //트위닝 이슈로 삭제함. 즉발 식으로 대체함. 추후 다른 식으로 구현 할것
             //EXPTokenManager.PlaceEXPToken(transform.position, _lootExp);
+            //print(_lootExp);
             Global_BattleEventSystem.CallOnGainEXP(_lootExp);
             FXCallManager.PlayDeadFX(transform.position);
         }
 
         private float _slowTimer = 0f;
         private float _slowRatio = 1f;
-        
+        private bool _isRigidBody2DNotNull;
+
         public void SetDebuff(EMobDebuff debuff)
         {
             switch (debuff)
@@ -248,10 +242,9 @@ namespace PG.Battle
                 default:
                     throw new ArgumentOutOfRangeException(nameof(debuff), debuff, null);
             }
-            
         }
 
-        
+
         private void TickSlow()
         {
             _slowTimer -= Time.deltaTime;
@@ -271,12 +264,37 @@ namespace PG.Battle
             while (timer <= duration)
             {
                 timer += Time.deltaTime;
-                
+
                 _rigidBody2D.AddForce(new Vector2(0f, power));
             }
+
             _isStunned = false;
             _rigidBody2D.velocity = Vector2.zero;
             yield return null;
+        }
+
+        private List<Vector3> _towardsList = new List<Vector3>()
+        {
+            Vector3.left,Vector3.right
+        };
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.CompareTag("Enemy_Barricade"))
+            {
+                _towardDirrection = _towardsList.PickRandom() ;
+            }else if (col.CompareTag("Boundary_Side"))
+            {
+                _towardDirrection.x = -_towardDirrection.x ;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.CompareTag("Enemy_Barricade"))
+            {
+                _towardDirrection = Vector3.up;
+            }
+            
         }
 
 
@@ -287,11 +305,11 @@ namespace PG.Battle
             _bodySpriteRenderer.color = Color.white;
         }
 
-        public Vector3 GetMobPosition() 
+        public Vector3 GetMobPosition()
         {
             return transform.position;
         }
-        
-    }
 
+        #endregion
+    }
 }

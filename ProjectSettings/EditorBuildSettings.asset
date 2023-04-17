@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/0.Project/Scenes/Main_Scene.unity
     guid: 5b14ab500c3c9db41b611f266dff4123
+  - enabled: 1
+    path: Assets/0.Project/Scenes/Play_Scene_Defence_SW.unity
+    guid: 58c424ea5b4c8cc4d8b33011c0c176ee
+  - enabled: 1
+    path: Assets/0.Project/Scenes/Tutorial_Scene.unity
+    guid: 85f12e46f941fbd46822449897839640
   - enabled: 0
     path: Assets/0.Project/Scenes/Play_Scene_Legacy.unity
     guid: 66dde086383f0c445827d3eeb7d7df05
@@ -20,11 +26,5 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/0.Project/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/0.Project/Scenes/Play_Scene_Defence_SW.unity
-    guid: 58c424ea5b4c8cc4d8b33011c0c176ee
-  - enabled: 1
-    path: Assets/0.Project/Scenes/Tutorial_Scene.unity
-    guid: 85f12e46f941fbd46822449897839640
   m_configObjects:
     com.unity.localization.settings: {fileID: 11400000, guid: 4442c3224da626b458fbe47d8c298f55, type: 2}

@@ -59,7 +59,7 @@ namespace PG.Battle
             //먼저 몹 스폰 매니져에게서 적들의 데이터에 관한 값을 가져오게 됨.
             //적들의 데이터에 관한 것이면 적들의
 
-            print(Global_CampaignData._projectileIDDataDic.Count());
+            //print(Global_CampaignData._projectileIDDataDic.Count());
             foreach (var data in Global_CampaignData._projectileIDDataDic)
             {
                 _currentShotAmmoDic.Add(data.Key, new Queue<float>());

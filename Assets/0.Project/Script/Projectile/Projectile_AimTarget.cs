@@ -31,7 +31,7 @@ namespace PG.Battle
             //Improvising that projecilePlace To Shoot Way
             _direction = projectilePlace;
             _direction = _direction.normalized;
-            print(_direction);
+            //print(_direction);
             InitialSpeed = Data.Global_CampaignData._projectileSpeed.FinalValue;
             
             DoMove();

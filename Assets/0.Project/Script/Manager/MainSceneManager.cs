@@ -6,23 +6,16 @@ using PG.Event;
 using TMPro;
 namespace PG 
 {
-    public class MainSceneManager : MonoSingleton<MainSceneManager>
+    public class MainSceneManager : MonoBehaviour
     {
         [SerializeField]
         TextMeshProUGUI _titleText;
         [SerializeField]
         TextMeshProUGUI _gameStartText;
 
-        protected override void CallOnAwake()
-        {
-            if (GlobalUIEventSystem._isTotalFade)
-                GlobalUIEventSystem.CallTotalFade();
-
-        }
         private void Start()
         {
-            _titleText.text = "<bounce>" + GetLocalizedTextScript.GetUIDataFromJson(Data.UITextID.Main_GameTitle) + "</>";
-            _gameStartText.text = "<wave>" +GetLocalizedTextScript.GetUIDataFromJson(Data.UITextID.Main_GameStart) + "</>";
+            MultiSceneUIScript.PublicFadeOut();
         }
 
         bool _pressedStart = false;
@@ -34,12 +27,14 @@ namespace PG
                 _pressedStart = true;
                 if (SaveDataManager._instance.saveData.ShowTutorial)
                 {
-                    GlobalUIEventSystem.CallTotalFade();
+                    //GlobalUIEventSystem.CallTotalFade();
+                    MultiSceneUIScript.PublicFadeIn();
                     StartCoroutine(DelayedChangeScene("Tutorial_Scene"));
                 }
                 else
                 {
-                    GlobalUIEventSystem.CallTotalFade();
+                    //GlobalUIEventSystem.CallTotalFade();
+                    MultiSceneUIScript.PublicFadeIn();
                     StartCoroutine(DelayedChangeScene(SceneMoveManager._instance.targetPlayScene));
                 }
             }
@@ -47,7 +42,6 @@ namespace PG
 
         IEnumerator DelayedChangeScene(string targetScene) 
         {
-            AudioManager.ChangeBackgroundMusicOnSceneChange(1);
             yield return new WaitForSecondsRealtime(1.25f);
             SceneMoveManager.MoveSceneByCall(targetScene);
             OptionSystem.SetGotoPlayScene();
