@@ -50,6 +50,7 @@ namespace PG.Battle
         private void Start()
         {
             _colisionDamage = Global_CampaignData._playerCollisionDamage;
+            SetThisSpeed();
         }
 
         protected override void CallOnDestroy()
