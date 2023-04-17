@@ -76,7 +76,7 @@ namespace PG.Battle
             bool canGetNew = Global_CampaignData._currentArtifactDictionary.Count <=
                              Global_CampaignData._totalMaxArtifactNumber;
 
-            print(canGetNew + "sd" + _isRemovedUnnecessaryOnce);
+            //print(canGetNew + "sd" + _isRemovedUnnecessaryOnce);
             if (!canGetNew && !_isRemovedUnnecessaryOnce)
             {
                 List<ArtifactID> tempt = Global_CampaignData._obtainableArtifactIDList.ConvertAll(s => s);
@@ -191,6 +191,7 @@ namespace PG.Battle
 
         public static void RemoveArtifactOnPlayer(ArtifactID id)
         {
+            //print(id);
             while (Global_CampaignData._obtainableArtifactIDList.Contains(id))
             {
                 Global_CampaignData._obtainableArtifactIDList.Remove(id);

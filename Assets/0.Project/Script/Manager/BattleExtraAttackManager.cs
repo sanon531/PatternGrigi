@@ -20,6 +20,7 @@ namespace PG.Battle
         {
             base.CallOnAwake();
             StartLaser();
+            StartBlockade();
         }
 
 
@@ -287,15 +288,29 @@ namespace PG.Battle
         #region Blockade
 
 
-        [SerializeField] private GameObject blockadeObject;
-        
+        [SerializeField] private GameObject blockadeSet;
+         private List<GameObject> _blockadeObjects  =new List<GameObject>();
+         private int _blockCount = 0;
+         void StartBlockade()
+         {
+             _blockCount = 0;
+             for (int i = 0 ; i < blockadeSet.transform.childCount;i++)
+             {
+                 _blockadeObjects.Add(blockadeSet.transform.GetChild(i).gameObject);
+                 blockadeSet.transform.GetChild(i).gameObject.SetActive(false);
+             }
+         }
+
+         
         public static void PlaceBlockade()
         {
-            _instance.blockadeObject.SetActive(true);
+            _instance._blockadeObjects[_instance._blockCount].SetActive(true);
+            _instance._blockCount++;
         }
         
-        
-        
+
+
+
 
 
         #endregion

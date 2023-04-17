@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb0b2ca909a209340afe36adeafe0b8e, type: 3}
-  m_Name: BalanceTest
+  m_Name: EXAMPLE1
   m_EditorClassIdentifier: 
   _startArtifactList: 00000000
-  _obtainableArtifactIDList: 78000000200000001f0000001e00000079000000840000007a0000000b000000220000002100000009000000
+  _obtainableArtifactIDList: 51000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000150000001600000017000000
     m_values:

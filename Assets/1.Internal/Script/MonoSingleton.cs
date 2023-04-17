@@ -41,7 +41,7 @@ namespace PG
                 _isPlacedOnce = false;
             }
 
-            print("Boom" + name);
+            //print("Boom" + name);
             CallOnDestroy();
         }
 

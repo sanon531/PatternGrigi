@@ -3466,6 +3466,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 237777194}
     m_Modifications:
+    - target: {fileID: 37465892403392787, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 402394603248763009, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139987388010963285, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.82
+      objectReference: {fileID: 0}
     - target: {fileID: 1996593984258501169, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
       propertyPath: m_Name
       value: BattleExtraAttackManager_1
@@ -3513,6 +3525,66 @@ PrefabInstance:
     - target: {fileID: 1996593984258501174, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2442204979634576994, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 2442204979634576994, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520592821782943474, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066718259456175049, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578401322685595160, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5332940510933940187, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5762445399324330011, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5762445399324330011, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382387875621462880, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739533390056737606, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 8196672418491306857, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8483068623137281461, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 8483068623137281461, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639988964459545217, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639988964459545217, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.77
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
@@ -7069,7 +7141,7 @@ MonoBehaviour:
   _playTime: 0
   _timeShower: {fileID: 1993351351}
   _delayedTime: 0.5
-  _currentCampaignData: {fileID: 11400000, guid: 2431cc1b97d3609438aa3ed0df885738, type: 2}
+  _currentCampaignData: {fileID: 11400000, guid: 526af3eaa8fcbd448bc388ea3e333360, type: 2}
   _DebugCurrentText: {fileID: 474565358}
 --- !u!1 &1993351349
 GameObject:
@@ -71586,7 +71658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8593451072201227060, guid: 6168722e09adabb45bd65f6a93a1df70, type: 3}
       propertyPath: _chargeAmount_forDebug
-      value: 0.2
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 8593451072201227061, guid: 6168722e09adabb45bd65f6a93a1df70, type: 3}
       propertyPath: m_RootOrder
