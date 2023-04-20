@@ -152,7 +152,7 @@ MonoBehaviour:
       isonoff: 0
     - id: 33
       rarity: 0
-      maxLevel: 0
+      maxLevel: 4
       upgradecount: 0
       arfifactLevelValueList:
       - 1
@@ -392,7 +392,7 @@ MonoBehaviour:
       isonoff: 0
     - id: 999
       rarity: 0
-      maxLevel: 99999
+      maxLevel: 4
       upgradecount: 0
       arfifactLevelValueList:
       - 1

@@ -35,7 +35,7 @@ namespace PG.Battle
             _lifeTime = _maxLifetime;
             _activetime = activetimes;
             _damageDeal = damage;
-
+            _thisCollider.enabled = false;
             _isActived = false;
             _id = id;
         }

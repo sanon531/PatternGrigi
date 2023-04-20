@@ -73,7 +73,7 @@ namespace PG.Battle
         void ArtifactSetRandomly()
         {
             _showerArtifectList.Clear();
-            bool canGetNew = Global_CampaignData._currentArtifactDictionary.Count <=
+            bool canGetNew = Global_CampaignData._currentArtifactDictionary.Count <
                              Global_CampaignData._totalMaxArtifactNumber;
 
             //print(canGetNew + "sd" + _isRemovedUnnecessaryOnce);
