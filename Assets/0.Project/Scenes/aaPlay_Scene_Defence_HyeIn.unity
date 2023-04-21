@@ -433,6 +433,8 @@ MonoBehaviour:
     m_values: []
   _prefabCase: {fileID: 800145037440201090, guid: c2fcf54018ed6a3478b39006518c7f93, type: 3}
   _placeTransform: {fileID: 968039890}
+  _placeCaseTransform_2: {fileID: 0}
+  caseObject: {fileID: 0}
 --- !u!114 &58617019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1237,7 +1239,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1518175977
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -10817,6 +10819,7 @@ MonoBehaviour:
   - {fileID: 813714242}
   _upgradeDataList: 
   _confirmedButton: {fileID: 1448990932}
+  _resetButton: {fileID: 0}
   _choosedButtonNum: -1
 --- !u!222 &394444917
 CanvasRenderer:
@@ -11290,6 +11293,7 @@ MonoBehaviour:
   _patternTransform: {fileID: 503020547}
   _waitingTransform: {fileID: 2079006470}
   slashParticle: {fileID: 7295740269783819018, guid: 6cac93468514b8e4fb682ef759dfe76c, type: 3}
+  deadParticle: {fileID: 0}
 --- !u!1 &509941532
 GameObject:
   m_ObjectHideFlags: 0
@@ -21127,7 +21131,8 @@ MonoBehaviour:
   _playTime: 0
   _timeShower: {fileID: 1759101849}
   _delayedTime: 0.5
-  _currentCampaignName: BalanceTest
+  _currentCampaignData: {fileID: 0}
+  _DebugCurrentText: {fileID: 0}
 --- !u!1 &618081889
 GameObject:
   m_ObjectHideFlags: 0
@@ -21330,7 +21335,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1518175977
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_RenderMode: 1
   m_MeshDistribution: 0
@@ -31637,7 +31642,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1518175977
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -36712,7 +36717,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _backGround: {fileID: 854966247}
   _gameOverText: {fileID: 740371036}
-  _gameOverTextPlayer: {fileID: 740371033}
   _buttonSet: {fileID: 388179122}
 --- !u!114 &854966247
 MonoBehaviour:
@@ -37328,7 +37332,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.5, y: 1}
+    m_SensorSize: {x: 0.5625, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -42424,7 +42428,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1518175977
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -52601,6 +52605,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 32907949}
     m_Modifications:
+    - target: {fileID: 311330406563368501, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 311330406563368501, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139987388010963285, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139987388010963285, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.77
+      objectReference: {fileID: 0}
     - target: {fileID: 1996593984258501169, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
       propertyPath: m_Name
       value: BattleExtraAttackManager_1
@@ -52648,6 +52668,14 @@ PrefabInstance:
     - target: {fileID: 1996593984258501174, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8483068623137281461, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639988964459545217, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.69
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c771fcc9f204fb43a9017c9d94f1d24, type: 3}
@@ -59392,7 +59420,9 @@ MonoBehaviour:
     - 10
     - 5
     - 1
+  spreadAngle: 45
   _targetedMobList: []
+  targetAxis: {x: 0, y: 1, z: 0}
   _temptenemyList: []
 --- !u!1001 &1827188872
 PrefabInstance:
@@ -70137,6 +70167,7 @@ MonoBehaviour:
   _touchLU: {fileID: 1553220477}
   _isCamOrthoGraph: 0
   mainCam: {fileID: 1341036052}
+  _teleportLength: 0.5
 --- !u!114 &2135334525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70169,6 +70200,7 @@ MonoBehaviour:
   _thisSprite: {fileID: 2135334529}
   _healthBar: {fileID: 1190782771}
   _damageFX: {fileID: 638316217}
+  _healFX: {fileID: 0}
   _UIShowPos: {fileID: 1388358278}
   _knockbackForce: 20
   _healthFadeTime: 10
@@ -70273,7 +70305,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1663292755
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e0e6d1db81e039c4ebeafbebb07994a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

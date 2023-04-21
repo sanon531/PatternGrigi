@@ -95,6 +95,8 @@ namespace PG.Data
         public static HashSet<EMobDebuff> _CurrentBulletDeBuffs = new HashSet<EMobDebuff>();
         public static float _slowAmount = 0.5f;
         public static float _slowTime = 1f;
+
+        public static bool _isKnockBack = true;
         
         #endregion
 
@@ -142,6 +144,7 @@ namespace PG.Data
             }
             _levelMaxEXPList = data._levelMaxEXPList;
             _killGetEXP = data._killGetEXP;
+            _isKnockBack = data._isKnockBack;
             //굳이 그럴필요없으면 이거 _waveClassList = new List<WaveClass>(data._waveDic.Values);
         }
         #endregion

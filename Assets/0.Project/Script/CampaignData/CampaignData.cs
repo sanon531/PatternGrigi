@@ -72,6 +72,8 @@ namespace PG.Data
         public List<float> _levelMaxEXPList = new List<float>(){100};
         public float _killGetEXP = 1;
 
+        public bool _isKnockBack = false;
+
     }
 
 

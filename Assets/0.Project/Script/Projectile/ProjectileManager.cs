@@ -255,7 +255,7 @@ namespace PG.Battle
             float currentAngle = (-spreadAngle/2f) + (thisCount * angleStep);
             Quaternion rotation = Quaternion.AngleAxis(currentAngle, targetAxis);
             Vector3 direction = rotation * transform.up;
-            print(thisCount+"+"+currentAngle+"+"+direction+"  "+totalSpreadCount);
+            //print(thisCount+"+"+currentAngle+"+"+direction+"  "+totalSpreadCount);
             return direction;
         }
         Vector2 GetDirectionBySpread(int thisCount, int sqrtCeil)

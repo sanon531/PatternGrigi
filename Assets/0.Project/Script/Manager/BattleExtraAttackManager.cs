@@ -269,13 +269,21 @@ namespace PG.Battle
                                 (nodeCount * (1 + emitDamagePercent / 100));
 
             List<MobScript> mobList = EmitParticle.GetComponentInChildren<InspirationCircleTrigger>().InRangeMobList;
-            
-            
             //중간에 삭제 가능성 있기 때문에 foreach는 불가능
             for (int i = 0; i < mobList.Count; i++)
             {
-                mobList[i].Damage(finalDamage);
+                mobList[i].DamageWithNoSound(finalDamage*0.8f);
             }
+
+
+            mobList = MobGenerator.GetMobList();
+            for (int i = 0; i < mobList.Count; i++)
+            {
+                mobList[i].DamageWithNoSound(finalDamage*0.2f);
+            }
+            
+            
+
         }
 
 

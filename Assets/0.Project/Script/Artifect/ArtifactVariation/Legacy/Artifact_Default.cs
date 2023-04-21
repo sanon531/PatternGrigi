@@ -74,7 +74,33 @@ namespace PG
             BattleExtraAttackManager.PlaceBlockade();
             //Debug.Log("LEL"+ maxLevel+" s " + _artifactLevel);
         }
-        
     }
-    
+
+    public class Artifact_Barricade : Artifact
+    {
+        public Artifact_Barricade() : base(ArtifactID.Barricade)
+        {
+        }
+        
+        public override void OnGetArtifact()
+        {
+            base.OnGetArtifact();
+            BattleExtraAttackManager.PlaceBlockade();
+            Enable();
+        }
+
+        protected override void Enable()
+        {
+            base.Enable();
+        }
+
+        public override void AddCountOnArtifact()
+        {
+            base.AddCountOnArtifact();   
+            BattleExtraAttackManager.PlaceBlockade();
+            //Debug.Log("LEL"+ maxLevel+" s " + _artifactLevel);
+        }
+    }
+
+
 }

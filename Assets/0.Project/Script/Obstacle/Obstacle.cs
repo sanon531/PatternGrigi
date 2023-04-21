@@ -72,6 +72,7 @@ namespace PG.Battle
 
         protected void Delete()
         {
+            _thisCollider.enabled = false;
             ObstacleManager.DeleteObstacleOnList(this);
         }
         

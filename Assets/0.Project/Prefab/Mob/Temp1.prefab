@@ -209,8 +209,8 @@ MonoBehaviour:
         _spawnPosList: []
         _spawnData:
           _thisID: 3
-          _lifeTime: 5
-          _activeTime: 1
+          _lifeTime: 4
+          _activeTime: 2
   _spriteRenderer: {fileID: 689142036305607989}
 --- !u!61 &3616840655836730660
 BoxCollider2D:

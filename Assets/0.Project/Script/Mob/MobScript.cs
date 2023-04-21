@@ -82,6 +82,7 @@ namespace PG.Battle
         private SpriteRenderer _bodySpriteRenderer;
 
         private Color _originalColor;
+        private bool _isKnockBack = false;
 
         //몹을 스폰 할때 초기 데이터들을 넣어주는 코드
         public void SetInitializeMobSpawnData(CharacterID mobID, MobSpawnData mobSpawnData, int sortingOrder)
@@ -108,6 +109,7 @@ namespace PG.Battle
             _currentActionOrder = 0;
             _lootExp = Global_CampaignData._killGetEXP;
 
+            _isKnockBack = Global_CampaignData._isKnockBack;
             _bodySpriteRenderer = GetComponent<SpriteRenderer>();
             //SetTargetted(false);
         }
@@ -206,11 +208,58 @@ namespace PG.Battle
                 if (!gameObject.activeSelf)
                     return;
 
-                StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
+                if(_isKnockBack)
+                    StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
                 thisAudioSource.Play();
                 StartCoroutine(HitEffect());
             }
         }
+        
+        
+        public void Damage(float val,bool isKnockBack)
+        {
+            if (_isEnemyAlive)
+            {
+                _healthSystem.Damage(val);
+                currentHealth = _healthSystem.GetHealth();
+                DamageFXManager.ShowDamage(transform.position, Mathf.Round(val).ToString(), Color.white);
+                ShowDebugtextScript.ShowCurrentAccumulateDamage(Mathf.RoundToInt(val));
+                //print(gameObject.name + " : " + _healthSystem.GetHealth());
+                currentHealth = _healthSystem.GetHealth();
+                Global_BattleEventSystem.CallOnMobDamaged(val);
+                if (!gameObject.activeSelf)
+                    return;
+
+                if(isKnockBack)
+                    StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
+                thisAudioSource.Play();
+                StartCoroutine(HitEffect());
+            }
+        }
+
+        public void DamageWithNoSound(float val)
+        {
+            if (_isEnemyAlive)
+            {
+                _healthSystem.Damage(val);
+                currentHealth = _healthSystem.GetHealth();
+                DamageFXManager.ShowDamage(transform.position, Mathf.Round(val).ToString(), Color.white);
+                ShowDebugtextScript.ShowCurrentAccumulateDamage(Mathf.RoundToInt(val));
+                //print(gameObject.name + " : " + _healthSystem.GetHealth());
+                currentHealth = _healthSystem.GetHealth();
+                Global_BattleEventSystem.CallOnMobDamaged(val);
+                if (!gameObject.activeSelf)
+                    return;
+
+                StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
+                //thisAudioSource.Play();
+                StartCoroutine(HitEffect());
+            }
+        }
+
+
+
+
 
         //Called on dead
         private void OnDead(object sender, System.EventArgs e)
