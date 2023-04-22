@@ -38,10 +38,22 @@ namespace PG.Battle
         {
             _waveTimeList = Global_CampaignData._waveTimeList;
             _waveClassList = Global_CampaignData._waveClassList;
+            
+            Global_BattleEventSystem._onGameOver +=DelayedDelete;
+            Global_BattleEventSystem._onGameClear += DelayedDelete;
+        }
+
+        private void OnDisable()
+        {
+            Global_BattleEventSystem._onGameOver -=DelayedDelete;
+            Global_BattleEventSystem._onGameClear -= DelayedDelete;
         }
 
         void Update()
         {
+            if (Global_CampaignData._gameCleared || Global_CampaignData._gameOver)
+                return;
+            
             if (BattleSceneManager._instance.GetPlayTime() > _waveTimeList[_currentWaveOrder]) 
                 NextWave();
 
@@ -68,6 +80,7 @@ namespace PG.Battle
         {
             Global_BattleEventSystem.CallOnWaveChange(_currentWaveOrder);
             
+            
             //이전 웨이브 코루틴들 정리 + 변수 초기화
             StopAllCoroutines();
             _sortingOrder = 0;
@@ -80,7 +93,6 @@ namespace PG.Battle
             //다음 웨이브 데이터
             _currentMobSpawnDataDic = _waveClassList[_currentWaveOrder].GetSpawnDataDic();
             _currentMinMobNum = _waveClassList[_currentWaveOrder].GetMinMobNum();
-            
             //몹 오브젝트 풀 세팅
             SettingNowPools();
 
@@ -113,9 +125,21 @@ namespace PG.Battle
         }
         #endregion
 
+        void DelayedDelete()
+        {
+            DeleteAllEnemy();
+        }
+
+        IEnumerator DeleteAllEnemy()
+        {
+             yield return new WaitForSeconds(2f);
+             for (int i = 0 ; i < _mobList.Count;i++) {
+                 Destroy(_mobList[i]);
+             }
+        }
 
 
-#region//Filling
+        #region//Filling
 
         //[SerializeField]
         private float _fillSpeed = 2f;
@@ -129,12 +153,10 @@ namespace PG.Battle
 
         private List<IEnumerator> _spawnCrtnList;
         private List<IEnumerator> _fillSpawnCrtnList;
-
         private void FillMobs() //최소 마리수 채우는 함수
         {
             if (_aliveMobCount < _currentMinMobNum)
             {
-                
                 if (!_isFilling)
                 {
                     _isFilling = true;

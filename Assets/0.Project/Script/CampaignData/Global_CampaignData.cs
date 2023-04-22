@@ -97,6 +97,9 @@ namespace PG.Data
         public static float _slowTime = 1f;
 
         public static bool _isKnockBack = true;
+        public static bool _gameOver = false;
+        public static bool _gameCleared = false;
+        
         
         #endregion
 
@@ -145,6 +148,9 @@ namespace PG.Data
             _levelMaxEXPList = data._levelMaxEXPList;
             _killGetEXP = data._killGetEXP;
             _isKnockBack = data._isKnockBack;
+            _gameOver = false;
+            _gameCleared = false;
+
             //굳이 그럴필요없으면 이거 _waveClassList = new List<WaveClass>(data._waveDic.Values);
         }
         #endregion

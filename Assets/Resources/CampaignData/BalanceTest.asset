@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BalanceTest
   m_EditorClassIdentifier: 
   _startArtifactList: 
-  _obtainableArtifactIDList: 1f00000079000000840000007a0000000b0000001e00000022000000090000002000000021000000790000007800000085000000
+  _obtainableArtifactIDList: 1f00000079000000840000007a0000000b0000001e000000220000000900000020000000210000007900000078000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000150000001600000017000000
     m_values:
@@ -70,7 +70,7 @@ MonoBehaviour:
     m_values:
     - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 0
       "_\uC801\uBC30\uCE58":
-        m_keys: 1500000017000000
+        m_keys: 1500000018000000
         m_values:
         - "_\uC2A4\uD3F0\uC218": 1
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
@@ -80,11 +80,11 @@ MonoBehaviour:
           "_\uACF5\uACA9\uB825": 0
           "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
         - "_\uC2A4\uD3F0\uC218": 1
-          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
-          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 1000
+          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 1
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 2
           "_\uC18D\uB3C4": 20
           "_\uCCB4\uB825": 4
-          "_\uACF5\uACA9\uB825": 10
+          "_\uACF5\uACA9\uB825": 0
           "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
       "_\uC2A4\uD3F0\uD0C0\uC785": 0
     - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 3
@@ -214,9 +214,9 @@ MonoBehaviour:
           "_\uCCB4\uB825": 20
           "_\uACF5\uACA9\uB825": 0
           "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
-        - "_\uC2A4\uD3F0\uC218": 0
+        - "_\uC2A4\uD3F0\uC218": 1
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
-          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 70
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 7
           "_\uC18D\uB3C4": 15
           "_\uCCB4\uB825": 80
           "_\uACF5\uACA9\uB825": 20
@@ -249,9 +249,9 @@ MonoBehaviour:
           "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
         - "_\uC2A4\uD3F0\uC218": 1
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
-          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 120
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 8
           "_\uC18D\uB3C4": 15
-          "_\uCCB4\uB825": 10
+          "_\uCCB4\uB825": 120
           "_\uACF5\uACA9\uB825": 30
           "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
         - "_\uC2A4\uD3F0\uC218": 1
@@ -282,7 +282,7 @@ MonoBehaviour:
           "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
         - "_\uC2A4\uD3F0\uC218": 1
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
-          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 70
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 7
           "_\uC18D\uB3C4": 15
           "_\uCCB4\uB825": 120
           "_\uACF5\uACA9\uB825": 30
@@ -315,7 +315,7 @@ MonoBehaviour:
           "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
         - "_\uC2A4\uD3F0\uC218": 1
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
-          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 70
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 7
           "_\uC18D\uB3C4": 15
           "_\uCCB4\uB825": 150
           "_\uACF5\uACA9\uB825": 40
@@ -348,7 +348,7 @@ MonoBehaviour:
           "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
         - "_\uC2A4\uD3F0\uC218": 2
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
-          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 70
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 7
           "_\uC18D\uB3C4": 15
           "_\uCCB4\uB825": 150
           "_\uACF5\uACA9\uB825": 40
@@ -381,7 +381,7 @@ MonoBehaviour:
           "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
         - "_\uC2A4\uD3F0\uC218": 1
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
-          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 70
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 5
           "_\uC18D\uB3C4": 15
           "_\uCCB4\uB825": 200
           "_\uACF5\uACA9\uB825": 70
@@ -461,7 +461,7 @@ MonoBehaviour:
     "_\uBC30\uC218": 1
     "_\uCD94\uAC00\uB7C9": 0
     type: 7
-  _totalMaxArtifactNumber: 6
+  _totalMaxArtifactNumber: 8
   _levelMaxEXPList:
   - 7
   - 8
@@ -483,4 +483,3 @@ MonoBehaviour:
   - 24
   - 25
   _killGetEXP: 1
-  _isKnockBack: 1
