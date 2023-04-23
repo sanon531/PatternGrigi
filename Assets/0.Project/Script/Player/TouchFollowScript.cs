@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PG.Data;
 using UnityEngine;
 using PG.Event;
 
@@ -46,6 +47,9 @@ namespace PG.Battle
         // Update is called once per frame
         void Update()
         {
+
+            if (Global_CampaignData._gameOver || Global_CampaignData._gameCleared)
+                return;
             LineTracer._instance.SetDrawLineStart(transform.position);
             //클릭 담당 부분.
             if (Input.GetMouseButtonDown(0)) 

@@ -12,6 +12,8 @@ namespace PG.Battle
     {
 
         private Image thisImage;
+        [SerializeField]
+        private Button menuBackButton;
 
         protected override void CallOnDestroy()
         {
@@ -27,6 +29,7 @@ namespace PG.Battle
             thisImage.enabled = false;
             thisImage.color = Color.clear;
             _lastWave = Global_CampaignData._waveTimeList.Count -1;
+            menuBackButton.gameObject.SetActive(false);
             Global_BattleEventSystem._onWaveChange += WaveLastCheck; 
         }
 
@@ -42,12 +45,15 @@ namespace PG.Battle
         void CallGameCleared()
         {
             thisImage.enabled = true;
-            thisImage.DOColor(Color.white, 0.5f);
+            thisImage.DOColor(Color.white, 0.5f).OnComplete(DelayedDataShow);
             Global_CampaignData._gameCleared = true;
             Global_BattleEventSystem.CallOnGameClear();
         }
 
-
+        void DelayedDataShow()
+        {
+            menuBackButton.gameObject.SetActive(true);
+        }
 
     }
 }
