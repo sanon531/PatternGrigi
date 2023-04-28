@@ -174,21 +174,26 @@ namespace PG.Battle
                 _rigidBody2D.MovePosition(transform.position);
                 return;
             }
-
+            Vector3 direction = Player_Script.GetPlayerPosition() - transform.position;
+            direction.Normalize();
+            //_towardDirrection = plau
             if (_isRigidBody2DNotNull)
             {
                 //막히지 않을 경우 아래 막힐경우 양옆으로 이동한다.
-                _movement = (-1) * (_initialSpeed / 50) * Time.deltaTime * _towardDirrection;
+                _movement = (_initialSpeed / 50) * Time.deltaTime * direction;
                 _rigidBody2D.MovePosition(transform.position + _movement * _slowRatio);
                 //_initialSpeed += _acceleration * Time.deltaTime;
             }
 
+            /*
             if (transform.position.y <= MobGenerator.GetDeadLine())
             {
                 StopAllCoroutines();
                 MobGenerator.RemoveMob(_charactorID, this);
                 Player_Script.Damage(_reachedDamage);
             }
+            */
+
         }
 
 

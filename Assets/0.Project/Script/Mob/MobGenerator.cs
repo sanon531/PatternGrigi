@@ -21,11 +21,19 @@ namespace PG.Battle
         private MobIDObjectDic _mobDic;
         [SerializeField]
         private List<MobScript> _mobList;
+        [SerializeField]
+        private List<Transform> spawnPosList;
+        
+        private readonly List<Vector3> _spawnPos = new List<Vector3>();
 
 
         protected override void CallOnAwake()
         {
             base.CallOnAwake();
+            foreach (var posOrigin in spawnPosList)
+            {
+                _spawnPos.Add(posOrigin.position);
+            }
         }
 
         protected override void CallOnDestroy()
@@ -112,8 +120,13 @@ namespace PG.Battle
         private void SpawnMob(CharacterID mobID, MobSpawnData mobSpawnData)
         {
             _sortingOrder++;
-            Vector3 pos = new Vector3(UnityEngine.Random.Range(_SpawnRange_Left.position.x, _SpawnRange_Right.position.x),
-                _SpawnRange_Left.position.y, _SpawnRange_Left.position.z);
+            
+            //random
+            
+            
+            //Vector3 pos = new Vector3(UnityEngine.Random.Range(_SpawnRange_Left.position.x, _SpawnRange_Right.position.x), _SpawnRange_Left.position.y, _SpawnRange_Left.position.z);
+
+            Vector3 pos = _spawnPos.PickRandom();
             
             MobScript temp = _totalMobDictionary[mobID].PickUp();
             temp.transform.position = pos;
