@@ -214,7 +214,7 @@ namespace PG.Battle
                     break;
                 
                 ProjectileScript _tempt = _totalProjectileDictionary[id].PickUp();
-                _tempt.SetFrequentProjectileData(null, val, 
+                _tempt.SetFrequentProjectileData(MobGenerator.GetClosestEnemy(), val, 
                     GetPosBySpread(_spreadcount-1,totalSpreadCount)
                 );
                 //Debug.Log("ss" + GetPosBySpread(i,sqrtCeil));

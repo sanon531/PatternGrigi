@@ -346,6 +346,28 @@ namespace PG.Battle
             _instance._mobList.Sort((mobA, mobB) => mobA.transform.position.y.CompareTo(mobB.transform.position.y));
             return _instance._mobList;
         }
+        public static MobScript GetClosestEnemy()
+        {
+            return _instance.CalcClosestEnemy();
+        }
+
+        private MobScript CalcClosestEnemy()
+        {
+            var playerTranform = Player_Script.GetPlayerPosition();
+            MobScript closestEnemyTransform = null;
+            float closestDistanceSqr = Mathf.Infinity;
+            foreach (var potentialEnemyTransform in _mobList)
+            {
+                Vector3 directionToEnemy = potentialEnemyTransform.GetMobPosition() - playerTranform;
+                float dSqrToEnemy = directionToEnemy.sqrMagnitude;
+                if (dSqrToEnemy < closestDistanceSqr)
+                {
+                    closestDistanceSqr = dSqrToEnemy;
+                    closestEnemyTransform = potentialEnemyTransform;
+                }
+            }
+            return closestEnemyTransform;
+        }
 
         public static float GetDeadLine()
         {
