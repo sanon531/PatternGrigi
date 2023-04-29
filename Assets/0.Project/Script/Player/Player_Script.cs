@@ -183,6 +183,7 @@ namespace PG.Battle
 
         void OnTriggerEnter2D(Collider2D col)
         {
+            return;
             if (col.transform.CompareTag("Enemy"))
             {
                 var mob = col.transform.GetComponent<MobScript>();

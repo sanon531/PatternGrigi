@@ -33,7 +33,7 @@ namespace PG.Battle
         float _reachedDamage = 20;
         float _lootExp = 1;
 
-        private float _extraDamage = 1;
+        private float _CharDamage = 1;
         private float _loadedSpeed = 0;
         private Color _color;
 
@@ -98,7 +98,7 @@ namespace PG.Battle
             _charactorID = mobID;
 
             _loadedSpeed = mobSpawnData._속도;
-            _extraDamage = mobSpawnData._공격력;
+            _CharDamage = mobSpawnData._공격력;
             _color = mobSpawnData._색깔;
 
             _spriteRenderer.color = _color;
@@ -137,14 +137,14 @@ namespace PG.Battle
                         if (data._mobPosSpawn)
                         {
                             ObstacleManager.SetObstacle(data._spawnData, gameObject.transform.position,
-                                Global_CampaignData._charactorAttackDic[_charactorID].FinalValue * _extraDamage);
+                                Global_CampaignData._charactorAttackDic[_charactorID].FinalValue * _CharDamage);
                         }
                         else
                         {
                             foreach (Vector2 pos in data._spawnPosList)
                             {
                                 ObstacleManager.SetObstacle(data._spawnData, pos,
-                                    Global_CampaignData._charactorAttackDic[_charactorID].FinalValue * _extraDamage);
+                                    Global_CampaignData._charactorAttackDic[_charactorID].FinalValue * _CharDamage);
                             }
                         }
                     }
@@ -340,6 +340,11 @@ namespace PG.Battle
             {
                 _towardDirrection.x = -_towardDirrection.x ;
             }
+            
+            if (col.transform.CompareTag("Player"))
+            {
+                Player_Script.Damage(_CharDamage);
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -363,6 +368,7 @@ namespace PG.Battle
         {
             return transform.position;
         }
+
 
         #endregion
     }
