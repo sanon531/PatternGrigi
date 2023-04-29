@@ -35,7 +35,7 @@ namespace PG.Battle
 
         void WaveLastCheck(int i)
         {
-            print(_lastWave + "+" + i);
+            //print(_lastWave + "+" + i);
             if (_lastWave <= i)
             {
                 CallGameCleared();

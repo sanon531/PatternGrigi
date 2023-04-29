@@ -96,7 +96,7 @@ namespace PG.Battle
                 CalcDamageByThunder(posPair[0],
                     posPair[1],
                     Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue * 0.1f);
-                print(Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue * 0.1f);
+                //print(Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue * 0.1f);
             }
             
 
@@ -135,11 +135,12 @@ namespace PG.Battle
             RaycastHit2D[] hits = new RaycastHit2D[30];
             var count = Physics2D.RaycastNonAlloc(lastPos, dir, hits, range);
 
+            var targetPos = Player_Script.GetPlayerPosition();
             for (int i = 0; i < count; i++)
             {
                 if (hits[i].transform.CompareTag("Enemy"))
                 {
-                    hits[i].transform.GetComponent<MobScript>().Damage(damage);
+                    hits[i].transform.GetComponent<MobScript>().Damage(targetPos,damage);
                 }
             }
         }
@@ -269,17 +270,18 @@ namespace PG.Battle
                                 (nodeCount * (1 + emitDamagePercent / 100));
 
             List<MobScript> mobList = EmitParticle.GetComponentInChildren<InspirationCircleTrigger>().InRangeMobList;
+            var targetPos = Player_Script.GetPlayerPosition();
             //중간에 삭제 가능성 있기 때문에 foreach는 불가능
             for (int i = 0; i < mobList.Count; i++)
             {
-                mobList[i].DamageWithNoSound(finalDamage*0.8f);
+                mobList[i].DamageWithNoSound(targetPos,finalDamage*0.8f);
             }
 
 
             mobList = MobGenerator.GetMobList();
             for (int i = 0; i < mobList.Count; i++)
             {
-                mobList[i].DamageWithNoSound(finalDamage*0.2f);
+                mobList[i].DamageWithNoSound(targetPos,finalDamage*0.2f);
             }
             
             

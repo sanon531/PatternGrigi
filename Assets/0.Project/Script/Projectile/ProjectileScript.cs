@@ -106,7 +106,7 @@ namespace PG.Battle
             if (collision.CompareTag("Enemy") && !PiercedList.Contains(collision.gameObject))
             {
                 var mob = collision.GetComponent<MobScript>();
-                mob.Damage(Damage);
+                mob.Damage(transform.position, Damage);
                 foreach (var debuff in Global_CampaignData._CurrentBulletDeBuffs)
                 {
                     mob.SetDebuff(debuff);

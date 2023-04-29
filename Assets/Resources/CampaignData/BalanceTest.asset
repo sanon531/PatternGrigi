@@ -483,4 +483,4 @@ MonoBehaviour:
   - 24
   - 25
   _killGetEXP: 1
-  _isKnockBack: 0
+  _isKnockBack: 1

@@ -187,7 +187,7 @@ namespace PG.Battle
             if (col.transform.CompareTag("Enemy"))
             {
                 var mob = col.transform.GetComponent<MobScript>();
-                mob.Damage(_colisionDamage);
+                mob.Damage(transform.position,_colisionDamage);
             }
         }
     }

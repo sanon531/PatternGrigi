@@ -44,10 +44,12 @@ namespace PG.Battle
             //hitFX.Play();
 
             _thisRay._StartPos = transform.position;
+            var targetPos = Player_Script.GetPlayerPosition();
+
             if (IstargetMobNotNull)
             {            
                 _thisRay._EndPos = targetMob.GetMobPosition();
-                target.Damage(damage);
+                target.Damage(targetPos,damage);
             }
             else
             {                

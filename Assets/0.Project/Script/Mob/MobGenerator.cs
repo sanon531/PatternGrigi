@@ -140,6 +140,8 @@ namespace PG.Battle
 
         void DelayedDelete()
         {
+            Debug.Log("deleted");
+            StopAllCoroutines();
             DeleteAllEnemy();
         }
 

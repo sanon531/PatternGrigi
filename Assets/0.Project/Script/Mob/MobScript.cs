@@ -199,7 +199,7 @@ namespace PG.Battle
 
         private Coroutine knockback;
 
-        public void Damage(float val)
+        public void Damage(Vector3 colliderPos,float val)
         {
             if (_isEnemyAlive)
             {
@@ -214,14 +214,14 @@ namespace PG.Battle
                     return;
 
                 if(_isKnockBack)
-                    StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
+                    StartCoroutine(Knockback(colliderPos,0.5f, Player_Script._instance._knockbackForce));
                 thisAudioSource.Play();
                 StartCoroutine(HitEffect());
             }
         }
         
         
-        public void Damage(float val,bool isKnockBack)
+        public void Damage(Vector3 colliderPos, float val,bool isKnockBack)
         {
             if (_isEnemyAlive)
             {
@@ -236,13 +236,13 @@ namespace PG.Battle
                     return;
 
                 if(isKnockBack)
-                    StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
+                    StartCoroutine(Knockback(colliderPos,0.5f, Player_Script._instance._knockbackForce));
                 thisAudioSource.Play();
                 StartCoroutine(HitEffect());
             }
         }
 
-        public void DamageWithNoSound(float val)
+        public void DamageWithNoSound(Vector3 colliderPos,float val)
         {
             if (_isEnemyAlive)
             {
@@ -256,7 +256,7 @@ namespace PG.Battle
                 if (!gameObject.activeSelf)
                     return;
 
-                StartCoroutine(Knockback(0.5f, Player_Script._instance._knockbackForce));
+                StartCoroutine(Knockback(colliderPos,0.5f, Player_Script._instance._knockbackForce));
                 //thisAudioSource.Play();
                 StartCoroutine(HitEffect());
             }
@@ -310,16 +310,18 @@ namespace PG.Battle
             }
         }
 
-        private IEnumerator Knockback(float duration, float power)
+        private IEnumerator Knockback(Vector3 colliderPos,float duration, float power)
         {
             _isStunned = true;
             float timer = 0f;
+
+            var knockbackdir = (transform.position - colliderPos).normalized;
 
             while (timer <= duration)
             {
                 timer += Time.deltaTime;
 
-                _rigidBody2D.AddForce(new Vector2(0f, power));
+                _rigidBody2D.AddForce(knockbackdir *power);
             }
 
             _isStunned = false;

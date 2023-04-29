@@ -80,12 +80,13 @@ namespace PG.Battle
             RaycastHit2D[] hits=new RaycastHit2D[30];
             var count= Physics2D.RaycastNonAlloc(lastPos,dir,hits,range);
 
+            var targetPos = Player_Script.GetPlayerPosition();
             for (int i =0 ; i<count;i++)
             {
                 if (hits[i].transform.CompareTag("Enemy"))
                 {
                     //��ġ�� ���� ��Ű�� 
-                    hits[i].transform.GetComponent<MobScript>().Damage(damage);
+                    hits[i].transform.GetComponent<MobScript>().Damage(targetPos,damage);
                 }
             }
         }
