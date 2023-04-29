@@ -92,10 +92,9 @@ namespace PG.Battle
                 _isRemovedUnnecessaryOnce = true;
             }
             var artifacts = Global_CampaignData._obtainableArtifactIDList.ToList();
-            _showerArtifectList = MyRandom.PickRandoms(artifacts, Mathf.Clamp(artifacts.Count,0,2));
-
-
-
+            
+            _showerArtifectList = MyRandom.PickRandomsNoDuplication(artifacts, Mathf.Clamp(artifacts.Count,0,2));
+            
             //print(_showerArtifectList[0] + ":" + _showerArtifectList[1]);
             
             /*
@@ -125,7 +124,8 @@ namespace PG.Battle
             */
             if (_showerArtifectList.Count == 0)
                 _showerArtifectList.Add(ArtifactID.Default_HealthUp);
-
+            //Debug.Log(_showerArtifectList.Count);
+            
             LevelUpPanelScript.SetRandomItemOnPannel(_showerArtifectList);
         }
 

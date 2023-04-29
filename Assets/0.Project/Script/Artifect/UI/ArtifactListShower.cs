@@ -29,9 +29,9 @@ namespace PG.Battle
         {
             RefreshCase();
             Global_BattleEventSystem._onBattleBegin += RefreshCase;
-            _placeTransform.GetComponent<GridLayoutGroup>().spacing = new Vector2(Screen.width *0.76f, 0);
-            _placeCaseTransform_2.GetComponent<GridLayoutGroup>().spacing = new Vector2(Screen.width *0.76f, 0);
-            var width = _placeCaseTransform_2.GetComponent<RectTransform>().rect.width*0.12f;
+            _placeTransform.GetComponent<GridLayoutGroup>().spacing = new Vector2(Screen.width *0.05f, Screen.width *0.05f);
+            _placeCaseTransform_2.GetComponent<GridLayoutGroup>().spacing = new Vector2(Screen.width *0.05f, Screen.width *0.05f);
+            var width = _placeCaseTransform_2.GetComponent<RectTransform>().rect.width*0.2f;
             _placeCaseTransform_2.GetComponent<GridLayoutGroup>().cellSize = new Vector3(width, width);
            
         }
@@ -76,7 +76,7 @@ namespace PG.Battle
                 Destroy(_caseList[i]);
             }
 
-            var width = _placeTransform.GetComponent<RectTransform>().rect.width*0.12f;
+            var width = _placeTransform.GetComponent<RectTransform>().rect.width*0.2f;
             _placeTransform.GetComponent<GridLayoutGroup>().cellSize = new Vector3(width,width);
         }
 

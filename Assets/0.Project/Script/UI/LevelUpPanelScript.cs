@@ -27,6 +27,8 @@ namespace PG.Battle
         // Start is called before the first frame update
         protected override void CallOnAwake()
         {
+            base.CallOnAwake();
+            
             _gridlayout.cellSize = new Vector2(Screen.width*0.8f ,Screen.height * 0.3f );
             _gridlayout.spacing = new Vector2(0, Screen.height * 0.05f);
             _confirmedButton = GameObject.Find("LevelUpSelectionButton").GetComponent<Button>();
@@ -84,6 +86,7 @@ namespace PG.Battle
         //새 랜덤 아이템들이 창으로 올라오도록 만들기.
         public static void SetRandomItemOnPannel(List<ArtifactID> artifactIDs)
         {
+            //print(_instance);
             _instance._upgradeDataList = artifactIDs.ToList();
 
             //선택을 할경우 동시에 선택과
