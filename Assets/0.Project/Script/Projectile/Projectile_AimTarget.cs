@@ -34,7 +34,6 @@ namespace PG.Battle
                 _direction = projectilePlace ;
 
 
-            print(_direction);
             _direction = _direction.normalized;
             InitialSpeed = Data.Global_CampaignData._projectileSpeed.FinalValue;
             

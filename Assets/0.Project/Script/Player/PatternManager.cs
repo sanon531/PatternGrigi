@@ -33,6 +33,8 @@ namespace PG.Battle
         SpriteRenderer _signSprite;
         // Start is called before the first frame update
         
+        NormalObjectPool<BoxCollider2D>
+        
         protected override void CallOnAwake()
         {
             _inactivatedNode = _defaultNode.ToList();
@@ -69,6 +71,7 @@ namespace PG.Battle
             VibrationManager.CallVibration();
         }
 
+        
         void CalcDamageOnSlash(int lastNode, int currentNode,float damage)
         {
             Vector2 lastPos = _patternNodes[lastNode].transform.position;

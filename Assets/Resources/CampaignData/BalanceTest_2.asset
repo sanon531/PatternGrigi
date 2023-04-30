@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BalanceTest_2
   m_EditorClassIdentifier: 
   _startArtifactList: 
-  _obtainableArtifactIDList: 1f00000079000000840000007a00000000000000
+  _obtainableArtifactIDList: 1e000000780000001f000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000150000001600000017000000
     m_values:
@@ -434,7 +434,7 @@ MonoBehaviour:
   _projectileIDDataDic:
     m_keys: 00000000
     m_values:
-    - _count: 3
+    - _count: 1
       _repeat: 1
       _cooltime: 0.5
   _playerSpeed: 30
@@ -461,7 +461,7 @@ MonoBehaviour:
     "_\uBC30\uC218": 1
     "_\uCD94\uAC00\uB7C9": 0
     type: 7
-  _totalMaxArtifactNumber: 2
+  _totalMaxArtifactNumber: 3
   _levelMaxEXPList:
   - 7
   - 8
