@@ -33,7 +33,6 @@ namespace PG.Battle
         SpriteRenderer _signSprite;
         // Start is called before the first frame update
         
-        NormalObjectPool<BoxCollider2D>
         
         protected override void CallOnAwake()
         {
