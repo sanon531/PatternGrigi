@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EXAMPLE1
   m_EditorClassIdentifier: 
   _startArtifactList: 00000000
-  _obtainableArtifactIDList: 85000000
+  _obtainableArtifactIDList: 21000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000150000001600000017000000
     m_values:
@@ -55,8 +55,8 @@ MonoBehaviour:
       type: 1
   _waveDic:
     m_keys:
+    - 70.5
     - 0
-    - 5
     m_values:
     - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 0
       "_\uC801\uBC30\uCE58":
@@ -65,8 +65,15 @@ MonoBehaviour:
       "_\uC2A4\uD3F0\uD0C0\uC785": 0
     - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 0
       "_\uC801\uBC30\uCE58":
-        m_keys: 
-        m_values: []
+        m_keys: 15000000
+        m_values:
+        - "_\uC2A4\uD3F0\uC218": 0
+          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 500
+          "_\uC18D\uB3C4": 0
+          "_\uCCB4\uB825": 6000
+          "_\uACF5\uACA9\uB825": 0
+          "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
       "_\uC2A4\uD3F0\uD0C0\uC785": 0
   _currentChargePattern: 999
   _lengthMagnData:
@@ -101,7 +108,7 @@ MonoBehaviour:
   _projectileIDDataDic:
     m_keys: 00000000
     m_values:
-    - _count: 1
+    - _count: 3
       _repeat: 1
       _cooltime: 0.5
   _playerSpeed: 30

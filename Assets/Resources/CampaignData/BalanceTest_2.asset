@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb0b2ca909a209340afe36adeafe0b8e, type: 3}
-  m_Name: BalanceTest
+  m_Name: BalanceTest_2
   m_EditorClassIdentifier: 
   _startArtifactList: 
-  _obtainableArtifactIDList: 1f00000079000000840000007a000000
+  _obtainableArtifactIDList: 1f00000079000000840000007a00000000000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000150000001600000017000000
     m_values:
@@ -434,7 +434,7 @@ MonoBehaviour:
   _projectileIDDataDic:
     m_keys: 00000000
     m_values:
-    - _count: 1
+    - _count: 3
       _repeat: 1
       _cooltime: 0.5
   _playerSpeed: 30

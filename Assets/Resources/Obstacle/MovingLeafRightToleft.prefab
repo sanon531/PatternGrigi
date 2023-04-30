@@ -55,9 +55,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2261599503248962956, guid: 7d536e2abc6c0f448ae89bc9afe3d8be, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261599503248962956, guid: 7d536e2abc6c0f448ae89bc9afe3d8be, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261599503248962957, guid: 7d536e2abc6c0f448ae89bc9afe3d8be, type: 3}
+      propertyPath: m_Size.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261599503248962957, guid: 7d536e2abc6c0f448ae89bc9afe3d8be, type: 3}
+      propertyPath: m_Size.y
+      value: 0.32
+      objectReference: {fileID: 0}
     - target: {fileID: 2261599503248962957, guid: 7d536e2abc6c0f448ae89bc9afe3d8be, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2261599503248962957, guid: 7d536e2abc6c0f448ae89bc9afe3d8be, type: 3}
       propertyPath: m_SortingLayerID

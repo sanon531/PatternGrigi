@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 
 using PG.Data;
@@ -214,8 +215,9 @@ namespace PG.Battle
                     break;
                 
                 ProjectileScript _tempt = _totalProjectileDictionary[id].PickUp();
-                _tempt.SetFrequentProjectileData(MobGenerator.GetClosestEnemy(), val, 
-                    GetPosBySpread(_spreadcount-1,totalSpreadCount)
+                var closestEnemy = MobGenerator.GetClosestEnemy();
+                _tempt.SetFrequentProjectileData(closestEnemy, val, 
+                    GetPosBySpread(closestEnemy, _spreadcount-1,totalSpreadCount)
                 );
                 //Debug.Log("ss" + GetPosBySpread(i,sqrtCeil));
                 _spreadcount--;
@@ -245,16 +247,18 @@ namespace PG.Battle
         }
 
         public Vector3 targetAxis = Vector3.up;
-        Vector2 GetPosBySpread(int thisCount, int totalSpreadCount)
+        Vector2 GetPosBySpread([CanBeNull] MobScript targetMob,int thisCount, int totalSpreadCount)
         {
+            var targetPos = targetMob?.GetMobPosition() ?? new Vector3(0,-1.75f);
+            var basicPos = ( targetPos - Player_Script.GetPlayerPosition()).normalized;
             if(totalSpreadCount == 1)
-                return new Vector3(0,1,0);
+                return basicPos;
             
             float angleStep = spreadAngle / (totalSpreadCount-1);
             
             float currentAngle = (-spreadAngle/2f) + (thisCount * angleStep);
             Quaternion rotation = Quaternion.AngleAxis(currentAngle, targetAxis);
-            Vector3 direction = rotation * transform.up;
+            Vector3 direction = rotation * basicPos;
             //print(thisCount+"+"+currentAngle+"+"+direction+"  "+totalSpreadCount);
             return direction;
         }

@@ -123,6 +123,7 @@ namespace PG
         {
             base.OnGetArtifact();
             Global_CampaignData._isReflectable = true;
+            Global_CampaignData._projectilePierce.Add증가량((int)ArfifactLevelValueList[ArtifactLevel - 1]);
             MaxLevel = 1;
             CompleteArtifact();
         }

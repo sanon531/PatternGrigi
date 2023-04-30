@@ -2661,7 +2661,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.8, y: 0.964}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2942,26 +2942,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 237777194}
     m_Modifications:
-    - target: {fileID: 969792002, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.16
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384509434428, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384509434428, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.92
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384727533547, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384727533547, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.92
-      objectReference: {fileID: 0}
     - target: {fileID: 6747084384840875044, guid: db9e308f0655995499c3d83a1da27798, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -3006,128 +2986,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobDic.m_keys.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobDic.m_values.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobDic.m_keys.Array.data[2]
-      value: 23
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobDic.m_keys.Array.data[3]
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobDic.m_keys.Array.data[4]
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobDic.m_values.Array.data[2]
-      value: 
-      objectReference: {fileID: 6512317271173661028, guid: f65d0b3280b2fbe4eb7d9adb33938202, type: 3}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobDic.m_values.Array.data[3]
-      value: 
-      objectReference: {fileID: 3641260654999283697, guid: 8b81cc7325a1f534abc344e228e8628e, type: 3}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobDic.m_values.Array.data[4]
-      value: 
-      objectReference: {fileID: 3641260654999283697, guid: 8b81cc7325a1f534abc344e228e8628e, type: 3}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[0].mobID
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[1].mobID
-      value: 21
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[0].respawn_delay
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[1].respawn_delay
-      value: 1.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[0]._actionDic.m_keys.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[1]._actionDic.m_keys.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[0]._actionDic.m_values.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[1]._actionDic.m_values.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[0]._actionDic.m_keys.Array.data[2]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[0]._actionDic.m_values.Array.data[1]._speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[0]._actionDic.m_values.Array.data[2]._speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[1]._actionDic.m_values.Array.data[1]._speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[1]._actionDic.m_values.Array.data[2]._speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[0]._actionDic.m_values.Array.data[1]._actionTime
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[0]._actionDic.m_values.Array.data[2]._actionTime
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[1]._actionDic.m_values.Array.data[1]._actionTime
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[0]._actionDic.m_values.Array.data[2]._spawnDataList.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[0]._actionDic.m_values.Array.data[2]._spawnDataList.Array.data[0]._thisID
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[0]._actionDic.m_values.Array.data[2]._spawnDataList.Array.data[0]._lifeTime
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[0]._actionDic.m_values.Array.data[2]._spawnDataList.Array.data[0]._damageMag
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
-      propertyPath: _mobSpawnDataList.Array.data[0]._actionDic.m_values.Array.data[2]._spawnDataList.Array.data[0]._activeTime
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6747084384840875047, guid: db9e308f0655995499c3d83a1da27798, type: 3}
       propertyPath: m_Name
       value: MobGenerator
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 969792004, guid: db9e308f0655995499c3d83a1da27798, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db9e308f0655995499c3d83a1da27798, type: 3}
 --- !u!1 &693054250
 GameObject:
@@ -7196,7 +7059,7 @@ MonoBehaviour:
     - 10
     - 5
     - 1
-  spreadAngle: 45
+  spreadAngle: 60
   _targetedMobList: []
   targetAxis: {x: 0, y: 0, z: 1}
   _temptenemyList: []
@@ -72056,7 +71919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8593451072201227060, guid: 6168722e09adabb45bd65f6a93a1df70, type: 3}
       propertyPath: _isDebug
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8593451072201227060, guid: 6168722e09adabb45bd65f6a93a1df70, type: 3}
       propertyPath: _signSprite

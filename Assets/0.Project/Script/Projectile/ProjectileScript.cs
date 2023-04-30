@@ -71,7 +71,7 @@ namespace PG.Battle
             targetMob = target;
             Damage = damage;
             PierceCount = (int)Global_CampaignData._projectilePierce.FinalValue;
-            transform.position = (Player_Script.GetPlayerPosition() + projectilePlace);
+            transform.position = (Player_Script.GetPlayerPosition() );
             projectileImage.color = GetCurrentColor();
         }
 
@@ -113,7 +113,13 @@ namespace PG.Battle
                 }
                 PiercedList.Add(gameObject);
                 PierceCount--;
-                
+
+                if (Global_CampaignData._isReflectable)
+                    if (UnityEngine.Random.Range(0f, 1f) < 0.5f) {
+                        OnTriggerBoundary(); 
+                    } else {
+                        OnTriggerBoundary_Side(); 
+                    }                
                 if (PierceCount <= 0)
                     IsActive=false;
             }
