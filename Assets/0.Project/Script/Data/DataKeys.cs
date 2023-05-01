@@ -27,7 +27,8 @@ namespace PG.Data
         Slime_2 = 24,
         Golem_1 = 25,
         Golem_2 = 26,
-        Golem_boss = 27,
+        Golem_3 = 27,
+        Golem_boss = 28,
     }
 
     public enum EffectID
