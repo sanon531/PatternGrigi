@@ -2985,6 +2985,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
+      propertyPath: _mobDic.m_keys.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747084384840875045, guid: db9e308f0655995499c3d83a1da27798, type: 3}
+      propertyPath: _mobDic.m_values.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6747084384840875047, guid: db9e308f0655995499c3d83a1da27798, type: 3}
       propertyPath: m_Name
       value: MobGenerator
@@ -6517,6 +6525,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObjectNotDestroyed_SceneChange Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3580747825368148985, guid: 5be3f0c8c2aff3c4997b3dc91859196c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5750156687669529277, guid: 5be3f0c8c2aff3c4997b3dc91859196c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -6591,11 +6603,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7009035945783070977, guid: 5be3f0c8c2aff3c4997b3dc91859196c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -2.19
       objectReference: {fileID: 0}
     - target: {fileID: 7009035945783070977, guid: 5be3f0c8c2aff3c4997b3dc91859196c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 3.38
       objectReference: {fileID: 0}
     - target: {fileID: 7009035945783070977, guid: 5be3f0c8c2aff3c4997b3dc91859196c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

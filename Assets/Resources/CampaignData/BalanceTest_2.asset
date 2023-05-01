@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BalanceTest_2
   m_EditorClassIdentifier: 
   _startArtifactList: 
-  _obtainableArtifactIDList: 86000000780000001f000000
+  _obtainableArtifactIDList: 1f00000000000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000150000001600000017000000
     m_values:
@@ -70,7 +70,7 @@ MonoBehaviour:
     m_values:
     - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 0
       "_\uC801\uBC30\uCE58":
-        m_keys: 1500000018000000
+        m_keys: 1a000000190000001b000000
         m_values:
         - "_\uC2A4\uD3F0\uC218": 1
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
@@ -78,13 +78,20 @@ MonoBehaviour:
           "_\uC18D\uB3C4": 20
           "_\uCCB4\uB825": 1
           "_\uACF5\uACA9\uB825": 5
-          "_\uC0C9\uAE54": 0
+          "_\uC0C9\uAE54": 2
         - "_\uC2A4\uD3F0\uC218": 1
           "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 1
           "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 2
           "_\uC18D\uB3C4": 20
           "_\uCCB4\uB825": 4
           "_\uACF5\uACA9\uB825": 5
+          "_\uC0C9\uAE54": 1
+        - "_\uC2A4\uD3F0\uC218": 1
+          "_\uC2A4\uD3F0\uB300\uAE30\uC2DC\uAC04": 0
+          "_\uB9AC\uC2A4\uD3F0\uB51C\uB808\uC774": 1
+          "_\uC18D\uB3C4": 50
+          "_\uCCB4\uB825": 1
+          "_\uACF5\uACA9\uB825": 0
           "_\uC0C9\uAE54": 0
       "_\uC2A4\uD3F0\uD0C0\uC785": 0
     - "_\uCD5C\uC18C\uC2A4\uD3F0\uC218": 3
