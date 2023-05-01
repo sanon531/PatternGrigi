@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GlobalArtifactData
   m_EditorClassIdentifier: 
   idArtifactDataDic:
-    m_keys: 00000000010000000a0000000b00000014000000150000001e0000001f00000020000000210000002a00000033000000340000003c0000003d0000005000000051000000640000006500000066000000670000006800000078000000790000007a000000e703000084000000220000007b00000009000000
+    m_keys: 00000000010000000a0000000b00000014000000150000001e0000001f00000020000000210000002a000000330000003400000078000000790000007a000000e703000084000000220000007b0000000900000085000000
     m_values:
     - id: 0
       rarity: 0
@@ -210,155 +210,20 @@ MonoBehaviour:
       - 1
       - 1
       isonoff: 0
-    - id: 60
-      rarity: 0
-      maxLevel: 4
-      upgradecount: 0
-      arfifactLevelValueList:
-      - 1
-      - 1
-      - 1
-      - 1
-      arfifactLevelValueList2:
-      - 1
-      - 1
-      - 1
-      - 1
-      isonoff: 0
-    - id: 61
-      rarity: 0
-      maxLevel: 4
-      upgradecount: 0
-      arfifactLevelValueList:
-      - 1
-      - 1
-      - 1
-      - 1
-      arfifactLevelValueList2:
-      - 1
-      - 1
-      - 1
-      - 1
-      isonoff: 0
-    - id: 80
-      rarity: 0
-      maxLevel: 4
-      upgradecount: 0
-      arfifactLevelValueList:
-      - 1
-      - 1
-      - 1
-      - 1
-      arfifactLevelValueList2:
-      - 1
-      - 1
-      - 1
-      - 1
-      isonoff: 0
-    - id: 81
-      rarity: 0
-      maxLevel: 4
-      upgradecount: 0
-      arfifactLevelValueList:
-      - 1
-      - 1
-      - 1
-      - 1
-      arfifactLevelValueList2:
-      - 1
-      - 1
-      - 1
-      - 1
-      isonoff: 0
-    - id: 100
-      rarity: 0
-      maxLevel: 4
-      upgradecount: 0
-      arfifactLevelValueList:
-      - 1
-      - 1
-      - 1
-      - 1
-      arfifactLevelValueList2:
-      - 1
-      - 1
-      - 1
-      - 1
-      isonoff: 0
-    - id: 101
-      rarity: 0
-      maxLevel: 4
-      upgradecount: 0
-      arfifactLevelValueList:
-      - 1
-      - 1
-      - 1
-      - 1
-      arfifactLevelValueList2:
-      - 1
-      - 1
-      - 1
-      - 1
-      isonoff: 0
-    - id: 102
-      rarity: 0
-      maxLevel: 4
-      upgradecount: 0
-      arfifactLevelValueList:
-      - 1
-      - 1
-      - 1
-      - 1
-      arfifactLevelValueList2:
-      - 1
-      - 1
-      - 1
-      - 1
-      isonoff: 0
-    - id: 103
-      rarity: 0
-      maxLevel: 4
-      upgradecount: 0
-      arfifactLevelValueList:
-      - 1
-      - 1
-      - 1
-      - 1
-      arfifactLevelValueList2:
-      - 1
-      - 1
-      - 1
-      - 1
-      isonoff: 0
-    - id: 104
-      rarity: 0
-      maxLevel: 4
-      upgradecount: 0
-      arfifactLevelValueList:
-      - 1
-      - 1
-      - 1
-      - 1
-      arfifactLevelValueList2:
-      - 1
-      - 1
-      - 1
-      - 1
-      isonoff: 0
     - id: 120
       rarity: 0
       maxLevel: 4
       upgradecount: 0
       arfifactLevelValueList:
-      - 1
-      - 1
-      - 1
-      - 1
+      - 1.5
+      - 2
+      - 2.5
+      - 3
       arfifactLevelValueList2:
-      - 1
-      - 1
-      - 1
-      - 1
+      - 0.14
+      - 0.18
+      - 0.22
+      - 0.26
       isonoff: 0
     - id: 121
       rarity: 0
@@ -380,10 +245,10 @@ MonoBehaviour:
       maxLevel: 4
       upgradecount: 0
       arfifactLevelValueList:
-      - 1
-      - 1
-      - 1
-      - 1
+      - 4
+      - 5
+      - 6
+      - 7
       arfifactLevelValueList2:
       - 1
       - 1
@@ -392,7 +257,7 @@ MonoBehaviour:
       isonoff: 0
     - id: 999
       rarity: 0
-      maxLevel: 4
+      maxLevel: 999999
       upgradecount: 0
       arfifactLevelValueList:
       - 1
@@ -451,5 +316,12 @@ MonoBehaviour:
       - 200
       - 300
       - 400
+      arfifactLevelValueList2: []
+      isonoff: 0
+    - id: 133
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList: []
       arfifactLevelValueList2: []
       isonoff: 0

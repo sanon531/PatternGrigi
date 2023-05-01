@@ -102,7 +102,7 @@ namespace PG.Battle
         
         
         IEnumerator  SlashAutoReturner(ParticleSystem target)
-        {
+        {            
             yield return new WaitForSeconds(1f);
             _slashFXContainer.SetBack(target);
         }

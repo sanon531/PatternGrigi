@@ -10,16 +10,20 @@ namespace PG
     {
 
         [SerializeField]
-        private int _ÃÖ¼Ò½ºÆù¼ö = 0;
+        private int _ìµœì†ŒìŠ¤í°ìˆ˜ = 0;
         [SerializeField]
-        private MobIDSpawnDataDic _Àû¹èÄ¡ = new MobIDSpawnDataDic();
+        private MobIDSpawnDataDic _ì ë°°ì¹˜ = new MobIDSpawnDataDic();
         [SerializeField]
-        private SpawnType _½ºÆùÅ¸ÀÔ;
+        private SpawnType _ìŠ¤í°íƒ€ì…;
 
 
-        public MobIDSpawnDataDic GetSpawnDataDic(){ return _Àû¹èÄ¡; }
-        public int GetMinMobNum() { return _ÃÖ¼Ò½ºÆù¼ö;  }
+        public MobIDSpawnDataDic GetSpawnDataDic(){ return _ì ë°°ì¹˜; }
+        public int GetMinMobNum() { return _ìµœì†ŒìŠ¤í°ìˆ˜;  }
 
+        public SpawnType GetSpawnType()
+        {
+            return _ìŠ¤í°íƒ€ì…;
+        }
 
         public enum SpawnType
         {
@@ -27,6 +31,7 @@ namespace PG
             Rush = 1,
             SubBoss = 2,
             MainBoss = 3,
+            GameClear = 4,
 
         }
     }

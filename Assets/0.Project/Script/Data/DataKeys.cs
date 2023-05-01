@@ -21,13 +21,11 @@ namespace PG.Data
         Player = 1,
         Enemy_Fireboy = 2,
         Enemy_WindShooter = 3,
-
-
-
         Slime = 21,
         Tempt_Mob = 22,
         Tempt_Mob2 = 23,
         Slime_2 = 24,
+        Golem_1=25
 
     }
     public enum EffectID
@@ -92,7 +90,8 @@ namespace PG.Data
         
         Red_Flavor= 132,
         
-        
+        Barricade= 133,
+
         
         Default_HealthUp = 999,
     }

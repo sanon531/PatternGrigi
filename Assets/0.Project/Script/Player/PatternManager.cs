@@ -33,6 +33,7 @@ namespace PG.Battle
         SpriteRenderer _signSprite;
         // Start is called before the first frame update
         
+        
         protected override void CallOnAwake()
         {
             _inactivatedNode = _defaultNode.ToList();
@@ -64,11 +65,12 @@ namespace PG.Battle
             _instance.CalcDamageOnSlash(_instance._lastNode,nodeID,resultDamage);
             Global_BattleEventSystem.CallOnCalcPlayerAttack(resultDamage);
             _instance.CheckNodeOnDamage(nodeID);
-            print("ss");
+            //print("ss");
             LineTracer._instance.SetDrawLineEnd(_instance._patternNodes[nodeID].transform.position);
             VibrationManager.CallVibration();
         }
 
+        
         void CalcDamageOnSlash(int lastNode, int currentNode,float damage)
         {
             Vector2 lastPos = _patternNodes[lastNode].transform.position;
@@ -80,12 +82,13 @@ namespace PG.Battle
             RaycastHit2D[] hits=new RaycastHit2D[30];
             var count= Physics2D.RaycastNonAlloc(lastPos,dir,hits,range);
 
+            var targetPos = Player_Script.GetPlayerPosition();
             for (int i =0 ; i<count;i++)
             {
                 if (hits[i].transform.CompareTag("Enemy"))
                 {
                     //��ġ�� ���� ��Ű�� 
-                    hits[i].transform.GetComponent<MobScript>().Damage(damage);
+                    hits[i].transform.GetComponent<MobScript>().Damage(targetPos,damage);
                 }
             }
         }
@@ -228,7 +231,7 @@ namespace PG.Battle
         #endregion
 
 
-        #region//����
+        #region nodeweight
         void SetNodeWeightby(float[] weight)
         {
             _weightRandom[0] += weight[0];
@@ -293,7 +296,6 @@ namespace PG.Battle
         }
 
         #endregion
-        //���� ��尡 ������ �ϴ� ���ְ� ���°�. 
         void ResetAllNode()
         {
             _inactivatedNode = _defaultNode.ToList();
@@ -345,7 +347,6 @@ namespace PG.Battle
         [SerializeField]
         bool _isChargeStart = false;
 
-        //���۽� , ������ �̺�Ʈ Ż����
         void StartChargeEvent()
         {
             Global_BattleEventSystem._onPatternSuccessed += CallPatternEvent;

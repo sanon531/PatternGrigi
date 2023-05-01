@@ -62,11 +62,17 @@ namespace PG.Data
         };
         public float _playerSpeed = 30;
         public float _playerTeleport =  0.6f;
+        public float _playerCollisionDamage =  1f;
+
         public DataEntity _projectileSpeed = new DataEntity(DataEntity.Type.ProjectileSpeed, 5);
         public DataEntity _projectileTargetNum = new DataEntity(DataEntity.Type.ProjectileCount, 1);
         public DataEntity _randomPatternNodeCount = new DataEntity(DataEntity.Type.RandomPatternCount, 3);
+        public int _totalMaxArtifactNumber = 5;
+        
         public List<float> _levelMaxEXPList = new List<float>(){100};
         public float _killGetEXP = 1;
+
+        public bool _isKnockBack = false;
 
     }
 

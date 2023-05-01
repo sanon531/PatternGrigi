@@ -6,37 +6,45 @@ using PG.Event;
 using DG.Tweening;
 namespace PG 
 {
-    public class MultiSceneUIScript : MonoBehaviour
+    public class MultiSceneUIScript : MonoSingleton<MultiSceneUIScript>
     {
 
         [SerializeField]
         Image _FadeInImage;
 
         // Start is called before the first frame update
-        void Start()
+        protected override void CallOnAwake()
         {
-            GlobalUIEventSystem._onFadeOut += PublicFadeIn;
-            GlobalUIEventSystem._onFadeIn += PublicFadeOut;
+            //GlobalUIEventSystem._onFadeOut += PublicFadeIn;
+            //GlobalUIEventSystem._onFadeIn += PublicFadeOut;
             _FadeInImage.enabled = false;
 
         }
 
-        void PublicFadeIn() 
+        public static void PublicFadeIn() 
         {
-            _FadeInImage.enabled = true;
-            _FadeInImage.material.DOFloat(0, "_FadeAmount", 1f);
+            _instance._FadeInImage.enabled = true;
+            //_instance._FadeInImage.material.DOFloat(0, "_FadeAmount", 1f);
+            _instance._FadeInImage.DOFade(1,1f);
         }
-        void PublicFadeOut() 
+        public static void PublicFadeOut() 
         {
-            _FadeInImage.material.DOFloat(1, "_FadeAmount", 1f);
-            StartCoroutine(LateTurnOff());
+            //_instance._FadeInImage.material.DOFloat(1, "_FadeAmount", 1f).OnComplete(()=>_instance._FadeInImage.enabled = false);
+            _instance._FadeInImage.DOFade(0,1f).OnComplete(()=>_instance._FadeInImage.enabled = false);
         }
 
-        IEnumerator LateTurnOff() 
+        IEnumerable FadeOutProcess()
         {
-            yield return new WaitForSecondsRealtime(1f);
-            _FadeInImage.enabled = false;
+            float timer = 1f;
+            while (timer>0)
+            {
+                timer -= Time.deltaTime;
+            }
+
+            yield return null;
+            
         }
+
 
     }
 }

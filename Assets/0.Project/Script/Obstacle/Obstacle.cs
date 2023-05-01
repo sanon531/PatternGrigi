@@ -35,7 +35,7 @@ namespace PG.Battle
             _lifeTime = _maxLifetime;
             _activetime = activetimes;
             _damageDeal = damage;
-
+            _thisCollider.enabled = false;
             _isActived = false;
             _id = id;
         }
@@ -72,6 +72,7 @@ namespace PG.Battle
 
         protected void Delete()
         {
+            _thisCollider.enabled = false;
             ObstacleManager.DeleteObstacleOnList(this);
         }
         

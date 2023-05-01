@@ -191,7 +191,8 @@ namespace PG.Event
         public static void CallOnGameOver() { _onGameOver?.Invoke(); }
 
 
-
+        public static event OnEvent _onGameClear;
+        public static void CallOnGameClear() { _onGameClear?.Invoke(); }
 
         //애니메이션 관련
         #region

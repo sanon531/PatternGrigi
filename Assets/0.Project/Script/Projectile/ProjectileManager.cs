@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 
 using PG.Data;
@@ -59,7 +60,7 @@ namespace PG.Battle
             //먼저 몹 스폰 매니져에게서 적들의 데이터에 관한 값을 가져오게 됨.
             //적들의 데이터에 관한 것이면 적들의
 
-            print(Global_CampaignData._projectileIDDataDic.Count());
+            //print(Global_CampaignData._projectileIDDataDic.Count());
             foreach (var data in Global_CampaignData._projectileIDDataDic)
             {
                 _currentShotAmmoDic.Add(data.Key, new Queue<float>());
@@ -214,8 +215,9 @@ namespace PG.Battle
                     break;
                 
                 ProjectileScript _tempt = _totalProjectileDictionary[id].PickUp();
-                _tempt.SetFrequentProjectileData(null, val, 
-                    GetPosBySpread(_spreadcount-1,totalSpreadCount)
+                var closestEnemy = MobGenerator.GetClosestEnemy();
+                _tempt.SetFrequentProjectileData(closestEnemy, val, 
+                    GetPosBySpread(closestEnemy, _spreadcount-1,totalSpreadCount)
                 );
                 //Debug.Log("ss" + GetPosBySpread(i,sqrtCeil));
                 _spreadcount--;
@@ -245,17 +247,19 @@ namespace PG.Battle
         }
 
         public Vector3 targetAxis = Vector3.up;
-        Vector2 GetPosBySpread(int thisCount, int totalSpreadCount)
+        Vector2 GetPosBySpread([CanBeNull] MobScript targetMob,int thisCount, int totalSpreadCount)
         {
+            var targetPos = targetMob?.GetMobPosition() ?? new Vector3(0,-1.75f);
+            var basicPos = ( targetPos - Player_Script.GetPlayerPosition()).normalized;
             if(totalSpreadCount == 1)
-                return new Vector3(0,1,0);
+                return basicPos;
             
             float angleStep = spreadAngle / (totalSpreadCount-1);
             
             float currentAngle = (-spreadAngle/2f) + (thisCount * angleStep);
             Quaternion rotation = Quaternion.AngleAxis(currentAngle, targetAxis);
-            Vector3 direction = rotation * transform.up;
-            print(thisCount+"+"+currentAngle+"+"+direction+"  "+totalSpreadCount);
+            Vector3 direction = rotation * basicPos;
+            //print(thisCount+"+"+currentAngle+"+"+direction+"  "+totalSpreadCount);
             return direction;
         }
         Vector2 GetDirectionBySpread(int thisCount, int sqrtCeil)

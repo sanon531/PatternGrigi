@@ -67,6 +67,8 @@ namespace PG.Data
         public static DataEntity _playerSize = new DataEntity(DataEntity.Type.PlayerSize, 1);
         public static float _playerSpeed = 30;
         public static float _playerTeleport =  0.6f;
+        public static float _playerCollisionDamage =  1f;
+        
         public static DataEntity _projectileSpeed = new DataEntity(DataEntity.Type.ProjectileSpeed, 1);
         public static DataEntity _projectileTargetNum = new DataEntity(DataEntity.Type.ProjectileCount, 1);
         public static DataEntity _projectilePierce = new DataEntity(DataEntity.Type.ProjectilePierce, 1);
@@ -93,6 +95,11 @@ namespace PG.Data
         public static HashSet<EMobDebuff> _CurrentBulletDeBuffs = new HashSet<EMobDebuff>();
         public static float _slowAmount = 0.5f;
         public static float _slowTime = 1f;
+
+        public static bool _isKnockBack = true;
+        public static bool _gameOver = false;
+        public static bool _gameCleared = false;
+        
         
         #endregion
 
@@ -124,10 +131,11 @@ namespace PG.Data
             _playerHealth = data._playerHealth;
             _playerSpeed = data._playerSpeed;
             _playerTeleport = data._playerTeleport;
+            _playerCollisionDamage = data._playerCollisionDamage;
             _projectileSpeed = new DataEntity(data._projectileSpeed);
             _projectileTargetNum = new DataEntity(data._projectileTargetNum);
             _projectileIDDataDic.CopyFrom(data._projectileIDDataDic);
-            
+            _totalMaxArtifactNumber = data._totalMaxArtifactNumber;
             _randomPatternNodeCount = new DataEntity(data._randomPatternNodeCount);
             _waveTimeList = new List<float>(data._waveDic.Keys);
             //켐페인데이터에 웨이브 시간 순서를 꼭 오름차순으로 입력 안해도 되도록 정렬+이에맞게 class리스트 만듦
@@ -139,6 +147,10 @@ namespace PG.Data
             }
             _levelMaxEXPList = data._levelMaxEXPList;
             _killGetEXP = data._killGetEXP;
+            _isKnockBack = data._isKnockBack;
+            _gameOver = false;
+            _gameCleared = false;
+
             //굳이 그럴필요없으면 이거 _waveClassList = new List<WaveClass>(data._waveDic.Values);
         }
         #endregion

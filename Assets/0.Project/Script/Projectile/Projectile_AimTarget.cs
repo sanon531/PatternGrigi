@@ -29,9 +29,12 @@ namespace PG.Battle
                 //_direction = target.GetMobPosition() - transform.position;
             //else
             //Improvising that projecilePlace To Shoot Way
-            _direction = projectilePlace;
+            _direction = Vector3.forward;
+            if (target is not null)
+                _direction = projectilePlace ;
+
+
             _direction = _direction.normalized;
-            print(_direction);
             InitialSpeed = Data.Global_CampaignData._projectileSpeed.FinalValue;
             
             DoMove();
@@ -68,13 +71,34 @@ namespace PG.Battle
                     velocity = InitialSpeed * _direction*3;
                     rigidBody2D.velocity = velocity;
                 }
-                
-
             }
             else 
                 base.OnTriggerBoundary_Side();
-            
-            
         }
+        
+        protected override void OnTriggerBoundary()
+        {
+            if (Global_CampaignData._isReflectable)
+            {
+                if (_direction.y > 0)
+                {
+                    Vector3 reflect = Vector3.Reflect(_direction,Vector3.up);
+                    _direction = reflect;
+                    velocity = InitialSpeed * _direction*3;
+                    rigidBody2D.velocity = velocity;
+                }
+                else
+                {
+                    Vector3 reflect = Vector3.Reflect(_direction,Vector3.down);
+                    _direction = reflect;
+                    velocity = InitialSpeed * _direction*3;
+                    rigidBody2D.velocity = velocity;
+                }
+            }
+            else 
+                base.OnTriggerBoundary_Side();
+        }
+
+        
     }
 }

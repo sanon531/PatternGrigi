@@ -83,7 +83,8 @@ namespace PG.Battle
             CallPausePanel();
             //메인으로 이동
             Global_BattleEventSystem.CallOnTouchMain();
-            GlobalUIEventSystem.CallTotalFade();
+            //GlobalUIEventSystem.CallTotalFade();
+            MultiSceneUIScript.PublicFadeIn();
             StartCoroutine(DelayedToMenu());
             AudioManager.ChangeBackgroundMusicOnSceneChange(0);
         }

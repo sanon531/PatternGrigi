@@ -1653,7 +1653,8 @@ namespace Febucci.UI
                     textInfo.meshInfo[textInfo.characterInfo[i].materialReferenceIndex].colors32[textInfo.characterInfo[i].vertexIndex + k] = characters[i].data.colors[k];
                 }
             }
-
+            if(!gameObject.activeSelf)
+                return;
             tmproText.UpdateVertexData();
         }
 

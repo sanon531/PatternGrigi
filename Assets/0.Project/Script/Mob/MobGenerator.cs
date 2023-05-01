@@ -21,11 +21,19 @@ namespace PG.Battle
         private MobIDObjectDic _mobDic;
         [SerializeField]
         private List<MobScript> _mobList;
+        [SerializeField]
+        private List<Transform> spawnPosList;
+        
+        private readonly List<Vector3> _spawnPos = new List<Vector3>();
 
 
         protected override void CallOnAwake()
         {
             base.CallOnAwake();
+            foreach (var posOrigin in spawnPosList)
+            {
+                _spawnPos.Add(posOrigin.position);
+            }
         }
 
         protected override void CallOnDestroy()
@@ -38,10 +46,22 @@ namespace PG.Battle
         {
             _waveTimeList = Global_CampaignData._waveTimeList;
             _waveClassList = Global_CampaignData._waveClassList;
+            
+            Global_BattleEventSystem._onGameOver +=DelayedDelete;
+            Global_BattleEventSystem._onGameClear += DelayedDelete;
+        }
+
+        private void OnDisable()
+        {
+            Global_BattleEventSystem._onGameOver -=DelayedDelete;
+            Global_BattleEventSystem._onGameClear -= DelayedDelete;
         }
 
         void Update()
         {
+            if (Global_CampaignData._gameCleared || Global_CampaignData._gameOver)
+                return;
+            
             if (BattleSceneManager._instance.GetPlayTime() > _waveTimeList[_currentWaveOrder]) 
                 NextWave();
 
@@ -68,6 +88,7 @@ namespace PG.Battle
         {
             Global_BattleEventSystem.CallOnWaveChange(_currentWaveOrder);
             
+            
             //이전 웨이브 코루틴들 정리 + 변수 초기화
             StopAllCoroutines();
             _sortingOrder = 0;
@@ -80,7 +101,6 @@ namespace PG.Battle
             //다음 웨이브 데이터
             _currentMobSpawnDataDic = _waveClassList[_currentWaveOrder].GetSpawnDataDic();
             _currentMinMobNum = _waveClassList[_currentWaveOrder].GetMinMobNum();
-            
             //몹 오브젝트 풀 세팅
             SettingNowPools();
 
@@ -100,8 +120,13 @@ namespace PG.Battle
         private void SpawnMob(CharacterID mobID, MobSpawnData mobSpawnData)
         {
             _sortingOrder++;
-            Vector3 pos = new Vector3(UnityEngine.Random.Range(_SpawnRange_Left.position.x, _SpawnRange_Right.position.x),
-                _SpawnRange_Left.position.y, _SpawnRange_Left.position.z);
+            
+            //random
+            
+            
+            //Vector3 pos = new Vector3(UnityEngine.Random.Range(_SpawnRange_Left.position.x, _SpawnRange_Right.position.x), _SpawnRange_Left.position.y, _SpawnRange_Left.position.z);
+
+            Vector3 pos = _spawnPos.PickRandom();
             
             MobScript temp = _totalMobDictionary[mobID].PickUp();
             temp.transform.position = pos;
@@ -113,9 +138,23 @@ namespace PG.Battle
         }
         #endregion
 
+        void DelayedDelete()
+        {
+            Debug.Log("deleted");
+            StopAllCoroutines();
+            DeleteAllEnemy();
+        }
+
+        IEnumerator DeleteAllEnemy()
+        {
+             yield return new WaitForSeconds(2f);
+             for (int i = 0 ; i < _mobList.Count;i++) {
+                 Destroy(_mobList[i]);
+             }
+        }
 
 
-#region//Filling
+        #region//Filling
 
         //[SerializeField]
         private float _fillSpeed = 2f;
@@ -129,12 +168,10 @@ namespace PG.Battle
 
         private List<IEnumerator> _spawnCrtnList;
         private List<IEnumerator> _fillSpawnCrtnList;
-
         private void FillMobs() //최소 마리수 채우는 함수
         {
             if (_aliveMobCount < _currentMinMobNum)
             {
-                
                 if (!_isFilling)
                 {
                     _isFilling = true;
@@ -310,6 +347,28 @@ namespace PG.Battle
         {
             _instance._mobList.Sort((mobA, mobB) => mobA.transform.position.y.CompareTo(mobB.transform.position.y));
             return _instance._mobList;
+        }
+        public static MobScript GetClosestEnemy()
+        {
+            return _instance.CalcClosestEnemy();
+        }
+
+        private MobScript CalcClosestEnemy()
+        {
+            var playerTranform = Player_Script.GetPlayerPosition();
+            MobScript closestEnemyTransform = null;
+            float closestDistanceSqr = Mathf.Infinity;
+            foreach (var potentialEnemyTransform in _mobList)
+            {
+                Vector3 directionToEnemy = potentialEnemyTransform.GetMobPosition() - playerTranform;
+                float dSqrToEnemy = directionToEnemy.sqrMagnitude;
+                if (dSqrToEnemy < closestDistanceSqr)
+                {
+                    closestDistanceSqr = dSqrToEnemy;
+                    closestEnemyTransform = potentialEnemyTransform;
+                }
+            }
+            return closestEnemyTransform;
         }
 
         public static float GetDeadLine()

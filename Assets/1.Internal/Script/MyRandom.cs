@@ -63,6 +63,24 @@ namespace PG
         {
             return Ranges(0, list.Count, count).Select(t => list[t]).ToList();
         }
+        public static List<T> PickRandomsNoDuplication<T>(this IReadOnlyList<T> list,int count)
+        {
+            var listClone = list.ToList();
+
+            
+            var returnList = new List<T>();
+            while (listClone.Count > 0 && count>0)
+            {
+                var tempt= listClone.PickRandom();
+                returnList.Add(tempt);
+                listClone.Remove(tempt);
+                count--;
+            }
+            //Debug.Log(count);
+            return returnList;
+        }
+
+        
         public static T PickRandom<T>(this IEnumerable<T> datas)
         {
             return PickRandom(datas.ToList());
@@ -129,5 +147,6 @@ namespace PG
             }
             return weights.Count - 1;
         }
+
     }
 }

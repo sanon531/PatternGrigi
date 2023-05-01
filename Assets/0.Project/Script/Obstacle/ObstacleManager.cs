@@ -29,8 +29,9 @@ namespace PG.Battle
         public void InitializeDictionary()
         {
             _totalObstacleDictionary.Clear();
-            foreach (ObstacleID id in Enum.GetValues(typeof(ObstacleID)))
+            foreach (var pair in _obstacleDic)
             {
+                var id = pair.Key;
                 //_obstacleDic.Add(id, Resources.Load<GameObject>("Obstacle/" + id));
                 if (_obstacleDic[id] != null)
                 {

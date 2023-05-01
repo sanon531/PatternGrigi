@@ -115,7 +115,7 @@ namespace PG
                 nowStack++;
                 Global_CampaignData._charactorAttackDic[CharacterID.Player].Add배수(0.1f);
             }
-            Debug.Log("현재 배수"+ Global_CampaignData._charactorAttackDic[CharacterID.Player]._배수);
+            //Debug.Log("현재 배수"+ Global_CampaignData._charactorAttackDic[CharacterID.Player]._배수);
         }
         
         private void OnPatternSuccess(DrawPatternPresetID patternPreset)
