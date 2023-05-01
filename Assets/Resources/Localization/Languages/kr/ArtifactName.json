@@ -101,6 +101,10 @@
     {
       "key":"Barricade",
       "value":"가벽"
+    },
+    {
+      "key":"OrbitSword",
+      "value":"위성 검"
     }
 
   ]

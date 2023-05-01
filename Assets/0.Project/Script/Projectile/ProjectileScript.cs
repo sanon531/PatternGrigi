@@ -103,7 +103,7 @@ namespace PG.Battle
         {
             if (!IsActive)
                 return;
-            if (collision.CompareTag("Enemy") && !PiercedList.Contains(collision.gameObject))
+            if (collision.CompareTag("Enemy"))
             {
                 var mob = collision.GetComponent<MobScript>();
                 mob.Damage(transform.position, Damage);
@@ -111,7 +111,6 @@ namespace PG.Battle
                 {
                     mob.SetDebuff(debuff);
                 }
-                PiercedList.Add(gameObject);
                 PierceCount--;
 
                 if (Global_CampaignData._isReflectable)

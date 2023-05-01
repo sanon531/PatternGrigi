@@ -12,17 +12,12 @@ namespace PG.Battle
     // Storing Special Battle Attack on Game. 
     public class BattleExtraAttackManager : MonoSingleton<BattleExtraAttackManager>
     {
-        private void Update()
-        {
-        }
-
         protected override void CallOnAwake()
         {
             base.CallOnAwake();
             StartLaser();
             StartBlockade();
         }
-
 
         #region thunder
 
@@ -207,7 +202,6 @@ namespace PG.Battle
 
         #endregion
         
-        
         #region inspiration
 
         [SerializeField] private ParticleSystem GaugeParticle;
@@ -291,10 +285,6 @@ namespace PG.Battle
 
         #endregion
         
-        
-        
-        
-        
         #region Blockade
 
 
@@ -324,8 +314,24 @@ namespace PG.Battle
 
 
         #endregion
+
+
+        #region OrbitSword
+
+        [SerializeField] private OrbitSwordScript orbitSword;
+        public static void StartOrbitSword()
+        {
+            _instance.orbitSword.StartOrbitSword();
+        }
         
-        
-        
+        public static void LevelUpOrbitSword(float size, float damage)
+        {
+            _instance.orbitSword.UpgradeOrbitSword(size,damage);
+        }
+
+
+        #endregion
+
+
     }
 }

@@ -94,6 +94,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 69a92d31ca18f3c4e998a39dc3f3af52, type: 3}
     - {fileID: 2800000, guid: 2ea3bed1e362f5e46b4aabebc8a20101, type: 3}
     - {fileID: 2800000, guid: e8f1f9fbda7ed0a48ae49d29d95e9ca7, type: 3}
+    - {fileID: 21300000, guid: f5a9fb3586e5ad74b929e5d2bfa36fc1, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -116,6 +117,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 59877324142a9d942ac5c3ad874c9be2, type: 3}
   - {fileID: 21300000, guid: 33b234549546a264ea8afb65e523e3bd, type: 3}
   - {fileID: 21300000, guid: 5e450f74cd12a0843b33b18e20119b70, type: 3}
+  - {fileID: 21300000, guid: f5a9fb3586e5ad74b929e5d2bfa36fc1, type: 3}
   - {fileID: 21300000, guid: ff7e1446c6430654e8c2c5c05bfb078d, type: 3}
   - {fileID: 21300000, guid: 203c2466bfd613749a41670632ec9150, type: 3}
   - {fileID: 21300000, guid: 78670037949687247817902df07ace09, type: 3}
@@ -165,10 +167,11 @@ SpriteAtlas:
   - Slime_Blob
   - Thunder_Colorant
   - IMG_0108
+  - OrbitSword
   - Mix_PadSesame
   - Cubism
   - LightWeightBrush
-  - Golem2
+  - Golem1_2
   - IMG_0113
   - IMG_0109
   - QuickSlice
