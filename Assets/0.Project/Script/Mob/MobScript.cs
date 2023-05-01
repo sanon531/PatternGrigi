@@ -4,6 +4,7 @@ using PG.Event;
 using PG.HealthSystemCM;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace PG.Battle
@@ -23,6 +24,7 @@ namespace PG.Battle
         [SerializeField] protected Collider2D _collider2D;
         [SerializeField] protected Rigidbody2D _rigidBody2D;
         [SerializeField] protected AudioSource thisAudioSource;
+        [SerializeField] protected Animator _animator;
 
 
         [Header("Current Status")] CharacterID _charactorID;
@@ -36,6 +38,7 @@ namespace PG.Battle
         private float _CharDamage = 1;
         private float _loadedSpeed = 0;
         private Color _color;
+        private eSubColor _subColor;
 
         #endregion
 
@@ -99,8 +102,12 @@ namespace PG.Battle
 
             _loadedSpeed = mobSpawnData._속도;
             _CharDamage = mobSpawnData._공격력;
-            _color = mobSpawnData._색깔;
-
+            //_color = Color.black;
+            _subColor = mobSpawnData._색깔;
+            if (!_animator.SafeIsUnityNull())
+            {
+                _animator.SetTrigger(_subColor.ToString());
+            }
             _spriteRenderer.color = _color;
             _originalColor = _color;
             _isEnemyAlive = true;

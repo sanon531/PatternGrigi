@@ -181,6 +181,15 @@ namespace PG.Data
         public List<Vector2> _spawnPosList = new List<Vector2>();
         public SpawnData _spawnData = new SpawnData();
     }
+
+    public enum eSubColor
+    {
+        none,
+        blue,
+        yellow,
+        pink,
+        red
+    }
     
     [Serializable]
     public class MobSpawnData
@@ -193,7 +202,7 @@ namespace PG.Data
         public float _속도;
         public int _체력;
         public float _공격력;
-        public Color _색깔;
+        public eSubColor _색깔;
     }
 
     //스폰하는 방식을 의미함
