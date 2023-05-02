@@ -246,7 +246,11 @@ namespace PG.Battle
 
             while (true)
             {
-                SpawnMob(mobID, mobSpawnData);
+                for(int i = 0; i < mobSpawnData._스폰수; i++)
+                {
+                    SpawnMob(mobID, mobSpawnData);
+                }
+                
                 yield return waitForSeconds;
             }
         }
