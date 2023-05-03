@@ -13,6 +13,8 @@ namespace PG
         public void Set증가량(float amount) { _증가량 = amount; }
         public void Mult배수(float amount) { _배수 *= amount; }
         public void Add배수(float amount) { _배수 += amount; }
+        public void Set배수(float amount) { _배수 = amount; }
+
         public void Add추가량(int amount) { _추가량 += amount; }
 
         [SerializeField]
