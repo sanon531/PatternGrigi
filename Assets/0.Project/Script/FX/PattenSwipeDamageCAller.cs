@@ -1,18 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class PattenSwipeDamageCAller : MonoBehaviour
+namespace PG.Battle
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PattenSwipeDamageCAller : MonoBehaviour
     {
-        
-    }
+        private float _damage = 0;
+        [SerializeField]
+        private BoxCollider2D thisCollider2d;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void SetPatternSwipeAttack(float damage)
+        {
+            _damage = damage;
+            thisCollider2d.enabled = true;
+        }
+
+        public void ReleasePatternSwipeAttack()
+        {
+            thisCollider2d.enabled = false;
+        }
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.CompareTag("Enemy"))
+            {
+                var mob = col.GetComponent<MobScript>();
+                mob.Damage(transform.position, _damage);
+            }
+        }
     }
 }
