@@ -1,4 +1,5 @@
 using System;
+using PG.Data;
 using UnityEngine;
 
 namespace PG.Battle
@@ -36,7 +37,7 @@ namespace PG.Battle
             if (col.CompareTag("Enemy"))
             {
                 var mob = col.GetComponent<MobScript>();
-                mob.Damage(transform.position, attackDamage);
+                mob.Damage(transform.position, Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue*1.5f);
             }        
         }
     }

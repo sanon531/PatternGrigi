@@ -111,7 +111,7 @@ MonoBehaviour:
   _collider2D: {fileID: 8705626116279157195}
   _rigidBody2D: {fileID: 3312845963341462587}
   thisAudioSource: {fileID: 3627623319215742499}
-  _animator: {fileID: 0}
+  _animator: {fileID: 8107951174962157429}
   _currentAction: 0
   _mobActionIDList: 0100000000000000
   _mobActionDic:
