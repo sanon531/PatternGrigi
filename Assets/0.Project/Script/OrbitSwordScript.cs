@@ -37,7 +37,8 @@ namespace PG.Battle
             if (col.CompareTag("Enemy"))
             {
                 var mob = col.GetComponent<MobScript>();
-                mob.Damage(transform.position, Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue*1.5f);
+                mob.Damage(transform.position, 
+                    Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue*attackDamage);
             }        
         }
     }

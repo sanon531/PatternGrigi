@@ -75,7 +75,7 @@ namespace PG.Battle
         private NormalObjectPool<ParticleSystem> _slashFXContainer;
         private NormalObjectPool<ParticleSystem> _deadFXContainer;
 
-        public static void PlaySlashFX(Vector2 origin,Vector2 end)
+        public static void PlaySlashFX(Vector2 origin,Vector2 end,float damage)
         {
             ParticleSystem target = _instance._slashFXContainer.PickUp();
             Vector2 pos = origin + end;
