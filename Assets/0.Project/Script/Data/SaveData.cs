@@ -1,11 +1,11 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace PG.Data 
 {
-    //ÀúÀåÇØ¾ßÇÒ µ¥ÀÌÅÍ ´õ »ı±â¸é Ãß°¡
+    //ì €ì¥í•´ì•¼í•  ë°ì´í„° ë” ìƒê¸°ë©´ ì¶”ê°€
     [Serializable]
     public class SaveData
     {
@@ -13,16 +13,18 @@ namespace PG.Data
         private bool showTutorial = false;
         [SerializeField]
         private bool firstPlay = true;
+        [SerializeField]
+        private float bestTime = 0f;
 
         public bool ShowTutorial
         {
             get { return showTutorial; }
             set
             {
-                //°ªÀÌ ¹Ù²î¸é
+                //ê°’ì´ ë°”ë€Œë©´
                 if (showTutorial != value)
                 {
-                    //ÀÚµ¿ ÀúÀå
+                    //ìë™ ì €ì¥
                     showTutorial = value;
                     SaveDataManager._instance.SaveData();
                 }
@@ -34,11 +36,23 @@ namespace PG.Data
             get { return firstPlay; }
             set
             {
-                //°ªÀÌ ¹Ù²î¸é
                 if (firstPlay != value)
                 {
-                    //ÀÚµ¿ ÀúÀå
                     firstPlay = value;
+                    SaveDataManager._instance.SaveData();
+                }
+            }
+        }
+
+        public float BestTime
+        {
+            get { return bestTime; }
+            set
+            {
+                if (bestTime < value)
+                {
+
+                    bestTime = value;
                     SaveDataManager._instance.SaveData();
                 }
             }
