@@ -94,6 +94,7 @@ namespace PG.Data
         Red_Flavor= 132,
         
         Barricade= 133,
+        OrbitSword= 134,
 
         
         Default_HealthUp = 999,

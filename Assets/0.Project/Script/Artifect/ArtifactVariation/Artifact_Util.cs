@@ -51,5 +51,37 @@ namespace PG
             base.AddCountOnArtifact();
         }
     }
+        public sealed class Artifact_OrbitSword : Artifact 
+        {
+
+        public Artifact_OrbitSword() : base(ArtifactID.OrbitSword)
+        {
+        }
+        
+        public override void OnGetArtifact()
+        {
+            base.OnGetArtifact();
+            Enable();
+        }
+
+        protected override void Enable()
+        {
+            base.Enable();
+            BattleExtraAttackManager.StartOrbitSword();
+            BattleExtraAttackManager.LevelUpOrbitSword(ArfifactLevelValueList[ArtifactLevel - 1],ArfifactLevelValueList2[ArtifactLevel - 1]);
+           
+        }
+
+        protected override void Disable()
+        {
+            base.Disable();
+        }
+        
+        public override void AddCountOnArtifact()
+        {
+            base.AddCountOnArtifact();
+            BattleExtraAttackManager.LevelUpOrbitSword(ArfifactLevelValueList[ArtifactLevel - 1],ArfifactLevelValueList2[ArtifactLevel - 1]);
+        }
+    }
     
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using TMPro;
 using PG.Event;
@@ -23,6 +24,8 @@ namespace PG.Battle
         private CampaignData _currentCampaignData;
 
         [SerializeField] private TextMeshProUGUI _DebugCurrentText;
+
+        private int _playEndTime = 0;
 
         // Start is called before the first frame update
         protected override void CallOnAwake()
@@ -52,6 +55,8 @@ namespace PG.Battle
             yield return new WaitForSeconds(delayedTime);
             Global_BattleEventSystem.CallOnBattleBegin();
             AudioManager.ChangeBackgroundMusicOnSceneChange(1);
+            _playEndTime = Mathf.RoundToInt(Global_CampaignData._waveTimeList.Max());
+
             _isgameStarted = true;
         }
 
@@ -61,7 +66,7 @@ namespace PG.Battle
             if (_isgameStarted ) 
             {
                 _playTime += Time.deltaTime;
-                _timeShower.SetText(Mathf.Round(_playTime).ToString());
+                _timeShower.SetText(Mathf.Round(_playTime).ToString()+ "/"+_playEndTime.ToString());
             }
 
         }

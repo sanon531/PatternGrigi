@@ -53,19 +53,19 @@ namespace PG
         {
             base.Enable();
             //간단히 칼크 데미지를 전부 실행함
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add배수(0.1f);
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Set배수(ArfifactLevelValueList[ArtifactLevel - 1]);
 
 
         }
         protected override void Disable()
         {
             base.Disable();
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add배수(-0.1f);
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Set배수(1);
         }
         public override void AddCountOnArtifact()
         {
             base.AddCountOnArtifact();   
-            Global_CampaignData._charactorAttackDic[CharacterID.Player].Add배수(0.1f);
+            Global_CampaignData._charactorAttackDic[CharacterID.Player].Set배수(ArfifactLevelValueList[ArtifactLevel - 1]);
         }
 
     }

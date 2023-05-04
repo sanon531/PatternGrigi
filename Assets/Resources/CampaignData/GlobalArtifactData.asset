@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GlobalArtifactData
   m_EditorClassIdentifier: 
   idArtifactDataDic:
-    m_keys: 00000000010000000a0000000b00000014000000150000001e0000001f00000020000000210000002a000000330000003400000078000000790000007a000000e703000084000000220000007b0000000900000085000000
+    m_keys: 00000000010000000a0000000b00000014000000150000001e0000001f00000020000000210000002a000000330000003400000078000000790000007a000000e703000084000000220000007b000000090000008500000086000000
     m_values:
     - id: 0
       rarity: 0
@@ -324,4 +324,21 @@ MonoBehaviour:
       upgradecount: 0
       arfifactLevelValueList: []
       arfifactLevelValueList2: []
+      isonoff: 0
+    - id: 134
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 0.5
+      - 1
+      - 1.25
+      - 1.5
+      - 1.75
+      arfifactLevelValueList2:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
       isonoff: 0

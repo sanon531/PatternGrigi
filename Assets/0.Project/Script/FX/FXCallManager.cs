@@ -75,7 +75,7 @@ namespace PG.Battle
         private NormalObjectPool<ParticleSystem> _slashFXContainer;
         private NormalObjectPool<ParticleSystem> _deadFXContainer;
 
-        public static void PlaySlashFX(Vector2 origin,Vector2 end)
+        public static void PlaySlashFX(Vector2 origin,Vector2 end,float damage)
         {
             ParticleSystem target = _instance._slashFXContainer.PickUp();
             Vector2 pos = origin + end;
@@ -84,6 +84,7 @@ namespace PG.Battle
             pos = end - origin;
             float angle = Mathf.Atan2(pos.y,pos.x)* Mathf.Rad2Deg;
             target.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            target.GetComponent<PattenSwipeDamageCAller>().SetPatternSwipeAttack(damage);
             _instance.PlaySlash(target);
         }
 
@@ -105,6 +106,8 @@ namespace PG.Battle
         {            
             yield return new WaitForSeconds(1f);
             _slashFXContainer.SetBack(target);
+            target.GetComponent<PattenSwipeDamageCAller>().ReleasePatternSwipeAttack();
+
         }
         void PlayDead(ParticleSystem target )
         {
