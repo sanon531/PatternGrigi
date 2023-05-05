@@ -41,6 +41,8 @@ namespace PG.Battle
             
             //Debug.Log(Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue);
             _DebugCurrentText.text = _currentCampaignData.name;
+            Global_BattleEventSystem._onGameOver += TrySetBestTime;
+            Global_BattleEventSystem._onGameClear += TrySetBestTime;
         }
 
         protected override void CallOnDestroy()
@@ -48,6 +50,8 @@ namespace PG.Battle
             //print("ssdd");
             SwitchEventPause();
             SwitchEventCombat();
+            Global_BattleEventSystem._onGameOver -= TrySetBestTime;
+            Global_BattleEventSystem._onGameClear -= TrySetBestTime;
         }
 
 
@@ -80,6 +84,10 @@ namespace PG.Battle
             return _playTime;
         }
 
+        private void TrySetBestTime()
+        {
+            SaveDataManager._instance.saveData.BestTime = _playTime;
+        }
 
 
         #region//Combat EventSetter
