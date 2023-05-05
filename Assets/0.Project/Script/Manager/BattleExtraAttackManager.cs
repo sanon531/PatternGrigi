@@ -260,7 +260,7 @@ namespace PG.Battle
             float basicDamage = Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue;
             float nodeCount = Global_CampaignData._randomPatternNodeCount.FinalValue;
 
-            float finalDamage = basicDamage * (1 + nodeCount * (stackDamagePercent / 100)) *
+            float finalDamage = basicDamage * (stackDamagePercent / 100) *
                                 (nodeCount * (1 + emitDamagePercent / 100));
 
             List<MobScript> mobList = EmitParticle.GetComponentInChildren<InspirationCircleTrigger>().InRangeMobList;
@@ -268,16 +268,11 @@ namespace PG.Battle
             //중간에 삭제 가능성 있기 때문에 foreach는 불가능
             for (int i = 0; i < mobList.Count; i++)
             {
-                mobList[i].DamageWithNoSound(targetPos,finalDamage*0.8f);
+                mobList[i].DamageWithNoSound(targetPos,finalDamage);
             }
 
 
-            mobList = MobGenerator.GetMobList();
-            for (int i = 0; i < mobList.Count; i++)
-            {
-                mobList[i].DamageWithNoSound(targetPos,finalDamage*0.2f);
-            }
-            
+           
             
 
         }
