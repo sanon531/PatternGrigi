@@ -14189,7 +14189,7 @@ MonoBehaviour:
   _damageFX: {fileID: 8485593639543846866}
   _healFX: {fileID: 2547895930562084274}
   _UIShowPos: {fileID: 1297953858}
-  _knockbackForce: 40
+  _knockbackForce: 5
   _healthFadeTime: 10
   _playerStatus:
     _damageData:
@@ -72299,7 +72299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8593451072201227060, guid: 6168722e09adabb45bd65f6a93a1df70, type: 3}
       propertyPath: _isDebug
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8593451072201227060, guid: 6168722e09adabb45bd65f6a93a1df70, type: 3}
       propertyPath: _signSprite
@@ -72315,7 +72315,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8593451072201227060, guid: 6168722e09adabb45bd65f6a93a1df70, type: 3}
       propertyPath: _gainEXP_byDebug
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8593451072201227060, guid: 6168722e09adabb45bd65f6a93a1df70, type: 3}
       propertyPath: _chargeAmount_forDebug
