@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using PG.Data;
 using PG.Event;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,8 @@ namespace PG.Battle
     {
 
         private Image thisImage;
+        [SerializeField]
+        private TextMeshProUGUI thisText;
         [SerializeField]
         private Button menuBackButton;
 
@@ -46,6 +49,7 @@ namespace PG.Battle
         {
             thisImage.enabled = true;
             thisImage.DOColor(Color.white, 0.5f).OnComplete(DelayedDataShow);
+            thisText.DOColor(Color.white, 0.5f).OnComplete(DelayedDataShow);
             Global_CampaignData._gameCleared = true;
             Global_BattleEventSystem.CallOnGameClear();
         }

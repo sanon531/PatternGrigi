@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BalanceTest_2
   m_EditorClassIdentifier: 
   _startArtifactList: 
-  _obtainableArtifactIDList: 1f00000000000000
+  _obtainableArtifactIDList: 1f000000790000007800000084000000860000001e000000090000007b000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000150000001600000017000000
     m_values:

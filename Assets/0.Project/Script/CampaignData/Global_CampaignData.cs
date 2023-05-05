@@ -153,6 +153,9 @@ namespace PG.Data
 
             //굳이 그럴필요없으면 이거 _waveClassList = new List<WaveClass>(data._waveDic.Values);
         }
+
+
+
         #endregion
     }
 

@@ -31,6 +31,15 @@ namespace PG.Data
         Golem_boss = 28,
     }
 
+    public enum StartCondition{
+        None=0,
+        Bullet =1,
+        Inspiration =2,
+        Thunder = 3
+        
+    }
+
+
     public enum EffectID
     {
         Attack = 0,
@@ -98,6 +107,10 @@ namespace PG.Data
 
         
         Default_HealthUp = 999,
+        
+        Default_Non = 1000,
+
+        
     }
     public enum ProjectileID 
     {

@@ -19,6 +19,7 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(MobActionDataDic))]
 [CustomPropertyDrawer(typeof(ArtifactStringaDic))]
 [CustomPropertyDrawer(typeof(TimeWaveDic))]
+[CustomPropertyDrawer(typeof(StartConditionCampaignDic))]
 [CustomPropertyDrawer(typeof(MobIDSpawnDataDic))]
 [CustomPropertyDrawer(typeof(LaserIDObjectDic))]
 [CustomPropertyDrawer(typeof(ProjectileIDObjectDic))]

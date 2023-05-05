@@ -54,6 +54,9 @@ public class ProjectileIDFloatDic : SerializableDictionary<ProjectileID, float> 
 public class ProjectileIDintDic : SerializableDictionary<ProjectileID, int> { }
 
 
+[Serializable]
+public class StartConditionCampaignDic: SerializableDictionary<StartCondition, CampaignSelectingData> { }
+
 
 [Serializable]
 public class ArtifactIDArtifactDic: SerializableDictionary<ArtifactID, Artifact> { }

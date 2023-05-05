@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0b2ca909a209340afe36adeafe0b8e, type: 3}
   m_Name: EXAMPLE1
   m_EditorClassIdentifier: 
-  _startArtifactList: 00000000
+  _startArtifactList: 
   _obtainableArtifactIDList: 21000000
   _charactorAttackDic:
     m_keys: 010000000200000003000000150000001600000017000000
@@ -73,7 +73,7 @@ MonoBehaviour:
           "_\uC18D\uB3C4": 0
           "_\uCCB4\uB825": 6000
           "_\uACF5\uACA9\uB825": 0
-          "_\uC0C9\uAE54": {r: 0, g: 0, b: 0, a: 0}
+          "_\uC0C9\uAE54": 0
       "_\uC2A4\uD3F0\uD0C0\uC785": 0
   _currentChargePattern: 999
   _lengthMagnData:
