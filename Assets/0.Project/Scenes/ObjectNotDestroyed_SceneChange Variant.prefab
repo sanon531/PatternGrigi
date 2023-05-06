@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4018811512932552379, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018811512932552379, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.38
+      objectReference: {fileID: 0}
     - target: {fileID: 7435981629800215618, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -53,7 +61,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7435981629800215619, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
       propertyPath: m_Name
-      value: ObjectNotDestroyed_SceneChange
+      value: ObjectNotDestroyed_SceneChange Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7929171516254400476, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: startConditionCampaignDictionary.m_keys.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929171516254400476, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: startConditionCampaignDictionary.m_values.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929171516254400476, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}
+      propertyPath: startConditionCampaignDictionary.m_values.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0cc91b554fe765a4bb13cb2e87d5b8ae, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88a94d4c62dc2e241a3b95892f87cdd0, type: 3}

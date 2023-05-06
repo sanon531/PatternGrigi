@@ -61,7 +61,6 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 32238058e0dc9b94dbdc3184ae22f366, type: 3}
     - {fileID: 2800000, guid: b778917bf0fa00844b8095d439fd8151, type: 3}
     - {fileID: 2800000, guid: 78e19673bd849324cad9bae8683bc6c8, type: 3}
-    - {fileID: 2800000, guid: 33b234549546a264ea8afb65e523e3bd, type: 3}
     - {fileID: 2800000, guid: 67c5143ce14b6824d942ec275388b2e5, type: 3}
     - {fileID: 2800000, guid: 203c2466bfd613749a41670632ec9150, type: 3}
     - {fileID: 2800000, guid: 59877324142a9d942ac5c3ad874c9be2, type: 3}
@@ -106,16 +105,15 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 056ea5211f955cc4cb2599d1ab439e5b, type: 3}
   - {fileID: 21300000, guid: 69a92d31ca18f3c4e998a39dc3f3af52, type: 3}
   - {fileID: 21300000, guid: 2ea3bed1e362f5e46b4aabebc8a20101, type: 3}
+  - {fileID: 21300000, guid: dd1c9c22a8fb0a44595c5252474dc862, type: 3}
   - {fileID: 21300000, guid: 4a0a34521689e2f4e9aeda1f8a74be31, type: 3}
   - {fileID: 21300000, guid: bcfea362b8e875e4aaec8d9bd37a9efc, type: 3}
   - {fileID: 21300000, guid: 2e6a959235cf487438286a1471ba0ddb, type: 3}
-  - {fileID: 21300000, guid: f18b39a29ab88ed489fefb3246f3cd3f, type: 3}
   - {fileID: 21300000, guid: 9798c223645b6714b9f761b90ecb67e1, type: 3}
   - {fileID: 21300000, guid: 78e19673bd849324cad9bae8683bc6c8, type: 3}
   - {fileID: 21300000, guid: 50977e83239d28e4cbd08edc6a12bf4e, type: 3}
   - {fileID: 21300000, guid: 471241a376a0d1d4fbbca64596d94c14, type: 3}
   - {fileID: 21300000, guid: 59877324142a9d942ac5c3ad874c9be2, type: 3}
-  - {fileID: 21300000, guid: 33b234549546a264ea8afb65e523e3bd, type: 3}
   - {fileID: 21300000, guid: 5e450f74cd12a0843b33b18e20119b70, type: 3}
   - {fileID: 21300000, guid: f5a9fb3586e5ad74b929e5d2bfa36fc1, type: 3}
   - {fileID: 21300000, guid: ff7e1446c6430654e8c2c5c05bfb078d, type: 3}
@@ -156,16 +154,15 @@ SpriteAtlas:
   - IMG_0123
   - Popup_Content_1
   - Barricade
+  - Thunder_Colorant
   - Default_HealthUp
   - CircleForAura
   - Equatore
-  - Thunder_Core
   - Thunder_Manimekhala
   - AtomSetting
   - IMG_0114
   - IMG_0121
   - Slime_Blob
-  - Thunder_Colorant
   - IMG_0108
   - OrbitSword
   - Mix_PadSesame
