@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eaf8bcdc30857642875fe95f33a0b63, type: 3}
   m_Name: Default
   m_EditorClassIdentifier: 
-  _startArtifact: 120
+  _startArtifact: 1000
   _projectileIDDataDic:
     m_keys: 00000000
     m_values:
-    - _count: 0
+    - _count: 1
       _repeat: 1
       _cooltime: 0.5

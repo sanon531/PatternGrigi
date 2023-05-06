@@ -29,6 +29,12 @@ namespace PG.Data
         Golem_2 = 26,
         Golem_3 = 27,
         Golem_boss = 28,
+        Golem_mid_boss_1 = 29,
+        Golem_mid_boss_2 = 30,
+        Golem_mid_boss_3 = 31,
+        Golem_var_1 = 32,
+        Golem_var_2 = 33,
+        Golem_var_3 = 34,
     }
 
     public enum StartCondition{
