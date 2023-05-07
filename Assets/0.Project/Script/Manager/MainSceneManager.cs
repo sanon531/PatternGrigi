@@ -17,8 +17,11 @@ namespace PG
 
 
         [SerializeField] private RectTransform _selectPanel;
-        [SerializeField] private Vector3 _selectPanelPos = new Vector3();
-
+        private Vector3 _selectPanelPos = new Vector3();
+        
+        [SerializeField] private RectTransform _creditPanel;
+        private Vector3 _creditPanelPos = new Vector3();
+        
         [SerializeField] private Button startButton;
 
         private StartCondition currentStartCondition = StartCondition.None;
@@ -43,6 +46,7 @@ namespace PG
         {
             MultiSceneUIScript.PublicFadeOut();
             _selectPanelPos = _selectPanel.anchoredPosition;
+            _creditPanelPos = _creditPanel.anchoredPosition;
             startButton.interactable = false;
         }
 
@@ -87,6 +91,16 @@ namespace PG
             SceneMoveManager.MoveSceneByCall(targetScene);
             OptionSystem.SetGotoPlayScene();
             _pressedStart = false;
+        }
+
+        public void ShowCreditPanel()
+        {
+            _creditPanel.anchoredPosition = Vector3.zero;
+        }
+
+        public void HideCreditPanel()
+        {
+            _creditPanel.anchoredPosition = _creditPanelPos;
         }
     }
 }

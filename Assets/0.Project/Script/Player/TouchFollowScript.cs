@@ -164,7 +164,7 @@ namespace PG.Battle
                     _direction.y = _direction.normalized.y;
                 }
             }*/
-            transform.Translate(_direction * Time.deltaTime * _moveSpeed);
+            transform.Translate(_direction * (Time.deltaTime * _moveSpeed));
             Vector3 _curTF = transform.position;
             _curTF.x = Mathf.Clamp(_curTF.x, _moveLUvec.x, _moveRDvec.x);
             _curTF.y = Mathf.Clamp(_curTF.y, _moveRDvec.y, _moveLUvec.y);
