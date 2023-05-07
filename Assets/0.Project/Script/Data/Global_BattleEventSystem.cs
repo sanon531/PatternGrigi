@@ -69,14 +69,7 @@ namespace PG.Event
         public static void CallOnLevelUp()
         {
             _callLevelUP = true;
-            CallTotalPauseNoMatterWhat();
             _onLevelUpShow?.Invoke();
-        }
-        public static void CallOffLevelUp()
-        {
-            _callLevelUP = false;
-            CallOffTotalPauseNoMatterWhat();
-            _onLevelUpHide?.Invoke();
         }
 
         public static event OnEventWithInt _onWaveChange;

@@ -143,7 +143,7 @@ namespace PG.Battle
                 ArtifactManager.AddArtifactToPlayer_tempUse(_instance._upgradeDataList[_choosedButtonNum]);
                 _choosedButtonNum = -1;
                 EXPbarUIScript.SetLevelUp();
-                Global_BattleEventSystem.CallOffLevelUp();
+                ArtifactManager.SetLevelUpOff();
                 foreach (var t in _instance._upgradePanelList)
                 {
                     t.SetInactivateButton();
@@ -163,7 +163,7 @@ namespace PG.Battle
             _instance._resetButton.interactable = false;
             _choosedButtonNum = -1;
             EXPbarUIScript.ResetLevelUp();
-            Global_BattleEventSystem.CallOffLevelUp();
+            ArtifactManager.SetLevelUpOff();
             foreach (var t in _instance._upgradePanelList)
             {
                 t.SetInactivateButton();

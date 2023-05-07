@@ -39,8 +39,6 @@ namespace PG.Battle
             //print("called artifact");
             LoadImageBeforePlaying();
             Global_BattleEventSystem._onBattleBegin += InitializeCurrentArtifact;
-            Global_BattleEventSystem._onLevelUpShow += SetLevelUpOn;
-            Global_BattleEventSystem._onLevelUpHide += SetLevelUpOff;
         }
 
         protected override void CallOnDestroy()
@@ -48,8 +46,6 @@ namespace PG.Battle
             //print("destroy artifact");
             DisableAllArtifact();
             Global_BattleEventSystem._onBattleBegin -= InitializeCurrentArtifact;
-            Global_BattleEventSystem._onLevelUpShow -= SetLevelUpOn;
-            Global_BattleEventSystem._onLevelUpHide -= SetLevelUpOff;
         }
 
         //랜덤의 형성은 다음과 같아야한다. 
@@ -57,15 +53,23 @@ namespace PG.Battle
 
         #region ArtifactRelevant
 
-        void SetLevelUpOn()
+        public static void SetLevelUpOn()
         {
-            ArtifactSetRandomly();
+            _instance.StartCoroutine(_instance.DelayedSetLevelUp());
+        }
+
+        IEnumerator DelayedSetLevelUp()
+        {
+            yield return new WaitForEndOfFrame();
+            Global_BattleEventSystem.CallTotalPauseNoMatterWhat();
+            _instance.ArtifactSetRandomly();
             LevelUpPanelScript.LevelUpPannelOn();
         }
 
-        void SetLevelUpOff()
+        public static void  SetLevelUpOff()
         {
             LevelUpPanelScript.LevelUpPannelOff();
+            Global_BattleEventSystem.CallOffTotalPauseNoMatterWhat();
         }
 
         //Not only random increase percentage to get artifact gto already.

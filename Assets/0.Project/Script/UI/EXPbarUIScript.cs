@@ -6,6 +6,7 @@ using PG.Event;
 using TMPro;
 using DG.Tweening;
 using PG;
+using PG.Battle;
 using PG.Data;
 
 public class EXPbarUIScript : MonoSingleton<EXPbarUIScript>
@@ -53,8 +54,8 @@ public class EXPbarUIScript : MonoSingleton<EXPbarUIScript>
         //print("get :" + val +","+ +_currentEXP +_maxEXP);
         if (_currentEXP >= _maxEXP) 
         {
-            Global_BattleEventSystem.CallOnLevelUp();
             _currentEXP = 0;
+            ArtifactManager.SetLevelUpOn();
         }else
             _bar.DOFillAmount(_currentEXP / _maxEXP,0.5f);
 
