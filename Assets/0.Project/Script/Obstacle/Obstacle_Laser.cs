@@ -18,6 +18,9 @@ namespace PG.Battle
         {
             base.SetSpawnData(lifeTime, activetimes, damage, id);
             _thisCollider.enabled = false;
+            Vector2 direction = (Player_Script.GetPlayerPosition() - transform.position).normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, angle);
             _showSign.enabled = true;
         }
 

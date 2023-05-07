@@ -38,6 +38,7 @@ namespace PG.Battle
             SwitchEventPause();
             SwitchEventCombat();
             Global_CampaignData.SetCampaginInitialize(_currentCampaignData);
+            
             //Debug.Log(Global_CampaignData._charactorAttackDic[CharacterID.Player].FinalValue);
             _DebugCurrentText.text = _currentCampaignData.name;
             Global_BattleEventSystem._onGameOver += TrySetBestTime;
@@ -60,8 +61,11 @@ namespace PG.Battle
             Global_BattleEventSystem.CallOnBattleBegin();
             AudioManager.ChangeBackgroundMusicOnSceneChange(1);
             _playEndTime = Mathf.RoundToInt(Global_CampaignData._waveTimeList.Max());
-
             _isgameStarted = true;
+            var selectingData = CurrentSelectedDataManager.GetCurrentCondition();
+            if(selectingData._startArtifact != ArtifactID.Default_Non)
+                ArtifactManager.AddArtifactToPlayer_tempUse(selectingData._startArtifact);
+            Global_CampaignData._projectileIDDataDic.CopyFrom(selectingData._projectileIDDataDic);
         }
 
         // 적의 스폰과 보스 스폰 은 그냥. 현재의 형태로 만들자.

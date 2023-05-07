@@ -45,6 +45,10 @@ namespace PG
             
         }
 
+        public static  bool GetIsFadeEnd()
+        {
+            return !_instance._FadeInImage.enabled;
+        }
 
     }
 }

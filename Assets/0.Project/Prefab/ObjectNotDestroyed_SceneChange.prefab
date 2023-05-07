@@ -681,6 +681,61 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &2250029644792057749
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8145872007629829816}
+  - component: {fileID: 7929171516254400476}
+  m_Layer: 5
+  m_Name: CurrentSelectedDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8145872007629829816
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2250029644792057749}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4018811512932552379}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7929171516254400476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2250029644792057749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f2749f5688bc7f418848455a22449c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startConditionCampaignDictionary:
+    m_keys: 010000000200000003000000
+    m_values:
+    - {fileID: 11400000, guid: 2f75ec9668297d4489715ebcb7fae947, type: 2}
+    - {fileID: 11400000, guid: 3c8ee0aec38f2424686f7cee009caf0e, type: 2}
+    - {fileID: 11400000, guid: 35cc9135070ccdb4c9ba0b984cddc561, type: 2}
 --- !u!1 &2786872337648768323
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,7 +2149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveData:
-    showTutorial: 0
+    showTutorial: 1
     firstPlay: 1
 --- !u!1 &6322523923247486439
 GameObject:
@@ -2704,6 +2759,7 @@ RectTransform:
   - {fileID: 2042551665798911718}
   - {fileID: 1652800588977759892}
   - {fileID: 5569525071058959965}
+  - {fileID: 8145872007629829816}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
