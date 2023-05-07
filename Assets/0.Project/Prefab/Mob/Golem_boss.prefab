@@ -200,7 +200,7 @@ MonoBehaviour:
   _mobActionDic:
     m_keys: 0100000002000000
     m_values:
-    - _actionTime: 2
+    - _actionTime: 4
       _acceleration: 0
       _mobAttackDataList: []
     - _actionTime: 3
@@ -211,7 +211,7 @@ MonoBehaviour:
         _spawnData:
           _thisID: 3
           _lifeTime: 2
-          _activeTime: 0.5
+          _activeTime: 1.5
   _spriteRenderer: {fileID: 689142036305607989}
 --- !u!61 &3616840655836730660
 BoxCollider2D:

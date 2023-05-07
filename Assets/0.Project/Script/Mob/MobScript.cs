@@ -170,9 +170,7 @@ namespace PG.Battle
                 _currentActionOrder = 0;
             }
         }
-
         #region Movement&Damage
-
         private Vector3 _towardDirrection = Vector3.up;
         void CalcMovement()
         {
@@ -202,10 +200,7 @@ namespace PG.Battle
             */
 
         }
-
-
         private Coroutine knockback;
-
         public void Damage(Vector3 colliderPos,float val)
         {
             if (_isEnemyAlive)
