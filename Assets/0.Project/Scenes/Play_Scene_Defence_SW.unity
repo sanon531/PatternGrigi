@@ -1939,7 +1939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11e8d0ce67a957439ceddca65297550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  artifactData: {fileID: 11400000, guid: 2b74ca1672684da48b9f1cb06b40eb5f, type: 2}
+  artifactData: {fileID: 11400000, guid: b8732d82e3538734680e7dda11417dde, type: 2}
   artifactMixData: {fileID: 11400000, guid: 3ef3668c1d459484b965bb2ace139a09, type: 2}
   _isTestSet: 1
   _showerArtifectList: 

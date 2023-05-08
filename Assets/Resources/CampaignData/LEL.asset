@@ -1,0 +1,340 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cefa246ec3004447a6fa8e1606092a2, type: 3}
+  m_Name: LEL
+  m_EditorClassIdentifier: 
+  idArtifactDataDic:
+    m_keys: 00000000010000000a0000000b00000014000000150000001e0000001f00000020000000210000002a000000330000003400000078000000790000007a000000e703000084000000220000007b000000090000008500000086000000
+    m_values:
+    - id: 0
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 1
+      - 1
+      - 1
+      - 1
+      arfifactLevelValueList2:
+      - 1
+      - 1
+      - 1
+      - 1
+      isonoff: 0
+    - id: 1
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 1
+      - 1
+      - 1
+      - 1
+      arfifactLevelValueList2:
+      - 1
+      - 1
+      - 1
+      - 1
+      isonoff: 0
+    - id: 10
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 1
+      - 1
+      - 1
+      - 1
+      arfifactLevelValueList2:
+      - 1
+      - 1
+      - 1
+      - 1
+      isonoff: 0
+    - id: 11
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 1.25
+      - 1.5
+      - 1.75
+      - 2
+      arfifactLevelValueList2:
+      - 1
+      - 1
+      - 1
+      - 1
+      isonoff: 0
+    - id: 20
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 1
+      - 1
+      - 1
+      - 1
+      arfifactLevelValueList2:
+      - 1
+      - 1
+      - 1
+      - 1
+      isonoff: 0
+    - id: 21
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 1
+      - 1
+      - 1
+      - 1
+      arfifactLevelValueList2:
+      - 1
+      - 1
+      - 1
+      - 1
+      isonoff: 0
+    - id: 30
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 1
+      - 2
+      - 3
+      - 4
+      arfifactLevelValueList2:
+      - 5
+      - 5
+      - 5
+      - 5
+      isonoff: 0
+    - id: 31
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 1
+      - 1
+      - 1
+      - 1
+      arfifactLevelValueList2:
+      - 1
+      - 1
+      - 1
+      - 1
+      isonoff: 0
+    - id: 32
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 5
+      - 10
+      - 20
+      - 50
+      arfifactLevelValueList2:
+      - 1
+      - 1
+      - 1
+      - 1
+      isonoff: 0
+    - id: 33
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 1
+      - 1
+      - 1
+      - 1
+      arfifactLevelValueList2:
+      - 1
+      - 1
+      - 1
+      - 1
+      isonoff: 0
+    - id: 42
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 1
+      - 1
+      - 1
+      - 1
+      arfifactLevelValueList2:
+      - 1
+      - 1
+      - 1
+      - 1
+      isonoff: 0
+    - id: 51
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 1
+      - 1
+      - 1
+      - 1
+      arfifactLevelValueList2:
+      - 1
+      - 1
+      - 1
+      - 1
+      isonoff: 0
+    - id: 52
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 1
+      - 1
+      - 1
+      - 1
+      arfifactLevelValueList2:
+      - 1
+      - 1
+      - 1
+      - 1
+      isonoff: 0
+    - id: 120
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 0.5
+      - 0.65
+      - 0.8
+      - 0.9
+      arfifactLevelValueList2:
+      - 0.025
+      - 0.05
+      - 0.08
+      - 0.1
+      isonoff: 0
+    - id: 121
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 1
+      - 2
+      - 3
+      - 4
+      arfifactLevelValueList2:
+      - 1
+      - 1
+      - 1
+      - 1
+      isonoff: 0
+    - id: 122
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 4
+      - 5
+      - 6
+      - 7
+      arfifactLevelValueList2:
+      - 1
+      - 1
+      - 1
+      - 1
+      isonoff: 0
+    - id: 999
+      rarity: 0
+      maxLevel: 999999
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 1
+      - 1
+      - 1
+      - 1
+      arfifactLevelValueList2:
+      - 1
+      - 1
+      - 1
+      - 1
+      isonoff: 0
+    - id: 132
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 0.01
+      - 0.02
+      - 0.03
+      - 0.04
+      - 0.05
+      arfifactLevelValueList2: []
+      isonoff: 0
+    - id: 34
+      rarity: 0
+      maxLevel: 3
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 0.5
+      - 0.5
+      - 0.5
+      arfifactLevelValueList2:
+      - 1
+      - 2
+      - 3
+      isonoff: 0
+    - id: 123
+      rarity: 0
+      maxLevel: 1
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 50
+      arfifactLevelValueList2:
+      - 1
+      isonoff: 0
+    - id: 9
+      rarity: 0
+      maxLevel: 3
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 200
+      - 300
+      - 400
+      arfifactLevelValueList2: []
+      isonoff: 0
+    - id: 133
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList: []
+      arfifactLevelValueList2: []
+      isonoff: 0
+    - id: 134
+      rarity: 0
+      maxLevel: 4
+      upgradecount: 0
+      arfifactLevelValueList:
+      - 0.5
+      - 1
+      - 1.25
+      - 1.5
+      - 1.75
+      arfifactLevelValueList2:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      isonoff: 0
