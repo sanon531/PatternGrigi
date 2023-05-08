@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eaf8bcdc30857642875fe95f33a0b63, type: 3}
   m_Name: Default
   m_EditorClassIdentifier: 
-  _startArtifact: 1000
+  _startArtifact: 34
   _projectileIDDataDic:
     m_keys: 00000000
     m_values:

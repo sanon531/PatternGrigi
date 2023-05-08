@@ -93,8 +93,8 @@ namespace PG.Data
         public static List<float> _levelMaxEXPList = new List<float>();
         public static float _killGetEXP = 1;
         public static HashSet<EMobDebuff> _CurrentBulletDeBuffs = new HashSet<EMobDebuff>();
-        public static float _slowAmount = 0.5f;
-        public static float _slowTime = 1f;
+        public static float _slowAmount = 0f;
+        public static float _slowTime = 0.75f;
 
         public static bool _isKnockBack = true;
         public static bool _gameOver = false;
@@ -148,6 +148,8 @@ namespace PG.Data
             _levelMaxEXPList = data._levelMaxEXPList;
             _killGetEXP = data._killGetEXP;
             _isKnockBack = data._isKnockBack;
+            _slowAmount = 1;
+            _slowTime = 1;
             _gameOver = false;
             _gameCleared = false;
 

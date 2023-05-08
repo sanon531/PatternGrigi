@@ -186,7 +186,7 @@ namespace PG.Battle
             {
                 //막히지 않을 경우 아래 막힐경우 양옆으로 이동한다.
                 _movement = (_initialSpeed / 50) * Time.deltaTime * direction;
-                _rigidBody2D.MovePosition(transform.position + _movement * _slowRatio);
+                _rigidBody2D.MovePosition((transform.position + _movement*_slowRatio  ));
                 //_initialSpeed += _acceleration * Time.deltaTime;
             }
 
@@ -293,6 +293,7 @@ namespace PG.Battle
                 case EMobDebuff.Slow:
                     _slowTimer = Global_CampaignData._slowTime;
                     _slowRatio = Global_CampaignData._slowAmount;
+                    Debug.Log(_slowRatio);
                     _spriteRenderer.color = Color.green;
                     break;
                 default:
